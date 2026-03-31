@@ -6,6 +6,7 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import VoiceMockup from "@/app/components/marketing/VoiceMockup";
 import Reveal from "@/app/components/effects/Reveal";
+import MockupReveal from "@/app/components/effects/MockupReveal";
 import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Sparkles from "@/app/components/effects/Sparkles";
 
@@ -71,9 +72,9 @@ export default function DictationPage() {
       {/* Voice mockup */}
       <section className="py-20 sm:py-32">
         <Container>
-          <Reveal>
+          <MockupReveal className="mx-auto max-w-4xl" glowColor="rgba(245, 158, 11, 0.08)">
             <VoiceMockup />
-          </Reveal>
+          </MockupReveal>
         </Container>
       </section>
 

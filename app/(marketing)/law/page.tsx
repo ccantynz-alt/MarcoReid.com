@@ -6,6 +6,7 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import DashboardMockup from "@/app/components/marketing/DashboardMockup";
 import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Reveal from "@/app/components/effects/Reveal";
+import MockupReveal from "@/app/components/effects/MockupReveal";
 import Sparkles from "@/app/components/effects/Sparkles";
 
 export const metadata: Metadata = {
@@ -59,9 +60,9 @@ export default function LawPage() {
       {/* Dashboard mockup */}
       <section className="py-20 sm:py-32">
         <Container>
-          <Reveal>
+          <MockupReveal className="mx-auto max-w-4xl" glowColor="rgba(16, 185, 129, 0.08)">
             <DashboardMockup />
-          </Reveal>
+          </MockupReveal>
         </Container>
       </section>
 
