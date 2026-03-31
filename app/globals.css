@@ -22,14 +22,35 @@
     animation: gradientShift 8s ease-in-out infinite;
   }
 
-  .text-gradient-static {
+  .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    background-image: linear-gradient(135deg, #fbbf24 0%, #f59e0b 25%, #ffffff 50%, #fbbf24 75%, #f59e0b 100%);
+    background-size: 300% 300%;
+    animation: gradientShift 6s ease-in-out infinite;
+  }
+
+  .text-gradient-oracle {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #e0e7ff 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+
+  .text-gradient-voice {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #10b981 0%, #34d399 50%, #ffffff 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
   }
 
   .glow-line {
     @apply h-px w-full;
     background: linear-gradient(90deg, transparent, #10b981, transparent);
+  }
+
+  .glow-line-gold {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent, #f59e0b, transparent);
   }
 
   .glow-line-subtle {
@@ -42,20 +63,76 @@
   }
 
   .card-dark {
-    @apply rounded-2xl bg-surface-raised border border-surface-border p-8;
+    @apply rounded-2xl bg-surface-raised border border-surface-border p-8 transition-all duration-500;
+  }
+
+  .card-dark:hover {
+    @apply border-surface-border-light;
   }
 
   .card-glow {
-    @apply rounded-2xl bg-surface-raised border border-surface-border p-8 relative overflow-hidden;
+    @apply rounded-2xl bg-surface-raised border border-surface-border p-8 relative overflow-hidden transition-all duration-500;
   }
 
-  .card-glow::before {
-    content: "";
-    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500;
-    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), #10b98108, transparent 40%);
+  .card-glow:hover {
+    @apply border-surface-border-light;
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
   }
 
-  .card-glow:hover::before {
-    @apply opacity-100;
+  .mockup-window {
+    @apply rounded-xl border border-surface-border bg-surface overflow-hidden;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(16, 185, 129, 0.05);
   }
+
+  .mockup-titlebar {
+    @apply flex items-center gap-2 border-b border-surface-border bg-surface-raised px-4 py-3;
+  }
+
+  .mockup-dot {
+    @apply h-3 w-3 rounded-full;
+  }
+}
+
+/* Sparkle animation */
+.sparkle {
+  animation: sparkle-float linear infinite;
+  opacity: 0;
+}
+
+@keyframes sparkle-float {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  20% { opacity: 1; transform: translateY(-20px) scale(1); }
+  80% { opacity: 1; transform: translateY(-80px) scale(1); }
+  100% { opacity: 0; transform: translateY(-100px) scale(0); }
+}
+
+/* Waveform animation for Voice mockup */
+.waveform-bar {
+  animation: waveform 1.2s ease-in-out infinite;
+}
+
+@keyframes waveform {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* Typing cursor */
+.typing-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Pulse ring */
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
 }
