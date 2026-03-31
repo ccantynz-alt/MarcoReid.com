@@ -15,7 +15,7 @@ export default function OracleMockup() {
       <div className="p-6">
         {/* Search bar */}
         <div className="flex items-center gap-3 rounded-lg border border-surface-border bg-surface-subtle px-4 py-3">
-          <svg className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+          <svg className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
           </svg>
           <span className="text-sm text-text-primary">
@@ -48,12 +48,12 @@ export default function OracleMockup() {
               Non-competition agreements are void regardless of reasonableness...
             </p>
             <div className="mt-3 flex gap-3">
-              <button className="text-xs font-medium text-accent hover:underline">
+              <span className="text-xs font-medium text-accent">
                 Insert citation
-              </button>
-              <button className="text-xs font-medium text-text-tertiary hover:text-text-secondary">
+              </span>
+              <span className="text-xs font-medium text-text-tertiary">
                 View full text
-              </button>
+              </span>
             </div>
           </div>
 
