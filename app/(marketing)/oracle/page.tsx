@@ -30,15 +30,16 @@ export default function OraclePage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
-        <Container className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/5 blur-[120px]" />
+        <Container className="relative text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
             The Oracle
           </p>
-          <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
+          <h1 className="mt-6 text-display-2xl font-serif text-gradient">
             {product.tagline}
           </h1>
-          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-text-secondary">
             {product.description}
           </p>
           <div className="mt-12">
@@ -50,41 +51,44 @@ export default function OraclePage() {
       </section>
 
       {/* Citation verification */}
-      <section className="bg-neutral-200 py-24 sm:py-36">
+      <div className="glow-line mx-auto max-w-xs" />
+      <section className="py-32 sm:py-44">
         <Container>
-          <h2 className="text-center text-display font-serif text-neutral-950">
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            Verification system
+          </p>
+          <h2 className="mt-6 text-center text-display font-serif text-text-primary">
             Every citation verified.
           </h2>
-          <p className="mt-6 text-center text-xl text-neutral-600">
-            No hallucinated cases. No fabricated rulings. Every source linked.
+          <p className="mt-6 text-center text-xl text-text-secondary">
+            No hallucinated cases. No fabricated rulings. Every source linked and checked.
           </p>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-3xl bg-white px-8 py-10 text-center">
-              <p className="font-serif text-4xl text-accent">&check;</p>
-              <p className="mt-4 text-lg font-semibold text-neutral-950">
+            <div className="card-dark text-center">
+              <p className="font-serif text-5xl text-accent">&check;</p>
+              <p className="mt-4 text-lg font-semibold text-text-primary">
                 Verified
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-2 text-sm text-text-secondary">
                 Confirmed in authoritative public domain source with direct link
               </p>
             </div>
-            <div className="rounded-3xl bg-white px-8 py-10 text-center">
-              <p className="font-serif text-4xl text-yellow-600">&minus;</p>
-              <p className="mt-4 text-lg font-semibold text-neutral-950">
+            <div className="card-dark text-center">
+              <p className="font-serif text-5xl text-yellow-500">&minus;</p>
+              <p className="mt-4 text-lg font-semibold text-text-primary">
                 Unverified
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                Could not be confirmed. Do not rely without independent
-                verification
+              <p className="mt-2 text-sm text-text-secondary">
+                Could not be confirmed. Do not rely without independent verification
               </p>
             </div>
-            <div className="rounded-3xl bg-white px-8 py-10 text-center">
-              <p className="font-serif text-4xl text-red-500">&times;</p>
-              <p className="mt-4 text-lg font-semibold text-neutral-950">
+            <div className="card-dark text-center">
+              <p className="font-serif text-5xl text-red-400">&times;</p>
+              <p className="mt-4 text-lg font-semibold text-text-primary">
                 Not Found
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-2 text-sm text-text-secondary">
                 Does not appear to exist in any authoritative source. Do not use
               </p>
             </div>
@@ -93,16 +97,22 @@ export default function OraclePage() {
       </section>
 
       {/* Cross-domain */}
-      <section className="py-24 sm:py-36">
-        <Container narrow>
-          <h2 className="text-display font-serif text-neutral-950">
+      <section className="relative py-32 sm:py-44">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="h-[400px] w-[600px] rounded-full bg-accent/5 blur-[120px]" />
+        </div>
+        <Container narrow className="relative">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
+            The moat
+          </p>
+          <h2 className="mt-6 text-display font-serif text-text-primary">
             The product nobody else can build.
           </h2>
-          <p className="mt-8 text-xl leading-relaxed text-neutral-600">
+          <p className="mt-8 text-xl leading-relaxed text-text-secondary">
             &ldquo;What are the immigration tax implications of this corporate
             structure for a Tier-1 visa applicant?&rdquo;
           </p>
-          <p className="mt-6 text-xl leading-relaxed text-neutral-600">
+          <p className="mt-6 text-xl leading-relaxed text-text-secondary">
             That query requires both law and accounting AI. Nobody else owns
             both sides. Only AlecRae can answer it.
           </p>
@@ -110,18 +120,18 @@ export default function OraclePage() {
       </section>
 
       {/* Features */}
-      <section className="bg-neutral-100 py-24 sm:py-36">
+      <section className="py-32 sm:py-44">
         <Container>
-          <h2 className="text-center text-display font-serif text-neutral-950">
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            Capabilities
+          </p>
+          <h2 className="mt-6 text-center text-display font-serif text-text-primary">
             How it works.
           </h2>
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {product.features.map((feature) => (
-              <div
-                key={feature}
-                className="rounded-2xl bg-neutral-200 px-8 py-6"
-              >
-                <p className="text-lg font-medium text-neutral-950">
+              <div key={feature} className="card-dark">
+                <p className="text-lg font-medium text-text-primary">
                   {feature}
                 </p>
               </div>

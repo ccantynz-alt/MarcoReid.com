@@ -32,42 +32,53 @@ export default function HomePage() {
 
       <Hero />
 
+      {/* Glowing divider */}
+      <div className="glow-line mx-auto max-w-xs" />
+
       <ValueProposition />
 
       {/* Products */}
-      <section className="bg-neutral-100 py-24 sm:py-36">
+      <section className="py-32 sm:py-44">
         <Container>
-          <div className="text-center">
-            <h2 className="text-display font-serif text-neutral-950">
-              Four products. One platform.
-            </h2>
-            <p className="mt-6 text-xl text-neutral-600">
-              Everything a professional needs, nothing they don&rsquo;t.
-            </p>
-          </div>
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            The platform
+          </p>
+          <h2 className="mt-6 text-center text-display-xl font-serif text-text-primary">
+            Four products.
+            <br />
+            <span className="text-gradient">One operating system.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-lg text-center text-xl text-text-secondary">
+            Everything a professional needs. Nothing they don&rsquo;t.
+          </p>
+
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
-            <ProductCard product={PRODUCTS.law} />
-            <ProductCard product={PRODUCTS.accounting} />
-            <ProductCard product={PRODUCTS.oracle} />
-            <ProductCard product={PRODUCTS.voice} />
+            {Object.values(PRODUCTS).map((product) => (
+              <ProductCard key={product.slug} product={product} />
+            ))}
           </div>
         </Container>
       </section>
 
+      <div className="glow-line mx-auto max-w-xs" />
+
       {/* Manifesto */}
-      <section className="py-24 sm:py-36">
+      <section className="py-32 sm:py-44">
         <Container narrow>
-          <h2 className="text-display font-serif text-neutral-950">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
+            The philosophy
+          </p>
+          <h2 className="mt-6 text-display font-serif text-text-primary">
             Your profession back.
           </h2>
-          <p className="mt-8 text-xl leading-relaxed text-neutral-600">
-            Lawyers and accountants became professionals to practise their craft
-            {"\u00A0"}&mdash; not to spend their days on admin, research grunt
-            work, and chasing clients for information.
+          <p className="mt-8 text-xl leading-relaxed text-text-secondary">
+            Lawyers and accountants became professionals to practise their
+            craft&nbsp;&mdash; not to spend their days on admin, research
+            grunt work, and chasing clients for information.
           </p>
-          <p className="mt-6 text-xl leading-relaxed text-neutral-600">
+          <p className="mt-6 text-xl leading-relaxed text-text-secondary">
             AlecRae handles the machine work. You handle the judgment work.
-            That is the only division that makes sense.
+            That is the only division of labour that has ever made sense.
           </p>
         </Container>
       </section>

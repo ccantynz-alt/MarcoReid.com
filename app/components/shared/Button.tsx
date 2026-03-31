@@ -2,7 +2,7 @@ import Link from "next/link";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "text";
+  variant?: "primary" | "secondary" | "ghost";
   size?: "sm" | "md" | "lg";
   href?: string;
   className?: string;
@@ -10,16 +10,17 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-neutral-950 text-white hover:bg-neutral-800 focus-visible:ring-neutral-950",
+    "bg-white text-surface font-semibold hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)] focus-visible:ring-white",
   secondary:
-    "bg-neutral-200 text-neutral-950 hover:bg-neutral-300 focus-visible:ring-neutral-400",
-  text: "text-accent hover:opacity-80 focus-visible:ring-accent",
+    "bg-surface-overlay text-text-primary border border-surface-border hover:border-surface-border-light hover:bg-surface-subtle focus-visible:ring-white/50",
+  ghost:
+    "text-text-secondary hover:text-text-primary focus-visible:ring-white/50",
 };
 
 const sizes = {
   sm: "px-5 py-2.5 text-sm",
-  md: "px-7 py-3.5 text-base",
-  lg: "px-9 py-4 text-lg",
+  md: "px-7 py-3.5 text-sm",
+  lg: "px-9 py-4 text-base",
 };
 
 export default function Button({
@@ -30,11 +31,9 @@ export default function Button({
   className = "",
 }: ButtonProps) {
   const base =
-    variant === "text"
-      ? "inline-flex items-center min-h-touch font-medium transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-      : "inline-flex items-center justify-center min-h-touch rounded-full font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center min-h-touch rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
 
-  const classes = `${base} ${variants[variant]} ${variant !== "text" ? sizes[size] : ""} ${className}`;
+  const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 
   if (href) {
     return (

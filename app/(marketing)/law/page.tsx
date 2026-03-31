@@ -29,15 +29,16 @@ export default function LawPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
-        <Container className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[120px]" />
+        <Container className="relative text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
             AlecRae Law
           </p>
-          <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
+          <h1 className="mt-6 text-display-2xl font-serif text-gradient">
             {product.tagline}
           </h1>
-          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-text-secondary">
             {product.description}
           </p>
           <div className="mt-12">
@@ -49,37 +50,35 @@ export default function LawPage() {
       </section>
 
       {/* Stat */}
-      <section className="bg-neutral-200 py-20 sm:py-28">
+      <div className="glow-line mx-auto max-w-xs" />
+      <section className="py-32 sm:py-44">
         <Container className="text-center">
-          <p className="text-display-xl font-serif text-neutral-950">
-            15&ndash;20
+          <p className="text-display-2xl font-serif text-text-primary">
+            15&ndash;20<span className="text-accent">h</span>
           </p>
-          <p className="mt-4 text-xl text-neutral-600">
-            hours saved per week, per attorney
+          <p className="mt-6 text-xl text-text-secondary">
+            saved per week, per attorney
           </p>
-          <p className="mt-2 text-neutral-500">
-            At $350/hour, that is $5,250&ndash;7,000 of additional billing
+          <p className="mt-3 text-text-tertiary">
+            At $350/hour &mdash; $5,250&ndash;7,000 of additional billing
             capacity. Every single week.
           </p>
         </Container>
       </section>
 
       {/* Features */}
-      <section className="py-24 sm:py-36">
+      <section className="py-32 sm:py-44">
         <Container>
-          <h2 className="text-center text-display font-serif text-neutral-950">
-            Everything your firm needs.
-          </h2>
-          <p className="mt-6 text-center text-xl text-neutral-600">
-            One platform replaces a dozen tools.
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            Capabilities
           </p>
+          <h2 className="mt-6 text-center text-display font-serif text-text-primary">
+            Everything your firm needs. Nothing else.
+          </h2>
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {product.features.map((feature) => (
-              <div
-                key={feature}
-                className="rounded-2xl bg-neutral-200 px-8 py-6"
-              >
-                <p className="text-lg font-medium text-neutral-950">
+              <div key={feature} className="card-dark">
+                <p className="text-lg font-medium text-text-primary">
                   {feature}
                 </p>
               </div>

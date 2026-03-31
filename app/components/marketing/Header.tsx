@@ -8,19 +8,22 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-xl">
-      <nav className="mx-auto flex h-12 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
-        <Link href="/" className="font-serif text-xl text-neutral-950">
+    <header className="fixed top-0 z-50 w-full glass">
+      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
+        <Link
+          href="/"
+          className="font-serif text-xl text-text-primary transition-opacity hover:opacity-80"
+        >
           AlecRae
         </Link>
 
         {/* Desktop */}
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="min-h-touch inline-flex items-center text-xs font-medium text-neutral-600 transition-colors hover:text-neutral-950"
+              className="min-h-touch inline-flex items-center text-xs font-medium text-text-tertiary transition-colors hover:text-text-primary"
             >
               {link.label}
             </Link>
@@ -30,7 +33,7 @@ export default function Header() {
         {/* Mobile toggle */}
         <button
           type="button"
-          className="inline-flex min-h-touch min-w-touch items-center justify-center text-neutral-600 hover:text-neutral-950 md:hidden"
+          className="inline-flex min-h-touch min-w-touch items-center justify-center text-text-tertiary hover:text-text-primary md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -49,19 +52,17 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-neutral-200 bg-white/95 px-6 pb-6 pt-4 backdrop-blur-xl md:hidden">
-          <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="min-h-touch inline-flex items-center text-base text-neutral-600 transition-colors hover:text-neutral-950"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <div className="border-t border-surface-border bg-surface/95 px-6 pb-6 pt-4 backdrop-blur-xl md:hidden">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="block min-h-touch py-2 text-base text-text-secondary transition-colors hover:text-text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
       )}
     </header>

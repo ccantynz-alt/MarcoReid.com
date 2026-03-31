@@ -29,15 +29,16 @@ export default function AccountingPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
-        <Container className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/5 blur-[120px]" />
+        <Container className="relative text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
             AlecRae Accounting
           </p>
-          <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
+          <h1 className="mt-6 text-display-2xl font-serif text-gradient">
             {product.tagline}
           </h1>
-          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-text-secondary">
             {product.description}
           </p>
           <div className="mt-12">
@@ -49,15 +50,16 @@ export default function AccountingPage() {
       </section>
 
       {/* Stat */}
-      <section className="bg-neutral-200 py-20 sm:py-28">
+      <div className="glow-line mx-auto max-w-xs" />
+      <section className="py-32 sm:py-44">
         <Container className="text-center">
-          <p className="text-display-xl font-serif text-neutral-950">
-            12&ndash;18
+          <p className="text-display-2xl font-serif text-text-primary">
+            12&ndash;18<span className="text-accent">h</span>
           </p>
-          <p className="mt-4 text-xl text-neutral-600">
-            hours saved per week, per CPA
+          <p className="mt-6 text-xl text-text-secondary">
+            saved per week, per CPA
           </p>
-          <p className="mt-2 text-neutral-500">
+          <p className="mt-3 text-text-tertiary">
             Hours that can be billed to more clients, or simply given back to
             the people who matter.
           </p>
@@ -65,21 +67,18 @@ export default function AccountingPage() {
       </section>
 
       {/* Features */}
-      <section className="py-24 sm:py-36">
+      <section className="py-32 sm:py-44">
         <Container>
-          <h2 className="text-center text-display font-serif text-neutral-950">
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            Capabilities
+          </p>
+          <h2 className="mt-6 text-center text-display font-serif text-text-primary">
             Precision meets intelligence.
           </h2>
-          <p className="mt-6 text-center text-xl text-neutral-600">
-            Every accounting workflow, powered by AI.
-          </p>
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {product.features.map((feature) => (
-              <div
-                key={feature}
-                className="rounded-2xl bg-neutral-200 px-8 py-6"
-              >
-                <p className="text-lg font-medium text-neutral-950">
+              <div key={feature} className="card-dark">
+                <p className="text-lg font-medium text-text-primary">
                   {feature}
                 </p>
               </div>
