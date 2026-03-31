@@ -4,110 +4,34 @@
 
 @layer base {
   body {
-    @apply font-sans bg-surface text-text-primary antialiased;
+    @apply font-sans text-navy-800 bg-white antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    @apply bg-accent/30 text-white;
+    @apply bg-navy-500 text-white;
   }
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #ffffff 0%, #10b981 50%, #3b82f6 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease-in-out infinite;
-  }
-
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #fbbf24 0%, #f59e0b 25%, #ffffff 50%, #fbbf24 75%, #f59e0b 100%);
-    background-size: 300% 300%;
-    animation: gradientShift 6s ease-in-out infinite;
-  }
-
-  .text-gradient-oracle {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #e0e7ff 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease-in-out infinite;
-  }
-
-  .text-gradient-voice {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #10b981 0%, #34d399 50%, #ffffff 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease-in-out infinite;
-  }
-
-  .glow-line {
-    @apply h-px w-full;
-    background: linear-gradient(90deg, transparent, #10b981, transparent);
-  }
-
-  .glow-line-gold {
-    @apply h-px w-full;
-    background: linear-gradient(90deg, transparent, #f59e0b, transparent);
-  }
-
-  .glow-line-subtle {
-    @apply h-px w-full;
-    background: linear-gradient(90deg, transparent, #27272a, transparent);
-  }
-
-  .glass {
-    @apply bg-surface/80 backdrop-blur-xl border-b border-surface-border/50;
-  }
-
-  .card-dark {
-    @apply rounded-2xl bg-surface-raised border border-surface-border p-8 transition-all duration-500;
-  }
-
-  .card-dark:hover {
-    @apply border-surface-border-light;
-  }
-
-  .card-glow {
-    @apply rounded-2xl bg-surface-raised border border-surface-border p-8 relative overflow-hidden transition-all duration-500;
-  }
-
-  .card-glow:hover {
-    @apply border-surface-border-light;
-    box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
-    transform: translateY(-2px) scale(1.01);
-  }
-
-  .mockup-window {
-    @apply rounded-xl border border-surface-border bg-surface overflow-hidden;
-    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(16, 185, 129, 0.05);
-  }
-
-  .mockup-titlebar {
-    @apply flex items-center gap-2 border-b border-surface-border bg-surface-raised px-4 py-3;
-  }
-
-  .mockup-dot {
-    @apply h-3 w-3 rounded-full;
-  }
+/* Mockup window */
+.mockup-window {
+  @apply rounded-2xl bg-white overflow-hidden;
+  box-shadow:
+    0 32px 64px -16px rgba(26, 46, 90, 0.12),
+    0 16px 32px -8px rgba(26, 46, 90, 0.08),
+    0 0 0 1px rgba(26, 46, 90, 0.08);
 }
 
-/* Sparkle animation */
-.sparkle {
-  animation: sparkle-float linear infinite;
-  opacity: 0;
+.mockup-titlebar {
+  @apply flex items-center gap-2 border-b border-navy-100 bg-navy-50 px-4 py-3;
 }
 
-@keyframes sparkle-float {
-  0% { opacity: 0; transform: translateY(0) scale(0); }
-  20% { opacity: 1; transform: translateY(-20px) scale(1); }
-  80% { opacity: 1; transform: translateY(-80px) scale(1); }
-  100% { opacity: 0; transform: translateY(-100px) scale(0); }
+.mockup-dot {
+  @apply h-3 w-3 rounded-full;
 }
 
-/* Waveform animation for Voice mockup */
+/* Waveform */
 .waveform-bar {
   animation: waveform 1.2s ease-in-out infinite;
 }
@@ -138,52 +62,15 @@
   100% { transform: scale(1); opacity: 0; }
 }
 
-/* Interactive mouse-follow glow */
-.interactive-glow-container {
-  position: relative;
-}
-
-.interactive-glow-container::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: radial-gradient(
-    600px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(16, 185, 129, 0.12),
-    transparent 40%
-  );
-  pointer-events: none;
+/* Sparkle */
+.sparkle {
+  animation: sparkle-float linear infinite;
   opacity: 0;
-  transition: opacity 0.5s;
-  z-index: 0;
 }
 
-.interactive-glow-container:hover::after {
-  opacity: 1;
-}
-
-.interactive-glow-container > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Floating animation for mockups */
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* Scale-up on scroll reveal for mockups */
-.mockup-reveal {
-  transform: perspective(1000px) rotateX(5deg) scale(0.95);
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mockup-reveal.in-view {
-  transform: perspective(1000px) rotateX(0deg) scale(1);
+@keyframes sparkle-float {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
+  80% { opacity: 0.6; transform: translateY(-80px) scale(1); }
+  100% { opacity: 0; transform: translateY(-100px) scale(0); }
 }

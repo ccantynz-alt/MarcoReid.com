@@ -9,7 +9,7 @@ import Reveal from "@/app/components/effects/Reveal";
 import MockupReveal from "@/app/components/effects/MockupReveal";
 import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import TypingDemo from "@/app/components/effects/TypingDemo";
-import Sparkles from "@/app/components/effects/Sparkles";
+
 
 export const metadata: Metadata = {
   title: "AlecRae Voice \u2014 The Most Advanced Professional Voice Platform Ever Built",
@@ -39,19 +39,16 @@ export default function DictationPage() {
 
       {/* Hero */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-        <Sparkles />
-        <div className="pointer-events-none absolute left-1/2 top-1/3 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/8 blur-[150px] animate-glow-pulse" />
-        <div className="pointer-events-none absolute right-1/4 top-1/4 h-[300px] w-[400px] rounded-full bg-amber-500/5 blur-[100px] animate-glow-pulse" style={{ animationDelay: "3s" }} />
         <Container className="relative text-center">
-          <p className="animate-fade-in-up text-xs font-medium uppercase tracking-widest text-amber-400 opacity-0">
+          <p className="animate-fade-in-up text-xs font-medium uppercase tracking-widest text-navy-500 opacity-0">
             AlecRae Voice
           </p>
-          <h1 className="mt-8 animate-fade-in-up-delay text-display-2xl font-serif opacity-0">
-            <span className="text-gradient-voice">Speak.</span>
+          <h1 className="mt-8 animate-fade-in-up-delay text-hero font-serif opacity-0">
+            <span className="text-forest-500">Speak.</span>
             {" "}
-            <span className="text-text-primary">It is done.</span>
+            <span className="text-navy-700">It is done.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-text-secondary opacity-0">
+          <p className="mx-auto mt-8 max-w-2xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Every other dictation tool on the market is an island. It sits outside your workflow.
             AlecRae Voice is different. It IS the platform&rsquo;s input layer. Everywhere you can type,
             you can speak. And it doesn&rsquo;t just transcribe &mdash; it understands your profession,
@@ -68,19 +65,19 @@ export default function DictationPage() {
       <section className="py-16" aria-label="Voice demo">
         <Container>
           <Reveal>
-            <div className="mx-auto max-w-2xl rounded-2xl border border-amber-500/20 bg-surface-raised p-8">
+            <div className="mx-auto max-w-2xl rounded-2xl border border-forest-200 bg-navy-50 p-8">
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <div className="pulse-ring absolute inset-0 rounded-full border-2 border-amber-400/40" />
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20">
-                    <svg className="h-5 w-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-navy-100">
+                    <svg className="h-5 w-5 text-navy-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
                       <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
                     </svg>
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-semibold text-amber-400">AlecRae Voice &mdash; listening</p>
+                  <p className="text-xs font-semibold text-navy-500">AlecRae Voice &mdash; listening</p>
                   <TypingDemo className="mt-1 text-lg" />
                 </div>
               </div>
@@ -92,29 +89,29 @@ export default function DictationPage() {
       {/* Voice mockup */}
       <section className="py-16 sm:py-24" aria-label="Voice interface preview">
         <Container>
-          <MockupReveal className="mx-auto max-w-4xl" glowColor="rgba(245, 158, 11, 0.08)">
+          <MockupReveal className="mx-auto max-w-4xl">
             <VoiceMockup />
           </MockupReveal>
         </Container>
       </section>
 
-      <div className="glow-line mx-auto max-w-sm" />
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
       {/* Why this is different */}
       <section className="py-32 sm:py-44" aria-label="Why Voice is different">
         <Container narrow>
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-widest text-amber-400">
+            <p className="text-xs font-medium uppercase tracking-widest text-navy-500">
               Why this is different
             </p>
-            <h2 className="mt-6 text-display font-serif text-text-primary">
+            <h2 className="mt-6 text-display font-serif text-navy-700">
               Not a dictation tool.
               <br />
-              <span className="text-gradient-voice">The platform&rsquo;s intelligence layer.</span>
+              <span className="text-forest-500">The platform&rsquo;s intelligence layer.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-8 text-xl leading-relaxed text-text-secondary">
+            <p className="mt-8 text-xl leading-relaxed text-navy-400">
               WisprFlow can inject text into any app. Dragon Legal understands legal vocabulary.
               Otter transcribes meetings. But none of them can create a billing entry, query a
               legal research database, schedule a meeting, attach a document from a matter file,
@@ -122,7 +119,7 @@ export default function DictationPage() {
             </p>
           </Reveal>
           <Reveal delay={0.15}>
-            <p className="mt-6 text-xl leading-relaxed text-text-secondary">
+            <p className="mt-6 text-xl leading-relaxed text-navy-400">
               Those actions require platform access. AlecRae Voice has platform access because it
               IS the platform. That&rsquo;s the difference. That&rsquo;s why nobody can replicate it.
             </p>
@@ -130,16 +127,16 @@ export default function DictationPage() {
         </Container>
       </section>
 
-      <div className="glow-line mx-auto max-w-sm" />
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
       {/* Voice commands that actually DO things */}
       <section className="py-32 sm:py-44" aria-label="Voice commands">
         <Container>
           <Reveal>
-            <p className="text-center text-xs font-medium uppercase tracking-widest text-amber-400">
+            <p className="text-center text-xs font-medium uppercase tracking-widest text-navy-500">
               Voice commands
             </p>
-            <h2 className="mt-6 text-center text-display font-serif text-text-primary">
+            <h2 className="mt-6 text-center text-display font-serif text-navy-700">
               Commands that no other voice tool can execute.
             </h2>
           </Reveal>
@@ -168,10 +165,10 @@ export default function DictationPage() {
               },
             ].map((cmd) => (
               <Reveal key={cmd.context} delay={0.05}>
-                <div className="card-dark">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-amber-400">{cmd.context}</p>
-                  <p className="mt-4 text-lg italic leading-relaxed text-text-primary">{cmd.command}</p>
-                  <p className="mt-4 text-sm text-accent">&rarr; {cmd.result}</p>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-navy-500">{cmd.context}</p>
+                  <p className="mt-4 text-lg italic leading-relaxed text-navy-700">{cmd.command}</p>
+                  <p className="mt-4 text-sm text-forest-600">&rarr; {cmd.result}</p>
                 </div>
               </Reveal>
             ))}
@@ -179,29 +176,29 @@ export default function DictationPage() {
         </Container>
       </section>
 
-      <div className="glow-line mx-auto max-w-sm" />
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
       {/* Stats */}
       <section className="py-32 sm:py-44" aria-label="Time savings">
         <Container>
           <div className="grid gap-8 sm:grid-cols-3 text-center">
             <Reveal delay={0.1}>
-              <p className="font-serif text-display-xl text-text-primary">
+              <p className="font-serif text-display text-navy-700">
                 <AnimatedCounter end={4} suffix="h" />
               </p>
-              <p className="mt-2 text-sm text-text-secondary">recovered every single day</p>
+              <p className="mt-2 text-sm text-navy-400">recovered every single day</p>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="font-serif text-display-xl text-accent">
+              <p className="font-serif text-display text-forest-600">
                 $<AnimatedCounter end={1400} />
               </p>
-              <p className="mt-2 text-sm text-text-secondary">daily billing capacity from one feature</p>
+              <p className="mt-2 text-sm text-navy-400">daily billing capacity from one feature</p>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="font-serif text-display-xl text-amber-400">
+              <p className="font-serif text-display text-navy-500">
                 <AnimatedCounter end={9} />
               </p>
-              <p className="mt-2 text-sm text-text-secondary">languages with professional vocabulary</p>
+              <p className="mt-2 text-sm text-navy-400">languages with professional vocabulary</p>
             </Reveal>
           </div>
         </Container>
@@ -209,20 +206,17 @@ export default function DictationPage() {
 
       {/* Languages */}
       <section className="relative py-32 sm:py-44" aria-label="Languages">
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-[300px] w-[500px] rounded-full bg-accent/5 blur-[100px]" />
-        </div>
         <Container className="relative text-center">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-widest text-amber-400">
+            <p className="text-xs font-medium uppercase tracking-widest text-navy-500">
               Global from day one
             </p>
-            <h2 className="mt-6 text-display font-serif text-text-primary">
+            <h2 className="mt-6 text-display font-serif text-navy-700">
               9 languages. Professional vocabulary in every one.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-text-secondary">
+            <p className="mx-auto mt-6 max-w-xl text-lg text-navy-400">
               Not just transcription. A Spanish-speaking immigration attorney dictating in
               Spanish gets the same professional language understanding as an English-speaking
               attorney. &ldquo;Demandante&rdquo; is not corrected to &ldquo;plaintiff.&rdquo;
@@ -232,7 +226,7 @@ export default function DictationPage() {
           <Reveal delay={0.15}>
             <div className="mt-12 flex flex-wrap justify-center gap-3">
               {languages.map((lang) => (
-                <span key={lang} className="rounded-full border border-surface-border bg-surface-raised px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors hover:border-accent/50 hover:text-text-primary">
+                <span key={lang} className="rounded-full border border-navy-100 bg-navy-50 px-5 py-2.5 text-sm font-medium text-navy-400 transition-colors hover:border-accent/50 hover:text-navy-700">
                   {lang}
                 </span>
               ))}
@@ -251,17 +245,14 @@ export default function DictationPage() {
       </section>
 
       <section className="relative py-32 sm:py-44" aria-label="Get started">
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-[400px] w-[600px] rounded-full bg-accent/5 blur-[120px]" />
-        </div>
         <Container className="relative text-center">
           <Reveal>
-            <h2 className="text-display-xl font-serif text-gradient-voice">
+            <h2 className="text-display font-serif text-forest-500">
               Stop typing. Start speaking.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-xl text-text-secondary">
+            <p className="mt-6 text-xl text-navy-400">
               Every professional who uses AlecRae Voice for one week and then has to go back
               to typing feels the loss immediately. That experience is irreversible.
             </p>
