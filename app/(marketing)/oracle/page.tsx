@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PRODUCTS, BRAND } from "@/lib/constants";
+import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
@@ -10,20 +10,18 @@ import MockupReveal from "@/app/components/effects/MockupReveal";
 import Sparkles from "@/app/components/effects/Sparkles";
 
 export const metadata: Metadata = {
-  title: "The Oracle \u2014 Cross-Domain Legal and Accounting AI Research",
+  title: "The Oracle \u2014 The Most Intelligent Legal Research Engine Ever Built",
   description:
-    "Ask questions that span law and accounting simultaneously. Every citation verified against authoritative public domain sources.",
+    "Cross-domain legal and accounting AI research. Every citation verified. Ask questions that span both disciplines. The research engine nobody else can build.",
 };
-
-const product = PRODUCTS.oracle;
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: product.name,
+  name: "The Oracle",
   applicationCategory: "Research",
   operatingSystem: "Web",
-  description: product.description,
+  description: "Cross-domain legal and accounting AI research with mandatory citation verification. Public domain case law, statutes, tax codes, and regulations.",
   url: `${BRAND.url}/oracle`,
 };
 
@@ -41,13 +39,16 @@ export default function OraclePage() {
           <p className="animate-fade-in-up text-xs font-medium uppercase tracking-widest text-purple-400 opacity-0">
             The Oracle
           </p>
-          <h1 className="mt-8 animate-fade-in-up-delay text-display-2xl font-serif text-gradient-oracle opacity-0">
-            Research that crosses
+          <h1 className="mt-8 animate-fade-in-up-delay text-display-2xl font-serif opacity-0">
+            <span className="text-text-primary">The most intelligent</span>
             <br />
-            every boundary.
+            <span className="text-gradient-oracle">research engine on the planet.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-text-secondary opacity-0">
-            {product.description}
+          <p className="mx-auto mt-8 max-w-2xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-text-secondary opacity-0">
+            Cross-domain legal and accounting AI. Every citation verified against
+            authoritative public sources before you see it. Ask questions that span both
+            disciplines simultaneously. The research engine nobody else can build &mdash;
+            because nobody else owns both sides.
           </p>
           <div className="mt-12 animate-fade-in-up-delay-3 opacity-0">
             <Button href="/pricing" size="lg">See pricing</Button>
@@ -57,7 +58,7 @@ export default function OraclePage() {
       </section>
 
       {/* Oracle mockup */}
-      <section className="py-20 sm:py-32">
+      <section className="py-20 sm:py-32" aria-label="Oracle preview">
         <Container>
           <MockupReveal className="mx-auto max-w-4xl" glowColor="rgba(139, 92, 246, 0.08)">
             <OracleMockup />
@@ -67,16 +68,96 @@ export default function OraclePage() {
 
       <div className="glow-line mx-auto max-w-sm" />
 
-      {/* Citation verification */}
-      <section className="py-32 sm:py-44">
+      {/* The killer workflow — Oracle draw-down */}
+      <section className="py-32 sm:py-44" aria-label="The Oracle draw-down">
+        <Container narrow>
+          <Reveal>
+            <p className="text-xs font-medium uppercase tracking-widest text-purple-400">
+              The killer workflow
+            </p>
+            <h2 className="mt-6 text-display font-serif text-text-primary">
+              Research without ever leaving your document.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-12 rounded-2xl border border-surface-border bg-surface-raised p-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-red-400">Without AlecRae</p>
+              <p className="mt-4 leading-relaxed text-text-secondary">
+                You&rsquo;re drafting a contract clause about non-compete enforceability.
+                Not sure about the California standard. Open a new tab. Go to Westlaw.
+                Log in. Search. Find the case. Copy the citation. Switch back to your document.
+                Paste it in. Reformat it. Five minutes. Your flow is destroyed.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="mt-4 rounded-2xl border border-purple-500/20 bg-purple-500/5 p-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-purple-400">With The Oracle</p>
+              <p className="mt-4 leading-relaxed text-text-secondary">
+                You&rsquo;re drafting. You hit &thinsp;<span className="rounded bg-surface-overlay px-2 py-0.5 font-mono text-sm text-purple-400">&#8984;K</span>&thinsp;.
+                The Oracle slides in from the right &mdash; you never leave the document.
+                You type &ldquo;California non-compete enforceability standard.&rdquo;
+                Three verified cases in under 3 seconds. You click &ldquo;Insert citation.&rdquo;
+                It drops directly into your document at the cursor position, formatted correctly,
+                citation verified with a &#10003; badge.{" "}
+                <span className="font-semibold text-purple-400">Total time: 25 seconds. Flow never broken.</span>
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <div className="glow-line mx-auto max-w-sm" />
+
+      {/* Available everywhere */}
+      <section className="py-32 sm:py-44" aria-label="Available everywhere">
         <Container>
           <Reveal>
             <p className="text-center text-xs font-medium uppercase tracking-widest text-purple-400">
-              Verification system
+              Everywhere
             </p>
             <h2 className="mt-6 text-center text-display font-serif text-text-primary">
-              Zero hallucinations. Zero fabricated citations.
+              <span className="rounded bg-surface-overlay px-3 py-1 font-mono text-accent">&#8984;K</span>
+              {" "}from anywhere. Instantly.
             </h2>
+          </Reveal>
+          <div className="mx-auto mt-16 grid max-w-3xl gap-3 sm:grid-cols-2">
+            {[
+              { where: "Inside the Document Editor", what: "Research while drafting contracts, motions, and briefs" },
+              { where: "Inside Email", what: "Cite a case while responding to a client question" },
+              { where: "Inside Case Management", what: "Add research notes to any matter instantly" },
+              { where: "Inside Tax Filing", what: "Check a regulation mid-entry without switching tools" },
+              { where: "Inside Billing Notes", what: "Reference a precedent while logging time" },
+              { where: "As a Global Command", what: "⌘K from literally anywhere in the platform" },
+            ].map((item) => (
+              <Reveal key={item.where} delay={0.05}>
+                <div className="card-glow">
+                  <p className="font-semibold text-text-primary">{item.where}</p>
+                  <p className="mt-2 text-sm text-text-secondary">{item.what}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="glow-line mx-auto max-w-sm" />
+
+      {/* Citation verification — dramatic */}
+      <section className="py-32 sm:py-44" aria-label="Citation verification">
+        <Container>
+          <Reveal>
+            <p className="text-center text-xs font-medium uppercase tracking-widest text-purple-400">
+              Zero hallucinations
+            </p>
+            <h2 className="mt-6 text-center text-display font-serif text-text-primary">
+              Every citation verified before you see it.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-text-secondary">
+              In 2023, a New York attorney was sanctioned for submitting AI-fabricated citations to a federal court.
+              That will never happen on AlecRae. Every case, every statute, every ruling is checked against
+              authoritative public domain sources before it reaches your screen.
+            </p>
           </Reveal>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-3">
@@ -85,7 +166,7 @@ export default function OraclePage() {
                 <p className="font-serif text-5xl text-accent">&check;</p>
                 <p className="mt-4 text-lg font-semibold text-text-primary">Verified</p>
                 <p className="mt-2 text-sm text-text-secondary">
-                  Confirmed in authoritative public domain source with direct link
+                  Confirmed in authoritative source. Direct link provided. Safe to cite.
                 </p>
               </div>
             </Reveal>
@@ -94,7 +175,7 @@ export default function OraclePage() {
                 <p className="font-serif text-5xl text-yellow-500">&minus;</p>
                 <p className="mt-4 text-lg font-semibold text-text-primary">Unverified</p>
                 <p className="mt-2 text-sm text-text-secondary">
-                  Could not be confirmed. Flagged for manual verification
+                  Could not be confirmed. Flagged visibly. Do not rely without checking.
                 </p>
               </div>
             </Reveal>
@@ -103,7 +184,7 @@ export default function OraclePage() {
                 <p className="font-serif text-5xl text-red-400">&times;</p>
                 <p className="mt-4 text-lg font-semibold text-text-primary">Not Found</p>
                 <p className="mt-2 text-sm text-text-secondary">
-                  Does not exist in any authoritative source. Blocked from use
+                  Does not exist. Blocked from insertion into any document. Period.
                 </p>
               </div>
             </Reveal>
@@ -111,8 +192,10 @@ export default function OraclePage() {
         </Container>
       </section>
 
-      {/* Cross-domain moat */}
-      <section className="relative py-32 sm:py-44">
+      <div className="glow-line mx-auto max-w-sm" />
+
+      {/* The cross-domain moat */}
+      <section className="relative py-32 sm:py-44" aria-label="Cross-domain research">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[400px] w-[600px] rounded-full bg-purple-500/5 blur-[120px]" />
         </div>
@@ -125,44 +208,39 @@ export default function OraclePage() {
               The product nobody else can build.
             </h2>
           </Reveal>
-          <Reveal delay={0.15}>
+          <Reveal delay={0.1}>
             <p className="mt-8 text-xl italic leading-relaxed text-text-secondary">
               &ldquo;What are the immigration tax implications of this corporate
               structure for a Tier-1 visa applicant?&rdquo;
             </p>
+          </Reveal>
+          <Reveal delay={0.15}>
             <p className="mt-6 text-xl leading-relaxed text-text-secondary">
-              That query requires both law and accounting AI. Nobody else owns
-              both sides. Only AlecRae can answer it.
+              That query requires both legal research and tax intelligence simultaneously.
+              Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both
+              sides of the law-accounting boundary. Only AlecRae can answer it &mdash; because
+              The Oracle spans both domains in a single search.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 text-xl leading-relaxed text-text-secondary">
+              This is not an incremental improvement. This is a category that did not exist
+              before AlecRae created it.
             </p>
           </Reveal>
         </Container>
       </section>
 
-      {/* Features */}
-      <section className="py-32 sm:py-44">
+      {/* Disclaimer + CTA */}
+      <section className="py-16" aria-label="AI disclaimer">
         <Container>
-          <Reveal>
-            <h2 className="text-center text-display font-serif text-text-primary">
-              Capabilities.
-            </h2>
-          </Reveal>
-          <div className="mt-16 grid gap-4 sm:grid-cols-2">
-            {product.features.map((feature, i) => (
-              <Reveal key={feature} delay={0.1 + i * 0.05}>
-                <div className="card-glow">
-                  <p className="text-lg font-medium text-text-primary">{feature}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl">
+          <div className="mx-auto max-w-2xl">
             <AiDisclaimer />
           </div>
         </Container>
       </section>
 
-      {/* CTA */}
-      <section className="relative py-32 sm:py-44">
+      <section className="relative py-32 sm:py-44" aria-label="Get started">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[400px] w-[600px] rounded-full bg-purple-500/5 blur-[120px]" />
         </div>
@@ -174,7 +252,7 @@ export default function OraclePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-xl text-text-secondary">
-              Legal and accounting intelligence in one search.
+              Legal and accounting intelligence in one search. Every citation verified.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
