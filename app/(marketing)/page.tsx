@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { BRAND } from "@/lib/constants";
-import Hero from "@/app/components/marketing/Hero";
 import Container from "@/app/components/shared/Container";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import Button from "@/app/components/shared/Button";
+import HeroSlideshow from "@/app/components/marketing/HeroSlideshow";
 import OracleMockup from "@/app/components/marketing/OracleMockup";
 import VoiceMockup from "@/app/components/marketing/VoiceMockup";
 import DashboardMockup from "@/app/components/marketing/DashboardMockup";
@@ -36,13 +36,122 @@ const softwareSchema = {
   description: BRAND.description,
 };
 
+const heroSlides = [
+  {
+    eyebrow: "AlecRae Law",
+    title: (
+      <>
+        <span className="text-gradient">The operating system</span>
+        <br />
+        <span className="text-text-primary">for your legal practice.</span>
+      </>
+    ),
+    subtitle:
+      "Case management. Trust accounting. Court-rules calendaring. Document AI. Billing. E-signatures. Client portal. Every tool a lawyer needs — in one platform, with one login.",
+    features: [
+      "Case management",
+      "Trust accounting",
+      "Court calendaring",
+      "Document AI",
+      "Billing",
+      "E-signatures",
+      "Client portal",
+      "Legal forms",
+    ],
+    cta: { label: "Explore AlecRae Law", href: "/law" },
+    glowColor: "rgba(16, 185, 129, 0.08)",
+    glowColor2: "rgba(59, 130, 246, 0.04)",
+    accentColor: "#10b981",
+    mockup: <DashboardMockup />,
+  },
+  {
+    eyebrow: "The Oracle",
+    title: (
+      <>
+        <span className="text-gradient-oracle">Research that crosses</span>
+        <br />
+        <span className="text-text-primary">every boundary.</span>
+      </>
+    ),
+    subtitle:
+      "Cross-domain legal and accounting AI research. Every citation verified against authoritative public sources. The research engine nobody else can build — because nobody else owns both sides.",
+    features: [
+      "Cross-domain AI",
+      "Citation verification",
+      "Public domain sources",
+      "Zero hallucinations",
+      "Inline everywhere",
+      "\u2318K command palette",
+    ],
+    cta: { label: "Explore The Oracle", href: "/oracle" },
+    glowColor: "rgba(139, 92, 246, 0.08)",
+    glowColor2: "rgba(99, 102, 241, 0.04)",
+    accentColor: "#a78bfa",
+    mockup: <OracleMockup />,
+  },
+  {
+    eyebrow: "AlecRae Voice",
+    title: (
+      <>
+        <span className="text-gradient-voice">Speak.</span>
+        <br />
+        <span className="text-text-primary">It is done.</span>
+      </>
+    ),
+    subtitle:
+      "Not a dictation tool. The platform\u2019s intelligence layer. Legal and accounting vocabulary in 9 languages. Voice commands that file, bill, schedule, and research — all without a keyboard.",
+    features: [
+      "9 languages",
+      "Legal vocabulary",
+      "Accounting vocabulary",
+      "Voice commands",
+      "Every input field",
+      "Context-aware grammar",
+    ],
+    cta: { label: "Explore AlecRae Voice", href: "/dictation" },
+    glowColor: "rgba(245, 158, 11, 0.08)",
+    glowColor2: "rgba(16, 185, 129, 0.04)",
+    accentColor: "#f59e0b",
+    mockup: <VoiceMockup />,
+  },
+  {
+    eyebrow: "AlecRae Accounting",
+    title: (
+      <>
+        <span className="text-gradient">AI-powered accounting</span>
+        <br />
+        <span className="text-text-primary">for modern firms.</span>
+      </>
+    ),
+    subtitle:
+      "Automated bookkeeping. Bank feed integration. Tax compliance. Receipt scanning. AI spreadsheets. Every accounting workflow, powered by intelligence.",
+    features: [
+      "Bank feeds via Plaid",
+      "AI reconciliation",
+      "Tax compliance",
+      "Receipt scanning",
+      "AI spreadsheets",
+      "E-signatures",
+    ],
+    cta: { label: "Explore Accounting", href: "/accounting" },
+    glowColor: "rgba(59, 130, 246, 0.08)",
+    glowColor2: "rgba(16, 185, 129, 0.04)",
+    accentColor: "#3b82f6",
+    mockup: <DashboardMockup />,
+  },
+];
+
 export default function HomePage() {
   return (
     <>
       <SchemaMarkup schema={organizationSchema} />
       <SchemaMarkup schema={softwareSchema} />
 
-      <Hero />
+      {/* ============================================= */}
+      {/* HERO SLIDESHOW — the grand entrance            */}
+      {/* Each product gets its own full-screen moment   */}
+      {/* ============================================= */}
+      <HeroSlideshow slides={heroSlides} />
 
       {/* ============================================= */}
       {/* IMPACT NUMBERS                                 */}
@@ -53,6 +162,9 @@ export default function HomePage() {
             <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
               The impact
             </p>
+            <h2 className="mt-6 text-center text-display font-serif text-text-primary">
+              Built to save you thousands of hours.
+            </h2>
           </Reveal>
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -80,10 +192,14 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <div className="glow-line-gold mx-auto max-w-md" />
+
       {/* ============================================= */}
-      {/* PRODUCT 1: AlecRae Law                        */}
+      {/* DEEP DIVES — for people who scroll              */}
       {/* ============================================= */}
-      <section id="products" className="relative py-32 sm:py-44" aria-label="AlecRae Law">
+
+      {/* AlecRae Law deep dive */}
+      <section className="relative py-32 sm:py-44" aria-label="AlecRae Law details">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[600px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
         </div>
@@ -97,28 +213,18 @@ export default function HomePage() {
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-accent/30" />
             </div>
           </Reveal>
-
           <Reveal delay={0.1}>
             <h2 className="mt-8 text-center text-display-xl font-serif text-text-primary">
-              The operating system for
-              <br />
-              <span className="text-gradient">your legal practice.</span>
+              Your entire practice.{" "}
+              <span className="text-gradient">One platform.</span>
             </h2>
           </Reveal>
 
-          <Reveal delay={0.15}>
-            <p className="mx-auto mt-6 max-w-xl text-center text-lg text-text-secondary">
-              Case management. Trust accounting. Court-rules calendaring. Document AI.
-              Billing. E-signatures. Client portal. Everything. One login.
-            </p>
-          </Reveal>
-
-          {/* 3D perspective entrance mockup */}
           <MockupReveal className="mx-auto mt-16 max-w-4xl" glowColor="rgba(16, 185, 129, 0.08)">
             <DashboardMockup />
           </MockupReveal>
 
-          <Reveal delay={0.3}>
+          <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/law">Explore AlecRae Law</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
@@ -127,12 +233,10 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <div className="glow-line-gold mx-auto max-w-md" />
+      <div className="glow-line mx-auto max-w-md" />
 
-      {/* ============================================= */}
-      {/* PRODUCT 2: The Oracle                         */}
-      {/* ============================================= */}
-      <section className="relative py-32 sm:py-44" aria-label="The Oracle">
+      {/* The Oracle deep dive */}
+      <section className="relative py-32 sm:py-44" aria-label="The Oracle details">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[600px] w-[800px] rounded-full bg-purple-500/5 blur-[180px]" />
         </div>
@@ -146,28 +250,18 @@ export default function HomePage() {
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-purple-500/30" />
             </div>
           </Reveal>
-
           <Reveal delay={0.1}>
             <h2 className="mt-8 text-center text-display-xl font-serif text-text-primary">
-              Research that crosses
-              <br />
-              <span className="text-gradient-oracle">every boundary.</span>
+              The research engine{" "}
+              <span className="text-gradient-oracle">nobody else can build.</span>
             </h2>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <p className="mx-auto mt-6 max-w-xl text-center text-lg text-text-secondary">
-              Cross-domain legal and accounting AI. Every citation verified.
-              The research engine nobody else can build &mdash;
-              because nobody else owns both sides.
-            </p>
           </Reveal>
 
           <MockupReveal className="mx-auto mt-16 max-w-4xl" glowColor="rgba(139, 92, 246, 0.08)">
             <OracleMockup />
           </MockupReveal>
 
-          <Reveal delay={0.3}>
+          <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/oracle">Explore The Oracle</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
@@ -178,10 +272,8 @@ export default function HomePage() {
 
       <div className="glow-line mx-auto max-w-md" />
 
-      {/* ============================================= */}
-      {/* PRODUCT 3: AlecRae Voice                      */}
-      {/* ============================================= */}
-      <section className="relative py-32 sm:py-44" aria-label="AlecRae Voice">
+      {/* AlecRae Voice deep dive */}
+      <section className="relative py-32 sm:py-44" aria-label="AlecRae Voice details">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[600px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
           <div className="absolute h-[300px] w-[400px] translate-x-1/4 rounded-full bg-amber-500/5 blur-[120px]" />
@@ -196,36 +288,27 @@ export default function HomePage() {
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-amber-500/30" />
             </div>
           </Reveal>
-
           <Reveal delay={0.1}>
             <h2 className="mt-8 text-center text-display-xl font-serif text-text-primary">
               <span className="text-gradient-voice">Speak. It is done.</span>
             </h2>
           </Reveal>
 
+          {/* Live typing demo */}
           <Reveal delay={0.15}>
-            <p className="mx-auto mt-6 max-w-xl text-center text-lg text-text-secondary">
-              Not a dictation tool. The platform&rsquo;s intelligence layer.
-              Legal and accounting vocabulary. Nine languages. Voice commands
-              that file, bill, schedule, and research &mdash; all by speaking.
-            </p>
-          </Reveal>
-
-          {/* Live typing demo — shows Voice in action */}
-          <Reveal delay={0.2}>
-            <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-amber-500/20 bg-surface-raised p-6">
+            <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-amber-500/20 bg-surface-raised p-6">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="pulse-ring absolute inset-0 rounded-full border-2 border-amber-400/40" />
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/20">
-                    <svg className="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
                       <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
                     </svg>
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-semibold text-amber-400">AlecRae Voice</p>
+                  <p className="text-xs font-semibold text-amber-400">AlecRae Voice &mdash; listening</p>
                   <TypingDemo className="mt-1 text-sm" />
                 </div>
               </div>
@@ -236,7 +319,7 @@ export default function HomePage() {
             <VoiceMockup />
           </MockupReveal>
 
-          <Reveal delay={0.3}>
+          <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/dictation">Explore AlecRae Voice</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
@@ -247,10 +330,8 @@ export default function HomePage() {
 
       <div className="glow-line mx-auto max-w-md" />
 
-      {/* ============================================= */}
-      {/* PRODUCT 4: Accounting                         */}
-      {/* ============================================= */}
-      <section className="relative py-32 sm:py-44" aria-label="AlecRae Accounting">
+      {/* AlecRae Accounting deep dive */}
+      <section className="relative py-32 sm:py-44" aria-label="AlecRae Accounting details">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[500px] w-[700px] rounded-full bg-blue-500/5 blur-[150px]" />
         </div>
@@ -264,24 +345,13 @@ export default function HomePage() {
               <div className="h-px flex-1 bg-gradient-to-l from-transparent to-blue-500/30" />
             </div>
           </Reveal>
-
           <Reveal delay={0.1}>
             <h2 className="mt-8 text-center text-display-xl font-serif text-text-primary">
-              AI-powered accounting
-              <br />
-              <span className="text-gradient">for modern firms.</span>
+              AI-powered accounting.{" "}
+              <span className="text-gradient">Zero compromise.</span>
             </h2>
           </Reveal>
-
           <Reveal delay={0.15}>
-            <p className="mx-auto mt-6 max-w-xl text-center text-lg text-text-secondary">
-              Automated bookkeeping. Bank feeds. Tax compliance. Receipt scanning.
-              Financial reporting. Everything your firm needs to serve clients
-              faster and bill more hours.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.2}>
             <div className="mx-auto mt-16 grid max-w-3xl gap-3 sm:grid-cols-2">
               {[
                 { label: "Bank feed integration", desc: "Auto-pull and categorise every transaction via Plaid", icon: "↓" },
@@ -303,8 +373,7 @@ export default function HomePage() {
               ))}
             </div>
           </Reveal>
-
-          <Reveal delay={0.3}>
+          <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/accounting">Explore Accounting</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
