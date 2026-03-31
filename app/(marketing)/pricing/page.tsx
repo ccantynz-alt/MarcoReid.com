@@ -7,13 +7,12 @@ import {
 } from "@/lib/constants";
 import { PricingTier } from "@/lib/types";
 import Container from "@/app/components/shared/Container";
-import SectionHeading from "@/app/components/shared/SectionHeading";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent pricing for AlecRae Law, AlecRae Accounting, and The Oracle. Plans for solo practitioners to growing firms.",
+    "Transparent pricing for AlecRae Law, AlecRae Accounting, and The Oracle.",
 };
 
 const schema = {
@@ -41,25 +40,51 @@ const schema = {
 function PricingCard({ tier }: { tier: PricingTier }) {
   return (
     <div
-      className={`flex flex-col rounded-2xl border p-6 sm:p-8 ${
+      className={`flex flex-col rounded-3xl px-8 py-10 ${
         tier.highlighted
-          ? "border-navy-500 bg-navy-50 ring-1 ring-navy-500"
-          : "border-navy-100 bg-white"
+          ? "bg-neutral-950 text-white"
+          : "bg-neutral-200 text-neutral-950"
       }`}
     >
-      <h3 className="font-serif text-2xl text-navy-500">{tier.name}</h3>
+      <p
+        className={`text-xs font-medium uppercase tracking-widest ${
+          tier.highlighted ? "text-neutral-400" : "text-neutral-500"
+        }`}
+      >
+        {tier.name}
+      </p>
       <div className="mt-4 flex items-baseline gap-1">
-        <span className="font-serif text-4xl text-navy-500">{tier.price}</span>
-        <span className="text-sm text-navy-300">{tier.period}</span>
+        <span className="font-serif text-5xl">{tier.price}</span>
+        <span
+          className={`text-sm ${
+            tier.highlighted ? "text-neutral-400" : "text-neutral-500"
+          }`}
+        >
+          {tier.period}
+        </span>
       </div>
-      <p className="mt-2 text-sm text-navy-400">{tier.description}</p>
-      <ul className="mt-6 flex-1 space-y-3">
+      <p
+        className={`mt-3 text-sm ${
+          tier.highlighted ? "text-neutral-300" : "text-neutral-600"
+        }`}
+      >
+        {tier.description}
+      </p>
+      <ul className="mt-8 flex-1 space-y-3">
         {tier.features.map((feature) => (
           <li
             key={feature}
-            className="flex items-start gap-2 text-sm text-navy-400"
+            className={`flex items-start gap-3 text-sm ${
+              tier.highlighted ? "text-neutral-200" : "text-neutral-700"
+            }`}
           >
-            <span className="mt-0.5 text-forest-500">{"\u2713"}</span>
+            <span
+              className={`mt-0.5 ${
+                tier.highlighted ? "text-white" : "text-accent"
+              }`}
+            >
+              &check;
+            </span>
             {feature}
           </li>
         ))}
@@ -73,26 +98,29 @@ export default function PricingPage() {
     <>
       <SchemaMarkup schema={schema} />
 
-      <section className="py-20 sm:py-28">
+      {/* Hero */}
+      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
         <Container className="text-center">
-          <h1 className="font-serif text-4xl text-navy-500 sm:text-5xl lg:text-7xl">
-            Simple, transparent pricing
+          <h1 className="text-display-xl font-serif text-neutral-950">
+            Pricing
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-400">
+          <p className="mx-auto mt-8 max-w-xl text-xl text-neutral-600">
             Plans for solo practitioners, small firms, and growing practices.
             Every plan includes AlecRae Voice.
           </p>
         </Container>
       </section>
 
-      {/* Law pricing */}
-      <section className="bg-navy-50 py-20 sm:py-28">
+      {/* Law */}
+      <section className="bg-neutral-100 py-24 sm:py-36">
         <Container>
-          <SectionHeading
-            title="AlecRae Law"
-            subtitle="The operating system for your legal practice"
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="text-center text-sm font-medium uppercase tracking-widest text-neutral-500">
+            AlecRae Law
+          </p>
+          <h2 className="mt-4 text-center text-display font-serif text-neutral-950">
+            Legal practice management.
+          </h2>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {LAW_PRICING.map((tier) => (
               <PricingCard key={tier.name} tier={tier} />
             ))}
@@ -100,14 +128,16 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Accounting pricing */}
-      <section className="py-20 sm:py-28">
+      {/* Accounting */}
+      <section className="py-24 sm:py-36">
         <Container>
-          <SectionHeading
-            title="AlecRae Accounting"
-            subtitle="AI-powered accounting for modern firms"
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="text-center text-sm font-medium uppercase tracking-widest text-neutral-500">
+            AlecRae Accounting
+          </p>
+          <h2 className="mt-4 text-center text-display font-serif text-neutral-950">
+            AI-powered accounting.
+          </h2>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ACCOUNTING_PRICING.map((tier) => (
               <PricingCard key={tier.name} tier={tier} />
             ))}
@@ -115,14 +145,16 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      {/* Oracle pricing */}
-      <section className="bg-navy-50 py-20 sm:py-28">
+      {/* Oracle */}
+      <section className="bg-neutral-100 py-24 sm:py-36">
         <Container>
-          <SectionHeading
-            title="The Oracle"
-            subtitle="Cross-domain legal and accounting research"
-          />
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
+          <p className="text-center text-sm font-medium uppercase tracking-widest text-neutral-500">
+            The Oracle
+          </p>
+          <h2 className="mt-4 text-center text-display font-serif text-neutral-950">
+            Cross-domain intelligence.
+          </h2>
+          <div className="mx-auto mt-16 grid max-w-3xl gap-4 sm:grid-cols-2">
             {ORACLE_PRICING.map((tier) => (
               <PricingCard key={tier.name} tier={tier} />
             ))}

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PRODUCTS, BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
-import SectionHeading from "@/app/components/shared/SectionHeading";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import CtaSection from "@/app/components/marketing/CtaSection";
@@ -10,7 +9,7 @@ import CtaSection from "@/app/components/marketing/CtaSection";
 export const metadata: Metadata = {
   title: "AlecRae Voice \u2014 Speak. It Is Done.",
   description:
-    "The universal input layer for legal and accounting professionals. Dictate emails, documents, billing entries, and research queries with professional vocabulary intelligence in 9 languages.",
+    "The universal input layer for legal and accounting professionals. Dictate with professional vocabulary intelligence in 9 languages.",
 };
 
 const product = PRODUCTS.voice;
@@ -26,42 +25,17 @@ const schema = {
 };
 
 const surfaces = [
-  {
-    name: "Email composer",
-    description: "Dictate entire emails with professional grammar and legal terminology preserved",
-  },
-  {
-    name: "Document editor",
-    description: "Draft contracts, motions, briefs, and financial reports by voice",
-  },
-  {
-    name: "Oracle queries",
-    description: "Speak your research question naturally. The Oracle searches precisely",
-  },
-  {
-    name: "Billing entries",
-    description: "\"Six point five hours, Rodriguez H-1B, I-129 filing\" \u2014 logged instantly",
-  },
-  {
-    name: "Matter notes",
-    description: "Dictate case updates and call notes. Billable time extracted automatically",
-  },
-  {
-    name: "Calendar",
-    description: "Schedule meetings by voice. Zoom link generated. Invite sent. Matter tagged",
-  },
+  { name: "Email", detail: "Dictate entire emails. Legal terminology preserved." },
+  { name: "Documents", detail: "Draft contracts, motions, briefs, reports by voice." },
+  { name: "Research", detail: "Speak your Oracle query. Search precisely." },
+  { name: "Billing", detail: "Log time entries and expenses in seconds." },
+  { name: "Notes", detail: "Dictate case updates. Billable time extracted." },
+  { name: "Calendar", detail: "Schedule meetings by voice. Invites sent instantly." },
 ];
 
 const languages = [
-  "English",
-  "Spanish",
-  "Mandarin Chinese",
-  "Hindi",
-  "Japanese",
-  "French",
-  "Arabic",
-  "Portuguese",
-  "Korean",
+  "English", "Spanish", "Mandarin", "Hindi", "Japanese",
+  "French", "Arabic", "Portuguese", "Korean",
 ];
 
 export default function DictationPage() {
@@ -70,15 +44,18 @@ export default function DictationPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="py-20 sm:py-28">
+      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
         <Container className="text-center">
-          <h1 className="mx-auto max-w-4xl font-serif text-4xl text-navy-500 sm:text-5xl lg:text-7xl">
+          <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+            AlecRae Voice
+          </p>
+          <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
             Speak. It is done.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-400 sm:text-xl">
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
             {product.description}
           </p>
-          <div className="mt-10">
+          <div className="mt-12">
             <Button href="/pricing" size="lg">
               See pricing
             </Button>
@@ -86,39 +63,38 @@ export default function DictationPage() {
         </Container>
       </section>
 
-      {/* Time savings callout */}
-      <section className="bg-navy-50 py-16">
+      {/* Stat */}
+      <section className="bg-neutral-200 py-20 sm:py-28">
         <Container className="text-center">
-          <p className="font-serif text-5xl text-navy-500 sm:text-6xl">
-            3{"\u2013"}4
+          <p className="text-display-xl font-serif text-neutral-950">
+            3&ndash;4
           </p>
-          <p className="mt-2 text-xl font-medium text-navy-400">
+          <p className="mt-4 text-xl text-neutral-600">
             hours recovered every day by speaking instead of typing
           </p>
-          <p className="mt-2 text-navy-300">
-            At $350/hour, that is $1,050{"\u2013"}1,400 of additional billing
+          <p className="mt-2 text-neutral-500">
+            At $350/hour, that is $1,050&ndash;1,400 of additional billing
             capacity. From one feature.
           </p>
         </Container>
       </section>
 
-      {/* Where Voice appears */}
-      <section className="py-20 sm:py-28">
+      {/* Surfaces */}
+      <section className="py-24 sm:py-36">
         <Container>
-          <SectionHeading
-            title="Everywhere you type, you can speak"
-            subtitle="Not a standalone tool. The platform's intelligence layer."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {surfaces.map((surface) => (
-              <div
-                key={surface.name}
-                className="rounded-xl border border-navy-100 bg-white p-6"
-              >
-                <p className="font-semibold text-navy-500">{surface.name}</p>
-                <p className="mt-2 text-sm text-navy-400">
-                  {surface.description}
+          <h2 className="text-center text-display font-serif text-neutral-950">
+            Everywhere you type, you can speak.
+          </h2>
+          <p className="mt-6 text-center text-xl text-neutral-600">
+            Not a standalone tool. The platform&rsquo;s intelligence layer.
+          </p>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {surfaces.map((s) => (
+              <div key={s.name} className="rounded-2xl bg-neutral-200 px-8 py-6">
+                <p className="text-lg font-semibold text-neutral-950">
+                  {s.name}
                 </p>
+                <p className="mt-2 text-sm text-neutral-600">{s.detail}</p>
               </div>
             ))}
           </div>
@@ -126,54 +102,54 @@ export default function DictationPage() {
       </section>
 
       {/* Languages */}
-      <section className="bg-navy-50 py-20 sm:py-28">
-        <Container>
-          <SectionHeading
-            title="9 languages from day one"
-            subtitle="Professional vocabulary intelligence in every language"
-          />
+      <section className="bg-neutral-100 py-24 sm:py-36">
+        <Container className="text-center">
+          <h2 className="text-display font-serif text-neutral-950">
+            9 languages. Day one.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-xl text-neutral-600">
+            Professional vocabulary intelligence in every language. Not just
+            transcription.
+          </p>
           <div className="mt-12 flex flex-wrap justify-center gap-3">
             {languages.map((lang) => (
               <span
                 key={lang}
-                className="rounded-full border border-navy-200 bg-white px-4 py-2 text-sm font-medium text-navy-500"
+                className="rounded-full bg-neutral-200 px-5 py-2.5 text-sm font-medium text-neutral-700"
               >
                 {lang}
               </span>
             ))}
           </div>
-          <p className="mx-auto mt-8 max-w-xl text-center text-sm text-navy-300">
-            Not just transcription. Legal and accounting vocabulary intelligence
-            in each language. A Spanish-speaking immigration attorney dictating
-            in Spanish gets the same professional language understanding as an
-            English-speaking attorney.
-          </p>
         </Container>
       </section>
 
-      {/* Features */}
-      <section className="py-20 sm:py-28">
+      {/* Capability list */}
+      <section className="py-24 sm:py-36">
         <Container>
-          <SectionHeading title="Professional language intelligence" />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <h2 className="text-center text-display font-serif text-neutral-950">
+            Professional language intelligence.
+          </h2>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {product.features.map((feature) => (
               <div
                 key={feature}
-                className="flex items-start gap-3 rounded-xl border border-navy-100 bg-white p-6"
+                className="rounded-2xl bg-neutral-200 px-8 py-6"
               >
-                <span className="mt-0.5 text-navy-500">{"\u2713"}</span>
-                <p className="font-medium text-navy-500">{feature}</p>
+                <p className="text-lg font-medium text-neutral-950">
+                  {feature}
+                </p>
               </div>
             ))}
           </div>
-          <div className="mx-auto mt-12 max-w-2xl">
+          <div className="mx-auto mt-16 max-w-2xl">
             <AiDisclaimer />
           </div>
         </Container>
       </section>
 
       <CtaSection
-        title="Stop typing. Start speaking."
+        title={"Stop typing.\nStart speaking."}
         subtitle="AlecRae Voice gives professionals back hours every day."
       />
     </>

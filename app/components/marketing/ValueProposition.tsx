@@ -1,45 +1,40 @@
 import Container from "@/app/components/shared/Container";
-import SectionHeading from "@/app/components/shared/SectionHeading";
-import TimeSavingsTable from "./TimeSavingsTable";
 
 export default function ValueProposition() {
   return (
-    <section className="bg-navy-50 py-20 sm:py-28">
+    <section className="py-24 sm:py-36">
       <Container>
-        <SectionHeading
-          title="Recover the hours that matter"
-          subtitle="Time saved multiplied by billable rate equals revenue recovered"
-        />
-
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white p-6 text-center sm:p-8">
-            <p className="font-serif text-4xl text-navy-500 sm:text-5xl">
-              15{"\u2013"}20
-            </p>
-            <p className="mt-2 text-lg font-medium text-navy-400">
-              hours saved per week for attorneys
-            </p>
-            <p className="mt-3 text-sm text-navy-300">
-              At $350/hour, that is $5,250{"\u2013"}7,000 of additional billing
-              capacity. Every week.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-white p-6 text-center sm:p-8">
-            <p className="font-serif text-4xl text-forest-500 sm:text-5xl">
-              12{"\u2013"}18
-            </p>
-            <p className="mt-2 text-lg font-medium text-navy-400">
-              hours saved per week per CPA
-            </p>
-            <p className="mt-3 text-sm text-navy-300">
-              Hours that can be billed to more clients, or simply given back to
-              the people who matter.
-            </p>
-          </div>
+        {/* The big statement */}
+        <div className="text-center">
+          <h2 className="text-display font-serif text-neutral-950">
+            15{"\u2013"}20 hours back. Every week.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-xl text-neutral-600">
+            At $350 an hour, that is over $5,000 of billing capacity recovered.
+            Not next year. This week.
+          </p>
         </div>
 
-        <div className="mt-12 rounded-2xl bg-white p-6 sm:p-8">
-          <TimeSavingsTable />
+        {/* Three stats */}
+        <div className="mt-20 grid gap-4 sm:grid-cols-3">
+          <div className="rounded-3xl bg-neutral-200 px-8 py-12 text-center">
+            <p className="font-serif text-display text-neutral-950">4h</p>
+            <p className="mt-2 text-sm text-neutral-600">
+              Legal research reduced to 30 minutes
+            </p>
+          </div>
+          <div className="rounded-3xl bg-neutral-200 px-8 py-12 text-center">
+            <p className="font-serif text-display text-neutral-950">3h</p>
+            <p className="mt-2 text-sm text-neutral-600">
+              Document drafting reduced to 45 minutes
+            </p>
+          </div>
+          <div className="rounded-3xl bg-neutral-200 px-8 py-12 text-center">
+            <p className="font-serif text-display text-neutral-950">5h</p>
+            <p className="mt-2 text-sm text-neutral-600">
+              Client follow-ups replaced by self-serve portal
+            </p>
+          </div>
         </div>
       </Container>
     </section>

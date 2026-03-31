@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PRODUCTS, BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
-import SectionHeading from "@/app/components/shared/SectionHeading";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import CtaSection from "@/app/components/marketing/CtaSection";
 
@@ -30,52 +29,59 @@ export default function AccountingPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="py-20 sm:py-28">
+      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
         <Container className="text-center">
-          <h1 className="mx-auto max-w-4xl font-serif text-4xl text-forest-500 sm:text-5xl lg:text-7xl">
+          <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+            AlecRae Accounting
+          </p>
+          <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
             {product.tagline}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-400 sm:text-xl">
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
             {product.description}
           </p>
-          <div className="mt-10">
-            <Button href="/pricing" variant="secondary" size="lg">
+          <div className="mt-12">
+            <Button href="/pricing" size="lg">
               See pricing
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* Time savings callout */}
-      <section className="bg-forest-50 py-16">
+      {/* Stat */}
+      <section className="bg-neutral-200 py-20 sm:py-28">
         <Container className="text-center">
-          <p className="font-serif text-5xl text-forest-500 sm:text-6xl">
-            12{"\u2013"}18
+          <p className="text-display-xl font-serif text-neutral-950">
+            12&ndash;18
           </p>
-          <p className="mt-2 text-xl font-medium text-navy-400">
-            hours saved per week per CPA
+          <p className="mt-4 text-xl text-neutral-600">
+            hours saved per week, per CPA
           </p>
-          <p className="mt-2 text-navy-300">
+          <p className="mt-2 text-neutral-500">
             Hours that can be billed to more clients, or simply given back to
             the people who matter.
           </p>
         </Container>
       </section>
 
-      {/* Features grid */}
-      <section className="py-20 sm:py-28">
+      {/* Features */}
+      <section className="py-24 sm:py-36">
         <Container>
-          <SectionHeading
-            title="Precision meets intelligence"
-            subtitle="Every accounting workflow, powered by AI"
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="text-center text-display font-serif text-neutral-950">
+            Precision meets intelligence.
+          </h2>
+          <p className="mt-6 text-center text-xl text-neutral-600">
+            Every accounting workflow, powered by AI.
+          </p>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {product.features.map((feature) => (
               <div
                 key={feature}
-                className="rounded-xl border border-forest-100 bg-white p-6"
+                className="rounded-2xl bg-neutral-200 px-8 py-6"
               >
-                <p className="font-medium text-navy-500">{feature}</p>
+                <p className="text-lg font-medium text-neutral-950">
+                  {feature}
+                </p>
               </div>
             ))}
           </div>
@@ -83,8 +89,8 @@ export default function AccountingPage() {
       </section>
 
       <CtaSection
-        title="Ready to modernise your firm?"
-        subtitle="Accounting automation that CPAs trust. From bank feeds to tax filings."
+        title={"Accounting automation\nthat CPAs trust."}
+        subtitle="From bank feeds to tax filings. One platform."
       />
     </>
   );
