@@ -39,11 +39,11 @@ export default function Header() {
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {mobileMenuOpen ? (
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           )}
@@ -51,8 +51,12 @@ export default function Header() {
       </nav>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="border-t border-surface-border bg-surface/95 px-6 pb-6 pt-4 backdrop-blur-xl md:hidden">
+      <div
+        className={`overflow-hidden border-t border-surface-border bg-surface/95 backdrop-blur-xl transition-all duration-300 ease-in-out md:hidden ${
+          mobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 border-t-0 opacity-0"
+        }`}
+      >
+        <div className="px-6 pb-6 pt-4">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -64,7 +68,7 @@ export default function Header() {
             </Link>
           ))}
         </div>
-      )}
+      </div>
     </header>
   );
 }

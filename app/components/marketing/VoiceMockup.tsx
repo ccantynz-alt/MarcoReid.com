@@ -66,7 +66,7 @@ export default function VoiceMockup() {
           <div className="relative h-10 w-10">
             <div className="pulse-ring absolute inset-0 rounded-full border-2 border-accent/50" />
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent">
-              <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
                 <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
               </svg>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { BRAND } from "@/lib/constants";
 import Hero from "@/app/components/marketing/Hero";
 import Container from "@/app/components/shared/Container";
@@ -8,6 +9,14 @@ import VoiceMockup from "@/app/components/marketing/VoiceMockup";
 import DashboardMockup from "@/app/components/marketing/DashboardMockup";
 import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Reveal from "@/app/components/effects/Reveal";
+import MockupReveal from "@/app/components/effects/MockupReveal";
+import TypingDemo from "@/app/components/effects/TypingDemo";
+
+export const metadata: Metadata = {
+  title: "AlecRae \u2014 The Most Advanced Professional Platform Ever Built",
+  description:
+    "AI-powered law, accounting, research, and voice intelligence. Four revolutionary products under one roof. The operating system for legal and accounting professionals.",
+};
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -36,9 +45,9 @@ export default function HomePage() {
       <Hero />
 
       {/* ============================================= */}
-      {/* IMPACT NUMBERS — massive, undeniable            */}
+      {/* IMPACT NUMBERS                                 */}
       {/* ============================================= */}
-      <section className="py-32 sm:py-44">
+      <section className="py-32 sm:py-44" aria-label="Platform impact statistics">
         <Container>
           <Reveal>
             <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
@@ -46,62 +55,27 @@ export default function HomePage() {
             </p>
           </Reveal>
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Reveal delay={0.1}>
-              <div className="relative overflow-hidden rounded-2xl border border-surface-border bg-surface-raised p-8 text-center">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent" />
-                <p className="relative font-serif text-display text-text-primary">
-                  <AnimatedCounter end={20} />
-                </p>
-                <p className="relative mt-1 text-sm font-semibold text-accent">
-                  hours saved
-                </p>
-                <p className="relative mt-1 text-xs text-text-tertiary">
-                  per attorney, per week
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="relative overflow-hidden rounded-2xl border border-surface-border bg-surface-raised p-8 text-center">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent" />
-                <p className="relative font-serif text-display text-amber-400">
-                  $<AnimatedCounter end={7000} />
-                </p>
-                <p className="relative mt-1 text-sm font-semibold text-amber-400">
-                  recovered weekly
-                </p>
-                <p className="relative mt-1 text-xs text-text-tertiary">
-                  in billing capacity
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <div className="relative overflow-hidden rounded-2xl border border-surface-border bg-surface-raised p-8 text-center">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent" />
-                <p className="relative font-serif text-display text-purple-400">
-                  <AnimatedCounter end={100} />%
-                </p>
-                <p className="relative mt-1 text-sm font-semibold text-purple-400">
-                  citations verified
-                </p>
-                <p className="relative mt-1 text-xs text-text-tertiary">
-                  zero hallucinations
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.4}>
-              <div className="relative overflow-hidden rounded-2xl border border-surface-border bg-surface-raised p-8 text-center">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent" />
-                <p className="relative font-serif text-display text-blue-400">
-                  <AnimatedCounter end={9} />
-                </p>
-                <p className="relative mt-1 text-sm font-semibold text-blue-400">
-                  languages
-                </p>
-                <p className="relative mt-1 text-xs text-text-tertiary">
-                  with professional vocabulary
-                </p>
-              </div>
-            </Reveal>
+            {[
+              { end: 20, suffix: "", label: "hours saved", desc: "per attorney, per week", color: "from-emerald-500/10", textColor: "text-text-primary", labelColor: "text-accent" },
+              { end: 7000, suffix: "", prefix: "$", label: "recovered weekly", desc: "in billing capacity", color: "from-amber-500/10", textColor: "text-amber-400", labelColor: "text-amber-400" },
+              { end: 100, suffix: "%", label: "citations verified", desc: "zero hallucinations", color: "from-purple-500/10", textColor: "text-purple-400", labelColor: "text-purple-400" },
+              { end: 9, suffix: "", label: "languages", desc: "with professional vocabulary", color: "from-blue-500/10", textColor: "text-blue-400", labelColor: "text-blue-400" },
+            ].map((stat, i) => (
+              <Reveal key={stat.label} delay={0.1 + i * 0.1}>
+                <div className={`group relative overflow-hidden rounded-2xl border border-surface-border bg-surface-raised p-8 text-center transition-all duration-500 hover:border-surface-border-light hover:scale-[1.02]`}>
+                  <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${stat.color} to-transparent opacity-50 transition-opacity group-hover:opacity-100`} />
+                  <p className={`relative font-serif text-display ${stat.textColor}`}>
+                    <AnimatedCounter end={stat.end} prefix={stat.prefix} suffix={stat.suffix} />
+                  </p>
+                  <p className={`relative mt-1 text-sm font-semibold ${stat.labelColor}`}>
+                    {stat.label}
+                  </p>
+                  <p className="relative mt-1 text-xs text-text-tertiary">
+                    {stat.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
@@ -109,7 +83,7 @@ export default function HomePage() {
       {/* ============================================= */}
       {/* PRODUCT 1: AlecRae Law                        */}
       {/* ============================================= */}
-      <section id="products" className="relative py-32 sm:py-44">
+      <section id="products" className="relative py-32 sm:py-44" aria-label="AlecRae Law">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[600px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
         </div>
@@ -139,16 +113,10 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          {/* MASSIVE mockup — the centrepiece */}
-          <Reveal delay={0.2}>
-            <div className="relative mx-auto mt-16 max-w-4xl">
-              {/* Glow halo behind mockup */}
-              <div className="pointer-events-none absolute -inset-8 rounded-3xl bg-accent/5 blur-3xl" />
-              <div className="relative">
-                <DashboardMockup />
-              </div>
-            </div>
-          </Reveal>
+          {/* 3D perspective entrance mockup */}
+          <MockupReveal className="mx-auto mt-16 max-w-4xl" glowColor="rgba(16, 185, 129, 0.08)">
+            <DashboardMockup />
+          </MockupReveal>
 
           <Reveal delay={0.3}>
             <div className="mt-12 flex justify-center gap-4">
@@ -164,7 +132,7 @@ export default function HomePage() {
       {/* ============================================= */}
       {/* PRODUCT 2: The Oracle                         */}
       {/* ============================================= */}
-      <section className="relative py-32 sm:py-44">
+      <section className="relative py-32 sm:py-44" aria-label="The Oracle">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[600px] w-[800px] rounded-full bg-purple-500/5 blur-[180px]" />
         </div>
@@ -195,15 +163,9 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          {/* MASSIVE Oracle mockup */}
-          <Reveal delay={0.2}>
-            <div className="relative mx-auto mt-16 max-w-4xl">
-              <div className="pointer-events-none absolute -inset-8 rounded-3xl bg-purple-500/5 blur-3xl" />
-              <div className="relative">
-                <OracleMockup />
-              </div>
-            </div>
-          </Reveal>
+          <MockupReveal className="mx-auto mt-16 max-w-4xl" glowColor="rgba(139, 92, 246, 0.08)">
+            <OracleMockup />
+          </MockupReveal>
 
           <Reveal delay={0.3}>
             <div className="mt-12 flex justify-center gap-4">
@@ -219,7 +181,7 @@ export default function HomePage() {
       {/* ============================================= */}
       {/* PRODUCT 3: AlecRae Voice                      */}
       {/* ============================================= */}
-      <section className="relative py-32 sm:py-44">
+      <section className="relative py-32 sm:py-44" aria-label="AlecRae Voice">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[600px] w-[800px] rounded-full bg-accent/5 blur-[180px]" />
           <div className="absolute h-[300px] w-[400px] translate-x-1/4 rounded-full bg-amber-500/5 blur-[120px]" />
@@ -249,15 +211,30 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          {/* MASSIVE Voice mockup */}
+          {/* Live typing demo — shows Voice in action */}
           <Reveal delay={0.2}>
-            <div className="relative mx-auto mt-16 max-w-4xl">
-              <div className="pointer-events-none absolute -inset-8 rounded-3xl bg-amber-500/5 blur-3xl" />
-              <div className="relative">
-                <VoiceMockup />
+            <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-amber-500/20 bg-surface-raised p-6">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="pulse-ring absolute inset-0 rounded-full border-2 border-amber-400/40" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/20">
+                    <svg className="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-semibold text-amber-400">AlecRae Voice</p>
+                  <TypingDemo className="mt-1 text-sm" />
+                </div>
               </div>
             </div>
           </Reveal>
+
+          <MockupReveal className="mx-auto mt-12 max-w-4xl" glowColor="rgba(245, 158, 11, 0.08)">
+            <VoiceMockup />
+          </MockupReveal>
 
           <Reveal delay={0.3}>
             <div className="mt-12 flex justify-center gap-4">
@@ -273,7 +250,7 @@ export default function HomePage() {
       {/* ============================================= */}
       {/* PRODUCT 4: Accounting                         */}
       {/* ============================================= */}
-      <section className="relative py-32 sm:py-44">
+      <section className="relative py-32 sm:py-44" aria-label="AlecRae Accounting">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-[500px] w-[700px] rounded-full bg-blue-500/5 blur-[150px]" />
         </div>
@@ -314,8 +291,8 @@ export default function HomePage() {
                 { label: "AI spreadsheets", desc: "Financial modelling with voice and AI assistance", icon: "◈" },
                 { label: "E-signatures", desc: "Engagement letters signed without leaving the platform", icon: "✍" },
               ].map((f) => (
-                <div key={f.label} className="card-glow flex items-start gap-4">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-lg text-blue-400">
+                <div key={f.label} className="group flex items-start gap-4 rounded-2xl border border-surface-border bg-surface-raised p-6 transition-all duration-500 hover:border-surface-border-light hover:scale-[1.02]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-lg text-blue-400 transition-transform group-hover:scale-110">
                     {f.icon}
                   </span>
                   <div>
@@ -341,7 +318,7 @@ export default function HomePage() {
       {/* ============================================= */}
       {/* MANIFESTO                                     */}
       {/* ============================================= */}
-      <section className="py-32 sm:py-44">
+      <section className="py-32 sm:py-44" aria-label="Our philosophy">
         <Container narrow>
           <Reveal>
             <p className="text-xs font-medium uppercase tracking-widest text-amber-400">
@@ -367,9 +344,9 @@ export default function HomePage() {
       </section>
 
       {/* ============================================= */}
-      {/* FINAL CTA — the close                         */}
+      {/* FINAL CTA                                     */}
       {/* ============================================= */}
-      <section className="relative py-32 sm:py-44">
+      <section className="relative py-32 sm:py-44" aria-label="Get started">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/5 blur-[180px]" />
           <div className="absolute left-1/3 top-1/3 h-[300px] w-[400px] rounded-full bg-amber-500/5 blur-[120px]" />

@@ -3,6 +3,7 @@ import { PRODUCTS, BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
+import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Reveal from "@/app/components/effects/Reveal";
 import Sparkles from "@/app/components/effects/Sparkles";
@@ -100,6 +101,9 @@ export default function AccountingPage() {
                 </div>
               </Reveal>
             ))}
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl">
+            <AiDisclaimer />
           </div>
         </Container>
       </section>

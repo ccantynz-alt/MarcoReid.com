@@ -6,6 +6,7 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import OracleMockup from "@/app/components/marketing/OracleMockup";
 import Reveal from "@/app/components/effects/Reveal";
+import MockupReveal from "@/app/components/effects/MockupReveal";
 import Sparkles from "@/app/components/effects/Sparkles";
 
 export const metadata: Metadata = {
@@ -58,9 +59,9 @@ export default function OraclePage() {
       {/* Oracle mockup */}
       <section className="py-20 sm:py-32">
         <Container>
-          <Reveal>
+          <MockupReveal className="mx-auto max-w-4xl" glowColor="rgba(139, 92, 246, 0.08)">
             <OracleMockup />
-          </Reveal>
+          </MockupReveal>
         </Container>
       </section>
 
