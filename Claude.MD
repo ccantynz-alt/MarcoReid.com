@@ -2187,6 +2187,179 @@ required before launch in each new market.
 
 ---
 
+
+---
+
+## 33. Verom.ai — AlecRae Immigration (Migration Asset)
+
+### 33.1 What Verom.ai is
+
+Verom.ai is a fully built, advanced AI-powered immigration
+compliance platform. It is one of the most advanced immigration
+compliance tools on the market and represents a significant
+existing asset that migrates directly into AlecRae Law as the
+AlecRae Immigration module.
+
+This is not a future build. This is existing work that gets
+a better home inside the most advanced legal platform ever built.
+
+**Current status:** Live platform, standalone deployment
+**Future status:** Migrated into alecrae.com under /law/immigration
+**Brand after migration:** AlecRae Immigration
+**Verom.ai domain:** Redirect to alecrae.com/immigration after migration
+
+### 33.2 What Verom.ai contains — the migration inventory
+
+Before migration, conduct a full audit of the Verom.ai codebase
+and document every feature, every database table, every API
+integration, and every AI capability. The following is the
+known feature set to be preserved and enhanced:
+
+**Core platform features:**
+- Three-sided marketplace: attorneys, clients, and employers
+- Immigration compliance workflow management
+- AI-powered case assessment and recommendations
+- Document generation for immigration filings
+- Status tracking for visa applications
+- Compliance deadline management
+- ICE audit simulator (unique competitive moat — preserve this)
+- USCIS form library with AI pre-population
+
+**The three-sided marketplace:**
+Side 1 — Immigration attorneys (supply side)
+Side 2 — Individuals needing immigration help (demand side)
+Side 3 — Employers sponsoring foreign workers (B2B demand)
+This marketplace structure is the feature that makes AlecRae
+Immigration the most commercially powerful immigration module
+available. The escrow transaction clip on case fees is the
+toll road revenue model (Section 10).
+
+**AI capabilities from Verom.ai:**
+- Case type classification from intake information
+- Document completeness checking
+- Timeline prediction for visa processing
+- Compliance risk flagging
+- Auto-population of USCIS forms from client data
+
+### 33.3 How migration works
+
+**What moves:**
+All business logic, AI capabilities, database schema,
+USCIS form library, marketplace infrastructure, escrow flow,
+and ICE audit simulator move into the AlecRae codebase.
+
+**What gets rebuilt:**
+The UI is rebuilt in the AlecRae design system
+(Instrument Serif + Plus Jakarta Sans, navy/white palette).
+The authentication system is replaced by AlecRae's unified auth.
+The standalone database is migrated into the AlecRae Supabase project.
+
+**The route structure after migration:**
+```
+alecrae.com/law/immigration/          — module home
+alecrae.com/law/immigration/matters   — case management
+alecrae.com/law/immigration/forms     — USCIS form library
+alecrae.com/law/immigration/clients   — three-sided marketplace
+alecrae.com/law/immigration/audit     — ICE audit simulator
+alecrae.com/law/immigration/oracle    — Oracle Immigration research
+```
+
+**What Verom.ai gains from being inside AlecRae:**
+- AlecRae Voice — attorneys dictate case notes and client updates
+- The Oracle — instant immigration law research inline
+- AlecRae Email — matter-centric email with Oracle in the composer
+- Collaboration tools — lawyer/accountant bridge for visa+tax matters
+- Billing and trust accounting — integrated fee collection
+- Client portal — clients track their own case status
+- The AlecRae brand — immediately more credible than a standalone tool
+
+### 33.4 The immigration + accounting cross-domain opportunity
+
+Immigration is one of the most powerful use cases for The Oracle
+cross-domain tier. Every immigration matter has accounting implications:
+
+- H-1B visa holders: dual-status tax year, FICA implications
+- EB-5 investor visas: substantial investment requirements,
+  source of funds documentation, tax treaty considerations
+- L-1 intracompany transfers: transfer pricing, PE risk
+- O-1 extraordinary ability: self-employment tax, Schedule C
+- Spouse work authorisation: dual income tax planning
+- Green card through employment: multi-year tax planning
+
+An immigration attorney and their client's CPA need to talk
+constantly. AlecRae is the only platform that puts both of them
+in the same workspace with the Oracle answering cross-domain
+queries that require both legal and accounting intelligence.
+This is the AlecRae Immigration module's most powerful
+differentiator over every standalone immigration tool.
+
+### 33.5 ICE audit simulator — the feature nobody else has
+
+The ICE audit simulator built into Verom.ai is a genuine
+competitive moat. No other immigration compliance platform
+provides an employer-facing tool that simulates an ICE
+I-9 audit, identifies compliance gaps, and generates a
+remediation plan before a real audit occurs.
+
+This feature must be preserved exactly, enhanced with Oracle
+intelligence, and marketed aggressively to:
+- HR departments of companies sponsoring foreign workers
+- Corporate attorneys managing employer immigration compliance
+- PEOs (Professional Employer Organisations)
+
+This is a B2B revenue stream that exists independently of the
+attorney marketplace. Employers pay for the audit simulator
+as a standalone compliance tool — then discover the full
+AlecRae Immigration platform through it.
+
+### 33.6 Verom.ai domain strategy after migration
+
+Once the migration is complete and AlecRae Immigration is live:
+- verom.ai → permanent 301 redirect to alecrae.com/immigration
+- All Verom.ai SEO equity transfers to AlecRae via the redirect
+- Any existing Verom.ai users are migrated to AlecRae accounts
+  with a personal onboarding email explaining the upgrade
+- The Verom.ai brand is retired — AlecRae Immigration is the name
+
+**Important:** Do not retire the Verom.ai domain immediately.
+Keep it redirecting for at least 12 months after migration
+to preserve any inbound links and search rankings built on it.
+
+### 33.7 Migration checklist
+
+- [ ] Full Verom.ai feature and database audit completed
+- [ ] All Verom.ai GitHub code reviewed and mapped to AlecRae routes
+- [ ] USCIS form library extracted and documented
+- [ ] ICE audit simulator logic isolated for migration
+- [ ] Marketplace and escrow infrastructure mapped to Stripe Connect
+- [ ] Existing user data migration plan documented
+- [ ] AlecRae Immigration UI built in AlecRae design system
+- [ ] Oracle Immigration research layer integrated
+- [ ] AlecRae Voice added to all immigration input fields
+- [ ] Cross-professional bridge connected (attorney ↔ accountant)
+- [ ] verom.ai redirect configured in Cloudflare
+- [ ] Existing Verom.ai users notified and migrated
+- [ ] SEO redirect audit confirms equity transfer complete
+
+### 33.8 Where AlecRae Immigration sits in the build sequence
+
+AlecRae Immigration is a Phase 2 module — it follows the Phase 1
+core platform (authentication, dashboard, AlecRae Voice, Oracle,
+basic case management, billing). The reason it is Phase 2 rather
+than Phase 1 is that the migration requires the core platform
+to exist first. You cannot build a room before you build the house.
+
+However, the Verom.ai platform continues to operate independently
+during Phase 1. Existing users and any new Verom.ai users are
+served by the standalone platform until migration is complete.
+The two platforms run in parallel during this period.
+
+**Phase 1:** Core AlecRae platform built and launched
+**Phase 2 start:** Verom.ai migration begins
+**Phase 2 complete:** AlecRae Immigration live, verom.ai redirects
+
+---
+
 ## 28. Technology Architecture — Components, Layers, and Standards
 
 ### 28.1 No HTML files — React components only
@@ -3319,12 +3492,14 @@ That is the moat.
 | 2.8 | March 2026 | Added AlecRae Voice as Universal Input Layer (Section 30). Product name locked. Tagline: "Speak. It is done." |
 | 2.9 | March 2026 | Added Geographic Markets section (Section 31) — full global expansion plan across 7 markets. |
 | 3.0 | March 2026 | MARKET STRATEGY DECIDED — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. |
-| 3.1 | March 2026 | Added complete country-by-country legal and operational compliance guide (Section 32) — entity requirements, professional body relationships, legal requirements, tax obligations, and pre-launch checklists for NZ, AU, US, UK, Canada, Pacific Islands, Singapore, and Malaysia. Universal compliance requirements. All markets legally planned. | — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. | — launch sequence US+NZ+AU Phase 1, UK Phase 2, Canada+Pacific Phase 3. Data residency architecture per region. Multi-currency Stripe Tax setup. Oracle data sources per jurisdiction. Compliance requirements per market. Architecture rule: multi-region Supabase from day one, never retrofit. | as Universal Input Layer (Section 30) — Dictation is not a standalone feature, it is the input layer for the ENTIRE platform. Present in every surface: email, documents, messages, Oracle queries, billing entries, matter notes. Product name locked: AlecRae Voice. Tagline: "Speak. It is done." Language intelligence positioning — never "grammar correction." Phase 1 priority — ships first. | Added Technology Architecture (Section 28) — React components only rule, two-layer dev/production system, intellectual crawler monitoring. Added Email Platform (Section 29) — full email dashboard, Oracle draw-down in email composer, hosted email revenue stream, team/client meeting flow from email. | Added UX Philosophy section (Section 27) — Oracle draw-down workflow, two-click navigation rule, command palette, dashboard morning briefing design, mobile-first requirement, empty state philosophy. |
+| 3.1 | March 2026 | Added complete country-by-country legal and operational compliance guide (Section 32). All markets legally planned. |
+| 3.2 | March 2026 | Added Verom.ai dedicated section (Section 33) — full migration plan into AlecRae Immigration module, three-sided marketplace documentation, ICE audit simulator preservation, immigration+accounting cross-domain opportunity, migration checklist, domain redirect strategy. Verom.ai is a Phase 2 migration asset, not a future build. | Added complete country-by-country legal and operational compliance guide (Section 32) — entity requirements, professional body relationships, legal requirements, tax obligations, and pre-launch checklists for NZ, AU, US, UK, Canada, Pacific Islands, Singapore, and Malaysia. Universal compliance requirements. All markets legally planned. | — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. | — launch sequence US+NZ+AU Phase 1, UK Phase 2, Canada+Pacific Phase 3. Data residency architecture per region. Multi-currency Stripe Tax setup. Oracle data sources per jurisdiction. Compliance requirements per market. Architecture rule: multi-region Supabase from day one, never retrofit. | as Universal Input Layer (Section 30) — Dictation is not a standalone feature, it is the input layer for the ENTIRE platform. Present in every surface: email, documents, messages, Oracle queries, billing entries, matter notes. Product name locked: AlecRae Voice. Tagline: "Speak. It is done." Language intelligence positioning — never "grammar correction." Phase 1 priority — ships first. | Added Technology Architecture (Section 28) — React components only rule, two-layer dev/production system, intellectual crawler monitoring. Added Email Platform (Section 29) — full email dashboard, Oracle draw-down in email composer, hosted email revenue stream, team/client meeting flow from email. | Added UX Philosophy section (Section 27) — Oracle draw-down workflow, two-click navigation rule, command palette, dashboard morning briefing design, mobile-first requirement, empty state philosophy. |
 | 2.7 | March 2026 | Added Technology Architecture (Section 28) — React components only rule, two-layer dev/production system, intellectual crawler monitoring. Added Email Platform (Section 29) — full email dashboard, Oracle draw-down in email composer, hosted email revenue stream, team/client meeting flow from email. |
 | 2.8 | March 2026 | Added AlecRae Voice as Universal Input Layer (Section 30). Product name locked. Tagline: "Speak. It is done." |
 | 2.9 | March 2026 | Added Geographic Markets section (Section 31) — full global expansion plan across 7 markets. |
 | 3.0 | March 2026 | MARKET STRATEGY DECIDED — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. |
-| 3.1 | March 2026 | Added complete country-by-country legal and operational compliance guide (Section 32) — entity requirements, professional body relationships, legal requirements, tax obligations, and pre-launch checklists for NZ, AU, US, UK, Canada, Pacific Islands, Singapore, and Malaysia. Universal compliance requirements. All markets legally planned. | — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. | — launch sequence US+NZ+AU Phase 1, UK Phase 2, Canada+Pacific Phase 3. Data residency architecture per region. Multi-currency Stripe Tax setup. Oracle data sources per jurisdiction. Compliance requirements per market. Architecture rule: multi-region Supabase from day one, never retrofit. | as Universal Input Layer (Section 30) — Dictation is not a standalone feature, it is the input layer for the ENTIRE platform. Present in every surface: email, documents, messages, Oracle queries, billing entries, matter notes. Product name locked: AlecRae Voice. Tagline: "Speak. It is done." Language intelligence positioning — never "grammar correction." Phase 1 priority — ships first. | Added Technology Standards (Section 28) — no HTML files, components only, intellectual crawler system, two-layer QA architecture, broken link policy. |
+| 3.1 | March 2026 | Added complete country-by-country legal and operational compliance guide (Section 32). All markets legally planned. |
+| 3.2 | March 2026 | Added Verom.ai dedicated section (Section 33) — full migration plan into AlecRae Immigration module, three-sided marketplace documentation, ICE audit simulator preservation, immigration+accounting cross-domain opportunity, migration checklist, domain redirect strategy. Verom.ai is a Phase 2 migration asset, not a future build. | Added complete country-by-country legal and operational compliance guide (Section 32) — entity requirements, professional body relationships, legal requirements, tax obligations, and pre-launch checklists for NZ, AU, US, UK, Canada, Pacific Islands, Singapore, and Malaysia. Universal compliance requirements. All markets legally planned. | — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. | — launch sequence US+NZ+AU Phase 1, UK Phase 2, Canada+Pacific Phase 3. Data residency architecture per region. Multi-currency Stripe Tax setup. Oracle data sources per jurisdiction. Compliance requirements per market. Architecture rule: multi-region Supabase from day one, never retrofit. | as Universal Input Layer (Section 30) — Dictation is not a standalone feature, it is the input layer for the ENTIRE platform. Present in every surface: email, documents, messages, Oracle queries, billing entries, matter notes. Product name locked: AlecRae Voice. Tagline: "Speak. It is done." Language intelligence positioning — never "grammar correction." Phase 1 priority — ships first. | Added Technology Standards (Section 28) — no HTML files, components only, intellectual crawler system, two-layer QA architecture, broken link policy. |
 | 2.8 | March 2026 | Added AlecRae Mail (Section 29) — built-in email dashboard, Oracle inline in compose, firm dashboard, client portal email hook, team meeting from email, Resend hosting architecture. |
 | 2.9 | March 2026 | Added Complete Professional Day (Section 30) — full daily workflow map demonstrating zero external application dependency. | Added UX Philosophy section (Section 27) — Oracle draw-down workflow, two-click navigation rule, command palette, dashboard morning briefing design, mobile-first requirement, empty state philosophy. | Added time/money value proposition messaging (Section 26.1b) — quantified time savings, billing recovery calculator, emotional hook. Added full trademark/IP protection answer for collaboration design (Section 26.9). | (Section 26) — instant messaging with email extraction, meeting scheduling, cross-professional bridge, client portal hooks, notification marketing system, consumer page AI positioning copy, and trade dress protection strategy. | AlecRae serves professionals, consumers, small businesses, corporates, and the general public through separate URL hooks under one unified brand. | — ONE application on alecrae.com, not three separate sites. Astra and Verom.ai migrate INTO alecrae.com as routes. Other domains are marketing redirects only. | (Section 21), security certification roadmap (Section 22), linear launch sequence (Section 23) |
 
@@ -3518,5 +3693,4 @@ When all seven plays are active:
 
 At that point AlecRae is not competing with Westlaw, Clio, or LexisNexis.
 It is the layer those platforms wish they had built first.
-
 
