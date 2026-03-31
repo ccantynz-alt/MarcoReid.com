@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy: #0a1628;
+  --color-navy-light: #132244;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e0c06e;
+  --color-slate: #94a3b8;
+  --color-white: #f8fafc;
+}
+
+@theme {
+  --color-navy: var(--color-navy);
+  --color-navy-light: var(--color-navy-light);
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-slate: var(--color-slate);
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
