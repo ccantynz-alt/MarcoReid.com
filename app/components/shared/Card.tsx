@@ -1,11 +1,16 @@
 interface CardProps {
   children: React.ReactNode;
   className?: string;
+  glow?: boolean;
 }
 
-export default function Card({ children, className = "" }: CardProps) {
+export default function Card({
+  children,
+  className = "",
+  glow = false,
+}: CardProps) {
   return (
-    <div className={`rounded-3xl bg-neutral-200 p-8 sm:p-10 ${className}`}>
+    <div className={`${glow ? "card-glow" : "card-dark"} ${className}`}>
       {children}
     </div>
   );

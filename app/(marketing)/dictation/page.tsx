@@ -25,12 +25,12 @@ const schema = {
 };
 
 const surfaces = [
-  { name: "Email", detail: "Dictate entire emails. Legal terminology preserved." },
-  { name: "Documents", detail: "Draft contracts, motions, briefs, reports by voice." },
-  { name: "Research", detail: "Speak your Oracle query. Search precisely." },
-  { name: "Billing", detail: "Log time entries and expenses in seconds." },
-  { name: "Notes", detail: "Dictate case updates. Billable time extracted." },
-  { name: "Calendar", detail: "Schedule meetings by voice. Invites sent instantly." },
+  { name: "Email", detail: "Dictate entire emails. Legal terminology preserved exactly as spoken." },
+  { name: "Documents", detail: "Draft contracts, motions, briefs, financial reports. All by voice." },
+  { name: "Oracle", detail: "Speak your research question naturally. Get verified results instantly." },
+  { name: "Billing", detail: "\"Six point five hours, Rodriguez H-1B, I-129 filing\" \u2014 done." },
+  { name: "Notes", detail: "Dictate case updates. Billable time extracted automatically." },
+  { name: "Calendar", detail: "Schedule meetings by voice. Zoom link generated. Invite sent." },
 ];
 
 const languages = [
@@ -44,15 +44,16 @@ export default function DictationPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="pb-24 pt-32 sm:pb-36 sm:pt-44">
-        <Container className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/8 blur-[120px]" />
+        <Container className="relative text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
             AlecRae Voice
           </p>
-          <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
+          <h1 className="mt-6 text-display-2xl font-serif text-gradient">
             Speak. It is done.
           </h1>
-          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-text-secondary">
             {product.description}
           </p>
           <div className="mt-12">
@@ -64,37 +65,41 @@ export default function DictationPage() {
       </section>
 
       {/* Stat */}
-      <section className="bg-neutral-200 py-20 sm:py-28">
+      <div className="glow-line mx-auto max-w-xs" />
+      <section className="py-32 sm:py-44">
         <Container className="text-center">
-          <p className="text-display-xl font-serif text-neutral-950">
-            3&ndash;4
+          <p className="text-display-2xl font-serif text-text-primary">
+            3&ndash;4<span className="text-accent">h</span>
           </p>
-          <p className="mt-4 text-xl text-neutral-600">
-            hours recovered every day by speaking instead of typing
+          <p className="mt-6 text-xl text-text-secondary">
+            recovered every day by speaking instead of typing
           </p>
-          <p className="mt-2 text-neutral-500">
-            At $350/hour, that is $1,050&ndash;1,400 of additional billing
+          <p className="mt-3 text-text-tertiary">
+            At $350/hour &mdash; $1,050&ndash;1,400 of additional billing
             capacity. From one feature.
           </p>
         </Container>
       </section>
 
       {/* Surfaces */}
-      <section className="py-24 sm:py-36">
+      <section className="py-32 sm:py-44">
         <Container>
-          <h2 className="text-center text-display font-serif text-neutral-950">
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            Everywhere
+          </p>
+          <h2 className="mt-6 text-center text-display font-serif text-text-primary">
             Everywhere you type, you can speak.
           </h2>
-          <p className="mt-6 text-center text-xl text-neutral-600">
+          <p className="mt-6 text-center text-xl text-text-secondary">
             Not a standalone tool. The platform&rsquo;s intelligence layer.
           </p>
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {surfaces.map((s) => (
-              <div key={s.name} className="rounded-2xl bg-neutral-200 px-8 py-6">
-                <p className="text-lg font-semibold text-neutral-950">
+              <div key={s.name} className="card-dark">
+                <p className="text-lg font-semibold text-text-primary">
                   {s.name}
                 </p>
-                <p className="mt-2 text-sm text-neutral-600">{s.detail}</p>
+                <p className="mt-2 text-sm text-text-secondary">{s.detail}</p>
               </div>
             ))}
           </div>
@@ -102,20 +107,26 @@ export default function DictationPage() {
       </section>
 
       {/* Languages */}
-      <section className="bg-neutral-100 py-24 sm:py-36">
-        <Container className="text-center">
-          <h2 className="text-display font-serif text-neutral-950">
+      <section className="relative py-32 sm:py-44">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="h-[300px] w-[500px] rounded-full bg-accent/5 blur-[100px]" />
+        </div>
+        <Container className="relative text-center">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
+            Global
+          </p>
+          <h2 className="mt-6 text-display font-serif text-text-primary">
             9 languages. Day one.
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-xl text-neutral-600">
-            Professional vocabulary intelligence in every language. Not just
-            transcription.
+          <p className="mx-auto mt-6 max-w-xl text-xl text-text-secondary">
+            Professional vocabulary intelligence in every language.
+            Not just transcription.
           </p>
           <div className="mt-12 flex flex-wrap justify-center gap-3">
             {languages.map((lang) => (
               <span
                 key={lang}
-                className="rounded-full bg-neutral-200 px-5 py-2.5 text-sm font-medium text-neutral-700"
+                className="rounded-full border border-surface-border bg-surface-raised px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors hover:border-accent/50 hover:text-text-primary"
               >
                 {lang}
               </span>
@@ -124,19 +135,19 @@ export default function DictationPage() {
         </Container>
       </section>
 
-      {/* Capability list */}
-      <section className="py-24 sm:py-36">
+      {/* Features */}
+      <section className="py-32 sm:py-44">
         <Container>
-          <h2 className="text-center text-display font-serif text-neutral-950">
+          <p className="text-center text-xs font-medium uppercase tracking-widest text-accent">
+            Intelligence
+          </p>
+          <h2 className="mt-6 text-center text-display font-serif text-text-primary">
             Professional language intelligence.
           </h2>
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {product.features.map((feature) => (
-              <div
-                key={feature}
-                className="rounded-2xl bg-neutral-200 px-8 py-6"
-              >
-                <p className="text-lg font-medium text-neutral-950">
+              <div key={feature} className="card-dark">
+                <p className="text-lg font-medium text-text-primary">
                   {feature}
                 </p>
               </div>
