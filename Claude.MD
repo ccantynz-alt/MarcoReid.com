@@ -40,13 +40,27 @@ AI Dictation, and The Oracle under one roof with one login.
 1. Homepage and marketing shell — the front door of the brand
 2. Authentication — firm signup, user login, role-based access
 3. Dashboard — the unified command centre for lawyers and accountants
-4. AI Dictation — Phase 1 hook, first feature to be fully functional
+4. AlecRae Voice — THE FIRST FEATURE BUILT. Not a later addition.
+   The universal input layer across the entire platform.
+   Built on OpenAI Whisper + Claude API post-processing layer.
+   Legal and accounting professional language intelligence.
+   Multi-language from day one (9 languages).
+   Present in: email composer, document editor, Oracle query,
+   matter notes, billing entries, messages, AIM adjustments,
+   calendar, and Oracle support queries.
+   Also powers the Oracle support agent — speak your support
+   question, get your answer, no ticket, no bot, no hold music.
+   AlecRae Voice IS the platform's intelligence layer.
+   Speak. It is done.
 5. The Oracle (Law) — legal research, citation verification layer
 6. The Oracle (Accounting) — tax and regulatory research
-7. Case management — matters, tasks, deadlines
-8. Billing and time tracking
-9. Trust accounting (after IOLTA legal clearance)
-10. AlecRae Accounting wing — migrate and integrate Astra codebase
+7. The Oracle as Support — same engine, account context added,
+   95% of all support queries resolved without human involvement
+8. Case management — matters, tasks, deadlines
+9. Billing and time tracking
+10. Trust accounting (after IOLTA legal clearance)
+11. AlecRae Accounting wing — migrate and integrate Astra codebase
+12. Email platform — AlecRae Mail with Oracle in the composer
 
 **Claude must confirm the active build item at the start of every session.**
 Do not jump ahead. Do not suggest Phase 2 features while Phase 1 is incomplete.
@@ -435,7 +449,7 @@ from day one, you automatically satisfy:
 - Right to erasure ("right to be forgotten") — users can delete their data
 - Data portability — users can export their data in a standard format
 - Privacy by design — collect the minimum data necessary, nothing more
-- Data processing agreements with all third-party processors (Anthropic, Supabase,
+- Data processing agreements with all third-party processors (Anthropic, Neon,
   Vercel, Stripe, Mailgun, etc.)
 - A clear, plain-English privacy policy (not legal jargon)
 - Breach notification procedures (72-hour notification window under GDPR)
@@ -456,7 +470,7 @@ communications are privileged. Any platform handling this data must:
 
 Before launch, execute DPAs with:
 - Anthropic (Claude API)
-- Supabase (database)
+- Neon (database)
 - Vercel (hosting)
 - Stripe (payments)
 - Mailgun or equivalent (transactional email)
@@ -770,7 +784,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ---
 
-## 12. Financial and Revenue Structure
+## 13. Financial and Revenue Structure
 
 ### 10.1 Payment infrastructure
 
@@ -811,7 +825,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ---
 
-## 13. Pre-Launch Checklist — Nothing Goes Live Until This Is Done
+## 14. Pre-Launch Checklist — Nothing Goes Live Until This Is Done
 
 ### Legal (non-negotiable)
 - [ ] NZ Ltd Company formed
@@ -854,7 +868,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ---
 
-## 14. Build Phases
+## 15. Build Phases
 
 ### Phase 1 — The Hook (build first, launch when faultless)
 1. AI Dictation — legal and accounting vocabulary, available to both wings
@@ -884,7 +898,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ---
 
-## 15. Distribution Strategy
+## 16. Distribution Strategy
 
 ### Attorney acquisition
 - AILA (American Immigration Lawyers Association) — conference presence and
@@ -912,7 +926,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ---
 
-## 16. Claude Behaviour Rules for This Project
+## 17. Claude Behaviour Rules for This Project
 
 These rules govern how Claude assists with AlecRae in every session.
 
@@ -934,7 +948,7 @@ These rules govern how Claude assists with AlecRae in every session.
    Claude must not push toward premature launch or suggest cutting corners on
    compliance or legal protection to ship faster.
 
-5. **Tech stack is fixed.** Next.js 14 (App Router), Vercel, Supabase, Stripe,
+5. **Tech stack is fixed.** Next.js 14 (App Router), Vercel, Neon, Stripe,
    Tailwind CSS, Claude API. Do not suggest departing from this stack without
    a compelling reason and explicit discussion.
 
@@ -963,7 +977,7 @@ These rules govern how Claude assists with AlecRae in every session.
 
 ---
 
-## 17. Key Contacts and Resources (to be populated)
+## 18. Key Contacts and Resources (to be populated)
 
 | Role | Name | Firm | Status |
 |---|---|---|---|
@@ -975,7 +989,7 @@ These rules govern how Claude assists with AlecRae in every session.
 
 ---
 
-## 18. Tech Stack — Fixed Unless Explicitly Changed
+## 19. Tech Stack — Fixed Unless Explicitly Changed
 
 This stack is not up for debate session to session. Any suggestion to
 depart from it requires explicit discussion and a documented decision.
@@ -984,14 +998,15 @@ depart from it requires explicit discussion and a documented decision.
 |---|---|---|
 | Framework | Next.js 14 (App Router) | Fixed |
 | Hosting | Vercel | Fixed |
-| Database | Supabase (PostgreSQL) | Fixed |
+| Database | Neon (PostgreSQL) | Fixed — founder already experienced with Neon |
+| ORM | Prisma | Fixed — type-safe database access, already used in VoiceTyper Pro |
 | Payments | Stripe + Stripe Connect | Fixed |
 | Styling | Tailwind CSS | Fixed |
 | AI engine | Claude API (Anthropic) | Fixed |
 | Email (transactional) | Mailgun | Fixed |
 | DNS + CDN | Cloudflare | Fixed |
 | Storage | Cloudflare R2 | For documents and media |
-| Auth | Supabase Auth | Fixed |
+| Auth | Neon (PostgreSQL) + NextAuth.js | Fixed |
 
 **Developer workflow (iPad-only):**
 - All code produced by Claude as complete, ready-to-paste files
@@ -1002,7 +1017,7 @@ depart from it requires explicit discussion and a documented decision.
 
 ---
 
-## 19. Competitive Intelligence — Know the Enemy
+## 20. Competitive Intelligence — Know the Enemy
 
 ### 19.1 The incumbents and their weaknesses
 
@@ -1035,7 +1050,7 @@ dramatically better than what they just shipped.
 
 ---
 
-## 20. Crisis Response Protocols
+## 21. Crisis Response Protocols
 
 ### 20.1 If we receive a cease and desist letter
 
@@ -1075,7 +1090,7 @@ to mishandle client funds (trust accounting) or miss a filing deadline.
 
 ---
 
-## 21. AI Hallucination Risk — Legal Context Protocol
+## 22. AI Hallucination Risk — Legal Context Protocol
 
 This section is non-negotiable. It exists because a single hallucinated
 court citation submitted to a judge can destroy a law firm's reputation,
@@ -1156,7 +1171,7 @@ The same verification principle applies to The Oracle — Accounting:
 
 ---
 
-## 22. Security Certification Roadmap
+## 23. Security Certification Roadmap
 
 ### 22.1 Why this matters
 
@@ -1212,7 +1227,7 @@ it is asked. Clio, Harvey, and every serious legal SaaS has one.
 
 ---
 
-## 23. Launch Sequence — The Linear Timeline
+## 24. Launch Sequence — The Linear Timeline
 
 This is the single most important operational section of this document.
 Every task has a dependency. Do them out of order and something breaks.
@@ -1265,7 +1280,7 @@ in the build we currently are.
        repos or configure anything. Every repo must be created manually in
        GitHub and this file committed to each repo root individually.
 - [ ] 2.8 Set up Vercel projects linked to GitHub repos
-- [ ] 2.9 Configure Supabase projects (one per platform wing)
+- [ ] 2.9 Configure Neon projects (one per platform wing)
 - [ ] 2.10 Open Wise Business account (USD holding)
 - [ ] 2.11 Open Mercury or Relay account (US entity banking)
 - [ ] 2.12 Set up Stripe under Delaware C-Corp entity
@@ -1298,7 +1313,7 @@ in the build we currently are.
 - [ ] 4.2 Draft and finalise Privacy Policy
 - [ ] 4.3 Draft and finalise Terms of Service
 - [ ] 4.4 Draft and finalise Data Processing Agreement (template for users)
-- [ ] 4.5 Execute DPAs with: Anthropic, Supabase, Vercel, Stripe, Mailgun
+- [ ] 4.5 Execute DPAs with: Anthropic, Neon, Vercel, Stripe, Mailgun
 - [ ] 4.6 Commission IOLTA compliance analysis (50-state, US legal tech attorney)
 - [ ] 4.7 Build user consent flow — privacy, terms, AI disclaimer acknowledgement
        checkbox — into onboarding before any account can be created
@@ -1369,7 +1384,7 @@ in the build we currently are.
 | Stage | Status | Last updated |
 |---|---|---|
 | Stage 1 — Legal foundations | NOT STARTED | March 2026 |
-| Stage 2 — Domains and infrastructure | IN PROGRESS — alecrae.com + alecrae.accountant purchased | March 2026 |
+| Stage 2 — Domains and infrastructure | IN PROGRESS — alecrae.com, alecrae.accountant, alecrae.app, alecrae.ai purchased. alecrae.co.nz + alecrae.com.au next. | March 2026 |
 | Stage 3 — Rename and consolidate | NOT STARTED | March 2026 |
 | Stage 4 — Privacy and compliance | NOT STARTED | March 2026 |
 | Stage 5 — Phase 1 build | NOT STARTED | March 2026 |
@@ -1390,9 +1405,820 @@ in the build we currently are.
 
 ---
 
-## 30. AlecRae Voice — The Universal Input Layer
+## 25. Collaboration Architecture — Every Interaction is a Hook
 
-### 30.1 The fundamental principle
+This section documents the most important viral growth mechanism in the
+entire platform. Read it before building any communication or scheduling
+feature. Every design decision must reinforce the hook principle.
+
+### 26.1 The hook principle
+
+Every time two people come together through AlecRae — a lawyer contacting
+a client, an accountant messaging a lawyer, a professional inviting someone
+to a meeting — that interaction is simultaneously a piece of work AND a
+marketing event. The client who receives a meeting invite through AlecRae
+sees the platform. The accountant who gets a message from a lawyer through
+AlecRae sees the platform. The person who had never heard of AlecRae now
+has a reason to want it.
+
+This is engineered virality. The platform markets itself through every
+single professional interaction. No advertising budget can replicate it.
+
+**The rule:** Every touchpoint between any two people — professional to
+professional, professional to client, client to client — must carry the
+AlecRae brand and create a natural desire in the recipient to be inside
+the platform themselves.
+
+---
+
+### 26.1b The time and money value proposition — core professional messaging
+
+This is the message that converts every professional who sees AlecRae.
+It must appear on the professional homepage, the Law platform page,
+the Accounting platform page, and in every outreach email.
+
+**The core equation:**
+Time saved × billable rate = money made
+AlecRae saves professionals hours every day.
+Those hours can be billed to more clients, or simply lived.
+
+**Specific time savings to quantify and market:**
+
+| Task | Without AlecRae | With AlecRae | Time saved |
+|---|---|---|---|
+| Legal research (standard matter) | 4–6 hours | 20–40 minutes | 4+ hours |
+| Document drafting (contract) | 3–4 hours | 30–60 minutes | 3+ hours |
+| Trust account reconciliation | 2–3 hours/week | Automated | 2+ hours |
+| Court deadline calculation | 30–45 min per filing | Instant | 30+ min |
+| Tax research (complex matter) | 2–3 hours | 15–30 minutes | 2+ hours |
+| Bank reconciliation (monthly) | 4–6 hours | Automated | 4+ hours |
+| Client status update calls | 30 min × 10 clients | Portal self-serve | 5 hours/week |
+| Invoice preparation | 1–2 hours/week | Automated from time entries | 1+ hour |
+
+**The marketing headline that converts:**
+"AlecRae saves the average attorney 15–20 hours per week.
+At $350/hour, that is $5,250–7,000 of additional billing capacity.
+Every week. Every year."
+
+"AlecRae saves the average CPA firm 12–18 hours per week per accountant.
+Hours that can be billed, or simply given back to the people who matter."
+
+**The emotional hook beneath the numbers:**
+Lawyers and accountants became professionals to practise their craft —
+not to spend their days on admin, research grunt work, and chasing
+clients for information. AlecRae gives them their profession back.
+The platform handles the machine work. The professional handles
+the judgment work. That is the promise. That is the transformation.
+
+**Use this messaging on:**
+- Professional homepage hero section
+- AlecRae Law platform page
+- AlecRae Accounting platform page
+- Email subject lines: "What would you do with 15 extra hours this week?"
+- AILA and AICPA conference materials
+- Paid search ad copy
+- Case study headlines: "How [Firm] recovered 18 hours per week with AlecRae"
+
+---
+
+### 26.2 The four collaboration relationships
+
+```
+Lawyer ↔ Accountant          (cross-professional — the Oracle bridge)
+Lawyer ↔ Client              (attorney-client — privileged, encrypted)
+Accountant ↔ Client          (CPA-client — confidential, encrypted)
+Client ↔ Client              (referral — rare but powerful)
+```
+
+Each relationship has different privacy requirements, different
+communication tools, and different hook mechanics. All four are
+built into the single AlecRae platform.
+
+---
+
+### 26.3 Instant messaging — the backbone of all communication
+
+**Why instant messaging, not email:**
+Lawyers and accountants lose hours every day to email chains that could
+be resolved in three messages. A lawyer who needs a quick answer from
+their client's CPA should not have to compose an email, wait, follow up,
+and wade through a thread. They should be able to send a message and get
+a reply in minutes.
+
+**The AlecRae messaging system:**
+- Instant messaging between all parties inside the platform
+- Threaded conversations organised by matter/client, not by sender
+- Every message timestamped and permanently archived (legal requirement)
+- One-click export of any conversation thread to a formatted email or PDF
+- Full audit trail — every message is part of the matter record
+- End-to-end encrypted for all attorney-client and CPA-client conversations
+- Read receipts so professionals know when clients have seen important messages
+- File attachments inline — documents, invoices, contracts shared in chat
+
+**The email extraction feature:**
+Any conversation thread can be extracted into a professionally formatted
+email at any time. The professional clicks "Export to email," selects
+the messages to include, and a clean email draft is generated that they
+can send from their own address or through AlecRae. This is unique.
+No other platform does this. It is a patentable workflow — add to
+provisional patent list.
+
+---
+
+### 26.4 Scheduling and meetings
+
+**What gets built:**
+- Native appointment booking inside the platform
+- Calendar sync with Google Calendar and Outlook (two-way)
+- Automated meeting reminders to all parties via email and in-app
+- One-click Zoom link generation attached to every meeting
+- Video meeting option natively within AlecRae (Phase 3 — evaluate
+  Daily.co or Whereby API for embedded video)
+- Post-meeting summary auto-generated by AI from any notes dictated
+  during or after the meeting
+
+**The hook mechanics of a meeting invite:**
+When a lawyer books a meeting with their client through AlecRae,
+the client receives an email invitation that looks like this:
+
+> "Your attorney [Name] has scheduled a meeting with you through
+> AlecRae. Join at alecrae.com/meeting/[unique-code]
+> Date: [Date] · Time: [Time] · Zoom: [Link]
+> Track your matter, view documents, and message your attorney
+> at any time at alecrae.com"
+
+The client visits alecrae.com to join the meeting. They see the platform.
+They see a professional interface. They see their matter being managed
+with sophistication they have never experienced from a lawyer before.
+The hook is set. When their lawyer asks "would you like to use the
+client portal?" the answer is always yes.
+
+**Appointment types to support:**
+- Initial consultation (attorney ↔ new client)
+- Matter review (attorney/accountant ↔ existing client)
+- Cross-professional meeting (lawyer ↔ accountant, shared client)
+- Team meeting (firm internal — multiple attorneys or CPAs)
+- Client sign-off (document signing appointment)
+
+---
+
+### 26.5 The cross-professional bridge (Lawyer ↔ Accountant)
+
+This is the feature that no other platform has and cannot replicate
+without owning both sides of the law-accounting relationship.
+
+**The scenario:**
+A corporate attorney is working on a business acquisition for a client.
+They need a quick tax opinion from the client's CPA on the deal structure.
+On every other platform, this requires: finding the CPA's email, composing
+a message, attaching the relevant documents, waiting, following up.
+
+**The AlecRae version:**
+The attorney opens the client matter in AlecRae, clicks "Involve
+accounting professional," searches for the CPA by name or firm, and
+sends them a shared matter view with a message. The CPA receives an
+invitation to view the relevant portion of the matter and respond.
+If the CPA is already on AlecRae, this takes 30 seconds. If they are
+not, the invitation is the hook that brings them onto the platform.
+
+**What the CPA sees when they receive the invitation:**
+A professionally formatted notification that includes:
+- The matter context (what the lawyer needs)
+- The specific documents or questions relevant to them
+- A link to view the shared matter inside AlecRae
+- A prompt to create their own AlecRae account to respond
+
+Every cross-professional invitation is a warm referral from a trusted
+colleague. This is the highest-conversion acquisition channel possible.
+
+**The shared matter workspace:**
+When a lawyer and accountant are collaborating on the same client:
+- Both can see the shared documents and correspondence
+- Both can message each other and the client in the same thread
+- The Oracle cross-domain tier is automatically activated for that matter
+- Billing is handled separately — each professional bills their client
+  independently through their own AlecRae billing system
+
+---
+
+### 26.6 The client portal — the consumer hook
+
+Every client of every AlecRae professional gets access to a client
+portal at no cost to them. The portal is intentionally excellent.
+It is not a token feature. It is a full, beautiful interface that
+makes the client feel like their professional is running
+the most sophisticated practice they have ever encountered.
+
+**What the client portal shows:**
+- Matter status in plain English ("Your visa application was filed on
+  March 15. The USCIS processing time is currently 8–14 months.")
+- All documents — filed, pending, completed — in one place
+- Invoice history and payment status
+- Secure message thread with their attorney or accountant
+- Upcoming meetings and appointment booking
+- Document signing for any outstanding e-signatures
+
+**The portal as a hook:**
+When a client uses a portal this good, they tell other people about it.
+"My lawyer uses this incredible system — I can see everything, message
+them instantly, and sign documents on my phone." That word-of-mouth is
+the consumer marketing campaign that money cannot buy.
+
+When that client later needs an accountant, they ask their lawyer:
+"Is there an accountant on AlecRae I can use?" The referral is built
+into the architecture.
+
+---
+
+### 26.7 Notification architecture — the hook delivery system
+
+Every notification sent from AlecRae is a marketing touchpoint.
+Every email, every SMS, every push notification carries the AlecRae
+brand and a reason to return to the platform.
+
+**Notification types and their hook value:**
+
+| Notification | Recipient | Hook |
+|---|---|---|
+| Meeting invite | Client | First view of platform |
+| Document ready to sign | Client | Portal login, sees full interface |
+| Message received | Client/Professional | Instant return to platform |
+| Invoice sent | Client | Portal login, payment, sees features |
+| Matter status update | Client | "Your application moved to next stage" |
+| Regulatory alert | Professional | "New ruling affects 3 of your matters" |
+| Cross-professional invite | Accountant/Lawyer | Platform discovery |
+| Payment received | Professional | Positive reinforcement loop |
+
+**The email footer rule:**
+Every notification email must end with:
+
+> "Powered by AlecRae — The most advanced legal and accounting platform
+> ever built. alecrae.com"
+
+This is one line. It is not advertising copy. It is a quiet signal of
+quality on every single email that goes through the system.
+
+---
+
+### 26.8 Consumer page marketing copy — AI professionals positioning
+
+The find-a-lawyer and find-an-accountant pages must communicate one
+message above all others to consumers:
+
+**"The professionals on AlecRae use the most advanced AI legal and
+accounting technology ever built. When you work with an AlecRae
+professional, you get the benefit of that intelligence."**
+
+Specific copy directions for consumer pages:
+
+- "AlecRae attorneys use The Oracle — the most advanced legal research
+  AI ever built. That means faster answers, more thorough research,
+  and better outcomes for your matter."
+
+- "AlecRae accountants work with AI that reads every tax code change
+  in real time. Your CPA never misses a deduction that affects you."
+
+- "The professionals on this platform use tools that 80–90% of their
+  competitors have never seen. Align yourself with the best."
+
+- "When your lawyer uses AlecRae, your matter benefits from AI research
+  that used to require a team of associates. You get that for the same
+  hourly rate."
+
+These are the lines that make a consumer choose an AlecRae professional
+over one found on a competitor directory. Not just a professional.
+The most technologically advanced professional available.
+
+---
+
+### 26.9 Trade dress and IP protection — can anyone copy this?
+
+**The direct answer: No. Not legally. Not without consequences.**
+
+Here is the full picture of what protects AlecRae's collaboration design.
+
+**Layer 1 — Trade dress (protects the look and feel)**
+Trade dress protects the overall visual appearance and user experience
+of a product when it has become distinctive and identifies the source.
+The specific combination of:
+- Matter-centric messaging threads (organised by client matter, not sender)
+- Email extraction from chat (conversation → formatted email, one click)
+- Cross-professional matter bridge (lawyer invites accountant into shared matter)
+- Meeting-invite-as-hook (external invite = first platform exposure)
+- Unified law + accounting collaboration under one login
+
+...constitutes a unique, non-functional design that identifies AlecRae.
+Once we have sufficient market presence, this combination is protectable
+as trade dress under the Lanham Act (US) and equivalent laws globally.
+
+Document everything with dated screenshots and design files.
+Git commits with timestamps are evidence of prior creation.
+
+**Layer 2 — Provisional patents (protects the mechanisms)**
+File provisional patents immediately on:
+- Email extraction workflow (chat thread → formatted email draft)
+- Cross-professional matter invitation flow with shared workspace
+- Matter-centric notification hook system (interaction = marketing event)
+- Unified law + accounting collaboration workspace with Oracle integration
+
+Provisional patents are inexpensive ($1,500–3,000 each with an attorney)
+and establish priority date for 12 months. File before any public demo.
+Once filed, you can label the feature "Patent Pending" — which legally
+warns competitors that copying it creates liability.
+
+**Layer 3 — Copyright (protects the code)**
+Every line of code in the AlecRae collaboration system is automatically
+copyrighted to the IP holding entity the moment it is written.
+Ensure IP assignment agreements are signed by all contributors.
+
+**Layer 4 — Trademark (protects the brand)**
+"AlecRae," "The Oracle," and any unique product names within the
+collaboration system (e.g. if "Matter Bridge" or "AlecRae Connect"
+becomes a named feature) should be trademarked before public launch.
+
+**What a competitor can legally do:**
+- Build messaging software (not protectable)
+- Build meeting scheduling (not protectable)
+- Build a client portal (not protectable)
+
+**What a competitor CANNOT do without infringement:**
+- Copy the specific matter-centric thread → email extraction workflow
+  once the provisional patent is filed
+- Use the same visual design, layout, and interaction patterns
+  once trade dress is established
+- Use the AlecRae name or The Oracle name after trademark registration
+- Copy code directly from the AlecRae codebase (copyright infringement)
+
+**The honest truth:**
+A well-funded competitor can build similar individual features.
+What they cannot do is replicate the COMBINATION — the specific
+integration of law + accounting + collaboration + Oracle + consumer
+marketplace + dictation under one brand, with the data flywheel
+that AlecRae builds from day one. That combination is the moat.
+The IP protection layers are the legal expression of that moat.
+Together they make copying AlecRae expensive, slow, and risky.
+
+**Keeping everything within the platform is deliberate genius.**
+Every chat, every video call, every document signed, every meeting
+held inside AlecRae generates data that feeds the Oracle flywheel,
+creates an audit trail that protects professionals legally, deepens
+the switching cost for every user, and keeps the AlecRae brand
+in the interaction. Using Zoom directly, or WhatsApp, or email —
+none of that happens. The moment the interaction leaves the platform,
+the hook is lost, the data is lost, and the stickiness is lost.
+Keeping everything inside is not a convenience feature.
+It is a strategic architecture decision that compounds over time.
+
+### 26.10 Trade dress and IP protection for the collaboration design
+
+The specific combination of features described in this section —
+the matter-centric messaging with email extraction, the cross-professional
+bridge with shared matter workspaces, the meeting-invite-as-hook flow,
+and the consumer portal design — constitutes a unique and protectable
+user experience design.
+
+**Add to provisional patent applications:**
+- The email extraction feature (conversation thread → formatted email)
+- The cross-professional matter invitation flow
+- The matter-centric notification hook system
+
+**Trade dress protection:**
+The specific visual design, workflow sequence, and interaction patterns
+of the AlecRae collaboration interface should be documented with
+screenshots and dated design files at each major version. Trade dress
+protects the visual appearance and user experience when it has become
+distinctive. Document everything. Date everything. Commit everything
+to GitHub with timestamps.
+
+**The rule nobody can copy:**
+A competitor can build messaging. A competitor can build scheduling.
+A competitor can build a client portal. What a competitor CANNOT do
+is replicate the specific combination of: matter-centric organisation,
+cross-professional Oracle bridge, email extraction, meeting-as-hook
+notification design, and consumer portal quality — all inside a single
+unified platform that owns both law and accounting simultaneously.
+That combination, in its entirety, is AlecRae. That is the trade dress.
+That is the moat.
+
+---
+
+## 26. UX Philosophy — The Platform Professionals Love
+
+### 27.1 The core UX law
+
+**If a professional has to think about how to find something,
+we have already failed.**
+
+Every feature must be reachable in two clicks or fewer from wherever
+the professional currently is. Every workflow must feel like the
+platform anticipated what they needed next. Every interaction must
+leave them feeling more capable, not more frustrated.
+
+This is the single standard against which every UI decision is measured.
+Not "does it work." Not "is it technically correct."
+Does it feel effortless.
+
+### 27.2 The three UX sins we never commit
+
+**Sin 1 — Making professionals leave their flow.**
+A lawyer drafting a contract should never have to open a new tab,
+navigate to a different section, or interrupt what they are doing
+to access the Oracle, check a deadline, or find a client detail.
+Everything they might need is available in context, inline, instantly.
+
+**Sin 2 — Hiding features behind menus.**
+If a professional cannot see a feature, it does not exist for them.
+Navigation must be flat, labelled clearly, and consistent everywhere.
+No buried settings. No features that require a tutorial to discover.
+
+**Sin 3 — Making them wait.**
+Every Oracle query must return in under 3 seconds. Every page must
+load in under 1 second. Every action must have instant visual feedback.
+A professional who clicks a button and sees nothing happen for two
+seconds has already lost trust in the platform.
+
+### 27.3 The Oracle draw-down — the killer workflow
+
+This is the feature that makes AlecRae feel like a superpower.
+
+**The scenario:**
+A lawyer is drafting a contract clause about non-compete enforceability.
+They are not sure about the California standard. Without AlecRae, they
+open a new tab, go to Westlaw, log in, search, find the case, copy the
+citation, switch back, paste it in. Five minutes. Flow completely broken.
+
+**The AlecRae version:**
+The lawyer is drafting. They hit ⌘K (or tap the Oracle icon in the
+toolbar). A drawer slides in from the right — they never leave the
+document. They type "California non-compete enforceability standard."
+The Oracle returns three verified cases in under 3 seconds. They click
+"Insert citation" on the one they want. It drops directly into the
+document at the cursor position, formatted correctly, citation verified.
+Total time: 25 seconds. Flow never broken.
+
+**Where the Oracle draw-down appears:**
+- Inside the Document Editor (drafting contracts, motions, briefs)
+- Inside the Message Composer (responding to client questions)
+- Inside Case Management (adding research notes to a matter)
+- Inside the Tax filing workflow (checking a regulation mid-entry)
+- Inside the Billing notes (referencing a matter precedent)
+- As a floating global command: ⌘K from anywhere opens the Oracle
+
+**The insert modes:**
+- Insert citation — drops the formatted case/statute citation at cursor
+- Insert summary — drops a plain-English summary of the ruling
+- Insert full analysis — drops a structured analysis paragraph
+- Copy to clipboard — for manual placement anywhere
+
+**The verification badge on every insert:**
+Every Oracle result inserted into a document carries a small ✓ badge
+showing it was verified against the authoritative public source.
+This is both a quality signal and a legal protection — the attorney
+can prove the citation was verified at the time of insertion.
+
+### 27.4 Navigation architecture — two clicks to anything
+
+**Top-level navigation (always visible, left sidebar):**
+```
+◎ Dashboard          — unified command centre
+⚖ Matters            — all active cases/engagements
+◈ Clients            — CRM and client profiles
+◎ The Oracle         — research (also accessible inline everywhere)
+⊕ Documents          — all files, drafts, templates
+⏱ Billing            — time tracking and invoices
+✦ Calendar           — meetings and deadlines
+✉ Messages           — matter-centric conversations
+⊞ Reports            — analytics and financials
+⚙ Settings           — firm and account settings
+```
+
+**The rule:** Everything is reachable from the sidebar in one click.
+Everything within a section is reachable in one more click.
+Maximum depth: two clicks from the sidebar to any specific record.
+
+**The command palette (⌘K — available everywhere):**
+Type anything. Find anything. Do anything.
+- "New matter" → creates a new matter
+- "Rodriguez visa" → opens the Rodriguez matter
+- "Non-compete California" → opens Oracle with that query
+- "Invoice #1047" → opens that invoice
+- "Schedule meeting" → opens meeting scheduler
+- "Trust account balance" → shows trust balance inline
+This is the escape hatch that makes the two-click rule feel infinite.
+
+### 27.5 The dashboard — the professional's morning briefing
+
+The dashboard is the first thing a professional sees every morning.
+It must answer five questions instantly without any clicking:
+
+1. What needs my attention today? (Deadlines, unread messages, tasks)
+2. What meetings do I have? (Today's calendar, next 3 days)
+3. What has changed overnight? (New regulatory alerts, matter updates)
+4. How is my firm performing? (Revenue this month, hours billed)
+5. Who is waiting for me? (Unanswered client messages, pending docs)
+
+The dashboard is personalised by role:
+- Attorney dashboard emphasises matters, deadlines, court calendar
+- Accountant dashboard emphasises client filings, tax deadlines, bank feeds
+- Firm owner dashboard adds team performance and revenue overview
+
+### 27.6 Mobile-first inside the platform
+
+Every screen must work perfectly on an iPad. This is non-negotiable
+given the founder's own workflow. Test every component on iPad
+before considering it complete. Touch targets minimum 44px.
+No hover-dependent interactions. Swipe gestures for common actions.
+
+### 27.7 The empty state philosophy
+
+Every empty state — a new matter with no documents, a new client
+with no history — must tell the professional exactly what to do next
+in plain language. No blank screens. No generic "No items found."
+
+Example: A new matter with no documents shows:
+"No documents yet. Start by uploading the client agreement,
+or use Document AI to draft one from scratch."
+
+The empty state is a teaching moment and a conversion moment.
+It shows the professional what the platform can do, exactly when
+they are most receptive to learning it.
+
+---
+
+
+---
+
+## 27. Technology Architecture — Components, Layers, and Standards
+
+### 28.1 No HTML files — React components only
+
+Every single piece of UI in AlecRae is a React component.
+No .html files anywhere in the codebase. Ever.
+Next.js 14 App Router with TypeScript (.tsx) throughout.
+
+This is not a preference. It is a hard rule.
+The reasons: type safety, reusability, testability,
+server/client component optimisation, and future-proofing.
+
+**File extension rules:**
+- UI: .tsx (React components with TypeScript)
+- Logic/utilities: .ts (pure TypeScript)
+- Styles: Tailwind CSS utility classes inside components
+- No: .html, .css (standalone), .js (use .ts or .tsx)
+
+**Component architecture:**
+```
+app/
+  components/
+    oracle/          — Oracle draw-down, results, insert system
+    collaboration/   — Messaging, meetings, scheduling
+    email/           — Email dashboard, composer, inbox
+    editor/          — Document editor, rich text
+    billing/         — Invoicing, time tracking
+    shared/          — Buttons, inputs, cards, modals
+  (platform)/        — All authenticated platform routes
+  (marketing)/       — Public-facing pages
+  api/               — All API routes
+lib/                 — Utilities, types, constants
+```
+
+### 28.2 The two-layer system — the promise of a faultless product
+
+This is the architecture that keeps the promise to every professional
+that they will never encounter a broken link, a bug, or an error
+while using a product they are paying for.
+
+**Layer 1 — Internal development layer (Vercel preview deployments)**
+- Every feature branch deploys to a unique Vercel preview URL
+- All testing, QA, and bug hunting happens here
+- Claude builds features here first
+- Every component is tested against real data scenarios
+- No feature graduates to Layer 2 until it is faultless
+- This layer is password-protected, never customer-accessible
+- Broken things live here. Only finished things leave here.
+
+**Layer 2 — Customer-facing production layer (alecrae.com)**
+- Only receives code that has passed Layer 1 completely
+- Zero broken features. Zero dead links. Zero console errors.
+- Performance monitored continuously (Vercel Analytics + Sentry)
+- Any regression caught in production triggers immediate rollback
+- The customer never sees a bug. This is a non-negotiable promise.
+
+**The deployment rule:**
+```
+Feature branch → Vercel preview (Layer 1 — test here)
+                      ↓ faultless
+main branch → alecrae.com production (Layer 2 — customers here)
+```
+
+Never merge to main until Layer 1 is perfect.
+Never skip Layer 1 to ship faster.
+Speed is not the goal. Faultless is the goal.
+
+### 28.3 Intellectual crawlers — staying 80-90% ahead
+
+AlecRae deploys automated intelligence monitoring to ensure
+the platform always uses the most advanced technologies available
+and is never caught using deprecated or superseded approaches.
+
+**What the crawlers monitor:**
+- Next.js release notes and breaking changes
+- React release notes and new patterns
+- Tailwind CSS updates
+- Anthropic API updates and new models
+- Supabase feature releases
+- Vercel platform updates and new capabilities
+- Legal tech competitor feature releases (Clio, Harvey, Thomson Reuters)
+- Accounting software competitor releases (Xero, QuickBooks, Sage)
+- New AI capabilities relevant to legal and accounting workflows
+
+**How this is implemented:**
+- GitHub Dependabot for all dependency updates
+- Weekly automated scan of competitor changelog pages
+- Monthly technology review session — Claude reads current docs
+  before any major feature is built and confirms latest patterns
+- Any feature built on a deprecated pattern must be flagged
+
+**The rule:** Before building any feature, Claude confirms the
+approach uses current best practices. If a better approach has
+been released since the last session, use the better approach.
+
+---
+
+## 28. Email Platform — The Final Hook
+
+### 29.1 Why email changes everything
+
+Email is where lawyers and accountants spend 40–60% of their day.
+Right now that time lives in Gmail or Outlook — outside AlecRae,
+untagged to matters, unsearchable by client, disconnected from
+the Oracle, and generating zero data for the platform.
+
+Bringing email inside AlecRae is the single most powerful
+remaining hook in the entire platform. The moment a professional
+does their email inside AlecRae, they are inside the platform
+for the majority of their working day. Every other feature —
+the Oracle, the matter view, the billing, the calendar — becomes
+instantly reachable from the thing they are already doing.
+
+### 29.2 What AlecRae Email provides
+
+**For every firm:**
+- Custom email domain: @theirfirm.com (their own domain via Cloudflare DNS)
+  OR @firmname.alecrae.com (AlecRae-hosted subdomain)
+- Every attorney and accountant gets their own professional inbox
+- Shared inboxes for the firm (hello@, admin@, billing@)
+- Unified inbox across all firm email addresses
+
+**Inside the email composer:**
+- Oracle draw-down button — research and insert at any point while writing
+- Meeting scheduler — converts any email into a meeting invite in one click
+- Matter tagging — tag the email to a client matter before sending
+- Document attachment from matter files — no more hunting in folders
+- E-signature request — send a document for signature directly from email
+- Template library — professional email templates for common matter types
+- AI draft assist — "draft a response to this client question about..."
+
+**Inside the inbox:**
+- Every email auto-suggested for matter assignment by AI
+- Unread emails surfaced on the dashboard morning briefing
+- Thread view with full matter context in the right sidebar
+- One-click "Add to matter record" for any email or thread
+- Smart filters — by matter, by client, by urgency, by follow-up needed
+- Oracle sidebar — research any question raised in an email instantly
+
+**Email as a hook for non-platform users:**
+When a professional sends an email from AlecRae to a client who is
+not on the platform, the email footer reads:
+> "Sent via AlecRae — the professional platform your attorney uses.
+> Track your matter and communicate securely at alecrae.com"
+Every outbound email is a warm invitation.
+
+### 29.3 Email infrastructure stack
+
+**Phase 1 — Integration approach (launch with this):**
+Connect existing email accounts (Gmail, Outlook) via OAuth.
+Professionals keep their existing email address but work through
+the AlecRae email interface. All AlecRae features available.
+Matter tagging and Oracle draw-down work on top of their
+existing email. This is fastest to market and lowest friction.
+
+Technical: Gmail API + Microsoft Graph API + Nylas API (unified)
+
+**Phase 2 — Hosted email (premium tier):**
+AlecRae hosts the firm's email domain entirely.
+Professionals get @theirfirm.alecrae.com or bring their own domain.
+Full email hosting, storage, and delivery through AlecRae.
+More control, more data, deeper Oracle integration.
+
+Technical: Cloudflare Email Routing + Resend for outbound +
+custom IMAP server or Postmark Inbound for received mail.
+
+**Phase 3 — Enterprise email (white-label):**
+Large firms bring their own @theirfirm.com domain fully hosted
+on AlecRae infrastructure with custom retention policies,
+eDiscovery integration, and full matter-email linkage.
+Additional revenue: $50–200/month per firm on top of platform fee.
+
+### 29.4 The email dashboard layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  AlecRae Email  │  Inbox  Sent  Matters  Calendar  Compose │
+├──────────┬──────────────────────────────┬───────────────┤
+│          │  ● Sarah Chen <sarah@...>     │ Matter context │
+│ Inbox    │  Rodriguez — H-1B update     │               │
+│ 24       │  3 minutes ago               │ Rodriguez H-1B │
+│          │                              │ Filed: Mar 15 │
+│ Sent     │  ● Marcus Rodriguez          │ Status: Active│
+│          │  Re: Meeting Thursday        │               │
+│ Drafts   │  1 hour ago                  │ [Oracle]      │
+│ 3        │                              │ Ask about this│
+│          │  Patricia Thornton           │ matter...     │
+│ Matters  │  Contract review complete    │               │
+│          │  Yesterday                   │ [Schedule]    │
+│ Calendar │                              │ + Meeting     │
+│          │                              │               │
+└──────────┴──────────────────────────────┴───────────────┘
+```
+
+### 29.5 Oracle draw-down inside email — the genius moment
+
+A lawyer is writing an email to a client explaining why their
+non-compete clause is unenforceable in California. They hit
+the Oracle button inside the email composer. The Oracle drawer
+slides in. They search, get the Edwards case, hit Insert Citation.
+The citation drops into the email body, formatted correctly.
+They send a professional, verified, authoritative email response
+in the time it would have taken them to find the login page for
+Westlaw.
+
+The client receives an email so thorough and well-cited that
+they forward it to their business partner and say:
+"Look how good my lawyer is."
+
+The lawyer looks exceptional. The client is delighted.
+AlecRae gets the credit for both.
+
+**That is the product.**
+
+### 29.6 Team meetings and client meetings from email
+
+Any email thread can be converted to a meeting in one click.
+The meeting scheduler reads the email thread for context,
+suggests an agenda based on the topics discussed, generates
+the Zoom link, and sends calendar invites to all participants.
+The meeting is automatically tagged to the same matter as the email.
+
+Post-meeting, the AI generates a summary and adds it to the
+matter record. The entire lifecycle — email → meeting → summary
+→ matter record — happens inside AlecRae without switching tools.
+
+### 29.7 Revenue from email
+
+Email adds two revenue streams:
+
+**Stream 1 — Email as a premium platform feature:**
+Email integration (Phase 1 Gmail/Outlook connection) is included
+in the Professional tier subscription. It is a retention feature —
+professionals who do their email through AlecRae never leave.
+
+**Stream 2 — Hosted email as a separate add-on:**
+Phase 2 hosted email (AlecRae-managed domain) is an additional
+$15–30/user/month on top of the platform subscription.
+A 10-attorney firm paying $199/month per seat is already spending
+$1,990/month. Adding email hosting at $20/user/seat adds
+$200/month — a trivial upsell that significantly deepens lock-in.
+
+---
+
+## 29. AlecRae Voice — The Universal Input Layer
+
+### 30.1 Competitive landscape — where AlecRae Voice sits
+
+**Current market leaders (as of March 2026):**
+
+| Product | Strength | Fatal weakness |
+|---|---|---|
+| WisprFlow | Best general AI dictation, cross-platform, 100+ languages | Standalone tool — no platform integration |
+| Dragon Legal | Deep legal vocabulary, Windows-dominant, $699 | Expensive, standalone, no AI research integration |
+| Philips SpeechLive | Legal-specific, practice management hooks | Closed ecosystem, no accounting, no Oracle |
+| SuperWhisper | Offline, privacy-first, Mac/iOS | Mac only, no collaboration, no platform |
+| BlabbyAI | Custom modes, legal Latin terms | Standalone Windows app, no ecosystem |
+| Otter.ai | Meeting transcription, Zoom integration | Not for drafting, not legal/accounting specific |
+
+**The gap every single competitor has:**
+Every dictation tool on the market is a standalone product.
+It sits outside the professional's workflow. The attorney
+dictates, then switches to Westlaw, then switches to email,
+then switches to billing. The dictation tool never touches
+any of those systems. It is an island.
+
+**Where AlecRae Voice wins:**
+AlecRae Voice is not a dictation tool that integrates with a platform.
+It IS the platform's input layer. The difference is everything.
+
+### 30.1b The fundamental principle
 
 **Product name: AlecRae Voice**
 **Tagline: "Speak. It is done."**
@@ -1419,6 +2245,52 @@ This is the distinction that makes AlecRae Dictation different
 from every other dictation product on the market. It is not
 "dictation software that lawyers use." It is the way professionals
 interact with the entire AlecRae operating system.
+
+### 30.1c Multi-language capability — the global edge
+
+Every competitor listed above is primarily English-first.
+AlecRae Voice launches with full multi-language support
+from day one. This is not a future feature. It is a launch
+requirement given the NZ, Australian, and US markets
+including significant non-English speaking professional
+communities.
+
+**Languages at launch (Phase 1):**
+- English (legal and accounting vocabulary — all jurisdictions)
+- Mandarin Chinese (large professional community in AU, NZ, US)
+- Spanish (critical for US immigration attorneys — largest
+  non-English speaking client community by volume)
+- Hindi (significant in US H-1B immigration practice)
+- Japanese (significant in AU and NZ professional markets)
+- French (Canada Phase 3 requirement — Quebec civil law)
+- Arabic (growing professional community across all markets)
+- Portuguese (Brazil-US immigration corridor)
+- Korean (significant in US and AU professional markets)
+
+**What multi-language means for AlecRae Voice:**
+Not just transcription in multiple languages. Legal and
+accounting vocabulary intelligence in each language.
+A Spanish-speaking immigration attorney dictating in Spanish
+gets the same professional language understanding as an
+English-speaking attorney. "Demandante" is not corrected
+to "plaintiff." "Debe" in an accounting context is understood
+as a debit entry. The intelligence is language-aware.
+
+**The competitive moat this creates:**
+No current competitor offers multi-language legal and
+accounting vocabulary intelligence. WisprFlow supports
+100+ languages for transcription but has no legal vocabulary
+layer in any non-English language. Dragon Legal is
+English-only. This is an entirely unoccupied competitive
+position that AlecRae Voice can own completely.
+
+**Technical implementation:**
+Built on OpenAI Whisper (multilingual base model) with
+a custom post-processing layer that applies language-specific
+legal and accounting vocabulary correction and formatting.
+The Whisper model handles transcription accuracy.
+The AlecRae layer handles professional intelligence.
+Two separate concerns, two separate systems, working together.
 
 ### 30.2 Every surface where AlecRae Voice is present
 
@@ -1474,6 +2346,56 @@ interact with the entire AlecRae operating system.
 - "Debit accounts receivable twelve thousand four hundred dollars,
   credit revenue twelve thousand four hundred dollars, date
   March 31st, client Johnson and Associates" → posted entry
+
+### 30.2b What no competitor can match — platform integration
+
+This is the section that documents AlecRae Voice's
+insurmountable advantage over every standalone dictation tool.
+
+**Voice commands that only work inside AlecRae:**
+
+Inside email composer:
+"Send this to Marcus Rodriguez, subject H-1B update,
+mark urgent, attach the I-129 receipt notice from the matter"
+→ Recipient filled, subject filled, priority flag set,
+  document attached from matter files. One voice command.
+  No clicking. No switching apps.
+
+Inside document editor:
+"Ask the Oracle — what is the California standard for
+adverse possession, insert the controlling case as a citation"
+→ Oracle queried, top verified case returned, citation
+  inserted at cursor. Attorney never stopped dictating.
+
+Inside billing:
+"Log four point five hours on the Rodriguez H-1B matter,
+preparation and filing of I-129, today's date, standard rate"
+→ Time entry created, matter tagged, date set, rate applied.
+  Billing admin by voice in ten seconds.
+
+Inside calendar:
+"Schedule a call with Patricia Thornton, Thursday at two pm,
+thirty minutes, tag it to the Thornton acquisition matter,
+send her a Zoom link"
+→ Meeting created, matter tagged, Zoom generated, invite sent.
+
+Inside instant messaging:
+"Message David Kim, re: Rodriguez tax implications,
+ask him if the H-1B status creates dual-status year"
+→ Message sent to the right person, in the right thread,
+  tagged to the right matter.
+
+**What this means for a professional's day:**
+A lawyer who uses AlecRae Voice never has to stop what
+they are doing to perform an administrative action.
+Every action the platform can take is available by voice,
+from wherever they are in the platform, at any time.
+
+No competitor can build this. WisprFlow can inject text
+into any app — but it cannot create a billing entry, query
+a legal research database, schedule a meeting, or send a
+matter-tagged message. Those actions require platform access.
+AlecRae Voice has platform access because it IS the platform.
 
 ### 30.3 The language intelligence layer — understanding professionals
 
@@ -1569,7 +2491,7 @@ is the moment AlecRae becomes irreplaceable.
 
 ---
 
-## 31. Geographic Markets — Launch Sequence and Architecture
+## 30. Geographic Markets — Launch Sequence and Architecture
 
 ### 31.1 Market priority and rationale
 
@@ -1648,17 +2570,17 @@ Vercel region settings, and the entire data architecture.
 
 | Market | Requirement | Supabase region | Vercel region |
 |---|---|---|---|
-| United States | US data on US servers | us-east-1 (N. Virginia) | iad1 (Washington DC) |
-| Australia | Australian Privacy Act — AU preferred | ap-southeast-2 (Sydney) | syd1 (Sydney) |
-| New Zealand | NZ Privacy Act 2020 — NZ or AU acceptable | ap-southeast-2 (Sydney) | syd1 (Sydney) |
-| United Kingdom | UK GDPR — UK or EEA servers | eu-west-2 (London) | lhr1 (London) |
+| United States | US data on US servers | us-east-2 (AWS, Neon default) | iad1 (Washington DC) |
+| Australia | Australian Privacy Act — AU preferred | ap-southeast-1 (Singapore, closest Neon region to AU/NZ) | syd1 (Sydney) |
+| New Zealand | NZ Privacy Act 2020 — NZ or AU acceptable | ap-southeast-1 (Singapore, closest Neon region to AU/NZ) | syd1 (Sydney) |
+| United Kingdom | UK GDPR — UK or EEA servers | eu-west-2 (Frankfurt, Neon EU region) | fra1 (Frankfurt) |
 | European Union | GDPR — EEA servers required | eu-central-1 (Frankfurt) | fra1 (Frankfurt) |
 
 **How this works in the codebase:**
 Each firm is assigned a data region at signup based on their
 country of operation. All their data — matters, clients,
 documents, emails, messages — is stored exclusively in that
-region's Supabase project. Cross-region data transfer only
+region's Neon project. Cross-region data transfer only
 occurs where explicitly consented to and legally permitted.
 
 This is not a Phase 3 consideration. This is a day-one
@@ -1667,12 +2589,12 @@ platform that stored everything in one region is expensive,
 legally risky, and potentially impossible without violating
 existing data processing agreements.
 
-**Supabase multi-region setup:**
-One Supabase project per region. Shared schema, separate data.
+**Neon multi-region setup:**
+One Neon project per region. Shared schema, separate data.
 A US attorney's data never touches the Sydney server.
 An Australian CPA's data never touches the Virginia server.
 The application layer routes each user to their correct
-regional project transparently — they never notice.
+regional Neon project transparently — they never notice.
 
 ### 31.4 Compliance requirements by market
 
@@ -1759,7 +2681,7 @@ its own verified public domain data sources.
 
 ---
 
-## 32. Legal and Operational Compliance — All Markets
+## 31. Legal and Operational Compliance — All Markets
 
 This section is the country-by-country legal operating guide.
 It covers what entity structures are needed, what professional
@@ -2190,7 +3112,7 @@ required before launch in each new market.
 
 ---
 
-## 33. Verom.ai — AlecRae Immigration (Migration Asset)
+## 32. Verom.ai — AlecRae Immigration (Migration Asset)
 
 ### 33.1 What Verom.ai is
 
@@ -2252,7 +3174,7 @@ and ICE audit simulator move into the AlecRae codebase.
 The UI is rebuilt in the AlecRae design system
 (Instrument Serif + Plus Jakarta Sans, navy/white palette).
 The authentication system is replaced by AlecRae's unified auth.
-The standalone database is migrated into the AlecRae Supabase project.
+The standalone database is migrated into the AlecRae Neon project.
 
 **The route structure after migration:**
 ```
@@ -2360,1172 +3282,1493 @@ The two platforms run in parallel during this period.
 
 ---
 
-## 28. Technology Architecture — Components, Layers, and Standards
-
-### 28.1 No HTML files — React components only
-
-Every single piece of UI in AlecRae is a React component.
-No .html files anywhere in the codebase. Ever.
-Next.js 14 App Router with TypeScript (.tsx) throughout.
-
-This is not a preference. It is a hard rule.
-The reasons: type safety, reusability, testability,
-server/client component optimisation, and future-proofing.
-
-**File extension rules:**
-- UI: .tsx (React components with TypeScript)
-- Logic/utilities: .ts (pure TypeScript)
-- Styles: Tailwind CSS utility classes inside components
-- No: .html, .css (standalone), .js (use .ts or .tsx)
-
-**Component architecture:**
-```
-app/
-  components/
-    oracle/          — Oracle draw-down, results, insert system
-    collaboration/   — Messaging, meetings, scheduling
-    email/           — Email dashboard, composer, inbox
-    editor/          — Document editor, rich text
-    billing/         — Invoicing, time tracking
-    shared/          — Buttons, inputs, cards, modals
-  (platform)/        — All authenticated platform routes
-  (marketing)/       — Public-facing pages
-  api/               — All API routes
-lib/                 — Utilities, types, constants
-```
-
-### 28.2 The two-layer system — the promise of a faultless product
-
-This is the architecture that keeps the promise to every professional
-that they will never encounter a broken link, a bug, or an error
-while using a product they are paying for.
-
-**Layer 1 — Internal development layer (Vercel preview deployments)**
-- Every feature branch deploys to a unique Vercel preview URL
-- All testing, QA, and bug hunting happens here
-- Claude builds features here first
-- Every component is tested against real data scenarios
-- No feature graduates to Layer 2 until it is faultless
-- This layer is password-protected, never customer-accessible
-- Broken things live here. Only finished things leave here.
-
-**Layer 2 — Customer-facing production layer (alecrae.com)**
-- Only receives code that has passed Layer 1 completely
-- Zero broken features. Zero dead links. Zero console errors.
-- Performance monitored continuously (Vercel Analytics + Sentry)
-- Any regression caught in production triggers immediate rollback
-- The customer never sees a bug. This is a non-negotiable promise.
-
-**The deployment rule:**
-```
-Feature branch → Vercel preview (Layer 1 — test here)
-                      ↓ faultless
-main branch → alecrae.com production (Layer 2 — customers here)
-```
-
-Never merge to main until Layer 1 is perfect.
-Never skip Layer 1 to ship faster.
-Speed is not the goal. Faultless is the goal.
-
-### 28.3 Intellectual crawlers — staying 80-90% ahead
-
-AlecRae deploys automated intelligence monitoring to ensure
-the platform always uses the most advanced technologies available
-and is never caught using deprecated or superseded approaches.
-
-**What the crawlers monitor:**
-- Next.js release notes and breaking changes
-- React release notes and new patterns
-- Tailwind CSS updates
-- Anthropic API updates and new models
-- Supabase feature releases
-- Vercel platform updates and new capabilities
-- Legal tech competitor feature releases (Clio, Harvey, Thomson Reuters)
-- Accounting software competitor releases (Xero, QuickBooks, Sage)
-- New AI capabilities relevant to legal and accounting workflows
-
-**How this is implemented:**
-- GitHub Dependabot for all dependency updates
-- Weekly automated scan of competitor changelog pages
-- Monthly technology review session — Claude reads current docs
-  before any major feature is built and confirms latest patterns
-- Any feature built on a deprecated pattern must be flagged
-
-**The rule:** Before building any feature, Claude confirms the
-approach uses current best practices. If a better approach has
-been released since the last session, use the better approach.
 
 ---
 
-## 29. Email Platform — The Final Hook
+## 33. AlecRae App — Cross-Platform Desktop and Mobile
 
-### 29.1 Why email changes everything
+### 34.1 Why the app changes everything
 
-Email is where lawyers and accountants spend 40–60% of their day.
-Right now that time lives in Gmail or Outlook — outside AlecRae,
-untagged to matters, unsearchable by client, disconnected from
-the Oracle, and generating zero data for the platform.
+The web platform at alecrae.com serves professionals
+when they are inside the browser. The AlecRae app serves
+professionals everywhere — on their desktop, on their phone,
+at their desk, in court, in a client meeting, on a plane.
 
-Bringing email inside AlecRae is the single most powerful
-remaining hook in the entire platform. The moment a professional
-does their email inside AlecRae, they are inside the platform
-for the majority of their working day. Every other feature —
-the Oracle, the matter view, the billing, the calendar — becomes
-instantly reachable from the thing they are already doing.
+The app is how AlecRae Voice becomes a system-level tool
+that works in every application on every device, exactly
+like WisprFlow — but connected to the full AlecRae platform.
 
-### 29.2 What AlecRae Email provides
+A lawyer using the AlecRae app can dictate into Word,
+into Outlook, into any application on their computer —
+and every dictation is matter-aware, Oracle-connected,
+and logged to their AlecRae account automatically.
 
-**For every firm:**
-- Custom email domain: @theirfirm.com (their own domain via Cloudflare DNS)
-  OR @firmname.alecrae.com (AlecRae-hosted subdomain)
-- Every attorney and accountant gets their own professional inbox
-- Shared inboxes for the firm (hello@, admin@, billing@)
-- Unified inbox across all firm email addresses
+**Domain to purchase immediately: `alecrae.app`**
+This TLD is purpose-built for app products. It signals
+to every professional that this is a native application
+experience, not just a website. Purchase before announcement.
 
-**Inside the email composer:**
-- Oracle draw-down button — research and insert at any point while writing
-- Meeting scheduler — converts any email into a meeting invite in one click
-- Matter tagging — tag the email to a client matter before sending
-- Document attachment from matter files — no more hunting in folders
-- E-signature request — send a document for signature directly from email
-- Template library — professional email templates for common matter types
-- AI draft assist — "draft a response to this client question about..."
+### 34.2 The technology — Tauri v2 (already in the AlecRae stack)
 
-**Inside the inbox:**
-- Every email auto-suggested for matter assignment by AI
-- Unread emails surfaced on the dashboard morning briefing
-- Thread view with full matter context in the right sidebar
-- One-click "Add to matter record" for any email or thread
-- Smart filters — by matter, by client, by urgency, by follow-up needed
-- Oracle sidebar — research any question raised in an email instantly
+The founder already built 48co.nz using Tauri v2 — this is
+the exact technology for the AlecRae desktop app.
 
-**Email as a hook for non-platform users:**
-When a professional sends an email from AlecRae to a client who is
-not on the platform, the email footer reads:
-> "Sent via AlecRae — the professional platform your attorney uses.
-> Track your matter and communicate securely at alecrae.com"
-Every outbound email is a warm invitation.
+Tauri v2 advantages over Electron (the old way):
+- 10-20x smaller binary size (2-3MB vs 100MB+)
+- Dramatically lower memory usage
+- Faster startup time
+- Native OS integration — accesses system microphone,
+  notifications, clipboard, and file system natively
+- Rust backend = bulletproof performance and security
+- Single codebase builds Windows, Mac, and Linux simultaneously
 
-### 29.3 Email infrastructure stack
-
-**Phase 1 — Integration approach (launch with this):**
-Connect existing email accounts (Gmail, Outlook) via OAuth.
-Professionals keep their existing email address but work through
-the AlecRae email interface. All AlecRae features available.
-Matter tagging and Oracle draw-down work on top of their
-existing email. This is fastest to market and lowest friction.
-
-Technical: Gmail API + Microsoft Graph API + Nylas API (unified)
-
-**Phase 2 — Hosted email (premium tier):**
-AlecRae hosts the firm's email domain entirely.
-Professionals get @theirfirm.alecrae.com or bring their own domain.
-Full email hosting, storage, and delivery through AlecRae.
-More control, more data, deeper Oracle integration.
-
-Technical: Cloudflare Email Routing + Resend for outbound +
-custom IMAP server or Postmark Inbound for received mail.
-
-**Phase 3 — Enterprise email (white-label):**
-Large firms bring their own @theirfirm.com domain fully hosted
-on AlecRae infrastructure with custom retention policies,
-eDiscovery integration, and full matter-email linkage.
-Additional revenue: $50–200/month per firm on top of platform fee.
-
-### 29.4 The email dashboard layout
-
+**The AlecRae app architecture:**
 ```
-┌─────────────────────────────────────────────────────────┐
-│  AlecRae Email  │  Inbox  Sent  Matters  Calendar  Compose │
-├──────────┬──────────────────────────────┬───────────────┤
-│          │  ● Sarah Chen <sarah@...>     │ Matter context │
-│ Inbox    │  Rodriguez — H-1B update     │               │
-│ 24       │  3 minutes ago               │ Rodriguez H-1B │
-│          │                              │ Filed: Mar 15 │
-│ Sent     │  ● Marcus Rodriguez          │ Status: Active│
-│          │  Re: Meeting Thursday        │               │
-│ Drafts   │  1 hour ago                  │ [Oracle]      │
-│ 3        │                              │ Ask about this│
-│          │  Patricia Thornton           │ matter...     │
-│ Matters  │  Contract review complete    │               │
-│          │  Yesterday                   │ [Schedule]    │
-│ Calendar │                              │ + Meeting     │
-│          │                              │               │
-└──────────┴──────────────────────────────┴───────────────┘
+AlecRae App (Tauri v2)
+├── Desktop shell          — Rust, native OS APIs
+├── Web frontend           — Same Next.js/React components
+│                            as alecrae.com (shared codebase)
+├── System microphone      — Global hotkey triggers Voice
+├── Clipboard integration  — Dictated text to any app
+├── Native notifications   — Matter alerts, messages, deadlines
+└── AlecRae Voice engine   — Whisper API + AlecRae layer
 ```
 
-### 29.5 Oracle draw-down inside email — the genius moment
+**The key insight:** The same React components built for
+alecrae.com are rendered inside the Tauri shell. One codebase.
+The web app and desktop app share 95% of their code.
+Building the web platform builds the desktop app simultaneously.
 
-A lawyer is writing an email to a client explaining why their
-non-compete clause is unenforceable in California. They hit
-the Oracle button inside the email composer. The Oracle drawer
-slides in. They search, get the Edwards case, hit Insert Citation.
-The citation drops into the email body, formatted correctly.
-They send a professional, verified, authoritative email response
-in the time it would have taken them to find the login page for
-Westlaw.
+### 34.3 Mobile apps — iOS and Android
 
-The client receives an email so thorough and well-cited that
-they forward it to their business partner and say:
-"Look how good my lawyer is."
+**Technology:** React Native (or Expo — built on React Native)
 
-The lawyer looks exceptional. The client is delighted.
-AlecRae gets the credit for both.
+Same React component logic, adapted for mobile screens.
+The AlecRae mobile app gives professionals:
 
-**That is the product.**
+- AlecRae Voice on their phone — dictate anywhere
+- Full matter access — review any case from any location
+- Secure client messaging — respond instantly from mobile
+- Document signing on the go — e-sign from a phone
+- Calendar and meeting management
+- Oracle on mobile — research from a phone in court
+- Push notifications for urgent matters and deadlines
 
-### 29.6 Team meetings and client meetings from email
+**The microphone advantage on mobile:**
+The phone is always in a professional's hand.
+AlecRae Voice on mobile means a lawyer leaving a client
+meeting can dictate their notes, tag them to the matter,
+and have them logged before they reach their car.
+That is a behaviour change that generates daily engagement.
 
-Any email thread can be converted to a meeting in one click.
-The meeting scheduler reads the email thread for context,
-suggests an agenda based on the topics discussed, generates
-the Zoom link, and sends calendar invites to all participants.
-The meeting is automatically tagged to the same matter as the email.
+### 34.4 System-wide Voice on desktop
 
-Post-meeting, the AI generates a summary and adds it to the
-matter record. The entire lifecycle — email → meeting → summary
-→ matter record — happens inside AlecRae without switching tools.
+On Mac: AlecRae Voice registers a global keyboard shortcut
+(⌘⇧Space by default, customisable). Press it anywhere —
+in Word, in Outlook, in Chrome, in any application —
+and AlecRae Voice activates. Speak. The text appears
+at your cursor position, with full professional language
+intelligence applied, tagged to the last active matter
+in the AlecRae app if one is open.
 
-### 29.7 Revenue from email
+On Windows: Same global shortcut mechanism via Tauri's
+Windows API integration. Works across all Windows applications.
 
-Email adds two revenue streams:
+This is the system-level capability that makes AlecRae Voice
+function like WisprFlow — but connected to a full professional
+platform rather than operating as a standalone tool.
 
-**Stream 1 — Email as a premium platform feature:**
-Email integration (Phase 1 Gmail/Outlook connection) is included
-in the Professional tier subscription. It is a retention feature —
-professionals who do their email through AlecRae never leave.
+### 34.5 Competitive advantage of the app
 
-**Stream 2 — Hosted email as a separate add-on:**
-Phase 2 hosted email (AlecRae-managed domain) is an additional
-$15–30/user/month on top of the platform subscription.
-A 10-attorney firm paying $199/month per seat is already spending
-$1,990/month. Adding email hosting at $20/user/seat adds
-$200/month — a trivial upsell that significantly deepens lock-in.
+| Capability | WisprFlow | Grammarly | Dragon Legal | AlecRae App |
+|---|---|---|---|---|
+| System-wide dictation | ✓ | ✗ | ✓ | ✓ |
+| Cross-platform W/M/iOS/Android | ✓ | ✓ | Windows only | ✓ |
+| Legal vocabulary intelligence | ✗ | ✗ | ✓ | ✓ |
+| Accounting vocabulary | ✗ | ✗ | ✗ | ✓ |
+| Multi-language professional | ✓ basic | ✓ basic | ✗ | ✓ deep |
+| Oracle integration | ✗ | ✗ | ✗ | ✓ |
+| Matter-aware dictation | ✗ | ✗ | ✗ | ✓ |
+| Voice commands to platform | ✗ | ✗ | ✗ | ✓ |
+| Instant messaging | ✗ | ✗ | ✗ | ✓ |
+| Email with Oracle | ✗ | ✗ | ✗ | ✓ |
+| Calendar + meetings | ✗ | ✗ | ✗ | ✓ |
+| Offline capability | Limited | ✗ | ✓ | ✓ (Tauri) |
+| SOC 2 Type II | ✗ | ✓ | ✓ | Phase 3 |
+
+AlecRae App wins every single category that matters to
+a legal or accounting professional. The only gap is SOC 2
+which is on the roadmap in Section 22.
 
 ---
 
-## 27. UX Philosophy — The Platform Professionals Love
+## 34. Advanced Technology Stack — Dominating the Market
 
-### 27.1 The core UX law
+### 35.1 The full technology picture
 
-**If a professional has to think about how to find something,
-we have already failed.**
+This section documents every advanced technology used
+in the AlecRae platform and why each one is chosen.
+Before building any feature, Claude reads this section
+and confirms current best practices for each technology.
 
-Every feature must be reachable in two clicks or fewer from wherever
-the professional currently is. Every workflow must feel like the
-platform anticipated what they needed next. Every interaction must
-leave them feeling more capable, not more frustrated.
-
-This is the single standard against which every UI decision is measured.
-Not "does it work." Not "is it technically correct."
-Does it feel effortless.
-
-### 27.2 The three UX sins we never commit
-
-**Sin 1 — Making professionals leave their flow.**
-A lawyer drafting a contract should never have to open a new tab,
-navigate to a different section, or interrupt what they are doing
-to access the Oracle, check a deadline, or find a client detail.
-Everything they might need is available in context, inline, instantly.
-
-**Sin 2 — Hiding features behind menus.**
-If a professional cannot see a feature, it does not exist for them.
-Navigation must be flat, labelled clearly, and consistent everywhere.
-No buried settings. No features that require a tutorial to discover.
-
-**Sin 3 — Making them wait.**
-Every Oracle query must return in under 3 seconds. Every page must
-load in under 1 second. Every action must have instant visual feedback.
-A professional who clicks a button and sees nothing happen for two
-seconds has already lost trust in the platform.
-
-### 27.3 The Oracle draw-down — the killer workflow
-
-This is the feature that makes AlecRae feel like a superpower.
-
-**The scenario:**
-A lawyer is drafting a contract clause about non-compete enforceability.
-They are not sure about the California standard. Without AlecRae, they
-open a new tab, go to Westlaw, log in, search, find the case, copy the
-citation, switch back, paste it in. Five minutes. Flow completely broken.
-
-**The AlecRae version:**
-The lawyer is drafting. They hit ⌘K (or tap the Oracle icon in the
-toolbar). A drawer slides in from the right — they never leave the
-document. They type "California non-compete enforceability standard."
-The Oracle returns three verified cases in under 3 seconds. They click
-"Insert citation" on the one they want. It drops directly into the
-document at the cursor position, formatted correctly, citation verified.
-Total time: 25 seconds. Flow never broken.
-
-**Where the Oracle draw-down appears:**
-- Inside the Document Editor (drafting contracts, motions, briefs)
-- Inside the Message Composer (responding to client questions)
-- Inside Case Management (adding research notes to a matter)
-- Inside the Tax filing workflow (checking a regulation mid-entry)
-- Inside the Billing notes (referencing a matter precedent)
-- As a floating global command: ⌘K from anywhere opens the Oracle
-
-**The insert modes:**
-- Insert citation — drops the formatted case/statute citation at cursor
-- Insert summary — drops a plain-English summary of the ruling
-- Insert full analysis — drops a structured analysis paragraph
-- Copy to clipboard — for manual placement anywhere
-
-**The verification badge on every insert:**
-Every Oracle result inserted into a document carries a small ✓ badge
-showing it was verified against the authoritative public source.
-This is both a quality signal and a legal protection — the attorney
-can prove the citation was verified at the time of insertion.
-
-### 27.4 Navigation architecture — two clicks to anything
-
-**Top-level navigation (always visible, left sidebar):**
+**Core stack (locked — Section 28):**
 ```
-◎ Dashboard          — unified command centre
-⚖ Matters            — all active cases/engagements
-◈ Clients            — CRM and client profiles
-◎ The Oracle         — research (also accessible inline everywhere)
-⊕ Documents          — all files, drafts, templates
-⏱ Billing            — time tracking and invoices
-✦ Calendar           — meetings and deadlines
-✉ Messages           — matter-centric conversations
-⊞ Reports            — analytics and financials
-⚙ Settings           — firm and account settings
+Next.js 15          — App Router, Server Components, streaming UI
+React 19            — Concurrent features, useOptimistic
+TypeScript          — Strict mode, zero any types
+Tailwind CSS v4     — Latest utility-first CSS
+Neon (PostgreSQL)   — Serverless, branching, multi-region
+Prisma v6           — Type-safe ORM, migrations
+Stripe              — Payments, Connect, Tax
+Claude API          — The Oracle, document AI, Voice processing
+Vercel              — Hosting, Edge Functions, Analytics
+Cloudflare          — DNS, CDN, DDoS, Email Routing
+NextAuth.js v5      — Authentication, session management
+Tauri v2            — Desktop app (Mac, Windows, Linux)
+React Native/Expo   — Mobile app (iOS, Android)
 ```
 
-**The rule:** Everything is reachable from the sidebar in one click.
-Everything within a section is reachable in one more click.
-Maximum depth: two clicks from the sidebar to any specific record.
+**Real-time collaboration stack:**
+```
+Yjs                 — CRDT-based real-time document sync
+                      (same technology as Google Docs)
+Hocuspocus          — Yjs server for collaborative editing
+PartyKit / Ably     — WebSocket infrastructure for messaging
+                      and real-time presence indicators
+```
 
-**The command palette (⌘K — available everywhere):**
-Type anything. Find anything. Do anything.
-- "New matter" → creates a new matter
-- "Rodriguez visa" → opens the Rodriguez matter
-- "Non-compete California" → opens Oracle with that query
-- "Invoice #1047" → opens that invoice
-- "Schedule meeting" → opens meeting scheduler
-- "Trust account balance" → shows trust balance inline
-This is the escape hatch that makes the two-click rule feel infinite.
+**Voice and audio stack:**
+```
+OpenAI Whisper API  — Multilingual speech-to-text base layer
+Claude API          — Post-processing, professional language layer
+Web Speech API      — Browser-native fallback for web
+Tauri audio API     — Native microphone access on desktop
+react-native-voice  — Mobile microphone access
+```
 
-### 27.5 The dashboard — the professional's morning briefing
+**Performance stack:**
+```
+Vercel Edge Functions  — <50ms response globally
+React Server Components — Zero JavaScript for static content
+Streaming SSR          — Instant perceived performance
+ISR (Incremental Static Regeneration) — Fast static pages
+Service Workers        — Offline capability and caching
+```
 
-The dashboard is the first thing a professional sees every morning.
-It must answer five questions instantly without any clicking:
+**Monitoring and quality stack:**
+```
+Sentry              — Error tracking, Layer 2 never breaks
+Vercel Analytics    — Performance monitoring
+PostHog             — Product analytics, session replay
+Uptime Robot        — 24/7 uptime monitoring with alerts
+```
 
-1. What needs my attention today? (Deadlines, unread messages, tasks)
-2. What meetings do I have? (Today's calendar, next 3 days)
-3. What has changed overnight? (New regulatory alerts, matter updates)
-4. How is my firm performing? (Revenue this month, hours billed)
-5. Who is waiting for me? (Unanswered client messages, pending docs)
+**Email infrastructure stack:**
+```
+Resend              — Transactional email (built for Next.js)
+React Email         — Email templates as React components
+                      (no HTML — same philosophy as the platform)
+Cloudflare Email    — Email routing and hosting
+Nylas API           — Gmail/Outlook OAuth integration (Phase 1)
+```
 
-The dashboard is personalised by role:
-- Attorney dashboard emphasises matters, deadlines, court calendar
-- Accountant dashboard emphasises client filings, tax deadlines, bank feeds
-- Firm owner dashboard adds team performance and revenue overview
+**Document and file stack:**
+```
+Tiptap              — Rich text editor (built on ProseMirror)
+                      The most advanced open-source editor available
+                      Used by Notion, Linear, and thousands of apps
+PDF-lib             — PDF generation (legal documents)
+Uploadthing         — File uploads (built for Next.js/Vercel)
+```
 
-### 27.6 Mobile-first inside the platform
+**Security stack:**
+```
+Clerk (or NextAuth) — Authentication with MFA enforcement
+Row Level Security  — Neon/PostgreSQL — firm data isolation
+AES-256             — Document and message encryption
+TLS 1.3             — All data in transit
+bcrypt              — Password hashing
+CSRF protection     — Built into Next.js App Router
+Rate limiting       — Upstash Redis + Vercel middleware
+```
 
-Every screen must work perfectly on an iPad. This is non-negotiable
-given the founder's own workflow. Test every component on iPad
-before considering it complete. Touch targets minimum 44px.
-No hover-dependent interactions. Swipe gestures for common actions.
+### 35.2 The Tiptap editor — why this specifically
 
-### 27.7 The empty state philosophy
+Tiptap is the most important single technology choice in
+the document editing layer and deserves specific explanation.
 
-Every empty state — a new matter with no documents, a new client
-with no history — must tell the professional exactly what to do next
-in plain language. No blank screens. No generic "No items found."
+Tiptap is a headless rich text editor built on ProseMirror.
+"Headless" means it has no default UI — the UI is built
+entirely in AlecRae's design system. It is used by:
+- Notion (their entire editor)
+- Linear (issue descriptions and comments)
+- Substack (article editor)
+- Thousands of production applications
 
-Example: A new matter with no documents shows:
-"No documents yet. Start by uploading the client agreement,
-or use Document AI to draft one from scratch."
+For AlecRae specifically:
+- Real-time collaborative editing (multiple attorneys in one doc)
+  via Tiptap's Collaboration extension + Yjs CRDT
+- Oracle citations inserted as custom Tiptap nodes
+  (they render with the ✓ verification badge, cannot be
+  accidentally deleted without confirmation)
+- AlecRae Voice dictation inserts at cursor via Tiptap commands
+- Legal formatting: automatic paragraph numbering,
+  defined terms highlighting, clause cross-referencing
+- Version history: every document version stored,
+  any version restorable (critical for legal documents)
 
-The empty state is a teaching moment and a conversion moment.
-It shows the professional what the platform can do, exactly when
-they are most receptive to learning it.
+This is the document editor that makes attorneys stop
+using Word. The moment a lawyer edits a contract in
+AlecRae and sees Oracle citations appearing with
+verification badges, real-time collaboration, version
+history, and voice input — they never open Word again.
+
+### 35.3 Real-time collaboration — the Google Docs moment
+
+When multiple attorneys at a firm are working on the same
+contract, they should be able to edit it simultaneously.
+This requires Conflict-free Replicated Data Types (CRDTs) —
+the same technology that powers Google Docs.
+
+Yjs is the open-source CRDT implementation used across
+the industry. Combined with Tiptap's collaboration extension
+and Hocuspocus as the sync server, AlecRae documents become
+fully real-time collaborative from day one.
+
+What this enables:
+- Two attorneys editing the same contract simultaneously
+- Changes appear in real-time with user presence indicators
+- No conflicts, no version clashes, no "who has the latest copy"
+- Attorney A dictates a clause via AlecRae Voice while
+  Attorney B edits a different section — both see each other live
+
+No current legal practice management platform offers this.
+Clio does not. MyCase does not. Smokeball does not.
+AlecRae ships it at launch.
+
+### 35.4 Performance philosophy — sub-second everything
+
+The two-layer system in Section 28 handles bug prevention.
+This section handles speed. A platform that is slow is
+a platform professionals abandon regardless of features.
+
+**The targets:**
+- Page load (first contentful paint): under 1 second
+- Oracle query response: under 3 seconds
+- AlecRae Voice transcription: under 500ms for short utterances
+- Message delivery: under 100ms (WebSocket)
+- Document sync: under 50ms between collaborators
+
+**How we hit them:**
+Vercel Edge Functions run at the edge, close to the user.
+A NZ attorney queries the Oracle — the edge function runs
+in Sydney, not Virginia. Response is 150ms not 350ms.
+
+React Server Components stream content immediately.
+The page is not blank while JavaScript loads. Content
+appears progressively as it is ready.
+
+Service Workers cache static assets. The second time
+a professional opens AlecRae, it is instant.
+
+React 19's concurrent features prioritise user interactions
+over background processing. The UI never freezes.
+
+### 35.5 Offline capability
+
+Professionals are not always online. A lawyer in a rural
+courthouse may have poor connectivity. An accountant on
+a plane needs to review a client file.
+
+AlecRae's Service Worker caches:
+- The last 50 matters accessed
+- All documents opened in the last 7 days
+- The professional's calendar for the next 30 days
+- Their client list and contact details
+
+When connectivity returns, all offline actions sync
+automatically. This is built into Tauri for the desktop
+app natively, and via Service Workers for the web app.
+
+No legal or accounting platform offers offline capability
+with automatic sync. This is another unoccupied position.
+
+### 35.6 The zero-HTML, components-only mandate
+
+Every UI element in AlecRae is a React component.
+No .html files. No inline styles (Tailwind classes only).
+No JavaScript files (TypeScript only).
+
+Why this matters technically:
+- TypeScript catches errors at build time, not runtime.
+  A type error in the billing component is found before
+  it reaches a customer, not after.
+- React components are testable in isolation.
+  Every component has a test before it goes to production.
+- Server Components eliminate unnecessary JavaScript.
+  A static page sends zero JS to the browser.
+  Faster. More secure. Better SEO.
+
+Why this matters for the product promise:
+The faultless product promise in Section 28 is enforced
+technically, not just philosophically. TypeScript, component
+isolation, and test coverage are the mechanisms.
+A bug that TypeScript catches never reaches the customer.
+A bug that a component test catches never reaches production.
+A bug that Sentry catches in production is fixed before
+the next customer encounters it.
 
 ---
 
 
 ---
 
-## 28. Technology Standards — Always The Most Advanced
+## 35. Government Authority Strategy — IRD, ATO, and Beyond
 
-### 28.1 No HTML files — components only
+### 36.1 The strategic opportunity
 
-Every piece of UI in AlecRae is a React component.
-No raw HTML files. No HTML artifacts. No HTML pages.
-Everything is Next.js 14 App Router with TypeScript components.
+Government tax authority accreditation is the single most
+powerful trust signal a professional accounting platform can
+carry. When an accountant sees "IRD-accredited software" they
+do not need to evaluate the platform — the government has
+already evaluated it for them. This is credibility that
+cannot be purchased with advertising.
 
-This is non-negotiable. It ensures:
-- Consistent design system across every screen
-- Reusable components that compose cleanly
-- Type safety that catches bugs before they reach users
-- Tree-shaking and optimal bundle sizes
-- Server and client components used correctly per context
+More importantly: IRD and the ATO want more accountants
+using approved digital software. They have active programmes
+designed to encourage adoption. AlecRae is not asking them
+to do something new — it is helping them achieve goals they
+have already publicly committed to.
 
-### 28.2 The intellectual crawler system
-
-AlecRae runs continuous automated monitoring of the technology
-landscape to ensure the platform never falls behind. This is
-built into the platform itself as a background intelligence layer.
-
-**What the crawlers monitor daily:**
-- New releases of every dependency in package.json
-- Security vulnerabilities (CVE database)
-- New features in Next.js, React, Supabase, Stripe, Vercel
-- Competitor product announcements and feature releases
-- New AI model releases from Anthropic and other providers
-- Legal technology news and new tool launches
-- Accounting software announcements
-
-**How findings are surfaced:**
-- Weekly digest delivered to the platform admin dashboard
-- Critical security vulnerabilities: immediate alert
-- Competitor feature launches: flagged within 24 hours
-- New technology worth evaluating: queued for review
-
-**The rule:** AlecRae is always 80-90% ahead of competitors.
-The crawler system is what enforces that standard continuously,
-not just at launch.
-
-### 28.3 The two-layer quality architecture
-
-**Layer 1 — The internal QA layer (never seen by customers)**
-This is where bugs live and die. Nothing reaches a paying customer
-that has not passed through this layer.
-
-- Staging environment on Vercel (separate from production)
-- Automated test suite runs on every commit before deployment
-- End-to-end tests covering every critical user flow
-- Visual regression testing — screenshots compared on every deploy
-- Performance budget enforced — pages that exceed load time thresholds
-  are blocked from deployment automatically
-- Broken link checker runs nightly across all routes
-- All API endpoints tested for error responses and edge cases
-
-**Layer 2 — The customer-facing production layer**
-This is what paying professionals see. It must be:
-- Fast (under 1 second page loads, under 3 seconds Oracle queries)
-- Reliable (99.9% uptime via Vercel Edge)
-- Bug-free (nothing ships that failed Layer 1)
-- Honest (no fake loading states, no misleading UI)
-- Ethical (features do what they say, data is never misused)
-
-**The core promise to every paying professional:**
-"AlecRae works. Every time. When you open it, it is ready.
-When you click something, it responds. When you pay for a feature,
-it does exactly what it says. No exceptions."
-
-**Broken link policy:** Zero tolerance. Nightly automated crawler
-checks every internal link, every API endpoint, every document URL,
-every external reference. Any broken link triggers an immediate alert
-and is fixed before the next business day. Paying customers never
-encounter a 404 or a broken workflow.
+The positioning is never "please adopt us."
+The positioning is "we help you achieve what you have already said you want."
+That is the framing that gets meetings and gets approved.
 
 ---
 
-## 29. AlecRae Mail — The Built-In Email Dashboard
+### 36.2 New Zealand — IRD Digital Service Provider
 
-This section documents one of the most powerful and original features
-in the entire platform. Read it before building any email functionality.
+**The programme:**
+IRD operates a formal Digital Service Providers programme
+with gateway services that software providers integrate with.
+The gateway is available 24/7 and covers all major NZ tax types.
+Registration requires submitting a product request after
+registering interest. This is a structured, documented pathway.
+URL: ird.govt.nz/digital-service-providers
 
-### 29.1 The vision
+**The AIM opportunity — the single most compelling angle:**
+The Accounting Income Method (AIM) allows businesses to
+calculate provisional tax based on actual income using
+approved accounting software, paying with each GST return.
+IRD actively promotes AIM adoption. The problem: many
+accountants and their clients are not using it because
+their software is not AIM-approved.
 
-Every attorney at a firm, every CPA at an accounting practice, and
-every client of those professionals gets their own AlecRae email
-dashboard. Not an integration with Gmail or Outlook. A purpose-built
-professional email experience that lives entirely inside AlecRae —
-with The Oracle available inline as they compose every single email.
+AlecRae Accounting becoming AIM-approved means:
+- Every NZ client on AlecRae gets automatic provisional
+  tax alignment — no more lump sum provisional tax surprises
+- Accountants can offer a genuinely better client outcome
+  that competitors without AIM approval cannot match
+- IRD benefits from more businesses using AIM, which is
+  their stated policy goal
 
-This is the move that makes AlecRae the complete operating system.
-A professional who does all their communication, research, scheduling,
-billing, and document work inside a single platform has no reason to
-open anything else. AlecRae becomes the tab that is always open.
+This is not a feature. This is a structural advantage that
+makes AlecRae the most financially intelligent accounting
+platform for NZ businesses and their accountants.
 
-### 29.2 What AlecRae Mail is
+**IRD gateway services to integrate (priority order):**
 
-AlecRae Mail is a full email client built into the platform.
-It is not a plugin. It is not an integration. It is native.
-
-Every firm gets a domain-based email address:
-- Attorneys: firstname.lastname@firmname.alecrae.com
-- Accountants: firstname.lastname@firmname.alecrae.com
-- Or custom domain: firstname@theirownfirm.com routed through AlecRae
-
-Every client gets a portal email:
-- clients@alecrae.com/portal/[client-id] for internal communication
-- Or their own external email linked to the portal
-
-**What makes AlecRae Mail different from Gmail:**
-
-| Feature | Gmail / Outlook | AlecRae Mail |
+| Service | What it enables | Priority |
 |---|---|---|
-| Oracle inline in compose | No | Yes — one click |
-| Matter-linked emails | No | Auto-linked to client matter |
-| E-signature from email | No | Native, one click |
-| Meeting scheduling | Plugin required | Native, one click |
-| Document attachment tracking | No | Read receipts + open tracking |
-| Trust accounting integration | No | Invoice and payment native |
-| Automated disclaimer footer | Manual | Automatic on every email |
-| Privilege protection warning | No | Flags non-secure recipients |
-| Thread-to-matter archiving | No | One click, permanent |
-| Oracle citation insertion | No | Mid-compose, any query |
+| GST | File GST returns directly from AlecRae | Phase 1 — AIM integration |
+| Payday filing | File PAYE/payroll directly | Phase 1 |
+| Income tax | File IR3, IR4, IR6, IR7 returns | Phase 1 |
+| AIM | Provisional tax via accounting software | Phase 1 — flagship |
+| KiwiSaver | KiwiSaver contribution filing | Phase 2 |
+| Student loans | Employer deduction filing | Phase 2 |
+| Investment income | PIE, RWT, NRWT reporting | Phase 2 |
 
-### 29.3 The Oracle in email — the genius feature
+**What AlecRae looks like to IRD:**
+IRD evaluates software providers on:
+1. Technical compliance — does the software correctly
+   implement IRD's gateway service specifications?
+2. Security — is customer tax data handled securely?
+   (Our SOC 2 roadmap and GDPR-standard privacy baseline
+   directly address this)
+3. Reliability — is the software available when taxpayers
+   need to file? (Vercel's 99.99% uptime SLA covers this)
+4. User experience — does the software make compliance
+   easier for NZ taxpayers and their agents?
+   (This is where AlecRae dominates completely)
+5. Support — can users get help when they need it?
+   (AlecRae's client portal and secure messaging built in)
 
-A lawyer is composing an email to a client explaining why their
-non-compete clause is unenforceable in California. Without AlecRae:
-write the email from memory, hope the client trusts them, or stop
-and go research, then come back. Flow broken. Time wasted.
+**The application package — what to submit:**
 
-**The AlecRae version:**
-The lawyer is composing the email. They hit ⌘K. The Oracle drawer
-slides in beside the compose window — identical to the document
-draw-down. They query "California non-compete enforceability."
-Three verified cases return. They click "Insert citation" and
-the formatted, verified citation drops into the email body at
-the cursor position. The client receives an email with professional
-legal citations that most attorneys would have to spend 20 minutes
-researching. Total extra time: 30 seconds.
+When AlecRae applies to IRD as a Digital Service Provider,
+the application must include:
 
-**Why this is a hook for the client:**
-The client reads a professionally researched email with verified
-case citations. They think: "My last attorney just sent me
-text. This one sends me research." They tell their business
-partner. The business partner asks which firm. The partner
-becomes an AlecRae client. The hook propagates.
+- Executive summary: who AlecRae is, what it does, and
+  specifically how it advances IRD's digital strategy goals
+- Technical architecture document: how the gateway
+  integration works, data security measures, uptime guarantees
+- Privacy and security certification: NZ Privacy Act 2020
+  compliance statement, encryption standards, data residency
+  (NZ/AU Neon region)
+- AIM implementation specification: exactly how AlecRae
+  calculates provisional tax under the AIM method
+- User experience demonstration: screenshots and video
+  showing how NZ accountants and their clients use AlecRae
+  to file returns and pay provisional tax
+- Company information: NZ Ltd Company registration,
+  directors, financial standing
+- Reference accountants: 3-5 NZ chartered accountants
+  who have used the platform and can speak to its quality
 
-### 29.4 The email dashboard layout
+**The presentation positioning:**
+Lead with how AlecRae helps IRD achieve its goals:
+"AlecRae increases AIM adoption by making provisional tax
+calculation automatic for every client on the platform.
+We remove the barrier to AIM for the 60,000+ NZ businesses
+whose accountants are not currently using approved software."
 
-Every professional's email dashboard shows:
+That is IRD's problem. AlecRae solves it. That is why they
+should approve us.
 
-**Left sidebar:**
-- Inbox (with matter tags on every relevant email)
-- Sent
-- Drafts
-- Matter folders (auto-organised by client matter)
-- Shared (emails visible to the whole firm on a matter)
-- Flagged (needs response)
-- Archive
-
-**Main panel:**
-- Email list with matter tags, sender, subject, time
-- Unread count per matter folder
-- Quick reply inline (no full compose required for short responses)
-
-**Right panel (contextual):**
-- When viewing an email: the linked matter details
-- When composing: Oracle drawer available on ⌘K
-- When selecting a thread: scheduling panel for instant meeting booking
-
-**Top action bar in compose window:**
-- Attach document (from matter files or device)
-- Insert Oracle research (⌘K shortcut)
-- Schedule meeting (drops Zoom link + calendar invite)
-- Request e-signature (converts email to signing request)
-- Mark privileged (adds attorney-client privilege notice to footer)
-- Send as matter update (archives to matter record automatically)
-
-### 29.5 The firm email dashboard
-
-Every firm — law firm or accounting practice — gets a firm-level
-email view in addition to individual dashboards.
-
-The firm dashboard shows:
-- All client communications across all professionals in the firm
-- Response time analytics (who responds fastest, average response time)
-- Matter-level communication volume
-- Unanswered client emails across the firm (nothing falls through gaps)
-- New client inquiries needing assignment
-
-**Why this matters for firm owners:**
-A managing partner can see instantly if a client has been waiting
-3 days for a response from an associate. They can intervene.
-They can reassign. No client gets ignored. No matter falls through
-the cracks. The firm owner has full visibility without micromanaging.
-
-### 29.6 Client-facing email integration
-
-When a professional sends an email to a client through AlecRae Mail,
-the client receives a standard email in their own inbox (Gmail, Outlook,
-whatever they use). But the email contains one important addition:
-
-> "View this in your AlecRae portal for full matter tracking,
-> document access, and secure reply at: alecrae.com/portal/[code]"
-
-When the client clicks that link and logs in:
-- They see their complete matter history
-- They can reply securely within the portal
-- They can see all documents and invoices
-- They can schedule a meeting with one click
-- They see AlecRae for the first time as a full professional platform
-
-Every professional email is a portal onboarding event.
-
-### 29.7 The team meeting hook from email
-
-From any email thread, a professional can click "Schedule meeting"
-and AlecRae:
-1. Checks availability of all participants in the thread
-2. Suggests three time slots based on shared availability
-3. Generates a Zoom link
-4. Sends a branded AlecRae meeting invite to all participants
-5. Creates a meeting record linked to the matter
-
-A client who receives that meeting invite sees:
-- A professionally branded AlecRae invite
-- Their matter name prominently displayed
-- One-click join via Zoom
-- A "View your matter portal" link below the Zoom button
-
-The meeting invite is the hook. The portal link is the conversion.
-
-### 29.8 Email hosting technical architecture
-
-**Option A — Custom email via Resend (recommended for launch)**
-- Resend provides transactional and conversational email infrastructure
-- Professional @alecrae.com email addresses
-- Full SMTP and IMAP support
-- Built-in email tracking (opens, clicks)
-- Scales to millions of emails
-
-**Option B — Custom domain routing**
-- Firms with their own domain (e.g. chenlaw.com) can route through
-  AlecRae Mail via MX record pointing to AlecRae infrastructure
-- Emails appear to come from their own domain
-- Full Oracle and platform integration maintained
-- This is a premium tier feature (Firm plan and above)
-
-**Storage:**
-- All emails stored in Supabase with full encryption at rest
-- Linked to matter records in the same database
-- Exportable as PDF or .eml at any time
-- Retained per matter retention policy (configurable per firm)
-
-**Privacy and privilege:**
-- Attorney-client emails automatically flagged for privilege protection
-- Privilege warning shown if attempting to forward privileged email
-  to a non-secure recipient outside the platform
-- All emails encrypted in transit (TLS) and at rest
+**Pre-application checklist NZ IRD:**
+- [ ] NZ Ltd Company formed
+- [ ] Register interest at ird.govt.nz/digital-service-providers
+- [ ] Create developer portal account at gws.ird.govt.nz
+- [ ] Review IRD gateway services architecture documentation
+- [ ] Review services catalogue for all target integrations
+- [ ] Build and test GST filing integration in IRD sandbox
+- [ ] Build and test payday filing integration in IRD sandbox
+- [ ] Build and test AIM provisional tax calculation
+- [ ] Complete IRD product request submission
+- [ ] Engage CAANZ for endorsement letter to include
+  in application
+- [ ] Prepare 3-5 NZ accountant reference contacts
 
 ---
 
-## 30. The Complete Professional Day — Everything In One Platform
+### 36.3 Australia — ATO Digital Service Provider
 
-This section maps a single professional's complete working day
-through AlecRae to demonstrate that they never need to open
-another application.
+**The programme:**
+The Australian Tax Office operates an equivalent programme
+called the Digital Service Provider (DSP) programme.
+Software providers integrate with the ATO's Standard Business
+Reporting (SBR) platform via APIs.
+URL: ato.gov.au/businesses-and-organisations/
+        doing-business-online/digital-service-providers
 
-**7:30 AM — Morning dashboard check (AlecRae dashboard)**
-- Three deadlines this week highlighted
-- Two unanswered client messages from yesterday
-- One new regulatory alert: IRS Rev. Proc. update affects Client A
-- Today's meetings: 10 AM client call, 2 PM cross-firm with accountant
+**Key ATO integrations to pursue:**
 
-**8:00 AM — Email (AlecRae Mail)**
-- Reply to client question about visa status
-- ⌘K → Oracle: "Current USCIS processing times H-1B" → insert updated data
-- Schedule follow-up meeting directly from email thread
-- One click: meeting invite sent with Zoom link
+| Service | What it enables | Priority |
+|---|---|---|
+| Single Touch Payroll (STP) | Real-time payroll reporting | Phase 1 |
+| Business Activity Statement (BAS) | GST and PAYG filing | Phase 1 |
+| Tax File Number declarations | Employee onboarding | Phase 1 |
+| Tax return lodgement | Individual and company returns | Phase 2 |
+| Super stream | Superannuation contribution filing | Phase 2 |
 
-**9:00 AM — Document drafting (AlecRae Documents)**
-- Draft non-compete clause for employment contract
-- ⌘K → Oracle: "California non-compete enforceability" → insert Edwards citation
-- E-signature request sent to client directly from document editor
+**The STP opportunity — Australia's equivalent of AIM:**
+Single Touch Payroll (STP) is mandatory for all Australian
+employers. Every payroll event must be reported to the ATO
+in real time. Software that is not STP-compliant cannot be
+used by Australian businesses with employees.
 
-**10:00 AM — Client video call (AlecRae Meet)**
-- One click from the calendar event
-- Meeting notes dictated via AlecRae Dictation during the call
-- Notes auto-linked to the client matter on hang-up
+AlecRae Accounting being STP-compliant from day one is
+not optional for the Australian market — it is the entry
+ticket. But it is also a significant moat: STP integration
+is technically complex and many smaller accounting tools
+have not built it well.
 
-**11:00 AM — Matter research (AlecRae Oracle)**
-- Deep research session on complex immigration matter
-- Oracle returns 6 verified cases
-- Research notes saved directly to matter record
+**ATO Digital Service Provider requirements:**
+The ATO evaluates providers on the same dimensions as IRD:
+technical compliance, security, reliability, and user experience.
+Additional ATO-specific requirements:
+- ISO 27001 certification or equivalent (our SOC 2 roadmap
+  covers this — mention it in the application)
+- Australian Privacy Act 2022 compliance
+- SBR (Standard Business Reporting) conformance testing
+- ATO sandbox testing completion before production approval
 
-**12:00 PM — Billing (AlecRae Billing)**
-- Time entries auto-generated from the morning's activity
-- Review and approve in 3 minutes
-- Invoice generated and sent from billing screen
+**The ATO application positioning:**
+"AlecRae brings STP, BAS, and superannuation compliance
+into the same platform where Australian accountants already
+manage their legal matters, client communications, and
+professional research. No switching between systems.
+One platform. Complete compliance."
 
-**2:00 PM — Cross-firm meeting (AlecRae Collaboration)**
-- Attorney and accountant in shared matter view
-- Both can see the same documents simultaneously
-- Oracle cross-domain available to both — one query, law + accounting answer
-- Meeting summary dictated and auto-saved to matter
-
-**5:00 PM — End of day**
-- All time entries captured
-- All client communications archived to matters
-- All documents version-controlled
-- Tomorrow's deadlines visible on dashboard
-
-**Applications opened today outside AlecRae: zero.**
-
-This is the daily reality that creates infinite switching cost.
-Once a professional lives their entire working day inside AlecRae,
-the thought of leaving is genuinely frightening.
-
----
-
-## 26. Collaboration Architecture — Every Interaction is a Hook
-
-This section documents the most important viral growth mechanism in the
-entire platform. Read it before building any communication or scheduling
-feature. Every design decision must reinforce the hook principle.
-
-### 26.1 The hook principle
-
-Every time two people come together through AlecRae — a lawyer contacting
-a client, an accountant messaging a lawyer, a professional inviting someone
-to a meeting — that interaction is simultaneously a piece of work AND a
-marketing event. The client who receives a meeting invite through AlecRae
-sees the platform. The accountant who gets a message from a lawyer through
-AlecRae sees the platform. The person who had never heard of AlecRae now
-has a reason to want it.
-
-This is engineered virality. The platform markets itself through every
-single professional interaction. No advertising budget can replicate it.
-
-**The rule:** Every touchpoint between any two people — professional to
-professional, professional to client, client to client — must carry the
-AlecRae brand and create a natural desire in the recipient to be inside
-the platform themselves.
+**Pre-application checklist Australia ATO:**
+- [ ] Australian Privacy Act 2022 compliance documented
+- [ ] Register at developer.ato.gov.au
+- [ ] Complete ATO DSP sandbox environment setup
+- [ ] Build and test STP Phase 2 integration
+- [ ] Build and test BAS/GST filing integration
+- [ ] Complete ATO conformance testing
+- [ ] Submit DSP application with security documentation
+- [ ] Engage CPA Australia for endorsement letter
+- [ ] Engage Law Council of Australia for legal platform credibility
 
 ---
 
-### 26.1b The time and money value proposition — core professional messaging
+### 36.4 UK — HMRC Making Tax Digital
 
-This is the message that converts every professional who sees AlecRae.
-It must appear on the professional homepage, the Law platform page,
-the Accounting platform page, and in every outreach email.
+**The programme:**
+HMRC's Making Tax Digital (MTD) initiative requires all
+VAT-registered businesses to keep digital records and
+submit VAT returns through MTD-compatible software.
+MTD for Income Tax Self Assessment (MTD ITSA) is being
+progressively rolled out from April 2026.
 
-**The core equation:**
-Time saved × billable rate = money made
-AlecRae saves professionals hours every day.
-Those hours can be billed to more clients, or simply lived.
+This is the largest mandatory digital tax transformation
+in the UK's history. Every UK accountant with business
+clients is scrambling for MTD-compliant software.
+AlecRae entering the UK market as a certified MTD provider
+positions it at the centre of the most significant regulatory
+change UK accountants have faced in a decade.
 
-**Specific time savings to quantify and market:**
+**HMRC MTD software certification:**
+Software must be recognised by HMRC as MTD-compatible.
+The process involves technical testing against HMRC's API
+sandbox and registration on HMRC's approved software list.
+Being on that list is discoverable by every UK accountant
+searching for MTD software — it is free organic marketing
+worth thousands of pounds per month.
 
-| Task | Without AlecRae | With AlecRae | Time saved |
+**The MTD opportunity statement:**
+"AlecRae makes MTD compliance automatic. VAT returns,
+income tax submissions, and digital record-keeping are
+built into the platform. Your clients are MTD-compliant
+the moment they are on AlecRae."
+
+**Pre-application checklist UK HMRC:**
+- [ ] UK Ltd Company formed (or UK entity planned)
+- [ ] ICO registration completed
+- [ ] HMRC developer portal registration
+  (developer.service.hmrc.gov.uk)
+- [ ] MTD VAT API integration built and tested
+- [ ] MTD ITSA API integration planned (Phase 3)
+- [ ] HMRC recognised software list application submitted
+- [ ] ICAEW and ACCA endorsement letters prepared
+
+---
+
+### 36.5 Canada — CRA My Business Account Integration
+
+**The programme:**
+Canada Revenue Agency (CRA) offers API integrations for
+approved software providers through the CRA Business
+Registration Online and My Business Account systems.
+
+Key integrations:
+- T4 payroll slip filing
+- GST/HST return filing
+- Corporate income tax (T2) filing
+- Individual income tax (T1) preparation (with CRA EFILE)
+
+**EFILE — the critical Canadian accreditation:**
+EFILE is CRA's electronic tax filing system. Tax preparers
+and software providers must be EFILE-certified to file
+returns electronically on behalf of clients. This is the
+Canadian equivalent of IRD digital service provider status.
+
+EFILE certification is the entry ticket for any accounting
+software operating in Canada. Without it, the software
+cannot file Canadian tax returns — making it unusable for
+Canadian CPAs.
+
+---
+
+### 36.6 The government authority timeline
+
+| Authority | Programme | Target | Status |
 |---|---|---|---|
-| Legal research (standard matter) | 4–6 hours | 20–40 minutes | 4+ hours |
-| Document drafting (contract) | 3–4 hours | 30–60 minutes | 3+ hours |
-| Trust account reconciliation | 2–3 hours/week | Automated | 2+ hours |
-| Court deadline calculation | 30–45 min per filing | Instant | 30+ min |
-| Tax research (complex matter) | 2–3 hours | 15–30 minutes | 2+ hours |
-| Bank reconciliation (monthly) | 4–6 hours | Automated | 4+ hours |
-| Client status update calls | 30 min × 10 clients | Portal self-serve | 5 hours/week |
-| Invoice preparation | 1–2 hours/week | Automated from time entries | 1+ hour |
+| NZ IRD | Digital Service Provider + AIM | Phase 1 launch | Apply 6 months before NZ launch |
+| AU ATO | Digital Service Provider + STP | Phase 1 launch | Apply 6 months before AU launch |
+| UK HMRC | Making Tax Digital recognition | Phase 3 launch | Apply 9 months before UK launch |
+| CA CRA | EFILE certification | Phase 3 launch | Apply 6 months before CA launch |
 
-**The marketing headline that converts:**
-"AlecRae saves the average attorney 15–20 hours per week.
-At $350/hour, that is $5,250–7,000 of additional billing capacity.
-Every week. Every year."
+**The lead time reality:**
+Government authority approvals take time. IRD and ATO
+typically take 3-6 months from application to approval.
+HMRC's MTD recognition process can take 6-12 months.
+Applications must be submitted well before the target
+launch date in each market.
 
-"AlecRae saves the average CPA firm 12–18 hours per week per accountant.
-Hours that can be billed, or simply given back to the people who matter."
-
-**The emotional hook beneath the numbers:**
-Lawyers and accountants became professionals to practise their craft —
-not to spend their days on admin, research grunt work, and chasing
-clients for information. AlecRae gives them their profession back.
-The platform handles the machine work. The professional handles
-the judgment work. That is the promise. That is the transformation.
-
-**Use this messaging on:**
-- Professional homepage hero section
-- AlecRae Law platform page
-- AlecRae Accounting platform page
-- Email subject lines: "What would you do with 15 extra hours this week?"
-- AILA and AICPA conference materials
-- Paid search ad copy
-- Case study headlines: "How [Firm] recovered 18 hours per week with AlecRae"
+This means the IRD and ATO applications need to be
+in progress during Phase 1 build — not after launch.
 
 ---
 
-### 26.2 The four collaboration relationships
+### 36.7 What immaculate looks like to a government authority
 
-```
-Lawyer ↔ Accountant          (cross-professional — the Oracle bridge)
-Lawyer ↔ Client              (attorney-client — privileged, encrypted)
-Accountant ↔ Client          (CPA-client — confidential, encrypted)
-Client ↔ Client              (referral — rare but powerful)
-```
+This section defines exactly what AlecRae must look like
+when it presents itself to any government tax authority.
 
-Each relationship has different privacy requirements, different
-communication tools, and different hook mechanics. All four are
-built into the single AlecRae platform.
+**The platform attributes that impress government evaluators:**
 
----
+1. **Compliance architecture** — every tax calculation must
+   be auditable. Every GST computation, every AIM provisional
+   tax figure, every PAYE deduction must trace back to the
+   exact rule in the tax code. The Oracle provides the
+   research layer. The calculation engine applies it.
+   Government evaluators want to see the calculation logic,
+   not just the output.
 
-### 26.3 Instant messaging — the backbone of all communication
+2. **Data security that exceeds requirements** — do not just
+   meet the minimum. Present encryption at rest, encryption
+   in transit, role-based access control, audit logging,
+   and the SOC 2 roadmap. Government evaluators are risk
+   managers. Remove every risk they can see.
 
-**Why instant messaging, not email:**
-Lawyers and accountants lose hours every day to email chains that could
-be resolved in three messages. A lawyer who needs a quick answer from
-their client's CPA should not have to compose an email, wait, follow up,
-and wade through a thread. They should be able to send a message and get
-a reply in minutes.
+3. **Uptime and reliability** — Vercel's 99.99% uptime SLA
+   is the answer here. Tax filing has deadlines. Software
+   that is down on filing day is software the government
+   will not approve. Document the SLA explicitly.
 
-**The AlecRae messaging system:**
-- Instant messaging between all parties inside the platform
-- Threaded conversations organised by matter/client, not by sender
-- Every message timestamped and permanently archived (legal requirement)
-- One-click export of any conversation thread to a formatted email or PDF
-- Full audit trail — every message is part of the matter record
-- End-to-end encrypted for all attorney-client and CPA-client conversations
-- Read receipts so professionals know when clients have seen important messages
-- File attachments inline — documents, invoices, contracts shared in chat
+4. **Support for professionals** — government authorities
+   care that their taxpayers and agents are supported.
+   AlecRae's built-in secure messaging, client portal,
+   and the professional network within the platform all
+   demonstrate that professionals using AlecRae have
+   support structures around them.
 
-**The email extraction feature:**
-Any conversation thread can be extracted into a professionally formatted
-email at any time. The professional clicks "Export to email," selects
-the messages to include, and a clean email draft is generated that they
-can send from their own address or through AlecRae. This is unique.
-No other platform does this. It is a patentable workflow — add to
-provisional patent list.
+5. **The professional endorsement** — a letter from CAANZ
+   (for IRD/ATO) or ICAEW (for HMRC) saying "we have
+   reviewed AlecRae and support its application for digital
+   service provider status" is worth more than any technical
+   document in the application file. Pursue these
+   endorsements before submitting any government application.
 
----
+6. **New Zealand identity** — IRD responds positively to
+   NZ-founded platforms. AlecRae is a NZ Ltd Company,
+   founded in Auckland, serving NZ professionals first.
+   That story is genuine and it matters to a NZ government
+   authority evaluating a domestic versus foreign software
+   provider.
 
-### 26.4 Scheduling and meetings
+**The sentence that wins the room:**
+"AlecRae is the only platform that combines tax compliance,
+legal practice management, AI research, and professional
+communication in a single NZ-built system. Every
+accountant on AlecRae is better equipped to serve their
+clients and to meet their IRD obligations. We are not
+asking IRD to change what they do. We are making it
+easier for every NZ accountant to do what IRD asks."
 
-**What gets built:**
-- Native appointment booking inside the platform
-- Calendar sync with Google Calendar and Outlook (two-way)
-- Automated meeting reminders to all parties via email and in-app
-- One-click Zoom link generation attached to every meeting
-- Video meeting option natively within AlecRae (Phase 3 — evaluate
-  Daily.co or Whereby API for embedded video)
-- Post-meeting summary auto-generated by AI from any notes dictated
-  during or after the meeting
-
-**The hook mechanics of a meeting invite:**
-When a lawyer books a meeting with their client through AlecRae,
-the client receives an email invitation that looks like this:
-
-> "Your attorney [Name] has scheduled a meeting with you through
-> AlecRae. Join at alecrae.com/meeting/[unique-code]
-> Date: [Date] · Time: [Time] · Zoom: [Link]
-> Track your matter, view documents, and message your attorney
-> at any time at alecrae.com"
-
-The client visits alecrae.com to join the meeting. They see the platform.
-They see a professional interface. They see their matter being managed
-with sophistication they have never experienced from a lawyer before.
-The hook is set. When their lawyer asks "would you like to use the
-client portal?" the answer is always yes.
-
-**Appointment types to support:**
-- Initial consultation (attorney ↔ new client)
-- Matter review (attorney/accountant ↔ existing client)
-- Cross-professional meeting (lawyer ↔ accountant, shared client)
-- Team meeting (firm internal — multiple attorneys or CPAs)
-- Client sign-off (document signing appointment)
+That is not a pitch. That is a partnership offer.
+Government authorities respond to partners, not vendors.
 
 ---
 
-### 26.5 The cross-professional bridge (Lawyer ↔ Accountant)
-
-This is the feature that no other platform has and cannot replicate
-without owning both sides of the law-accounting relationship.
-
-**The scenario:**
-A corporate attorney is working on a business acquisition for a client.
-They need a quick tax opinion from the client's CPA on the deal structure.
-On every other platform, this requires: finding the CPA's email, composing
-a message, attaching the relevant documents, waiting, following up.
-
-**The AlecRae version:**
-The attorney opens the client matter in AlecRae, clicks "Involve
-accounting professional," searches for the CPA by name or firm, and
-sends them a shared matter view with a message. The CPA receives an
-invitation to view the relevant portion of the matter and respond.
-If the CPA is already on AlecRae, this takes 30 seconds. If they are
-not, the invitation is the hook that brings them onto the platform.
-
-**What the CPA sees when they receive the invitation:**
-A professionally formatted notification that includes:
-- The matter context (what the lawyer needs)
-- The specific documents or questions relevant to them
-- A link to view the shared matter inside AlecRae
-- A prompt to create their own AlecRae account to respond
-
-Every cross-professional invitation is a warm referral from a trusted
-colleague. This is the highest-conversion acquisition channel possible.
-
-**The shared matter workspace:**
-When a lawyer and accountant are collaborating on the same client:
-- Both can see the shared documents and correspondence
-- Both can message each other and the client in the same thread
-- The Oracle cross-domain tier is automatically activated for that matter
-- Billing is handled separately — each professional bills their client
-  independently through their own AlecRae billing system
 
 ---
 
-### 26.6 The client portal — the consumer hook
+## 36. AlecRae AIM — The Flagship IRD Partnership Product
 
-Every client of every AlecRae professional gets access to a client
-portal at no cost to them. The portal is intentionally excellent.
-It is not a token feature. It is a full, beautiful interface that
-makes the client feel like their professional is running
-the most sophisticated practice they have ever encountered.
+### 37.1 What AIM is and why it matters
 
-**What the client portal shows:**
-- Matter status in plain English ("Your visa application was filed on
-  March 15. The USCIS processing time is currently 8–14 months.")
-- All documents — filed, pending, completed — in one place
-- Invoice history and payment status
-- Secure message thread with their attorney or accountant
-- Upcoming meetings and appointment booking
-- Document signing for any outstanding e-signatures
+The Accounting Income Method (AIM) is IRD's most progressive
+provisional tax initiative. It solves the single biggest
+financial pain point for NZ small businesses — the cash flow
+shock of large, unpredictable provisional tax bills.
 
-**The portal as a hook:**
-When a client uses a portal this good, they tell other people about it.
-"My lawyer uses this incredible system — I can see everything, message
-them instantly, and sign documents on my phone." That word-of-mouth is
-the consumer marketing campaign that money cannot buy.
+AIM is available to individuals and companies with yearly
+turnover under $5 million. Under AIM, businesses only pay
+provisional tax when they make a profit — and if the business
+makes a loss, they get a refund immediately.
 
-When that client later needs an accountant, they ask their lawyer:
-"Is there an accountant on AlecRae I can use?" The referral is built
-into the architecture.
+When using AIM through approved accounting software,
+provisional tax is calculated and paid with each GST return,
+aligning payments with actual income.
+
+This is transformational for small business cash flow.
+Instead of being hit with three large provisional tax
+instalments calculated on last year's income (which may
+bear no resemblance to this year's reality), a business
+on AIM pays exactly what they owe, exactly when they owe it,
+based on what they actually earned.
+
+The problem: most NZ small businesses are not on AIM because
+their accountant's software is not AIM-capable. AlecRae
+changes that entirely.
+
+### 37.2 The technical requirements — what IRD needs to see
+
+A software system must meet the definition of an AIM-capable
+accounting system in section RC 7B of the Income Tax Act 2007
+to gain approval from the Commissioner. Software must be able
+to work out all financial accounts and liabilities
+retrospectively and produce reports, allowing errors to be
+corrected easily. It must incorporate end of year adjustments
+throughout the year to more accurately reflect taxable income.
+
+Specifically, AIM-capable software must:
+
+1. Generate comprehensive financial accounts including
+   accounting income and expenditure, ledger accounts,
+   trial balances, bank account reconciliations and journals
+   — all on demand, in accordance with good accounting practice
+
+2. Calculate tax liabilities using tax adjustments per
+   IRD's technical determination
+
+3. Recalculate all financial accounts and liabilities
+   retrospectively — errors can be corrected in the next
+   statement rather than requiring an amended return
+
+4. Electronically communicate with IRD via gateway services
+   and provide the right level of help and assistance to users
+
+5. Send a Statement of Activity with each payment showing
+   how the AIM profit figure was calculated
+
+The gateway service used for AIM is the return service,
+providing capabilities through defined service operations
+including Retrieve Status, Retrieve Return, and Retrieve
+Filing Obligation.
+
+### 37.3 AlecRae AIM — the product design
+
+AlecRae AIM is not a compliance module hidden in a settings menu.
+It is a flagship product that gets its own prominent section
+in the AlecRae Accounting dashboard — the first thing an
+accountant and their client see when they open the platform.
+
+**The AlecRae AIM dashboard shows at a glance:**
+
+- Current AIM period profit/loss (live, updating as
+  transactions are recorded)
+- Provisional tax due this period (calculated automatically)
+- Next payment date and amount
+- Year-to-date provisional tax paid vs estimated liability
+- Use-of-money interest exposure (always zero when using AIM correctly)
+- Comparison: what they would have paid under standard uplift
+  vs what they are paying under AIM (the saving, displayed prominently)
+
+**The AIM calculation engine:**
+
+Every transaction entered into AlecRae Accounting —
+whether by bank feed, manual entry, or AlecRae Voice dictation
+— instantly updates the AIM profit calculation. The accountant
+and their client can see the provisional tax position changing
+in real time as the business performs throughout the year.
+
+When a GST return is due, AlecRae automatically:
+1. Calculates the AIM profit for the period
+2. Applies all required tax adjustments (depreciation,
+   deductible expenditure, timing differences)
+3. Calculates the provisional tax due
+4. Prepares the Statement of Activity for IRD submission
+5. Files via IRD gateway with one click
+6. Confirms receipt and updates the client's IRD account
+
+The accountant reviews, approves, and submits.
+The entire process takes minutes, not hours.
+
+**The loss refund feature — immediately visible:**
+
+AIM payments are based on a year-to-date calculation.
+If a business makes a loss, they can get a refund straightaway
+and will not need to wait until the end of the year.
+
+When AlecRae AIM detects a loss period, it automatically:
+- Notifies the accountant with a clear dashboard alert
+- Calculates the refund amount
+- Prepares the Statement of Activity claiming the refund
+- Files with IRD for immediate processing
+
+A business that had a bad quarter gets their money back
+within days, not months. That is a cash flow benefit that
+makes AIM genuinely life-changing for small businesses —
+and AlecRae is the platform that makes it effortless.
+
+### 37.4 AlecRae Voice inside AIM
+
+AlecRae Voice integrates directly into the AIM workflow.
+An accountant reviewing a client's AIM position can dictate:
+
+"Add a depreciation adjustment for the new vehicle,
+cost forty-two thousand dollars, effective from
+first of February, using IRD diminishing value rates"
+
+AlecRae processes the voice instruction, calculates the
+depreciation using the correct IRD rates, applies it to the
+AIM profit calculation, and updates the provisional tax
+figure immediately. The accountant confirms with one tap.
+
+This is the moment an IRD evaluator realises AlecRae
+is not just another accounting platform.
+
+### 37.5 The AIM client portal experience
+
+Every AlecRae client whose accountant uses AIM gets
+a dedicated AIM view in their client portal. In plain English:
+
+- "Your provisional tax this period: $2,340"
+- "Based on your actual profit of $18,700 for the period"
+- "Payment due: 28 April"
+- "Under the old standard method you would have paid $4,100.
+   AlecRae AIM is saving you $1,760 this period."
+- "Your business had no exposure to use-of-money interest."
+
+No financial jargon. No confusion. Just clear numbers,
+clear dates, and a clear demonstration of the value
+their accountant is delivering through AlecRae.
+
+This client portal view is what accountants show prospective
+clients to demonstrate why they use AlecRae. It is a
+marketing tool for every accountant on the platform.
+
+### 37.6 The AIM tax adjustment library
+
+Software must incorporate end of year adjustments throughout
+the year to more accurately reflect taxable income.
+IRD determinations set out the minimum adjustments required.
+
+AlecRae AIM includes a complete library of every required
+and optional tax adjustment, maintained in real time as
+IRD updates its determinations:
+
+**Mandatory AIM adjustments (always applied):**
+- Depreciation (using current IRD depreciation rates)
+- Trading stock adjustments
+- Debtors and bad debt provisions
+- Prepayments and accruals
+- Private use adjustments
+
+**Optional adjustments (accountant-controlled):**
+- Research and development expenditure
+- Film production expenditure
+- Environmental expenditure
+- Specified lease payments
+- Employee share scheme deductions
+
+The Oracle — Accounting is available inside every
+adjustment entry. An accountant unsure whether a specific
+expenditure qualifies for a particular AIM adjustment
+can query the Oracle directly from the adjustment form
+and get a verified answer in seconds.
+
+This combination — AIM compliance automation plus Oracle
+research intelligence — is something no current AIM
+provider offers. It makes AlecRae AIM the most
+sophisticated AIM implementation in the NZ market.
+
+### 37.7 Multi-client AIM management — the accountant view
+
+An accountant with 50 clients on AIM does not manage
+them one at a time. AlecRae provides an AIM command centre
+— a single dashboard view showing every client's AIM status:
+
+| Client | Period profit | Tax due | Due date | Status |
+|---|---|---|---|---|
+| Smith Plumbing Ltd | $34,200 | $8,292 | 28 Apr | Ready to file |
+| Johnson Consulting | $12,100 | $2,930 | 28 Apr | Needs review |
+| Williams Retail Ltd | -$4,500 | Refund $1,089 | 28 Apr | Refund queued |
+| Chen Architecture | $67,800 | $16,421 | 28 Apr | Filed ✓ |
+
+One screen. Every client. Every AIM obligation visible.
+Bulk filing capability — approve and file multiple clients
+in a single session. Deadline alerts sent via AlecRae Voice
+to the accountant's phone if any client's AIM filing
+is approaching and has not been submitted.
+
+This is what an IRD evaluator needs to see. Not a feature
+in a menu. A purpose-built professional workflow that
+treats AIM as the serious compliance obligation it is —
+and makes fulfilling it the easiest part of an accountant's day.
+
+### 37.8 How AlecRae presents AIM to IRD
+
+When AlecRae applies for AIM-capable software approval,
+the presentation to the Commissioner includes:
+
+**The commitment statement:**
+"AlecRae has built AIM as the centrepiece of our
+accounting platform — not as a compliance checkbox.
+We believe AIM represents the most equitable provisional
+tax system available to NZ small businesses and we have
+invested significant resources in making it the best
+possible experience for both accountants and their clients.
+We are not seeking approval to say we support AIM.
+We are seeking approval because AIM is our flagship
+product and we want to help IRD make it the default
+choice for every eligible NZ business."
+
+**The technical submission package:**
+- Complete Section RC 7B compliance documentation
+- IRD determination compliance mapping
+- Gateway services integration architecture
+- Statement of Activity generation specification
+- Retrospective recalculation methodology
+- Tax adjustment library with determination references
+- Security and data handling documentation
+- Uptime and reliability commitments
+- Sandbox testing results
+
+**The market impact statement:**
+"There are approximately 600,000 NZ businesses eligible
+for AIM based on the $5 million turnover threshold.
+Current AIM adoption is a fraction of that eligible pool.
+AlecRae's goal is to make AIM the default choice for every
+eligible business whose accountant uses our platform.
+We estimate AlecRae could bring an additional 10,000-50,000
+NZ businesses onto AIM within three years of launch."
+
+That is a number IRD cares about. That is a policy
+outcome they have been trying to achieve since 2018.
+AlecRae delivers it.
+
+### 37.9 The AIM section on alecrae.com
+
+AlecRae.com has a dedicated AIM page at alecrae.com/aim
+that is designed to be as impressive to IRD as it is
+to NZ accountants and small businesses.
+
+The page opens with:
+
+**"AlecRae AIM — provisional tax the way it should work."**
+
+"New Zealand's most advanced implementation of the
+Accounting Income Method. Built in partnership with
+IRD's digital vision. Your clients pay exactly what they
+owe. Never a dollar more. Never a surprise."
+
+The page demonstrates:
+- Live AIM dashboard preview
+- The cash flow saving calculator (enter your turnover,
+  see what you save vs standard uplift)
+- The loss refund flow — how quickly clients get money back
+- The multi-client management view
+- A statement from CAANZ or a respected NZ CA on the value
+  of AlecRae's AIM implementation
+- A link to ird.govt.nz confirming AlecRae's approved status
+
+This page does two things simultaneously. It converts
+NZ accountants who are not yet using AIM. And it shows
+IRD that AlecRae is the partner they have been looking for.
 
 ---
 
-### 26.7 Notification architecture — the hook delivery system
-
-Every notification sent from AlecRae is a marketing touchpoint.
-Every email, every SMS, every push notification carries the AlecRae
-brand and a reason to return to the platform.
-
-**Notification types and their hook value:**
-
-| Notification | Recipient | Hook |
-|---|---|---|
-| Meeting invite | Client | First view of platform |
-| Document ready to sign | Client | Portal login, sees full interface |
-| Message received | Client/Professional | Instant return to platform |
-| Invoice sent | Client | Portal login, payment, sees features |
-| Matter status update | Client | "Your application moved to next stage" |
-| Regulatory alert | Professional | "New ruling affects 3 of your matters" |
-| Cross-professional invite | Accountant/Lawyer | Platform discovery |
-| Payment received | Professional | Positive reinforcement loop |
-
-**The email footer rule:**
-Every notification email must end with:
-
-> "Powered by AlecRae — The most advanced legal and accounting platform
-> ever built. alecrae.com"
-
-This is one line. It is not advertising copy. It is a quiet signal of
-quality on every single email that goes through the system.
 
 ---
 
-### 26.8 Consumer page marketing copy — AI professionals positioning
+## 37. Onboarding — The First 10 Minutes That Define Everything
 
-The find-a-lawyer and find-an-accountant pages must communicate one
-message above all others to consumers:
+### 38.1 The competitive onboarding landscape — what not to do
 
-**"The professionals on AlecRae use the most advanced AI legal and
-accounting technology ever built. When you work with an AlecRae
-professional, you get the benefit of that intelligence."**
+Every major competitor has the same onboarding failure:
+they onboard professionals into the software's architecture
+rather than into the professional's workflow.
 
-Specific copy directions for consumer pages:
+Clio requires significant setup time, multiple integrations
+at extra cost, and real users report never getting proper
+onboarding before cancelling. QuickBooks has UI usability
+quirks, frustrating bugs, and prices that keep rising.
+Xero has syncing errors, slow fixes, and support that
+some users describe as non-existent when things go wrong.
 
-- "AlecRae attorneys use The Oracle — the most advanced legal research
-  AI ever built. That means faster answers, more thorough research,
-  and better outcomes for your matter."
+The single most common reason professionals abandon
+practice management and accounting software is not
+missing features — it is that the onboarding experience
+was so painful they never got far enough to discover
+the features they needed.
 
-- "AlecRae accountants work with AI that reads every tax code change
-  in real time. Your CPA never misses a deduction that affects you."
+AlecRae's onboarding is the complete opposite of
+everything described above. It is designed around
+one principle: the professional must feel the value
+of AlecRae within the first 10 minutes.
 
-- "The professionals on this platform use tools that 80–90% of their
-  competitors have never seen. Align yourself with the best."
+### 38.2 The 10-minute value principle
 
-- "When your lawyer uses AlecRae, your matter benefits from AI research
-  that used to require a team of associates. You get that for the same
-  hourly rate."
+**The rule:**
+A professional who does not experience a genuine
+"this is incredible" moment within their first 10 minutes
+on the platform will not return. Every onboarding decision
+is measured against this rule.
 
-These are the lines that make a consumer choose an AlecRae professional
-over one found on a competitor directory. Not just a professional.
-The most technologically advanced professional available.
+**What creates the moment for each professional type:**
+
+For an attorney:
+The moment AlecRae Voice dictates their first message
+in perfect legal language — "notwithstanding," "hereinafter,"
+all of it preserved exactly — without a single correction.
+That 30-second experience is worth more than any feature
+tour or explainer video. They have never had a tool
+that understood their language. AlecRae does. Immediately.
+
+For an accountant:
+The moment the bank feed connects and six months of
+transactions appear, categorised, reconciled, and ready
+for review — in under two minutes. No manual entry.
+No import file. It just appears. That is the moment
+an accountant realises AlecRae replaced the most
+tedious part of their week before they finished signing up.
+
+For a small business owner:
+The moment the AIM dashboard shows them exactly how much
+provisional tax they owe right now based on what they
+actually earned — and shows them how much less that is
+compared to what they would have paid under standard uplift.
+The savings number is the moment. Real money. Visible immediately.
+
+### 38.3 The AlecRae onboarding flow — step by step
+
+**Step 1 — The welcome screen (60 seconds)**
+One question. No paragraph of text. No product tour.
+Just this:
+
+"Welcome to AlecRae. What brings you here today?"
+
+Three options:
+→ I am a lawyer or law firm
+→ I am an accountant or CPA
+→ I am a small business looking for professional help
+
+That single choice routes them into a completely
+personalised experience. A lawyer never sees accounting
+setup screens. An accountant never sees trust accounting
+disclaimers before they have entered a single client.
+
+**Step 2 — The hook feature first (2 minutes)**
+Before asking for firm details, billing information,
+or any setup — AlecRae demonstrates the single most
+impressive feature for that professional type.
+
+For lawyers: AlecRae Voice demo
+A text field appears with a microphone button.
+"Try dictating something. Anything."
+They speak. It appears. Perfectly formatted.
+Legal vocabulary intact.
+Below the result: "AlecRae Voice is available
+everywhere you type on this platform."
+One button: "Continue setting up →"
+
+For accountants: Bank feed connection
+"Connect your bank to see AlecRae in action."
+OAuth connection to their bank. Takes 90 seconds.
+Transactions appear. Categories suggested by AI.
+Below the result: "This is what every month looks like
+on AlecRae — without the manual work."
+One button: "Continue setting up →"
+
+**Step 3 — The essential setup (5 minutes)**
+Only the absolutely essential information:
+- Firm or practice name
+- Location (country — routes to correct tax/legal jurisdiction)
+- Number of professionals (determines tier recommendation)
+- One email address to invite a colleague (optional but encouraged)
+
+Nothing else. No custom fields. No chart of accounts.
+No billing setup yet. No integrations menu.
+Those come later. Right now the goal is getting the
+professional inside the platform as fast as possible.
+
+**Step 4 — The guided first action (2 minutes)**
+Based on what they chose in Step 1, AlecRae suggests
+exactly one first action tailored to their role:
+
+For lawyers:
+"Create your first matter. It takes 30 seconds."
+→ Opens a pre-filled matter form with example data
+→ They replace the example with a real client name
+→ Matter created. Dashboard shows it live.
+→ "Your first matter is live. Add a document, log time, or message a client."
+
+For accountants:
+"Add your first client. We'll set up their AIM profile."
+→ One-screen client creation
+→ AIM eligibility check runs automatically
+→ If eligible: "Great news — [Client] is AIM-eligible.
+   We'll calculate provisional tax automatically
+   with every GST return."
+→ "Your first client is set up. Connect their bank feed."
+
+**Step 5 — The welcome message (automated, personal)**
+Within 5 minutes of completing setup, the professional
+receives an email from hello@alecrae.com that:
+- Addresses them by name
+- References exactly what they just set up
+  (their first matter name, or their first client name)
+- Contains exactly three links: their dashboard,
+  a 3-minute video of the one feature most relevant
+  to their role, and a direct calendar link to book
+  a 15-minute onboarding call if they want one
+- Is signed by a real person's name — not "The AlecRae Team"
+
+No overwhelming feature list. No 47-item checklist.
+No "getting started guide" PDF. Three links. Done.
+
+### 38.4 Data migration — the moment that removes the last barrier
+
+The single biggest reason professionals do not switch
+from Clio, QuickBooks, or Xero is not that they prefer
+those tools. It is that their data lives there and
+moving it feels impossible.
+
+AlecRae removes this barrier completely.
+
+**What AlecRae imports:**
+- From Clio: matters, clients, time entries, invoices,
+  documents (via Clio's API or CSV export)
+- From QuickBooks: chart of accounts, transactions,
+  clients, invoices, tax history (via QBO API)
+- From Xero: same as QuickBooks (via Xero API)
+- From Excel/CSV: any structured data the professional
+  can export from their current system
+
+**How the import works:**
+One screen. Upload or connect. AlecRae maps the fields
+automatically using AI — it recognises client names,
+matter numbers, transaction types, and date formats
+without the professional having to define mappings.
+They review, confirm, and import. Done.
+
+The import is built before the platform launches publicly.
+It is not a Phase 2 feature. It is a precondition for
+any meaningful professional adoption because professionals
+will not start from zero. They will only switch if their
+history comes with them.
+
+**The migration promise:**
+"Your history is yours. AlecRae imports everything from
+Clio, QuickBooks, or Xero. Your matters, clients,
+transactions, and documents arrive intact before you
+close your old account."
+
+### 38.5 The onboarding support model
+
+**No waiting. No tickets. No hold music.**
+
+AlecRae's onboarding support is built around the
+understanding that professionals have zero tolerance
+for being stuck. Every minute they are stuck on
+a setup problem is a minute they are questioning
+whether the switch was worth it.
+
+**The support stack:**
+
+In-platform chat: Available from the moment of signup.
+Not a bot. A real AlecRae team member during business
+hours in NZ, AU, and US time zones. Outside those hours
+an AI assistant handles tier-one questions with human
+escalation for anything complex.
+
+The Oracle as onboarding assistant: During the first
+30 days, the Oracle is tuned to answer questions about
+AlecRae itself — "how do I set up a trust account,"
+"where do I find the AIM dashboard," "how do I add a
+court deadline" — in addition to legal and accounting
+research queries. The platform teaches itself.
+
+Video library: Every feature has a 90-second video
+accessible from a small play button next to the feature.
+Not a 20-minute webinar. Not a help article requiring
+reading. A 90-second video showing exactly what to do.
+
+The onboarding call: Every professional who signs up
+gets one free 15-minute onboarding call with an
+AlecRae specialist. Not a sales call. A setup call.
+The specialist's only goal is ensuring the professional
+completes their first real task on the platform.
+
+### 38.6 The 30-day success metric
+
+AlecRae measures onboarding success by one metric only:
+did the professional complete a meaningful action in
+their first 30 days?
+
+For lawyers: meaningful action = first matter created,
+first document uploaded, first time entry logged, or
+first Oracle query run.
+
+For accountants: meaningful action = first client
+added, first bank feed connected, first AIM filing
+prepared, or first invoice sent.
+
+A professional who completes any meaningful action
+in 30 days has a 90%+ retention rate at 12 months.
+A professional who does not has a 90%+ churn rate.
+
+Every piece of onboarding is designed to get the
+professional to that first meaningful action as fast
+as possible. Nothing else matters in month one.
+
+### 38.7 What this looks like compared to competitors
+
+| Dimension | Clio | Xero/QuickBooks | AlecRae |
+|---|---|---|---|
+| Time to first value | Days to weeks | Hours to days | Under 10 minutes |
+| Setup complexity | High — multiple integrations required | Medium — bank setup complex | Low — one question, then value |
+| Data migration | Manual or paid service | CSV import, field mapping required | AI-powered automatic mapping |
+| Support quality | Variable — some users report no onboarding | Email/chat only, variable quality | Real-time chat + free onboarding call |
+| First feature shown | Feature tour of everything | Dashboard overview | Single most impressive feature for their role |
+| Voice input | None | None | Built in from first screen |
+| Role-specific flow | Generic for all users | Generic for all users | Completely personalised by professional type |
+| Pricing transparency | Multiple tiers + add-on costs confuse users | Multiple tiers + add-on costs | All-inclusive per role, no surprise add-ons |
+
+### 38.8 The onboarding promise — public and prominent
+
+On the AlecRae pricing and signup pages:
+
+**"Ten minutes to your first AlecRae moment.
+No setup fees. No integration costs. No data held hostage.
+If you are not genuinely impressed in your first session,
+we will personally help you get there or refund your
+first month. No questions asked."**
+
+That promise costs almost nothing to honour if the
+onboarding is built correctly. And it eliminates the
+single biggest psychological barrier to switching —
+the fear that the new platform will be as painful to
+set up as the last one was.
 
 ---
 
-### 26.9 Trade dress and IP protection — can anyone copy this?
-
-**The direct answer: No. Not legally. Not without consequences.**
-
-Here is the full picture of what protects AlecRae's collaboration design.
-
-**Layer 1 — Trade dress (protects the look and feel)**
-Trade dress protects the overall visual appearance and user experience
-of a product when it has become distinctive and identifies the source.
-The specific combination of:
-- Matter-centric messaging threads (organised by client matter, not sender)
-- Email extraction from chat (conversation → formatted email, one click)
-- Cross-professional matter bridge (lawyer invites accountant into shared matter)
-- Meeting-invite-as-hook (external invite = first platform exposure)
-- Unified law + accounting collaboration under one login
-
-...constitutes a unique, non-functional design that identifies AlecRae.
-Once we have sufficient market presence, this combination is protectable
-as trade dress under the Lanham Act (US) and equivalent laws globally.
-
-Document everything with dated screenshots and design files.
-Git commits with timestamps are evidence of prior creation.
-
-**Layer 2 — Provisional patents (protects the mechanisms)**
-File provisional patents immediately on:
-- Email extraction workflow (chat thread → formatted email draft)
-- Cross-professional matter invitation flow with shared workspace
-- Matter-centric notification hook system (interaction = marketing event)
-- Unified law + accounting collaboration workspace with Oracle integration
-
-Provisional patents are inexpensive ($1,500–3,000 each with an attorney)
-and establish priority date for 12 months. File before any public demo.
-Once filed, you can label the feature "Patent Pending" — which legally
-warns competitors that copying it creates liability.
-
-**Layer 3 — Copyright (protects the code)**
-Every line of code in the AlecRae collaboration system is automatically
-copyrighted to the IP holding entity the moment it is written.
-Ensure IP assignment agreements are signed by all contributors.
-
-**Layer 4 — Trademark (protects the brand)**
-"AlecRae," "The Oracle," and any unique product names within the
-collaboration system (e.g. if "Matter Bridge" or "AlecRae Connect"
-becomes a named feature) should be trademarked before public launch.
-
-**What a competitor can legally do:**
-- Build messaging software (not protectable)
-- Build meeting scheduling (not protectable)
-- Build a client portal (not protectable)
-
-**What a competitor CANNOT do without infringement:**
-- Copy the specific matter-centric thread → email extraction workflow
-  once the provisional patent is filed
-- Use the same visual design, layout, and interaction patterns
-  once trade dress is established
-- Use the AlecRae name or The Oracle name after trademark registration
-- Copy code directly from the AlecRae codebase (copyright infringement)
-
-**The honest truth:**
-A well-funded competitor can build similar individual features.
-What they cannot do is replicate the COMBINATION — the specific
-integration of law + accounting + collaboration + Oracle + consumer
-marketplace + dictation under one brand, with the data flywheel
-that AlecRae builds from day one. That combination is the moat.
-The IP protection layers are the legal expression of that moat.
-Together they make copying AlecRae expensive, slow, and risky.
-
-**Keeping everything within the platform is deliberate genius.**
-Every chat, every video call, every document signed, every meeting
-held inside AlecRae generates data that feeds the Oracle flywheel,
-creates an audit trail that protects professionals legally, deepens
-the switching cost for every user, and keeps the AlecRae brand
-in the interaction. Using Zoom directly, or WhatsApp, or email —
-none of that happens. The moment the interaction leaves the platform,
-the hook is lost, the data is lost, and the stickiness is lost.
-Keeping everything inside is not a convenience feature.
-It is a strategic architecture decision that compounds over time.
-
-### 26.10 Trade dress and IP protection for the collaboration design
-
-The specific combination of features described in this section —
-the matter-centric messaging with email extraction, the cross-professional
-bridge with shared matter workspaces, the meeting-invite-as-hook flow,
-and the consumer portal design — constitutes a unique and protectable
-user experience design.
-
-**Add to provisional patent applications:**
-- The email extraction feature (conversation thread → formatted email)
-- The cross-professional matter invitation flow
-- The matter-centric notification hook system
-
-**Trade dress protection:**
-The specific visual design, workflow sequence, and interaction patterns
-of the AlecRae collaboration interface should be documented with
-screenshots and dated design files at each major version. Trade dress
-protects the visual appearance and user experience when it has become
-distinctive. Document everything. Date everything. Commit everything
-to GitHub with timestamps.
-
-**The rule nobody can copy:**
-A competitor can build messaging. A competitor can build scheduling.
-A competitor can build a client portal. What a competitor CANNOT do
-is replicate the specific combination of: matter-centric organisation,
-cross-professional Oracle bridge, email extraction, meeting-as-hook
-notification design, and consumer portal quality — all inside a single
-unified platform that owns both law and accounting simultaneously.
-That combination, in its entirety, is AlecRae. That is the trade dress.
-That is the moat.
 
 ---
 
-## 24. Revision History
+## 38. The Oracle as Support — No Separate Support System
 
-| Version | Date | Changes |
-|---|---|---|
-| 1.0 | March 2026 | Initial blueprint created |
-| 1.1 | March 2026 | Removed Xero — AlecRae Accounting used internally |
-| 1.2 | March 2026 | Added Astra rename requirement |
-| 1.3 | March 2026 | Added dictation domain strategy — lives inside AlecRae |
-| 1.4 | March 2026 | Added user dependency moat, marketing strategy, tech stack, competitive intelligence, crisis protocols |
-| 1.5 | March 2026 | Added AI hallucination protocol (S21), security roadmap (S22), launch sequence (S23) |
-| 1.6 | March 2026 | Added seven category monopoly plays — data flywheel, law school pipeline, CLE, regulatory monitoring, consumer marketplace, international expansion, API economy |
-| 1.7 | March 2026 | Expanded product suites — e-signature, spreadsheets, document editor, legal forms library, court-rules calendaring, bank feeds, expense scanning, AI dictation grammar spec |
-| 1.8 | March 2026 | alecrae.com PURCHASED — first domain acquired, Stage 2 partially started |
-| 1.9 | March 2026 | alecrae.accountant PURCHASED — two of three domains secured |
-| 2.0 | March 2026 | Final pre-build version. alecrae-com repo created. .law replaced with .legal. GitHub repo structure defined. Active build focus section added. Ready to build. |
-| 2.1 | March 2026 | Clarified CLAUDE.md is a document only — does not auto-configure GitHub. Remaining repos to create: alecrae-accounting, alecrae-oracle, alecrae-dictation. |
-| 2.2 | March 2026 | Locked platform integration architecture — ONE application on alecrae.com, not three separate sites. Astra and Verom.ai migrate INTO alecrae.com as routes. Other domains are marketing redirects only. |
-| 2.3 | March 2026 | Added full five-audience strategy and SEO keyword territory architecture. AlecRae serves professionals, consumers, small businesses, corporates, and the general public through separate URL hooks under one unified brand. |
-| 2.4 | March 2026 | Added collaboration architecture (Section 26) — instant messaging with email extraction, meeting scheduling, cross-professional bridge, client portal hooks, notification marketing system, consumer page AI positioning copy, and trade dress protection strategy. |
-| 2.5 | March 2026 | Added time/money value proposition messaging (Section 26.1b) — quantified time savings, billing recovery calculator, emotional hook. Added full trademark/IP protection answer for collaboration design (Section 26.9). |
-| 2.6 | March 2026 | Added UX Philosophy section (Section 27) — Oracle draw-down workflow, two-click navigation rule, command palette, dashboard morning briefing design, mobile-first requirement, empty state philosophy. |
-| 2.7 | March 2026 | Added Technology Architecture (Section 28) — React components only rule, two-layer dev/production system, intellectual crawler monitoring. Added Email Platform (Section 29) — full email dashboard, Oracle draw-down in email composer, hosted email revenue stream, team/client meeting flow from email. |
-| 2.8 | March 2026 | Added AlecRae Voice as Universal Input Layer (Section 30). Product name locked. Tagline: "Speak. It is done." |
-| 2.9 | March 2026 | Added Geographic Markets section (Section 31) — full global expansion plan across 7 markets. |
-| 3.0 | March 2026 | MARKET STRATEGY DECIDED — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. |
-| 3.1 | March 2026 | Added complete country-by-country legal and operational compliance guide (Section 32). All markets legally planned. |
-| 3.2 | March 2026 | Added Verom.ai dedicated section (Section 33) — full migration plan into AlecRae Immigration module, three-sided marketplace documentation, ICE audit simulator preservation, immigration+accounting cross-domain opportunity, migration checklist, domain redirect strategy. Verom.ai is a Phase 2 migration asset, not a future build. | Added complete country-by-country legal and operational compliance guide (Section 32) — entity requirements, professional body relationships, legal requirements, tax obligations, and pre-launch checklists for NZ, AU, US, UK, Canada, Pacific Islands, Singapore, and Malaysia. Universal compliance requirements. All markets legally planned. | — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. | — launch sequence US+NZ+AU Phase 1, UK Phase 2, Canada+Pacific Phase 3. Data residency architecture per region. Multi-currency Stripe Tax setup. Oracle data sources per jurisdiction. Compliance requirements per market. Architecture rule: multi-region Supabase from day one, never retrofit. | as Universal Input Layer (Section 30) — Dictation is not a standalone feature, it is the input layer for the ENTIRE platform. Present in every surface: email, documents, messages, Oracle queries, billing entries, matter notes. Product name locked: AlecRae Voice. Tagline: "Speak. It is done." Language intelligence positioning — never "grammar correction." Phase 1 priority — ships first. | Added Technology Architecture (Section 28) — React components only rule, two-layer dev/production system, intellectual crawler monitoring. Added Email Platform (Section 29) — full email dashboard, Oracle draw-down in email composer, hosted email revenue stream, team/client meeting flow from email. | Added UX Philosophy section (Section 27) — Oracle draw-down workflow, two-click navigation rule, command palette, dashboard morning briefing design, mobile-first requirement, empty state philosophy. |
-| 2.7 | March 2026 | Added Technology Architecture (Section 28) — React components only rule, two-layer dev/production system, intellectual crawler monitoring. Added Email Platform (Section 29) — full email dashboard, Oracle draw-down in email composer, hosted email revenue stream, team/client meeting flow from email. |
-| 2.8 | March 2026 | Added AlecRae Voice as Universal Input Layer (Section 30). Product name locked. Tagline: "Speak. It is done." |
-| 2.9 | March 2026 | Added Geographic Markets section (Section 31) — full global expansion plan across 7 markets. |
-| 3.0 | March 2026 | MARKET STRATEGY DECIDED — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. |
-| 3.1 | March 2026 | Added complete country-by-country legal and operational compliance guide (Section 32). All markets legally planned. |
-| 3.2 | March 2026 | Added Verom.ai dedicated section (Section 33) — full migration plan into AlecRae Immigration module, three-sided marketplace documentation, ICE audit simulator preservation, immigration+accounting cross-domain opportunity, migration checklist, domain redirect strategy. Verom.ai is a Phase 2 migration asset, not a future build. | Added complete country-by-country legal and operational compliance guide (Section 32) — entity requirements, professional body relationships, legal requirements, tax obligations, and pre-launch checklists for NZ, AU, US, UK, Canada, Pacific Islands, Singapore, and Malaysia. Universal compliance requirements. All markets legally planned. | — NZ + Australia Phase 1, US Phase 2, UK + Canada Phase 3, Pacific Islands Phase 4, SE Asia Phase 5. Goal: all markets, no exceptions. Launch sequence locked. | — launch sequence US+NZ+AU Phase 1, UK Phase 2, Canada+Pacific Phase 3. Data residency architecture per region. Multi-currency Stripe Tax setup. Oracle data sources per jurisdiction. Compliance requirements per market. Architecture rule: multi-region Supabase from day one, never retrofit. | as Universal Input Layer (Section 30) — Dictation is not a standalone feature, it is the input layer for the ENTIRE platform. Present in every surface: email, documents, messages, Oracle queries, billing entries, matter notes. Product name locked: AlecRae Voice. Tagline: "Speak. It is done." Language intelligence positioning — never "grammar correction." Phase 1 priority — ships first. | Added Technology Standards (Section 28) — no HTML files, components only, intellectual crawler system, two-layer QA architecture, broken link policy. |
-| 2.8 | March 2026 | Added AlecRae Mail (Section 29) — built-in email dashboard, Oracle inline in compose, firm dashboard, client portal email hook, team meeting from email, Resend hosting architecture. |
-| 2.9 | March 2026 | Added Complete Professional Day (Section 30) — full daily workflow map demonstrating zero external application dependency. | Added UX Philosophy section (Section 27) — Oracle draw-down workflow, two-click navigation rule, command palette, dashboard morning briefing design, mobile-first requirement, empty state philosophy. | Added time/money value proposition messaging (Section 26.1b) — quantified time savings, billing recovery calculator, emotional hook. Added full trademark/IP protection answer for collaboration design (Section 26.9). | (Section 26) — instant messaging with email extraction, meeting scheduling, cross-professional bridge, client portal hooks, notification marketing system, consumer page AI positioning copy, and trade dress protection strategy. | AlecRae serves professionals, consumers, small businesses, corporates, and the general public through separate URL hooks under one unified brand. | — ONE application on alecrae.com, not three separate sites. Astra and Verom.ai migrate INTO alecrae.com as routes. Other domains are marketing redirects only. | (Section 21), security certification roadmap (Section 22), linear launch sequence (Section 23) |
+### 39.1 The insight that changes everything
+
+The Oracle is Claude. Claude is the Oracle.
+The support agent is the Oracle.
+There is no separate system.
+
+This is not a feature decision. It is an architectural
+philosophy that eliminates the single most frustrating
+experience in professional software — the support loop.
+
+The support loop that every competitor inflicts:
+1. Professional has a problem
+2. Opens a chat window with a bot
+3. Bot asks generic questions, provides generic answers
+4. Professional asks to speak to a human
+5. Human asks them to re-verify their account
+6. Professional repeats everything they already said to the bot
+7. Human has no context from the bot conversation
+8. Professional is furious before the problem is even solved
+
+AlecRae has none of this. Because there is no bot.
+There is no separate support system. There is the Oracle —
+which already knows everything about the professional,
+their account, their matters, and their question —
+and a human who sees the full Oracle conversation
+if escalation is genuinely needed.
+
+### 39.2 How Oracle support works
+
+**The trigger:**
+From anywhere in the platform, the professional says
+or types their question. AlecRae Voice is the fastest
+path — speak the question, get the answer, keep working.
+No support window to open. No form to fill in.
+No category to select. Just ask.
+
+**What the Oracle knows when answering a support question:**
+- The professional's full account status and tier
+- Every matter currently active in their account
+- Their billing history and current invoice status
+- Their AIM position and last filing date
+- Their trust account balance and recent transactions
+- Their recent activity in the platform
+- Their subscription tier and which features they have access to
+- The exact screen they were on when they asked
+
+This context transforms every support interaction.
+Instead of "how do I view my trust account balance"
+getting a generic answer about where to find trust accounts,
+the Oracle says: "Your trust account balance is currently
+$3,200. It is under Billing → Trust Accounts in your
+left sidebar. Your last deposit was $1,500 on March 14."
+
+That is not support. That is a colleague.
+
+**The Oracle support system prompt:**
+When the Oracle is operating in support mode it has
+an additional layer of context: the full AlecRae
+platform documentation, every feature, every workflow,
+every known issue, and the professional's account data.
+It answers questions about how to use the platform
+with the same precision it answers questions about
+California adverse possession law.
+
+### 39.3 AlecRae Voice as the support interface
+
+The most powerful support interaction on AlecRae
+requires no typing at all.
+
+A lawyer is in the middle of drafting a motion.
+They say: "How do I add a filing deadline to this matter
+that automatically calculates the response deadline?"
+
+The Oracle responds — by voice if they prefer,
+or in the sidebar if they are mid-document:
+"I can add that now. The motion you are drafting
+is tagged to the Rodriguez matter. Should I add
+a filing deadline of today with the automatic
+28-day response calculation? Say yes to confirm."
+
+"Yes."
+
+Done. The deadline is added. The calendar is updated.
+The downstream deadlines are calculated. The professional
+never stopped working.
+
+This is the support experience that makes competitors
+irrelevant. Not because AlecRae answered the question —
+because AlecRae took the action.
+
+### 39.4 When a human is needed — zero friction escalation
+
+Sometimes the Oracle cannot resolve something.
+A billing dispute. A data issue. A complex migration problem.
+A professional who wants to talk to a person.
+
+When escalation happens:
+- The human support specialist sees the full Oracle
+  conversation — every question asked, every answer given
+- They see the professional's account in full context
+- They know exactly what was tried and what failed
+- The professional does not repeat a single word
+
+The human greeting is:
+"Hi [Name], I can see you were asking about [specific issue]
+and the Oracle suggested [X]. I am looking at your account
+now — can you confirm this is about the [matter name]
+or is it a different matter?"
+
+One confirmation. The human is already oriented.
+The professional feels heard from the first sentence.
+This is the opposite of every support experience they
+have ever had with any software product.
+
+### 39.5 Account verification — solved permanently
+
+The credential re-verification loop that every professional
+has experienced with other platforms is eliminated entirely
+by design.
+
+The Oracle knows who the professional is because they
+are already authenticated and logged into AlecRae.
+There is no verification step for support questions
+because the Oracle is already inside their authenticated
+session. It knows their account. It knows their data.
+It does not need to ask them to prove who they are.
+
+If a human support specialist takes over, they see
+the authenticated session data directly. They do not
+ask for an account number, email address, or password.
+The professional's identity is already established.
+
+The only exception is account security actions —
+password reset, two-factor authentication changes,
+billing method updates. These require explicit
+re-authentication, but this is communicated clearly:
+"For security, I will send a verification code to
+your registered email for this change."
+One step. Clear reason. No repetition.
+
+### 39.6 The support quality promise
+
+**On the platform, prominently:**
+
+"AlecRae support is powered by The Oracle —
+the same AI that answers your legal and accounting
+research questions. It knows your account, your matters,
+and your question before you finish asking it.
+No bots. No tickets. No hold music.
+If you need a human, you get one — and they already
+know exactly what you need."
+
+### 39.7 The 95% Oracle resolution target
+
+**This is a formal product and business target, not a hope.**
+
+95% of all AlecRae support queries are resolved by
+the Oracle without human involvement. This is achievable
+because of how AlecRae is designed — not because the
+Oracle is unusually powerful, but because the combination
+of full account context, platform knowledge, AlecRae Voice
+as the zero-friction input method, and a product built
+to be genuinely faultless means the vast majority of
+questions have clear, immediate, accurate answers.
+
+The 5% that reaches a human is the genuinely valuable 5%:
+- Complex data migration issues
+- Billing disputes requiring financial judgment
+- Edge cases in trust accounting or AIM calculations
+- Professionals going through an unusual situation
+  that benefits from a specialist's eye
+- Anything the Oracle flags as beyond its confidence level
+
+The human specialists who handle that 5% are not a
+cost centre. They are a quality signal. A small team
+of deeply knowledgeable professionals who only handle
+meaningful complexity, who always have full context,
+and who never waste a second on questions the Oracle
+already answered. That team stays small as AlecRae
+scales to tens of thousands of professionals.
+
+Higher Oracle query volume is a sign of health, not burden.
+When finding an answer is instant and frictionless,
+professionals ask small questions immediately rather
+than letting confusion build into frustration.
+Engaged professionals ask more questions and stay longer.
+The Oracle answering 10,000 queries a day costs the
+same as answering 100. That is the economics of AI
+support done correctly.
+
+### 39.8 What this means for support cost
+
+The Oracle handling 80-90% of support queries is not
+just a better experience — it is a better business.
+
+Every professional platform's largest operational cost
+after engineering is customer support. Clio has hundreds
+of support staff. QuickBooks has thousands. Xero has
+extensive support teams across multiple countries.
+
+AlecRae's support cost structure is fundamentally
+different. The Oracle handles the vast majority of
+queries automatically, with full context, instantly,
+at any hour, in any language. Human support specialists
+handle the genuinely complex escalations — meaning
+they spend their time on problems that actually need
+human judgment, not resetting passwords or explaining
+where to find the billing tab.
+
+This creates a support operation that is simultaneously
+better than every competitor and dramatically cheaper
+to run. That cost advantage compounds as scale increases.
+Every new professional who joins the platform adds
+queries that the Oracle handles without adding
+proportional support headcount.
+
+### 39.8 Multi-language Oracle support
+
+AlecRae Voice supports nine languages at launch.
+Oracle support operates in every one of them.
+
+A Spanish-speaking immigration attorney in Miami
+asks their support question in Spanish.
+The Oracle answers in Spanish — with perfect understanding
+of the legal terminology they used, because AlecRae Voice's
+professional language intelligence works in Spanish too.
+
+No competitor offers multi-language professional
+support with this level of contextual intelligence.
+This is a day-one capability that opens markets that
+every other legal and accounting platform effectively
+ignores.
 
 ---
 
-*This document is confidential and proprietary to AlecRae and its founder.*
-*It is not to be shared publicly or with any competitor.*
-*Commit this file to the root of every AlecRae GitHub repository.*
-
-| Version | Date | Changes |
-|---|---|---|
-| 1.0 | March 2026 | Initial blueprint created |
-| 1.1 | March 2026 | Removed Xero — AlecRae Accounting used internally |
-| 1.2 | March 2026 | Added Astra rename requirement |
-| 1.3 | March 2026 | Added dictation domain strategy — lives inside AlecRae |
-| 1.4 | March 2026 | Added user dependency moat, marketing strategy, tech stack, competitive intelligence, crisis protocols |
-
----
-
-*This document is confidential and proprietary to AlecRae and its founder.*
-*It is not to be shared publicly or with any competitor.*
-*Commit this file to the root of every AlecRae GitHub repository.*
-
----
-
-## 25. The Category Monopoly Plays — Making AlecRae Untouchable
+## 39. The Category Monopoly Plays — Making AlecRae Untouchable
 
 These are the seven strategic plays that elevate AlecRae from a great
 platform into a genuine category monopoly. They are executed in sequence
@@ -3694,3 +4937,46 @@ When all seven plays are active:
 At that point AlecRae is not competing with Westlaw, Clio, or LexisNexis.
 It is the layer those platforms wish they had built first.
 
+
+## 40. Revision History
+
+| Version | Date | Changes |
+|---|---|---|
+| 1.0 | March 2026 | Initial blueprint created |
+| 1.1 | March 2026 | Removed Xero — AlecRae Accounting used internally |
+| 1.2 | March 2026 | Added Astra rename requirement |
+| 1.3 | March 2026 | Added dictation domain strategy — lives inside AlecRae |
+| 1.4 | March 2026 | Added user dependency moat, marketing strategy, tech stack, competitive intelligence, crisis protocols |
+| 1.5 | March 2026 | Added AI hallucination protocol, security certification roadmap, linear launch sequence |
+| 1.6 | March 2026 | Added seven category monopoly plays |
+| 1.7 | March 2026 | Expanded product suites — e-signature, spreadsheets, document editor, legal forms library, bank feeds, expense scanning, AI dictation grammar spec |
+| 1.8 | March 2026 | alecrae.com PURCHASED |
+| 1.9 | March 2026 | alecrae.accountant PURCHASED |
+| 2.0 | March 2026 | Final pre-build version. alecrae-com GitHub repo created. .law replaced with .legal |
+| 2.1 | March 2026 | Clarified CLAUDE.md is a document only. Remaining repos documented |
+| 2.2 | March 2026 | Platform integration architecture locked — ONE application on alecrae.com |
+| 2.3 | March 2026 | Five-audience strategy and SEO keyword territory architecture added |
+| 2.4 | March 2026 | Collaboration architecture — instant messaging, meetings, cross-professional bridge, client portal hooks |
+| 2.5 | March 2026 | Time/money value proposition and trademark/IP protection strategy added |
+| 2.6 | March 2026 | UX Philosophy — Oracle draw-down, two-click navigation, command palette, dashboard design |
+| 2.7 | March 2026 | Technology Architecture — React components only, two-layer system, intellectual crawlers. Email Platform added |
+| 2.8 | March 2026 | AlecRae Voice as Universal Input Layer. Product name locked. Tagline: "Speak. It is done." |
+| 2.9 | March 2026 | Geographic Markets — NZ+AU Phase 1, US Phase 2, UK+Canada Phase 3, Pacific Phase 4, SE Asia Phase 5 |
+| 3.0 | March 2026 | Market strategy decided — all markets, no exceptions |
+| 3.1 | March 2026 | Country-by-country legal compliance guide — all 8 markets |
+| 3.2 | March 2026 | Verom.ai migration plan — AlecRae Immigration module |
+| 3.3 | March 2026 | Database changed — Neon replaces Supabase. Prisma ORM added |
+| 3.4 | March 2026 | AlecRae Voice competitive landscape, multi-language, platform integration voice commands |
+| 3.5 | March 2026 | AlecRae App (Tauri v2), Advanced Technology Stack, alecrae.app purchased |
+| 3.6 | March 2026 | alecrae.ai purchased. Domain register updated |
+| 3.7 | March 2026 | Government Authority Strategy — IRD, ATO, HMRC, CRA |
+| 3.8 | March 2026 | AlecRae AIM flagship product — IRD partnership centrepiece |
+| 3.9 | March 2026 | Onboarding — 10-minute value principle, competitive analysis, AI data migration, 30-day success metric |
+| 4.0 | March 2026 | Oracle as Support — 95% resolution target, no separate bot, full account context, zero re-verification |
+| 4.1 | March 2026 | CLEAN REBUILD — all 40 sections correctly ordered and numbered. Document is now the definitive version. |
+
+---
+
+*This document is confidential and proprietary to AlecRae and its founder.*
+*It is not to be shared publicly or with any competitor.*
+*Commit this file to the root of every AlecRae GitHub repository.*
