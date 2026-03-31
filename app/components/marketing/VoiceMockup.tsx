@@ -2,7 +2,7 @@
 
 export default function VoiceMockup() {
   return (
-    <div className="mockup-window mx-auto max-w-2xl">
+    <div className="mockup-window mx-auto w-full">
       <div className="mockup-titlebar">
         <div className="mockup-dot bg-red-500/80" />
         <div className="mockup-dot bg-yellow-500/80" />
