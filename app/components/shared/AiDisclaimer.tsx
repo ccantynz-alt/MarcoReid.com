@@ -2,9 +2,9 @@ import { AI_DISCLAIMER } from "@/lib/constants";
 
 export default function AiDisclaimer() {
   return (
-    <div className="rounded-lg border border-navy-100 bg-navy-50 p-4 text-sm text-navy-400">
-      <p className="font-semibold text-navy-500">AI Disclaimer</p>
-      <p className="mt-1">{AI_DISCLAIMER}</p>
+    <div className="rounded-2xl bg-neutral-200 px-6 py-5 text-sm text-neutral-600">
+      <p className="font-medium text-neutral-700">AI Disclaimer</p>
+      <p className="mt-1 leading-relaxed">{AI_DISCLAIMER}</p>
     </div>
   );
 }

@@ -3,26 +3,26 @@ import Button from "@/app/components/shared/Button";
 
 export default function Hero() {
   return (
-    <section className="py-20 sm:py-28 lg:py-36">
+    <section className="pb-24 pt-32 sm:pb-36 sm:pt-44 lg:pb-44 lg:pt-52">
       <Container className="text-center">
-        <h1 className="mx-auto max-w-4xl font-serif text-4xl text-navy-500 sm:text-5xl lg:text-7xl">
-          Professional intelligence {"\u2014"}{" "}
-          <span className="text-forest-500">law</span> and{" "}
-          <span className="text-plum-500">accounting</span>
+        <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
+          Law &middot; Accounting &middot; Intelligence
+        </p>
+        <h1 className="mt-6 text-display-xl font-serif text-neutral-950">
+          The platform that{" "}
+          <br className="hidden sm:block" />
+          replaces everything.
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-400 sm:text-xl">
-          The operating system for legal and accounting professionals. Every
-          tool your firm needs, in one platform.
+        <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-neutral-600">
+          One login. One platform. Every tool a legal or accounting
+          professional needs to run their entire practice.
         </p>
-        <p className="mt-4 text-sm font-medium text-navy-300">
-          Built by professionals, powered by AI
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button href="/law" size="lg">
-            Explore AlecRae Law
+            Explore Law
           </Button>
           <Button href="/accounting" variant="secondary" size="lg">
-            Explore AlecRae Accounting
+            Explore Accounting
           </Button>
         </div>
       </Container>

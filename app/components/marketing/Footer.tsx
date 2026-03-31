@@ -1,12 +1,11 @@
 import Link from "next/link";
-import Container from "@/app/components/shared/Container";
 
-const footerLinks = {
+const links = {
   products: [
-    { label: "AlecRae Law", href: "/law" },
-    { label: "AlecRae Accounting", href: "/accounting" },
+    { label: "Law", href: "/law" },
+    { label: "Accounting", href: "/accounting" },
     { label: "The Oracle", href: "/oracle" },
-    { label: "AlecRae Voice", href: "/dictation" },
+    { label: "Voice", href: "/dictation" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [
@@ -15,74 +14,64 @@ const footerLinks = {
     { label: "Contact", href: "#" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Privacy", href: "#" },
+    { label: "Terms", href: "#" },
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="border-t border-navy-100 bg-navy-50">
-      <Container className="py-12 sm:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand column */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="font-serif text-2xl text-navy-500">
+    <footer className="bg-neutral-200">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
+        <div className="grid gap-10 sm:grid-cols-4">
+          <div>
+            <Link href="/" className="font-serif text-lg text-neutral-950">
               AlecRae
             </Link>
-            <p className="mt-2 text-sm text-navy-400">
-              Professional intelligence {"\u2014"} law and accounting
-            </p>
-            <p className="mt-4 text-xs text-navy-300">
-              Built in Auckland, New Zealand
+            <p className="mt-2 text-sm text-neutral-600">
+              Professional intelligence.
             </p>
           </div>
 
-          {/* Products */}
           <div>
-            <h3 className="text-sm font-semibold text-navy-500">Products</h3>
-            <ul className="mt-3 space-y-2">
-              {footerLinks.products.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-navy-400 transition-colors hover:text-navy-500"
-                  >
-                    {link.label}
+            <p className="text-xs font-medium uppercase tracking-widest text-neutral-500">
+              Products
+            </p>
+            <ul className="mt-4 space-y-3">
+              {links.products.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-neutral-700 transition-colors hover:text-neutral-950">
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold text-navy-500">Company</h3>
-            <ul className="mt-3 space-y-2">
-              {footerLinks.company.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-navy-400 transition-colors hover:text-navy-500"
-                  >
-                    {link.label}
+            <p className="text-xs font-medium uppercase tracking-widest text-neutral-500">
+              Company
+            </p>
+            <ul className="mt-4 space-y-3">
+              {links.company.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className="text-sm text-neutral-700 transition-colors hover:text-neutral-950">
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
-            <h3 className="text-sm font-semibold text-navy-500">Legal</h3>
-            <ul className="mt-3 space-y-2">
-              {footerLinks.legal.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-navy-400 transition-colors hover:text-navy-500"
-                  >
-                    {link.label}
+            <p className="text-xs font-medium uppercase tracking-widest text-neutral-500">
+              Legal
+            </p>
+            <ul className="mt-4 space-y-3">
+              {links.legal.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className="text-sm text-neutral-700 transition-colors hover:text-neutral-950">
+                    {l.label}
                   </Link>
                 </li>
               ))}
@@ -90,12 +79,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-navy-100 pt-8">
-          <p className="text-center text-xs text-navy-300">
-            &copy; {new Date().getFullYear()} AlecRae. All rights reserved.
+        <div className="mt-16 border-t border-neutral-300 pt-8">
+          <p className="text-xs text-neutral-500">
+            &copy; {new Date().getFullYear()} AlecRae. Auckland, New Zealand.
           </p>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }

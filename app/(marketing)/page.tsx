@@ -4,7 +4,6 @@ import ValueProposition from "@/app/components/marketing/ValueProposition";
 import ProductCard from "@/app/components/marketing/ProductCard";
 import CtaSection from "@/app/components/marketing/CtaSection";
 import Container from "@/app/components/shared/Container";
-import SectionHeading from "@/app/components/shared/SectionHeading";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 
 const organizationSchema = {
@@ -35,34 +34,40 @@ export default function HomePage() {
 
       <ValueProposition />
 
-      {/* Products section */}
-      <section className="py-20 sm:py-28">
+      {/* Products */}
+      <section className="bg-neutral-100 py-24 sm:py-36">
         <Container>
-          <SectionHeading
-            title="Every tool your firm needs"
-            subtitle="Four products, one platform, one login"
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            <ProductCard product={PRODUCTS.law} accentColor="navy" />
-            <ProductCard product={PRODUCTS.accounting} accentColor="forest" />
-            <ProductCard product={PRODUCTS.oracle} accentColor="plum" />
-            <ProductCard product={PRODUCTS.voice} accentColor="navy" />
+          <div className="text-center">
+            <h2 className="text-display font-serif text-neutral-950">
+              Four products. One platform.
+            </h2>
+            <p className="mt-6 text-xl text-neutral-600">
+              Everything a professional needs, nothing they don&rsquo;t.
+            </p>
+          </div>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2">
+            <ProductCard product={PRODUCTS.law} />
+            <ProductCard product={PRODUCTS.accounting} />
+            <ProductCard product={PRODUCTS.oracle} />
+            <ProductCard product={PRODUCTS.voice} />
           </div>
         </Container>
       </section>
 
-      {/* Emotional hook section */}
-      <section className="bg-navy-500 py-20 sm:py-28">
-        <Container className="text-center">
-          <h2 className="mx-auto max-w-3xl font-serif text-3xl text-white sm:text-4xl lg:text-5xl">
-            Your profession back
+      {/* Manifesto */}
+      <section className="py-24 sm:py-36">
+        <Container narrow>
+          <h2 className="text-display font-serif text-neutral-950">
+            Your profession back.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-200">
+          <p className="mt-8 text-xl leading-relaxed text-neutral-600">
             Lawyers and accountants became professionals to practise their craft
-            {"\u00A0"}{"\u2014"} not to spend their days on admin, research grunt work, and
-            chasing clients for information. AlecRae gives them their profession
-            back. The platform handles the machine work. The professional handles
-            the judgment work.
+            {"\u00A0"}&mdash; not to spend their days on admin, research grunt
+            work, and chasing clients for information.
+          </p>
+          <p className="mt-6 text-xl leading-relaxed text-neutral-600">
+            AlecRae handles the machine work. You handle the judgment work.
+            That is the only division that makes sense.
           </p>
         </Container>
       </section>

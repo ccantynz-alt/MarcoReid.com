@@ -2,7 +2,7 @@ import Link from "next/link";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "text";
   size?: "sm" | "md" | "lg";
   href?: string;
   className?: string;
@@ -10,17 +10,16 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-navy-500 text-white hover:bg-navy-600 focus-visible:ring-navy-500",
+    "bg-neutral-950 text-white hover:bg-neutral-800 focus-visible:ring-neutral-950",
   secondary:
-    "bg-forest-500 text-white hover:bg-forest-600 focus-visible:ring-forest-500",
-  outline:
-    "border-2 border-navy-500 text-navy-500 hover:bg-navy-50 focus-visible:ring-navy-500",
+    "bg-neutral-200 text-neutral-950 hover:bg-neutral-300 focus-visible:ring-neutral-400",
+  text: "text-accent hover:opacity-80 focus-visible:ring-accent",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3 text-base",
-  lg: "px-8 py-4 text-lg",
+  sm: "px-5 py-2.5 text-sm",
+  md: "px-7 py-3.5 text-base",
+  lg: "px-9 py-4 text-lg",
 };
 
 export default function Button({
@@ -30,7 +29,12 @@ export default function Button({
   href,
   className = "",
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center min-h-touch min-w-touch rounded-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${variants[variant]} ${sizes[size]} ${className}`;
+  const base =
+    variant === "text"
+      ? "inline-flex items-center min-h-touch font-medium transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+      : "inline-flex items-center justify-center min-h-touch rounded-full font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+
+  const classes = `${base} ${variants[variant]} ${variant !== "text" ? sizes[size] : ""} ${className}`;
 
   if (href) {
     return (

@@ -1,11 +1,20 @@
 interface ContainerProps {
   children: React.ReactNode;
   className?: string;
+  narrow?: boolean;
 }
 
-export default function Container({ children, className = "" }: ContainerProps) {
+export default function Container({
+  children,
+  className = "",
+  narrow = false,
+}: ContainerProps) {
   return (
-    <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>
+    <div
+      className={`mx-auto px-6 sm:px-8 lg:px-12 ${
+        narrow ? "max-w-3xl" : "max-w-6xl"
+      } ${className}`}
+    >
       {children}
     </div>
   );
