@@ -51,7 +51,7 @@ export default function OraclePage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-surface to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Oracle mockup */}

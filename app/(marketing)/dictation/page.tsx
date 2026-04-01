@@ -58,7 +58,7 @@ export default function DictationPage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-surface to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Live typing demo */}
@@ -226,7 +226,7 @@ export default function DictationPage() {
           <Reveal delay={0.15}>
             <div className="mt-12 flex flex-wrap justify-center gap-3">
               {languages.map((lang) => (
-                <span key={lang} className="rounded-full border border-navy-100 bg-navy-50 px-5 py-2.5 text-sm font-medium text-navy-400 transition-colors hover:border-accent/50 hover:text-navy-700">
+                <span key={lang} className="rounded-full border border-navy-100 bg-navy-50 px-5 py-2.5 text-sm font-medium text-navy-400 transition-colors hover:border-forest-300 hover:text-navy-700">
                   {lang}
                 </span>
               ))}

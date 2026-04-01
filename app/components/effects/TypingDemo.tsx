@@ -42,10 +42,10 @@ export default function TypingDemo({ className = "" }: { className?: string }) {
 
   return (
     <div className={className}>
-      <span className="text-text-primary">
+      <span className="text-navy-700">
         {phrases[phraseIndex].substring(0, charIndex)}
       </span>
-      <span className="typing-cursor ml-0.5 inline-block h-5 w-0.5 bg-accent" />
+      <span className="typing-cursor ml-0.5 inline-block h-5 w-0.5 bg-forest-500" />
     </div>
   );
 }
