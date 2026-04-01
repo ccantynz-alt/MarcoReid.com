@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const links = {
   products: [
-    { label: "AlecRae Law", href: "/law" },
+    { label: "AlecRae Legal", href: "/law" },
     { label: "AlecRae Accounting", href: "/accounting" },
     { label: "The Oracle", href: "/oracle" },
     { label: "AlecRae Voice", href: "/dictation" },

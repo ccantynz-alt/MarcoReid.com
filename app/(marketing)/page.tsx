@@ -37,7 +37,7 @@ const softwareSchema = {
 
 const heroSlides = [
   {
-    eyebrow: "AlecRae Law",
+    eyebrow: "AlecRae Legal",
     title: (
       <>
         <span className="text-navy-800">Every tool your practice needs.</span>
@@ -48,7 +48,7 @@ const heroSlides = [
     subtitle:
       "Case management. Trust accounting. Court calendaring. Document AI. Billing. E-signatures. Client portal. Secure messaging. The Oracle for research. AlecRae Voice for dictation. One login. One bill.",
     features: ["Case management", "Trust accounting", "Court calendaring", "Document AI", "Billing", "E-signatures", "Client portal", "Messaging"],
-    cta: { label: "Explore AlecRae Law", href: "/law" },
+    cta: { label: "Explore AlecRae Legal", href: "/law" },
     accentClass: "text-forest-600",
     badgeBg: "bg-forest-50",
     badgeText: "text-forest-700",
@@ -151,17 +151,17 @@ export default function HomePage() {
       </section>
 
       {/* ====== PRODUCT 1: LAW ====== */}
-      <section className="py-24 sm:py-36" aria-label="AlecRae Law">
+      <section className="py-24 sm:py-36" aria-label="AlecRae Legal">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-wider text-forest-600">
-              AlecRae Law
+              AlecRae Legal
             </p>
             <h2 className="mt-4 text-display font-serif text-navy-800">
               Your entire practice. One platform.
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-navy-400">
-              Stop switching between seven different tools. AlecRae Law replaces your case
+              Stop switching between seven different tools. AlecRae Legal replaces your case
               management, billing, trust accounting, document drafting, court calendaring,
               client communication, and legal research.
             </p>
@@ -173,7 +173,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <div className="mt-10 flex gap-4">
-              <Button href="/law">Learn more about AlecRae Law</Button>
+              <Button href="/law">Learn more about AlecRae Legal</Button>
               <Button href="/pricing" variant="ghost">See pricing &rarr;</Button>
             </div>
           </Reveal>
@@ -347,7 +347,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href="/law" size="lg">Explore AlecRae Law</Button>
+              <Button href="/law" size="lg">Explore AlecRae Legal</Button>
               <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
               <Button href="/dictation" variant="ghost">Explore Voice &rarr;</Button>
             </div>

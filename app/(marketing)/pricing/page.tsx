@@ -12,7 +12,7 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent pricing for AlecRae Law, AlecRae Accounting, and The Oracle. Plans for solo practitioners to growing firms.",
+    "Transparent pricing for AlecRae Legal, AlecRae Accounting, and The Oracle. Plans for solo practitioners to growing firms.",
 };
 
 const schema = {
@@ -24,7 +24,7 @@ const schema = {
   offers: [
     ...LAW_PRICING.map((t) => ({
       "@type": "Offer",
-      name: `AlecRae Law ${t.name}`,
+      name: `AlecRae Legal ${t.name}`,
       price: t.price.replace("$", ""),
       priceCurrency: "USD",
     })),
@@ -107,7 +107,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <p className="text-center text-xs font-bold uppercase tracking-wider text-forest-600">
-              AlecRae Law
+              AlecRae Legal
             </p>
             <h2 className="mt-3 text-center text-display font-serif text-navy-800">
               Legal practice management.

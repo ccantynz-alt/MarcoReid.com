@@ -11,7 +11,7 @@ import MockupReveal from "@/app/components/effects/MockupReveal";
 
 
 export const metadata: Metadata = {
-  title: "AlecRae Law \u2014 The Operating System for Your Legal Practice",
+  title: "AlecRae Legal \u2014 The Operating System for Your Legal Practice",
   description:
     "Full-stack legal practice management powered by AI. Case management, billing, trust accounting, document drafting, court-rules calendaring, and The Oracle legal research. One platform replaces everything.",
 };
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "AlecRae Law",
+  name: "AlecRae Legal",
   applicationCategory: "Legal",
   operatingSystem: "Web",
   description: "The operating system for legal practice. Case management, billing, trust accounting, AI research, voice dictation, and client collaboration in one platform.",
@@ -35,7 +35,7 @@ export default function LawPage() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Container className="relative text-center">
           <p className="animate-fade-in-up text-xs font-medium uppercase tracking-widest text-forest-600 opacity-0">
-            AlecRae Law
+            AlecRae Legal
           </p>
           <h1 className="mt-8 animate-fade-in-up-delay text-hero font-serif text-forest-500 opacity-0">
             The operating system
@@ -43,7 +43,7 @@ export default function LawPage() {
             for your legal practice.
           </h1>
           <p className="mx-auto mt-8 max-w-2xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-navy-400 opacity-0">
-            Stop switching between seven different tools. AlecRae Law replaces your
+            Stop switching between seven different tools. AlecRae Legal replaces your
             case management, billing, trust accounting, document drafting, court calendaring,
             client communication, and legal research &mdash; with one login, one platform,
             and one bill.
@@ -130,7 +130,7 @@ export default function LawPage() {
               How it works
             </p>
             <h2 className="mt-6 text-center text-display font-serif text-navy-700">
-              A day on AlecRae Law.
+              A day on AlecRae Legal.
             </h2>
           </Reveal>
 
