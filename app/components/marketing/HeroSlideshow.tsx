@@ -62,7 +62,7 @@ export default function HeroSlideshow({ slides }: { slides: Slide[] }) {
             }}
           >
             <span
-              className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider ${slide.badgeBg} ${slide.badgeText}`}
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold tracking-wider ${slide.badgeBg} ${slide.badgeText}`}
             >
               <span className="h-1.5 w-1.5 rounded-full bg-current" />
               {slide.eyebrow}
@@ -136,7 +136,7 @@ export default function HeroSlideshow({ slides }: { slides: Slide[] }) {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`min-h-touch text-xs font-semibold uppercase tracking-wider transition-colors ${
+                className={`min-h-touch text-xs font-semibold tracking-wider transition-colors ${
                   i === current ? "text-navy-700" : "text-navy-300 hover:text-navy-500"
                 }`}
               >

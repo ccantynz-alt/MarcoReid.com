@@ -163,7 +163,7 @@ export default function AccountingPage() {
 
             <Reveal delay={0.05}>
               <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
-                <p className="text-xs font-semibold uppercase tracking-widest text-purple-400">The Oracle for accounting</p>
+                <p className="text-xs font-semibold tracking-widest text-purple-400">The Oracle for accounting</p>
                 <h3 className="mt-4 font-serif text-headline text-navy-700">
                   Tax research in seconds, not hours.
                 </h3>

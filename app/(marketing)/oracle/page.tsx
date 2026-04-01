@@ -78,7 +78,7 @@ export default function OraclePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-12 rounded-2xl border border-navy-100 bg-navy-50 p-8">
-              <p className="text-xs font-semibold uppercase tracking-widest text-red-600">Without AlecRae</p>
+              <p className="text-xs font-semibold tracking-widest text-red-600">Without AlecRae</p>
               <p className="mt-4 leading-relaxed text-navy-400">
                 You&rsquo;re drafting a contract clause about non-compete enforceability.
                 Not sure about the California standard. Open a new tab. Go to Westlaw.
@@ -89,7 +89,7 @@ export default function OraclePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-4 rounded-2xl border border-purple-500/20 bg-plum-50 p-8">
-              <p className="text-xs font-semibold uppercase tracking-widest text-plum-600">With The Oracle</p>
+              <p className="text-xs font-semibold tracking-widest text-plum-600">With The Oracle</p>
               <p className="mt-4 leading-relaxed text-navy-400">
                 You&rsquo;re drafting. You hit &thinsp;<span className="rounded bg-navy-100 px-2 py-0.5 font-mono text-sm text-plum-600">&#8984;K</span>&thinsp;.
                 The Oracle slides in from the right &mdash; you never leave the document.
