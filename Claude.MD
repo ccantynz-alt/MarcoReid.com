@@ -975,6 +975,40 @@ These rules govern how Claude assists with AlecRae in every session.
     document intentionally — but changes should be explicit and deliberate,
     not the result of a casual in-session suggestion.
 
+11. **Brand name capitalisation: AlecRae.** The name is always written as
+    "AlecRae" — capital A, capital R, everything else lowercase. Never
+    "ALECRAE", never "Alecrae", never "alecrae" in any user-facing text.
+    Product names follow the same rule: "AlecRae Law", "AlecRae Accounting",
+    "AlecRae Voice". "The Oracle" has a capital T and capital O.
+    This applies to all headings, body text, navigation, footer, metadata,
+    and schema markup across the entire site. The only exception is CSS
+    class names and code identifiers which may use different casing.
+
+12. **Zero chicken scratching. Zero.** Every piece of work must be thorough,
+    complete, and production-quality. No half-finished pages. No placeholder
+    text left behind. No missing titles, missing metadata, missing sections.
+    No "I'll fix that later." If a page is built, it is built completely —
+    every heading, every paragraph, every component, every accessibility
+    attribute, every schema markup, every AI disclaimer where required.
+    If Claude is unsure whether something is complete, Claude must audit
+    it before moving on. Incomplete work is unacceptable.
+
+12. **Deep audit on every build.** Before any commit is pushed, Claude must
+    run a thorough audit of all changed files against this CLAUDE.md.
+    The audit must verify:
+    - Every page has proper metadata (title + description)
+    - Every page has an H1 tag
+    - Every page has correct schema markup
+    - Every AI-related page displays the Section 6.4 disclaimer
+    - All brand colours match Section 11.5 (navy, forest, plum on clean white)
+    - All typography uses the specified fonts (Instrument Serif + Plus Jakarta Sans)
+    - All interactive elements meet 44px minimum touch targets
+    - All SVGs have aria-hidden="true" if decorative
+    - No unused imports, no dead code, no placeholder links without explanation
+    - robots.txt correctly blocks crawlers (pre-launch)
+    - The build compiles with zero errors and zero warnings
+    Claude must not push code that would fail this audit.
+
 ---
 
 ## 18. Key Contacts and Resources (to be populated)

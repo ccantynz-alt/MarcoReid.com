@@ -9,7 +9,7 @@ export const BRAND = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Law", href: "/law" },
+  { label: "Legal", href: "/law" },
   { label: "Accounting", href: "/accounting" },
   { label: "Oracle", href: "/oracle" },
   { label: "Voice", href: "/dictation" },
@@ -18,7 +18,7 @@ export const NAV_LINKS = [
 
 export const PRODUCTS: Record<string, Product> = {
   law: {
-    name: "AlecRae Law",
+    name: "AlecRae Legal",
     slug: "/law",
     tagline: "The operating system for your legal practice",
     description:

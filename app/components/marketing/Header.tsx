@@ -8,12 +8,9 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full glass">
-      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
-        <Link
-          href="/"
-          className="font-serif text-xl text-text-primary transition-opacity hover:opacity-80"
-        >
+    <header className="fixed top-0 z-50 w-full border-b border-navy-100 bg-white/90 backdrop-blur-lg">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
+        <Link href="/" className="font-serif text-2xl text-navy-500">
           AlecRae
         </Link>
 
@@ -23,7 +20,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="min-h-touch inline-flex items-center text-xs font-medium text-text-tertiary transition-colors hover:text-text-primary"
+              className="min-h-touch inline-flex items-center text-sm font-medium text-navy-400 transition-colors hover:text-navy-600"
             >
               {link.label}
             </Link>
@@ -33,7 +30,7 @@ export default function Header() {
         {/* Mobile toggle */}
         <button
           type="button"
-          className="inline-flex min-h-touch min-w-touch items-center justify-center text-text-tertiary hover:text-text-primary md:hidden"
+          className="inline-flex min-h-touch min-w-touch items-center justify-center text-navy-400 hover:text-navy-600 md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -52,7 +49,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden border-t border-surface-border bg-surface/95 backdrop-blur-xl transition-all duration-300 ease-in-out md:hidden ${
+        className={`overflow-hidden border-t border-navy-100 bg-white transition-all duration-300 ease-in-out md:hidden ${
           mobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 border-t-0 opacity-0"
         }`}
       >
@@ -61,7 +58,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="block min-h-touch py-2 text-base text-text-secondary transition-colors hover:text-text-primary"
+              className="block min-h-touch py-2 text-base text-navy-400 transition-colors hover:text-navy-600"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}

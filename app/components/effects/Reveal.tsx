@@ -20,7 +20,7 @@ export default function Reveal({
       ref={ref}
       className={className}
       style={{
-        transform: isInView ? "translateY(0)" : "translateY(50px)",
+        transform: isInView ? "translateY(0)" : "translateY(40px)",
         opacity: isInView ? 1 : 0,
         transition: `all 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
       }}
