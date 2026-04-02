@@ -11,6 +11,7 @@ export const BRAND = {
 export const NAV_LINKS = [
   { label: "Legal", href: "/law" },
   { label: "Accounting", href: "/accounting" },
+  { label: "Courtroom", href: "/courtroom" },
   { label: "Oracle", href: "/oracle" },
   { label: "Voice", href: "/dictation" },
   { label: "Pricing", href: "/pricing" },

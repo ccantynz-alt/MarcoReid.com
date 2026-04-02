@@ -413,7 +413,66 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 4: AlecRae Accounting                                 */}
+      {/* PRODUCT 4: AlecRae Courtroom                                  */}
+      {/* ============================================================ */}
+      <section className="py-24 sm:py-36 lg:py-44" aria-label="AlecRae Courtroom">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
+                <span className="text-xl">&#9878;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-plum-600">
+                  AlecRae Courtroom
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  The courtroom goes digital.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              Depositions with real-time AI transcription. Electronic filing with courts.
+              Evidence management with cryptographic chain of custody. Judge analytics.
+              And The Oracle available on your iPad mid-hearing &mdash; verify a citation
+              in 3 seconds. Permission-based access. Courtroom-admissible security throughout.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: "AI deposition transcription", desc: "Real-time transcription with legal vocabulary, speaker ID, and video sync. Replaces $500/day court reporters." },
+                { title: "Courtroom e-filing", desc: "File electronically. Court-stamped confirmation. Deadlines auto-calculated." },
+                { title: "Tamper-evident evidence", desc: "Cryptographic chain of custody. Immutable audit trails. Court-admissible." },
+                { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends. Know the judge." },
+                { title: "Exhibit management", desc: "Numbered, tagged, annotated, presentable from iPad. Court-ready." },
+                { title: "Oracle mid-hearing", desc: "Verify a citation opposing counsel raised. 3 seconds. On your iPad." },
+              ].map((f) => (
+                <div key={f.title} className="rounded-xl border border-navy-100 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <p className="font-semibold text-navy-700">{f.title}</p>
+                  <p className="mt-2 text-sm text-navy-400">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex gap-4">
+              <Button href="/courtroom">Explore AlecRae Courtroom</Button>
+              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
+
+      {/* ============================================================ */}
+      {/* PRODUCT 5: AlecRae Accounting                                 */}
       {/* ============================================================ */}
       <section className="py-24 sm:py-36 lg:py-44" aria-label="AlecRae Accounting">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">

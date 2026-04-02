@@ -92,10 +92,42 @@ Build each item to faultless standard before moving to the next.
 
 ```
 AlecRae (parent brand)
-├── AlecRae Law          — full-stack legal practice platform
+├── AlecRae Legal        — full-stack legal practice platform
 ├── AlecRae Accounting   — AI-powered accounting and compliance
-└── The Oracle           — cross-domain legal + accounting AI (premium tier)
+├── AlecRae Courtroom    — courtroom technology, depositions, e-filing, evidence management
+├── The Oracle           — cross-domain legal + accounting + IP AI (premium tier)
+└── AlecRae Voice        — universal voice input layer across all products
 ```
+
+**AlecRae Courtroom — the 5th product wing**
+
+AlecRae Courtroom is a SEPARATE product that serves a separate audience:
+courts, litigation teams, court reporters, and trial attorneys. It is
+deeply integrated with AlecRae Legal but has its own access controls,
+its own pricing, and its own page on the website.
+
+**Permission-based access model:**
+- Courtroom features are NOT available to all AlecRae Legal users
+- Access requires explicit Courtroom subscription or firm-level permission
+- Court administrators can grant/revoke access to specific attorneys
+- All courtroom data is subject to stricter security controls than
+  standard platform data (FIPS 140-3, chain of custody, tamper-evident)
+- Court-filed documents are immutable once filed — no edits, no deletions
+- Access logs for courtroom data are themselves immutable and auditable
+
+**Integration with AlecRae Legal:**
+- Matters created in AlecRae Legal can be linked to Courtroom proceedings
+- Documents from Legal flow into Courtroom exhibit management
+- Deposition transcripts flow back into the Legal matter record
+- Billing for courtroom time automatically logged in Legal billing
+- The Oracle is available inside Courtroom for real-time research
+- AlecRae Voice is available for real-time transcription
+
+**The institutional hook:**
+When a court adopts AlecRae Courtroom for e-filing and document
+management, every attorney who appears in that court needs AlecRae
+to file. This is not a sales conversation — it is a requirement.
+The court becomes the distribution channel.
 
 ### 2.2 AlecRae Law — full product suite
 
