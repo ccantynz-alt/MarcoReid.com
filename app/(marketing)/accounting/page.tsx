@@ -31,21 +31,21 @@ export default function AccountingPage() {
       {/* Hero */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Container className="relative text-center">
-          <p className="animate-fade-in-up text-xs font-medium uppercase tracking-widest text-forest-600 opacity-0">
+          <p className="animate-fade-up text-xs font-medium uppercase tracking-widest text-forest-600 opacity-0">
             AlecRae Accounting
           </p>
-          <h1 className="mt-8 animate-fade-in-up-delay text-hero font-serif opacity-0">
+          <h1 className="mt-8 animate-fade-up-1 text-hero font-serif opacity-0">
             <span className="text-forest-500">AI-powered accounting</span>
             <br />
             <span className="text-navy-700">that CPAs actually trust.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-navy-400 opacity-0">
+          <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Xero, QuickBooks, and MYOB handle bookkeeping. AlecRae Accounting handles everything.
             Automated reconciliation. Bank feeds that never miss a transaction. Tax compliance
             across 50 states. Receipt scanning in seconds. AI spreadsheets. And The Oracle for
             accounting &mdash; tax research that answers in seconds what used to take hours.
           </p>
-          <div className="mt-12 animate-fade-in-up-delay-3 opacity-0">
+          <div className="mt-12 animate-fade-up-3 opacity-0">
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>

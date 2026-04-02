@@ -40,21 +40,21 @@ export default function DictationPage() {
       {/* Hero */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Container className="relative text-center">
-          <p className="animate-fade-in-up text-xs font-medium uppercase tracking-widest text-navy-500 opacity-0">
+          <p className="animate-fade-up text-xs font-medium uppercase tracking-widest text-navy-500 opacity-0">
             AlecRae Voice
           </p>
-          <h1 className="mt-8 animate-fade-in-up-delay text-hero font-serif opacity-0">
+          <h1 className="mt-8 animate-fade-up-1 text-hero font-serif opacity-0">
             <span className="text-forest-500">Speak.</span>
             {" "}
             <span className="text-navy-700">It is done.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl animate-fade-in-up-delay-2 text-xl leading-relaxed text-navy-400 opacity-0">
+          <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Every other dictation tool on the market is an island. It sits outside your workflow.
             AlecRae Voice is different. It IS the platform&rsquo;s input layer. Everywhere you can type,
             you can speak. And it doesn&rsquo;t just transcribe &mdash; it understands your profession,
             your vocabulary, and your commands.
           </p>
-          <div className="mt-12 animate-fade-in-up-delay-3 opacity-0">
+          <div className="mt-12 animate-fade-up-3 opacity-0">
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
