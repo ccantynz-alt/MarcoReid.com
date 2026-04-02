@@ -22,8 +22,8 @@ const schema = {
 
 const painPoints = [
   {
-    pain: "QuickBooks has no AI tax research. CPAs still call taxation agents or search IRS.gov manually",
-    solution: "The Oracle for Accounting answers tax research questions in seconds with verified IRS citations. No phone call needed",
+    pain: "QuickBooks has no AI tax research. CPAs still call taxation agents or spend 20 minutes searching IRS.gov manually for every question",
+    solution: "The Oracle for Accounting answers tax research questions in seconds with verified IRS citations. Section 199A threshold? Answered in 3 seconds, with source link. No phone call needed",
   },
   {
     pain: "QuickBooks has no voice input. Every journal entry, every expense, every note is typed manually",
@@ -38,12 +38,12 @@ const painPoints = [
     solution: "AlecRae AI reconciliation reads every transaction, matches it against bank statements, and reconciles automatically. You review and approve",
   },
   {
-    pain: "QuickBooks pricing keeps increasing. Features get moved to higher tiers. Add-ons for everything",
-    solution: "AlecRae Accounting includes everything \u2014 bank feeds, tax compliance, receipt scanning, Oracle research, Voice dictation \u2014 in one plan",
+    pain: "Users report 400\u2013600% price increases when forced from Desktop to Online. One user: \u201C70% increase for the same basic features I\u2019ve used for two decades.\u201D Features constantly moved to higher tiers",
+    solution: "AlecRae Accounting includes everything \u2014 bank feeds, tax compliance, receipt scanning, Oracle research, Voice dictation \u2014 in one plan. Transparent pricing. No forced migrations. No surprise tier changes",
   },
   {
-    pain: "QuickBooks customer support is notoriously poor. Long wait times. Outsourced agents who don\u2019t understand accounting",
-    solution: "AlecRae support is powered by The Oracle \u2014 ask your question, get an instant answer with account context. 95% of queries resolved without a human",
+    pain: "Pages take 10 seconds to load in 2025. \u201CEverything takes twice as long in QBO than Desktop.\u201D Customer support described as \u201Cutterley shocked at the lack of service\u201D \u2014 reps who are not accountants",
+    solution: "AlecRae is built for speed. Every page under 1 second. Every Oracle query under 3 seconds. Support powered by The Oracle with account context. 95% of queries resolved instantly",
   },
 ];
 

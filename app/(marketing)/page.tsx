@@ -490,6 +490,34 @@ export default function HomePage() {
             </p>
           </Reveal>
 
+          {/* Industry statistics — devastating */}
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Reveal delay={0.05}>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+                <p className="font-serif text-3xl text-white">45%</p>
+                <p className="mt-2 text-xs text-navy-300">of legal professionals use 5&ndash;10 different tools. 30% use more than 10.</p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+                <p className="font-serif text-3xl text-white">54%</p>
+                <p className="mt-2 text-xs text-navy-300">of lawyers report exhaustion from manual processes.</p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+                <p className="font-serif text-3xl text-white">97%</p>
+                <p className="mt-2 text-xs text-navy-300">of CPA firms say they use technology inefficiently.</p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+                <p className="font-serif text-3xl text-white">76%</p>
+                <p className="mt-2 text-xs text-navy-300">of legal staff cling to manual processes because the tools are worse.</p>
+              </div>
+            </Reveal>
+          </div>
+
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {[
               { from: "Westlaw / LexisNexis", pain: "Research that costs $400+/mo, trapped in a separate tab, with no connection to your cases or documents", link: "/compare/westlaw" },
