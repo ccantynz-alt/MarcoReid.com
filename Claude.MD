@@ -2077,6 +2077,49 @@ and is never caught using deprecated or superseded approaches.
 approach uses current best practices. If a better approach has
 been released since the last session, use the better approach.
 
+### 28.4 Automated protection systems — 24/7, no session required
+
+AlecRae deploys multiple automated systems that run continuously
+regardless of whether a Claude session is active. These are the
+platform's immune system. They never sleep.
+
+**GitHub Dependabot (active 24/7):**
+- Monitors ALL npm dependencies for security vulnerabilities daily
+- Monitors GitHub Actions for updates weekly
+- Opens pull requests automatically when updates are available
+- Grouped minor/patch updates to reduce noise
+- Configuration: .github/dependabot.yml
+
+**GitHub Actions CI/CD (active 24/7):**
+- Security & Quality Gate runs on every push, every PR, and daily at 5am NZST
+- Build verification — catches compilation errors before they reach production
+- Lint & type check — catches code quality issues automatically
+- Security audit — npm audit for known vulnerabilities
+- Dependency review — blocks PRs that introduce high-severity vulnerabilities
+- Configuration: .github/workflows/security-quality.yml
+
+**The competitive doctrine:**
+AlecRae does not merely monitor competitors. AlecRae assumes every
+competitor is building the same features right now and acts accordingly.
+
+- If Harvey AI announces a new feature, AlecRae must have built it
+  better before Harvey ships it, or build a superior version within
+  30 days of their announcement.
+- If Clio, Thomson Reuters, or Wolters Kluwer acquires a startup in
+  our space, treat it as a validation signal and accelerate outreach
+  to the other acquirers.
+- If a new AI model is released that is faster or more capable, AlecRae
+  must evaluate and integrate it within 14 days.
+- If a new open-source legal dataset becomes available, AlecRae must
+  index it within 7 days.
+
+**The 80-90% rule:**
+At any given moment, AlecRae must be 80-90% ahead of any competitor
+in at least three of these dimensions: features, AI capability,
+user experience, data coverage, platform integration depth.
+No competitor can lead AlecRae in more than one dimension at a time.
+If they do, it is an emergency that requires immediate action.
+
 ---
 
 ## 28. Email Platform — The Final Hook
