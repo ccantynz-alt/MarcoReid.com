@@ -372,6 +372,13 @@ the same restriction as `.law` — do not attempt that either.
 File provisional patents (12-month placeholder, inexpensive) on:
 - The AI research methodology used by The Oracle (cross-domain legal+accounting query resolution)
 - The AI dictation legal vocabulary training methodology
+- The multi-jurisdiction company incorporation workflow (Section 2.2b)
+  — the specific methodology of simultaneous legal+accounting AI analysis
+  for entity formation, asset protection structuring, and automated
+  ongoing compliance tracking across multiple jurisdictions
+- The email extraction workflow (conversation thread → formatted email)
+- The cross-professional matter invitation flow with shared workspace
+- The matter-centric notification hook system
 - The biometric eSIM activation method (if applicable from 0047 crossover)
 
 Provisional patents cost approximately $1,500–3,000 each with an attorney.
