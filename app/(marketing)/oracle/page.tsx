@@ -10,9 +10,9 @@ import MockupReveal from "@/app/components/effects/MockupReveal";
 
 
 export const metadata: Metadata = {
-  title: "The Oracle \u2014 The Most Intelligent Legal Research Engine Ever Built",
+  title: "The Oracle \u2014 The Most Intelligent Legal and Accounting Research Engine Ever Built",
   description:
-    "Cross-domain legal and accounting AI research. Every citation verified. Ask questions that span both disciplines. The research engine nobody else can build.",
+    "Cross-domain legal and accounting AI research. Every citation verified. Ask questions that span both disciplines. Tax codes, IRS rulings, case law, and regulations \u2014 the research engine nobody else can build.",
 };
 
 const schema = {
@@ -135,6 +135,72 @@ export default function OraclePage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
+      {/* Oracle for Accounting — the other half */}
+      <section className="py-32 sm:py-44 bg-navy-50" aria-label="Oracle for Accounting">
+        <Container>
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
+                <span className="text-xl">&#9671;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-forest-600">
+                  The Oracle &mdash; Accounting
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  Tax research answered in seconds, not hours.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              Most accountants ring a taxation agent to verify what they&rsquo;re doing is correct.
+              That call takes time. The answer takes longer. With The Oracle for Accounting,
+              every IRS code section, every revenue ruling, every regulatory citation is verified
+              against official sources and returned in seconds. The CPA never leaves their workflow.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "IRS Code sections", desc: "Every section of the Internal Revenue Code searchable and verified against IRS.gov" },
+              { title: "Revenue rulings", desc: "IRS revenue rulings, procedures, and guidance documents with direct source links" },
+              { title: "Treasury regulations", desc: "Full Code of Federal Regulations coverage for tax provisions" },
+              { title: "State tax codes", desc: "50-state tax code coverage. State-specific rules returned alongside federal" },
+              { title: "GAAP & IFRS standards", desc: "Accounting standards referenced and cited correctly in every research result" },
+              { title: "Tax court decisions", desc: "US Tax Court opinions verified and linked to authoritative public sources" },
+            ].map((f) => (
+              <Reveal key={f.title} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <h3 className="font-semibold text-navy-700">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy-400">{f.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 rounded-xl bg-forest-50 border border-forest-200 p-8">
+              <p className="text-xs font-bold tracking-wider text-forest-600">Example query</p>
+              <p className="mt-4 font-serif text-headline text-navy-700 italic">
+                &ldquo;What is the Section 199A qualified business income deduction threshold
+                for a married couple filing jointly in 2026?&rdquo;
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-navy-400">
+                The Oracle returns the exact threshold, the relevant IRC section, the applicable
+                Treasury Regulation, and links to the official IRS source &mdash; all verified,
+                all cited, all in under 3 seconds. The CPA who used to spend 20 minutes searching
+                IRS.gov now has their answer before they finish their coffee.
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
