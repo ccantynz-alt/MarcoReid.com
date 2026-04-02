@@ -252,27 +252,31 @@ export default function HomePage() {
             <OracleMockup />
           </MockupReveal>
 
-          {/* Before/After comparison */}
+          {/* Two Oracle products side by side */}
           <div className="mt-20 grid gap-6 sm:grid-cols-2">
             <Reveal delay={0.05}>
-              <div className="rounded-xl border border-red-100 bg-red-50/50 p-8">
-                <p className="text-xs font-bold tracking-wider text-red-600">Without AlecRae</p>
-                <p className="mt-4 text-2xl font-serif text-navy-700">5 minutes.</p>
+              <div className="rounded-xl border border-plum-100 bg-plum-50/30 p-8">
+                <p className="text-xs font-bold tracking-wider text-plum-600">Oracle &mdash; Legal</p>
+                <h3 className="mt-4 text-xl font-serif text-navy-700">
+                  Case law. Statutes. Court opinions.
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-navy-400">
-                  Open a new tab. Go to Westlaw. Log in. Search. Find the case. Copy the citation.
-                  Switch back. Paste it in. Reformat. Your flow is destroyed. Your train of thought is gone.
-                  You do this 20 times a day.
+                  Every US federal and state court decision. Every statute. Every regulation.
+                  All public domain. All verified. Hit &#8984;K from any document, email, or message.
+                  Three verified cases in 3 seconds. Citation inserted at your cursor.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-xl border border-forest-200 bg-forest-50/50 p-8">
-                <p className="text-xs font-bold tracking-wider text-forest-600">With The Oracle</p>
-                <p className="mt-4 text-2xl font-serif text-forest-600">25 seconds.</p>
+              <div className="rounded-xl border border-forest-200 bg-forest-50/30 p-8">
+                <p className="text-xs font-bold tracking-wider text-forest-600">Oracle &mdash; Accounting</p>
+                <h3 className="mt-4 text-xl font-serif text-navy-700">
+                  Tax codes. IRS rulings. GAAP standards.
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-navy-400">
-                  Hit &#8984;K. Type your question. Three verified cases in 3 seconds.
-                  Click &ldquo;Insert citation.&rdquo; It drops into your document, formatted correctly,
-                  verified with a &#10003; badge. You never left the page. Your flow is intact.
+                  Every IRS code section, revenue ruling, and Treasury regulation. 50-state tax codes.
+                  GAAP and IFRS standards. All verified against official sources. The CPA who used
+                  to call a taxation agent now has the answer in 3 seconds.
                 </p>
               </div>
             </Reveal>
@@ -280,9 +284,9 @@ export default function HomePage() {
 
           {/* Cross-domain moat */}
           <Reveal delay={0.15}>
-            <div className="mt-12 rounded-xl bg-navy-500 p-8 sm:p-10">
+            <div className="mt-8 rounded-xl bg-navy-500 p-8 sm:p-10">
               <p className="text-xs font-bold tracking-wider text-navy-300">
-                The cross-domain moat
+                The cross-domain moat &mdash; legal + accounting in one query
               </p>
               <p className="mt-4 font-serif text-headline text-white">
                 &ldquo;What are the immigration tax implications of this corporate
