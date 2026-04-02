@@ -150,6 +150,9 @@ until Phase 3 is active and white-labelling is confirmed.
 | Client portal | Secure document sharing and messaging | Phase 2 |
 | Expense scanning | Mobile photo to auto-categorised expense entry | Phase 2 |
 | Practice modules | Immigration / Corporate / Family / IP / Criminal / Real estate | Phase 2 |
+| Depositions | Video recording, real-time Voice transcription, exhibit management, AI summaries — see Section 2.2c | Phase 2 |
+| Courtroom technology | e-filing, real-time transcription, exhibit management, judge analytics — see Section 2.2d | Phase 2 |
+| IP law module | Patent search (USPTO), trademark search (TESS), copyright, trade secret, prior art analysis — Oracle IP domain | Phase 2 |
 | Company incorporation | Intelligent multi-jurisdiction entity formation — see Section 2.2b below | Phase 2 |
 | Secure messaging | Encrypted attorney-client communication | Phase 3 |
 | Analytics | Firm performance, matter profitability, judge analytics | Phase 3 |
@@ -218,6 +221,98 @@ It does not itself provide legal or tax advice. The professional
 reviews and approves every recommendation before it is executed.
 The Section 6.4 disclaimer must appear on every AI-generated
 incorporation recommendation.
+
+### 2.2c Depositions — AI-powered pre-trial testimony management
+
+Depositions are a massive part of legal practice and a pain point
+nightmare. Scheduling across multiple attorneys, witnesses, and court
+reporters. Video on separate systems. Transcription by expensive court
+reporters at $300-500/day. Exhibits in binders. Notes scattered. Nothing
+connected to the case management system.
+
+**What AlecRae builds for depositions:**
+
+1. **Scheduling** — book depositions inside the platform with matter-tagging,
+   calendar sync, and automated reminders to all parties
+2. **Video recording** — built-in video or Zoom integration, recorded and
+   stored inside the matter record
+3. **Real-time transcription** — AlecRae Voice transcribes the entire
+   deposition live, with legal vocabulary intelligence, speaker
+   identification, and timestamps. Replaces the $300-500/day court reporter
+4. **Exhibit management** — pull up any exhibit from the matter files
+   instantly during the deposition. Tag exhibits as they are referenced
+5. **Oracle access during deposition** — check a citation or statute the
+   witness mentions in real time. The attorney never loses the thread
+6. **AI deposition summary** — after the session, AI generates a structured
+   summary with key testimony, objections, exhibits referenced, and
+   action items
+7. **Searchable transcript** — every word searchable, linked to the matter
+   record, timestamped to the video recording
+8. **Opposing counsel access** — the other side gets access to the
+   transcript and exhibits through the platform. Another hook that brings
+   new users onto AlecRae
+
+**The competitive advantage:**
+No practice management tool offers integrated real-time transcription
+with legal vocabulary intelligence. Court reporters charge $300-500/day.
+AlecRae Voice does it in real time, with better legal vocabulary
+understanding, for a fraction of the cost. The transcript is immediately
+searchable and linked to the matter — no waiting days for delivery.
+
+### 2.2d Courtroom technology — the institutional hook
+
+This is the feature that turns AlecRae from a tool for individual
+lawyers into infrastructure that courts themselves depend on.
+
+**What AlecRae builds for courtrooms:**
+
+1. **e-Filing** — electronic filing with courts where APIs are available.
+   The attorney files from inside AlecRae, the court receives it
+   electronically, and the filing is automatically logged in the matter
+2. **Real-time courtroom transcription** — AlecRae Voice transcribes
+   proceedings live, replacing or supplementing court stenographers
+3. **Exhibit management** — digital exhibit books accessible on iPad or
+   laptop during trial. Tag, annotate, and present exhibits
+4. **Court-rules calendaring** — already planned. File once, every
+   downstream deadline auto-calculated per jurisdiction
+5. **Judge analytics** — Phase 3. Which judges rule which way on which
+   issues. Sentencing patterns. Motion grant rates. Win/loss ratios by
+   judge and case type
+6. **Real-time Oracle access** — a lawyer queries The Oracle on their iPad
+   mid-hearing to check a citation opposing counsel just raised. 3 seconds
+   to verify. That is a superpower in a courtroom
+
+**The institutional hook:**
+If a court itself uses AlecRae for filing and document management, then
+every attorney who appears in that court needs AlecRae to file. That is
+not a sales conversation — it is a requirement. The court becomes the
+hook. This is the most aggressive distribution strategy in the entire
+platform.
+
+### 2.2e IP law — The Oracle for Intellectual Property
+
+IP attorneys are among the highest-billing lawyers in the profession
+($500-800/hour at major firms). They do enormous amounts of research.
+The Oracle for IP is a dedicated domain that understands patents,
+trademarks, copyright, and trade secrets.
+
+**Data sources for Oracle IP:**
+- USPTO patent records (public domain, free API) — patent search,
+  prior art analysis, claim interpretation, expiry tracking
+- USPTO TESS trademark database — trademark search, likelihood of
+  confusion analysis, monitoring for conflicting new filings
+- US Copyright Office records — registration search, fair use precedents
+- WIPO (World Intellectual Property Organization) — international
+  patent and trademark records via Madrid Protocol
+- IP case law via CourtListener — infringement cases, licensing disputes,
+  trade secret misappropriation
+
+**Unique cross-domain advantage for IP:**
+IP work ALWAYS has tax implications. Patent licensing revenue, trademark
+valuation for corporate structures, IP holding entity tax strategy,
+R&D tax credits for patent development. The Oracle for IP + The Oracle
+for Accounting answering IP questions simultaneously is something no
+other tool on the planet can do.
 
 **Critical note on AI Dictation grammar:**
 The grammar engine must be trained on legal and accounting writing conventions
