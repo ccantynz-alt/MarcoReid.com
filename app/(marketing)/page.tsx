@@ -567,6 +567,9 @@ export default function HomePage() {
               "Company incorporation", "Conflict checking",
               "Depositions (AI transcription)", "Courtroom e-filing",
               "Judge analytics", "IP law (patents & trademarks)",
+              "Immutable audit trails", "FIPS 140-3 encryption",
+              "Chain of custody tracking", "Evidence viewer & redaction",
+              "Deposition video sync", "Court-admissible digital signatures",
             ].map((feature) => (
               <Reveal key={feature} delay={0.02}>
                 <div className="flex items-center gap-3 rounded-lg border border-navy-100 bg-white px-4 py-3 text-sm shadow-card">

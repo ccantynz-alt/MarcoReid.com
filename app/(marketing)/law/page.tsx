@@ -358,6 +358,12 @@ export default function LawPage() {
               { title: "Courtroom e-filing", desc: "Electronic filing with courts where APIs are available" },
               { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends by judge" },
               { title: "IP law (Oracle)", desc: "Patent search, trademark analysis, copyright, trade secrets via Oracle IP" },
+              { title: "Immutable audit trails", desc: "Cryptographically signed, append-only logs. Courtroom-admissible evidence chain" },
+              { title: "FIPS 140-3 encryption", desc: "Federal court standard encryption for all data at rest and in transit" },
+              { title: "Chain of custody", desc: "Complete tracking of every document: who created, accessed, modified, when, from where" },
+              { title: "Deposition video sync", desc: "Transcript synchronised frame-by-frame with video. Click text, jump to moment" },
+              { title: "Evidence viewer", desc: "View, annotate, and redact documents as evidence. Court-ready presentation" },
+              { title: "Digital signatures", desc: "Legally binding e-signatures meeting ESIGN Act, NZ and AU electronic transaction law" },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
                 <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
