@@ -8,18 +8,138 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// ============================================================
+// AUTH
+// ============================================================
+
 enum Role {
   USER
   ADMIN
 }
 
 model User {
-  id            String   @id @default(cuid())
-  email         String   @unique
+  id            String          @id @default(cuid())
+  email         String          @unique
   name          String?
   passwordHash  String
-  role          Role     @default(USER)
+  role          Role            @default(USER)
   firmName      String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  queries       OracleQuery[]
+  feedback      OracleFeedback[]
+}
+
+// ============================================================
+// THE ORACLE — Brain, Memory, and Flywheel
+// ============================================================
+
+enum QueryDomain {
+  LEGAL
+  ACCOUNTING
+  CROSS_DOMAIN
+  IP
+}
+
+enum CitationStatus {
+  VERIFIED
+  UNVERIFIED
+  NOT_FOUND
+}
+
+// Every query ever made — the memory
+model OracleQuery {
+  id            String          @id @default(cuid())
+  userId        String
+  user          User            @relation(fields: [userId], references: [id])
+  query         String          // The raw question asked
+  domain        QueryDomain     // Legal, Accounting, Cross-domain, IP
+  jurisdiction  String?         // US, NZ, AU, UK, or specific state
+  context       String?         // Matter context, previous queries, etc.
+  response      String          // The Oracle's full response
+  citations     OracleCitation[]
+  feedback      OracleFeedback[]
+  matterId      String?         // Link to matter if query was in-context
+  surface       String?         // Where the query was made: document, email, cmd-k, etc.
+  responseTimeMs Int?           // How long the response took
+  createdAt     DateTime        @default(now())
+
+  @@index([userId])
+  @@index([domain])
+  @@index([createdAt])
+  @@index([jurisdiction])
+}
+
+// Every citation returned — verified or not
+model OracleCitation {
+  id            String          @id @default(cuid())
+  queryId       String
+  query         OracleQuery     @relation(fields: [queryId], references: [id])
+  title         String          // Case name, statute title, IRS section
+  citation      String          // Formal citation string
+  sourceUrl     String?         // Direct link to authoritative source
+  sourceDb      String?         // CourtListener, IRS.gov, Cornell LII, USPTO, etc.
+  status        CitationStatus  // VERIFIED, UNVERIFIED, NOT_FOUND
+  excerpt       String?         // Relevant excerpt from the source
+  jurisdiction  String?         // Jurisdiction of the citation
+  dateDecided   String?         // Date of case decision or ruling
+  wasInserted   Boolean         @default(false) // Did the user insert this into a document?
+  wasClicked    Boolean         @default(false) // Did the user click to view full text?
+  createdAt     DateTime        @default(now())
+
+  @@index([queryId])
+  @@index([status])
+  @@index([sourceDb])
+}
+
+// User feedback on results — the flywheel learning signal
+model OracleFeedback {
+  id            String          @id @default(cuid())
+  queryId       String
+  query         OracleQuery     @relation(fields: [queryId], references: [id])
+  userId        String
+  user          User            @relation(fields: [userId], references: [id])
+  rating        Int             // 1-5 star rating
+  helpful       Boolean?        // Was this result helpful?
+  accurate      Boolean?        // Was this result accurate?
+  comment       String?         // Free text feedback
+  createdAt     DateTime        @default(now())
+
+  @@index([queryId])
+  @@index([userId])
+}
+
+// ============================================================
+// DATA SOURCES — what The Oracle knows about
+// ============================================================
+
+model DataSource {
+  id            String          @id @default(cuid())
+  name          String          @unique // CourtListener, IRS.gov, Cornell LII, etc.
+  domain        QueryDomain     // What domain this source covers
+  baseUrl       String          // API endpoint or base URL
+  apiKey        String?         // API key if required (encrypted in env)
+  lastSynced    DateTime?       // Last time we pulled data
+  recordCount   Int             @default(0) // How many records we have
+  isActive      Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+// ============================================================
+// FLYWHEEL ANALYTICS — the learning engine
+// ============================================================
+
+// Tracks what queries are most common — informs data priority
+model QueryPattern {
+  id            String          @id @default(cuid())
+  pattern       String          // Normalised query pattern
+  domain        QueryDomain
+  count         Int             @default(1) // How many times this pattern was queried
+  avgRating     Float?          // Average user rating for this pattern
+  lastQueried   DateTime        @default(now())
+  createdAt     DateTime        @default(now())
+
+  @@unique([pattern, domain])
+  @@index([count(sort: Desc)])
 }
