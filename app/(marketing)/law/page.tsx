@@ -277,6 +277,8 @@ export default function LawPage() {
               { title: "Email integration", desc: "Gmail and Outlook inside AlecRae with Oracle access" },
               { title: "Scheduling & meetings", desc: "Calendar sync, Zoom links, post-meeting AI summaries" },
               { title: "The Oracle", desc: "AI legal research with citation verification, inline everywhere" },
+              { title: "Company incorporation", desc: "Automated entity formation — LLC, Ltd, C-Corp — with AI-populated documents and e-filing" },
+              { title: "Conflict checking", desc: "Automated conflict of interest detection across all matters and parties" },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
                 <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
