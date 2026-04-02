@@ -247,6 +247,32 @@ export default function LawPage() {
               </div>
             </div>
           </Reveal>
+
+          {/* Company incorporation */}
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-6 max-w-3xl">
+              <div className="rounded-xl border-2 border-forest-200 bg-forest-50/30 p-6 shadow-card">
+                <p className="text-xs font-semibold tracking-wider text-forest-600">Company incorporation &mdash; multi-jurisdiction</p>
+                <h3 className="mt-4 font-serif text-headline text-navy-700">
+                  Your client wants to set up a company. You say the word.
+                </h3>
+                <p className="mt-4 leading-relaxed text-navy-400">
+                  The client specifies where they&rsquo;ll operate and what the business does.
+                  The Oracle &mdash; Legal and Accounting simultaneously &mdash; recommends the optimal
+                  entity type per jurisdiction, analyses tax implications across all countries involved,
+                  recommends an asset protection structure, identifies legal vulnerabilities,
+                  generates all formation documents pre-populated with client data, routes them for
+                  e-signature, and e-files with government agencies.
+                </p>
+                <p className="mt-4 leading-relaxed text-navy-400">
+                  Then it tracks every ongoing compliance requirement automatically &mdash; annual returns,
+                  tax filings, regulatory reporting. The client stays on the platform permanently.
+                  No other tool can do this because no other tool has both AI legal and AI accounting
+                  research on the same platform.
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
