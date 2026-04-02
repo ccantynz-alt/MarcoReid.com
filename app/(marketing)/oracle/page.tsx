@@ -206,6 +206,58 @@ export default function OraclePage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
+      {/* Oracle for IP */}
+      <section className="py-32 sm:py-44" aria-label="Oracle for IP">
+        <Container>
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-50">
+                <span className="text-xl">&#9878;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-navy-500">
+                  The Oracle &mdash; Intellectual Property
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  Patents. Trademarks. Copyright. Trade secrets.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              IP attorneys bill $500&ndash;$800/hour and do enormous amounts of research.
+              The Oracle for IP is a dedicated domain that understands patent claims,
+              trademark likelihood of confusion, prior art analysis, and IP case law.
+              And because IP work always has tax implications &mdash; licensing revenue,
+              IP holding entity structures, R&amp;D credits &mdash; The Oracle spans
+              both IP law and accounting in a single query.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "USPTO patent search", desc: "Search patent records, analyse claims, find prior art, track expiry and maintenance fees" },
+              { title: "Trademark search (TESS)", desc: "Likelihood of confusion analysis, monitoring for conflicting new filings, registration status" },
+              { title: "Copyright research", desc: "US Copyright Office records, fair use analysis grounded in case law, DMCA precedents" },
+              { title: "Trade secret law", desc: "State-by-state analysis of Uniform Trade Secrets Act adoption, misappropriation cases" },
+              { title: "IP case law", desc: "Infringement cases, licensing disputes, and trade secret misappropriation via CourtListener" },
+              { title: "WIPO international", desc: "International patent and trademark records via Madrid Protocol for global IP strategy" },
+            ].map((f) => (
+              <Reveal key={f.title} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <h3 className="font-semibold text-navy-700">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy-400">{f.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
       {/* Citation verification — dramatic */}
       <section className="py-32 sm:py-44" aria-label="Citation verification">
         <Container>

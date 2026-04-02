@@ -278,6 +278,55 @@ export default function LawPage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
+      {/* Depositions */}
+      <Reveal delay={0.1}>
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <div className="rounded-xl border-2 border-plum-100 bg-plum-50/30 p-6 shadow-card sm:p-8">
+            <p className="text-xs font-bold tracking-wider text-plum-600">Depositions</p>
+            <h3 className="mt-4 font-serif text-headline text-navy-700">
+              Pre-trial testimony. Reinvented.
+            </h3>
+            <p className="mt-4 leading-relaxed text-navy-400">
+              Schedule depositions inside the platform. Record video built-in or via Zoom.
+              AlecRae Voice transcribes the entire deposition in real time &mdash; legal vocabulary,
+              speaker identification, timestamps. Pull up exhibits from the matter files instantly.
+              Query The Oracle mid-deposition to check a citation the witness mentions.
+              AI generates a structured summary with key testimony, objections, and action items.
+              Every word searchable, linked to the matter, timestamped to the video.
+              Opposing counsel gets access through the platform &mdash; another hook.
+            </p>
+            <p className="mt-4 text-sm font-medium text-plum-600">
+              Replaces the $300&ndash;$500/day court reporter. Better accuracy. Instant delivery.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* Courtroom technology */}
+      <Reveal delay={0.1}>
+        <div className="mx-auto mt-6 max-w-6xl px-6 sm:px-8 lg:px-12">
+          <div className="rounded-xl border-2 border-navy-200 bg-navy-50/50 p-6 shadow-card sm:p-8">
+            <p className="text-xs font-bold tracking-wider text-navy-500">Courtroom technology</p>
+            <h3 className="mt-4 font-serif text-headline text-navy-700">
+              The courtroom goes digital. And it runs on AlecRae.
+            </h3>
+            <p className="mt-4 leading-relaxed text-navy-400">
+              Electronic filing with courts where APIs exist. Real-time courtroom transcription
+              via AlecRae Voice. Digital exhibit management on iPad or laptop. Court-rules
+              calendaring that auto-calculates every downstream deadline. Judge analytics showing
+              ruling patterns, motion grant rates, and sentencing trends. And The Oracle
+              available on your iPad mid-hearing &mdash; verify a citation opposing counsel just
+              raised in 3 seconds. That is a superpower in a courtroom.
+            </p>
+            <p className="mt-4 text-sm font-medium text-navy-500">
+              When a court uses AlecRae for filing, every attorney who appears in that court needs AlecRae. The court becomes the hook.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="mt-16" />
+
       {/* Everything included */}
       <section className="py-32 sm:py-44" aria-label="Everything included">
         <Container>
@@ -305,6 +354,10 @@ export default function LawPage() {
               { title: "The Oracle", desc: "AI legal research with citation verification, inline everywhere" },
               { title: "Company incorporation", desc: "Automated entity formation — LLC, Ltd, C-Corp — with AI-populated documents and e-filing" },
               { title: "Conflict checking", desc: "Automated conflict of interest detection across all matters and parties" },
+              { title: "Depositions", desc: "Video, real-time AI transcription, exhibit management, and AI summaries" },
+              { title: "Courtroom e-filing", desc: "Electronic filing with courts where APIs are available" },
+              { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends by judge" },
+              { title: "IP law (Oracle)", desc: "Patent search, trademark analysis, copyright, trade secrets via Oracle IP" },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
                 <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">

@@ -565,6 +565,8 @@ export default function HomePage() {
               "AI reconciliation", "Tax compliance (50 states)", "Receipt scanning",
               "AI spreadsheets", "Firm analytics",
               "Company incorporation", "Conflict checking",
+              "Depositions (AI transcription)", "Courtroom e-filing",
+              "Judge analytics", "IP law (patents & trademarks)",
             ].map((feature) => (
               <Reveal key={feature} delay={0.02}>
                 <div className="flex items-center gap-3 rounded-lg border border-navy-100 bg-white px-4 py-3 text-sm shadow-card">
