@@ -53,16 +53,24 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <p className="animate-fade-up text-sm font-semibold tracking-wider text-forest-300 opacity-0">
-              Introducing AlecRae
+              Introducing AlecRae &mdash; five products, one platform
             </p>
             <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-white opacity-0">
-              The professional intelligence platform that replaces everything.
+              You became a professional to practise your craft.
+              Not to drown in software.
             </h1>
             <p className="mt-6 animate-fade-up-2 text-xl leading-relaxed text-navy-200 opacity-0">
-              Four products. One login. Every tool a legal or accounting professional needs
-              to run their entire practice &mdash; case management, billing, trust accounting,
-              AI research, voice dictation, client portal, secure messaging, and more.
-              Built for the professionals who refuse to compromise.
+              45% of legal professionals use 5&ndash;10 different tools that don&rsquo;t talk to each other.
+              54% are exhausted by manual processes. 97% of CPA firms use technology inefficiently.
+              You&rsquo;re paying for a dozen subscriptions and getting less done, not more.
+            </p>
+            <p className="mt-4 animate-fade-up-2 text-2xl font-serif text-white opacity-0">
+              AlecRae ends that. Today.
+            </p>
+            <p className="mt-4 animate-fade-up-2 text-lg text-navy-300 opacity-0">
+              AI-powered legal practice. AI-powered accounting. Courtroom technology.
+              The most intelligent research engine ever built. And a voice that understands
+              your profession. Five products. One login. One bill. Nothing else required.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
               <Button href="#law" size="lg" variant="primary">
@@ -120,7 +128,7 @@ export default function HomePage() {
                   AlecRae Legal
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  Your entire practice. One platform.
+                  Westlaw in one tab. Clio in another. Email in a third. Sound familiar?
                 </h2>
               </div>
             </div>
@@ -128,10 +136,19 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Stop switching between seven different tools. AlecRae Legal replaces your case
-              management, billing, trust accounting, document drafting, court calendaring,
-              client communication, and legal research &mdash; with one login, one bill,
-              and one platform that was built from the ground up for how lawyers actually work.
+              The average attorney spends more time managing software than practising law.
+              Case management in one tool. Research in another. Billing somewhere else.
+              Trust accounting in a spreadsheet. Client calls falling through the cracks.
+              You&rsquo;re paying $400/month for Westlaw, $100/month for Clio, $699 for Dragon,
+              $15/month for DocuSign &mdash; and none of them talk to each other.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              AlecRae Legal replaces all of them. Case management. Billing. Trust accounting.
+              Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
+              The Oracle for research. AlecRae Voice for dictation. One login. One bill.
+              From $99/month.
             </p>
           </Reveal>
 
@@ -232,7 +249,7 @@ export default function HomePage() {
                   The Oracle
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  The most intelligent research engine on the planet.
+                  You spend 4 hours researching what The Oracle answers in 25 seconds.
                 </h2>
               </div>
             </div>
@@ -240,10 +257,19 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Cross-domain legal and accounting AI research. Every citation verified
-              against authoritative public sources before you see it. Ask questions
-              that span both disciplines simultaneously. This is the product nobody
-              else can build &mdash; because nobody else owns both sides.
+              Open a new tab. Go to Westlaw. Log in. Search. Find the case. Copy the citation.
+              Switch back to your document. Paste. Reformat. Five minutes. Flow destroyed.
+              You do this 20 times a day. That&rsquo;s 100 minutes of your life &mdash; every single day &mdash;
+              spent on a workflow that should take seconds.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              Hit &#8984;K. The Oracle slides in without leaving your document. Type your question.
+              Three verified cases in 3 seconds. Click &ldquo;Insert citation.&rdquo; Done. 25 seconds.
+              And it works for both legal AND accounting research simultaneously &mdash;
+              because nobody else owns both sides. Cross-domain queries that Westlaw, LexisNexis,
+              and Harvey AI simply cannot answer.
             </p>
           </Reveal>
 
@@ -326,7 +352,8 @@ export default function HomePage() {
                   AlecRae Voice
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  Speak. It is done.
+                  Dragon costs $699 and can&rsquo;t file a motion.
+                  AlecRae Voice can. By speaking.
                 </h2>
               </div>
             </div>
@@ -334,8 +361,9 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Every other dictation tool on the market is an island. It sits outside your workflow.
-              AlecRae Voice is different &mdash; it IS the platform&rsquo;s input layer. It doesn&rsquo;t just
+              Every dictation tool on the market is an island. Dragon can&rsquo;t log a billing entry.
+              WisprFlow can&rsquo;t schedule a meeting tagged to a matter. Otter can&rsquo;t query a legal
+              research database. They transcribe words. That&rsquo;s it. They sit outside your workflow.
               transcribe. It files motions, logs billing, schedules meetings, queries The Oracle,
               and sends matter-tagged messages. All by speaking. In 9 languages.
             </p>
@@ -427,7 +455,8 @@ export default function HomePage() {
                   AlecRae Courtroom
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  The courtroom goes digital.
+                  Court reporters cost $500/day.
+                  AlecRae Courtroom replaces them.
                 </h2>
               </div>
             </div>
@@ -435,10 +464,18 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Depositions with real-time AI transcription. Electronic filing with courts.
-              Evidence management with cryptographic chain of custody. Judge analytics.
-              And The Oracle available on your iPad mid-hearing &mdash; verify a citation
-              in 3 seconds. Permission-based access. Courtroom-admissible security throughout.
+              Depositions still run on court reporters at $300&ndash;500 per day.
+              Evidence is managed in binders. E-filing is a nightmare of disconnected portals.
+              And when opposing counsel cites a case you don&rsquo;t recognise mid-hearing,
+              you have no way to verify it without leaving the courtroom.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              AlecRae Courtroom: AI transcription that replaces stenographers. Tamper-evident
+              evidence with cryptographic chain of custody. Judge analytics that tell you
+              ruling patterns before you walk in. And The Oracle on your iPad &mdash;
+              verify any citation in 3 seconds, mid-hearing. Permission-based. Court-admissible.
             </p>
           </Reveal>
 
@@ -486,7 +523,8 @@ export default function HomePage() {
                   AlecRae Accounting
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  AI-powered accounting that CPAs trust.
+                  QuickBooks just raised prices 400%.
+                  And it still can&rsquo;t do tax research.
                 </h2>
               </div>
             </div>
@@ -494,9 +532,19 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Bank feeds that never miss a transaction. AI reconciliation that turns months into minutes.
-              Tax compliance across 50 states. Receipt scanning in seconds. And The Oracle for
-              accounting &mdash; tax research that answers instantly what used to take hours.
+              97% of CPA firms say they use technology inefficiently. QuickBooks pages take
+              10 seconds to load. Xero keeps removing features. Neither tool has AI research,
+              voice input, or any connection to the legal side. Your clients&rsquo; lawyers use
+              a completely different system. Nothing integrates. Everything is manual.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              AlecRae Accounting: bank feeds via Plaid that never miss a transaction. AI
+              reconciliation that turns months into minutes. Tax compliance across 50 states.
+              The Oracle for accounting &mdash; IRS code, revenue rulings, Treasury regs answered
+              in 3 seconds. Voice journal entries. And direct collaboration with lawyers on
+              shared matters. One platform for both professions.
             </p>
           </Reveal>
 
@@ -648,15 +696,17 @@ export default function HomePage() {
         <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
           <Reveal>
             <h2 className="font-serif text-display text-white">
-              Your profession back.
+              300,000 accountants left the profession since 2020.
+              Not because the work was hard. Because the tools were broken.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-8 text-xl leading-relaxed text-navy-200">
-              Lawyers and accountants became professionals to practise their craft &mdash;
-              not to spend their days on admin, research grunt work, and chasing clients
-              for information. AlecRae handles the machine work. You handle the judgment work.
-              That is the only division of labour that has ever made sense.
+              Staff leave not because work is challenging &mdash; they leave because it feels
+              mindless and the tools feel ancient. 76% of legal staff cling to manual processes
+              because the software is worse than doing it by hand. That is not a technology problem.
+              That is a failure of imagination. AlecRae is what happens when someone finally imagines
+              something better.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
