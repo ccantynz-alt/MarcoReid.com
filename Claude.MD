@@ -150,6 +150,7 @@ until Phase 3 is active and white-labelling is confirmed.
 | Client portal | Secure document sharing and messaging | Phase 2 |
 | Expense scanning | Mobile photo to auto-categorised expense entry | Phase 2 |
 | Practice modules | Immigration / Corporate / Family / IP / Criminal / Real estate | Phase 2 |
+| Company incorporation | Automated entity formation (LLC, Ltd, C-Corp, etc.) with AI-populated documents, e-filing, and e-signature | Phase 2 |
 | Secure messaging | Encrypted attorney-client communication | Phase 3 |
 | Analytics | Firm performance, matter profitability, judge analytics | Phase 3 |
 
