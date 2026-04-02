@@ -472,6 +472,47 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
+      {/* WHY PROFESSIONALS SWITCH — the pain killer                    */}
+      {/* ============================================================ */}
+      <section className="bg-navy-500 py-24 sm:py-36" aria-label="Why professionals switch">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-sm font-semibold tracking-wider text-forest-300">
+              Why professionals switch
+            </p>
+            <h2 className="mt-6 font-serif text-display text-white">
+              The tools you use today are holding you back.
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-navy-200">
+              Seven different subscriptions. None of them talk to each other. Hours lost
+              every day switching between tools that were never designed to work together.
+              AlecRae replaces all of them.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-2">
+            {[
+              { from: "Westlaw / LexisNexis", pain: "Research that costs $400+/mo, trapped in a separate tab, with no connection to your cases or documents", link: "/compare/westlaw" },
+              { from: "Clio", pain: "Good case management, but no research AI, no voice dictation, no accounting, no document AI. You still need 4 other tools", link: "/compare/clio" },
+              { from: "QuickBooks / Xero", pain: "Basic bookkeeping with no AI, no tax research, no voice input, and zero integration with the legal side", link: "/compare/quickbooks" },
+              { from: "Dragon Legal", pain: "$699 standalone dictation that can\u2019t file a motion, log a time entry, or query a research database. An island", link: "/compare/westlaw" },
+            ].map((item) => (
+              <Reveal key={item.from} delay={0.05}>
+                <a
+                  href={item.link}
+                  className="block rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10"
+                >
+                  <p className="text-xs font-bold tracking-wider text-navy-300">Replacing {item.from}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-100">{item.pain}</p>
+                  <p className="mt-4 text-xs font-semibold text-forest-300">See comparison &rarr;</p>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* EVERYTHING INCLUDED — the full picture                        */}
       {/* ============================================================ */}
       <section className="bg-navy-50 py-24 sm:py-36" aria-label="Everything included">
