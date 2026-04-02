@@ -150,9 +150,74 @@ until Phase 3 is active and white-labelling is confirmed.
 | Client portal | Secure document sharing and messaging | Phase 2 |
 | Expense scanning | Mobile photo to auto-categorised expense entry | Phase 2 |
 | Practice modules | Immigration / Corporate / Family / IP / Criminal / Real estate | Phase 2 |
-| Company incorporation | Automated entity formation (LLC, Ltd, C-Corp, etc.) with AI-populated documents, e-filing, and e-signature | Phase 2 |
+| Company incorporation | Intelligent multi-jurisdiction entity formation — see Section 2.2b below | Phase 2 |
 | Secure messaging | Encrypted attorney-client communication | Phase 3 |
 | Analytics | Firm performance, matter profitability, judge analytics | Phase 3 |
+
+### 2.2b Company incorporation — intelligent multi-jurisdiction formation
+
+This is one of the most aggressive features in the entire platform.
+A client tells their lawyer they want to set up a company. On every
+other platform, the lawyer does it manually — researching entity types,
+drafting formation documents, filing with state agencies, coordinating
+with a CPA on tax structure. Hours of work. Multiple tools. Multiple
+professionals working in silos.
+
+**The AlecRae version:**
+The lawyer opens a new incorporation workflow. The client specifies:
+- What countries or states the company will operate in
+- What the business does
+- Who the directors/members/shareholders are
+
+The Oracle (both Legal and Accounting simultaneously) then:
+1. Recommends the optimal entity type per jurisdiction (LLC in the US,
+   Ltd in NZ, Pty Ltd in Australia, etc.)
+2. Analyses the tax implications across all jurisdictions involved
+3. Recommends an asset protection structure that shields the client
+   from liability — holding companies, IP entities, operating entities
+4. Identifies potential legal vulnerabilities and recommends protections
+5. Generates all formation documents pre-populated with client data
+6. Routes documents for e-signature inside the platform
+7. E-files with the relevant government agencies where APIs are available
+8. Creates the matter record with all documents, deadlines, and compliance
+   requirements automatically tracked
+
+**Why this is uniquely possible on AlecRae:**
+No other platform has both AI legal AND AI accounting research on the
+same platform. When AlecRae recommends a corporate structure, it
+simultaneously considers:
+- Legal liability protection (Oracle Legal)
+- Tax optimisation across jurisdictions (Oracle Accounting)
+- Compliance requirements in every jurisdiction (both Oracles)
+- Ongoing filing deadlines and regulatory obligations (calendaring)
+
+A lawyer using Clio + Westlaw + QuickBooks cannot do this. The tools
+do not talk to each other. The legal analysis lives in one system,
+the tax analysis in another, the documents in a third. AlecRae does
+it all in one workflow.
+
+**The liability protection angle:**
+Every corporate structure recommended by AlecRae must include:
+- Separation of personal and business assets
+- Appropriate holding company structures where relevant
+- IP protection entities where applicable
+- Insurance recommendations (D&O, professional liability, general)
+- Clear documentation of corporate formalities (minutes, resolutions)
+  to prevent piercing of the corporate veil
+
+**The recurring revenue angle:**
+Company incorporation is not a one-time event. Every company has
+ongoing compliance: annual returns, tax filings, registered agent
+requirements, director changes, share transfers, regulatory reporting.
+AlecRae tracks all of this automatically after incorporation.
+The client stays on the platform permanently. The dependency is total.
+
+**The standard disclaimer applies:**
+AlecRae assists professionals in structuring and forming entities.
+It does not itself provide legal or tax advice. The professional
+reviews and approves every recommendation before it is executed.
+The Section 6.4 disclaimer must appear on every AI-generated
+incorporation recommendation.
 
 **Critical note on AI Dictation grammar:**
 The grammar engine must be trained on legal and accounting writing conventions
