@@ -1427,6 +1427,127 @@ that explains every security measure in plain English. This does not replace
 certification but it demonstrates seriousness and answers the question before
 it is asked. Clio, Harvey, and every serious legal SaaS has one.
 
+### 22.4 Legal-grade security — courtroom admissibility standard
+
+AlecRae handles the most sensitive data in the professional world:
+attorney-client privileged communications, client trust fund records,
+deposition testimony, court filings, and corporate formation documents.
+The security architecture must meet courtroom admissibility standards —
+not just "good enough for SaaS."
+
+**Immutable audit trails (cryptographically signed, append-only):**
+Every action on the platform — every document edit, every message sent,
+every billing entry, every deposition recording — is logged in an
+append-only audit trail that is cryptographically signed. No record
+can be modified or deleted after creation. This creates a legally
+defensible chain of evidence that can be presented in court.
+
+**FIPS 140-3 encryption:**
+All data encrypted at rest and in transit using FIPS 140-3 validated
+cryptographic modules. This is the federal government standard and
+the standard required by courts for electronic evidence. No exceptions.
+
+**Chain of custody tracking:**
+Every document and recording has a complete chain of custody record:
+who created it, who accessed it, who modified it, when, and from where.
+If opposing counsel challenges the authenticity of a document, the chain
+of custody record proves its integrity.
+
+**Tamper-evident architecture:**
+If any data is modified outside the normal application flow — by a
+database administrator, by a compromised system, or by any other means —
+the cryptographic signatures break and the system flags the tampering
+immediately. Evidence integrity is mathematically provable.
+
+**Court-admissible metadata preservation:**
+All documents and recordings preserve their original metadata: creation
+date, author, modification history, GPS location (if available), device
+information. This metadata is itself immutable and cryptographically
+signed. It meets the Federal Rules of Evidence requirements for
+electronically stored information (ESI).
+
+**Zero-knowledge architecture (Phase 3):**
+The ultimate security goal: even AlecRae as a company cannot access
+client data. Encryption keys held exclusively by the firm. AlecRae
+infrastructure processes encrypted data without ever decrypting it.
+This is the gold standard for attorney-client privilege protection
+and the feature that makes enterprise law firms say yes.
+
+### 22.5 Universal device and integration architecture
+
+AlecRae must work on every device a professional uses, and integrate
+with every system they cannot immediately replace.
+
+**Device support (all platforms from Phase 1):**
+- Desktop: Chrome, Firefox, Safari, Edge (web application)
+- iPad: Safari, Chrome (founder's primary device — first-class support)
+- iPhone / Android: Responsive web, native app in Phase 3
+- Apple Watch: Notifications and quick actions (Phase 3)
+
+**Legal-specific integrations:**
+- PACER (Public Access to Court Electronic Records) — federal court
+  docket access and filing
+- State court e-filing systems — jurisdiction-specific APIs
+- Court calendar sync — pull court hearing dates into AlecRae calendar
+- Bar association member verification — verify attorney credentials
+
+**Accounting-specific integrations:**
+- Plaid (bank feeds) — already specified, Phase 1
+- Stripe (payments and billing) — already specified, Phase 1
+- IRS e-filing (when available) — direct electronic tax filing
+- State tax authority portals — electronic filing per state
+
+**Productivity integrations:**
+- Gmail + Google Workspace (OAuth) — email inside AlecRae
+- Microsoft 365 + Outlook (OAuth) — email inside AlecRae
+- Zoom — video meetings and depositions
+- Google Calendar + Outlook Calendar (two-way sync)
+- Dropbox / Google Drive / OneDrive — document import/export
+- Slack — notifications and quick actions
+
+**The integration principle:**
+Every integration must PULL the user deeper into AlecRae, not push
+them out. Gmail integration means the lawyer does email inside AlecRae.
+Zoom integration means the meeting is tagged to a matter. Calendar sync
+means deadlines appear in AlecRae first. The integration always serves
+the platform, never the external tool.
+
+### 22.6 Advanced legal components — courtroom-ready technology
+
+**Deposition video + transcript synchronisation:**
+The deposition video recording is synchronised frame-by-frame with
+the AlecRae Voice transcript. Click any line in the transcript and the
+video jumps to that exact moment. Click any moment in the video and
+the transcript highlights the corresponding text. Attorneys can search
+the transcript and instantly jump to the video moment. This is how
+professional litigation support tools work — AlecRae includes it
+natively.
+
+**Evidence viewer with annotation:**
+View any document, image, or recording as evidence. Add annotations,
+highlights, and redactions. Every annotation is timestamped, attributed,
+and part of the immutable audit trail. Annotations can be shown or
+hidden for different audiences (internal vs. opposing counsel vs. court).
+
+**Redaction tools:**
+Redact sensitive information from documents before sharing. The redaction
+is permanent and irreversible — the underlying text is destroyed, not
+just hidden. Metadata is also scrubbed. Meets Federal Rules of Civil
+Procedure requirements for document production.
+
+**Exhibit management system:**
+Organise documents as numbered exhibits for deposition, trial, or
+arbitration. Tag, reorder, annotate, and present exhibits from iPad or
+laptop. Exhibit lists generated automatically. Opposing counsel can
+access shared exhibits through the platform (hook).
+
+**Digital signature with legal weight:**
+E-signatures that meet the requirements of the US ESIGN Act, the
+NZ Electronic Transactions Act 2002, the Australian Electronic
+Transactions Act 1999, and the UK Electronic Communications Act 2000.
+Multi-factor authentication before signing. Tamper-evident signature
+certificates. Complete audit trail of the signing ceremony.
+
 ---
 
 ## 24. Launch Sequence — The Linear Timeline
