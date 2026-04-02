@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-navy-100 bg-white/90 backdrop-blur-lg">
@@ -20,7 +22,9 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="min-h-touch inline-flex items-center text-sm font-medium text-navy-400 transition-colors hover:text-navy-600"
+              className={`min-h-touch inline-flex items-center text-sm font-medium transition-colors hover:text-navy-600 ${
+                pathname === link.href ? "text-navy-800 font-semibold" : "text-navy-400"
+              }`}
             >
               {link.label}
             </Link>
@@ -58,7 +62,9 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="block min-h-touch py-2 text-base text-navy-400 transition-colors hover:text-navy-600"
+              className={`block min-h-touch py-2 text-base transition-colors hover:text-navy-600 ${
+                pathname === link.href ? "text-navy-800 font-semibold" : "text-navy-400"
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}

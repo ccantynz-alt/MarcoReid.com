@@ -9,13 +9,13 @@ const links = {
     { label: "Pricing", href: "/pricing" },
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "About", href: "/about" },
+    { label: "Security", href: "/security" },
+    { label: "Contact", href: "/contact" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
 };
 
