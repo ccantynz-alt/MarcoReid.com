@@ -23,12 +23,12 @@ const schema = {
 
 const painPoints = [
   {
-    pain: "Westlaw costs $400\u2013$600+ per user per month for research alone",
-    solution: "AlecRae includes The Oracle research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month",
+    pain: "Westlaw costs $400\u2013$600+ per user per month for research alone. Out-of-plan search fees described by users as \u201Cbeyond absurd.\u201D One attorney: \u201CI currently pay one-sixth the cost to a competitor for comparable results.\u201D",
+    solution: "AlecRae includes The Oracle research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month. No surprise fees. No per-search charges. Everything included.",
   },
   {
-    pain: "The Westlaw interface feels stuck in 2010. Clunky. Slow. Overwhelming",
-    solution: "AlecRae is built for 2026. Clean, fast, designed for how lawyers actually work. Two clicks to anything",
+    pain: "After a decade of use, navigation is \u201Cstill not intuitive.\u201D Users report \u201Ctoo many results and no easy way to narrow down.\u201D Learning curve described as \u201Cextremely confusing.\u201D",
+    solution: "AlecRae is built for 2026. Clean, fast, designed for how lawyers actually work. Two clicks to anything. \u2318K command palette finds anything instantly.",
   },
   {
     pain: "Westlaw is ONLY research. You still need Clio for case management, QuickBooks for billing, DocuSign for signatures, Dragon for dictation",

@@ -22,16 +22,16 @@ const schema = {
 
 const painPoints = [
   {
-    pain: "LexisNexis pricing is opaque and expensive. Enterprise contracts. Per-search charges. Surprise bills",
-    solution: "AlecRae pricing is transparent and published. $99\u2013$399/month. Unlimited searches. No surprises",
+    pain: "Pricing is never published \u2014 custom quotes through sales reps. Users report searching for cases they \u201Cknew existed\u201D that wouldn\u2019t populate unless they used the exact case number. One user: \u201CI find myself crossing my fingers when I login.\u201D",
+    solution: "AlecRae pricing is transparent and published. $99\u2013$399/month. Unlimited searches. No surprises. Every citation verified before display.",
   },
   {
-    pain: "LexisNexis is a collection of fragmented products. Research in one tool, practice management in another, analytics in a third",
-    solution: "AlecRae is one unified platform. Research, practice management, billing, dictation, documents, client portal \u2014 one login",
+    pain: "LexisNexis is a collection of fragmented products. CourtLink docket tracking is a separate paid product not included in Lexis+ subscriptions. More cost layering for every capability",
+    solution: "AlecRae is one unified platform. Research, practice management, billing, dictation, documents, client portal \u2014 one login, one bill. Nothing costs extra",
   },
   {
-    pain: "LexisNexis invested in Harvey AI for research but still has no integrated practice management, dictation, or accounting",
-    solution: "AlecRae has its own Oracle AI research PLUS practice management, voice dictation, document AI, and full accounting \u2014 all built together",
+    pain: "Harvey AI partnership expected to push costs $400\u2013$600 per lawyer per year on top of existing subscriptions. One firm was quoted over \u00A3200 per lawyer for AI \u2014 after one email the price was slashed 60%. Harvey itself costs $1,000\u2013$1,200/month per lawyer",
+    solution: "AlecRae\u2019s Oracle is included in the platform price. No AI surcharge. No Harvey-level pricing. Cross-domain research verified against public sources, from $99/month",
   },
   {
     pain: "Shepard\u2019s Citations is powerful but locked behind the LexisNexis paywall. No alternative outside their ecosystem",
