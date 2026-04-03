@@ -259,36 +259,30 @@ export default function CommunityPage() {
               <div className="space-y-4">
                 {[
                   {
-                    quote:
-                      "I found my best referral partner on AlecRae. A CPA in New York who handles the tax side of every cross-border matter I send her. We\u2019ve done 30 matters together.",
-                    role: "Immigration attorney, Auckland",
+                    scenario: "The cross-border referral",
+                    desc: "An immigration lawyer in Auckland gets a US tax question from a client. They find a US-qualified CPA through the community. Both work the matter together on AlecRae. Both earn.",
                   },
                   {
-                    quote:
-                      "I joined as a solo practitioner with zero connections. The mentorship programme paired me with a partner at a mid-size firm. Six months later, I had a full client list.",
-                    role: "Junior attorney, Sydney",
+                    scenario: "The fresh graduate",
+                    desc: "A solo practitioner with zero connections joins the community. The mentorship programme pairs them with a senior partner. The referral network starts building. Clients follow.",
                   },
                   {
-                    quote:
-                      "The practice area channels are better than any CLE I\u2019ve attended. Real professionals discussing real cases. And The Oracle is right there when someone asks a tricky question.",
-                    role: "Corporate counsel, London",
+                    scenario: "The practice area deep dive",
+                    desc: "A corporate counsel in London posts a complex regulatory question. Twelve verified professionals weigh in. The Oracle provides verified citations mid-thread. Real answers from real peers.",
                   },
                 ].map((t) => (
                   <div
-                    key={t.role}
+                    key={t.scenario}
                     className="rounded-xl border border-navy-100 bg-white p-5 shadow-card"
                   >
-                    <p className="text-sm italic leading-relaxed text-navy-500">
-                      &ldquo;{t.quote}&rdquo;
+                    <p className="text-sm font-semibold text-navy-700">
+                      {t.scenario}
                     </p>
-                    <p className="mt-3 text-xs font-semibold text-navy-400">
-                      &mdash; {t.role}
+                    <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                      {t.desc}
                     </p>
                   </div>
                 ))}
-                <p className="text-xs text-navy-300">
-                  Testimonials represent anticipated user experiences. AlecRae Community is launching in 2026.
-                </p>
               </div>
             </Reveal>
           </div>
@@ -369,10 +363,10 @@ export default function CommunityPage() {
                   Learn on the platform you&rsquo;ll use for your career.
                 </h2>
                 <p className="mt-6 text-lg leading-relaxed text-navy-400">
-                  We partner directly with law schools and accounting programmes.
-                  Students learn on AlecRae during their studies. They graduate
-                  already knowing the platform, already having a community profile,
-                  already connected to potential employers.
+                  Our goal is to partner directly with law schools and accounting
+                  programmes worldwide. Students will learn on AlecRae during their
+                  studies. They&rsquo;ll graduate already knowing the platform, already
+                  having a community profile, already connected to potential employers.
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-navy-400">
                   When they start their first job, there&rsquo;s zero onboarding

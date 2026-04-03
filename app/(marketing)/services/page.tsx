@@ -7,7 +7,7 @@ import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title:
-    "AI-Powered Legal Services — 98% Done Before Your Attorney Signs Off | AlecRae",
+    "AI-Powered Legal Services — The AI Drafts, Your Attorney Signs Off | AlecRae",
   description:
     "Multi-jurisdiction company formation, trademark protection, IP strategy, contract drafting, and tax structuring. AI does the heavy lifting. A licensed attorney on the platform reviews and files. One platform. Every jurisdiction.",
 };
@@ -53,7 +53,7 @@ const services = [
   {
     title: "Contract Drafting & Review",
     subtitle: "AI-drafted, attorney-approved contracts",
-    desc: "Need a partnership agreement, SaaS terms, employment contract, NDA, licensing deal, or any commercial agreement? Describe what you need in plain language. The AI drafts a complete, jurisdiction-specific contract using current law. It flags risks, suggests protective clauses, and identifies missing provisions. Your attorney reviews the final document before execution.",
+    desc: "Need a partnership agreement, SaaS terms, employment contract, NDA, licensing deal, or any commercial agreement? Describe what you need in plain language. The AI will draft a complete, jurisdiction-specific contract using current law. It will flag risks, suggest protective clauses, and identify missing provisions. Your attorney reviews the final document before execution. This service is in active development.",
     steps: [
       "Describe the agreement in plain language",
       "AI drafts complete contract with jurisdiction-specific clauses",
@@ -67,7 +67,7 @@ const services = [
   {
     title: "Tax Structure Analysis",
     subtitle: "Cross-jurisdiction tax optimisation",
-    desc: "Operating across borders? AlecRae analyses your corporate structure and identifies tax optimisation opportunities — transfer pricing, double tax agreements, withholding tax, R&D credits, GST/VAT zero-rating, and entity selection. The AI generates a comprehensive tax strategy with specific recommendations. Your accountant reviews and implements.",
+    desc: "Operating across borders? AlecRae will analyse your corporate structure and identify tax optimisation opportunities — transfer pricing, double tax agreements, withholding tax, R&D credits, GST/VAT zero-rating, and entity selection. The AI will generate a comprehensive tax strategy with specific recommendations. Your accountant reviews and implements. This service is in active development.",
     steps: [
       "Enter your corporate structure and revenue flows",
       "AI analyses tax implications across every jurisdiction",
@@ -81,7 +81,7 @@ const services = [
   {
     title: "Immigration & Visa Strategy",
     subtitle: "Legal + tax analysis for cross-border moves",
-    desc: "Moving countries? Hiring international talent? AlecRae is the only platform that simultaneously analyses the immigration law AND the tax implications of a cross-border move. Visa eligibility, work permits, tax residency changes, departure tax, arrival obligations, double tax treaty benefits — all in one workflow.",
+    desc: "Moving countries? Hiring international talent? AlecRae will be the only platform that simultaneously analyses the immigration law AND the tax implications of a cross-border move. Visa eligibility, work permits, tax residency changes, departure tax, arrival obligations, double tax treaty benefits — all in one workflow. This service is in active development.",
     steps: [
       "Describe the immigration scenario",
       "AI analyses visa eligibility and requirements",
@@ -95,7 +95,7 @@ const services = [
   {
     title: "Estate & Succession Planning",
     subtitle: "Cross-border asset protection and succession",
-    desc: "Assets in multiple countries? Business succession to plan? AlecRae analyses the legal and tax implications of estate planning across jurisdictions — wills, trusts, family trusts, succession planning, estate tax, gift tax, and cross-border inheritance. AI generates the strategy. Your attorney and accountant execute it.",
+    desc: "Assets in multiple countries? Business succession to plan? AlecRae will analyse the legal and tax implications of estate planning across jurisdictions — wills, trusts, family trusts, succession planning, estate tax, gift tax, and cross-border inheritance. AI will generate the strategy. Your attorney and accountant execute it. This service is in active development.",
     steps: [
       "Enter assets, jurisdictions, and beneficiaries",
       "AI analyses legal estate planning options per jurisdiction",
@@ -110,8 +110,8 @@ const services = [
 
 const whyDifferent = [
   {
-    title: "AI does 98% of the work",
-    desc: "Other platforms make you fill in forms and then hand everything to a human who starts from scratch. AlecRae\u2019s AI analyses your situation, generates every document, and delivers a complete package. The attorney reviews a finished product — not a blank page.",
+    title: "AI does the heavy lifting",
+    desc: "Other platforms make you fill in forms and then hand everything to a human who starts from scratch. AlecRae\u2019s AI analyses your situation, generates the documents, and delivers a complete package. The attorney reviews a finished product — not a blank page.",
   },
   {
     title: "Legal + accounting simultaneously",
@@ -130,8 +130,8 @@ const whyDifferent = [
     desc: "Formation is day one. AlecRae tracks annual returns, trademark renewals, tax filing deadlines, regulatory changes, and compliance obligations across every jurisdiction, every entity, every year. The client never falls out of compliance.",
   },
   {
-    title: "98% cheaper than traditional",
-    desc: "A multi-jurisdiction corporate structure with IP protection traditionally costs $20,000\u2013$50,000+ in legal fees alone. AlecRae generates the same documents for a fraction of the cost. The attorney\u2019s time is spent reviewing, not drafting. That\u2019s where the savings come from.",
+    title: "A fraction of traditional cost",
+    desc: "A multi-jurisdiction corporate structure with IP protection traditionally costs $20,000\u2013$50,000+ in legal fees. AlecRae generates the documents. The attorney reviews, not drafts. Their time is spent on judgment, not formatting. The result: dramatically lower costs for the same professional outcome.",
   },
 ];
 
@@ -148,14 +148,14 @@ export default function ServicesPage() {
               AI-Powered Legal Services
             </p>
             <h1 className="mt-6 font-serif text-hero text-white">
-              98% done before your
+              The AI drafts. The attorney
               <br />
-              attorney signs off.
+              reviews and signs off.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-xl text-navy-200">
-              The most advanced AI on Earth generates every document, analyses every
-              jurisdiction, and delivers a complete legal package. A licensed attorney
-              on the platform reviews and files. One workflow. Every country.
+              AI generates the documents, analyses the jurisdictions, and delivers
+              a complete package. A licensed attorney on the platform reviews and
+              files. One workflow. Every country. Launching 2026.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
@@ -230,8 +230,8 @@ export default function ServicesPage() {
               Services.
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-navy-400">
-              Every service follows the same model: AI generates 98% of the work.
-              A licensed professional on the platform delivers the final 2%.
+              Every service follows the same model: AI handles the drafting and analysis.
+              A licensed professional on the platform reviews, advises, and signs off.
             </p>
           </Reveal>
 
@@ -330,7 +330,7 @@ export default function ServicesPage() {
                 <p className="mt-6 text-lg leading-relaxed text-navy-400">
                   Every AI-generated document needs a licensed professional to review
                   and sign off. That&rsquo;s you. AlecRae delivers a stream of clients who
-                  need your expertise — with 98% of the work already done. You review
+                  need your expertise — with the drafting already done. You review
                   a finished package, not a blank page. Your effective hourly rate
                   goes through the roof.
                 </p>
@@ -344,8 +344,8 @@ export default function ServicesPage() {
               <div className="space-y-4">
                 {[
                   {
-                    metric: "98%",
-                    label: "of drafting done by AI before you see it",
+                    metric: "All",
+                    label: "drafting done by AI before you see it",
                   },
                   {
                     metric: "4x",
