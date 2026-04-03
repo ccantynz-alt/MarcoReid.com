@@ -379,6 +379,40 @@ export default function ServicesPage() {
         </Container>
       </section>
 
+      {/* Real impact */}
+      <section className="py-24 sm:py-36" aria-label="Real impact">
+        <Container narrow>
+          <Reveal>
+            <h2 className="font-serif text-display text-navy-800">
+              This is bigger than software.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-8 text-xl leading-relaxed text-navy-400">
+              Every service on this platform creates real work for real professionals.
+              Every company formed means ongoing compliance work for an attorney.
+              Every trademark filed means renewal work for years. Every tax structure
+              means annual reviews. Every client who walks in generates income for the
+              professionals on the platform who review and sign off.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-6 text-xl leading-relaxed text-navy-400">
+              A young attorney fresh out of law school joins the platform. Clients flow in.
+              The AI does the drafting. The attorney does the judgment work. Four times
+              the throughput. Real income from day one. That&rsquo;s not automation replacing
+              jobs &mdash; that&rsquo;s technology creating them.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 text-xl font-medium leading-relaxed text-navy-700">
+              We&rsquo;re going through tough times globally. People need jobs. People need
+              access. People need hope. This platform delivers all three.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
       {/* CTA */}
       <section className="bg-navy-500 py-24 sm:py-36">
         <Container className="text-center">
@@ -388,7 +422,7 @@ export default function ServicesPage() {
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
               Tell us what you need. The AI does the rest.
-              A licensed professional signs off.
+              A licensed professional signs off. Everyone wins.
             </p>
           </Reveal>
           <Reveal delay={0.1}>

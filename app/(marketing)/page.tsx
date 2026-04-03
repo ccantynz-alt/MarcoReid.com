@@ -719,13 +719,74 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
+      {/* REAL IMPACT — This is about people                            */}
+      {/* ============================================================ */}
+      <section className="py-24 sm:py-36" aria-label="Real impact">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <h2 className="text-center font-serif text-display text-navy-800">
+              This is not about software.
+              <br />
+              This is about people.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed text-navy-400">
+              The world is going through tough times. Professionals are burning out.
+              Small businesses can&rsquo;t afford legal protection. Entrepreneurs in developing
+              countries can&rsquo;t access the tools they need to compete. That is a real problem.
+              AlecRae is a real solution.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Jobs for professionals",
+                desc: "Every document AlecRae generates needs a licensed attorney or accountant to review and sign off. The platform doesn\u2019t replace professionals \u2014 it feeds them clients. More work. Higher throughput. Better income.",
+              },
+              {
+                title: "Access for everyone",
+                desc: "A multi-jurisdiction corporate structure used to cost $20,000\u2013$50,000 in legal fees. AlecRae makes it accessible to solo founders, immigrant entrepreneurs, and small businesses who could never afford it before.",
+              },
+              {
+                title: "Hope for small business",
+                desc: "A sole trader in Auckland who wants to sell to the US shouldn\u2019t need three lawyers in three countries. One platform. One workflow. The barriers come down. The opportunities open up.",
+              },
+              {
+                title: "Time back with family",
+                desc: "Lawyers and accountants work 60-hour weeks not because the work demands it \u2014 but because the tools waste half their day. AlecRae gives them back the hours that broken software stole. Those hours go home.",
+              },
+              {
+                title: "9 languages from day one",
+                desc: "A Spanish-speaking attorney in Miami. A Mandarin-speaking CPA in Sydney. A Hindi-speaking lawyer in Auckland. AlecRae Voice works in their language. Professional tools should never be an English-only club.",
+              },
+              {
+                title: "The next generation stays",
+                desc: "300,000 accountants left the profession since 2020. Young lawyers are burning out before they hit 30. They didn\u2019t leave because the work was hard. They left because the tools were broken. We fix the tools. They stay.",
+              },
+            ].map((item) => (
+              <Reveal key={item.title} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                  <h3 className="font-semibold text-navy-700">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-400">
+                    {item.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* CTA                                                           */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36" aria-label="Get started">
+      <section className="bg-navy-50 py-24 sm:py-36" aria-label="Get started">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
           <Reveal>
             <h2 className="font-serif text-display text-navy-800">
               The platform that replaces everything.
+              <br />
+              <span className="text-forest-600">And brings hope to everyone.</span>
             </h2>
             <p className="mt-4 text-lg text-navy-400">Coming 2026.</p>
           </Reveal>
