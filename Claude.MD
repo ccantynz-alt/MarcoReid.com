@@ -599,6 +599,94 @@ emotional, not just technical.
 - No platform has BOTH lawyers AND accountants in a verified,
   private community with integrated AI research and shared matters
 
+**AlecRae Careers — Job placement for graduates and professionals:**
+
+This is the natural extension of the community. AlecRae becomes the
+place where new lawyers and accountants find their first job.
+
+1. **Graduate profiles**
+   - Law students and accounting graduates create profiles on AlecRae
+     with: law school / university, specialisation interests, languages,
+     jurisdictions, clerkship experience, grades (optional), and a
+     personal statement
+   - Profile type: "Graduate — seeking placement"
+   - Free tier for graduates (they pay nothing until employed)
+   - Graduates get access to the mentorship programme, practice area
+     channels, and basic Oracle queries to build familiarity with the
+     platform before they start working
+
+2. **Firm demand signals**
+   - AlecRae already knows which firms are overloaded — it tracks their
+     matter volume, active cases, billing hours, and workload patterns
+   - When a firm is consistently over capacity in immigration matters,
+     AlecRae can proactively suggest: "You've had 40% more immigration
+     matters this quarter. There are 12 qualified immigration graduates
+     in your city looking for placement."
+   - Firms can also post job listings directly in the community
+
+3. **AI-powered matching**
+   - The Oracle matches graduates to firms based on: specialisation,
+     language, jurisdiction, firm culture, workload demand, and location
+   - The match quality is higher than any job board because AlecRae
+     has real data on what the firm actually needs (not just what they
+     say they need in a job posting)
+
+4. **Placement revenue model**
+   - Firm pays a placement fee to AlecRae when they hire a graduate
+     sourced through the platform (e.g., 10-15% of first year salary,
+     or a flat fee of $2,000-5,000 per placement)
+   - This is dramatically cheaper than traditional legal recruiters
+     who charge 20-30% of first year salary ($15,000-40,000)
+   - The graduate pays nothing. Ever. The firm pays less than they
+     would with a recruiter. AlecRae earns. Everyone wins.
+
+5. **Career progression on the platform**
+   - Graduate joins a firm through AlecRae → uses AlecRae daily as
+     their practice management tool → builds a reputation in the
+     community → eventually becomes a mentor themselves
+   - The lifecycle: graduate → junior → mid-level → senior → mentor
+   - Every stage happens on AlecRae. The professional never leaves.
+
+6. **University partnerships**
+   - Partner with law schools and accounting programmes directly
+   - Offer AlecRae as the platform students learn on during their studies
+   - Students graduate already knowing the platform, already having
+     a community profile, already connected to potential employers
+   - Target: Auckland University Law School, Victoria University of
+     Wellington, University of Sydney, Columbia Law, Georgetown Law,
+     NYU, LSE, Melbourne University, etc.
+   - This is the long-term pipeline that feeds both sides of the
+     marketplace forever
+
+7. **Continuing education and upskilling**
+   - Graduates and junior professionals can take AlecRae-hosted courses
+     on practice areas, technology skills, and professional development
+   - CLE/CPD credits tracked and certified through the platform
+   - Firms can see which candidates have completed additional training
+   - This creates yet another reason to stay on the platform
+
+**Why this destroys traditional legal recruitment:**
+- Robert Half charges 20-30% of salary for legal placements
+- Michael Page, Hays, Hudson — same range
+- Job boards (Indeed, Seek, LinkedIn Jobs) are untargeted noise
+- AlecRae has REAL DATA on firm workload, not just a job posting
+- AlecRae matches based on actual demand, not keywords
+- AlecRae costs 80% less than a recruiter
+- The graduate is already on the platform, already trained, already
+  part of the community. Zero onboarding friction.
+
+**The social impact:**
+This is where the mission becomes real. A law graduate in Auckland
+with $100,000 in student debt and zero connections gets:
+- A free AlecRae account
+- A mentor who actually practices in their interest area
+- Access to AI research tools that cost $400/month elsewhere
+- Direct visibility to firms that need exactly their skills
+- A job placement at a fraction of the recruiter cost
+- A career that starts on day one, not after months of applications
+
+That is hope. That is jobs. That is real.
+
 **The emotional moat:**
 Technical features can be copied. Community cannot. Once a professional
 has built relationships, earned a reputation, and established a referral

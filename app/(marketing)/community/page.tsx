@@ -295,6 +295,120 @@ export default function CommunityPage() {
         </Container>
       </section>
 
+      {/* AlecRae Careers */}
+      <section className="py-24 sm:py-36" aria-label="Careers">
+        <Container>
+          <Reveal>
+            <p className="text-sm font-semibold tracking-wider text-forest-600">
+              AlecRae Careers
+            </p>
+            <h2 className="mt-4 font-serif text-display text-navy-800">
+              Your first job. Found here.
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-navy-400">
+              Law school is over. Accounting exams are done. Now what? Apply to 200
+              firms and hear nothing? Pay for job boards that don&rsquo;t understand your
+              specialisation? Network on LinkedIn where nobody replies?
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Free for graduates",
+                desc: "Create a profile with your school, specialisation, languages, and interests. You pay nothing. Ever. Not until you\u2019re employed and earning. The firm pays the placement fee \u2014 not you.",
+              },
+              {
+                title: "AI-powered matching",
+                desc: "AlecRae knows which firms are overloaded. It tracks their matter volume, active cases, and workload patterns. When a firm needs an immigration specialist and you\u2019re one \u2014 the match is automatic.",
+              },
+              {
+                title: "80% cheaper than recruiters",
+                desc: "Legal recruiters charge 20\u201330% of first-year salary. That\u2019s $15,000\u2013$40,000 per hire. AlecRae placement fees are a fraction of that. Firms save. Graduates get hired. Everyone wins.",
+              },
+              {
+                title: "Mentorship from day one",
+                desc: "Get paired with a senior practitioner in your interest area before you even start your first job. Learn the real practice of law or accounting from someone who does it every day.",
+              },
+              {
+                title: "Already trained on the tools",
+                desc: "You\u2019ve been using AlecRae since university. You know the platform. You know The Oracle. You know Voice. When you walk into your first firm, you\u2019re productive on day one.",
+              },
+              {
+                title: "A career, not just a job",
+                desc: "Graduate \u2192 junior \u2192 mid-level \u2192 senior \u2192 mentor. Every stage happens on AlecRae. Your reputation grows with every contribution. Your referral network compounds. The community is your career.",
+              },
+            ].map((item) => (
+              <Reveal key={item.title} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <h3 className="font-semibold text-navy-700">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-400">
+                    {item.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+        <div className="h-px bg-navy-100" />
+      </div>
+
+      {/* University partnerships */}
+      <section className="bg-navy-50 py-24 sm:py-36" aria-label="Universities">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <Reveal>
+              <div>
+                <p className="text-sm font-semibold tracking-wider text-forest-600">
+                  University Partnerships
+                </p>
+                <h2 className="mt-4 font-serif text-display text-navy-800">
+                  Learn on the platform you&rsquo;ll use for your career.
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-navy-400">
+                  We partner directly with law schools and accounting programmes.
+                  Students learn on AlecRae during their studies. They graduate
+                  already knowing the platform, already having a community profile,
+                  already connected to potential employers.
+                </p>
+                <p className="mt-4 text-lg leading-relaxed text-navy-400">
+                  When they start their first job, there&rsquo;s zero onboarding
+                  friction. They&rsquo;re productive from hour one. That&rsquo;s value
+                  for the firm. That&rsquo;s confidence for the graduate.
+                  That&rsquo;s the pipeline that feeds both sides of the marketplace
+                  forever.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  "Auckland University",
+                  "Victoria University Wellington",
+                  "University of Sydney",
+                  "Melbourne University",
+                  "Columbia Law School",
+                  "Georgetown Law",
+                  "NYU School of Law",
+                  "London School of Economics",
+                ].map((uni) => (
+                  <div
+                    key={uni}
+                    className="rounded-xl border border-navy-100 bg-white p-4 text-center shadow-card"
+                  >
+                    <p className="text-sm font-medium text-navy-600">{uni}</p>
+                    <p className="mt-1 text-xs text-navy-400">Target partner</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
       {/* For the next generation */}
       <section className="py-24 sm:py-36" aria-label="Next generation">
         <Container narrow>
@@ -314,13 +428,15 @@ export default function CommunityPage() {
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
               The AlecRae Community gives the next generation something no other
               platform offers: a place to belong. Mentors who care. Peers who
-              understand. Referral partners who send work. A reputation that grows
-              with every contribution. A reason to stay in the profession.
+              understand. A first job found through AI matching, not cold applications.
+              A career that starts on the platform and grows with every year.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-xl font-medium leading-relaxed text-navy-700">
-              We don&rsquo;t just build better tools. We build a better profession.
+              A law graduate with $100,000 in student debt and zero connections gets a
+              free account, a mentor, AI research tools, direct visibility to firms
+              that need exactly their skills, and a job. That is hope. That is real.
             </p>
           </Reveal>
         </Container>
