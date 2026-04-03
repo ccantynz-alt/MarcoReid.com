@@ -75,9 +75,11 @@ Build each item to faultless standard before moving to the next.
 | Platform name | AlecRae |
 | Tagline | Professional intelligence — law and accounting |
 | Founder | Craig Cantyn (Auckland, New Zealand) |
-| Legal entity (NZ) | TBD — NZ Ltd Company (to be formed before launch) |
-| Legal entity (US) | TBD — Delaware C-Corp (to be formed before launch) |
-| IP holding entity | TBD — separate from operating company |
+| IP holding entity | AlecRae IP Holdings Ltd (NZ) — owns all IP, trademarks, patents, code |
+| Legal entity (NZ) | AlecRae Ltd (NZ) — NZ operating company, licenses IP from Holdings |
+| Legal entity (US) | AlecRae Inc (Delaware C-Corp) — US operating company, licenses IP from Holdings |
+| Legal entity (AU) | AlecRae Pty Ltd (Australia) — AU operating company, licenses IP from Holdings |
+| Legal entity (UK) | AlecRae Ltd (UK) — UK operating company, licenses IP from Holdings |
 | Target markets | United States (primary), Australia, NZ, UK (secondary) |
 | Revenue model | SaaS subscriptions + transaction clips + Oracle premium tier |
 | Exit horizon | Acquisition or passive income within 10 years |
@@ -447,27 +449,147 @@ the same restriction as `.law` — do not attempt that either.
 
 ## 4. Legal Structure — CRITICAL
 
+### 4.0 Corporate Entity Architecture — FIVE-ENTITY MULTI-JURISDICTION STRUCTURE
+
+The AlecRae corporate structure is designed for maximum liability isolation,
+IP protection, and multi-jurisdiction operational capability. Each entity is a
+separate legal person. Liability in one entity does not flow to the others.
+The IP is permanently shielded from operational risk.
+
+```
+                    ┌──────────────────────────────────┐
+                    │   AlecRae IP Holdings Ltd (NZ)   │
+                    │   Owns ALL intellectual property  │
+                    │   Code, trademarks, patents,      │
+                    │   brand, trade secrets, domains    │
+                    └────────────┬─────────────────────┘
+                                 │
+                    IP Licence Agreements (royalty payments)
+                                 │
+          ┌──────────────────────┼──────────────────────┐
+          │                      │                      │
+          ▼                      ▼                      ▼
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  AlecRae Ltd    │  │  AlecRae Inc    │  │  AlecRae Pty    │
+│  (New Zealand)  │  │  (Delaware USA) │  │  Ltd (Australia) │
+│  NZ/Pacific ops │  │  US/Canada ops  │  │  AU operations  │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+                              │
+                     ┌────────┘
+                     ▼
+          ┌─────────────────┐
+          │  AlecRae Ltd    │
+          │  (United Kingdom)│
+          │  UK/EU ops      │
+          └─────────────────┘
+```
+
+**Why five entities:**
+1. **AlecRae IP Holdings Ltd (NZ)** — The crown jewel. Holds ALL intellectual
+   property. Never faces customers. Never signs service contracts. Never takes
+   operational risk. If any operating company is sued, the IP remains untouched.
+   All operating companies pay licence fees to Holdings for use of the IP.
+   This creates both liability isolation and tax-efficient IP revenue flows.
+
+2. **AlecRae Ltd (NZ)** — Operating company for New Zealand, Pacific Islands,
+   and initial Australian operations. Holds the NZ business registration, GST
+   registration, NZ bank accounts. Contracts with NZ/AU/Pacific customers.
+   Uses AlecRae Accounting internally from day one.
+
+3. **AlecRae Inc (Delaware C-Corp)** — Operating company for the United States
+   and Canada. Required for US institutional contracts, US bank accounts,
+   Stripe Connect, and eventual US investment or acquisition. Delaware chosen
+   for its well-established corporate law, Court of Chancery, and investor
+   familiarity. All US attorney and accountant SaaS contracts under this entity.
+
+4. **AlecRae Pty Ltd (Australia)** — Operating company for Australia once
+   volume justifies a dedicated entity. Australian Privacy Act compliance,
+   Australian Consumer Law compliance, ASIC registration. Initially, AU
+   customers may be served by AlecRae Ltd (NZ) until AU volume warrants
+   a dedicated entity.
+
+5. **AlecRae Ltd (UK)** — Operating company for the United Kingdom and
+   European Union. UK GDPR compliance, Companies House registration, UK
+   bank accounts. Required once UK/EU customer volume justifies a dedicated
+   entity. Initially, UK/EU customers may be served by AlecRae Ltd (NZ)
+   with appropriate data processing agreements.
+
+**Liability isolation principles:**
+- Each entity is separately incorporated with its own directors, bank accounts,
+  and financial statements
+- No entity guarantees the debts or obligations of any other entity
+- Corporate formalities (minutes, resolutions, separate accounting) must be
+  maintained rigorously to prevent piercing of the corporate veil
+- Each entity carries its own professional liability insurance (E&O/PI)
+- The IP holding entity has no customer-facing operations — it exists solely
+  to own and licence intellectual property
+- If an operating company faces a lawsuit, the maximum exposure is that
+  entity's assets — the IP and other entities are protected
+- D&O (Directors and Officers) insurance on all entities from formation
+
+**IP licensing structure:**
+- Each operating company enters an IP Licence Agreement with AlecRae IP
+  Holdings Ltd
+- Licence fees are set at arm's length (transfer pricing compliance)
+- Licence agreements are exclusive within each entity's territory
+- The IP holding entity retains the right to terminate the licence if an
+  operating company breaches the agreement, enters insolvency, or is acquired
+  by a competitor
+- All new IP developed by any entity is assigned immediately to Holdings
+
+**Tax optimisation (legal):**
+- NZ: Exported digital services are zero-rated for GST (0%)
+- NZ: R&D tax credit applies to AI development costs
+- US: Delaware has no state corporate income tax on revenue earned outside DE
+- IP royalty payments between entities create tax-deductible expenses for
+  operating companies and assessable income for Holdings — structure must
+  comply with transfer pricing rules in all jurisdictions
+- Engage a dual-qualified NZ/US tax advisor to structure intercompany
+  agreements before any revenue flows
+
+**Formation order (CRITICAL — do in this sequence):**
+
 ### 4.1 Required entities (establish before launch, in this order)
 
-**Step 1 — NZ Ltd Company**
+**Step 1 — AlecRae IP Holdings Ltd (NZ)**
+- Form FIRST — before any other entity
+- Assign all existing IP (code, designs, brand concepts) from Craig Cantyn
+  personally to Holdings via a formal IP Assignment Agreement
+- Register all domain names under this entity
+- File trademark applications under this entity
+- File provisional patents under this entity
+- This entity should have minimal operating costs and no customer-facing
+  activity
+
+**Step 2 — AlecRae Ltd (NZ)**
 - Operating company for NZ/Pacific/Australian market
 - **AlecRae Accounting is used internally for all bookkeeping from day one**
   — we do not use Xero, QuickBooks, or any competitor. We use our own platform.
   This is both a cost saving and a live proof point for marketing.
 - GST registration — exported digital services are zero-rated (0% GST)
 - NZ R&D tax credit applies to AI development costs — document everything
+- Enter IP Licence Agreement with AlecRae IP Holdings Ltd immediately
 
-**Step 2 — Delaware C-Corp (US)**
+**Step 3 — AlecRae Inc (Delaware C-Corp)**
 - Required for US market professional services contracts
 - Required for eventual US institutional investment or acquisition
 - Stripe Connect and US bank account under this entity
 - All US attorney and accountant SaaS contracts under this entity
+- Enter IP Licence Agreement with AlecRae IP Holdings Ltd immediately
+- Registered agent in Delaware required (e.g., Harvard Business Services,
+  Cogency Global, or similar)
 
-**Step 3 — IP Holding Entity (separate from both above)**
-- All intellectual property — code, trademarks, patents, brand — held here
-- Operating companies license IP from the holding entity
-- If an operating company is ever sued, the IP itself is protected
-- Engage a dual-qualified NZ/US corporate attorney to structure this correctly
+**Step 4 — AlecRae Pty Ltd (Australia) — WHEN VOLUME JUSTIFIES**
+- Form when Australian customer volume justifies the cost of a separate entity
+- Until then, AU customers served by AlecRae Ltd (NZ) under appropriate terms
+- ASIC registration, ABN, Australian bank account
+- Enter IP Licence Agreement with AlecRae IP Holdings Ltd
+
+**Step 5 — AlecRae Ltd (UK) — WHEN VOLUME JUSTIFIES**
+- Form when UK/EU customer volume justifies the cost of a separate entity
+- Until then, UK/EU customers served by AlecRae Ltd (NZ) with DPA
+- Companies House registration, UK bank account
+- Enter IP Licence Agreement with AlecRae IP Holdings Ltd
 
 ### 4.2 Professional advisors required before launch
 
@@ -1028,15 +1150,23 @@ AICPA strategy — the professional community trusts peers, not ads.
 ## 14. Pre-Launch Checklist — Nothing Goes Live Until This Is Done
 
 ### Legal (non-negotiable)
-- [ ] NZ Ltd Company formed
-- [ ] Delaware C-Corp formed
-- [ ] IP holding entity formed
-- [ ] All IP assigned from personal ownership to IP holding entity
-- [ ] IP licensing agreements between holding entity and operating companies
+- [ ] AlecRae IP Holdings Ltd (NZ) formed — FORM FIRST
+- [ ] All IP assigned from Craig Cantyn personally to AlecRae IP Holdings Ltd
+- [ ] AlecRae Ltd (NZ) formed — NZ operating company
+- [ ] IP Licence Agreement: AlecRae Ltd (NZ) ← AlecRae IP Holdings Ltd
+- [ ] AlecRae Inc (Delaware C-Corp) formed — US operating company
+- [ ] IP Licence Agreement: AlecRae Inc (US) ← AlecRae IP Holdings Ltd
+- [ ] AlecRae Pty Ltd (AU) formed — when AU volume justifies
+- [ ] AlecRae Ltd (UK) formed — when UK/EU volume justifies
+- [ ] D&O insurance on all formed entities
+- [ ] Professional liability (E&O) insurance on all operating entities
 - [ ] Trademark applications filed — AlecRae, The Oracle (US + Madrid Protocol)
 - [ ] Provisional patent applications filed
 - [ ] IOLTA compliance analysis completed by legal tech attorney
-- [ ] Privacy policy drafted and reviewed by privacy attorney
+- [ ] Privacy policy drafted and reviewed by privacy attorney — DONE (site)
+- [ ] Terms of Service drafted — DONE (site)
+- [ ] Acceptable Use Policy drafted — DONE (site)
+- [ ] Disclaimer drafted — DONE (site)
 - [ ] Terms of service drafted and reviewed by attorney
 - [ ] Data processing agreements executed with all third-party processors
 - [ ] IP assignment agreements ready for all contractors
