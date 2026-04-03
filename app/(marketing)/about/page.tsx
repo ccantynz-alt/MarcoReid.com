@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
+import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 
 export const metadata: Metadata = {
   title: "About AlecRae \u2014 Professional Intelligence for Law and Accounting",
@@ -9,9 +10,19 @@ export const metadata: Metadata = {
     "AlecRae is building the most advanced professional intelligence platform ever created. Four products. One platform. Built in Auckland, New Zealand for the world.",
 };
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "AlecRae",
+  description: "Professional intelligence platform for law and accounting. Built in Auckland, New Zealand for the world.",
+  url: "https://alecrae.com",
+  foundingLocation: "Auckland, New Zealand",
+};
+
 export default function AboutPage() {
   return (
     <>
+      <SchemaMarkup schema={schema} />
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <h1 className="font-serif text-hero text-white">

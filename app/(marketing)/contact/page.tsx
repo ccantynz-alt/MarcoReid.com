@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
 import Reveal from "@/app/components/effects/Reveal";
+import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 
 export const metadata: Metadata = {
   title: "Contact AlecRae",
@@ -8,9 +9,18 @@ export const metadata: Metadata = {
     "Get in touch with AlecRae. Questions about the platform, security, pricing, or partnerships.",
 };
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact AlecRae",
+  description: "Get in touch with AlecRae.",
+  url: "https://alecrae.com/contact",
+};
+
 export default function ContactPage() {
   return (
     <>
+      <SchemaMarkup schema={schema} />
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <h1 className="font-serif text-hero text-white">

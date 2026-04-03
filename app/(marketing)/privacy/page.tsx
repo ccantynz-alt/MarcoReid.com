@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
+import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -10,9 +11,18 @@ export const metadata: Metadata = {
 
 const EFFECTIVE_DATE = "3 April 2026";
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Privacy Policy — AlecRae",
+  description: "How AlecRae collects, uses, stores, and protects your personal information.",
+  url: "https://alecrae.com/privacy",
+};
+
 export default function PrivacyPage() {
   return (
     <>
+      <SchemaMarkup schema={schema} />
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <p className="text-sm font-semibold tracking-wider text-forest-300">
@@ -37,7 +47,7 @@ export default function PrivacyPage() {
 
             <h2>1. Introduction</h2>
             <p>
-              AlecRae Ltd (New Zealand Company Number [TBD]) and its affiliated entities
+              AlecRae Ltd (New Zealand) and its affiliated entities
               (&ldquo;AlecRae&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) are committed to protecting
               your privacy and the security of your personal information. This Privacy Policy
               describes how we collect, use, store, disclose, and protect personal information

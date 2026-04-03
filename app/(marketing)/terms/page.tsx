@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
+import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -10,9 +11,18 @@ export const metadata: Metadata = {
 
 const EFFECTIVE_DATE = "3 April 2026";
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Terms of Service — AlecRae",
+  description: "Terms of Service governing use of the AlecRae platform.",
+  url: "https://alecrae.com/terms",
+};
+
 export default function TermsPage() {
   return (
     <>
+      <SchemaMarkup schema={schema} />
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <p className="text-sm font-semibold tracking-wider text-forest-300">
@@ -39,7 +49,7 @@ export default function TermsPage() {
             <p>
               These Terms of Service (&ldquo;Terms&rdquo;, &ldquo;Agreement&rdquo;) constitute a legally binding
               contract between you (&ldquo;User&rdquo;, &ldquo;you&rdquo;, &ldquo;your&rdquo;) and AlecRae Ltd
-              (New Zealand Company Number [TBD]), and its affiliated entities including
+              (New Zealand), and its affiliated entities including
               AlecRae Inc (Delaware, USA), AlecRae Pty Ltd (Australia), and AlecRae Ltd (UK)
               (collectively, &ldquo;AlecRae&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;),
               governing your access to and use of the AlecRae platform, including all associated

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
+import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -10,9 +11,18 @@ export const metadata: Metadata = {
 
 const EFFECTIVE_DATE = "3 April 2026";
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Acceptable Use Policy — AlecRae",
+  description: "Rules governing acceptable use of the AlecRae platform.",
+  url: "https://alecrae.com/acceptable-use",
+};
+
 export default function AcceptableUsePage() {
   return (
     <>
+      <SchemaMarkup schema={schema} />
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <p className="text-sm font-semibold tracking-wider text-forest-300">

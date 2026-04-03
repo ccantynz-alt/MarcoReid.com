@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
+import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 
 export const metadata: Metadata = {
   title: "AlecRae for Startups \u2014 Legal and Accounting From Day One",
@@ -9,9 +10,18 @@ export const metadata: Metadata = {
     "Company incorporation, legal compliance, accounting automation, and tax strategy \u2014 everything a startup needs from formation to funding, powered by AI.",
 };
 
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "AlecRae for Startups",
+  description: "Everything a startup needs from formation to funding, powered by AI.",
+  url: "https://alecrae.com/for-startups",
+};
+
 export default function ForStartupsPage() {
   return (
     <>
+      <SchemaMarkup schema={schema} />
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <h1 className="font-serif text-hero text-white">
