@@ -256,6 +256,98 @@ reviews and approves every recommendation before it is executed.
 The Section 6.4 disclaimer must appear on every AI-generated
 incorporation recommendation.
 
+### 2.2b-API — Government Filing API Integration Map (RESEARCHED APRIL 2026)
+
+This section documents the actual API capabilities of every target
+jurisdiction's company registration authority. AlecRae will build a
+**proprietary unified filing layer** that wraps all of these APIs into
+a single internal service. This filing layer is NOT exposed to third
+parties — it is AlecRae's competitive moat. No other platform has
+mapped or integrated all of these.
+
+**UK — Companies House (FULLY API-ENABLED)**
+- Developer portal: https://developer-specs.company-information.service.gov.uk/
+- XML Gateway: existing filing channel for software providers
+- REST API (new): replacing XML, OAuth 2.0 authentication
+- Can file: IN01 (company incorporation), Form 484 (changes), annual returns
+- Can search: company data, officer data, filing history
+- Same-day incorporation if filed by 3pm
+- 99% of e-filed documents processed within 24 hours
+- Contact for software filer registration: xml@companieshouse.gov.uk
+- GitHub: https://github.com/companieshouse/ (open source filing APIs)
+- **STATUS: READY TO INTEGRATE — highest priority**
+
+**Australia — ASIC via GetEDGE API (FULLY API-ENABLED)**
+- Provider: GetEDGE (official ASIC software provider)
+- Portal: https://getedge.com.au/
+- API docs: https://getedge.com.au/docs/api
+- REST API with API key authentication
+- Endpoints:
+  - POST /api/v1/201 — Company registration (Form 201)
+  - POST /api/v2/business-names — Business name registration
+  - POST /api/v1/484 — Change to company details
+  - POST /api/v1/362 — Agent appointment/cessation
+- Returns RA55 Company Registration Advice on successful registration
+- **STATUS: READY TO INTEGRATE — requires GetEDGE partnership/account**
+
+**United States — Delaware Division of Corporations (XML FILING)**
+- Portal: https://icis.corp.delaware.gov/ecorp2/services/e-filing
+- ICIS XML Filing Service for authorised filing agents
+- Requirements: Agent Number, DCIS ID, password, IP address registration
+- This is the same channel used by Stripe Atlas, LegalZoom, Firstbase
+- Can file: Certificate of Incorporation, amendments, annual reports
+- Two options:
+  1. Become an authorised filing agent with Delaware (requires registration)
+  2. Partner with existing registered agent (Harvard Business Services, etc.)
+- **STATUS: REQUIRES AGENT REGISTRATION — medium priority**
+
+**New Zealand — Companies Office (PARTIAL)**
+- NZBN API (read-only): https://api.business.govt.nz/
+  - Search entities by name, NZBN, company number
+  - Retrieve company details, directors, shareholders
+  - Free with API key registration
+  - Well-documented, production-ready
+- Transactional filing: NO public API
+  - Private "B2B channel" exists for authorised intermediaries
+  - Requires formal agreement with the Registrar of Companies (MBIE)
+  - Used by large law firms and accounting software providers
+  - AlecRae should apply to become an authorised intermediary
+  - Contact: info@mbie.govt.nz or companiesoffice.govt.nz/contact-us
+  - RealMe identity verification adds complexity
+- **STATUS: SEARCH READY NOW — filing requires MBIE intermediary application**
+
+**Trademark Filing APIs**
+- USPTO: No public filing API. Electronic filing via TEAS web system only.
+  Third-party services file manually through TEAS.
+- IPONZ (NZ): No public filing API. Web-based filing only.
+- WIPO (Madrid Protocol): No public filing API. Filed via home IP office.
+- All trademark filings remain manual or semi-automated (pre-populated
+  forms with guided submission). Full automation not currently possible.
+
+**AlecRae Proprietary Filing Layer Architecture**
+
+AlecRae will build a unified internal filing service that:
+1. Accepts a standard incorporation request (entity type, jurisdiction,
+   directors, shareholders, addresses, share structure)
+2. Routes to the correct jurisdiction's API/filing channel
+3. Translates AlecRae's data model into jurisdiction-specific formats
+   (UK XML/JSON, AU GetEDGE REST, US Delaware XML, NZ B2B channel)
+4. Submits the filing
+5. Monitors for acceptance/rejection
+6. Records the result (company number, certificate, registration advice)
+7. Creates the matter record with all compliance deadlines
+
+This filing layer is AlecRae's proprietary infrastructure. It is NOT
+exposed as a public API. It is NOT available to third parties. It is
+the competitive moat that no other platform can replicate without
+doing the same integration work.
+
+**Integration priority order:**
+1. UK Companies House REST API (most mature, best documented)
+2. AU GetEDGE API (REST, well-documented, covers Form 201)
+3. NZ MBIE intermediary application (long lead time, start now)
+4. US Delaware agent registration (requires formal relationship)
+
 ### 2.2c Depositions — AI-powered pre-trial testimony management
 
 Depositions are a massive part of legal practice and a pain point
