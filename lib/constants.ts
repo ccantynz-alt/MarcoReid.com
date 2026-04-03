@@ -70,6 +70,23 @@ export const PRODUCTS: Record<string, Product> = {
       "Hallucination prevention with mandatory source checking",
     ],
   },
+  courtroom: {
+    name: "AlecRae Courtroom",
+    slug: "/courtroom",
+    tagline: "Courtroom technology for the modern trial",
+    description:
+      "Depositions with AI transcription and video sync. E-filing where court APIs exist. Tamper-evident evidence with cryptographic chain of custody. Judge analytics from public records. The Oracle on your iPad mid-hearing.",
+    features: [
+      "AI deposition transcription with video sync",
+      "Courtroom e-filing where APIs are available",
+      "Tamper-evident evidence management",
+      "Cryptographic chain of custody tracking",
+      "Judge analytics from public court records",
+      "Exhibit management and presentation",
+      "The Oracle available mid-hearing",
+      "Integration with AlecRae Legal case management",
+    ],
+  },
   voice: {
     name: "AlecRae Voice",
     slug: "/dictation",
