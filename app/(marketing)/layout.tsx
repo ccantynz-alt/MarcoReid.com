@@ -15,6 +15,11 @@ export default function MarketingLayout({
         Skip to content
       </a>
       <Header />
+      <div className="bg-forest-600 text-center">
+        <p className="px-4 py-2 text-xs font-medium text-white sm:text-sm">
+          AlecRae is in active development. Launching 2026. What you see here is our vision &mdash; honest, transparent, and built in public.
+        </p>
+      </div>
       <main id="main-content">{children}</main>
       <Footer />
     </>

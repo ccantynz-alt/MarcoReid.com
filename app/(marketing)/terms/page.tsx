@@ -50,7 +50,8 @@ export default function TermsPage() {
               These Terms of Service (&ldquo;Terms&rdquo;, &ldquo;Agreement&rdquo;) constitute a legally binding
               contract between you (&ldquo;User&rdquo;, &ldquo;you&rdquo;, &ldquo;your&rdquo;) and AlecRae Ltd
               (New Zealand), and its affiliated entities including
-              AlecRae Inc (Delaware, USA), AlecRae Pty Ltd (Australia), and AlecRae Ltd (UK)
+              AlecRae IP Holdings Ltd (New Zealand), AlecRae Inc (Delaware, USA),
+              AlecRae Pty Ltd (Australia), and AlecRae Ltd (UK)
               (collectively, &ldquo;AlecRae&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;),
               governing your access to and use of the AlecRae platform, including all associated
               websites, applications, APIs, products, and services (collectively, the &ldquo;Platform&rdquo;
