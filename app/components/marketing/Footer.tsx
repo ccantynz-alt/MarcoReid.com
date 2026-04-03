@@ -7,6 +7,7 @@ const links = {
     { label: "The Oracle", href: "/oracle" },
     { label: "AlecRae Voice", href: "/dictation" },
     { label: "AlecRae Courtroom", href: "/courtroom" },
+    { label: "Services", href: "/services" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [
