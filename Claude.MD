@@ -316,13 +316,40 @@ mapped or integrated all of these.
   - RealMe identity verification adds complexity
 - **STATUS: SEARCH READY NOW — filing requires MBIE intermediary application**
 
+**United States — Delaware via Firstbase API (REST API)**
+- Provider: Firstbase (third-party, official incorporation service)
+- Developer docs: https://developers.firstbase.io/incorporation-api/overview
+- REST API with API key + secret authentication
+- Partners provide company information via API, Firstbase handles filing
+- Designed for platforms embedding incorporation into their product
+- Supports Delaware C-Corp and LLC formation
+- **STATUS: READY TO INTEGRATE — best path for programmatic US incorporation**
+- Alternative: direct Delaware ICIS XML (requires agent registration)
+
 **Trademark Filing APIs**
-- USPTO: No public filing API. Electronic filing via TEAS web system only.
-  Third-party services file manually through TEAS.
-- IPONZ (NZ): No public filing API. Web-based filing only.
-- WIPO (Madrid Protocol): No public filing API. Filed via home IP office.
-- All trademark filings remain manual or semi-automated (pre-populated
-  forms with guided submission). Full automation not currently possible.
+- IPONZ (NZ): **FULL FILING API EXISTS** — this is the standout discovery
+  - API portal: https://portal.api.business.govt.nz/api/iponz
+  - Docs: https://www.iponz.govt.nz/about-iponz/iponz-api/
+  - POST /trademarksearch — search the trade marks register (up to 2,000 results)
+  - Can submit trademark applications programmatically
+  - Can submit patent requests (PCT national phase entry)
+  - Can check and pay renewal/maintenance fees
+  - Can download tasks, discussions, and documents
+  - Mix of SOAP and REST operations, JSON and XML formats
+  - Authentication via RealMe login
+  - Free to use; standard IPONZ fees apply
+  - **STATUS: READY TO INTEGRATE — AlecRae can offer one-click NZ trademark filing**
+  - Since Madrid Protocol applications route through the home IP office (IPONZ),
+    AlecRae can file NZ trademarks via API AND then extend internationally
+    through the same channel
+- USPTO: No filing API. Filing via Trademark Center web interface only.
+  TSDR Data API available for read-only trademark status/document retrieval.
+  Developer portal: https://developer.uspto.gov/api-catalog
+- WIPO (Madrid Protocol): No filing API. eMadrid web portal only.
+  Automated querying of Madrid Monitor explicitly prohibited.
+  However: filing routes through national IP offices (e.g., IPONZ) which
+  DO have APIs — so AlecRae files the NZ application via IPONZ API, then
+  the Madrid extension routes through IPONZ automatically.
 
 **AlecRae Proprietary Filing Layer Architecture**
 
@@ -343,10 +370,22 @@ the competitive moat that no other platform can replicate without
 doing the same integration work.
 
 **Integration priority order:**
-1. UK Companies House REST API (most mature, best documented)
-2. AU GetEDGE API (REST, well-documented, covers Form 201)
-3. NZ MBIE intermediary application (long lead time, start now)
-4. US Delaware agent registration (requires formal relationship)
+1. UK Companies House XML Gateway → REST API (most mature, fully documented)
+2. AU GetEDGE API (REST, covers Form 201 company registration)
+3. US Firstbase Incorporation API (REST, programmatic Delaware filing)
+4. NZ IPONZ Trademark API (file NZ trademarks + Madrid Protocol extensions)
+5. NZ MBIE intermediary application for company filing (long lead time, start NOW)
+6. NZ NZBN API (company search/lookup — integrate immediately, free)
+
+**CRITICAL STRATEGIC NOTE:**
+AlecRae builds ALL of these integrations as a proprietary internal
+filing layer. This layer is NOT exposed as a public API. It is NOT
+available to third parties. It is NOT open-sourced. It is AlecRae's
+competitive moat. Any competitor wanting to replicate this capability
+must independently negotiate with every government agency and build
+every integration from scratch. By the time they do, AlecRae has
+years of filing history, established intermediary relationships, and
+a locked-in user base that depends on one-click filing.
 
 ### 2.2c Depositions — AI-powered pre-trial testimony management
 
