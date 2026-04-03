@@ -12,6 +12,7 @@ const links = {
   ],
   company: [
     { label: "About", href: "/about" },
+    { label: "Community", href: "/community" },
     { label: "Security", href: "/security" },
     { label: "Contact", href: "/contact" },
   ],

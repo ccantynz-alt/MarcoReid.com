@@ -190,6 +190,7 @@ until Phase 3 is active and white-labelling is confirmed.
 | Company incorporation | Intelligent multi-jurisdiction entity formation — see Section 2.2b below | Phase 2 |
 | Secure messaging | Encrypted attorney-client communication | Phase 3 |
 | Analytics | Firm performance, matter profitability, judge analytics | Phase 3 |
+| **AlecRae Community** | **Internal professional network — lawyers, attorneys, accountants. Private. Separate from public. The home that keeps them forever. See Section 2.2f below** | **Phase 2** |
 
 ### 2.2b Company incorporation — intelligent multi-jurisdiction formation
 
@@ -489,6 +490,121 @@ by every attorney who tries it. The legal vocabulary and grammar training is wha
 makes this a professional tool rather than a glorified spell-checker. This must
 be documented in the AI Dictation build spec and tested against real legal
 documents before launch.
+
+### 2.2f AlecRae Community — the internal professional network
+
+This is the retention feature that makes AlecRae feel like home.
+
+**The problem:**
+Every professional tool treats its users as isolated individuals.
+Westlaw doesn't know that an immigration lawyer in Auckland and a
+tax attorney in New York are working on the same type of matter.
+Clio doesn't connect attorneys who could refer work to each other.
+QuickBooks doesn't know that two CPAs in the same city specialise
+in the same industry. Every professional on every platform is alone.
+
+**The AlecRae Community:**
+A private, internal social and networking platform exclusively for
+verified legal and accounting professionals on AlecRae. Completely
+separate from the public-facing website. Only accessible to
+professionals with verified credentials who are active on the platform.
+
+**This is the hook that keeps them forever.** Once a lawyer knows
+20 other lawyers and 10 accountants on the platform — once they have
+professional relationships, referral networks, and a reputation built
+inside AlecRae — they will never leave. The switching cost becomes
+emotional, not just technical.
+
+**Core features:**
+
+1. **Professional profiles**
+   - Verified credentials (bar number, CPA licence, jurisdiction)
+   - Practice areas and specialisations
+   - Languages spoken
+   - Jurisdictions covered
+   - Years of experience
+   - Profile photo and bio
+   - Reputation score (based on platform activity, review quality,
+     referral success, community contribution)
+
+2. **Practice area channels**
+   - Immigration law, corporate law, tax, IP, family law, criminal,
+     real estate, employment, bankruptcy, etc.
+   - Accounting channels: audit, tax, advisory, forensic, etc.
+   - Cross-discipline channels: "Legal + Tax", "Immigration + Tax",
+     "IP + Corporate", "Estate + Tax"
+   - Each channel has discussions, shared resources, and Q&A
+   - The Oracle is available inline in every channel — ask a research
+     question mid-discussion and get a verified answer immediately
+
+3. **Referral network**
+   - A lawyer in Auckland gets a US tax question from a client
+   - They post in the community: "Need a US-qualified CPA for a
+     cross-border tax matter, NZ → US, corporate restructuring"
+   - CPAs on the platform who match that profile get notified
+   - The lawyer selects a CPA, invites them to the shared matter
+   - Both professionals work on the same client inside AlecRae
+   - Both bill through the platform. Both earn. AlecRae earns.
+   - **This is the flywheel.** Every referral creates two professionals
+     who are now connected and will refer to each other again.
+
+4. **Discussion forums**
+   - Long-form professional discussions (like a private legal Reddit)
+   - Case law discussions (anonymised — never identifying client details)
+   - Regulatory updates and analysis
+   - Practice management tips
+   - Technology adoption discussions
+   - "Ask the community" — peer-to-peer professional support
+
+5. **Events and webinars**
+   - Virtual meetups by practice area
+   - CLE/CPD credit opportunities (continuing legal/professional education)
+   - Guest speakers (judges, regulators, industry leaders)
+   - AlecRae product updates and training sessions
+   - This keeps professionals engaged between active matters
+
+6. **Mentorship programme**
+   - Senior attorneys and CPAs can opt in as mentors
+   - Young professionals fresh out of law school / accounting programmes
+     get paired with experienced practitioners
+   - Mentors build reputation. Mentees get guidance. Both stay on AlecRae.
+   - **This is how you keep the next generation in the profession.**
+
+7. **Local and global communities**
+   - Auckland lawyers, Sydney CPAs, New York immigration attorneys,
+     London corporate counsel — local groups for in-person meetups
+   - Global practice area communities for cross-border expertise
+   - Time-zone aware activity feeds
+
+8. **Verified-only environment**
+   - Every member must have verified professional credentials
+   - No anonymous accounts. No fake profiles. No spam.
+   - This creates trust that public platforms (LinkedIn, Reddit) cannot
+   - Professionals are more willing to share knowledge, ask questions,
+     and be vulnerable when they know everyone in the room is a peer
+
+**Revenue implications:**
+- Community features included in all subscription tiers (it's the hook)
+- Premium community features (priority referral placement, sponsored
+  posts, featured profiles) available as add-ons
+- CLE/CPD events can be monetised (CE credit tracking is a paid feature)
+- Every referral that converts to a shared matter generates revenue
+  for both professionals AND for AlecRae (platform fee on the matter)
+
+**Why no competitor can replicate this:**
+- LegalZoom has no professionals on its platform — it's a consumer service
+- Clio has law firms but no cross-firm community and no accountants
+- QuickBooks has accountants but no lawyers and no community features
+- LinkedIn is public, unverified, and full of noise
+- No platform has BOTH lawyers AND accountants in a verified,
+  private community with integrated AI research and shared matters
+
+**The emotional moat:**
+Technical features can be copied. Community cannot. Once a professional
+has built relationships, earned a reputation, and established a referral
+network inside AlecRae, the cost of leaving is not a subscription fee —
+it's losing their professional community. That is the strongest
+retention mechanism in all of SaaS.
 
 ### 2.3 Existing accounting platform — rename required
 
