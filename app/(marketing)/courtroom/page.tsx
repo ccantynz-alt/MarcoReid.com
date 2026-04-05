@@ -6,7 +6,7 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import dynamic from "next/dynamic";
 
-const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {

@@ -8,6 +8,16 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   poweredByHeader: false,
   compress: true,
+
+  // Optimize heavy server-only packages
+  serverExternalPackages: ["@anthropic-ai/sdk", "bcryptjs"],
+
+  experimental: {
+    // View Transitions for smooth page navigation
+    viewTransition: true,
+  },
+
+  // CSP: Allow Google Fonts for font loading
   async headers() {
     return [
       {
@@ -42,9 +52,9 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-              "style-src 'self' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob:",
-              "font-src 'self'",
+              "font-src 'self' https://fonts.gstatic.com",
               "connect-src 'self' https://api.anthropic.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",

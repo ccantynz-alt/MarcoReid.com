@@ -7,9 +7,9 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import Reveal from "@/app/components/effects/Reveal";
 
-const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"), { ssr: false });
-const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
-const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"), { ssr: false });
+const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"));
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
 
 
 export const metadata: Metadata = {
@@ -54,7 +54,7 @@ export default function LawPage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
       {/* Dashboard mockup */}

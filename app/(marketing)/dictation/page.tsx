@@ -7,10 +7,10 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import Reveal from "@/app/components/effects/Reveal";
 
-const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"), { ssr: false });
-const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"), { ssr: false });
-const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
-const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"), { ssr: false });
+const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"));
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
+const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 
 
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ export default function DictationPage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
       {/* Live typing demo */}

@@ -1,63 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { submitContactForm, type ContactState } from "@/app/actions/contact";
 
-type FormStatus = "idle" | "submitting" | "success" | "error";
+const initialState: ContactState = { status: "idle", message: "" };
+
+function SubmitButton({ pending }: { pending: boolean }) {
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="flex w-full min-h-touch items-center justify-center rounded-lg bg-navy-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+    >
+      {pending ? "Sending\u2026" : "Send message"}
+    </button>
+  );
+}
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("submitting");
-    setErrorMessage("");
-
-    const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) {
-        const body = await res.json();
-        throw new Error(body.error || "Something went wrong.");
-      }
-
-      setStatus("success");
-      form.reset();
-    } catch (err) {
-      setStatus("error");
-      setErrorMessage(err instanceof Error ? err.message : "Something went wrong.");
-    }
-  }
-
-  if (status === "success") {
+  if (state.status === "success") {
     return (
       <div className="mt-12 rounded-2xl border border-forest-200 bg-forest-50 p-8 text-center">
         <p className="font-serif text-xl text-forest-600">Message sent.</p>
         <p className="mt-2 text-forest-500">
           Thank you. We will respond within 24 hours.
         </p>
-        <button
-          onClick={() => setStatus("idle")}
-          className="mt-6 text-sm font-medium text-forest-600 underline underline-offset-4 hover:text-forest-700"
-        >
-          Send another message
-        </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-12 space-y-6">
-      {status === "error" && (
+    <form action={formAction} className="mt-12 space-y-6">
+      {state.status === "error" && (
         <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-          {errorMessage}
+          {state.message}
         </div>
       )}
 
@@ -134,13 +112,7 @@ export default function ContactForm() {
         />
       </div>
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="flex w-full min-h-touch items-center justify-center rounded-lg bg-navy-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {status === "submitting" ? "Sending\u2026" : "Send message"}
-      </button>
+      <SubmitButton pending={isPending} />
     </form>
   );
 }

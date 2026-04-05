@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const userId = (session.user as unknown as { id: string }).id;
+    const userId = session.user.id;
 
     // Save feedback
     const feedback = await prisma.oracleFeedback.create({

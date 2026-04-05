@@ -35,8 +35,11 @@ export default function TypingDemo({ className = "" }: { className?: string }) {
     }
 
     if (isDeleting && charIndex === 0) {
-      setIsDeleting(false);
-      setPhraseIndex((p) => (p + 1) % phrases.length);
+      const timer = setTimeout(() => {
+        setIsDeleting(false);
+        setPhraseIndex((p) => (p + 1) % phrases.length);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [charIndex, isDeleting, phraseIndex]);
 

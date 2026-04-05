@@ -6,7 +6,7 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import dynamic from "next/dynamic";
 
-const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default function AccountingPage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />

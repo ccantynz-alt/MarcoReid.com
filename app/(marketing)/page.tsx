@@ -5,12 +5,12 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
 
-const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"), { ssr: false });
-const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"), { ssr: false });
-const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"), { ssr: false });
-const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
-const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"), { ssr: false });
-const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"), { ssr: false });
+const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"));
+const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"));
+const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"));
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
+const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 
 export const metadata: Metadata = {
   title: "AlecRae \u2014 Professional Intelligence for Law and Accounting",
