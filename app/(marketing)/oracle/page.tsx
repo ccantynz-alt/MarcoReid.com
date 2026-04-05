@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import OracleMockup from "@/app/components/marketing/OracleMockup";
 import Reveal from "@/app/components/effects/Reveal";
-import MockupReveal from "@/app/components/effects/MockupReveal";
+
+const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"), { ssr: false });
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"), { ssr: false });
 
 
 export const metadata: Metadata = {

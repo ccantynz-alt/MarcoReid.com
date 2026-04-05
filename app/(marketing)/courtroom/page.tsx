@@ -4,7 +4,9 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
+import dynamic from "next/dynamic";
+
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {

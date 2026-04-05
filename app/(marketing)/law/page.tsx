@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import DashboardMockup from "@/app/components/marketing/DashboardMockup";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Reveal from "@/app/components/effects/Reveal";
-import MockupReveal from "@/app/components/effects/MockupReveal";
+
+const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"), { ssr: false });
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"), { ssr: false });
 
 
 export const metadata: Metadata = {

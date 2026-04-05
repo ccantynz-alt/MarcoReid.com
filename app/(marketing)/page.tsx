@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BRAND } from "@/lib/constants";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import Button from "@/app/components/shared/Button";
-import OracleMockup from "@/app/components/marketing/OracleMockup";
-import VoiceMockup from "@/app/components/marketing/VoiceMockup";
-import DashboardMockup from "@/app/components/marketing/DashboardMockup";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Reveal from "@/app/components/effects/Reveal";
-import MockupReveal from "@/app/components/effects/MockupReveal";
-import TypingDemo from "@/app/components/effects/TypingDemo";
+
+const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"), { ssr: false });
+const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"), { ssr: false });
+const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"), { ssr: false });
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"), { ssr: false });
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"), { ssr: false });
+const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "AlecRae \u2014 Professional Intelligence for Law and Accounting",

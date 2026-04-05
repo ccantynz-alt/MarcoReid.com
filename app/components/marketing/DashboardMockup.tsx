@@ -93,9 +93,9 @@ export default function DashboardMockup() {
             </p>
             <div className="mt-3 space-y-2">
               {[
-                { matter: "Rodriguez &mdash; H-1B Filing", deadline: "I-129 due today", urgent: true, time: "9:00 AM" },
-                { matter: "Thornton Corp &mdash; Acquisition", deadline: "Due diligence review complete", urgent: false, time: "2:00 PM" },
-                { matter: "Chen &mdash; Employment Contract", deadline: "Client sign-off meeting", urgent: false, time: "4:30 PM" },
+                { matter: "Rodriguez \u2014 H-1B Filing", deadline: "I-129 due today", urgent: true, time: "9:00 AM" },
+                { matter: "Thornton Corp \u2014 Acquisition", deadline: "Due diligence review complete", urgent: false, time: "2:00 PM" },
+                { matter: "Chen \u2014 Employment Contract", deadline: "Client sign-off meeting", urgent: false, time: "4:30 PM" },
               ].map((item) => (
                 <div
                   key={item.matter}
@@ -104,7 +104,7 @@ export default function DashboardMockup() {
                   <div className="flex items-center gap-3">
                     <div className={`h-2 w-2 rounded-full ${item.urgent ? "bg-red-500" : "bg-forest-500"}`} />
                     <div>
-                      <p className="text-sm font-medium text-navy-700" dangerouslySetInnerHTML={{ __html: item.matter }} />
+                      <p className="text-sm font-medium text-navy-700">{item.matter}</p>
                       <p className="text-xs text-navy-400">{item.deadline}</p>
                     </div>
                   </div>
