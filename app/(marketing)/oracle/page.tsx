@@ -80,7 +80,7 @@ export default function OraclePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-12 rounded-2xl border border-navy-100 bg-navy-50 p-8">
-              <p className="text-xs font-semibold tracking-widest text-red-600">Without AlecRae</p>
+              <p className="text-xs font-semibold tracking-widest text-red-600">Without Marco Reid</p>
               <p className="mt-4 leading-relaxed text-navy-400">
                 You&rsquo;re drafting a contract clause about non-compete enforceability.
                 Not sure about the California standard. Open a new tab. Go to Westlaw.
@@ -272,7 +272,7 @@ export default function OraclePage() {
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-navy-400">
               In 2023, a New York attorney was sanctioned for submitting AI-fabricated citations to a federal court.
-              That will never happen on AlecRae. Every case, every statute, every ruling is checked against
+              That will never happen on Marco Reid. Every case, every statute, every ruling is checked against
               authoritative public domain sources before it reaches your screen.
             </p>
           </Reveal>
@@ -332,14 +332,14 @@ export default function OraclePage() {
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
               That query requires both legal research and tax intelligence simultaneously.
               Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both
-              sides of the law-accounting boundary. Only AlecRae can answer it &mdash; because
+              sides of the law-accounting boundary. Only Marco Reid can answer it &mdash; because
               The Oracle spans both domains in a single search.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
               This is not an incremental improvement. This is a category that did not exist
-              before AlecRae created it.
+              before Marco Reid created it.
             </p>
           </Reveal>
         </Container>
