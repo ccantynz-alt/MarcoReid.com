@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Marketing site navigation", () => {
   test("homepage loads with correct title", async ({ page }) => {
     await page.goto("/");
-    await expect(page).toHaveTitle(/AlecRae/);
+    await expect(page).toHaveTitle(/Marco Reid/);
   });
 
   test("homepage has hero section", async ({ page }) => {
@@ -27,7 +27,7 @@ test.describe("Marketing site navigation", () => {
   const routes = [
     { path: "/law", title: /Legal/ },
     { path: "/accounting", title: /Accounting/ },
-    { path: "/oracle", title: /Oracle/ },
+    { path: "/marco", title: /Marco/ },
     { path: "/dictation", title: /Voice/ },
     { path: "/courtroom", title: /Courtroom/ },
     { path: "/pricing", title: /Pricing/ },

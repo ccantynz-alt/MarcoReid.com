@@ -3,24 +3,24 @@ import Providers from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alecrae.com"),
+  metadataBase: new URL("https://marcoreid.com"),
   title: {
-    default: "AlecRae \u2014 Professional Intelligence for Law and Accounting",
-    template: "%s | AlecRae",
+    default: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
+    template: "%s | Marco Reid",
   },
   description:
     "The operating system for legal and accounting professionals. Case management, billing, AI research, dictation, and every tool your firm needs \u2014 in one platform.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "AlecRae",
-    title: "AlecRae \u2014 Professional Intelligence for Law and Accounting",
+    siteName: "Marco Reid",
+    title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
     description:
       "The operating system for legal and accounting professionals. Every tool your firm needs, in one platform.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AlecRae \u2014 Professional Intelligence for Law and Accounting",
+    title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
     description:
       "The operating system for legal and accounting professionals. Every tool your firm needs, in one platform.",
   },

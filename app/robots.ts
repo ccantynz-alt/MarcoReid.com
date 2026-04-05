@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/dashboard", "/admin", "/api", "/login"],
     },
-    sitemap: "https://alecrae.com/sitemap.xml",
+    sitemap: "https://marcoreid.com/sitemap.xml",
   };
 }

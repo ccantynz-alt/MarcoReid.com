@@ -4,7 +4,7 @@ import { hash } from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = process.env.ADMIN_EMAIL || "admin@alecrae.com";
+  const email = process.env.ADMIN_EMAIL || "admin@marcoreid.com";
   const password = process.env.ADMIN_PASSWORD || "changeme123";
 
   const passwordHash = await hash(password, 12);
@@ -17,7 +17,7 @@ async function main() {
       name: "Craig Cantyn",
       passwordHash,
       role: "ADMIN",
-      firmName: "AlecRae",
+      firmName: "Marco Reid",
     },
   });
 

@@ -11,14 +11,14 @@ export default function DashboardPage() {
         Welcome back{session?.user?.name ? `, ${session.user.name}` : ""}.
       </h1>
       <p className="mt-2 text-lg text-navy-400">
-        Your AlecRae dashboard. This is where your practice lives.
+        Your Marco Reid dashboard. This is where your practice lives.
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
           { title: "Matters", desc: "Manage your active cases and engagements", count: "0" },
           { title: "Clients", desc: "Your client directory and CRM", count: "0" },
-          { title: "The Oracle", desc: "AI-powered legal and accounting research", count: null },
+          { title: "Marco", desc: "AI-powered legal and accounting research", count: null },
           { title: "Documents", desc: "Files, drafts, and templates", count: "0" },
           { title: "Billing", desc: "Time tracking, invoices, and payments", count: "0" },
           { title: "Messages", desc: "Secure matter-centric conversations", count: "0" },

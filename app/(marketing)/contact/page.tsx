@@ -4,9 +4,9 @@ import Reveal from "@/app/components/effects/Reveal";
 import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact AlecRae",
+  title: "Contact Marco Reid",
   description:
-    "Get in touch with AlecRae. Questions about the platform, security, pricing, or partnerships.",
+    "Get in touch with Marco Reid. Questions about the platform, security, pricing, or partnerships.",
 };
 
 export default function ContactPage() {
@@ -18,7 +18,7 @@ export default function ContactPage() {
             Get in touch.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
-            Questions about AlecRae? We&rsquo;d love to hear from you.
+            Questions about Marco Reid? We&rsquo;d love to hear from you.
           </p>
         </Container>
       </section>
@@ -47,7 +47,7 @@ export default function ContactPage() {
         <Container>
           <div className="mx-auto max-w-xl text-center">
             <p className="text-sm text-navy-400">
-              AlecRae &middot; Auckland, New Zealand
+              Marco Reid &middot; Auckland, New Zealand
             </p>
             <p className="mt-2 text-sm text-navy-400">
               We respond to every message within 24 hours.

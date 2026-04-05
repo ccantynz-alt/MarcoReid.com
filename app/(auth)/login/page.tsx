@@ -39,7 +39,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center">
           <Link href="/" className="font-serif text-3xl text-navy-500">
-            AlecRae
+            Marco Reid
           </Link>
           <p className="mt-2 text-sm text-navy-400">
             Sign in to your account
@@ -106,7 +106,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-navy-400">
           <Link href="/" className="font-medium text-navy-500 hover:text-navy-700">
-            &larr; Back to AlecRae
+            &larr; Back to Marco Reid
           </Link>
         </p>
       </div>
