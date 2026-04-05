@@ -5,19 +5,19 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "AlecRae terms of service. The agreement between you and AlecRae.",
+    "Marco Reid terms of service. The agreement between you and Marco Reid.",
 };
 
 const sections = [
   {
     title: "Acceptance of terms",
     content:
-      "By accessing or using the AlecRae platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the platform. These terms apply to all users, including registered account holders and visitors.",
+      "By accessing or using the Marco Reid platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the platform. These terms apply to all users, including registered account holders and visitors.",
   },
   {
     title: "Description of service",
     content:
-      "AlecRae provides AI-powered practice management tools for legal and accounting professionals, including case management, billing, document management, voice dictation, and The Oracle research engine. Features may vary by subscription tier.",
+      "Marco Reid provides AI-powered practice management tools for legal and accounting professionals, including case management, billing, document management, voice dictation, and Marco research engine. Features may vary by subscription tier.",
   },
   {
     title: "Account responsibilities",
@@ -25,19 +25,19 @@ const sections = [
       "You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. You must provide accurate and complete registration information. You must notify us immediately of any unauthorised use of your account.",
   },
   {
-    title: "The Oracle \u2014 AI research disclaimer",
+    title: "Marco \u2014 AI research disclaimer",
     content:
-      "The Oracle is an AI-powered research tool. While we verify citations and strive for accuracy, AI-generated content may contain errors. The Oracle does not constitute legal or financial advice. You are responsible for independently verifying all research results, citations, and legal references before relying on them in professional practice.",
+      "Marco is an AI-powered research tool. While we verify citations and strive for accuracy, AI-generated content may contain errors. Marco does not constitute legal or financial advice. You are responsible for independently verifying all research results, citations, and legal references before relying on them in professional practice.",
   },
   {
     title: "Acceptable use",
     content:
-      "You agree not to use AlecRae to violate any law or regulation, infringe on intellectual property rights, transmit malware or harmful code, attempt to gain unauthorised access to our systems, or use the platform in any manner that could damage, disable, or impair its operation.",
+      "You agree not to use Marco Reid to violate any law or regulation, infringe on intellectual property rights, transmit malware or harmful code, attempt to gain unauthorised access to our systems, or use the platform in any manner that could damage, disable, or impair its operation.",
   },
   {
     title: "Intellectual property",
     content:
-      "The AlecRae platform, including its design, code, features, and documentation, is the property of AlecRae Limited. Your content remains yours. By using the platform, you grant us a limited licence to process your data solely to provide the service.",
+      "The Marco Reid platform, including its design, code, features, and documentation, is the property of Reid & Associates Ltd. Your content remains yours. By using the platform, you grant us a limited licence to process your data solely to provide the service.",
   },
   {
     title: "Payment and billing",
@@ -47,7 +47,7 @@ const sections = [
   {
     title: "Limitation of liability",
     content:
-      "To the maximum extent permitted by law, AlecRae shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities. Our total liability shall not exceed the amount you paid in the 12 months preceding the claim.",
+      "To the maximum extent permitted by law, Marco Reid shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities. Our total liability shall not exceed the amount you paid in the 12 months preceding the claim.",
   },
   {
     title: "Termination",
@@ -75,7 +75,7 @@ export default function TermsPage() {
             Terms of Service
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
-            The agreement between you and AlecRae.
+            The agreement between you and Marco Reid.
           </p>
         </Container>
       </section>
@@ -89,7 +89,7 @@ export default function TermsPage() {
               </p>
               <p className="mt-6 text-lg text-navy-500">
                 These Terms of Service (&ldquo;Terms&rdquo;) govern your use of
-                the AlecRae platform operated by AlecRae Limited, a New Zealand
+                the Marco Reid platform operated by Reid & Associates Ltd, a New Zealand
                 company.
               </p>
             </Reveal>
@@ -113,7 +113,7 @@ export default function TermsPage() {
                   Questions about these terms?
                 </p>
                 <p className="mt-2 text-navy-400">
-                  Contact us at legal@alecrae.com or write to AlecRae Limited,
+                  Contact us at legal@marcoreid.com or write to Reid & Associates Ltd,
                   Auckland, New Zealand.
                 </p>
               </div>

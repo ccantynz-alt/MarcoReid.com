@@ -5,19 +5,19 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "AlecRae privacy policy. How we collect, use, and protect your data.",
+    "Marco Reid privacy policy. How we collect, use, and protect your data.",
 };
 
 const sections = [
   {
     title: "Information we collect",
     content:
-      "We collect information you provide directly: name, email address, firm name, and account credentials. When you use The Oracle, we process your queries to deliver research results. We collect usage data such as pages visited, features used, and response times to improve the platform.",
+      "We collect information you provide directly: name, email address, firm name, and account credentials. When you use Marco, we process your queries to deliver research results. We collect usage data such as pages visited, features used, and response times to improve the platform.",
   },
   {
     title: "How we use your information",
     content:
-      "We use your information to provide and improve AlecRae services, authenticate your account, deliver research results through The Oracle, process billing, communicate platform updates, and respond to support requests. We never sell your personal data to third parties.",
+      "We use your information to provide and improve Marco Reid services, authenticate your account, deliver research results through Marco, process billing, communicate platform updates, and respond to support requests. We never sell your personal data to third parties.",
   },
   {
     title: "Data security",
@@ -27,17 +27,17 @@ const sections = [
   {
     title: "Data retention",
     content:
-      "Account data is retained while your account is active. Oracle query history is retained to improve research accuracy through our flywheel learning system. You may request deletion of your data at any time by contacting us. We will process deletion requests within 30 days.",
+      "Account data is retained while your account is active. Marco query history is retained to improve research accuracy through our flywheel learning system. You may request deletion of your data at any time by contacting us. We will process deletion requests within 30 days.",
   },
   {
     title: "Third-party services",
     content:
-      "We use Anthropic (Claude) for AI-powered research in The Oracle. We use Neon for database hosting. We use legal data sources (CourtListener, GovInfo) for citation verification. Each third-party service is bound by data processing agreements that protect your information.",
+      "We use Anthropic (Claude) for AI-powered research in Marco. We use Neon for database hosting. We use legal data sources (CourtListener, GovInfo) for citation verification. Each third-party service is bound by data processing agreements that protect your information.",
   },
   {
     title: "Your rights",
     content:
-      "You have the right to access, correct, or delete your personal data. You may export your data at any time. You may withdraw consent for data processing. To exercise these rights, contact us at privacy@alecrae.com.",
+      "You have the right to access, correct, or delete your personal data. You may export your data at any time. You may withdraw consent for data processing. To exercise these rights, contact us at privacy@marcoreid.com.",
   },
   {
     title: "Cookies",
@@ -71,10 +71,10 @@ export default function PrivacyPage() {
                 Last updated: April 2026
               </p>
               <p className="mt-6 text-lg text-navy-500">
-                AlecRae Limited (&ldquo;AlecRae&rdquo;, &ldquo;we&rdquo;,
+                Reid & Associates Ltd (&ldquo;Marco Reid&rdquo;, &ldquo;we&rdquo;,
                 &ldquo;us&rdquo;) is committed to protecting the privacy of our
                 users. This policy describes how we collect, use, and safeguard
-                your information when you use the AlecRae platform.
+                your information when you use the Marco Reid platform.
               </p>
             </Reveal>
 
@@ -97,8 +97,8 @@ export default function PrivacyPage() {
                   Questions about privacy?
                 </p>
                 <p className="mt-2 text-navy-400">
-                  Contact us at privacy@alecrae.com or write to AlecRae
-                  Limited, Auckland, New Zealand.
+                  Contact us at privacy@marcoreid.com or write to Reid &amp;
+                  Associates Ltd, Auckland, New Zealand.
                 </p>
               </div>
             </Reveal>
