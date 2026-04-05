@@ -6,7 +6,7 @@ import Reveal from "@/app/components/effects/Reveal";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Security \u2014 How AlecRae Protects Your Data",
+  title: "Security \u2014 How Marco Reid Protects Your Data",
   description:
     "FIPS 140-3 encryption, immutable audit trails, chain of custody tracking, zero-knowledge architecture, and courtroom-admissible security. The most secure professional platform ever built.",
 };
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "AlecRae Security",
-  description: "Security architecture and compliance for the AlecRae professional intelligence platform.",
+  name: "Marco Reid Security",
+  description: "Security architecture and compliance for the Marco Reid professional intelligence platform.",
   url: `${BRAND.url}/security`,
 };
 
@@ -52,7 +52,7 @@ const securityFeatures = [
   },
   {
     title: "Zero-knowledge architecture",
-    desc: "The ultimate security goal: even AlecRae as a company cannot access client data. Encryption keys held exclusively by the firm. AlecRae processes encrypted data without ever decrypting it. The gold standard for privilege protection.",
+    desc: "The ultimate security goal: even Marco Reid as a company cannot access client data. Encryption keys held exclusively by the firm. Marco Reid processes encrypted data without ever decrypting it. The gold standard for privilege protection.",
     badge: "Coming soon",
   },
   {
@@ -90,7 +90,7 @@ export default function SecurityPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
             Attorney-client privilege is sacred. Client financial data is irreplaceable.
-            AlecRae security is built to courtroom admissibility standards &mdash;
+            Marco Reid security is built to courtroom admissibility standards &mdash;
             not just &ldquo;good enough for SaaS.&rdquo;
           </p>
         </Container>

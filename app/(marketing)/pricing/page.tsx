@@ -12,7 +12,7 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent pricing for AlecRae Legal, AlecRae Accounting, and The Oracle. Plans for solo practitioners to growing firms.",
+    "Transparent pricing for Marco Reid Legal, Marco Reid Accounting, and The Oracle. Plans for solo practitioners to growing firms.",
 };
 
 const schema = {
@@ -24,13 +24,13 @@ const schema = {
   offers: [
     ...LAW_PRICING.map((t) => ({
       "@type": "Offer",
-      name: `AlecRae Legal ${t.name}`,
+      name: `Marco Reid Legal ${t.name}`,
       price: t.price.replace("$", ""),
       priceCurrency: "USD",
     })),
     ...ACCOUNTING_PRICING.map((t) => ({
       "@type": "Offer",
-      name: `AlecRae Accounting ${t.name}`,
+      name: `Marco Reid Accounting ${t.name}`,
       price: t.price.replace("$", ""),
       priceCurrency: "USD",
     })),
@@ -97,7 +97,7 @@ export default function PricingPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-400">
             Plans for solo practitioners, small firms, and growing practices.
-            Every plan includes AlecRae Voice.
+            Every plan includes Marco Reid Voice.
           </p>
         </div>
       </section>
@@ -107,7 +107,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <p className="text-center text-xs font-bold uppercase tracking-wider text-forest-600">
-              AlecRae Legal
+              Marco Reid Legal
             </p>
             <h2 className="mt-3 text-center text-display font-serif text-navy-800">
               Legal practice management.
@@ -130,7 +130,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <p className="text-center text-xs font-bold uppercase tracking-wider text-forest-600">
-              AlecRae Accounting
+              Marco Reid Accounting
             </p>
             <h2 className="mt-3 text-center text-display font-serif text-navy-800">
               AI-powered accounting.

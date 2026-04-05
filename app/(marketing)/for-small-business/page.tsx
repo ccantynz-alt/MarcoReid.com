@@ -4,9 +4,9 @@ import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
-  title: "AlecRae for Small Business \u2014 Legal and Accounting Made Simple",
+  title: "Marco Reid for Small Business \u2014 Legal and Accounting Made Simple",
   description:
-    "Find a lawyer. Find an accountant. Get the professional help your business needs. AlecRae connects small businesses with professionals who use the most advanced tools available.",
+    "Find a lawyer. Find an accountant. Get the professional help your business needs. Marco Reid connects small businesses with professionals who use the most advanced tools available.",
 };
 
 export default function ForSmallBusinessPage() {
@@ -20,18 +20,18 @@ export default function ForSmallBusinessPage() {
             the best professionals.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
-            AlecRae professionals use the most advanced legal and accounting
-            technology ever built. When you work with an AlecRae professional,
+            Marco Reid professionals use the most advanced legal and accounting
+            technology ever built. When you work with an Marco Reid professional,
             your business gets the benefit of that intelligence.
           </p>
         </Container>
       </section>
 
-      <section className="py-24 sm:py-36" aria-label="Why AlecRae professionals">
+      <section className="py-24 sm:py-36" aria-label="Why Marco Reid professionals">
         <Container>
           <Reveal>
             <h2 className="font-serif text-display text-navy-800">
-              Why AlecRae professionals are different.
+              Why Marco Reid professionals are different.
             </h2>
           </Reveal>
 
@@ -41,7 +41,7 @@ export default function ForSmallBusinessPage() {
               { title: "Real-time tax intelligence", desc: "Your accountant works with AI that reads every tax code change in real time. Your CPA never misses a deduction that affects you." },
               { title: "Transparent communication", desc: "Track your matter status, view documents, message your professional, and sign documents through the secure client portal. No more chasing for updates." },
               { title: "Better accuracy", desc: "Every citation and regulation your professional relies on is verified against authoritative public sources. Zero hallucinated case law. Zero fabricated tax rulings." },
-              { title: "Lower costs", desc: "When your lawyer saves 15\u201320 hours per week, those savings can be passed to you. AlecRae professionals are more efficient, which means better value." },
+              { title: "Lower costs", desc: "When your lawyer saves 15\u201320 hours per week, those savings can be passed to you. Marco Reid professionals are more efficient, which means better value." },
               { title: "One platform", desc: "Your lawyer and accountant can collaborate on your matter inside the same platform. No more information lost between disconnected systems." },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
@@ -67,7 +67,7 @@ export default function ForSmallBusinessPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex justify-center gap-4">
-              <Button href="/law" size="lg">Explore AlecRae Legal</Button>
+              <Button href="/law" size="lg">Explore Marco Reid Legal</Button>
               <Button href="/accounting" variant="secondary" size="lg">Explore Accounting</Button>
             </div>
           </Reveal>

@@ -1,4 +1,4 @@
-# CLAUDE.md — AlecRae Master Blueprint
+# CLAUDE.md — Marco Reid Master Blueprint
 ### The definitive rules, strategy, legal protection framework, and build plan
 ### Version 1.0 | Created: March 2026 | Status: PRE-LAUNCH
 
@@ -6,7 +6,7 @@
 
 > **CLAUDE DIRECTIVE — READ THIS FIRST, EVERY SESSION**
 >
-> This file is the single source of truth for the AlecRae platform.
+> This file is the single source of truth for the Marco Reid platform.
 > Before providing any advice, writing any code, or making any architectural
 > decision, Claude must re-read and honour every rule in this document.
 > No suggestion may contradict the legal protection rules, the data sourcing
@@ -21,26 +21,26 @@
 
 | Item | Status |
 |---|---|
-| alecrae.com | PURCHASED — mothership, building starts here |
-| alecrae.accountant | PURCHASED — accounting wing domain secured |
-| alecrae.legal | PENDING — purchase when funds available |
-| AlecRae Accounting (Astra) | BUILT — rename and migrate to alecrae.accountant |
-| AlecRae Law platform | NOT STARTED — alecrae-com repo created, ready to build |
+| marcoreid.com | PURCHASED — mothership, building starts here |
+| marcoreid.accountant | PURCHASED — accounting wing domain secured |
+| marcoreid.legal | PENDING — purchase when funds available |
+| Marco Reid Accounting (Astra) | BUILT — rename and migrate to marcoreid.accountant |
+| Marco Reid Law platform | NOT STARTED — marcoreid-com repo created, ready to build |
 | The Oracle | NOT STARTED |
 | AI Dictation | NOT STARTED |
 | Legal entities | NOT STARTED |
 | Trademarks | NOT STARTED |
 
 **What we are building right now:**
-The mothership — alecrae.com — is the first thing to build.
-This is the unified platform that houses AlecRae Law, AlecRae Accounting,
+The mothership — marcoreid.com — is the first thing to build.
+This is the unified platform that houses Marco Reid Law, Marco Reid Accounting,
 AI Dictation, and The Oracle under one roof with one login.
 
-**The build sequence for alecrae.com:**
+**The build sequence for marcoreid.com:**
 1. Homepage and marketing shell — the front door of the brand
 2. Authentication — firm signup, user login, role-based access
 3. Dashboard — the unified command centre for lawyers and accountants
-4. AlecRae Voice — THE FIRST FEATURE BUILT. Not a later addition.
+4. Marco Reid Voice — THE FIRST FEATURE BUILT. Not a later addition.
    The universal input layer across the entire platform.
    Built on OpenAI Whisper + Claude API post-processing layer.
    Legal and accounting professional language intelligence.
@@ -50,7 +50,7 @@ AI Dictation, and The Oracle under one roof with one login.
    calendar, and Oracle support queries.
    Also powers the Oracle support agent — speak your support
    question, get your answer, no ticket, no bot, no hold music.
-   AlecRae Voice IS the platform's intelligence layer.
+   Marco Reid Voice IS the platform's intelligence layer.
    Speak. It is done.
 5. The Oracle (Law) — legal research, citation verification layer
 6. The Oracle (Accounting) — tax and regulatory research
@@ -59,8 +59,8 @@ AI Dictation, and The Oracle under one roof with one login.
 8. Case management — matters, tasks, deadlines
 9. Billing and time tracking
 10. Trust accounting (after IOLTA legal clearance)
-11. AlecRae Accounting wing — migrate and integrate Astra codebase
-12. Email platform — AlecRae Mail with Oracle in the composer
+11. Marco Reid Accounting wing — migrate and integrate Astra codebase
+12. Email platform — Marco Reid Mail with Oracle in the composer
 
 **Claude must confirm the active build item at the start of every session.**
 Do not jump ahead. Do not suggest Phase 2 features while Phase 1 is incomplete.
@@ -72,7 +72,7 @@ Build each item to faultless standard before moving to the next.
 
 | Field | Value |
 |---|---|
-| Platform name | AlecRae |
+| Platform name | Marco Reid |
 | Tagline | Professional intelligence — law and accounting |
 | Founder | Craig Cantyn (Auckland, New Zealand) |
 | Legal entity (NZ) | TBD — NZ Ltd Company (to be formed before launch) |
@@ -91,23 +91,23 @@ Build each item to faultless standard before moving to the next.
 ### 2.1 The Three Wings
 
 ```
-AlecRae (parent brand)
-├── AlecRae Legal        — full-stack legal practice platform
-├── AlecRae Accounting   — AI-powered accounting and compliance
-├── AlecRae Courtroom    — courtroom technology, depositions, e-filing, evidence management
+Marco Reid (parent brand)
+├── Marco Reid Legal        — full-stack legal practice platform
+├── Marco Reid Accounting   — AI-powered accounting and compliance
+├── Marco Reid Courtroom    — courtroom technology, depositions, e-filing, evidence management
 ├── The Oracle           — cross-domain legal + accounting + IP AI (premium tier)
-└── AlecRae Voice        — universal voice input layer across all products
+└── Marco Reid Voice        — universal voice input layer across all products
 ```
 
-**AlecRae Courtroom — the 5th product wing**
+**Marco Reid Courtroom — the 5th product wing**
 
-AlecRae Courtroom is a SEPARATE product that serves a separate audience:
+Marco Reid Courtroom is a SEPARATE product that serves a separate audience:
 courts, litigation teams, court reporters, and trial attorneys. It is
-deeply integrated with AlecRae Legal but has its own access controls,
+deeply integrated with Marco Reid Legal but has its own access controls,
 its own pricing, and its own page on the website.
 
 **Permission-based access model:**
-- Courtroom features are NOT available to all AlecRae Legal users
+- Courtroom features are NOT available to all Marco Reid Legal users
 - Access requires explicit Courtroom subscription or firm-level permission
 - Court administrators can grant/revoke access to specific attorneys
 - All courtroom data is subject to stricter security controls than
@@ -115,21 +115,21 @@ its own pricing, and its own page on the website.
 - Court-filed documents are immutable once filed — no edits, no deletions
 - Access logs for courtroom data are themselves immutable and auditable
 
-**Integration with AlecRae Legal:**
-- Matters created in AlecRae Legal can be linked to Courtroom proceedings
+**Integration with Marco Reid Legal:**
+- Matters created in Marco Reid Legal can be linked to Courtroom proceedings
 - Documents from Legal flow into Courtroom exhibit management
 - Deposition transcripts flow back into the Legal matter record
 - Billing for courtroom time automatically logged in Legal billing
 - The Oracle is available inside Courtroom for real-time research
-- AlecRae Voice is available for real-time transcription
+- Marco Reid Voice is available for real-time transcription
 
 **The institutional hook:**
-When a court adopts AlecRae Courtroom for e-filing and document
-management, every attorney who appears in that court needs AlecRae
+When a court adopts Marco Reid Courtroom for e-filing and document
+management, every attorney who appears in that court needs Marco Reid
 to file. This is not a sales conversation — it is a requirement.
 The court becomes the distribution channel.
 
-### 2.2 AlecRae Law — full product suite
+### 2.2 Marco Reid Law — full product suite
 
 Every lawyer on earth dictates. **AI Dictation is the universal entry hook.**
 A lawyer who does not do immigration, corporate, or any specific practice area
@@ -137,13 +137,13 @@ still needs dictation. They come in for dictation. They discover everything else
 
 ### Dictation domain strategy — DECIDED
 
-Dictation lives INSIDE AlecRae. It does NOT get its own separate domain.
+Dictation lives INSIDE Marco Reid. It does NOT get its own separate domain.
 Giving it a separate domain turns the best acquisition tool into a standalone
-product with no clear path back into the AlecRae ecosystem.
+product with no clear path back into the Marco Reid ecosystem.
 
-- Primary access: `alecrae.com/dictation` or subdomain `dictate.alecrae.com`
-- Both carry the AlecRae brand — the subdomain is cleaner for ads and business cards
-- AlecRae Dictation is tuned specifically for legal and accounting vocabulary
+- Primary access: `marcoreid.com/dictation` or subdomain `dictate.marcoreid.com`
+- Both carry the Marco Reid brand — the subdomain is cleaner for ads and business cards
+- Marco Reid Dictation is tuned specifically for legal and accounting vocabulary
 
 ### Relationship to 48co.nz
 
@@ -152,7 +152,7 @@ consumer-facing general dictation product. The split:
 
 | Product | Audience | Domain | Vocabulary |
 |---|---|---|---|
-| AlecRae Voice | Lawyers and accountants | voice.alecrae.com | Legal + accounting language |
+| Marco Reid Voice | Lawyers and accountants | voice.marcoreid.com | Legal + accounting language |
 | 48co.nz | General consumer/business | 48co.nz | General purpose |
 
 Same engine underneath. Different vocabulary training and positioning on top.
@@ -166,7 +166,7 @@ until Phase 3 is active and white-labelling is confirmed.
 
 | Module | What it does | Priority |
 |---|---|---|
-| AlecRae Voice | Speak. It is done. Universal input layer for the platform | Phase 1 — THE HOOK |
+| Marco Reid Voice | Speak. It is done. Universal input layer for the platform | Phase 1 — THE HOOK |
 | The Oracle — Law | Legal research AI across all public domain case law | Phase 1 |
 | Case management | Full matter lifecycle, deadlines, tasks, documents | Phase 1 |
 | Document AI + editor | Drafting, review, full word-processing — replaces Word | Phase 1 |
@@ -198,7 +198,7 @@ drafting formation documents, filing with state agencies, coordinating
 with a CPA on tax structure. Hours of work. Multiple tools. Multiple
 professionals working in silos.
 
-**The AlecRae version:**
+**The Marco Reid version:**
 The lawyer opens a new incorporation workflow. The client specifies:
 - What countries or states the company will operate in
 - What the business does
@@ -217,9 +217,9 @@ The Oracle (both Legal and Accounting simultaneously) then:
 8. Creates the matter record with all documents, deadlines, and compliance
    requirements automatically tracked
 
-**Why this is uniquely possible on AlecRae:**
+**Why this is uniquely possible on Marco Reid:**
 No other platform has both AI legal AND AI accounting research on the
-same platform. When AlecRae recommends a corporate structure, it
+same platform. When Marco Reid recommends a corporate structure, it
 simultaneously considers:
 - Legal liability protection (Oracle Legal)
 - Tax optimisation across jurisdictions (Oracle Accounting)
@@ -228,11 +228,11 @@ simultaneously considers:
 
 A lawyer using Clio + Westlaw + QuickBooks cannot do this. The tools
 do not talk to each other. The legal analysis lives in one system,
-the tax analysis in another, the documents in a third. AlecRae does
+the tax analysis in another, the documents in a third. Marco Reid does
 it all in one workflow.
 
 **The liability protection angle:**
-Every corporate structure recommended by AlecRae must include:
+Every corporate structure recommended by Marco Reid must include:
 - Separation of personal and business assets
 - Appropriate holding company structures where relevant
 - IP protection entities where applicable
@@ -244,11 +244,11 @@ Every corporate structure recommended by AlecRae must include:
 Company incorporation is not a one-time event. Every company has
 ongoing compliance: annual returns, tax filings, registered agent
 requirements, director changes, share transfers, regulatory reporting.
-AlecRae tracks all of this automatically after incorporation.
+Marco Reid tracks all of this automatically after incorporation.
 The client stays on the platform permanently. The dependency is total.
 
 **The standard disclaimer applies:**
-AlecRae assists professionals in structuring and forming entities.
+Marco Reid assists professionals in structuring and forming entities.
 It does not itself provide legal or tax advice. The professional
 reviews and approves every recommendation before it is executed.
 The Section 6.4 disclaimer must appear on every AI-generated
@@ -262,13 +262,13 @@ reporters. Video on separate systems. Transcription by expensive court
 reporters at $300-500/day. Exhibits in binders. Notes scattered. Nothing
 connected to the case management system.
 
-**What AlecRae builds for depositions:**
+**What Marco Reid builds for depositions:**
 
 1. **Scheduling** — book depositions inside the platform with matter-tagging,
    calendar sync, and automated reminders to all parties
 2. **Video recording** — built-in video or Zoom integration, recorded and
    stored inside the matter record
-3. **Real-time transcription** — AlecRae Voice transcribes the entire
+3. **Real-time transcription** — Marco Reid Voice transcribes the entire
    deposition live, with legal vocabulary intelligence, speaker
    identification, and timestamps. Replaces the $300-500/day court reporter
 4. **Exhibit management** — pull up any exhibit from the matter files
@@ -282,26 +282,26 @@ connected to the case management system.
    record, timestamped to the video recording
 8. **Opposing counsel access** — the other side gets access to the
    transcript and exhibits through the platform. Another hook that brings
-   new users onto AlecRae
+   new users onto Marco Reid
 
 **The competitive advantage:**
 No practice management tool offers integrated real-time transcription
 with legal vocabulary intelligence. Court reporters charge $300-500/day.
-AlecRae Voice does it in real time, with better legal vocabulary
+Marco Reid Voice does it in real time, with better legal vocabulary
 understanding, for a fraction of the cost. The transcript is immediately
 searchable and linked to the matter — no waiting days for delivery.
 
 ### 2.2d Courtroom technology — the institutional hook
 
-This is the feature that turns AlecRae from a tool for individual
+This is the feature that turns Marco Reid from a tool for individual
 lawyers into infrastructure that courts themselves depend on.
 
-**What AlecRae builds for courtrooms:**
+**What Marco Reid builds for courtrooms:**
 
 1. **e-Filing** — electronic filing with courts where APIs are available.
-   The attorney files from inside AlecRae, the court receives it
+   The attorney files from inside Marco Reid, the court receives it
    electronically, and the filing is automatically logged in the matter
-2. **Real-time courtroom transcription** — AlecRae Voice transcribes
+2. **Real-time courtroom transcription** — Marco Reid Voice transcribes
    proceedings live, replacing or supplementing court stenographers
 3. **Exhibit management** — digital exhibit books accessible on iPad or
    laptop during trial. Tag, annotate, and present exhibits
@@ -315,8 +315,8 @@ lawyers into infrastructure that courts themselves depend on.
    to verify. That is a superpower in a courtroom
 
 **The institutional hook:**
-If a court itself uses AlecRae for filing and document management, then
-every attorney who appears in that court needs AlecRae to file. That is
+If a court itself uses Marco Reid for filing and document management, then
+every attorney who appears in that court needs Marco Reid to file. That is
 not a sales conversation — it is a requirement. The court becomes the
 hook. This is the most aggressive distribution strategy in the entire
 platform.
@@ -359,7 +359,7 @@ documents before launch.
 
 ### 2.3 Existing accounting platform — rename required
 
-The AlecRae Accounting platform is already built and deployed at:
+The Marco Reid Accounting platform is already built and deployed at:
 https://ledger-ai-seven.vercel.app/
 
 Current branding: **"Astra"** — THIS MUST BE RENAMED BEFORE ANY PUBLIC ACTIVITY.
@@ -367,18 +367,18 @@ Current branding: **"Astra"** — THIS MUST BE RENAMED BEFORE ANY PUBLIC ACTIVIT
 Google has the resources and brand recognition to cause serious confusion
 and potentially pursue trademark opposition.
 
-Rename to: **AlecRae Accounting** (or a unique sub-brand under AlecRae)
+Rename to: **Marco Reid Accounting** (or a unique sub-brand under Marco Reid)
 Actions required:
-- [ ] Rename platform from Astra to AlecRae Accounting in all UI, code, and assets
-- [ ] Update Vercel project name and custom domain to alecrae.accountant
+- [ ] Rename platform from Astra to Marco Reid Accounting in all UI, code, and assets
+- [ ] Update Vercel project name and custom domain to marcoreid.accountant
 - [ ] Update GitHub repo name to match
 - [ ] Confirm no other "Astra" references remain in codebase or marketing copy
 
-### 2.4 AlecRae Accounting — full product suite
+### 2.4 Marco Reid Accounting — full product suite
 
 | Module | What it does | Priority |
 |---|---|---|
-| AlecRae Voice | Shared across Law and Accounting — understands both | Phase 1 |
+| Marco Reid Voice | Shared across Law and Accounting — understands both | Phase 1 |
 | The Oracle — Accounting | Tax law, compliance, regulatory AI research | Phase 1 |
 | Accounting automation | Bookkeeping, reconciliation, journal entries | Phase 1 |
 | Bank feed integration | Direct bank connection — auto-pulls and categorises transactions | Phase 1 |
@@ -393,7 +393,7 @@ Actions required:
 
 **Critical note on bank feed integration:**
 Bank feed quality is the feature Xero, QuickBooks, and MYOB are most known for.
-AlecRae Accounting must match or exceed their feed reliability from day one.
+Marco Reid Accounting must match or exceed their feed reliability from day one.
 A bank feed that misses transactions or miscategorises entries will destroy
 accountant trust faster than any other single failure. Use Plaid or Salt Edge
 as the banking connectivity layer — do not build this from scratch.
@@ -404,7 +404,7 @@ The Oracle is the product nobody else can build because nobody else owns both si
 It answers questions that cross the legal and accounting boundary simultaneously.
 Example: "What are the immigration tax implications of this corporate structure
 for a Tier-1 visa applicant?" — that query requires both law and accounting AI.
-Only AlecRae can answer it.
+Only Marco Reid can answer it.
 
 Pricing: $499–$999/month per firm. This is the true moat.
 
@@ -416,22 +416,22 @@ Pricing: $499–$999/month per firm. This is the true moat.
 
 | Domain | Purpose | Status |
 |---|---|---|
-| alecrae.com | Primary parent brand | PURCHASED — March 2026 |
-| alecrae.legal | AlecRae Law platform | Purchase when funds available |
-| alecrae.accountant | AlecRae Accounting platform | PURCHASED — March 2026 |
-| oracle.alecrae.com | Subdomain — do not buy separate domain | Subdomain only |
-| dictate.alecrae.com | AI Dictation entry point | Subdomain only |
+| marcoreid.com | Primary parent brand | PURCHASED — March 2026 |
+| marcoreid.legal | Marco Reid Law platform | Purchase when funds available |
+| marcoreid.accountant | Marco Reid Accounting platform | PURCHASED — March 2026 |
+| oracle.marcoreid.com | Subdomain — do not buy separate domain | Subdomain only |
+| dictate.marcoreid.com | AI Dictation entry point | Subdomain only |
 
 ### 3.2 Domain rules
 
-**Why alecrae.legal and not alecrae.law:**
+**Why marcoreid.legal and not marcoreid.law:**
 The `.law` TLD is restricted to verified practising lawyers and authorised
-legal institutions only. AlecRae is a platform that SERVES lawyers — it is
+legal institutions only. Marco Reid is a platform that SERVES lawyers — it is
 not a law firm. We cannot register `.law` and should not try to.
-`alecrae.legal` has no eligibility restrictions and is arguably stronger
+`marcoreid.legal` has no eligibility restrictions and is arguably stronger
 positioning — it signals legal technology platform, not law firm. This
 distinction also protects us from any bar association concern that a
-non-lawyer entity is holding a `.law` domain. `alecrae.attorney` carries
+non-lawyer entity is holding a `.law` domain. `marcoreid.attorney` carries
 the same restriction as `.law` — do not attempt that either.
 
 - **DO** purchase all three domains before any public announcement or outreach
@@ -451,7 +451,7 @@ the same restriction as `.law` — do not attempt that either.
 
 **Step 1 — NZ Ltd Company**
 - Operating company for NZ/Pacific/Australian market
-- **AlecRae Accounting is used internally for all bookkeeping from day one**
+- **Marco Reid Accounting is used internally for all bookkeeping from day one**
   — we do not use Xero, QuickBooks, or any competitor. We use our own platform.
   This is both a cost saving and a live proof point for marketing.
 - GST registration — exported digital services are zero-rated (0% GST)
@@ -485,7 +485,7 @@ the same restriction as `.law` — do not attempt that either.
 
 ### 5.1 Trademark filing — DO THIS BEFORE DOMAIN ANNOUNCEMENT
 
-- File "AlecRae" as a trademark in the US (USPTO) under Class 42 (software/SaaS)
+- File "Marco Reid" as a trademark in the US (USPTO) under Class 42 (software/SaaS)
   and Class 45 (legal services technology) simultaneously
 - File "The Oracle" as a trademark — check for conflicts first, it is a common name
 - Use the Madrid Protocol to extend trademark filings internationally:
@@ -514,9 +514,9 @@ the priority date. File before any technical blog posts or public demos.
 
 ### 5.3 IP assignment agreements
 
-Every contractor, developer, or freelancer who touches AlecRae code must sign
+Every contractor, developer, or freelancer who touches Marco Reid code must sign
 an IP assignment agreement before they start work. This agreement must state
-that all work product, code, designs, and inventions created for AlecRae are
+that all work product, code, designs, and inventions created for Marco Reid are
 assigned to the IP holding entity. Without this, a contractor could claim
 ownership of code they wrote. This is non-negotiable.
 
@@ -579,13 +579,13 @@ with licensed data before building features on top of it.
 
 ### 6.4 The safe harbour statement for every AI output
 
-Every single AI-generated legal or accounting output on AlecRae must display:
+Every single AI-generated legal or accounting output on Marco Reid must display:
 
 > "This content is generated by AI for research and informational purposes only.
 > It does not constitute legal advice, tax advice, or professional advice of any kind.
 > It does not create an attorney-client or accountant-client relationship.
 > Always verify AI-generated content with a qualified professional before reliance.
-> AlecRae is a tool for professionals, not a substitute for professional judgment."
+> Marco Reid is a tool for professionals, not a substitute for professional judgment."
 
 This statement must appear:
 - On every Oracle research result
@@ -625,7 +625,7 @@ Professional Conduct before launching.
   prepare tax returns or financial statements must not hold itself out as
   providing professional accounting services.
 - The IRS has specific rules about who can prepare tax returns (Circular 230).
-  AlecRae Accounting is a tool for licensed CPAs — it does not prepare returns,
+  Marco Reid Accounting is a tool for licensed CPAs — it does not prepare returns,
   it assists CPAs in preparing returns. This distinction must be clear in all
   marketing and terms of service.
 - AICPA (American Institute of CPAs) membership rules may affect how CPAs
@@ -721,11 +721,11 @@ product decision. Read it at the start of every build session.
 
 ### 10.1 The dependency principle
 
-The most powerful protection AlecRae will ever have is not a trademark,
+The most powerful protection Marco Reid will ever have is not a trademark,
 not a patent, not a legal structure — it is a lawyer or accountant who
 cannot imagine running their practice without it.
 
-When AlecRae handles a firm's dictation, case management, billing, trust
+When Marco Reid handles a firm's dictation, case management, billing, trust
 accounting, client CRM, legal research, and document drafting simultaneously,
 the switching cost is no longer "find a different tool." It becomes
 "rebuild your entire practice from scratch." Nobody does that.
@@ -753,7 +753,7 @@ for its removal are the same people whose daily lives depend on it running.
 ### 10.3 The product decision filter
 
 Every feature must answer this question before it gets built:
-**"Does this make a lawyer or accountant more dependent on AlecRae, or less?"**
+**"Does this make a lawyer or accountant more dependent on Marco Reid, or less?"**
 
 Features that create the deepest dependency (build first, build best):
 - Trust accounting — most regulated, hardest to migrate, most embedded
@@ -775,7 +775,7 @@ Dependency compounds into a true network effect when:
 - Immigration escrow is processing case fees
 - Law firms are inviting clients into the secure client portal
 
-At that point AlecRae is not software anymore. It is infrastructure.
+At that point Marco Reid is not software anymore. It is infrastructure.
 Infrastructure does not get replaced. It gets acquired.
 
 ### 10.5 The acquisition inevitability
@@ -792,18 +792,18 @@ irreplaceable that acquisition becomes the only rational response.
 
 ### 11.1 The core philosophy
 
-AlecRae is a five-star hotel. The brand never changes. The elegance never
+Marco Reid is a five-star hotel. The brand never changes. The elegance never
 drops. But the platform casts hooks in every direction simultaneously —
 consumers, small businesses, professionals — and pulls everyone into
 the same platform through different doors.
 
-The name AlecRae signals professional, ethical, results-driven excellence.
+The name Marco Reid signals professional, ethical, results-driven excellence.
 That signal must be consistent across every page, every audience, every
 search term we target. The hook looks different. The line is always the same.
 
-### 11.2 The five audiences AlecRae serves
+### 11.2 The five audiences Marco Reid serves
 
-| Audience | What they need | How AlecRae reaches them |
+| Audience | What they need | How Marco Reid reaches them |
 |---|---|---|
 | Attorneys and law firms | Practice management, research, billing, dictation | Professional platform pages + AILA/ABA outreach |
 | CPAs and accounting firms | Accounting automation, tax, Oracle, dictation | Professional platform pages + AICPA outreach |
@@ -863,34 +863,34 @@ Every URL below is a separate page, separately SEO-optimised,
 separately indexed by Google. Each one is a hook aimed at a different fish.
 
 ```
-alecrae.com/                          — Professional homepage (existing)
-alecrae.com/law/                      — AlecRae Law platform page
-alecrae.com/accounting/               — AlecRae Accounting platform page
-alecrae.com/oracle/                   — The Oracle product page
-alecrae.com/dictation/                — AI Dictation product page
-alecrae.com/pricing/                  — Pricing page
+marcoreid.com/                          — Professional homepage (existing)
+marcoreid.com/law/                      — Marco Reid Law platform page
+marcoreid.com/accounting/               — Marco Reid Accounting platform page
+marcoreid.com/oracle/                   — The Oracle product page
+marcoreid.com/dictation/                — AI Dictation product page
+marcoreid.com/pricing/                  — Pricing page
 
-alecrae.com/find-a-lawyer/            — Consumer: find an attorney
-alecrae.com/find-an-accountant/       — Consumer: find a CPA
-alecrae.com/for-small-business/       — Consumer: small business hub
-alecrae.com/for-startups/             — Consumer: startup legal + accounting
-alecrae.com/immigration-help/         — Consumer: immigration legal help
+marcoreid.com/find-a-lawyer/            — Consumer: find an attorney
+marcoreid.com/find-an-accountant/       — Consumer: find a CPA
+marcoreid.com/for-small-business/       — Consumer: small business hub
+marcoreid.com/for-startups/             — Consumer: startup legal + accounting
+marcoreid.com/immigration-help/         — Consumer: immigration legal help
 
-alecrae.com/resources/                — Educational content hub (blog)
-alecrae.com/resources/[slug]          — Individual educational articles
-alecrae.com/guides/                   — In-depth professional guides
+marcoreid.com/resources/                — Educational content hub (blog)
+marcoreid.com/resources/[slug]          — Individual educational articles
+marcoreid.com/guides/                   — In-depth professional guides
 
-alecrae.com/compare/westlaw/          — Comparison: AlecRae vs Westlaw
-alecrae.com/compare/clio/             — Comparison: AlecRae vs Clio
-alecrae.com/compare/quickbooks/       — Comparison: AlecRae vs QuickBooks
-alecrae.com/compare/lexisnexis/       — Comparison: AlecRae vs LexisNexis
+marcoreid.com/compare/westlaw/          — Comparison: Marco Reid vs Westlaw
+marcoreid.com/compare/clio/             — Comparison: Marco Reid vs Clio
+marcoreid.com/compare/quickbooks/       — Comparison: Marco Reid vs QuickBooks
+marcoreid.com/compare/lexisnexis/       — Comparison: Marco Reid vs LexisNexis
 ```
 
 ### 11.5 The brand rule for every audience
 
 No matter which page a visitor lands on — whether they are a senior
 partner at a 50-person law firm or a first-generation immigrant looking
-for visa help — they experience the same AlecRae:
+for visa help — they experience the same Marco Reid:
 
 - Same typography (Instrument Serif + Plus Jakarta Sans)
 - Same colour system (navy, forest, plum accents on clean white)
@@ -898,14 +898,14 @@ for visa help — they experience the same AlecRae:
 - Same promise: professional, ethical, transformational
 
 The consumer pages speak to a different problem. They never speak
-differently. AlecRae does not have a "cheap version" for the public.
+differently. Marco Reid does not have a "cheap version" for the public.
 It has an accessible version that respects the intelligence of every
 person who lands on it.
 
 ### 11.6 The content machine — SEO at scale
 
 The Oracle generates content-quality legal and accounting explanations.
-AlecRae should publish 3–5 educational articles per week targeting
+Marco Reid should publish 3–5 educational articles per week targeting
 Territory 3 and Territory 4 keyword searches above. Each article:
 
 - Written to genuinely educate — not thin SEO filler
@@ -915,9 +915,9 @@ Territory 3 and Territory 4 keyword searches above. Each article:
 - Targets one primary keyword and 2–3 secondary keywords
 
 Over 12 months this content library becomes the single most powerful
-SEO asset AlecRae owns — compounding traffic that no advertising budget can buy.
+SEO asset Marco Reid owns — compounding traffic that no advertising budget can buy.
 
-### 11.7 Schema markup — tell Google exactly what AlecRae is
+### 11.7 Schema markup — tell Google exactly what Marco Reid is
 
 Every page must implement the correct structured data schema:
 
@@ -939,11 +939,11 @@ of appearing in rich results, featured snippets, and the People Also Ask box.
 
 ### 11.1 The positioning statement
 
-AlecRae is not a legal research tool. It is not accounting software.
+Marco Reid is not a legal research tool. It is not accounting software.
 It is the operating system for legal and accounting professionals.
 
 Westlaw sells access to law. LexisNexis sells access to law.
-AlecRae sells the ability to practise law and accounting — entirely,
+Marco Reid sells the ability to practise law and accounting — entirely,
 from first client contact to final invoice, powered by AI throughout.
 
 ### 11.2 What we never say in marketing
@@ -964,7 +964,7 @@ from first client contact to final invoice, powered by AI throughout.
 - "Every tool your firm needs, in one platform"
 - "Built by professionals, powered by AI"
 - "The Oracle — research that crosses every boundary"
-- "AlecRae Dictation — the only dictation tool that speaks law"
+- "Marco Reid Dictation — the only dictation tool that speaks law"
 
 ### 11.4 Early adopter strategy
 
@@ -999,12 +999,12 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ### 10.2 Pricing tiers (initial — to be validated with early users)
 
-**AlecRae Law**
+**Marco Reid Law**
 - Starter: $99/month — AI Dictation + basic case management (solo attorney)
 - Professional: $199/month — full platform except Oracle (small firm)
 - Firm: $399/month per seat — full platform including Oracle Law
 
-**AlecRae Accounting**
+**Marco Reid Accounting**
 - Starter: $79/month — AI Dictation + basic accounting tools (solo CPA)
 - Professional: $149/month — full platform except Oracle
 - Firm: $299/month per seat — full platform including Oracle Accounting
@@ -1013,7 +1013,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 - Cross-domain: $499/month — Oracle Law + Oracle Accounting combined
 - Enterprise: $999/month — Oracle + white-label + API access + priority support
 
-**Immigration Marketplace (within AlecRae Law)**
+**Immigration Marketplace (within Marco Reid Law)**
 - 5% clip on all escrow transactions — passive recurring revenue
 
 ### 10.3 Tax and GST
@@ -1033,7 +1033,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 - [ ] IP holding entity formed
 - [ ] All IP assigned from personal ownership to IP holding entity
 - [ ] IP licensing agreements between holding entity and operating companies
-- [ ] Trademark applications filed — AlecRae, The Oracle (US + Madrid Protocol)
+- [ ] Trademark applications filed — Marco Reid, The Oracle (US + Madrid Protocol)
 - [ ] Provisional patent applications filed
 - [ ] IOLTA compliance analysis completed by legal tech attorney
 - [ ] Privacy policy drafted and reviewed by privacy attorney
@@ -1042,9 +1042,9 @@ AICPA strategy — the professional community trusts peers, not ads.
 - [ ] IP assignment agreements ready for all contractors
 
 ### Domain and brand
-- [ ] alecrae.com purchased
-- [ ] alecrae.legal purchased
-- [ ] alecrae.accountant purchased
+- [ ] marcoreid.com purchased
+- [ ] marcoreid.legal purchased
+- [ ] marcoreid.accountant purchased
 - [ ] All domains pointed to Cloudflare
 - [ ] Email authentication (DMARC, DKIM, SPF) configured
 - [ ] No public announcement made before trademark filing
@@ -1083,9 +1083,9 @@ AICPA strategy — the professional community trusts peers, not ads.
 1. Document AI — drafting and review
 2. Client CRM and intake
 3. The Oracle cross-domain — the premium tier
-4. AlecRae Immigration module (from Verom.ai, rebranded)
+4. Marco Reid Immigration module (from Verom.ai, rebranded)
 5. Corporate law, family law, IP practice modules
-6. AlecRae Accounting full suite
+6. Marco Reid Accounting full suite
 7. Client portal with secure messaging
 
 ### Phase 3 — The Moat
@@ -1128,7 +1128,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ## 17. Claude Behaviour Rules for This Project
 
-These rules govern how Claude assists with AlecRae in every session.
+These rules govern how Claude assists with Marco Reid in every session.
 
 1. **Always read this file first.** Before providing any advice, Claude must
    acknowledge the constraints in this document. If a suggestion would violate
@@ -1139,7 +1139,7 @@ These rules govern how Claude assists with AlecRae in every session.
    proper licensing agreement. Claude must never suggest copying competitor
    UI patterns or editorial content.
 
-3. **The platform is not legal advice.** Claude must never frame AlecRae features
+3. **The platform is not legal advice.** Claude must never frame Marco Reid features
    as providing legal or tax advice. Every AI output feature must include the
    standard disclaimer from Section 6.4.
 
@@ -1166,7 +1166,7 @@ These rules govern how Claude assists with AlecRae in every session.
    Phase 1 is incomplete.
 
 9. **Protect the exit.** Every architectural and business decision should be
-   evaluated against the question: does this make AlecRae more or less
+   evaluated against the question: does this make Marco Reid more or less
    attractive to a strategic acquirer? The target exit is multi-million dollar
    acquisition by Thomson Reuters, Clio, Wolters Kluwer, or equivalent.
 
@@ -1175,11 +1175,11 @@ These rules govern how Claude assists with AlecRae in every session.
     document intentionally — but changes should be explicit and deliberate,
     not the result of a casual in-session suggestion.
 
-11. **Brand name capitalisation: AlecRae.** The name is always written as
-    "AlecRae" — capital A, capital R, everything else lowercase. Never
-    "ALECRAE", never "Alecrae", never "alecrae" in any user-facing text.
-    Product names follow the same rule: "AlecRae Law", "AlecRae Accounting",
-    "AlecRae Voice". "The Oracle" has a capital T and capital O.
+11. **Brand name capitalisation: Marco Reid.** The name is always written as
+    "Marco Reid" — capital A, capital R, everything else lowercase. Never
+    "MARCOREID", never "Marcoreid", never "marcoreid" in any user-facing text.
+    Product names follow the same rule: "Marco Reid Law", "Marco Reid Accounting",
+    "Marco Reid Voice". "The Oracle" has a capital T and capital O.
     This applies to all headings, body text, navigation, footer, metadata,
     and schema markup across the entire site. The only exception is CSS
     class names and code identifiers which may use different casing.
@@ -1261,7 +1261,7 @@ depart from it requires explicit discussion and a documented decision.
 | LexisNexis (RELX) | Research + risk data combined | Same pricing problem, same UI problem | Same |
 | Clio | Best practice management | No Oracle-equivalent research AI | We have both |
 | Bloomberg Law | Financial/securities depth | Weak for solo and small firm attorneys | We price for solo and SMB |
-| Wolters Kluwer | Tax and accounting depth | Fragmented products, no unified platform | AlecRae is one login for everything |
+| Wolters Kluwer | Tax and accounting depth | Fragmented products, no unified platform | Marco Reid is one login for everything |
 
 ### 19.2 The new threat — Harvey AI
 
@@ -1270,7 +1270,7 @@ and formed a strategic partnership. Harvey is AI-native and well-funded.
 
 What Harvey does not have: practice management, billing, trust accounting,
 dictation, or the accounting wing. Harvey is a research and drafting tool.
-AlecRae is the entire operating system. These are different products.
+Marco Reid is the entire operating system. These are different products.
 
 Watch Harvey closely. If they move into practice management, that changes
 the competitive picture significantly.
@@ -1328,7 +1328,7 @@ to mishandle client funds (trust accounting) or miss a filing deadline.
 
 This section is non-negotiable. It exists because a single hallucinated
 court citation submitted to a judge can destroy a law firm's reputation,
-result in attorney sanctions, and attach AlecRae's name to a national
+result in attorney sanctions, and attach Marco Reid's name to a national
 news story. This has already happened to other platforms. It will not
 happen to us.
 
@@ -1339,7 +1339,7 @@ citing multiple cases that did not exist. ChatGPT had fabricated them.
 The attorney was sanctioned, fined, and publicly humiliated. The case
 became known internationally as the defining cautionary tale of AI in law.
 
-This is the specific failure mode AlecRae must be engineered to prevent.
+This is the specific failure mode Marco Reid must be engineered to prevent.
 It is not hypothetical. It has already happened. It will happen again
 on other platforms. It must never happen on ours.
 
@@ -1372,18 +1372,18 @@ mandatory verification layer before it is displayed to the user:
    the standard AI disclaimer, every Oracle research result must display:
 
    > "Always verify every case citation before relying on it in any
-   > court filing or legal document. AlecRae's citation verification
+   > court filing or legal document. Marco Reid's citation verification
    > system reduces hallucination risk but does not eliminate it.
    > The professional responsibility for verifying citations rests
    > with the attorney of record."
 
-### 21.3 Why this protects AlecRae legally
+### 21.3 Why this protects Marco Reid legally
 
 An attorney who ignores a clearly displayed ⚠ UNVERIFIED badge and submits
 that citation to court has made a professional decision. The liability is
 theirs. The badge is our documented warning, our terms of service is our
 contract, and our logs show exactly what verification status was displayed
-at the time of use. This is the paper trail that keeps AlecRae out of the
+at the time of use. This is the paper trail that keeps Marco Reid out of the
 sanctions order.
 
 An attorney who submits a citation that our system incorrectly marked
@@ -1454,14 +1454,14 @@ accounting firms require Type II. Do not waste money on Type I.
 
 ### 22.3 In the meantime — the security trust page
 
-Before SOC 2 is achieved, publish a detailed Security page on alecrae.com
+Before SOC 2 is achieved, publish a detailed Security page on marcoreid.com
 that explains every security measure in plain English. This does not replace
 certification but it demonstrates seriousness and answers the question before
 it is asked. Clio, Harvey, and every serious legal SaaS has one.
 
 ### 22.4 Legal-grade security — courtroom admissibility standard
 
-AlecRae handles the most sensitive data in the professional world:
+Marco Reid handles the most sensitive data in the professional world:
 attorney-client privileged communications, client trust fund records,
 deposition testimony, court filings, and corporate formation documents.
 The security architecture must meet courtroom admissibility standards —
@@ -1499,15 +1499,15 @@ signed. It meets the Federal Rules of Evidence requirements for
 electronically stored information (ESI).
 
 **Zero-knowledge architecture (Phase 3):**
-The ultimate security goal: even AlecRae as a company cannot access
-client data. Encryption keys held exclusively by the firm. AlecRae
+The ultimate security goal: even Marco Reid as a company cannot access
+client data. Encryption keys held exclusively by the firm. Marco Reid
 infrastructure processes encrypted data without ever decrypting it.
 This is the gold standard for attorney-client privilege protection
 and the feature that makes enterprise law firms say yes.
 
 ### 22.5 Universal device and integration architecture
 
-AlecRae must work on every device a professional uses, and integrate
+Marco Reid must work on every device a professional uses, and integrate
 with every system they cannot immediately replace.
 
 **Device support (all platforms from Phase 1):**
@@ -1520,7 +1520,7 @@ with every system they cannot immediately replace.
 - PACER (Public Access to Court Electronic Records) — federal court
   docket access and filing
 - State court e-filing systems — jurisdiction-specific APIs
-- Court calendar sync — pull court hearing dates into AlecRae calendar
+- Court calendar sync — pull court hearing dates into Marco Reid calendar
 - Bar association member verification — verify attorney credentials
 
 **Accounting-specific integrations:**
@@ -1530,29 +1530,29 @@ with every system they cannot immediately replace.
 - State tax authority portals — electronic filing per state
 
 **Productivity integrations:**
-- Gmail + Google Workspace (OAuth) — email inside AlecRae
-- Microsoft 365 + Outlook (OAuth) — email inside AlecRae
+- Gmail + Google Workspace (OAuth) — email inside Marco Reid
+- Microsoft 365 + Outlook (OAuth) — email inside Marco Reid
 - Zoom — video meetings and depositions
 - Google Calendar + Outlook Calendar (two-way sync)
 - Dropbox / Google Drive / OneDrive — document import/export
 - Slack — notifications and quick actions
 
 **The integration principle:**
-Every integration must PULL the user deeper into AlecRae, not push
-them out. Gmail integration means the lawyer does email inside AlecRae.
+Every integration must PULL the user deeper into Marco Reid, not push
+them out. Gmail integration means the lawyer does email inside Marco Reid.
 Zoom integration means the meeting is tagged to a matter. Calendar sync
-means deadlines appear in AlecRae first. The integration always serves
+means deadlines appear in Marco Reid first. The integration always serves
 the platform, never the external tool.
 
 ### 22.6 Advanced legal components — courtroom-ready technology
 
 **Deposition video + transcript synchronisation:**
 The deposition video recording is synchronised frame-by-frame with
-the AlecRae Voice transcript. Click any line in the transcript and the
+the Marco Reid Voice transcript. Click any line in the transcript and the
 video jumps to that exact moment. Click any moment in the video and
 the transcript highlights the corresponding text. Attorneys can search
 the transcript and instantly jump to the video moment. This is how
-professional litigation support tools work — AlecRae includes it
+professional litigation support tools work — Marco Reid includes it
 natively.
 
 **Evidence viewer with annotation:**
@@ -1600,14 +1600,14 @@ in the build we currently are.
 - [ ] 1.2 Form NZ Ltd Company
 - [ ] 1.3 Form Delaware C-Corp
 - [ ] 1.4 Form IP holding entity
-- [ ] 1.5 Transfer all existing IP (Astra/AlecRae Accounting codebase,
-       AlecRae concept, all designs) from personal ownership to IP holding entity
+- [ ] 1.5 Transfer all existing IP (Astra/Marco Reid Accounting codebase,
+       Marco Reid concept, all designs) from personal ownership to IP holding entity
 - [ ] 1.6 Execute IP licensing agreements between holding entity and
        operating companies
 - [ ] 1.7 Engage IP/patent attorney
 - [ ] 1.8 File provisional patent applications (Oracle AI methodology,
        Dictation legal vocabulary methodology)
-- [ ] 1.9 File trademark applications — "AlecRae" (USPTO + Madrid Protocol)
+- [ ] 1.9 File trademark applications — "Marco Reid" (USPTO + Madrid Protocol)
 - [ ] 1.10 Confirm "The Oracle" trademark availability and file if clear
 
 **Stage 1 gate: ALL boxes checked before proceeding to Stage 2**
@@ -1617,19 +1617,19 @@ in the build we currently are.
 ### STAGE 2 — Domains and infrastructure (after trademark filing)
 *Trademark must be filed before any public domain announcement*
 
-- [x] 2.1 Purchase alecrae.com — DONE March 2026
-- [ ] 2.2 Purchase alecrae.legal — purchase when funds available
-- [x] 2.3 Purchase alecrae.accountant — DONE March 2026
-- [ ] 2.4 Point alecrae.com to Cloudflare — DO THIS TODAY
-- [ ] 2.4a Point alecrae.legal to Cloudflare immediately after purchase
-- [ ] 2.4b Point alecrae.accountant to Cloudflare immediately after purchase
+- [x] 2.1 Purchase marcoreid.com — DONE March 2026
+- [ ] 2.2 Purchase marcoreid.legal — purchase when funds available
+- [x] 2.3 Purchase marcoreid.accountant — DONE March 2026
+- [ ] 2.4 Point marcoreid.com to Cloudflare — DO THIS TODAY
+- [ ] 2.4a Point marcoreid.legal to Cloudflare immediately after purchase
+- [ ] 2.4b Point marcoreid.accountant to Cloudflare immediately after purchase
 - [ ] 2.5 Configure DMARC, DKIM, SPF on all domains
-- [ ] 2.5a Set up Cloudflare Email Routing on alecrae.com (craig@alecrae.com)
-- [x] 2.6 Create alecrae-com GitHub repository — DONE March 2026
+- [ ] 2.5a Set up Cloudflare Email Routing on marcoreid.com (craig@marcoreid.com)
+- [x] 2.6 Create marcoreid-com GitHub repository — DONE March 2026
 - [ ] 2.7 Create the following remaining repositories:
-       - alecrae-accounting (AlecRae Accounting wing, migrated from Astra)
-       - alecrae-oracle (The Oracle AI engine — shared across both wings)
-       - alecrae-dictation (AI Dictation tool — shared across both wings)
+       - marcoreid-accounting (Marco Reid Accounting wing, migrated from Astra)
+       - marcoreid-oracle (The Oracle AI engine — shared across both wings)
+       - marcoreid-dictation (AI Dictation tool — shared across both wings)
 - [ ] 2.8 Commit this CLAUDE.md to the root of EVERY repository
        IMPORTANT: The CLAUDE.md is a document only — it does not auto-create
        repos or configure anything. Every repo must be created manually in
@@ -1648,14 +1648,14 @@ in the build we currently are.
 ### STAGE 3 — Rename and consolidate existing platforms
 *Clean the house before building the new one*
 
-- [ ] 3.1 Rename "Astra" to "AlecRae Accounting" across all UI and code
-- [ ] 3.2 Update Vercel project name and point to alecrae.accountant domain
+- [ ] 3.1 Rename "Astra" to "Marco Reid Accounting" across all UI and code
+- [ ] 3.2 Update Vercel project name and point to marcoreid.accountant domain
 - [ ] 3.3 Update GitHub repo name to match
 - [ ] 3.4 Audit entire Astra codebase — confirm zero remaining "Astra" references
-- [ ] 3.5 Review Astra feature set against the AlecRae Accounting Phase 1
+- [ ] 3.5 Review Astra feature set against the Marco Reid Accounting Phase 1
        product requirements — document what is built vs what needs building
 - [ ] 3.6 Confirm Verom.ai immigration compliance codebase is ready to
-       migrate into AlecRae Law as the Immigration module
+       migrate into Marco Reid Law as the Immigration module
 
 **Stage 3 gate: ALL boxes checked before proceeding to Stage 4**
 
@@ -1718,7 +1718,7 @@ in the build we currently are.
 ### STAGE 7 — Public launch
 *Only when Stage 6 is complete and the product is genuinely faultless*
 
-- [ ] 7.1 Security page published on alecrae.com
+- [ ] 7.1 Security page published on marcoreid.com
 - [ ] 7.2 Case studies live on website
 - [ ] 7.3 Pricing pages live
 - [ ] 7.4 AILA conference outreach strategy activated
@@ -1728,7 +1728,7 @@ in the build we currently are.
 - [ ] 7.8 LinkedIn and professional social presence activated
 - [ ] 7.9 D&O insurance in place for Delaware C-Corp
 
-**Stage 7 gate: This is the day the world finds out AlecRae exists**
+**Stage 7 gate: This is the day the world finds out Marco Reid exists**
 
 ---
 
@@ -1739,7 +1739,7 @@ in the build we currently are.
 | Stage | Status | Last updated |
 |---|---|---|
 | Stage 1 — Legal foundations | NOT STARTED | March 2026 |
-| Stage 2 — Domains and infrastructure | IN PROGRESS — alecrae.com, alecrae.accountant, alecrae.app, alecrae.ai purchased. alecrae.co.nz + alecrae.com.au next. | March 2026 |
+| Stage 2 — Domains and infrastructure | IN PROGRESS — marcoreid.com, marcoreid.accountant, marcoreid.app, marcoreid.ai purchased. marcoreid.co.nz + marcoreid.com.au next. | March 2026 |
 | Stage 3 — Rename and consolidate | NOT STARTED | March 2026 |
 | Stage 4 — Privacy and compliance | NOT STARTED | March 2026 |
 | Stage 5 — Phase 1 build | NOT STARTED | March 2026 |
@@ -1768,12 +1768,12 @@ feature. Every design decision must reinforce the hook principle.
 
 ### 26.1 The hook principle
 
-Every time two people come together through AlecRae — a lawyer contacting
+Every time two people come together through Marco Reid — a lawyer contacting
 a client, an accountant messaging a lawyer, a professional inviting someone
 to a meeting — that interaction is simultaneously a piece of work AND a
-marketing event. The client who receives a meeting invite through AlecRae
+marketing event. The client who receives a meeting invite through Marco Reid
 sees the platform. The accountant who gets a message from a lawyer through
-AlecRae sees the platform. The person who had never heard of AlecRae now
+Marco Reid sees the platform. The person who had never heard of Marco Reid now
 has a reason to want it.
 
 This is engineered virality. The platform markets itself through every
@@ -1781,25 +1781,25 @@ single professional interaction. No advertising budget can replicate it.
 
 **The rule:** Every touchpoint between any two people — professional to
 professional, professional to client, client to client — must carry the
-AlecRae brand and create a natural desire in the recipient to be inside
+Marco Reid brand and create a natural desire in the recipient to be inside
 the platform themselves.
 
 ---
 
 ### 26.1b The time and money value proposition — core professional messaging
 
-This is the message that converts every professional who sees AlecRae.
+This is the message that converts every professional who sees Marco Reid.
 It must appear on the professional homepage, the Law platform page,
 the Accounting platform page, and in every outreach email.
 
 **The core equation:**
 Time saved × billable rate = money made
-AlecRae saves professionals hours every day.
+Marco Reid saves professionals hours every day.
 Those hours can be billed to more clients, or simply lived.
 
 **Specific time savings to quantify and market:**
 
-| Task | Without AlecRae | With AlecRae | Time saved |
+| Task | Without Marco Reid | With Marco Reid | Time saved |
 |---|---|---|---|
 | Legal research (standard matter) | 4–6 hours | 20–40 minutes | 4+ hours |
 | Document drafting (contract) | 3–4 hours | 30–60 minutes | 3+ hours |
@@ -1811,28 +1811,28 @@ Those hours can be billed to more clients, or simply lived.
 | Invoice preparation | 1–2 hours/week | Automated from time entries | 1+ hour |
 
 **The marketing headline that converts:**
-"AlecRae saves the average attorney 15–20 hours per week.
+"Marco Reid saves the average attorney 15–20 hours per week.
 At $350/hour, that is $5,250–7,000 of additional billing capacity.
 Every week. Every year."
 
-"AlecRae saves the average CPA firm 12–18 hours per week per accountant.
+"Marco Reid saves the average CPA firm 12–18 hours per week per accountant.
 Hours that can be billed, or simply given back to the people who matter."
 
 **The emotional hook beneath the numbers:**
 Lawyers and accountants became professionals to practise their craft —
 not to spend their days on admin, research grunt work, and chasing
-clients for information. AlecRae gives them their profession back.
+clients for information. Marco Reid gives them their profession back.
 The platform handles the machine work. The professional handles
 the judgment work. That is the promise. That is the transformation.
 
 **Use this messaging on:**
 - Professional homepage hero section
-- AlecRae Law platform page
-- AlecRae Accounting platform page
+- Marco Reid Law platform page
+- Marco Reid Accounting platform page
 - Email subject lines: "What would you do with 15 extra hours this week?"
 - AILA and AICPA conference materials
 - Paid search ad copy
-- Case study headlines: "How [Firm] recovered 18 hours per week with AlecRae"
+- Case study headlines: "How [Firm] recovered 18 hours per week with Marco Reid"
 
 ---
 
@@ -1847,7 +1847,7 @@ Client ↔ Client              (referral — rare but powerful)
 
 Each relationship has different privacy requirements, different
 communication tools, and different hook mechanics. All four are
-built into the single AlecRae platform.
+built into the single Marco Reid platform.
 
 ---
 
@@ -1860,7 +1860,7 @@ their client's CPA should not have to compose an email, wait, follow up,
 and wade through a thread. They should be able to send a message and get
 a reply in minutes.
 
-**The AlecRae messaging system:**
+**The Marco Reid messaging system:**
 - Instant messaging between all parties inside the platform
 - Threaded conversations organised by matter/client, not by sender
 - Every message timestamped and permanently archived (legal requirement)
@@ -1874,7 +1874,7 @@ a reply in minutes.
 Any conversation thread can be extracted into a professionally formatted
 email at any time. The professional clicks "Export to email," selects
 the messages to include, and a clean email draft is generated that they
-can send from their own address or through AlecRae. This is unique.
+can send from their own address or through Marco Reid. This is unique.
 No other platform does this. It is a patentable workflow — add to
 provisional patent list.
 
@@ -1887,22 +1887,22 @@ provisional patent list.
 - Calendar sync with Google Calendar and Outlook (two-way)
 - Automated meeting reminders to all parties via email and in-app
 - One-click Zoom link generation attached to every meeting
-- Video meeting option natively within AlecRae (Phase 3 — evaluate
+- Video meeting option natively within Marco Reid (Phase 3 — evaluate
   Daily.co or Whereby API for embedded video)
 - Post-meeting summary auto-generated by AI from any notes dictated
   during or after the meeting
 
 **The hook mechanics of a meeting invite:**
-When a lawyer books a meeting with their client through AlecRae,
+When a lawyer books a meeting with their client through Marco Reid,
 the client receives an email invitation that looks like this:
 
 > "Your attorney [Name] has scheduled a meeting with you through
-> AlecRae. Join at alecrae.com/meeting/[unique-code]
+> Marco Reid. Join at marcoreid.com/meeting/[unique-code]
 > Date: [Date] · Time: [Time] · Zoom: [Link]
 > Track your matter, view documents, and message your attorney
-> at any time at alecrae.com"
+> at any time at marcoreid.com"
 
-The client visits alecrae.com to join the meeting. They see the platform.
+The client visits marcoreid.com to join the meeting. They see the platform.
 They see a professional interface. They see their matter being managed
 with sophistication they have never experienced from a lawyer before.
 The hook is set. When their lawyer asks "would you like to use the
@@ -1928,20 +1928,20 @@ They need a quick tax opinion from the client's CPA on the deal structure.
 On every other platform, this requires: finding the CPA's email, composing
 a message, attaching the relevant documents, waiting, following up.
 
-**The AlecRae version:**
-The attorney opens the client matter in AlecRae, clicks "Involve
+**The Marco Reid version:**
+The attorney opens the client matter in Marco Reid, clicks "Involve
 accounting professional," searches for the CPA by name or firm, and
 sends them a shared matter view with a message. The CPA receives an
 invitation to view the relevant portion of the matter and respond.
-If the CPA is already on AlecRae, this takes 30 seconds. If they are
+If the CPA is already on Marco Reid, this takes 30 seconds. If they are
 not, the invitation is the hook that brings them onto the platform.
 
 **What the CPA sees when they receive the invitation:**
 A professionally formatted notification that includes:
 - The matter context (what the lawyer needs)
 - The specific documents or questions relevant to them
-- A link to view the shared matter inside AlecRae
-- A prompt to create their own AlecRae account to respond
+- A link to view the shared matter inside Marco Reid
+- A prompt to create their own Marco Reid account to respond
 
 Every cross-professional invitation is a warm referral from a trusted
 colleague. This is the highest-conversion acquisition channel possible.
@@ -1952,13 +1952,13 @@ When a lawyer and accountant are collaborating on the same client:
 - Both can message each other and the client in the same thread
 - The Oracle cross-domain tier is automatically activated for that matter
 - Billing is handled separately — each professional bills their client
-  independently through their own AlecRae billing system
+  independently through their own Marco Reid billing system
 
 ---
 
 ### 26.6 The client portal — the consumer hook
 
-Every client of every AlecRae professional gets access to a client
+Every client of every Marco Reid professional gets access to a client
 portal at no cost to them. The portal is intentionally excellent.
 It is not a token feature. It is a full, beautiful interface that
 makes the client feel like their professional is running
@@ -1980,15 +1980,15 @@ them instantly, and sign documents on my phone." That word-of-mouth is
 the consumer marketing campaign that money cannot buy.
 
 When that client later needs an accountant, they ask their lawyer:
-"Is there an accountant on AlecRae I can use?" The referral is built
+"Is there an accountant on Marco Reid I can use?" The referral is built
 into the architecture.
 
 ---
 
 ### 26.7 Notification architecture — the hook delivery system
 
-Every notification sent from AlecRae is a marketing touchpoint.
-Every email, every SMS, every push notification carries the AlecRae
+Every notification sent from Marco Reid is a marketing touchpoint.
+Every email, every SMS, every push notification carries the Marco Reid
 brand and a reason to return to the platform.
 
 **Notification types and their hook value:**
@@ -2007,8 +2007,8 @@ brand and a reason to return to the platform.
 **The email footer rule:**
 Every notification email must end with:
 
-> "Powered by AlecRae — The most advanced legal and accounting platform
-> ever built. alecrae.com"
+> "Powered by Marco Reid — The most advanced legal and accounting platform
+> ever built. marcoreid.com"
 
 This is one line. It is not advertising copy. It is a quiet signal of
 quality on every single email that goes through the system.
@@ -2020,27 +2020,27 @@ quality on every single email that goes through the system.
 The find-a-lawyer and find-an-accountant pages must communicate one
 message above all others to consumers:
 
-**"The professionals on AlecRae use the most advanced AI legal and
-accounting technology ever built. When you work with an AlecRae
+**"The professionals on Marco Reid use the most advanced AI legal and
+accounting technology ever built. When you work with an Marco Reid
 professional, you get the benefit of that intelligence."**
 
 Specific copy directions for consumer pages:
 
-- "AlecRae attorneys use The Oracle — the most advanced legal research
+- "Marco Reid attorneys use The Oracle — the most advanced legal research
   AI ever built. That means faster answers, more thorough research,
   and better outcomes for your matter."
 
-- "AlecRae accountants work with AI that reads every tax code change
+- "Marco Reid accountants work with AI that reads every tax code change
   in real time. Your CPA never misses a deduction that affects you."
 
 - "The professionals on this platform use tools that 80–90% of their
   competitors have never seen. Align yourself with the best."
 
-- "When your lawyer uses AlecRae, your matter benefits from AI research
+- "When your lawyer uses Marco Reid, your matter benefits from AI research
   that used to require a team of associates. You get that for the same
   hourly rate."
 
-These are the lines that make a consumer choose an AlecRae professional
+These are the lines that make a consumer choose an Marco Reid professional
 over one found on a competitor directory. Not just a professional.
 The most technologically advanced professional available.
 
@@ -2050,7 +2050,7 @@ The most technologically advanced professional available.
 
 **The direct answer: No. Not legally. Not without consequences.**
 
-Here is the full picture of what protects AlecRae's collaboration design.
+Here is the full picture of what protects Marco Reid's collaboration design.
 
 **Layer 1 — Trade dress (protects the look and feel)**
 Trade dress protects the overall visual appearance and user experience
@@ -2062,7 +2062,7 @@ The specific combination of:
 - Meeting-invite-as-hook (external invite = first platform exposure)
 - Unified law + accounting collaboration under one login
 
-...constitutes a unique, non-functional design that identifies AlecRae.
+...constitutes a unique, non-functional design that identifies Marco Reid.
 Once we have sufficient market presence, this combination is protectable
 as trade dress under the Lanham Act (US) and equivalent laws globally.
 
@@ -2082,13 +2082,13 @@ Once filed, you can label the feature "Patent Pending" — which legally
 warns competitors that copying it creates liability.
 
 **Layer 3 — Copyright (protects the code)**
-Every line of code in the AlecRae collaboration system is automatically
+Every line of code in the Marco Reid collaboration system is automatically
 copyrighted to the IP holding entity the moment it is written.
 Ensure IP assignment agreements are signed by all contributors.
 
 **Layer 4 — Trademark (protects the brand)**
-"AlecRae," "The Oracle," and any unique product names within the
-collaboration system (e.g. if "Matter Bridge" or "AlecRae Connect"
+"Marco Reid," "The Oracle," and any unique product names within the
+collaboration system (e.g. if "Matter Bridge" or "Marco Reid Connect"
 becomes a named feature) should be trademarked before public launch.
 
 **What a competitor can legally do:**
@@ -2101,23 +2101,23 @@ becomes a named feature) should be trademarked before public launch.
   once the provisional patent is filed
 - Use the same visual design, layout, and interaction patterns
   once trade dress is established
-- Use the AlecRae name or The Oracle name after trademark registration
-- Copy code directly from the AlecRae codebase (copyright infringement)
+- Use the Marco Reid name or The Oracle name after trademark registration
+- Copy code directly from the Marco Reid codebase (copyright infringement)
 
 **The honest truth:**
 A well-funded competitor can build similar individual features.
 What they cannot do is replicate the COMBINATION — the specific
 integration of law + accounting + collaboration + Oracle + consumer
 marketplace + dictation under one brand, with the data flywheel
-that AlecRae builds from day one. That combination is the moat.
+that Marco Reid builds from day one. That combination is the moat.
 The IP protection layers are the legal expression of that moat.
-Together they make copying AlecRae expensive, slow, and risky.
+Together they make copying Marco Reid expensive, slow, and risky.
 
 **Keeping everything within the platform is deliberate genius.**
 Every chat, every video call, every document signed, every meeting
-held inside AlecRae generates data that feeds the Oracle flywheel,
+held inside Marco Reid generates data that feeds the Oracle flywheel,
 creates an audit trail that protects professionals legally, deepens
-the switching cost for every user, and keeps the AlecRae brand
+the switching cost for every user, and keeps the Marco Reid brand
 in the interaction. Using Zoom directly, or WhatsApp, or email —
 none of that happens. The moment the interaction leaves the platform,
 the hook is lost, the data is lost, and the stickiness is lost.
@@ -2139,7 +2139,7 @@ user experience design.
 
 **Trade dress protection:**
 The specific visual design, workflow sequence, and interaction patterns
-of the AlecRae collaboration interface should be documented with
+of the Marco Reid collaboration interface should be documented with
 screenshots and dated design files at each major version. Trade dress
 protects the visual appearance and user experience when it has become
 distinctive. Document everything. Date everything. Commit everything
@@ -2152,7 +2152,7 @@ is replicate the specific combination of: matter-centric organisation,
 cross-professional Oracle bridge, email extraction, meeting-as-hook
 notification design, and consumer portal quality — all inside a single
 unified platform that owns both law and accounting simultaneously.
-That combination, in its entirety, is AlecRae. That is the trade dress.
+That combination, in its entirety, is Marco Reid. That is the trade dress.
 That is the moat.
 
 ---
@@ -2194,15 +2194,15 @@ seconds has already lost trust in the platform.
 
 ### 27.3 The Oracle draw-down — the killer workflow
 
-This is the feature that makes AlecRae feel like a superpower.
+This is the feature that makes Marco Reid feel like a superpower.
 
 **The scenario:**
 A lawyer is drafting a contract clause about non-compete enforceability.
-They are not sure about the California standard. Without AlecRae, they
+They are not sure about the California standard. Without Marco Reid, they
 open a new tab, go to Westlaw, log in, search, find the case, copy the
 citation, switch back, paste it in. Five minutes. Flow completely broken.
 
-**The AlecRae version:**
+**The Marco Reid version:**
 The lawyer is drafting. They hit ⌘K (or tap the Oracle icon in the
 toolbar). A drawer slides in from the right — they never leave the
 document. They type "California non-compete enforceability standard."
@@ -2307,7 +2307,7 @@ they are most receptive to learning it.
 
 ### 28.1 No HTML files — React components only
 
-Every single piece of UI in AlecRae is a React component.
+Every single piece of UI in Marco Reid is a React component.
 No .html files anywhere in the codebase. Ever.
 Next.js 14 App Router with TypeScript (.tsx) throughout.
 
@@ -2352,7 +2352,7 @@ while using a product they are paying for.
 - This layer is password-protected, never customer-accessible
 - Broken things live here. Only finished things leave here.
 
-**Layer 2 — Customer-facing production layer (alecrae.com)**
+**Layer 2 — Customer-facing production layer (marcoreid.com)**
 - Only receives code that has passed Layer 1 completely
 - Zero broken features. Zero dead links. Zero console errors.
 - Performance monitored continuously (Vercel Analytics + Sentry)
@@ -2363,7 +2363,7 @@ while using a product they are paying for.
 ```
 Feature branch → Vercel preview (Layer 1 — test here)
                       ↓ faultless
-main branch → alecrae.com production (Layer 2 — customers here)
+main branch → marcoreid.com production (Layer 2 — customers here)
 ```
 
 Never merge to main until Layer 1 is perfect.
@@ -2372,7 +2372,7 @@ Speed is not the goal. Faultless is the goal.
 
 ### 28.3 Intellectual crawlers — staying 80-90% ahead
 
-AlecRae deploys automated intelligence monitoring to ensure
+Marco Reid deploys automated intelligence monitoring to ensure
 the platform always uses the most advanced technologies available
 and is never caught using deprecated or superseded approaches.
 
@@ -2400,7 +2400,7 @@ been released since the last session, use the better approach.
 
 ### 28.4 Automated protection systems — 24/7, no session required
 
-AlecRae deploys multiple automated systems that run continuously
+Marco Reid deploys multiple automated systems that run continuously
 regardless of whether a Claude session is active. These are the
 platform's immune system. They never sleep.
 
@@ -2420,25 +2420,25 @@ platform's immune system. They never sleep.
 - Configuration: .github/workflows/security-quality.yml
 
 **The competitive doctrine:**
-AlecRae does not merely monitor competitors. AlecRae assumes every
+Marco Reid does not merely monitor competitors. Marco Reid assumes every
 competitor is building the same features right now and acts accordingly.
 
-- If Harvey AI announces a new feature, AlecRae must have built it
+- If Harvey AI announces a new feature, Marco Reid must have built it
   better before Harvey ships it, or build a superior version within
   30 days of their announcement.
 - If Clio, Thomson Reuters, or Wolters Kluwer acquires a startup in
   our space, treat it as a validation signal and accelerate outreach
   to the other acquirers.
-- If a new AI model is released that is faster or more capable, AlecRae
+- If a new AI model is released that is faster or more capable, Marco Reid
   must evaluate and integrate it within 14 days.
-- If a new open-source legal dataset becomes available, AlecRae must
+- If a new open-source legal dataset becomes available, Marco Reid must
   index it within 7 days.
 
 **The 80-90% rule:**
-At any given moment, AlecRae must be 80-90% ahead of any competitor
+At any given moment, Marco Reid must be 80-90% ahead of any competitor
 in at least three of these dimensions: features, AI capability,
 user experience, data coverage, platform integration depth.
-No competitor can lead AlecRae in more than one dimension at a time.
+No competitor can lead Marco Reid in more than one dimension at a time.
 If they do, it is an emergency that requires immediate action.
 
 ---
@@ -2448,22 +2448,22 @@ If they do, it is an emergency that requires immediate action.
 ### 29.1 Why email changes everything
 
 Email is where lawyers and accountants spend 40–60% of their day.
-Right now that time lives in Gmail or Outlook — outside AlecRae,
+Right now that time lives in Gmail or Outlook — outside Marco Reid,
 untagged to matters, unsearchable by client, disconnected from
 the Oracle, and generating zero data for the platform.
 
-Bringing email inside AlecRae is the single most powerful
+Bringing email inside Marco Reid is the single most powerful
 remaining hook in the entire platform. The moment a professional
-does their email inside AlecRae, they are inside the platform
+does their email inside Marco Reid, they are inside the platform
 for the majority of their working day. Every other feature —
 the Oracle, the matter view, the billing, the calendar — becomes
 instantly reachable from the thing they are already doing.
 
-### 29.2 What AlecRae Email provides
+### 29.2 What Marco Reid Email provides
 
 **For every firm:**
 - Custom email domain: @theirfirm.com (their own domain via Cloudflare DNS)
-  OR @firmname.alecrae.com (AlecRae-hosted subdomain)
+  OR @firmname.marcoreid.com (Marco Reid-hosted subdomain)
 - Every attorney and accountant gets their own professional inbox
 - Shared inboxes for the firm (hello@, admin@, billing@)
 - Unified inbox across all firm email addresses
@@ -2486,10 +2486,10 @@ instantly reachable from the thing they are already doing.
 - Oracle sidebar — research any question raised in an email instantly
 
 **Email as a hook for non-platform users:**
-When a professional sends an email from AlecRae to a client who is
+When a professional sends an email from Marco Reid to a client who is
 not on the platform, the email footer reads:
-> "Sent via AlecRae — the professional platform your attorney uses.
-> Track your matter and communicate securely at alecrae.com"
+> "Sent via Marco Reid — the professional platform your attorney uses.
+> Track your matter and communicate securely at marcoreid.com"
 Every outbound email is a warm invitation.
 
 ### 29.3 Email infrastructure stack
@@ -2497,16 +2497,16 @@ Every outbound email is a warm invitation.
 **Phase 1 — Integration approach (launch with this):**
 Connect existing email accounts (Gmail, Outlook) via OAuth.
 Professionals keep their existing email address but work through
-the AlecRae email interface. All AlecRae features available.
+the Marco Reid email interface. All Marco Reid features available.
 Matter tagging and Oracle draw-down work on top of their
 existing email. This is fastest to market and lowest friction.
 
 Technical: Gmail API + Microsoft Graph API + Nylas API (unified)
 
 **Phase 2 — Hosted email (premium tier):**
-AlecRae hosts the firm's email domain entirely.
-Professionals get @theirfirm.alecrae.com or bring their own domain.
-Full email hosting, storage, and delivery through AlecRae.
+Marco Reid hosts the firm's email domain entirely.
+Professionals get @theirfirm.marcoreid.com or bring their own domain.
+Full email hosting, storage, and delivery through Marco Reid.
 More control, more data, deeper Oracle integration.
 
 Technical: Cloudflare Email Routing + Resend for outbound +
@@ -2514,7 +2514,7 @@ custom IMAP server or Postmark Inbound for received mail.
 
 **Phase 3 — Enterprise email (white-label):**
 Large firms bring their own @theirfirm.com domain fully hosted
-on AlecRae infrastructure with custom retention policies,
+on Marco Reid infrastructure with custom retention policies,
 eDiscovery integration, and full matter-email linkage.
 Additional revenue: $50–200/month per firm on top of platform fee.
 
@@ -2522,7 +2522,7 @@ Additional revenue: $50–200/month per firm on top of platform fee.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  AlecRae Email  │  Inbox  Sent  Matters  Calendar  Compose │
+│  Marco Reid Email  │  Inbox  Sent  Matters  Calendar  Compose │
 ├──────────┬──────────────────────────────┬───────────────┤
 │          │  ● Sarah Chen <sarah@...>     │ Matter context │
 │ Inbox    │  Rodriguez — H-1B update     │               │
@@ -2556,7 +2556,7 @@ they forward it to their business partner and say:
 "Look how good my lawyer is."
 
 The lawyer looks exceptional. The client is delighted.
-AlecRae gets the credit for both.
+Marco Reid gets the credit for both.
 
 **That is the product.**
 
@@ -2570,7 +2570,7 @@ The meeting is automatically tagged to the same matter as the email.
 
 Post-meeting, the AI generates a summary and adds it to the
 matter record. The entire lifecycle — email → meeting → summary
-→ matter record — happens inside AlecRae without switching tools.
+→ matter record — happens inside Marco Reid without switching tools.
 
 ### 29.7 Revenue from email
 
@@ -2579,10 +2579,10 @@ Email adds two revenue streams:
 **Stream 1 — Email as a premium platform feature:**
 Email integration (Phase 1 Gmail/Outlook connection) is included
 in the Professional tier subscription. It is a retention feature —
-professionals who do their email through AlecRae never leave.
+professionals who do their email through Marco Reid never leave.
 
 **Stream 2 — Hosted email as a separate add-on:**
-Phase 2 hosted email (AlecRae-managed domain) is an additional
+Phase 2 hosted email (Marco Reid-managed domain) is an additional
 $15–30/user/month on top of the platform subscription.
 A 10-attorney firm paying $199/month per seat is already spending
 $1,990/month. Adding email hosting at $20/user/seat adds
@@ -2590,9 +2590,9 @@ $200/month — a trivial upsell that significantly deepens lock-in.
 
 ---
 
-## 29. AlecRae Voice — The Universal Input Layer
+## 29. Marco Reid Voice — The Universal Input Layer
 
-### 30.1 Competitive landscape — where AlecRae Voice sits
+### 30.1 Competitive landscape — where Marco Reid Voice sits
 
 **Current market leaders (as of March 2026):**
 
@@ -2612,42 +2612,42 @@ dictates, then switches to Westlaw, then switches to email,
 then switches to billing. The dictation tool never touches
 any of those systems. It is an island.
 
-**Where AlecRae Voice wins:**
-AlecRae Voice is not a dictation tool that integrates with a platform.
+**Where Marco Reid Voice wins:**
+Marco Reid Voice is not a dictation tool that integrates with a platform.
 It IS the platform's input layer. The difference is everything.
 
 ### 30.1b The fundamental principle
 
-**Product name: AlecRae Voice**
+**Product name: Marco Reid Voice**
 **Tagline: "Speak. It is done."**
 **Never call it:** AI Grammar, grammar correction, or autocorrect
 
 The attorneys and accountants using this product spent years
 at university becoming highly intelligent professionals.
 They do not have a grammar problem. They have a time problem.
-AlecRae Voice solves the time problem. It never implies
+Marco Reid Voice solves the time problem. It never implies
 the professional needs correction. It understands them perfectly
 and executes precisely. That is the positioning. Always.
 
 ### 30.1b The fundamental principle
 
-AlecRae Voice is NOT a standalone feature.
-It is the INPUT LAYER for the entire AlecRae platform.
+Marco Reid Voice is NOT a standalone feature.
+It is the INPUT LAYER for the entire Marco Reid platform.
 
 Everywhere a professional can type, they can also speak.
 The microphone and the AI grammar engine are always available —
 not in a separate section, not behind a menu, not as an add-on.
 Built into every input surface across the entire platform.
 
-This is the distinction that makes AlecRae Dictation different
+This is the distinction that makes Marco Reid Dictation different
 from every other dictation product on the market. It is not
 "dictation software that lawyers use." It is the way professionals
-interact with the entire AlecRae operating system.
+interact with the entire Marco Reid operating system.
 
 ### 30.1c Multi-language capability — the global edge
 
 Every competitor listed above is primarily English-first.
-AlecRae Voice launches with full multi-language support
+Marco Reid Voice launches with full multi-language support
 from day one. This is not a future feature. It is a launch
 requirement given the NZ, Australian, and US markets
 including significant non-English speaking professional
@@ -2665,7 +2665,7 @@ communities.
 - Portuguese (Brazil-US immigration corridor)
 - Korean (significant in US and AU professional markets)
 
-**What multi-language means for AlecRae Voice:**
+**What multi-language means for Marco Reid Voice:**
 Not just transcription in multiple languages. Legal and
 accounting vocabulary intelligence in each language.
 A Spanish-speaking immigration attorney dictating in Spanish
@@ -2680,17 +2680,17 @@ accounting vocabulary intelligence. WisprFlow supports
 100+ languages for transcription but has no legal vocabulary
 layer in any non-English language. Dragon Legal is
 English-only. This is an entirely unoccupied competitive
-position that AlecRae Voice can own completely.
+position that Marco Reid Voice can own completely.
 
 **Technical implementation:**
 Built on OpenAI Whisper (multilingual base model) with
 a custom post-processing layer that applies language-specific
 legal and accounting vocabulary correction and formatting.
 The Whisper model handles transcription accuracy.
-The AlecRae layer handles professional intelligence.
+The Marco Reid layer handles professional intelligence.
 Two separate concerns, two separate systems, working together.
 
-### 30.2 Every surface where AlecRae Voice is present
+### 30.2 Every surface where Marco Reid Voice is present
 
 **Email composer**
 - Microphone icon in the compose toolbar
@@ -2747,10 +2747,10 @@ Two separate concerns, two separate systems, working together.
 
 ### 30.2b What no competitor can match — platform integration
 
-This is the section that documents AlecRae Voice's
+This is the section that documents Marco Reid Voice's
 insurmountable advantage over every standalone dictation tool.
 
-**Voice commands that only work inside AlecRae:**
+**Voice commands that only work inside Marco Reid:**
 
 Inside email composer:
 "Send this to Marcus Rodriguez, subject H-1B update,
@@ -2784,7 +2784,7 @@ ask him if the H-1B status creates dual-status year"
   tagged to the right matter.
 
 **What this means for a professional's day:**
-A lawyer who uses AlecRae Voice never has to stop what
+A lawyer who uses Marco Reid Voice never has to stop what
 they are doing to perform an administrative action.
 Every action the platform can take is available by voice,
 from wherever they are in the platform, at any time.
@@ -2793,11 +2793,11 @@ No competitor can build this. WisprFlow can inject text
 into any app — but it cannot create a billing entry, query
 a legal research database, schedule a meeting, or send a
 matter-tagged message. Those actions require platform access.
-AlecRae Voice has platform access because it IS the platform.
+Marco Reid Voice has platform access because it IS the platform.
 
 ### 30.3 The language intelligence layer — understanding professionals
 
-This is what separates AlecRae Voice from every other
+This is what separates Marco Reid Voice from every other
 dictation product on the market and must never be compromised.
 
 **Legal language — understood exactly as intended:**
@@ -2838,7 +2838,7 @@ adjusts rules accordingly:
 
 ### 30.4 The Voice trigger
 
-AlecRae Voice is available in every input field via:
+Marco Reid Voice is available in every input field via:
 - A visible microphone icon in every toolbar and input
 - A keyboard shortcut (⌘D or long-press on mobile/iPad)
 - A floating microphone button that follows the user's scroll
@@ -2848,36 +2848,36 @@ On iPad (the founder's primary device), the microphone icon
 is larger and positioned for thumb access. Touch-and-hold
 to record, release to stop — the most natural iPad interaction.
 
-### 30.5 AlecRae Voice — the time-saving proof point
+### 30.5 Marco Reid Voice — the time-saving proof point
 
-The most powerful marketing claim AlecRae can make is not
+The most powerful marketing claim Marco Reid can make is not
 about features. It is about time.
 
-"AlecRae Voice gives attorneys back 3–4 hours every day.
+"Marco Reid Voice gives attorneys back 3–4 hours every day.
 At $350/hour, that is $1,050–1,400 of additional billing
 capacity recovered — from speaking instead of typing."
 
-Every professional who uses AlecRae Dictation for one week
+Every professional who uses Marco Reid Dictation for one week
 and then has to go back to typing feels the loss immediately.
 That experience is the most powerful retention mechanism
 the platform has.
 
-### 30.6 Where AlecRae Voice appears in the build sequence
+### 30.6 Where Marco Reid Voice appears in the build sequence
 
-AlecRae Voice is Phase 1. It is the hook. It ships before
+Marco Reid Voice is Phase 1. It is the hook. It ships before
 The Oracle, before case management, before billing.
 
-The reason: a professional whose first interaction with AlecRae
+The reason: a professional whose first interaction with Marco Reid
 is speaking an email instead of typing it has already felt the
 platform's value. Before they explore the Oracle, before they
-set up a matter, AlecRae Voice has already transformed their day.
+set up a matter, Marco Reid Voice has already transformed their day.
 
 That first 30-second experience of speaking an email and
 watching it appear on screen in perfect professional language
-is the moment AlecRae becomes irreplaceable.
+is the moment Marco Reid becomes irreplaceable.
 
-**AlecRae Voice is in every Phase 1 component:**
-- Homepage — AlecRae Voice demo in the hero section
+**Marco Reid Voice is in every Phase 1 component:**
+- Homepage — Marco Reid Voice demo in the hero section
 - Email composer — microphone in toolbar
 - Document editor — microphone in toolbar
 - Message composer — microphone icon in input
@@ -2915,7 +2915,7 @@ rather than a prototype. Then take all remaining markets.
 **Phase 1 — Home market launch: NZ + Australia**
 New Zealand and Australia are the validation ground.
 Smaller professional communities mean word travels fast —
-one respected Auckland attorney recommending AlecRae reaches
+one respected Auckland attorney recommending Marco Reid reaches
 hundreds of colleagues within weeks. The NZ Law Society and
 CAANZ accounting body are accessible and relationship-driven.
 Oracle built on NZ + Australian public domain law from day one.
@@ -2940,10 +2940,10 @@ Oracle data extensions are the primary work, not architectural changes.
 
 **Phase 4 — Pacific Islands**
 Strategic play tied directly to the 0047 MVNO connectivity platform.
-AlecRae and 0047 together serve the same underserved Pacific markets —
+Marco Reid and 0047 together serve the same underserved Pacific markets —
 Fiji, Samoa, Tonga — where legal and accounting infrastructure is thin
 and a modern cloud platform has zero real competition.
-The combined AlecRae + 0047 story in the Pacific is a unique
+The combined Marco Reid + 0047 story in the Pacific is a unique
 market narrative no other platform can replicate.
 
 **Phase 5 — Southeast Asia**
@@ -3024,7 +3024,7 @@ regional Neon project transparently — they never notice.
 **European Union (future):**
 - Full GDPR compliance already built (our baseline)
 - ePrivacy Directive for cookies and communications
-- AI Act compliance — AlecRae likely falls under high-risk AI
+- AI Act compliance — Marco Reid likely falls under high-risk AI
   given legal and financial advice context — monitor closely
 
 ### 31.5 Multi-currency and tax handling by market
@@ -3084,7 +3084,7 @@ its own verified public domain data sources.
 This section is the country-by-country legal operating guide.
 It covers what entity structures are needed, what professional
 body relationships matter, what tax obligations apply, and what
-must be in place before AlecRae operates in each jurisdiction.
+must be in place before Marco Reid operates in each jurisdiction.
 
 No market is launched until its checklist in this section is complete.
 This is the legal protection layer for the entire global operation.
@@ -3121,7 +3121,7 @@ This is the legal protection layer for the entire global operation.
   Document all R&D activity from day one — this is real money
 - Inland Revenue — register for income tax, PAYE if staff hired
 
-**AlecRae Voice specific:**
+**Marco Reid Voice specific:**
 - No specific voice recording laws beyond Privacy Act consent rules
 - Inform users their voice is processed and not stored beyond session
 - GDPR-equivalent consent for any voice data used for model training
@@ -3176,7 +3176,7 @@ NZ Ltd operating into Australia is clean and simple.
   breach professional conduct rules in these states.
 - Tax Practitioners Board (TPB) — accounting software must not
   hold itself out as providing tax agent services.
-  AlecRae Accounting assists registered tax agents — it is
+  Marco Reid Accounting assists registered tax agents — it is
   not itself a tax agent. This distinction must be clear.
 
 **Tax:**
@@ -3218,9 +3218,9 @@ the trust accounting module launches in Australia.
 - American Bar Association (ABA) — ABA TechShow is the single
   most important annual legal tech event. Presence required.
 - American Immigration Lawyers Association (AILA) — primary
-  target for AlecRae Law immigration module launch
+  target for Marco Reid Law immigration module launch
 - American Institute of CPAs (AICPA) — primary target for
-  AlecRae Accounting launch
+  Marco Reid Accounting launch
 - State bars — 50 states each have their own bar association.
   Priority states: California (190,000 attorneys),
   New York (170,000), Texas (100,000), Florida (80,000)
@@ -3231,7 +3231,7 @@ the trust accounting module launches in Australia.
 (All fully detailed in Section 7 — summarised here)
 - 50-state IOLTA trust accounting analysis before trust module
 - State bar technology/software guidance per jurisdiction
-- IRS Circular 230 — AlecRae Accounting assists CPAs,
+- IRS Circular 230 — Marco Reid Accounting assists CPAs,
   does not itself prepare returns or provide tax advice
 - CCPA (California) — additional privacy rights for CA users
 - SOC 2 Type II — required for enterprise sales (Section 22)
@@ -3274,7 +3274,7 @@ Formed when UK revenue approaches GBP £50,000/year.
 **Professional body relationships:**
 - Solicitors Regulation Authority (SRA) — primary regulator for
   England and Wales solicitors. SRA has published technology
-  guidance. AlecRae must comply with SRA Practice Framework Rules.
+  guidance. Marco Reid must comply with SRA Practice Framework Rules.
 - Bar Council of England and Wales — barristers specifically
 - Law Society of England and Wales — solicitors' representative body
 - Institute of Chartered Accountants in England and Wales (ICAEW)
@@ -3312,7 +3312,7 @@ Formed when UK revenue approaches GBP £50,000/year.
 - UK GDPR covers UK. EU GDPR covers EU separately.
 - Cross-border data transfers UK→EU: adequacy decision in place
 - UK legal and regulatory divergence from EU is ongoing —
-  monitor annually for changes affecting AlecRae
+  monitor annually for changes affecting Marco Reid
 
 **Pre-launch checklist United Kingdom:**
 - [ ] ICO registration completed
@@ -3398,7 +3398,7 @@ Monitor as regulations develop.
 
 **Strategic context:**
 These markets are served in direct partnership with the 0047
-MVNO connectivity platform. AlecRae provides the professional
+MVNO connectivity platform. Marco Reid provides the professional
 tools. 0047 provides the connectivity infrastructure.
 Together they represent the complete professional technology
 stack for Pacific Island legal and accounting firms.
@@ -3419,7 +3419,7 @@ primarily from British common law (Fiji, Samoa, Tonga).
 Key considerations:
 - Data protection laws are minimal or absent in most Pacific
   Island nations currently. Apply NZ Privacy Act standards anyway —
-  this is ethical and positions AlecRae well as regulations develop.
+  this is ethical and positions Marco Reid well as regulations develop.
 - Currency: USD and local currencies. Stripe supports limited
   Pacific currency processing. USD billing recommended.
 - English is the professional language in all target markets.
@@ -3490,13 +3490,13 @@ Discrimination Act), and best practice everywhere else.
 Build accessible from day one — retrofitting is expensive.
 
 **AI transparency:** Every market is developing AI regulation.
-The EU AI Act is the most advanced. AlecRae likely falls under
+The EU AI Act is the most advanced. Marco Reid likely falls under
 "high-risk AI" due to its legal and financial advice context.
 The disclaimer system (Section 6.4) and citation verification
 (Section 21) are the primary compliance mechanisms. Monitor
 AI regulation developments quarterly in every active market.
 
-**The AlecRae voice note on marketing claims:**
+**The Marco Reid voice note on marketing claims:**
 Every market has consumer protection laws that govern
 advertising claims. "Most advanced platform ever built" and
 "80–90% ahead of competition" are claims that must be
@@ -3510,23 +3510,23 @@ required before launch in each new market.
 
 ---
 
-## 32. Verom.ai — AlecRae Immigration (Migration Asset)
+## 32. Verom.ai — Marco Reid Immigration (Migration Asset)
 
 ### 33.1 What Verom.ai is
 
 Verom.ai is a fully built, advanced AI-powered immigration
 compliance platform. It is one of the most advanced immigration
 compliance tools on the market and represents a significant
-existing asset that migrates directly into AlecRae Law as the
-AlecRae Immigration module.
+existing asset that migrates directly into Marco Reid Law as the
+Marco Reid Immigration module.
 
 This is not a future build. This is existing work that gets
 a better home inside the most advanced legal platform ever built.
 
 **Current status:** Live platform, standalone deployment
-**Future status:** Migrated into alecrae.com under /law/immigration
-**Brand after migration:** AlecRae Immigration
-**Verom.ai domain:** Redirect to alecrae.com/immigration after migration
+**Future status:** Migrated into marcoreid.com under /law/immigration
+**Brand after migration:** Marco Reid Immigration
+**Verom.ai domain:** Redirect to marcoreid.com/immigration after migration
 
 ### 33.2 What Verom.ai contains — the migration inventory
 
@@ -3549,7 +3549,7 @@ known feature set to be preserved and enhanced:
 Side 1 — Immigration attorneys (supply side)
 Side 2 — Individuals needing immigration help (demand side)
 Side 3 — Employers sponsoring foreign workers (B2B demand)
-This marketplace structure is the feature that makes AlecRae
+This marketplace structure is the feature that makes Marco Reid
 Immigration the most commercially powerful immigration module
 available. The escrow transaction clip on case fees is the
 toll road revenue model (Section 10).
@@ -3566,32 +3566,32 @@ toll road revenue model (Section 10).
 **What moves:**
 All business logic, AI capabilities, database schema,
 USCIS form library, marketplace infrastructure, escrow flow,
-and ICE audit simulator move into the AlecRae codebase.
+and ICE audit simulator move into the Marco Reid codebase.
 
 **What gets rebuilt:**
-The UI is rebuilt in the AlecRae design system
+The UI is rebuilt in the Marco Reid design system
 (Instrument Serif + Plus Jakarta Sans, navy/white palette).
-The authentication system is replaced by AlecRae's unified auth.
-The standalone database is migrated into the AlecRae Neon project.
+The authentication system is replaced by Marco Reid's unified auth.
+The standalone database is migrated into the Marco Reid Neon project.
 
 **The route structure after migration:**
 ```
-alecrae.com/law/immigration/          — module home
-alecrae.com/law/immigration/matters   — case management
-alecrae.com/law/immigration/forms     — USCIS form library
-alecrae.com/law/immigration/clients   — three-sided marketplace
-alecrae.com/law/immigration/audit     — ICE audit simulator
-alecrae.com/law/immigration/oracle    — Oracle Immigration research
+marcoreid.com/law/immigration/          — module home
+marcoreid.com/law/immigration/matters   — case management
+marcoreid.com/law/immigration/forms     — USCIS form library
+marcoreid.com/law/immigration/clients   — three-sided marketplace
+marcoreid.com/law/immigration/audit     — ICE audit simulator
+marcoreid.com/law/immigration/oracle    — Oracle Immigration research
 ```
 
-**What Verom.ai gains from being inside AlecRae:**
-- AlecRae Voice — attorneys dictate case notes and client updates
+**What Verom.ai gains from being inside Marco Reid:**
+- Marco Reid Voice — attorneys dictate case notes and client updates
 - The Oracle — instant immigration law research inline
-- AlecRae Email — matter-centric email with Oracle in the composer
+- Marco Reid Email — matter-centric email with Oracle in the composer
 - Collaboration tools — lawyer/accountant bridge for visa+tax matters
 - Billing and trust accounting — integrated fee collection
 - Client portal — clients track their own case status
-- The AlecRae brand — immediately more credible than a standalone tool
+- The Marco Reid brand — immediately more credible than a standalone tool
 
 ### 33.4 The immigration + accounting cross-domain opportunity
 
@@ -3607,10 +3607,10 @@ cross-domain tier. Every immigration matter has accounting implications:
 - Green card through employment: multi-year tax planning
 
 An immigration attorney and their client's CPA need to talk
-constantly. AlecRae is the only platform that puts both of them
+constantly. Marco Reid is the only platform that puts both of them
 in the same workspace with the Oracle answering cross-domain
 queries that require both legal and accounting intelligence.
-This is the AlecRae Immigration module's most powerful
+This is the Marco Reid Immigration module's most powerful
 differentiator over every standalone immigration tool.
 
 ### 33.5 ICE audit simulator — the feature nobody else has
@@ -3630,16 +3630,16 @@ intelligence, and marketed aggressively to:
 This is a B2B revenue stream that exists independently of the
 attorney marketplace. Employers pay for the audit simulator
 as a standalone compliance tool — then discover the full
-AlecRae Immigration platform through it.
+Marco Reid Immigration platform through it.
 
 ### 33.6 Verom.ai domain strategy after migration
 
-Once the migration is complete and AlecRae Immigration is live:
-- verom.ai → permanent 301 redirect to alecrae.com/immigration
-- All Verom.ai SEO equity transfers to AlecRae via the redirect
-- Any existing Verom.ai users are migrated to AlecRae accounts
+Once the migration is complete and Marco Reid Immigration is live:
+- verom.ai → permanent 301 redirect to marcoreid.com/immigration
+- All Verom.ai SEO equity transfers to Marco Reid via the redirect
+- Any existing Verom.ai users are migrated to Marco Reid accounts
   with a personal onboarding email explaining the upgrade
-- The Verom.ai brand is retired — AlecRae Immigration is the name
+- The Verom.ai brand is retired — Marco Reid Immigration is the name
 
 **Important:** Do not retire the Verom.ai domain immediately.
 Keep it redirecting for at least 12 months after migration
@@ -3648,23 +3648,23 @@ to preserve any inbound links and search rankings built on it.
 ### 33.7 Migration checklist
 
 - [ ] Full Verom.ai feature and database audit completed
-- [ ] All Verom.ai GitHub code reviewed and mapped to AlecRae routes
+- [ ] All Verom.ai GitHub code reviewed and mapped to Marco Reid routes
 - [ ] USCIS form library extracted and documented
 - [ ] ICE audit simulator logic isolated for migration
 - [ ] Marketplace and escrow infrastructure mapped to Stripe Connect
 - [ ] Existing user data migration plan documented
-- [ ] AlecRae Immigration UI built in AlecRae design system
+- [ ] Marco Reid Immigration UI built in Marco Reid design system
 - [ ] Oracle Immigration research layer integrated
-- [ ] AlecRae Voice added to all immigration input fields
+- [ ] Marco Reid Voice added to all immigration input fields
 - [ ] Cross-professional bridge connected (attorney ↔ accountant)
 - [ ] verom.ai redirect configured in Cloudflare
 - [ ] Existing Verom.ai users notified and migrated
 - [ ] SEO redirect audit confirms equity transfer complete
 
-### 33.8 Where AlecRae Immigration sits in the build sequence
+### 33.8 Where Marco Reid Immigration sits in the build sequence
 
-AlecRae Immigration is a Phase 2 module — it follows the Phase 1
-core platform (authentication, dashboard, AlecRae Voice, Oracle,
+Marco Reid Immigration is a Phase 2 module — it follows the Phase 1
+core platform (authentication, dashboard, Marco Reid Voice, Oracle,
 basic case management, billing). The reason it is Phase 2 rather
 than Phase 1 is that the migration requires the core platform
 to exist first. You cannot build a room before you build the house.
@@ -3674,42 +3674,42 @@ during Phase 1. Existing users and any new Verom.ai users are
 served by the standalone platform until migration is complete.
 The two platforms run in parallel during this period.
 
-**Phase 1:** Core AlecRae platform built and launched
+**Phase 1:** Core Marco Reid platform built and launched
 **Phase 2 start:** Verom.ai migration begins
-**Phase 2 complete:** AlecRae Immigration live, verom.ai redirects
+**Phase 2 complete:** Marco Reid Immigration live, verom.ai redirects
 
 ---
 
 
 ---
 
-## 33. AlecRae App — Cross-Platform Desktop and Mobile
+## 33. Marco Reid App — Cross-Platform Desktop and Mobile
 
 ### 34.1 Why the app changes everything
 
-The web platform at alecrae.com serves professionals
-when they are inside the browser. The AlecRae app serves
+The web platform at marcoreid.com serves professionals
+when they are inside the browser. The Marco Reid app serves
 professionals everywhere — on their desktop, on their phone,
 at their desk, in court, in a client meeting, on a plane.
 
-The app is how AlecRae Voice becomes a system-level tool
+The app is how Marco Reid Voice becomes a system-level tool
 that works in every application on every device, exactly
-like WisprFlow — but connected to the full AlecRae platform.
+like WisprFlow — but connected to the full Marco Reid platform.
 
-A lawyer using the AlecRae app can dictate into Word,
+A lawyer using the Marco Reid app can dictate into Word,
 into Outlook, into any application on their computer —
 and every dictation is matter-aware, Oracle-connected,
-and logged to their AlecRae account automatically.
+and logged to their Marco Reid account automatically.
 
-**Domain to purchase immediately: `alecrae.app`**
+**Domain to purchase immediately: `marcoreid.app`**
 This TLD is purpose-built for app products. It signals
 to every professional that this is a native application
 experience, not just a website. Purchase before announcement.
 
-### 34.2 The technology — Tauri v2 (already in the AlecRae stack)
+### 34.2 The technology — Tauri v2 (already in the Marco Reid stack)
 
 The founder already built 48co.nz using Tauri v2 — this is
-the exact technology for the AlecRae desktop app.
+the exact technology for the Marco Reid desktop app.
 
 Tauri v2 advantages over Electron (the old way):
 - 10-20x smaller binary size (2-3MB vs 100MB+)
@@ -3720,20 +3720,20 @@ Tauri v2 advantages over Electron (the old way):
 - Rust backend = bulletproof performance and security
 - Single codebase builds Windows, Mac, and Linux simultaneously
 
-**The AlecRae app architecture:**
+**The Marco Reid app architecture:**
 ```
-AlecRae App (Tauri v2)
+Marco Reid App (Tauri v2)
 ├── Desktop shell          — Rust, native OS APIs
 ├── Web frontend           — Same Next.js/React components
-│                            as alecrae.com (shared codebase)
+│                            as marcoreid.com (shared codebase)
 ├── System microphone      — Global hotkey triggers Voice
 ├── Clipboard integration  — Dictated text to any app
 ├── Native notifications   — Matter alerts, messages, deadlines
-└── AlecRae Voice engine   — Whisper API + AlecRae layer
+└── Marco Reid Voice engine   — Whisper API + Marco Reid layer
 ```
 
 **The key insight:** The same React components built for
-alecrae.com are rendered inside the Tauri shell. One codebase.
+marcoreid.com are rendered inside the Tauri shell. One codebase.
 The web app and desktop app share 95% of their code.
 Building the web platform builds the desktop app simultaneously.
 
@@ -3742,9 +3742,9 @@ Building the web platform builds the desktop app simultaneously.
 **Technology:** React Native (or Expo — built on React Native)
 
 Same React component logic, adapted for mobile screens.
-The AlecRae mobile app gives professionals:
+The Marco Reid mobile app gives professionals:
 
-- AlecRae Voice on their phone — dictate anywhere
+- Marco Reid Voice on their phone — dictate anywhere
 - Full matter access — review any case from any location
 - Secure client messaging — respond instantly from mobile
 - Document signing on the go — e-sign from a phone
@@ -3754,31 +3754,31 @@ The AlecRae mobile app gives professionals:
 
 **The microphone advantage on mobile:**
 The phone is always in a professional's hand.
-AlecRae Voice on mobile means a lawyer leaving a client
+Marco Reid Voice on mobile means a lawyer leaving a client
 meeting can dictate their notes, tag them to the matter,
 and have them logged before they reach their car.
 That is a behaviour change that generates daily engagement.
 
 ### 34.4 System-wide Voice on desktop
 
-On Mac: AlecRae Voice registers a global keyboard shortcut
+On Mac: Marco Reid Voice registers a global keyboard shortcut
 (⌘⇧Space by default, customisable). Press it anywhere —
 in Word, in Outlook, in Chrome, in any application —
-and AlecRae Voice activates. Speak. The text appears
+and Marco Reid Voice activates. Speak. The text appears
 at your cursor position, with full professional language
 intelligence applied, tagged to the last active matter
-in the AlecRae app if one is open.
+in the Marco Reid app if one is open.
 
 On Windows: Same global shortcut mechanism via Tauri's
 Windows API integration. Works across all Windows applications.
 
-This is the system-level capability that makes AlecRae Voice
+This is the system-level capability that makes Marco Reid Voice
 function like WisprFlow — but connected to a full professional
 platform rather than operating as a standalone tool.
 
 ### 34.5 Competitive advantage of the app
 
-| Capability | WisprFlow | Grammarly | Dragon Legal | AlecRae App |
+| Capability | WisprFlow | Grammarly | Dragon Legal | Marco Reid App |
 |---|---|---|---|---|
 | System-wide dictation | ✓ | ✗ | ✓ | ✓ |
 | Cross-platform W/M/iOS/Android | ✓ | ✓ | Windows only | ✓ |
@@ -3794,7 +3794,7 @@ platform rather than operating as a standalone tool.
 | Offline capability | Limited | ✗ | ✓ | ✓ (Tauri) |
 | SOC 2 Type II | ✗ | ✓ | ✓ | Phase 3 |
 
-AlecRae App wins every single category that matters to
+Marco Reid App wins every single category that matters to
 a legal or accounting professional. The only gap is SOC 2
 which is on the roadmap in Section 22.
 
@@ -3805,7 +3805,7 @@ which is on the roadmap in Section 22.
 ### 35.1 The full technology picture
 
 This section documents every advanced technology used
-in the AlecRae platform and why each one is chosen.
+in the Marco Reid platform and why each one is chosen.
 Before building any feature, Claude reads this section
 and confirms current best practices for each technology.
 
@@ -3897,19 +3897,19 @@ the document editing layer and deserves specific explanation.
 
 Tiptap is a headless rich text editor built on ProseMirror.
 "Headless" means it has no default UI — the UI is built
-entirely in AlecRae's design system. It is used by:
+entirely in Marco Reid's design system. It is used by:
 - Notion (their entire editor)
 - Linear (issue descriptions and comments)
 - Substack (article editor)
 - Thousands of production applications
 
-For AlecRae specifically:
+For Marco Reid specifically:
 - Real-time collaborative editing (multiple attorneys in one doc)
   via Tiptap's Collaboration extension + Yjs CRDT
 - Oracle citations inserted as custom Tiptap nodes
   (they render with the ✓ verification badge, cannot be
   accidentally deleted without confirmation)
-- AlecRae Voice dictation inserts at cursor via Tiptap commands
+- Marco Reid Voice dictation inserts at cursor via Tiptap commands
 - Legal formatting: automatic paragraph numbering,
   defined terms highlighting, clause cross-referencing
 - Version history: every document version stored,
@@ -3917,7 +3917,7 @@ For AlecRae specifically:
 
 This is the document editor that makes attorneys stop
 using Word. The moment a lawyer edits a contract in
-AlecRae and sees Oracle citations appearing with
+Marco Reid and sees Oracle citations appearing with
 verification badges, real-time collaboration, version
 history, and voice input — they never open Word again.
 
@@ -3930,19 +3930,19 @@ the same technology that powers Google Docs.
 
 Yjs is the open-source CRDT implementation used across
 the industry. Combined with Tiptap's collaboration extension
-and Hocuspocus as the sync server, AlecRae documents become
+and Hocuspocus as the sync server, Marco Reid documents become
 fully real-time collaborative from day one.
 
 What this enables:
 - Two attorneys editing the same contract simultaneously
 - Changes appear in real-time with user presence indicators
 - No conflicts, no version clashes, no "who has the latest copy"
-- Attorney A dictates a clause via AlecRae Voice while
+- Attorney A dictates a clause via Marco Reid Voice while
   Attorney B edits a different section — both see each other live
 
 No current legal practice management platform offers this.
 Clio does not. MyCase does not. Smokeball does not.
-AlecRae ships it at launch.
+Marco Reid ships it at launch.
 
 ### 35.4 Performance philosophy — sub-second everything
 
@@ -3953,7 +3953,7 @@ a platform professionals abandon regardless of features.
 **The targets:**
 - Page load (first contentful paint): under 1 second
 - Oracle query response: under 3 seconds
-- AlecRae Voice transcription: under 500ms for short utterances
+- Marco Reid Voice transcription: under 500ms for short utterances
 - Message delivery: under 100ms (WebSocket)
 - Document sync: under 50ms between collaborators
 
@@ -3967,7 +3967,7 @@ The page is not blank while JavaScript loads. Content
 appears progressively as it is ready.
 
 Service Workers cache static assets. The second time
-a professional opens AlecRae, it is instant.
+a professional opens Marco Reid, it is instant.
 
 React 19's concurrent features prioritise user interactions
 over background processing. The UI never freezes.
@@ -3978,7 +3978,7 @@ Professionals are not always online. A lawyer in a rural
 courthouse may have poor connectivity. An accountant on
 a plane needs to review a client file.
 
-AlecRae's Service Worker caches:
+Marco Reid's Service Worker caches:
 - The last 50 matters accessed
 - All documents opened in the last 7 days
 - The professional's calendar for the next 30 days
@@ -3993,7 +3993,7 @@ with automatic sync. This is another unoccupied position.
 
 ### 35.6 The zero-HTML, components-only mandate
 
-Every UI element in AlecRae is a React component.
+Every UI element in Marco Reid is a React component.
 No .html files. No inline styles (Tailwind classes only).
 No JavaScript files (TypeScript only).
 
@@ -4034,7 +4034,7 @@ cannot be purchased with advertising.
 
 More importantly: IRD and the ATO want more accountants
 using approved digital software. They have active programmes
-designed to encourage adoption. AlecRae is not asking them
+designed to encourage adoption. Marco Reid is not asking them
 to do something new — it is helping them achieve goals they
 have already publicly committed to.
 
@@ -4062,8 +4062,8 @@ IRD actively promotes AIM adoption. The problem: many
 accountants and their clients are not using it because
 their software is not AIM-approved.
 
-AlecRae Accounting becoming AIM-approved means:
-- Every NZ client on AlecRae gets automatic provisional
+Marco Reid Accounting becoming AIM-approved means:
+- Every NZ client on Marco Reid gets automatic provisional
   tax alignment — no more lump sum provisional tax surprises
 - Accountants can offer a genuinely better client outcome
   that competitors without AIM approval cannot match
@@ -4071,14 +4071,14 @@ AlecRae Accounting becoming AIM-approved means:
   their stated policy goal
 
 This is not a feature. This is a structural advantage that
-makes AlecRae the most financially intelligent accounting
+makes Marco Reid the most financially intelligent accounting
 platform for NZ businesses and their accountants.
 
 **IRD gateway services to integrate (priority order):**
 
 | Service | What it enables | Priority |
 |---|---|---|
-| GST | File GST returns directly from AlecRae | Phase 1 — AIM integration |
+| GST | File GST returns directly from Marco Reid | Phase 1 — AIM integration |
 | Payday filing | File PAYE/payroll directly | Phase 1 |
 | Income tax | File IR3, IR4, IR6, IR7 returns | Phase 1 |
 | AIM | Provisional tax via accounting software | Phase 1 — flagship |
@@ -4086,7 +4086,7 @@ platform for NZ businesses and their accountants.
 | Student loans | Employer deduction filing | Phase 2 |
 | Investment income | PIE, RWT, NRWT reporting | Phase 2 |
 
-**What AlecRae looks like to IRD:**
+**What Marco Reid looks like to IRD:**
 IRD evaluates software providers on:
 1. Technical compliance — does the software correctly
    implement IRD's gateway service specifications?
@@ -4097,26 +4097,26 @@ IRD evaluates software providers on:
    need to file? (Vercel's 99.99% uptime SLA covers this)
 4. User experience — does the software make compliance
    easier for NZ taxpayers and their agents?
-   (This is where AlecRae dominates completely)
+   (This is where Marco Reid dominates completely)
 5. Support — can users get help when they need it?
-   (AlecRae's client portal and secure messaging built in)
+   (Marco Reid's client portal and secure messaging built in)
 
 **The application package — what to submit:**
 
-When AlecRae applies to IRD as a Digital Service Provider,
+When Marco Reid applies to IRD as a Digital Service Provider,
 the application must include:
 
-- Executive summary: who AlecRae is, what it does, and
+- Executive summary: who Marco Reid is, what it does, and
   specifically how it advances IRD's digital strategy goals
 - Technical architecture document: how the gateway
   integration works, data security measures, uptime guarantees
 - Privacy and security certification: NZ Privacy Act 2020
   compliance statement, encryption standards, data residency
   (NZ/AU Neon region)
-- AIM implementation specification: exactly how AlecRae
+- AIM implementation specification: exactly how Marco Reid
   calculates provisional tax under the AIM method
 - User experience demonstration: screenshots and video
-  showing how NZ accountants and their clients use AlecRae
+  showing how NZ accountants and their clients use Marco Reid
   to file returns and pay provisional tax
 - Company information: NZ Ltd Company registration,
   directors, financial standing
@@ -4124,13 +4124,13 @@ the application must include:
   who have used the platform and can speak to its quality
 
 **The presentation positioning:**
-Lead with how AlecRae helps IRD achieve its goals:
-"AlecRae increases AIM adoption by making provisional tax
+Lead with how Marco Reid helps IRD achieve its goals:
+"Marco Reid increases AIM adoption by making provisional tax
 calculation automatic for every client on the platform.
 We remove the barrier to AIM for the 60,000+ NZ businesses
 whose accountants are not currently using approved software."
 
-That is IRD's problem. AlecRae solves it. That is why they
+That is IRD's problem. Marco Reid solves it. That is why they
 should approve us.
 
 **Pre-application checklist NZ IRD:**
@@ -4175,7 +4175,7 @@ employers. Every payroll event must be reported to the ATO
 in real time. Software that is not STP-compliant cannot be
 used by Australian businesses with employees.
 
-AlecRae Accounting being STP-compliant from day one is
+Marco Reid Accounting being STP-compliant from day one is
 not optional for the Australian market — it is the entry
 ticket. But it is also a significant moat: STP integration
 is technically complex and many smaller accounting tools
@@ -4192,7 +4192,7 @@ Additional ATO-specific requirements:
 - ATO sandbox testing completion before production approval
 
 **The ATO application positioning:**
-"AlecRae brings STP, BAS, and superannuation compliance
+"Marco Reid brings STP, BAS, and superannuation compliance
 into the same platform where Australian accountants already
 manage their legal matters, client communications, and
 professional research. No switching between systems.
@@ -4223,7 +4223,7 @@ progressively rolled out from April 2026.
 This is the largest mandatory digital tax transformation
 in the UK's history. Every UK accountant with business
 clients is scrambling for MTD-compliant software.
-AlecRae entering the UK market as a certified MTD provider
+Marco Reid entering the UK market as a certified MTD provider
 positions it at the centre of the most significant regulatory
 change UK accountants have faced in a decade.
 
@@ -4236,10 +4236,10 @@ searching for MTD software — it is free organic marketing
 worth thousands of pounds per month.
 
 **The MTD opportunity statement:**
-"AlecRae makes MTD compliance automatic. VAT returns,
+"Marco Reid makes MTD compliance automatic. VAT returns,
 income tax submissions, and digital record-keeping are
 built into the platform. Your clients are MTD-compliant
-the moment they are on AlecRae."
+the moment they are on Marco Reid."
 
 **Pre-application checklist UK HMRC:**
 - [ ] UK Ltd Company formed (or UK entity planned)
@@ -4302,7 +4302,7 @@ in progress during Phase 1 build — not after launch.
 
 ### 36.7 What immaculate looks like to a government authority
 
-This section defines exactly what AlecRae must look like
+This section defines exactly what Marco Reid must look like
 when it presents itself to any government tax authority.
 
 **The platform attributes that impress government evaluators:**
@@ -4328,30 +4328,30 @@ when it presents itself to any government tax authority.
 
 4. **Support for professionals** — government authorities
    care that their taxpayers and agents are supported.
-   AlecRae's built-in secure messaging, client portal,
+   Marco Reid's built-in secure messaging, client portal,
    and the professional network within the platform all
-   demonstrate that professionals using AlecRae have
+   demonstrate that professionals using Marco Reid have
    support structures around them.
 
 5. **The professional endorsement** — a letter from CAANZ
    (for IRD/ATO) or ICAEW (for HMRC) saying "we have
-   reviewed AlecRae and support its application for digital
+   reviewed Marco Reid and support its application for digital
    service provider status" is worth more than any technical
    document in the application file. Pursue these
    endorsements before submitting any government application.
 
 6. **New Zealand identity** — IRD responds positively to
-   NZ-founded platforms. AlecRae is a NZ Ltd Company,
+   NZ-founded platforms. Marco Reid is a NZ Ltd Company,
    founded in Auckland, serving NZ professionals first.
    That story is genuine and it matters to a NZ government
    authority evaluating a domestic versus foreign software
    provider.
 
 **The sentence that wins the room:**
-"AlecRae is the only platform that combines tax compliance,
+"Marco Reid is the only platform that combines tax compliance,
 legal practice management, AI research, and professional
 communication in a single NZ-built system. Every
-accountant on AlecRae is better equipped to serve their
+accountant on Marco Reid is better equipped to serve their
 clients and to meet their IRD obligations. We are not
 asking IRD to change what they do. We are making it
 easier for every NZ accountant to do what IRD asks."
@@ -4364,7 +4364,7 @@ Government authorities respond to partners, not vendors.
 
 ---
 
-## 36. AlecRae AIM — The Flagship IRD Partnership Product
+## 36. Marco Reid AIM — The Flagship IRD Partnership Product
 
 ### 37.1 What AIM is and why it matters
 
@@ -4390,7 +4390,7 @@ on AIM pays exactly what they owe, exactly when they owe it,
 based on what they actually earned.
 
 The problem: most NZ small businesses are not on AIM because
-their accountant's software is not AIM-capable. AlecRae
+their accountant's software is not AIM-capable. Marco Reid
 changes that entirely.
 
 ### 37.2 The technical requirements — what IRD needs to see
@@ -4428,14 +4428,14 @@ providing capabilities through defined service operations
 including Retrieve Status, Retrieve Return, and Retrieve
 Filing Obligation.
 
-### 37.3 AlecRae AIM — the product design
+### 37.3 Marco Reid AIM — the product design
 
-AlecRae AIM is not a compliance module hidden in a settings menu.
+Marco Reid AIM is not a compliance module hidden in a settings menu.
 It is a flagship product that gets its own prominent section
-in the AlecRae Accounting dashboard — the first thing an
+in the Marco Reid Accounting dashboard — the first thing an
 accountant and their client see when they open the platform.
 
-**The AlecRae AIM dashboard shows at a glance:**
+**The Marco Reid AIM dashboard shows at a glance:**
 
 - Current AIM period profit/loss (live, updating as
   transactions are recorded)
@@ -4448,13 +4448,13 @@ accountant and their client see when they open the platform.
 
 **The AIM calculation engine:**
 
-Every transaction entered into AlecRae Accounting —
-whether by bank feed, manual entry, or AlecRae Voice dictation
+Every transaction entered into Marco Reid Accounting —
+whether by bank feed, manual entry, or Marco Reid Voice dictation
 — instantly updates the AIM profit calculation. The accountant
 and their client can see the provisional tax position changing
 in real time as the business performs throughout the year.
 
-When a GST return is due, AlecRae automatically:
+When a GST return is due, Marco Reid automatically:
 1. Calculates the AIM profit for the period
 2. Applies all required tax adjustments (depreciation,
    deductible expenditure, timing differences)
@@ -4472,7 +4472,7 @@ AIM payments are based on a year-to-date calculation.
 If a business makes a loss, they can get a refund straightaway
 and will not need to wait until the end of the year.
 
-When AlecRae AIM detects a loss period, it automatically:
+When Marco Reid AIM detects a loss period, it automatically:
 - Notifies the accountant with a clear dashboard alert
 - Calculates the refund amount
 - Prepares the Statement of Activity claiming the refund
@@ -4481,43 +4481,43 @@ When AlecRae AIM detects a loss period, it automatically:
 A business that had a bad quarter gets their money back
 within days, not months. That is a cash flow benefit that
 makes AIM genuinely life-changing for small businesses —
-and AlecRae is the platform that makes it effortless.
+and Marco Reid is the platform that makes it effortless.
 
-### 37.4 AlecRae Voice inside AIM
+### 37.4 Marco Reid Voice inside AIM
 
-AlecRae Voice integrates directly into the AIM workflow.
+Marco Reid Voice integrates directly into the AIM workflow.
 An accountant reviewing a client's AIM position can dictate:
 
 "Add a depreciation adjustment for the new vehicle,
 cost forty-two thousand dollars, effective from
 first of February, using IRD diminishing value rates"
 
-AlecRae processes the voice instruction, calculates the
+Marco Reid processes the voice instruction, calculates the
 depreciation using the correct IRD rates, applies it to the
 AIM profit calculation, and updates the provisional tax
 figure immediately. The accountant confirms with one tap.
 
-This is the moment an IRD evaluator realises AlecRae
+This is the moment an IRD evaluator realises Marco Reid
 is not just another accounting platform.
 
 ### 37.5 The AIM client portal experience
 
-Every AlecRae client whose accountant uses AIM gets
+Every Marco Reid client whose accountant uses AIM gets
 a dedicated AIM view in their client portal. In plain English:
 
 - "Your provisional tax this period: $2,340"
 - "Based on your actual profit of $18,700 for the period"
 - "Payment due: 28 April"
 - "Under the old standard method you would have paid $4,100.
-   AlecRae AIM is saving you $1,760 this period."
+   Marco Reid AIM is saving you $1,760 this period."
 - "Your business had no exposure to use-of-money interest."
 
 No financial jargon. No confusion. Just clear numbers,
 clear dates, and a clear demonstration of the value
-their accountant is delivering through AlecRae.
+their accountant is delivering through Marco Reid.
 
 This client portal view is what accountants show prospective
-clients to demonstrate why they use AlecRae. It is a
+clients to demonstrate why they use Marco Reid. It is a
 marketing tool for every accountant on the platform.
 
 ### 37.6 The AIM tax adjustment library
@@ -4526,7 +4526,7 @@ Software must incorporate end of year adjustments throughout
 the year to more accurately reflect taxable income.
 IRD determinations set out the minimum adjustments required.
 
-AlecRae AIM includes a complete library of every required
+Marco Reid AIM includes a complete library of every required
 and optional tax adjustment, maintained in real time as
 IRD updates its determinations:
 
@@ -4552,13 +4552,13 @@ and get a verified answer in seconds.
 
 This combination — AIM compliance automation plus Oracle
 research intelligence — is something no current AIM
-provider offers. It makes AlecRae AIM the most
+provider offers. It makes Marco Reid AIM the most
 sophisticated AIM implementation in the NZ market.
 
 ### 37.7 Multi-client AIM management — the accountant view
 
 An accountant with 50 clients on AIM does not manage
-them one at a time. AlecRae provides an AIM command centre
+them one at a time. Marco Reid provides an AIM command centre
 — a single dashboard view showing every client's AIM status:
 
 | Client | Period profit | Tax due | Due date | Status |
@@ -4570,7 +4570,7 @@ them one at a time. AlecRae provides an AIM command centre
 
 One screen. Every client. Every AIM obligation visible.
 Bulk filing capability — approve and file multiple clients
-in a single session. Deadline alerts sent via AlecRae Voice
+in a single session. Deadline alerts sent via Marco Reid Voice
 to the accountant's phone if any client's AIM filing
 is approaching and has not been submitted.
 
@@ -4579,13 +4579,13 @@ in a menu. A purpose-built professional workflow that
 treats AIM as the serious compliance obligation it is —
 and makes fulfilling it the easiest part of an accountant's day.
 
-### 37.8 How AlecRae presents AIM to IRD
+### 37.8 How Marco Reid presents AIM to IRD
 
-When AlecRae applies for AIM-capable software approval,
+When Marco Reid applies for AIM-capable software approval,
 the presentation to the Commissioner includes:
 
 **The commitment statement:**
-"AlecRae has built AIM as the centrepiece of our
+"Marco Reid has built AIM as the centrepiece of our
 accounting platform — not as a compliance checkbox.
 We believe AIM represents the most equitable provisional
 tax system available to NZ small businesses and we have
@@ -4611,24 +4611,24 @@ choice for every eligible NZ business."
 "There are approximately 600,000 NZ businesses eligible
 for AIM based on the $5 million turnover threshold.
 Current AIM adoption is a fraction of that eligible pool.
-AlecRae's goal is to make AIM the default choice for every
+Marco Reid's goal is to make AIM the default choice for every
 eligible business whose accountant uses our platform.
-We estimate AlecRae could bring an additional 10,000-50,000
+We estimate Marco Reid could bring an additional 10,000-50,000
 NZ businesses onto AIM within three years of launch."
 
 That is a number IRD cares about. That is a policy
 outcome they have been trying to achieve since 2018.
-AlecRae delivers it.
+Marco Reid delivers it.
 
-### 37.9 The AIM section on alecrae.com
+### 37.9 The AIM section on marcoreid.com
 
-AlecRae.com has a dedicated AIM page at alecrae.com/aim
+Marco Reid.com has a dedicated AIM page at marcoreid.com/aim
 that is designed to be as impressive to IRD as it is
 to NZ accountants and small businesses.
 
 The page opens with:
 
-**"AlecRae AIM — provisional tax the way it should work."**
+**"Marco Reid AIM — provisional tax the way it should work."**
 
 "New Zealand's most advanced implementation of the
 Accounting Income Method. Built in partnership with
@@ -4642,12 +4642,12 @@ The page demonstrates:
 - The loss refund flow — how quickly clients get money back
 - The multi-client management view
 - A statement from CAANZ or a respected NZ CA on the value
-  of AlecRae's AIM implementation
-- A link to ird.govt.nz confirming AlecRae's approved status
+  of Marco Reid's AIM implementation
+- A link to ird.govt.nz confirming Marco Reid's approved status
 
 This page does two things simultaneously. It converts
 NZ accountants who are not yet using AIM. And it shows
-IRD that AlecRae is the partner they have been looking for.
+IRD that Marco Reid is the partner they have been looking for.
 
 ---
 
@@ -4675,10 +4675,10 @@ missing features — it is that the onboarding experience
 was so painful they never got far enough to discover
 the features they needed.
 
-AlecRae's onboarding is the complete opposite of
+Marco Reid's onboarding is the complete opposite of
 everything described above. It is designed around
 one principle: the professional must feel the value
-of AlecRae within the first 10 minutes.
+of Marco Reid within the first 10 minutes.
 
 ### 38.2 The 10-minute value principle
 
@@ -4691,19 +4691,19 @@ is measured against this rule.
 **What creates the moment for each professional type:**
 
 For an attorney:
-The moment AlecRae Voice dictates their first message
+The moment Marco Reid Voice dictates their first message
 in perfect legal language — "notwithstanding," "hereinafter,"
 all of it preserved exactly — without a single correction.
 That 30-second experience is worth more than any feature
 tour or explainer video. They have never had a tool
-that understood their language. AlecRae does. Immediately.
+that understood their language. Marco Reid does. Immediately.
 
 For an accountant:
 The moment the bank feed connects and six months of
 transactions appear, categorised, reconciled, and ready
 for review — in under two minutes. No manual entry.
 No import file. It just appears. That is the moment
-an accountant realises AlecRae replaced the most
+an accountant realises Marco Reid replaced the most
 tedious part of their week before they finished signing up.
 
 For a small business owner:
@@ -4713,13 +4713,13 @@ actually earned — and shows them how much less that is
 compared to what they would have paid under standard uplift.
 The savings number is the moment. Real money. Visible immediately.
 
-### 38.3 The AlecRae onboarding flow — step by step
+### 38.3 The Marco Reid onboarding flow — step by step
 
 **Step 1 — The welcome screen (60 seconds)**
 One question. No paragraph of text. No product tour.
 Just this:
 
-"Welcome to AlecRae. What brings you here today?"
+"Welcome to Marco Reid. What brings you here today?"
 
 Three options:
 → I am a lawyer or law firm
@@ -4733,24 +4733,24 @@ disclaimers before they have entered a single client.
 
 **Step 2 — The hook feature first (2 minutes)**
 Before asking for firm details, billing information,
-or any setup — AlecRae demonstrates the single most
+or any setup — Marco Reid demonstrates the single most
 impressive feature for that professional type.
 
-For lawyers: AlecRae Voice demo
+For lawyers: Marco Reid Voice demo
 A text field appears with a microphone button.
 "Try dictating something. Anything."
 They speak. It appears. Perfectly formatted.
 Legal vocabulary intact.
-Below the result: "AlecRae Voice is available
+Below the result: "Marco Reid Voice is available
 everywhere you type on this platform."
 One button: "Continue setting up →"
 
 For accountants: Bank feed connection
-"Connect your bank to see AlecRae in action."
+"Connect your bank to see Marco Reid in action."
 OAuth connection to their bank. Takes 90 seconds.
 Transactions appear. Categories suggested by AI.
 Below the result: "This is what every month looks like
-on AlecRae — without the manual work."
+on Marco Reid — without the manual work."
 One button: "Continue setting up →"
 
 **Step 3 — The essential setup (5 minutes)**
@@ -4766,7 +4766,7 @@ Those come later. Right now the goal is getting the
 professional inside the platform as fast as possible.
 
 **Step 4 — The guided first action (2 minutes)**
-Based on what they chose in Step 1, AlecRae suggests
+Based on what they chose in Step 1, Marco Reid suggests
 exactly one first action tailored to their role:
 
 For lawyers:
@@ -4787,7 +4787,7 @@ For accountants:
 
 **Step 5 — The welcome message (automated, personal)**
 Within 5 minutes of completing setup, the professional
-receives an email from hello@alecrae.com that:
+receives an email from hello@marcoreid.com that:
 - Addresses them by name
 - References exactly what they just set up
   (their first matter name, or their first client name)
@@ -4795,7 +4795,7 @@ receives an email from hello@alecrae.com that:
   a 3-minute video of the one feature most relevant
   to their role, and a direct calendar link to book
   a 15-minute onboarding call if they want one
-- Is signed by a real person's name — not "The AlecRae Team"
+- Is signed by a real person's name — not "The Marco Reid Team"
 
 No overwhelming feature list. No 47-item checklist.
 No "getting started guide" PDF. Three links. Done.
@@ -4807,9 +4807,9 @@ from Clio, QuickBooks, or Xero is not that they prefer
 those tools. It is that their data lives there and
 moving it feels impossible.
 
-AlecRae removes this barrier completely.
+Marco Reid removes this barrier completely.
 
-**What AlecRae imports:**
+**What Marco Reid imports:**
 - From Clio: matters, clients, time entries, invoices,
   documents (via Clio's API or CSV export)
 - From QuickBooks: chart of accounts, transactions,
@@ -4819,7 +4819,7 @@ AlecRae removes this barrier completely.
   can export from their current system
 
 **How the import works:**
-One screen. Upload or connect. AlecRae maps the fields
+One screen. Upload or connect. Marco Reid maps the fields
 automatically using AI — it recognises client names,
 matter numbers, transaction types, and date formats
 without the professional having to define mappings.
@@ -4832,7 +4832,7 @@ will not start from zero. They will only switch if their
 history comes with them.
 
 **The migration promise:**
-"Your history is yours. AlecRae imports everything from
+"Your history is yours. Marco Reid imports everything from
 Clio, QuickBooks, or Xero. Your matters, clients,
 transactions, and documents arrive intact before you
 close your old account."
@@ -4841,7 +4841,7 @@ close your old account."
 
 **No waiting. No tickets. No hold music.**
 
-AlecRae's onboarding support is built around the
+Marco Reid's onboarding support is built around the
 understanding that professionals have zero tolerance
 for being stuck. Every minute they are stuck on
 a setup problem is a minute they are questioning
@@ -4850,14 +4850,14 @@ whether the switch was worth it.
 **The support stack:**
 
 In-platform chat: Available from the moment of signup.
-Not a bot. A real AlecRae team member during business
+Not a bot. A real Marco Reid team member during business
 hours in NZ, AU, and US time zones. Outside those hours
 an AI assistant handles tier-one questions with human
 escalation for anything complex.
 
 The Oracle as onboarding assistant: During the first
 30 days, the Oracle is tuned to answer questions about
-AlecRae itself — "how do I set up a trust account,"
+Marco Reid itself — "how do I set up a trust account,"
 "where do I find the AIM dashboard," "how do I add a
 court deadline" — in addition to legal and accounting
 research queries. The platform teaches itself.
@@ -4869,13 +4869,13 @@ reading. A 90-second video showing exactly what to do.
 
 The onboarding call: Every professional who signs up
 gets one free 15-minute onboarding call with an
-AlecRae specialist. Not a sales call. A setup call.
+Marco Reid specialist. Not a sales call. A setup call.
 The specialist's only goal is ensuring the professional
 completes their first real task on the platform.
 
 ### 38.6 The 30-day success metric
 
-AlecRae measures onboarding success by one metric only:
+Marco Reid measures onboarding success by one metric only:
 did the professional complete a meaningful action in
 their first 30 days?
 
@@ -4897,7 +4897,7 @@ as possible. Nothing else matters in month one.
 
 ### 38.7 What this looks like compared to competitors
 
-| Dimension | Clio | Xero/QuickBooks | AlecRae |
+| Dimension | Clio | Xero/QuickBooks | Marco Reid |
 |---|---|---|---|
 | Time to first value | Days to weeks | Hours to days | Under 10 minutes |
 | Setup complexity | High — multiple integrations required | Medium — bank setup complex | Low — one question, then value |
@@ -4910,9 +4910,9 @@ as possible. Nothing else matters in month one.
 
 ### 38.8 The onboarding promise — public and prominent
 
-On the AlecRae pricing and signup pages:
+On the Marco Reid pricing and signup pages:
 
-**"Ten minutes to your first AlecRae moment.
+**"Ten minutes to your first Marco Reid moment.
 No setup fees. No integration costs. No data held hostage.
 If you are not genuinely impressed in your first session,
 we will personally help you get there or refund your
@@ -4951,7 +4951,7 @@ The support loop that every competitor inflicts:
 7. Human has no context from the bot conversation
 8. Professional is furious before the problem is even solved
 
-AlecRae has none of this. Because there is no bot.
+Marco Reid has none of this. Because there is no bot.
 There is no separate support system. There is the Oracle —
 which already knows everything about the professional,
 their account, their matters, and their question —
@@ -4962,7 +4962,7 @@ if escalation is genuinely needed.
 
 **The trigger:**
 From anywhere in the platform, the professional says
-or types their question. AlecRae Voice is the fastest
+or types their question. Marco Reid Voice is the fastest
 path — speak the question, get the answer, keep working.
 No support window to open. No form to fill in.
 No category to select. Just ask.
@@ -4988,16 +4988,16 @@ That is not support. That is a colleague.
 
 **The Oracle support system prompt:**
 When the Oracle is operating in support mode it has
-an additional layer of context: the full AlecRae
+an additional layer of context: the full Marco Reid
 platform documentation, every feature, every workflow,
 every known issue, and the professional's account data.
 It answers questions about how to use the platform
 with the same precision it answers questions about
 California adverse possession law.
 
-### 39.3 AlecRae Voice as the support interface
+### 39.3 Marco Reid Voice as the support interface
 
-The most powerful support interaction on AlecRae
+The most powerful support interaction on Marco Reid
 requires no typing at all.
 
 A lawyer is in the middle of drafting a motion.
@@ -5018,8 +5018,8 @@ The downstream deadlines are calculated. The professional
 never stopped working.
 
 This is the support experience that makes competitors
-irrelevant. Not because AlecRae answered the question —
-because AlecRae took the action.
+irrelevant. Not because Marco Reid answered the question —
+because Marco Reid took the action.
 
 ### 39.4 When a human is needed — zero friction escalation
 
@@ -5052,7 +5052,7 @@ has experienced with other platforms is eliminated entirely
 by design.
 
 The Oracle knows who the professional is because they
-are already authenticated and logged into AlecRae.
+are already authenticated and logged into Marco Reid.
 There is no verification step for support questions
 because the Oracle is already inside their authenticated
 session. It knows their account. It knows their data.
@@ -5075,7 +5075,7 @@ One step. Clear reason. No repetition.
 
 **On the platform, prominently:**
 
-"AlecRae support is powered by The Oracle —
+"Marco Reid support is powered by The Oracle —
 the same AI that answers your legal and accounting
 research questions. It knows your account, your matters,
 and your question before you finish asking it.
@@ -5087,11 +5087,11 @@ know exactly what you need."
 
 **This is a formal product and business target, not a hope.**
 
-95% of all AlecRae support queries are resolved by
+95% of all Marco Reid support queries are resolved by
 the Oracle without human involvement. This is achievable
-because of how AlecRae is designed — not because the
+because of how Marco Reid is designed — not because the
 Oracle is unusually powerful, but because the combination
-of full account context, platform knowledge, AlecRae Voice
+of full account context, platform knowledge, Marco Reid Voice
 as the zero-friction input method, and a product built
 to be genuinely faultless means the vast majority of
 questions have clear, immediate, accurate answers.
@@ -5109,7 +5109,7 @@ cost centre. They are a quality signal. A small team
 of deeply knowledgeable professionals who only handle
 meaningful complexity, who always have full context,
 and who never waste a second on questions the Oracle
-already answered. That team stays small as AlecRae
+already answered. That team stays small as Marco Reid
 scales to tens of thousands of professionals.
 
 Higher Oracle query volume is a sign of health, not burden.
@@ -5131,7 +5131,7 @@ after engineering is customer support. Clio has hundreds
 of support staff. QuickBooks has thousands. Xero has
 extensive support teams across multiple countries.
 
-AlecRae's support cost structure is fundamentally
+Marco Reid's support cost structure is fundamentally
 different. The Oracle handles the vast majority of
 queries automatically, with full context, instantly,
 at any hour, in any language. Human support specialists
@@ -5149,13 +5149,13 @@ proportional support headcount.
 
 ### 39.8 Multi-language Oracle support
 
-AlecRae Voice supports nine languages at launch.
+Marco Reid Voice supports nine languages at launch.
 Oracle support operates in every one of them.
 
 A Spanish-speaking immigration attorney in Miami
 asks their support question in Spanish.
 The Oracle answers in Spanish — with perfect understanding
-of the legal terminology they used, because AlecRae Voice's
+of the legal terminology they used, because Marco Reid Voice's
 professional language intelligence works in Spanish too.
 
 No competitor offers multi-language professional
@@ -5166,11 +5166,11 @@ ignores.
 
 ---
 
-## 39. The Category Monopoly Plays — Making AlecRae Untouchable
+## 39. The Category Monopoly Plays — Making Marco Reid Untouchable
 
-These are the seven strategic plays that elevate AlecRae from a great
+These are the seven strategic plays that elevate Marco Reid from a great
 platform into a genuine category monopoly. They are executed in sequence
-as the platform matures. Each one independently makes AlecRae stronger.
+as the platform matures. Each one independently makes Marco Reid stronger.
 Together they create a platform so embedded in the legal and accounting
 profession that displacement becomes practically impossible.
 
@@ -5184,7 +5184,7 @@ no competitor can access without your user base.
 
 Westlaw has 50 years of attorney behaviour data. You start building yours
 from day one. In five years, The Oracle answers questions Westlaw cannot
-answer — because those patterns lived exclusively inside AlecRae's walls.
+answer — because those patterns lived exclusively inside Marco Reid's walls.
 
 **How to build it:**
 - Onboarding consent must explicitly cover anonymised usage data being
@@ -5204,18 +5204,18 @@ face value. Design every feature with the data it produces in mind.
 
 Westlaw and LexisNexis give free access to every law student in America.
 Those students graduate, join firms, and push for the tool they already know.
-AlecRae does the same — but with a genuinely better product.
+Marco Reid does the same — but with a genuinely better product.
 
 **The programme:**
-- Free AlecRae Law accounts for all enrolled law students
-- Curriculum integration — professors assign AlecRae research tasks
+- Free Marco Reid Law accounts for all enrolled law students
+- Curriculum integration — professors assign Marco Reid research tasks
 - Student-to-attorney upgrade path — one click upon bar admission
 - Sponsored moot court competitions at target law schools
 - Target high-volume schools that produce solo and small firm practitioners:
   Georgetown, NYU, Fordham, Loyola, Hastings, DePaul, Suffolk
 
 **Why it beats Westlaw:**
-Westlaw gives students a stripped-down version. AlecRae gives the full
+Westlaw gives students a stripped-down version. Marco Reid gives the full
 platform. By graduation, students have built workflows around it.
 The switching cost is established before they earn their first dollar.
 
@@ -5224,17 +5224,17 @@ The switching cost is established before they earn their first dollar.
 ### 25.3 CLE Accreditation — professionally mandated engagement
 
 Every US attorney must complete Continuing Legal Education credits
-annually to maintain their licence. AlecRae becomes an accredited
+annually to maintain their licence. Marco Reid becomes an accredited
 CLE provider. Courses delivered through the platform:
 - AI ethics and professional responsibility (ABA-required in most states)
 - Technology competence
-- Immigration law updates (feeds AlecRae Immigration module)
-- Tax law changes (feeds AlecRae Accounting cross-referral)
+- Immigration law updates (feeds Marco Reid Immigration module)
+- Tax law changes (feeds Marco Reid Accounting cross-referral)
 - Trust accounting compliance (demonstrates the module live)
 
 **Why this is a monopoly move:**
 Attorneys have a professional obligation to complete CLE.
-If that content lives in AlecRae, they have a legally mandated reason
+If that content lives in Marco Reid, they have a legally mandated reason
 to open the platform regularly. That is not marketing. That is law.
 
 **Accreditation sequence:** California → New York → Texas first.
@@ -5245,7 +5245,7 @@ Once approved in those three, remaining states follow progressively.
 ### 25.4 Regulatory Change Monitoring — real-time matter impact alerts
 
 When a statute changes, a new IRS ruling drops, or a landmark decision
-lands — AlecRae automatically cross-references it against every active
+lands — Marco Reid automatically cross-references it against every active
 matter in the system and alerts the attorney with an AI-generated
 impact analysis. No attorney goes looking for it. It comes to them.
 
@@ -5255,7 +5255,7 @@ Example alert:
 > impacted. Here is the analysis. Here is what you should do next."
 
 **Why this creates infinite switching cost:**
-Once a firm relies on AlecRae to surface regulatory changes mapped to
+Once a firm relies on Marco Reid to surface regulatory changes mapped to
 their matters, they cannot leave without accepting that they might miss
 something. The professional liability risk of leaving is greater than
 the cost of staying. That is the definition of a product you cannot cancel.
@@ -5270,7 +5270,7 @@ their attorney through a secure portal. Attorneys love it because it
 eliminates "where is my case?" phone calls. Included in attorney subscription.
 
 **Phase B — Client marketplace (Phase 3 only)**
-Clients without an attorney can find one through AlecRae, matched by
+Clients without an attorney can find one through Marco Reid, matched by
 practice area, jurisdiction, and matter type. Revenue clip on first
 engagement fee or monthly directory listing for attorneys.
 
@@ -5305,11 +5305,11 @@ accounting wing.
 
 The Oracle opens as a public API. Other legal tech products, court systems,
 law school tools, and enterprise platforms pay per query to access
-AlecRae's legal and accounting intelligence.
+Marco Reid's legal and accounting intelligence.
 
 Building what The Oracle does from scratch costs $50–100M and 10 years.
 Plugging into the API costs $499/month. Competitors will plug in.
-That makes AlecRae infrastructure — and you cannot compete with
+That makes Marco Reid infrastructure — and you cannot compete with
 infrastructure. You can only plug into it or be left behind.
 
 **Timing:** Phase 3 only — after query volume proves the intelligence
@@ -5325,14 +5325,14 @@ When all seven plays are active:
 | Play | What it locks in |
 |---|---|
 | Data flywheel | The Oracle gets smarter than any competitor can replicate |
-| Law school pipeline | Every new attorney already knows AlecRae |
+| Law school pipeline | Every new attorney already knows Marco Reid |
 | CLE accreditation | Attorneys are professionally obligated to engage |
 | Regulatory monitoring | Leaving creates professional liability risk |
-| Client marketplace | AlecRae owns both sides of the legal transaction |
+| Client marketplace | Marco Reid owns both sides of the legal transaction |
 | International expansion | The only common law platform with global coverage |
-| API economy | Competitors are built on top of AlecRae |
+| API economy | Competitors are built on top of Marco Reid |
 
-At that point AlecRae is not competing with Westlaw, Clio, or LexisNexis.
+At that point Marco Reid is not competing with Westlaw, Clio, or LexisNexis.
 It is the layer those platforms wish they had built first.
 
 
@@ -5341,40 +5341,40 @@ It is the layer those platforms wish they had built first.
 | Version | Date | Changes |
 |---|---|---|
 | 1.0 | March 2026 | Initial blueprint created |
-| 1.1 | March 2026 | Removed Xero — AlecRae Accounting used internally |
+| 1.1 | March 2026 | Removed Xero — Marco Reid Accounting used internally |
 | 1.2 | March 2026 | Added Astra rename requirement |
-| 1.3 | March 2026 | Added dictation domain strategy — lives inside AlecRae |
+| 1.3 | March 2026 | Added dictation domain strategy — lives inside Marco Reid |
 | 1.4 | March 2026 | Added user dependency moat, marketing strategy, tech stack, competitive intelligence, crisis protocols |
 | 1.5 | March 2026 | Added AI hallucination protocol, security certification roadmap, linear launch sequence |
 | 1.6 | March 2026 | Added seven category monopoly plays |
 | 1.7 | March 2026 | Expanded product suites — e-signature, spreadsheets, document editor, legal forms library, bank feeds, expense scanning, AI dictation grammar spec |
-| 1.8 | March 2026 | alecrae.com PURCHASED |
-| 1.9 | March 2026 | alecrae.accountant PURCHASED |
-| 2.0 | March 2026 | Final pre-build version. alecrae-com GitHub repo created. .law replaced with .legal |
+| 1.8 | March 2026 | marcoreid.com PURCHASED |
+| 1.9 | March 2026 | marcoreid.accountant PURCHASED |
+| 2.0 | March 2026 | Final pre-build version. marcoreid-com GitHub repo created. .law replaced with .legal |
 | 2.1 | March 2026 | Clarified CLAUDE.md is a document only. Remaining repos documented |
-| 2.2 | March 2026 | Platform integration architecture locked — ONE application on alecrae.com |
+| 2.2 | March 2026 | Platform integration architecture locked — ONE application on marcoreid.com |
 | 2.3 | March 2026 | Five-audience strategy and SEO keyword territory architecture added |
 | 2.4 | March 2026 | Collaboration architecture — instant messaging, meetings, cross-professional bridge, client portal hooks |
 | 2.5 | March 2026 | Time/money value proposition and trademark/IP protection strategy added |
 | 2.6 | March 2026 | UX Philosophy — Oracle draw-down, two-click navigation, command palette, dashboard design |
 | 2.7 | March 2026 | Technology Architecture — React components only, two-layer system, intellectual crawlers. Email Platform added |
-| 2.8 | March 2026 | AlecRae Voice as Universal Input Layer. Product name locked. Tagline: "Speak. It is done." |
+| 2.8 | March 2026 | Marco Reid Voice as Universal Input Layer. Product name locked. Tagline: "Speak. It is done." |
 | 2.9 | March 2026 | Geographic Markets — NZ+AU Phase 1, US Phase 2, UK+Canada Phase 3, Pacific Phase 4, SE Asia Phase 5 |
 | 3.0 | March 2026 | Market strategy decided — all markets, no exceptions |
 | 3.1 | March 2026 | Country-by-country legal compliance guide — all 8 markets |
-| 3.2 | March 2026 | Verom.ai migration plan — AlecRae Immigration module |
+| 3.2 | March 2026 | Verom.ai migration plan — Marco Reid Immigration module |
 | 3.3 | March 2026 | Database changed — Neon replaces Supabase. Prisma ORM added |
-| 3.4 | March 2026 | AlecRae Voice competitive landscape, multi-language, platform integration voice commands |
-| 3.5 | March 2026 | AlecRae App (Tauri v2), Advanced Technology Stack, alecrae.app purchased |
-| 3.6 | March 2026 | alecrae.ai purchased. Domain register updated |
+| 3.4 | March 2026 | Marco Reid Voice competitive landscape, multi-language, platform integration voice commands |
+| 3.5 | March 2026 | Marco Reid App (Tauri v2), Advanced Technology Stack, marcoreid.app purchased |
+| 3.6 | March 2026 | marcoreid.ai purchased. Domain register updated |
 | 3.7 | March 2026 | Government Authority Strategy — IRD, ATO, HMRC, CRA |
-| 3.8 | March 2026 | AlecRae AIM flagship product — IRD partnership centrepiece |
+| 3.8 | March 2026 | Marco Reid AIM flagship product — IRD partnership centrepiece |
 | 3.9 | March 2026 | Onboarding — 10-minute value principle, competitive analysis, AI data migration, 30-day success metric |
 | 4.0 | March 2026 | Oracle as Support — 95% resolution target, no separate bot, full account context, zero re-verification |
 | 4.1 | March 2026 | CLEAN REBUILD — all 40 sections correctly ordered and numbered. Document is now the definitive version. |
 
 ---
 
-*This document is confidential and proprietary to AlecRae and its founder.*
+*This document is confidential and proprietary to Marco Reid and its founder.*
 *It is not to be shared publicly or with any competitor.*
-*Commit this file to the root of every AlecRae GitHub repository.*
+*Commit this file to the root of every Marco Reid GitHub repository.*

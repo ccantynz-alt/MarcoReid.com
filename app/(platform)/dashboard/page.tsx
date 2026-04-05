@@ -11,7 +11,7 @@ export default function DashboardPage() {
         Welcome back{session?.user?.name ? `, ${session.user.name}` : ""}.
       </h1>
       <p className="mt-2 text-lg text-navy-400">
-        Your AlecRae dashboard. This is where your practice lives.
+        Your Marco Reid dashboard. This is where your practice lives.
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

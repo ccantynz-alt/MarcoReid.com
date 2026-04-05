@@ -11,7 +11,7 @@ import MockupReveal from "@/app/components/effects/MockupReveal";
 
 
 export const metadata: Metadata = {
-  title: "AlecRae Legal \u2014 The Operating System for Your Legal Practice",
+  title: "Marco Reid Legal \u2014 The Operating System for Your Legal Practice",
   description:
     "Full-stack legal practice management powered by AI. Case management, billing, trust accounting, document drafting, court-rules calendaring, and The Oracle legal research. One platform replaces everything.",
 };
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "AlecRae Legal",
+  name: "Marco Reid Legal",
   applicationCategory: "Legal",
   operatingSystem: "Web",
   description: "The operating system for legal practice. Case management, billing, trust accounting, AI research, voice dictation, and client collaboration in one platform.",
@@ -35,7 +35,7 @@ export default function LawPage() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Container className="relative text-center">
           <p className="animate-fade-up text-xs font-medium uppercase tracking-widest text-forest-600 opacity-0">
-            AlecRae Legal
+            Marco Reid Legal
           </p>
           <h1 className="mt-8 animate-fade-up-1 text-hero font-serif text-forest-500 opacity-0">
             The operating system
@@ -43,7 +43,7 @@ export default function LawPage() {
             for your legal practice.
           </h1>
           <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
-            Stop switching between seven different tools. AlecRae Legal replaces your
+            Stop switching between seven different tools. Marco Reid Legal replaces your
             case management, billing, trust accounting, document drafting, court calendaring,
             client communication, and legal research &mdash; with one login, one platform,
             and one bill.
@@ -88,7 +88,7 @@ export default function LawPage() {
           <Reveal delay={0.15}>
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
               You didn&rsquo;t go to law school for this. You went to practise law.
-              AlecRae gives you your profession back.
+              Marco Reid gives you your profession back.
             </p>
           </Reveal>
         </Container>
@@ -130,7 +130,7 @@ export default function LawPage() {
               How it works
             </p>
             <h2 className="mt-6 text-center text-display font-serif text-navy-700">
-              A day on AlecRae Legal.
+              A day on Marco Reid Legal.
             </h2>
           </Reveal>
 
@@ -183,7 +183,7 @@ export default function LawPage() {
                 <p className="mt-4 leading-relaxed text-navy-400">
                   &ldquo;Log four point five hours on the Rodriguez H-1B matter. Preparation and filing
                   of I-129. Today&rsquo;s date. Standard rate.&rdquo; Done. Time entry created, matter tagged,
-                  date set, rate applied. No forms. No clicking. No typing. AlecRae Voice
+                  date set, rate applied. No forms. No clicking. No typing. Marco Reid Voice
                   understood every word.
                 </p>
               </div>
@@ -221,7 +221,7 @@ export default function LawPage() {
                   The Thornton acquisition needs a tax opinion. You open the matter, click
                   &ldquo;Involve accounting professional,&rdquo; find the CPA by name, and share
                   the relevant documents with a message. The CPA gets a professional notification,
-                  views the shared matter, and responds. If they&rsquo;re already on AlecRae, this
+                  views the shared matter, and responds. If they&rsquo;re already on Marco Reid, this
                   takes 30 seconds. If they&rsquo;re not &mdash; the invitation is the hook that
                   brings them onto the platform. Every collaboration is a growth event.
                 </p>
@@ -288,7 +288,7 @@ export default function LawPage() {
             </h3>
             <p className="mt-4 leading-relaxed text-navy-400">
               Schedule depositions inside the platform. Record video built-in or via Zoom.
-              AlecRae Voice transcribes the entire deposition in real time &mdash; legal vocabulary,
+              Marco Reid Voice transcribes the entire deposition in real time &mdash; legal vocabulary,
               speaker identification, timestamps. Pull up exhibits from the matter files instantly.
               Query The Oracle mid-deposition to check a citation the witness mentions.
               AI generates a structured summary with key testimony, objections, and action items.
@@ -308,18 +308,18 @@ export default function LawPage() {
           <div className="rounded-xl border-2 border-navy-200 bg-navy-50/50 p-6 shadow-card sm:p-8">
             <p className="text-xs font-bold tracking-wider text-navy-500">Courtroom technology</p>
             <h3 className="mt-4 font-serif text-headline text-navy-700">
-              The courtroom goes digital. And it runs on AlecRae.
+              The courtroom goes digital. And it runs on Marco Reid.
             </h3>
             <p className="mt-4 leading-relaxed text-navy-400">
               Electronic filing with courts where APIs exist. Real-time courtroom transcription
-              via AlecRae Voice. Digital exhibit management on iPad or laptop. Court-rules
+              via Marco Reid Voice. Digital exhibit management on iPad or laptop. Court-rules
               calendaring that auto-calculates every downstream deadline. Judge analytics showing
               ruling patterns, motion grant rates, and sentencing trends. And The Oracle
               available on your iPad mid-hearing &mdash; verify a citation opposing counsel just
               raised in 3 seconds. That is a superpower in a courtroom.
             </p>
             <p className="mt-4 text-sm font-medium text-navy-500">
-              When a court uses AlecRae for filing, every attorney who appears in that court needs AlecRae. The court becomes the hook.
+              When a court uses Marco Reid for filing, every attorney who appears in that court needs Marco Reid. The court becomes the hook.
             </p>
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function LawPage() {
               { title: "Legal forms library", desc: "Every court form, AI pre-populated from matter data" },
               { title: "Client portal", desc: "Secure document sharing, messaging, and status updates" },
               { title: "Instant messaging", desc: "Matter-centric, encrypted, archived, exportable" },
-              { title: "Email integration", desc: "Gmail and Outlook inside AlecRae with Oracle access" },
+              { title: "Email integration", desc: "Gmail and Outlook inside Marco Reid with Oracle access" },
               { title: "Scheduling & meetings", desc: "Calendar sync, Zoom links, post-meeting AI summaries" },
               { title: "The Oracle", desc: "AI legal research with citation verification, inline everywhere" },
               { title: "Company incorporation", desc: "Automated entity formation — LLC, Ltd, C-Corp — with AI-populated documents and e-filing" },

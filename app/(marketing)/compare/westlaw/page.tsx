@@ -6,9 +6,9 @@ import Reveal from "@/app/components/effects/Reveal";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "AlecRae vs Westlaw \u2014 The Modern Alternative to Westlaw",
+  title: "Marco Reid vs Westlaw \u2014 The Modern Alternative to Westlaw",
   description:
-    "Why professionals are switching from Westlaw to AlecRae. Faster research, verified citations, practice management, billing, and dictation \u2014 all in one platform at a fraction of the price.",
+    "Why professionals are switching from Westlaw to Marco Reid. Faster research, verified citations, practice management, billing, and dictation \u2014 all in one platform at a fraction of the price.",
 };
 
 const schema = {
@@ -24,15 +24,15 @@ const schema = {
 const painPoints = [
   {
     pain: "Westlaw costs $400\u2013$600+ per user per month for research alone. Out-of-plan search fees described by users as \u201Cbeyond absurd.\u201D One attorney: \u201CI currently pay one-sixth the cost to a competitor for comparable results.\u201D",
-    solution: "AlecRae includes The Oracle research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month. No surprise fees. No per-search charges. Everything included.",
+    solution: "Marco Reid includes The Oracle research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month. No surprise fees. No per-search charges. Everything included.",
   },
   {
     pain: "After a decade of use, navigation is \u201Cstill not intuitive.\u201D Users report \u201Ctoo many results and no easy way to narrow down.\u201D Learning curve described as \u201Cextremely confusing.\u201D",
-    solution: "AlecRae is built for 2026. Clean, fast, designed for how lawyers actually work. Two clicks to anything. \u2318K command palette finds anything instantly.",
+    solution: "Marco Reid is built for 2026. Clean, fast, designed for how lawyers actually work. Two clicks to anything. \u2318K command palette finds anything instantly.",
   },
   {
     pain: "Westlaw is ONLY research. You still need Clio for case management, QuickBooks for billing, DocuSign for signatures, Dragon for dictation",
-    solution: "AlecRae replaces all of them. One platform. One login. One bill",
+    solution: "Marco Reid replaces all of them. One platform. One login. One bill",
   },
   {
     pain: "You leave your document to research. Open a new tab. Log in. Search. Copy. Switch back. Paste. Five minutes. Flow destroyed",
@@ -40,7 +40,7 @@ const painPoints = [
   },
   {
     pain: "Westlaw has no voice dictation. No way to speak a research query",
-    solution: "AlecRae Voice lets you speak your research query, dictate documents, log billing, and schedule meetings \u2014 in 9 languages",
+    solution: "Marco Reid Voice lets you speak your research query, dictate documents, log billing, and schedule meetings \u2014 in 9 languages",
   },
   {
     pain: "Westlaw can\u2019t answer questions that cross the legal-accounting boundary",
@@ -56,7 +56,7 @@ export default function CompareWestlawPage() {
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <p className="text-sm font-semibold tracking-wider text-forest-300">
-            AlecRae vs Westlaw
+            Marco Reid vs Westlaw
           </p>
           <h1 className="mt-6 font-serif text-hero text-white">
             Everything Westlaw does.
@@ -64,7 +64,7 @@ export default function CompareWestlawPage() {
             Plus everything it doesn&rsquo;t.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
-            Westlaw sells access to law. AlecRae sells the ability to practise law &mdash;
+            Westlaw sells access to law. Marco Reid sells the ability to practise law &mdash;
             entirely, from first client contact to final invoice, powered by AI throughout.
           </p>
         </Container>
@@ -77,7 +77,7 @@ export default function CompareWestlawPage() {
               The pain. The solution.
             </h2>
             <p className="mt-4 text-lg text-navy-400">
-              Every frustration professionals have with Westlaw &mdash; and how AlecRae eliminates it.
+              Every frustration professionals have with Westlaw &mdash; and how Marco Reid eliminates it.
             </p>
           </Reveal>
 
@@ -90,7 +90,7 @@ export default function CompareWestlawPage() {
                     <p className="mt-3 text-sm leading-relaxed text-navy-600">{p.pain}</p>
                   </div>
                   <div className="rounded-xl border border-forest-200 bg-forest-50/50 p-6">
-                    <p className="text-xs font-bold tracking-wider text-forest-600">AlecRae</p>
+                    <p className="text-xs font-bold tracking-wider text-forest-600">Marco Reid</p>
                     <p className="mt-3 text-sm leading-relaxed text-navy-600">{p.solution}</p>
                   </div>
                 </div>
@@ -115,26 +115,26 @@ export default function CompareWestlawPage() {
                   <tr className="border-b border-navy-100 bg-navy-50">
                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-navy-400">Feature</th>
                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-navy-400">Westlaw</th>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-forest-600">AlecRae</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    { feature: "Legal research", westlaw: true, alecrae: true },
-                    { feature: "Citation verification", westlaw: true, alecrae: true },
-                    { feature: "Accounting/tax research", westlaw: false, alecrae: true },
-                    { feature: "Cross-domain queries", westlaw: false, alecrae: true },
-                    { feature: "Case management", westlaw: false, alecrae: true },
-                    { feature: "Trust accounting (IOLTA)", westlaw: false, alecrae: true },
-                    { feature: "Billing & time tracking", westlaw: false, alecrae: true },
-                    { feature: "Document drafting AI", westlaw: false, alecrae: true },
-                    { feature: "Voice dictation (9 languages)", westlaw: false, alecrae: true },
-                    { feature: "E-signatures", westlaw: false, alecrae: true },
-                    { feature: "Client portal", westlaw: false, alecrae: true },
-                    { feature: "Secure messaging", westlaw: false, alecrae: true },
-                    { feature: "Court-rules calendaring", westlaw: false, alecrae: true },
-                    { feature: "Inline research (\u2318K)", westlaw: false, alecrae: true },
-                    { feature: "Starting price", westlaw: "$400+/mo", alecrae: "$99/mo" },
+                    { feature: "Legal research", westlaw: true, marcoreid: true },
+                    { feature: "Citation verification", westlaw: true, marcoreid: true },
+                    { feature: "Accounting/tax research", westlaw: false, marcoreid: true },
+                    { feature: "Cross-domain queries", westlaw: false, marcoreid: true },
+                    { feature: "Case management", westlaw: false, marcoreid: true },
+                    { feature: "Trust accounting (IOLTA)", westlaw: false, marcoreid: true },
+                    { feature: "Billing & time tracking", westlaw: false, marcoreid: true },
+                    { feature: "Document drafting AI", westlaw: false, marcoreid: true },
+                    { feature: "Voice dictation (9 languages)", westlaw: false, marcoreid: true },
+                    { feature: "E-signatures", westlaw: false, marcoreid: true },
+                    { feature: "Client portal", westlaw: false, marcoreid: true },
+                    { feature: "Secure messaging", westlaw: false, marcoreid: true },
+                    { feature: "Court-rules calendaring", westlaw: false, marcoreid: true },
+                    { feature: "Inline research (\u2318K)", westlaw: false, marcoreid: true },
+                    { feature: "Starting price", westlaw: "$400+/mo", marcoreid: "$99/mo" },
                   ].map((row) => (
                     <tr key={row.feature} className="border-b border-navy-50">
                       <td className="px-6 py-3 font-medium text-navy-700">{row.feature}</td>
@@ -144,9 +144,9 @@ export default function CompareWestlawPage() {
                           : row.westlaw}
                       </td>
                       <td className="px-6 py-3 font-medium text-navy-700">
-                        {typeof row.alecrae === "boolean"
-                          ? row.alecrae ? <span className="text-forest-500">&#10003;</span> : <span className="text-red-400">&#10007;</span>
-                          : <span className="text-forest-600">{row.alecrae}</span>}
+                        {typeof row.marcoreid === "boolean"
+                          ? row.marcoreid ? <span className="text-forest-500">&#10003;</span> : <span className="text-red-400">&#10007;</span>
+                          : <span className="text-forest-600">{row.marcoreid}</span>}
                       </td>
                     </tr>
                   ))}
@@ -170,7 +170,7 @@ export default function CompareWestlawPage() {
           <Reveal delay={0.1}>
             <div className="mt-10 flex justify-center gap-4">
               <Button href="/pricing" size="lg">See pricing</Button>
-              <Button href="/law" variant="secondary" size="lg">Explore AlecRae Legal</Button>
+              <Button href="/law" variant="secondary" size="lg">Explore Marco Reid Legal</Button>
             </div>
           </Reveal>
         </Container>

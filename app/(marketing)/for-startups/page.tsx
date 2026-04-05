@@ -4,7 +4,7 @@ import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
-  title: "AlecRae for Startups \u2014 Legal and Accounting From Day One",
+  title: "Marco Reid for Startups \u2014 Legal and Accounting From Day One",
   description:
     "Company incorporation, legal compliance, accounting automation, and tax strategy \u2014 everything a startup needs from formation to funding, powered by AI.",
 };
@@ -31,7 +31,7 @@ export default function ForStartupsPage() {
         <Container>
           <Reveal>
             <h2 className="font-serif text-display text-navy-800">
-              What AlecRae does for startups.
+              What Marco Reid does for startups.
             </h2>
           </Reveal>
 
@@ -43,7 +43,7 @@ export default function ForStartupsPage() {
               },
               {
                 title: "Accounting from day one",
-                desc: "AlecRae Accounting connects to your bank feeds immediately. Every transaction categorised. Tax compliance automated from the first dollar. Your CPA sees everything in real time.",
+                desc: "Marco Reid Accounting connects to your bank feeds immediately. Every transaction categorised. Tax compliance automated from the first dollar. Your CPA sees everything in real time.",
               },
               {
                 title: "Legal compliance built in",

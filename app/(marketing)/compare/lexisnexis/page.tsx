@@ -6,9 +6,9 @@ import Reveal from "@/app/components/effects/Reveal";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "AlecRae vs LexisNexis \u2014 The AI-Native Alternative",
+  title: "Marco Reid vs LexisNexis \u2014 The AI-Native Alternative",
   description:
-    "Why professionals are switching from LexisNexis to AlecRae. Cross-domain research, verified citations, practice management, voice dictation, and one unified platform.",
+    "Why professionals are switching from LexisNexis to Marco Reid. Cross-domain research, verified citations, practice management, voice dictation, and one unified platform.",
 };
 
 const schema = {
@@ -23,15 +23,15 @@ const schema = {
 const painPoints = [
   {
     pain: "Pricing is never published \u2014 custom quotes through sales reps. Users report searching for cases they \u201Cknew existed\u201D that wouldn\u2019t populate unless they used the exact case number. One user: \u201CI find myself crossing my fingers when I login.\u201D",
-    solution: "AlecRae pricing is transparent and published. $99\u2013$399/month. Unlimited searches. No surprises. Every citation verified before display.",
+    solution: "Marco Reid pricing is transparent and published. $99\u2013$399/month. Unlimited searches. No surprises. Every citation verified before display.",
   },
   {
     pain: "LexisNexis is a collection of fragmented products. CourtLink docket tracking is a separate paid product not included in Lexis+ subscriptions. More cost layering for every capability",
-    solution: "AlecRae is one unified platform. Research, practice management, billing, dictation, documents, client portal \u2014 one login, one bill. Nothing costs extra",
+    solution: "Marco Reid is one unified platform. Research, practice management, billing, dictation, documents, client portal \u2014 one login, one bill. Nothing costs extra",
   },
   {
     pain: "Harvey AI partnership expected to push costs $400\u2013$600 per lawyer per year on top of existing subscriptions. One firm was quoted over \u00A3200 per lawyer for AI \u2014 after one email the price was slashed 60%. Harvey itself costs $1,000\u2013$1,200/month per lawyer",
-    solution: "AlecRae\u2019s Oracle is included in the platform price. No AI surcharge. No Harvey-level pricing. Cross-domain research verified against public sources, from $99/month",
+    solution: "Marco Reid\u2019s Oracle is included in the platform price. No AI surcharge. No Harvey-level pricing. Cross-domain research verified against public sources, from $99/month",
   },
   {
     pain: "Shepard\u2019s Citations is powerful but locked behind the LexisNexis paywall. No alternative outside their ecosystem",
@@ -39,7 +39,7 @@ const painPoints = [
   },
   {
     pain: "LexisNexis has no voice dictation. No way to speak research queries or dictate documents",
-    solution: "AlecRae Voice is the platform\u2019s intelligence layer. Speak your research query, dictate your document, log your billing \u2014 in 9 languages",
+    solution: "Marco Reid Voice is the platform\u2019s intelligence layer. Speak your research query, dictate your document, log your billing \u2014 in 9 languages",
   },
   {
     pain: "LexisNexis cannot answer questions that span legal and accounting domains simultaneously",
@@ -55,12 +55,12 @@ export default function CompareLexisNexisPage() {
       <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
           <p className="text-sm font-semibold tracking-wider text-forest-300">
-            AlecRae vs LexisNexis
+            Marco Reid vs LexisNexis
           </p>
           <h1 className="mt-6 font-serif text-hero text-white">
             LexisNexis sells research.
             <br />
-            AlecRae sells the ability to practise.
+            Marco Reid sells the ability to practise.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
             Cross-domain AI research, verified citations, practice management,
@@ -87,7 +87,7 @@ export default function CompareLexisNexisPage() {
                     <p className="mt-3 text-sm leading-relaxed text-navy-600">{p.pain}</p>
                   </div>
                   <div className="rounded-xl border border-forest-200 bg-forest-50/50 p-6">
-                    <p className="text-xs font-bold tracking-wider text-forest-600">AlecRae</p>
+                    <p className="text-xs font-bold tracking-wider text-forest-600">Marco Reid</p>
                     <p className="mt-3 text-sm leading-relaxed text-navy-600">{p.solution}</p>
                   </div>
                 </div>
