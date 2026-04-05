@@ -9,7 +9,7 @@ export default function DashboardMockup() {
         <div className="mockup-dot bg-[#28c840]" />
         <div className="ml-4 flex-1">
           <div className="mx-auto w-48 rounded-md bg-navy-100 px-3 py-1 text-center text-xs text-navy-400">
-            app.alecrae.com
+            app.marcoreid.com
           </div>
         </div>
       </div>
@@ -17,13 +17,13 @@ export default function DashboardMockup() {
       <div className="flex min-h-[380px] sm:min-h-[440px]">
         {/* Sidebar */}
         <div className="hidden w-52 shrink-0 border-r border-navy-100 bg-navy-50 p-4 sm:block">
-          <div className="mb-4 font-serif text-lg text-navy-500">AlecRae</div>
+          <div className="mb-4 font-serif text-lg text-navy-500">Marco Reid</div>
           <div className="space-y-0.5">
             {[
               { icon: "◎", label: "Dashboard", active: true },
               { icon: "⚖", label: "Matters", count: "24" },
               { icon: "◈", label: "Clients", count: "86" },
-              { icon: "◉", label: "The Oracle" },
+              { icon: "◉", label: "Marco" },
               { icon: "⊕", label: "Documents" },
               { icon: "⏱", label: "Billing" },
               { icon: "✦", label: "Calendar" },

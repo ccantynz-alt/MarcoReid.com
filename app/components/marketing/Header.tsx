@@ -13,7 +13,7 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-navy-100 bg-white/90 backdrop-blur-lg">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
         <Link href="/" className="font-serif text-2xl text-navy-500">
-          AlecRae
+          Marco Reid
         </Link>
 
         {/* Desktop */}

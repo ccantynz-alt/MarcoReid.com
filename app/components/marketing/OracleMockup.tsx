@@ -9,7 +9,7 @@ export default function OracleMockup() {
         <div className="mockup-dot bg-[#28c840]" />
         <div className="ml-4 flex-1">
           <div className="mx-auto w-48 rounded-md bg-navy-100 px-3 py-1 text-center text-xs text-navy-400">
-            The Oracle &mdash; Research
+            Marco &mdash; Research
           </div>
         </div>
       </div>

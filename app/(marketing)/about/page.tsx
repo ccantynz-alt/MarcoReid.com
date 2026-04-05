@@ -4,9 +4,9 @@ import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
-  title: "About AlecRae \u2014 Professional Intelligence for Law and Accounting",
+  title: "About Marco Reid \u2014 Professional Intelligence for Law and Accounting",
   description:
-    "AlecRae is building the most advanced professional intelligence platform ever created. Four products. One platform. Built in Auckland, New Zealand for the world.",
+    "Marco Reid is building the most advanced professional intelligence platform ever created. Four products. One platform. Built in Auckland, New Zealand for the world.",
 };
 
 export default function AboutPage() {
@@ -20,7 +20,7 @@ export default function AboutPage() {
             For professionals.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
-            AlecRae is building the operating system for legal and accounting
+            Marco Reid is building the operating system for legal and accounting
             professionals. Four revolutionary products under one roof.
             Built in Auckland, New Zealand for the world.
           </p>
@@ -44,7 +44,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
-              AlecRae was built to end that. One platform that handles everything &mdash;
+              Marco Reid was built to end that. One platform that handles everything &mdash;
               case management, billing, trust accounting, AI-powered legal and accounting research,
               voice dictation in 9 languages, document drafting, client portals, secure messaging,
               depositions, courtroom technology, and company incorporation.
@@ -70,10 +70,10 @@ export default function AboutPage() {
           </Reveal>
           <div className="mt-16 grid gap-6 sm:grid-cols-2">
             {[
-              { name: "AlecRae Legal", desc: "Full-stack legal practice management. Case management, billing, trust accounting, court calendaring, document AI, e-signatures, client portal, depositions, courtroom technology.", href: "/law" },
-              { name: "AlecRae Accounting", desc: "AI-powered accounting. Bank feeds, automated reconciliation, tax compliance across 50 states, receipt scanning, AI spreadsheets, financial reporting.", href: "/accounting" },
-              { name: "The Oracle", desc: "Cross-domain legal and accounting AI research. Every citation verified. Legal, accounting, IP, and cross-domain queries. The research engine nobody else can build.", href: "/oracle" },
-              { name: "AlecRae Voice", desc: "The platform\u2019s intelligence layer. Speak anywhere you can type. Legal and accounting vocabulary. 9 languages. Voice commands that file, bill, schedule, and research.", href: "/dictation" },
+              { name: "Marco Reid Legal", desc: "Full-stack legal practice management. Case management, billing, trust accounting, court calendaring, document AI, e-signatures, client portal, depositions, courtroom technology.", href: "/law" },
+              { name: "Marco Reid Accounting", desc: "AI-powered accounting. Bank feeds, automated reconciliation, tax compliance across 50 states, receipt scanning, AI spreadsheets, financial reporting.", href: "/accounting" },
+              { name: "Marco", desc: "Cross-domain legal and accounting AI research. Every citation verified. Legal, accounting, IP, and cross-domain queries. The research engine nobody else can build.", href: "/marco" },
+              { name: "Marco Reid Voice", desc: "The platform\u2019s intelligence layer. Speak anywhere you can type. Legal and accounting vocabulary. 9 languages. Voice commands that file, bill, schedule, and research.", href: "/dictation" },
             ].map((p) => (
               <Reveal key={p.name} delay={0.05}>
                 <a href={p.href} className="block rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
@@ -95,7 +95,7 @@ export default function AboutPage() {
             </h2>
             <p className="mx-auto mt-8 max-w-xl text-xl text-navy-200">
               Lawyers and accountants became professionals to practise their craft.
-              AlecRae gives them back the hours that software took away.
+              Marco Reid gives them back the hours that software took away.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
