@@ -1,17 +1,65 @@
-# CLAUDE.md — AlecRae Master Blueprint
+# CLAUDE.md — Marco Reid Master Blueprint
 ### The definitive rules, strategy, legal protection framework, and build plan
-### Version 1.0 | Created: March 2026 | Status: PRE-LAUNCH
+### Version 1.0 | Created: March 2026 | Rebranded: April 2026 | Status: PRE-LAUNCH
 
 ---
 
 > **CLAUDE DIRECTIVE — READ THIS FIRST, EVERY SESSION**
 >
-> This file is the single source of truth for the AlecRae platform.
+> This file is the single source of truth for the Marco Reid platform.
 > Before providing any advice, writing any code, or making any architectural
 > decision, Claude must re-read and honour every rule in this document.
 > No suggestion may contradict the legal protection rules, the data sourcing
 > rules, or the compliance requirements below. When in doubt, the conservative
 > path wins. This platform is built to last decades, not to ship fast and fix later.
+
+---
+
+> **FOUNDER'S DIRECTIVE — THE AGGRESSION MANDATE**
+>
+> This is non-negotiable. Read this every session. Internalise it.
+>
+> Marco Reid will be the smartest AI brain ever to hit the internet.
+> There is no second place. Second place is first loser. We are aggressive
+> in our research, aggressive in our building, aggressive in our components,
+> aggressive in our design, aggressive in our marketing. We will be the best
+> at everything we do.
+>
+> **Marco (The Oracle) must know:**
+> - Every law ever written — from the first accountancy statute in history
+>   to legislation published today. Every jurisdiction. Every amendment.
+> - Every court case ever decided. If asked to cite cases, Marco knows them
+>   all. Detailed answers. Full context. No gaps.
+> - Every accounting standard, tax code, and regulatory framework across
+>   every market we operate in (NZ, AU, US, UK, CA, and beyond).
+> - Every government agency integration — IRD, IRS, ATO, HMRC, CRA, USCIS,
+>   SEC, USPTO. Instant access. Instant returns. Instant filings.
+>   Instant everything. Zero friction between the professional and the
+>   government.
+> - Everything about courtrooms — onboarding, what they need, what they
+>   don't need, what improves their situation 110%. Marco Reid Courtroom
+>   will be so good that courts cannot function without it.
+>
+> **Marco Reid Voice** will be the smartest dictation tool ever to hit the
+> market. Legal vocabulary, accounting vocabulary, medical vocabulary,
+> multi-language, context-aware, professional-grade. Nothing comes close.
+>
+> **The hook:** When a professional starts using Marco Reid, they must find
+> it impossible to walk away. The platform must be so comprehensive, so
+> deeply integrated into their practice, so intelligent, and so far ahead
+> of every competitor that switching is unthinkable. We need the big hook
+> on every wing — law, accounting, courtroom, The Oracle, Voice.
+>
+> **The research mandate:** Before building anything, we research deeper
+> than anyone else. We find every gap in every competitor. We find every
+> pain point in every workflow. We find every missing integration. Then
+> we build the thing that fills ALL of those gaps at once. We use the
+> most advanced technology, the most advanced components, the most
+> advanced architecture. No shortcuts. No "good enough." The best.
+>
+> This directive applies to every session, every decision, every line
+> of code. If something is not the best it can possibly be, it is not
+> done yet.
 
 ---
 
@@ -5372,9 +5420,11 @@ It is the layer those platforms wish they had built first.
 | 3.9 | March 2026 | Onboarding — 10-minute value principle, competitive analysis, AI data migration, 30-day success metric |
 | 4.0 | March 2026 | Oracle as Support — 95% resolution target, no separate bot, full account context, zero re-verification |
 | 4.1 | March 2026 | CLEAN REBUILD — all 40 sections correctly ordered and numbered. Document is now the definitive version. |
+| 5.0 | April 2026 | REBRAND — AlecRae → Marco Reid across entire platform and codebase |
+| 5.1 | April 2026 | AGGRESSION MANDATE — Founder's directive added. Marco must be the smartest AI brain on the internet. Know every law, every case, every standard, every government integration. No second place. |
 
 ---
 
-*This document is confidential and proprietary to AlecRae and its founder.*
+*This document is confidential and proprietary to Marco Reid and its founder.*
 *It is not to be shared publicly or with any competitor.*
 *Commit this file to the root of every AlecRae GitHub repository.*
