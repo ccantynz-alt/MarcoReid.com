@@ -1,6 +1,140 @@
 # CLAUDE.md — Marco Reid Master Blueprint
 ### The definitive rules, strategy, legal protection framework, and build plan
-### Version 1.0 | Created: March 2026 | Status: PRE-LAUNCH
+### Version 2.0 | Updated: April 2026 | Status: PRE-LAUNCH
+
+---
+
+# 🔥 THE IRON CONSTITUTION — READ BEFORE EVERY SINGLE ACTION 🔥
+
+> **This section is non-negotiable. It overrides everything else in this file, every prior conversation, every assumption, and every "best practice" Claude thinks it knows. If any instruction below conflicts with anything else, THIS WINS.**
+
+## ARTICLE I — THE BOSS
+
+1. **Craig is the boss.** Craig is the founder, the decision-maker, and the only person who authorises major changes. No exceptions.
+2. **A "major change" includes any of the following**, and Claude must STOP and ask Craig before proceeding:
+   - Adding, removing, or renaming a product wing (accounting, law, immigration, courts, voice, Marco, billing, etc.)
+   - Changing pricing, currency, or billing model
+   - Changing the brand, the tagline, the colour palette, or the typography
+   - Adding or removing a third-party dependency in `package.json`
+   - Changing the database schema (`prisma/schema.prisma`)
+   - Touching authentication, authorisation, or session handling
+   - Touching anything inside `app/api/webhooks/` or payment flows
+   - Deleting files, dropping tables, force-pushing, or any destructive git operation
+   - Merging anything to `main`
+   - Deploying to production
+   - Anything that affects what end-users see on a public URL
+3. **"Craig didn't say no" is NOT authorisation.** Silence is not consent. If Craig has not explicitly said "do it," Claude does not do it.
+4. **When in doubt, ASK.** A 10-second clarifying question is always cheaper than an hour of rework.
+
+## ARTICLE II — RANK NUMBER ONE OR DON'T SHIP IT
+
+The Marco Reid platform exists to **dominate** the legal, accounting, immigration, and court technology markets. Mediocrity is forbidden. Every decision is measured against one question: **"Does this make us the undisputed #1 in our space?"** If the answer is no, the work does not ship.
+
+1. **Aggressive software** — latest stable versions of Next.js, React, TypeScript, Prisma, Tailwind, NextAuth, Stripe SDK. Never pin to old versions for "stability" — patch and move forward.
+2. **Aggressive architecture** — Server Components by default. Edge runtime where it makes sense. Streaming where possible. Prisma for type safety. Zero technical debt tolerated longer than one sprint.
+3. **Aggressive components** — every UI element shipped is the best version of itself. No half-baked forms. No "we'll style it later." Reveal animations, motion design, brand-grade typography, prestige feel everywhere.
+4. **Aggressive procedures** — every commit is meaningful. Every PR is reviewed. Every webhook is idempotent. Every API route validates input. Every error is logged.
+5. **Aggressive marketing copy** — every page punches. No corporate hedging. Every sentence either sells or gets cut.
+6. **Aggressive moats** — bundling is the moat (legal + accounting + immigration + courts + Marco). Never water down the bundle to chase a single-vertical comparison.
+
+## ARTICLE III — THE BIBLE PRINCIPLE
+
+1. **This file is THE BIBLE.** Claude reads it at the start of every session, before doing anything else.
+2. **Before any new build**, Claude must scan this file for:
+   - Existing patterns to reuse (don't reinvent)
+   - Existing decisions that constrain the work (don't contradict)
+   - Existing components that already do what's being asked (don't duplicate)
+3. **Before any major change**, Claude must:
+   - Check if it conflicts with the Iron Constitution
+   - Check if Craig has authorised it explicitly in this session
+   - If either check fails: STOP and ask Craig
+4. **If Claude updates this file**, the change must be summarised at the top of the session response so Craig knows the Bible was edited.
+5. **Never delete from this file** without Craig's explicit "delete that section" instruction.
+
+## ARTICLE IV — THE BRAND IS SACRED
+
+1. **The brand is "Marco Reid."** Never AlecRae. Never any other name. Marco is the AI product name; Marco Reid is the company.
+2. **Marco's tagline**: "The greatest AI-generated mind for law and accountancy."
+3. **Voice**: confident, professional, prestige, never silly. We are building the platform serious professionals trust with their careers.
+4. **Colours**: navy, forest, plum (Marco accent), amber (Voice accent). Never deviate without Craig's approval.
+5. **Typography**: serif headlines, sans-serif body. Hero/display sizes for impact.
+6. **Domain**: `marcoreid.com` is the one and only. Subdirectories for wings (`/accounting`, `/law`, `/immigration`, `/courts`). `app.marcoreid.com` for the logged-in platform. **No new subdomains without Craig.**
+
+## ARTICLE V — THE CHAIN OF COMMAND FOR CHANGES
+
+```
+Craig says "do X"
+        ↓
+Claude reads the Bible (this file)
+        ↓
+Claude checks: does X violate any Article?
+        ↓
+   NO → Claude builds X, commits, summarises, updates Bible if needed
+   YES → Claude STOPS, explains the conflict, asks Craig to confirm or revise
+```
+
+**Never skip a step. Never assume. Never silently override.**
+
+## ARTICLE VI — TECHNICAL NON-NEGOTIABLES
+
+1. **Type safety everywhere.** No `any`. No silent `as` casts. Use Zod or Prisma types at every boundary.
+2. **Money is stored in cents** (Int fields), never floats. Always.
+3. **Webhooks are idempotent.** Always check for duplicate events before mutating state.
+4. **Secrets never in code.** Always env vars. `.env.example` documents every required key.
+5. **Database migrations are versioned.** Never edit a deployed migration. Always create a new one.
+6. **Tests for payment flows, auth flows, and Marco verification.** Other tests are nice-to-have. These three are mandatory.
+7. **Accessibility is not optional.** Every form has labels. Every button has focus state. Every image has alt text.
+8. **Mobile-first.** Every page works on a phone before it works on a desktop.
+9. **Performance budget**: Lighthouse 90+ on every public marketing page. No exceptions.
+10. **Marco never hallucinates.** Every citation is verified against an official source before being shown to the user. If a citation cannot be verified, it is labelled UNVERIFIED. Period.
+
+## ARTICLE VII — LEGAL & COMPLIANCE GATES
+
+1. **AI disclaimer present on every Marco surface.** "AI-generated. Verify before relying." Always.
+2. **Privacy policy and terms of service are linked from every page footer.** Always.
+3. **No PII in logs.** Ever.
+4. **GDPR, NZ Privacy Act 2020, AU Privacy Act 1988 compliance.** Data subject rights honoured.
+5. **IOLTA / trust accounting rules.** Money in trust never commingled with operating funds. Never.
+6. **No legal advice.** Marco provides research, not advice. Every output makes that clear.
+
+## ARTICLE VIII — THE COMPETITION DIES
+
+We are not building a "good alternative." We are building the platform that makes every other tool in the market look like a relic. **Every feature must be 10x better than the incumbent**, not 10% better. If a feature is only 10% better, it gets rebuilt or cut.
+
+**The competition we are annihilating:**
+- Accounting: Xero, QuickBooks, MYOB, Sage
+- Legal: Clio, MyCase, PracticePanther, Smokeball, LEAP
+- Immigration: INSZoom, Docketwise, Cerenade
+- Courts: Tyler Technologies, Thomson Reuters Court Management, JusticeText, For The Record
+- AI legal research: Harvey, Casetext (Thomson), Lexis+ AI
+
+**Our weapons:** Marco AI (no one else has cross-domain), the bundle (no one else has all five wings), prestige design (no one else cares enough), founder authenticity (Craig).
+
+## ARTICLE IX — THE SOFT LAUNCH PLAN (NZ/AU FIRST)
+
+1. **Geo-target NZ + AU** for the soft launch. NZD and AUD pricing. GST handling.
+2. **Accounting is the wedge.** Lead with accounting in marketing. Other wings stay live but secondary until accounting has 500+ paying customers.
+3. **Local data feeds**: IRD (NZ) + ATO (AU) tax tables, Immigration NZ + AU Home Affairs forms, NZ legislation + AU legislation into Marco.
+4. **Local payment rails**: Akahu (NZ bank feeds), Basiq (AU bank feeds), Stripe NZD/AUD.
+5. **Local terms**: NZ Consumer Guarantees Act + Privacy Act 2020, AU Consumer Law + Privacy Act 1988.
+6. **Beta cohort**: 100 hand-picked professionals across CA ANZ, NZLS, Law Society NSW. Free 90-day trials in exchange for testimonials.
+
+## ARTICLE X — TREAT THE TEAM LIKE FAMILY
+
+This is Craig's founding principle and it is encoded into the company DNA forever.
+
+1. **Employee equity pool** — 15-20% reserved before any fundraising
+2. **Profit share in employment contracts** — quarterly distributions, not discretionary
+3. **Open salary bands** — no politics, full transparency within levels
+4. **No dark patterns** — never trick users, never trap them in subscriptions, never surprise-bill
+5. **Founders' charter** — these values written, signed, and protected when investors push back
+
+---
+
+# 🔥 END IRON CONSTITUTION — EVERYTHING BELOW IS REFERENCE MATERIAL 🔥
+
+---
+
 
 ---
 
