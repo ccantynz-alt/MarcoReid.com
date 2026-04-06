@@ -33,6 +33,18 @@ model User {
   documents     Document[]
   timeEntries   TimeEntry[]
   trustAccounts TrustAccount[]
+
+  // Stripe — subscriptions
+  stripeCustomerId      String?   @unique
+  stripeSubscriptionId  String?   @unique
+  stripePriceId         String?
+  subscriptionStatus    String?
+  subscriptionPeriodEnd DateTime?
+
+  // Stripe Connect — marketplace
+  stripeConnectAccountId String?              @unique
+  connectOnboarded       Boolean              @default(false)
+  marketplacePayments    MarketplacePayment[] @relation("ProfessionalPayments")
 }
 
 // ============================================================
@@ -172,6 +184,30 @@ model TrustTransaction {
   createdAt      DateTime             @default(now())
 
   @@index([trustAccountId, createdAt])
+}
+
+// ============================================================
+// MARKETPLACE — Stripe Connect escrow payments
+// ============================================================
+
+model MarketplacePayment {
+  id                    String    @id @default(cuid())
+  payerUserId           String?
+  professionalUserId    String
+  professional          User      @relation("ProfessionalPayments", fields: [professionalUserId], references: [id])
+  stripePaymentIntentId String    @unique
+  amountCents           Int
+  applicationFeeCents   Int
+  currency              String    @default("usd")
+  status                String
+  description           String?
+  matterId              String?
+  capturedAt            DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([professionalUserId])
+  @@index([status])
 }
 
 // ============================================================
