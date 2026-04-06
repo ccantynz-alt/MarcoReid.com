@@ -4,7 +4,7 @@ import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
-  title: "AlecRae for Startups \u2014 Legal and Accounting From Day One",
+  title: "Marco Reid for Startups \u2014 Legal and Accounting From Day One",
   description:
     "Company incorporation, legal compliance, accounting automation, and tax strategy \u2014 everything a startup needs from formation to funding, powered by AI.",
 };
@@ -31,7 +31,7 @@ export default function ForStartupsPage() {
         <Container>
           <Reveal>
             <h2 className="font-serif text-display text-navy-800">
-              What AlecRae does for startups.
+              What Marco Reid does for startups.
             </h2>
           </Reveal>
 
@@ -39,11 +39,11 @@ export default function ForStartupsPage() {
             {[
               {
                 title: "Intelligent company incorporation",
-                desc: "Tell your lawyer where you want to operate and what the business does. The Oracle analyses entity types across jurisdictions, tax implications, and asset protection structures simultaneously. Formation documents generated, e-signed, and e-filed.",
+                desc: "Tell your lawyer where you want to operate and what the business does. Marco analyses entity types across jurisdictions, tax implications, and asset protection structures simultaneously. Formation documents generated, e-signed, and e-filed.",
               },
               {
                 title: "Accounting from day one",
-                desc: "AlecRae Accounting connects to your bank feeds immediately. Every transaction categorised. Tax compliance automated from the first dollar. Your CPA sees everything in real time.",
+                desc: "Marco Reid Accounting connects to your bank feeds immediately. Every transaction categorised. Tax compliance automated from the first dollar. Your CPA sees everything in real time.",
               },
               {
                 title: "Legal compliance built in",
@@ -51,7 +51,7 @@ export default function ForStartupsPage() {
               },
               {
                 title: "Tax strategy across jurisdictions",
-                desc: "The Oracle for Accounting analyses tax implications across every jurisdiction your startup operates in. R&D tax credits identified automatically. Transfer pricing documented from day one.",
+                desc: "Marco for Accounting analyses tax implications across every jurisdiction your startup operates in. R&D tax credits identified automatically. Transfer pricing documented from day one.",
               },
               {
                 title: "Fundraising document management",
@@ -59,7 +59,7 @@ export default function ForStartupsPage() {
               },
               {
                 title: "IP protection",
-                desc: "The Oracle for IP searches USPTO patent and trademark records, analyses prior art, and monitors for conflicting filings. Your startup\u2019s intellectual property protected from day one.",
+                desc: "Marco for IP searches USPTO patent and trademark records, analyses prior art, and monitors for conflicting filings. Your startup\u2019s intellectual property protected from day one.",
               },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>

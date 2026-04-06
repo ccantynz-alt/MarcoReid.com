@@ -2,11 +2,11 @@ import Link from "next/link";
 
 const links = {
   products: [
-    { label: "AlecRae Legal", href: "/law" },
-    { label: "AlecRae Accounting", href: "/accounting" },
-    { label: "The Oracle", href: "/oracle" },
-    { label: "AlecRae Voice", href: "/dictation" },
-    { label: "AlecRae Courtroom", href: "/courtroom" },
+    { label: "Marco Reid Legal", href: "/law" },
+    { label: "Marco Reid Accounting", href: "/accounting" },
+    { label: "Marco", href: "/oracle" },
+    { label: "Marco Reid Voice", href: "/dictation" },
+    { label: "Marco Reid Courtroom", href: "/courtroom" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [
@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="font-serif text-xl text-navy-500">
-              AlecRae
+              Marco Reid
             </Link>
             <p className="mt-2 text-sm text-navy-400">
               Professional intelligence &mdash;
@@ -84,7 +84,7 @@ export default function Footer() {
 
         <div className="mt-16 border-t border-navy-200 pt-8">
           <p className="text-xs text-navy-400">
-            &copy; {new Date().getFullYear()} AlecRae. Auckland, New Zealand. All rights reserved.
+            &copy; {new Date().getFullYear()} Marco Reid. Auckland, New Zealand. All rights reserved.
           </p>
         </div>
       </div>

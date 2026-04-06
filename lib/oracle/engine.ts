@@ -10,7 +10,7 @@ import {
 import { AI_DISCLAIMER } from "@/lib/constants";
 
 /**
- * The Oracle Engine — the brain of AlecRae.
+ * Marco Engine — the brain of Marco Reid.
  *
  * This is the core AI research system. It:
  * 1. Detects the query domain (legal, accounting, cross-domain, IP)
@@ -70,7 +70,7 @@ function detectDomain(query: string, requestDomain?: OracleDomain): OracleDomain
  * Build the system prompt based on the domain.
  */
 function buildSystemPrompt(domain: OracleDomain, jurisdiction?: string): string {
-  const base = `You are The Oracle, the AI research engine built into AlecRae — the professional intelligence platform for law and accounting. You provide research assistance to licensed professionals.
+  const base = `You are Marco, the AI research engine built into Marco Reid — the professional intelligence platform for law and accounting. You provide research assistance to licensed professionals.
 
 CRITICAL RULES:
 1. ONLY cite real cases, statutes, regulations, and rulings that actually exist.
@@ -186,7 +186,7 @@ function extractCitations(text: string): OracleCitationResult[] {
 
 /**
  * Retrieve memory context for a user — previous queries on the same
- * topic or matter, to give The Oracle continuity.
+ * topic or matter, to give Marco continuity.
  */
 async function getMemoryContext(
   userId: string,

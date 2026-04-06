@@ -12,7 +12,7 @@ import TypingDemo from "@/app/components/effects/TypingDemo";
 
 
 export const metadata: Metadata = {
-  title: "AlecRae Voice \u2014 The Most Advanced Professional Voice Platform Ever Built",
+  title: "Marco Reid Voice \u2014 The Most Advanced Professional Voice Platform Ever Built",
   description:
     "Not a dictation tool. The platform\u2019s intelligence layer. Legal and accounting vocabulary in 9 languages. Voice commands that file, bill, schedule, and research.",
 };
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "AlecRae Voice",
+  name: "Marco Reid Voice",
   applicationCategory: "Productivity",
   operatingSystem: "Web",
   description: "Universal voice input layer for legal and accounting professionals. 9 languages with professional vocabulary intelligence. Voice commands across the entire platform.",
@@ -41,7 +41,7 @@ export default function DictationPage() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Container className="relative text-center">
           <p className="animate-fade-up text-xs font-medium uppercase tracking-widest text-navy-500 opacity-0">
-            AlecRae Voice
+            Marco Reid Voice
           </p>
           <h1 className="mt-8 animate-fade-up-1 text-hero font-serif opacity-0">
             <span className="text-forest-500">Speak.</span>
@@ -50,7 +50,7 @@ export default function DictationPage() {
           </h1>
           <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Every other dictation tool on the market is an island. It sits outside your workflow.
-            AlecRae Voice is different. It IS the platform&rsquo;s input layer. Everywhere you can type,
+            Marco Reid Voice is different. It IS the platform&rsquo;s input layer. Everywhere you can type,
             you can speak. And it doesn&rsquo;t just transcribe &mdash; it understands your profession,
             your vocabulary, and your commands.
           </p>
@@ -77,7 +77,7 @@ export default function DictationPage() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="text-xs font-semibold text-navy-500">AlecRae Voice &mdash; listening</p>
+                  <p className="text-xs font-semibold text-navy-500">Marco Reid Voice &mdash; listening</p>
                   <TypingDemo className="mt-1 text-lg" />
                 </div>
               </div>
@@ -120,7 +120,7 @@ export default function DictationPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
-              Those actions require platform access. AlecRae Voice has platform access because it
+              Those actions require platform access. Marco Reid Voice has platform access because it
               IS the platform. That&rsquo;s the difference. That&rsquo;s why nobody can replicate it.
             </p>
           </Reveal>
@@ -150,7 +150,7 @@ export default function DictationPage() {
               },
               {
                 context: "Inside document editor",
-                command: "\"Ask the Oracle — what is the California standard for adverse possession, insert the controlling case as a citation.\"",
+                command: "\"Ask Marco — what is the California standard for adverse possession, insert the controlling case as a citation.\"",
                 result: "Oracle queried. Top verified case returned. Citation inserted at cursor. Attorney never stopped dictating.",
               },
               {
@@ -253,13 +253,14 @@ export default function DictationPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-xl text-navy-400">
-              Every professional who uses AlecRae Voice for one week and then has to go back
+              Every professional who uses Marco Reid Voice for one week and then has to go back
               to typing feels the loss immediately. That experience is irreversible.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-12 flex justify-center gap-4">
-              <Button href="/pricing" size="lg">See pricing</Button>
+            <div className="mt-12 flex flex-wrap justify-center gap-4">
+              <Button href="/voice" size="lg">Try it now</Button>
+              <Button href="/pricing" variant="secondary" size="lg">See pricing</Button>
               <Button href="/law" variant="secondary" size="lg">Explore Law</Button>
             </div>
           </Reveal>

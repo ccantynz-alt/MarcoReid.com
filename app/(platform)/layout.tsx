@@ -29,7 +29,7 @@ export default function PlatformLayout({
       <header className="border-b border-navy-100 bg-white">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
           <Link href="/dashboard" className="font-serif text-xl text-navy-500">
-            AlecRae
+            Marco Reid
           </Link>
           <div className="flex items-center gap-4">
             <span className="text-sm text-navy-400">

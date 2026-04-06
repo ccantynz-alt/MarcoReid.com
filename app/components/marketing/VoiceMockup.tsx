@@ -9,7 +9,7 @@ export default function VoiceMockup() {
         <div className="mockup-dot bg-[#28c840]" />
         <div className="ml-4 flex-1">
           <div className="mx-auto w-48 rounded-md bg-navy-100 px-3 py-1 text-center text-xs text-navy-400">
-            AlecRae &mdash; Email Composer
+            Marco Reid &mdash; Email Composer
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function VoiceMockup() {
           </div>
           <div className="flex-1">
             <p className="text-sm font-semibold text-forest-700">
-              AlecRae Voice &mdash; Recording
+              Marco Reid Voice &mdash; Recording
             </p>
             <p className="mt-0.5 text-xs text-forest-500">
               Legal vocabulary &middot; English &middot; Professional email mode

@@ -11,7 +11,7 @@ import MockupReveal from "@/app/components/effects/MockupReveal";
 import TypingDemo from "@/app/components/effects/TypingDemo";
 
 export const metadata: Metadata = {
-  title: "AlecRae \u2014 Professional Intelligence for Law and Accounting",
+  title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
   description:
     "The operating system for legal and accounting professionals. AI-powered practice management, research, voice dictation, and accounting \u2014 every tool your firm needs in one platform.",
 };
@@ -53,7 +53,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <p className="animate-fade-up text-sm font-semibold tracking-wider text-forest-300 opacity-0">
-              Introducing AlecRae &mdash; five products, one platform
+              Introducing Marco Reid &mdash; five products, one platform
             </p>
             <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-white opacity-0">
               You became a professional to practise your craft.
@@ -65,7 +65,7 @@ export default function HomePage() {
               You&rsquo;re paying for a dozen subscriptions and getting less done, not more.
             </p>
             <p className="mt-4 animate-fade-up-2 text-2xl font-serif text-white opacity-0">
-              AlecRae ends that. Today.
+              Marco Reid ends that. Today.
             </p>
             <p className="mt-4 animate-fade-up-2 text-lg text-navy-300 opacity-0">
               AI-powered legal practice. AI-powered accounting. Courtroom technology.
@@ -113,9 +113,9 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* PRODUCT 1: AlecRae Legal — MASSIVE showcase                   */}
+      {/* PRODUCT 1: Marco Reid Legal — MASSIVE showcase                   */}
       {/* ============================================================ */}
-      <section id="law" className="py-24 sm:py-36 lg:py-44" aria-label="AlecRae Legal">
+      <section id="law" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Legal">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           {/* Product header */}
           <Reveal>
@@ -125,7 +125,7 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-forest-600">
-                  AlecRae Legal
+                  Marco Reid Legal
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
                   Westlaw in one tab. Clio in another. Email in a third. Sound familiar?
@@ -145,9 +145,9 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              AlecRae Legal replaces all of them. Case management. Billing. Trust accounting.
+              Marco Reid Legal replaces all of them. Case management. Billing. Trust accounting.
               Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
-              The Oracle for research. AlecRae Voice for dictation. One login. One bill.
+              Marco for research. Marco Reid Voice for dictation. One login. One bill.
               From $99/month.
             </p>
           </Reveal>
@@ -174,7 +174,7 @@ export default function HomePage() {
                 <p className="text-2xl">&#8984;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Research mid-document</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Hit &#8984;K. The Oracle slides in. &ldquo;California non-compete standard.&rdquo;
+                  Hit &#8984;K. Marco slides in. &ldquo;California non-compete standard.&rdquo;
                   Three verified cases in 3 seconds. Insert citation at cursor. 25 seconds total.
                   Westlaw takes 5 minutes.
                 </p>
@@ -224,7 +224,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <div className="mt-12 flex gap-4">
-              <Button href="/law">Learn more about AlecRae Legal</Button>
+              <Button href="/law">Learn more about Marco Reid Legal</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
             </div>
           </Reveal>
@@ -235,9 +235,9 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 2: The Oracle — MASSIVE showcase                      */}
+      {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="The Oracle">
+      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -246,10 +246,10 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-plum-600">
-                  The Oracle
+                  Marco
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  You spend 4 hours researching what The Oracle answers in 25 seconds.
+                  You spend 4 hours researching what Marco answers in 25 seconds.
                 </h2>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Hit &#8984;K. The Oracle slides in without leaving your document. Type your question.
+              Hit &#8984;K. Marco slides in without leaving your document. Type your question.
               Three verified cases in 3 seconds. Click &ldquo;Insert citation.&rdquo; Done. 25 seconds.
               And it works for both legal AND accounting research simultaneously &mdash;
               because nobody else owns both sides. Cross-domain queries that Westlaw, LexisNexis,
@@ -321,14 +321,14 @@ export default function HomePage() {
               <p className="mt-4 text-sm leading-relaxed text-navy-200">
                 That query requires both legal research and tax intelligence simultaneously.
                 Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both sides.
-                This is a category that did not exist before AlecRae created it.
+                This is a category that did not exist before Marco Reid created it.
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={0.2}>
             <div className="mt-12 flex gap-4">
-              <Button href="/oracle">Learn more about The Oracle</Button>
+              <Button href="/oracle">Learn more about Marco</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
             </div>
           </Reveal>
@@ -338,9 +338,9 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 3: AlecRae Voice — MASSIVE showcase                   */}
+      {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="AlecRae Voice">
+      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Voice">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -349,11 +349,11 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-navy-500">
-                  AlecRae Voice
+                  Marco Reid Voice
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
                   Dragon costs $699 and can&rsquo;t file a motion.
-                  AlecRae Voice can. By speaking.
+                  Marco Reid Voice can. By speaking.
                 </h2>
               </div>
             </div>
@@ -364,7 +364,7 @@ export default function HomePage() {
               Every dictation tool on the market is an island. Dragon can&rsquo;t log a billing entry.
               WisprFlow can&rsquo;t schedule a meeting tagged to a matter. Otter can&rsquo;t query a legal
               research database. They transcribe words. That&rsquo;s it. They sit outside your workflow.
-              transcribe. It files motions, logs billing, schedules meetings, queries The Oracle,
+              transcribe. It files motions, logs billing, schedules meetings, queries Marco,
               and sends matter-tagged messages. All by speaking. In 9 languages.
             </p>
           </Reveal>
@@ -383,7 +383,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-forest-700">AlecRae Voice &mdash; listening</p>
+                  <p className="text-sm font-bold text-forest-700">Marco Reid Voice &mdash; listening</p>
                   <TypingDemo className="mt-1 text-lg" />
                 </div>
               </div>
@@ -410,7 +410,7 @@ export default function HomePage() {
               },
               {
                 context: "Inside documents",
-                command: "\"Ask the Oracle \u2014 California adverse possession standard, insert the controlling case.\"",
+                command: "\"Ask Marco \u2014 California adverse possession standard, insert the controlling case.\"",
                 result: "Oracle queried. Citation inserted at cursor. Never stopped dictating.",
               },
               {
@@ -431,7 +431,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <div className="mt-12 flex gap-4">
-              <Button href="/dictation">Learn more about AlecRae Voice</Button>
+              <Button href="/dictation">Learn more about Marco Reid Voice</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
             </div>
           </Reveal>
@@ -441,9 +441,9 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 4: AlecRae Courtroom                                  */}
+      {/* PRODUCT 4: Marco Reid Courtroom                                  */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="AlecRae Courtroom">
+      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Courtroom">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -452,11 +452,11 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-plum-600">
-                  AlecRae Courtroom
+                  Marco Reid Courtroom
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
                   Court reporters cost $500/day.
-                  AlecRae Courtroom replaces them.
+                  Marco Reid Courtroom replaces them.
                 </h2>
               </div>
             </div>
@@ -472,9 +472,9 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              AlecRae Courtroom: AI transcription that replaces stenographers. Tamper-evident
+              Marco Reid Courtroom: AI transcription that replaces stenographers. Tamper-evident
               evidence with cryptographic chain of custody. Judge analytics that tell you
-              ruling patterns before you walk in. And The Oracle on your iPad &mdash;
+              ruling patterns before you walk in. And Marco on your iPad &mdash;
               verify any citation in 3 seconds, mid-hearing. Permission-based. Court-admissible.
             </p>
           </Reveal>
@@ -499,7 +499,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <div className="mt-10 flex gap-4">
-              <Button href="/courtroom">Explore AlecRae Courtroom</Button>
+              <Button href="/courtroom">Explore Marco Reid Courtroom</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
             </div>
           </Reveal>
@@ -509,9 +509,9 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 5: AlecRae Accounting                                 */}
+      {/* PRODUCT 5: Marco Reid Accounting                                 */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="AlecRae Accounting">
+      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Accounting">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -520,7 +520,7 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-forest-600">
-                  AlecRae Accounting
+                  Marco Reid Accounting
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
                   QuickBooks just raised prices 400%.
@@ -540,9 +540,9 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              AlecRae Accounting: bank feeds via Plaid that never miss a transaction. AI
+              Marco Reid Accounting: bank feeds via Plaid that never miss a transaction. AI
               reconciliation that turns months into minutes. Tax compliance across 50 states.
-              The Oracle for accounting &mdash; IRS code, revenue rulings, Treasury regs answered
+              Marco for accounting &mdash; IRS code, revenue rulings, Treasury regs answered
               in 3 seconds. Voice journal entries. And direct collaboration with lawyers on
               shared matters. One platform for both professions.
             </p>
@@ -555,7 +555,7 @@ export default function HomePage() {
               { icon: "\u2713", title: "50-state tax compliance", desc: "US federal and state tax calculation. Always current. Never out of date." },
               { icon: "\uD83D\uDCF8", title: "Receipt scanning", desc: "Photo to auto-coded expense entry in under 3 seconds from your phone." },
               { icon: "\u25C8", title: "Oracle for accounting", desc: "Tax code research with verified citations. IRS rulings answered instantly." },
-              { icon: "\uD83C\uDF99", title: "Voice journal entries", desc: "Dictate double-entry bookkeeping. AlecRae Voice understands debits and credits." },
+              { icon: "\uD83C\uDF99", title: "Voice journal entries", desc: "Dictate double-entry bookkeeping. Marco Reid Voice understands debits and credits." },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
                 <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
@@ -593,7 +593,7 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg text-navy-200">
               Seven different subscriptions. None of them talk to each other. Hours lost
               every day switching between tools that were never designed to work together.
-              AlecRae replaces all of them.
+              Marco Reid replaces all of them.
             </p>
           </Reveal>
 
@@ -667,8 +667,8 @@ export default function HomePage() {
               "Case management", "Trust accounting (IOLTA)", "Court-rules calendaring",
               "Document AI & editor", "Billing & time tracking", "E-signatures",
               "Legal forms library", "Client portal", "Secure messaging",
-              "Email integration", "Calendar & meetings", "The Oracle (Legal)",
-              "The Oracle (Accounting)", "AlecRae Voice (9 languages)", "Bank feed integration",
+              "Email integration", "Calendar & meetings", "Marco (Legal)",
+              "Marco (Accounting)", "Marco Reid Voice (9 languages)", "Bank feed integration",
               "AI reconciliation", "Tax compliance (50 states)", "Receipt scanning",
               "AI spreadsheets", "Firm analytics",
               "Company incorporation", "Conflict checking",
@@ -705,7 +705,7 @@ export default function HomePage() {
               Staff leave not because work is challenging &mdash; they leave because it feels
               mindless and the tools feel ancient. 76% of legal staff cling to manual processes
               because the software is worse than doing it by hand. That is not a technology problem.
-              That is a failure of imagination. AlecRae is what happens when someone finally imagines
+              That is a failure of imagination. Marco Reid is what happens when someone finally imagines
               something better.
             </p>
           </Reveal>
@@ -731,8 +731,8 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href="/law" size="lg">Explore AlecRae Legal</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
+              <Button href="/law" size="lg">Explore Marco Reid Legal</Button>
+              <Button href="/oracle" variant="secondary" size="lg">Explore Marco</Button>
               <Button href="/pricing" variant="ghost">View pricing &rarr;</Button>
             </div>
           </Reveal>
