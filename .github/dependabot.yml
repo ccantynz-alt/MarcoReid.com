@@ -19,6 +19,19 @@ updates:
       prefix: "deps:"
     # Group minor and patch updates together to reduce PR noise
     groups:
+      # React ecosystem must always upgrade together — @types/react-dom@19
+      # requires @types/react@19, so splitting them into separate PRs causes
+      # peer dependency conflicts that break every quality gate job.
+      react-ecosystem:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
       minor-and-patch:
         update-types:
           - "minor"
