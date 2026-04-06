@@ -28,6 +28,26 @@ model User {
   updatedAt     DateTime        @updatedAt
   queries       OracleQuery[]
   feedback      OracleFeedback[]
+  voiceTranscripts VoiceTranscript[]
+}
+
+// ============================================================
+// MARCO REID VOICE — Whisper dictation
+// ============================================================
+
+model VoiceTranscript {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  text        String   @db.Text
+  durationMs  Int?
+  language    String?  // detected or specified language
+  surface     String?  // where the dictation happened: "dashboard", "matter", "email", etc.
+  matterId    String?  // optional link to matter
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
 }
 
 // ============================================================
