@@ -1,53 +1,10 @@
-"use client";
-
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
-const cards = [
-  {
-    title: "Marco",
-    desc: "Ask anything. Legal and accounting research with verified citations.",
-    href: "/marco",
-    accent: "plum",
-    cta: "Ask Marco",
-  },
-  {
-    title: "Matters",
-    desc: "Manage your active cases and engagements.",
-    href: "/matters",
-    accent: "navy",
-  },
-  {
-    title: "Clients",
-    desc: "Your client directory and CRM.",
-    href: "/clients",
-    accent: "navy",
-  },
-  {
-    title: "Voice",
-    desc: "Dictate anywhere. Powered by Marco Reid Voice.",
-    href: "/voice",
-    accent: "forest",
-  },
-  {
-    title: "Documents",
-    desc: "Files, drafts, and templates.",
-    href: "/documents",
-    accent: "navy",
-  },
-  {
-    title: "Trust",
-    desc: "IOLTA trust accounts and ledger.",
-    href: "/trust",
-    accent: "navy",
-  },
-  {
-    title: "Billing",
-    desc: "Time tracking, invoices, and payments.",
-    href: "/billing",
-    accent: "navy",
-  },
-] as const;
+export const dynamic = "force-dynamic";
 
 const accentRing: Record<string, string> = {
   plum: "border-plum-200 hover:border-plum-400",
@@ -55,8 +12,83 @@ const accentRing: Record<string, string> = {
   navy: "border-navy-100 hover:border-navy-300",
 };
 
-export default function DashboardPage() {
-  const { data: session } = useSession();
+export default async function DashboardPage() {
+  const session = await getServerSession(authOptions);
+  const userId = (session?.user as { id?: string } | undefined)?.id;
+  if (!userId) redirect("/login");
+
+  const [matters, clients, documents, trustAccounts, timeEntries] =
+    await Promise.all([
+      prisma.matter.count({ where: { userId } }),
+      prisma.client.count({ where: { userId } }),
+      prisma.document.count({ where: { userId } }),
+      prisma.trustAccount.count({ where: { userId } }),
+      prisma.timeEntry.count({ where: { userId } }),
+    ]);
+
+  const cards: {
+    title: string;
+    desc: string;
+    href: string;
+    accent: "plum" | "forest" | "navy";
+    count?: string | null;
+    cta?: string;
+  }[] = [
+    {
+      title: "Marco",
+      desc: "Ask anything. Legal and accounting research with verified citations.",
+      href: "/marco",
+      accent: "plum",
+      cta: "Ask Marco",
+    },
+    {
+      title: "Voice",
+      desc: "Dictate anywhere. Powered by Marco Reid Voice.",
+      href: "/voice",
+      accent: "forest",
+    },
+    {
+      title: "Matters",
+      desc: "Manage your active cases and engagements.",
+      href: "/matters",
+      accent: "navy",
+      count: String(matters),
+    },
+    {
+      title: "Clients",
+      desc: "Your client directory and CRM.",
+      href: "/clients",
+      accent: "navy",
+      count: String(clients),
+    },
+    {
+      title: "Documents",
+      desc: "Files, drafts, and templates.",
+      href: "/documents",
+      accent: "navy",
+      count: String(documents),
+    },
+    {
+      title: "Trust",
+      desc: "IOLTA trust accounts and ledger.",
+      href: "/trust",
+      accent: "navy",
+      count: String(trustAccounts),
+    },
+    {
+      title: "Time",
+      desc: "Time tracking and billable entries.",
+      href: "/matters",
+      accent: "navy",
+      count: String(timeEntries),
+    },
+    {
+      title: "Billing",
+      desc: "Subscriptions, invoices, and marketplace payments.",
+      href: "/billing",
+      accent: "navy",
+    },
+  ];
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
@@ -76,11 +108,15 @@ export default function DashboardPage() {
           >
             <div className="flex items-center justify-between">
               <h2 className="font-semibold text-navy-700">{item.title}</h2>
-              {"cta" in item && item.cta && (
+              {item.cta ? (
                 <span className="rounded-full bg-plum-50 px-2.5 py-0.5 text-xs font-medium text-plum-600">
                   {item.cta}
                 </span>
-              )}
+              ) : item.count != null ? (
+                <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-400">
+                  {item.count}
+                </span>
+              ) : null}
             </div>
             <p className="mt-2 text-sm text-navy-400">{item.desc}</p>
           </Link>
