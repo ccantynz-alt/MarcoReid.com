@@ -26,13 +26,14 @@ model User {
   firmName      String?
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt
-  queries       OracleQuery[]
-  feedback      OracleFeedback[]
-  clients       Client[]
-  matters       Matter[]
-  documents     Document[]
-  timeEntries   TimeEntry[]
-  trustAccounts TrustAccount[]
+  queries          OracleQuery[]
+  feedback         OracleFeedback[]
+  clients          Client[]
+  matters          Matter[]
+  documents        Document[]
+  timeEntries      TimeEntry[]
+  trustAccounts    TrustAccount[]
+  voiceTranscripts VoiceTranscript[]
 
   // Stripe — subscriptions
   stripeCustomerId      String?   @unique
@@ -208,6 +209,25 @@ model MarketplacePayment {
 
   @@index([professionalUserId])
   @@index([status])
+}
+
+// ============================================================
+// MARCO REID VOICE — Whisper dictation
+// ============================================================
+
+model VoiceTranscript {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  text       String   @db.Text
+  durationMs Int?
+  language   String? // detected or specified language
+  surface    String? // where the dictation happened: "dashboard", "matter", "email", etc.
+  matterId   String? // optional link to matter
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
 }
 
 // ============================================================
