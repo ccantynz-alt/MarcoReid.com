@@ -343,3 +343,25 @@ model QueryPattern {
   @@unique([pattern, domain])
   @@index([count(sort: Desc)])
 }
+
+// ============================================================
+// COURTS — pilot requests from court procurement leads
+// ============================================================
+
+model CourtPilotRequest {
+  id           String   @id @default(cuid())
+  name         String
+  role         String
+  court        String
+  jurisdiction String
+  email        String
+  phone        String?
+  products     String[]
+  useCase      String   @db.Text
+  status       String   @default("new")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt(sort: Desc)])
+}
