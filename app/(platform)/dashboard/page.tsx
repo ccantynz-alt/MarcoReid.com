@@ -1,6 +1,59 @@
 "use client";
 
+import Link from "next/link";
 import { useSession } from "next-auth/react";
+
+const cards = [
+  {
+    title: "Marco",
+    desc: "Ask anything. Legal and accounting research with verified citations.",
+    href: "/marco",
+    accent: "plum",
+    cta: "Ask Marco",
+  },
+  {
+    title: "Matters",
+    desc: "Manage your active cases and engagements.",
+    href: "/matters",
+    accent: "navy",
+  },
+  {
+    title: "Clients",
+    desc: "Your client directory and CRM.",
+    href: "/clients",
+    accent: "navy",
+  },
+  {
+    title: "Voice",
+    desc: "Dictate anywhere. Powered by Marco Reid Voice.",
+    href: "/voice",
+    accent: "forest",
+  },
+  {
+    title: "Documents",
+    desc: "Files, drafts, and templates.",
+    href: "/documents",
+    accent: "navy",
+  },
+  {
+    title: "Trust",
+    desc: "IOLTA trust accounts and ledger.",
+    href: "/trust",
+    accent: "navy",
+  },
+  {
+    title: "Billing",
+    desc: "Time tracking, invoices, and payments.",
+    href: "/billing",
+    accent: "navy",
+  },
+] as const;
+
+const accentRing: Record<string, string> = {
+  plum: "border-plum-200 hover:border-plum-400",
+  forest: "border-forest-200 hover:border-forest-400",
+  navy: "border-navy-100 hover:border-navy-300",
+};
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -15,28 +68,22 @@ export default function DashboardPage() {
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {[
-          { title: "Matters", desc: "Manage your active cases and engagements", count: "0" },
-          { title: "Clients", desc: "Your client directory and CRM", count: "0" },
-          { title: "Marco", desc: "AI-powered legal and accounting research", count: null },
-          { title: "Documents", desc: "Files, drafts, and templates", count: "0" },
-          { title: "Billing", desc: "Time tracking, invoices, and payments", count: "0" },
-          { title: "Messages", desc: "Secure matter-centric conversations", count: "0" },
-        ].map((item) => (
-          <div
+        {cards.map((item) => (
+          <Link
             key={item.title}
-            className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5"
+            href={item.href}
+            className={`group block rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 ${accentRing[item.accent]}`}
           >
             <div className="flex items-center justify-between">
               <h2 className="font-semibold text-navy-700">{item.title}</h2>
-              {item.count !== null && (
-                <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-400">
-                  {item.count}
+              {"cta" in item && item.cta && (
+                <span className="rounded-full bg-plum-50 px-2.5 py-0.5 text-xs font-medium text-plum-600">
+                  {item.cta}
                 </span>
               )}
             </div>
             <p className="mt-2 text-sm text-navy-400">{item.desc}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
