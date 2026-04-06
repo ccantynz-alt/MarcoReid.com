@@ -24,7 +24,7 @@ const schema = {
 const painPoints = [
   {
     pain: "Westlaw costs $400\u2013$600+ per user per month for research alone. Out-of-plan search fees described by users as \u201Cbeyond absurd.\u201D One attorney: \u201CI currently pay one-sixth the cost to a competitor for comparable results.\u201D",
-    solution: "Marco Reid includes The Oracle research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month. No surprise fees. No per-search charges. Everything included.",
+    solution: "Marco Reid includes Marco research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month. No surprise fees. No per-search charges. Everything included.",
   },
   {
     pain: "After a decade of use, navigation is \u201Cstill not intuitive.\u201D Users report \u201Ctoo many results and no easy way to narrow down.\u201D Learning curve described as \u201Cextremely confusing.\u201D",
@@ -36,7 +36,7 @@ const painPoints = [
   },
   {
     pain: "You leave your document to research. Open a new tab. Log in. Search. Copy. Switch back. Paste. Five minutes. Flow destroyed",
-    solution: "Hit \u2318K. The Oracle slides in without leaving your document. Insert citation at cursor. 25 seconds. Flow intact",
+    solution: "Hit \u2318K. Marco slides in without leaving your document. Insert citation at cursor. 25 seconds. Flow intact",
   },
   {
     pain: "Westlaw has no voice dictation. No way to speak a research query",
@@ -44,7 +44,7 @@ const painPoints = [
   },
   {
     pain: "Westlaw can\u2019t answer questions that cross the legal-accounting boundary",
-    solution: "The Oracle spans both law and accounting. Ask about immigration tax implications in a single query. Nobody else can do this",
+    solution: "Marco spans both law and accounting. Ask about immigration tax implications in a single query. Nobody else can do this",
   },
 ];
 

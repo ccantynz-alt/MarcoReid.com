@@ -42,7 +42,7 @@ export default function CourtroomPage() {
           <p className="mx-auto mt-6 max-w-2xl text-xl text-navy-200">
             Depositions with real-time AI transcription. Electronic filing with courts.
             Evidence management with cryptographic chain of custody. Judge analytics.
-            And The Oracle available on your iPad mid-hearing. This is courtroom
+            And Marco available on your iPad mid-hearing. This is courtroom
             technology that didn&rsquo;t exist until now.
           </p>
           <div className="mt-10">
@@ -69,7 +69,7 @@ export default function CourtroomPage() {
                 <AnimatedCounter end={3} />s
               </p>
               <p className="mt-2 text-sm text-navy-400">to verify a citation mid-hearing</p>
-              <p className="mt-1 text-xs text-navy-300">The Oracle on your iPad. In the courtroom.</p>
+              <p className="mt-1 text-xs text-navy-300">Marco on your iPad. In the courtroom.</p>
             </Reveal>
             <Reveal delay={0.3}>
               <p className="font-serif text-display text-navy-700">
@@ -298,7 +298,7 @@ export default function CourtroomPage() {
               Matters from Marco Reid Legal link directly to Courtroom proceedings.
               Documents flow into exhibit management. Deposition transcripts flow back
               into the matter record. Billing for courtroom time automatically logged.
-              The Oracle available for real-time research. Marco Reid Voice available for
+              Marco available for real-time research. Marco Reid Voice available for
               transcription. Two products, seamlessly connected.
             </p>
           </Reveal>

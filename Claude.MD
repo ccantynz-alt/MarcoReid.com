@@ -26,7 +26,7 @@
 | marcoreid.legal | PENDING — purchase when funds available |
 | Marco Reid Accounting (Astra) | BUILT — rename and migrate to marcoreid.accountant |
 | Marco Reid Law platform | NOT STARTED — marcoreid-com repo created, ready to build |
-| The Oracle | NOT STARTED |
+| Marco | NOT STARTED |
 | AI Dictation | NOT STARTED |
 | Legal entities | NOT STARTED |
 | Trademarks | NOT STARTED |
@@ -34,7 +34,7 @@
 **What we are building right now:**
 The mothership — marcoreid.com — is the first thing to build.
 This is the unified platform that houses Marco Reid Law, Marco Reid Accounting,
-AI Dictation, and The Oracle under one roof with one login.
+AI Dictation, and Marco under one roof with one login.
 
 **The build sequence for marcoreid.com:**
 1. Homepage and marketing shell — the front door of the brand
@@ -45,22 +45,22 @@ AI Dictation, and The Oracle under one roof with one login.
    Built on OpenAI Whisper + Claude API post-processing layer.
    Legal and accounting professional language intelligence.
    Multi-language from day one (9 languages).
-   Present in: email composer, document editor, Oracle query,
+   Present in: email composer, document editor, Marco query,
    matter notes, billing entries, messages, AIM adjustments,
-   calendar, and Oracle support queries.
-   Also powers the Oracle support agent — speak your support
+   calendar, and Marco support queries.
+   Also powers Marco support agent — speak your support
    question, get your answer, no ticket, no bot, no hold music.
    Marco Reid Voice IS the platform's intelligence layer.
    Speak. It is done.
-5. The Oracle (Law) — legal research, citation verification layer
-6. The Oracle (Accounting) — tax and regulatory research
-7. The Oracle as Support — same engine, account context added,
+5. Marco (Law) — legal research, citation verification layer
+6. Marco (Accounting) — tax and regulatory research
+7. Marco as Support — same engine, account context added,
    95% of all support queries resolved without human involvement
 8. Case management — matters, tasks, deadlines
 9. Billing and time tracking
 10. Trust accounting (after IOLTA legal clearance)
 11. Marco Reid Accounting wing — migrate and integrate Astra codebase
-12. Email platform — Marco Reid Mail with Oracle in the composer
+12. Email platform — Marco Reid Mail with Marco in the composer
 
 **Claude must confirm the active build item at the start of every session.**
 Do not jump ahead. Do not suggest Phase 2 features while Phase 1 is incomplete.
@@ -79,7 +79,7 @@ Build each item to faultless standard before moving to the next.
 | Legal entity (US) | TBD — Delaware C-Corp (to be formed before launch) |
 | IP holding entity | TBD — separate from operating company |
 | Target markets | United States (primary), Australia, NZ, UK (secondary) |
-| Revenue model | SaaS subscriptions + transaction clips + Oracle premium tier |
+| Revenue model | SaaS subscriptions + transaction clips + Marco premium tier |
 | Exit horizon | Acquisition or passive income within 10 years |
 | Target acquirers | Thomson Reuters, Wolters Kluwer, Clio, Bloomberg Industry Group |
 | Build status | Pre-launch. No customers, no revenue. Domain purchase pending. |
@@ -95,7 +95,7 @@ Marco Reid (parent brand)
 ├── Marco Reid Legal        — full-stack legal practice platform
 ├── Marco Reid Accounting   — AI-powered accounting and compliance
 ├── Marco Reid Courtroom    — courtroom technology, depositions, e-filing, evidence management
-├── The Oracle           — cross-domain legal + accounting + IP AI (premium tier)
+├── Marco           — cross-domain legal + accounting + IP AI (premium tier)
 └── Marco Reid Voice        — universal voice input layer across all products
 ```
 
@@ -120,7 +120,7 @@ its own pricing, and its own page on the website.
 - Documents from Legal flow into Courtroom exhibit management
 - Deposition transcripts flow back into the Legal matter record
 - Billing for courtroom time automatically logged in Legal billing
-- The Oracle is available inside Courtroom for real-time research
+- Marco is available inside Courtroom for real-time research
 - Marco Reid Voice is available for real-time transcription
 
 **The institutional hook:**
@@ -167,7 +167,7 @@ until Phase 3 is active and white-labelling is confirmed.
 | Module | What it does | Priority |
 |---|---|---|
 | Marco Reid Voice | Speak. It is done. Universal input layer for the platform | Phase 1 — THE HOOK |
-| The Oracle — Law | Legal research AI across all public domain case law | Phase 1 |
+| Marco — Law | Legal research AI across all public domain case law | Phase 1 |
 | Case management | Full matter lifecycle, deadlines, tasks, documents | Phase 1 |
 | Document AI + editor | Drafting, review, full word-processing — replaces Word | Phase 1 |
 | Spreadsheets | AI-aware spreadsheet tool — replaces Excel | Phase 1 |
@@ -184,7 +184,7 @@ until Phase 3 is active and white-labelling is confirmed.
 | Practice modules | Immigration / Corporate / Family / IP / Criminal / Real estate | Phase 2 |
 | Depositions | Video recording, real-time Voice transcription, exhibit management, AI summaries — see Section 2.2c | Phase 2 |
 | Courtroom technology | e-filing, real-time transcription, exhibit management, judge analytics — see Section 2.2d | Phase 2 |
-| IP law module | Patent search (USPTO), trademark search (TESS), copyright, trade secret, prior art analysis — Oracle IP domain | Phase 2 |
+| IP law module | Patent search (USPTO), trademark search (TESS), copyright, trade secret, prior art analysis — Marco IP domain | Phase 2 |
 | Company incorporation | Intelligent multi-jurisdiction entity formation — see Section 2.2b below | Phase 2 |
 | Secure messaging | Encrypted attorney-client communication | Phase 3 |
 | Analytics | Firm performance, matter profitability, judge analytics | Phase 3 |
@@ -204,7 +204,7 @@ The lawyer opens a new incorporation workflow. The client specifies:
 - What the business does
 - Who the directors/members/shareholders are
 
-The Oracle (both Legal and Accounting simultaneously) then:
+Marco (both Legal and Accounting simultaneously) then:
 1. Recommends the optimal entity type per jurisdiction (LLC in the US,
    Ltd in NZ, Pty Ltd in Australia, etc.)
 2. Analyses the tax implications across all jurisdictions involved
@@ -221,9 +221,9 @@ The Oracle (both Legal and Accounting simultaneously) then:
 No other platform has both AI legal AND AI accounting research on the
 same platform. When Marco Reid recommends a corporate structure, it
 simultaneously considers:
-- Legal liability protection (Oracle Legal)
-- Tax optimisation across jurisdictions (Oracle Accounting)
-- Compliance requirements in every jurisdiction (both Oracles)
+- Legal liability protection (Marco Legal)
+- Tax optimisation across jurisdictions (Marco Accounting)
+- Compliance requirements in every jurisdiction (both Marco domains)
 - Ongoing filing deadlines and regulatory obligations (calendaring)
 
 A lawyer using Clio + Westlaw + QuickBooks cannot do this. The tools
@@ -273,7 +273,7 @@ connected to the case management system.
    identification, and timestamps. Replaces the $300-500/day court reporter
 4. **Exhibit management** — pull up any exhibit from the matter files
    instantly during the deposition. Tag exhibits as they are referenced
-5. **Oracle access during deposition** — check a citation or statute the
+5. **Marco access during deposition** — check a citation or statute the
    witness mentions in real time. The attorney never loses the thread
 6. **AI deposition summary** — after the session, AI generates a structured
    summary with key testimony, objections, exhibits referenced, and
@@ -310,7 +310,7 @@ lawyers into infrastructure that courts themselves depend on.
 5. **Judge analytics** — Phase 3. Which judges rule which way on which
    issues. Sentencing patterns. Motion grant rates. Win/loss ratios by
    judge and case type
-6. **Real-time Oracle access** — a lawyer queries The Oracle on their iPad
+6. **Real-time Marco access** — a lawyer queries Marco on their iPad
    mid-hearing to check a citation opposing counsel just raised. 3 seconds
    to verify. That is a superpower in a courtroom
 
@@ -321,14 +321,14 @@ not a sales conversation — it is a requirement. The court becomes the
 hook. This is the most aggressive distribution strategy in the entire
 platform.
 
-### 2.2e IP law — The Oracle for Intellectual Property
+### 2.2e IP law — Marco for Intellectual Property
 
 IP attorneys are among the highest-billing lawyers in the profession
 ($500-800/hour at major firms). They do enormous amounts of research.
-The Oracle for IP is a dedicated domain that understands patents,
+Marco for IP is a dedicated domain that understands patents,
 trademarks, copyright, and trade secrets.
 
-**Data sources for Oracle IP:**
+**Data sources for Marco IP:**
 - USPTO patent records (public domain, free API) — patent search,
   prior art analysis, claim interpretation, expiry tracking
 - USPTO TESS trademark database — trademark search, likelihood of
@@ -342,7 +342,7 @@ trademarks, copyright, and trade secrets.
 **Unique cross-domain advantage for IP:**
 IP work ALWAYS has tax implications. Patent licensing revenue, trademark
 valuation for corporate structures, IP holding entity tax strategy,
-R&D tax credits for patent development. The Oracle for IP + The Oracle
+R&D tax credits for patent development. Marco for IP + Marco
 for Accounting answering IP questions simultaneously is something no
 other tool on the planet can do.
 
@@ -379,7 +379,7 @@ Actions required:
 | Module | What it does | Priority |
 |---|---|---|
 | Marco Reid Voice | Shared across Law and Accounting — understands both | Phase 1 |
-| The Oracle — Accounting | Tax law, compliance, regulatory AI research | Phase 1 |
+| Marco — Accounting | Tax law, compliance, regulatory AI research | Phase 1 |
 | Accounting automation | Bookkeeping, reconciliation, journal entries | Phase 1 |
 | Bank feed integration | Direct bank connection — auto-pulls and categorises transactions | Phase 1 |
 | Spreadsheets | AI-aware financial modelling — dictate to populate | Phase 1 |
@@ -398,9 +398,9 @@ A bank feed that misses transactions or miscategorises entries will destroy
 accountant trust faster than any other single failure. Use Plaid or Salt Edge
 as the banking connectivity layer — do not build this from scratch.
 
-### 2.4 The Oracle — premium cross-domain tier
+### 2.4 Marco — premium cross-domain tier
 
-The Oracle is the product nobody else can build because nobody else owns both sides.
+Marco is the product nobody else can build because nobody else owns both sides.
 It answers questions that cross the legal and accounting boundary simultaneously.
 Example: "What are the immigration tax implications of this corporate structure
 for a Tier-1 visa applicant?" — that query requires both law and accounting AI.
@@ -487,7 +487,7 @@ the same restriction as `.law` — do not attempt that either.
 
 - File "Marco Reid" as a trademark in the US (USPTO) under Class 42 (software/SaaS)
   and Class 45 (legal services technology) simultaneously
-- File "The Oracle" as a trademark — check for conflicts first, it is a common name
+- File "Marco" as a trademark — check for conflicts first, it is a common name
 - Use the Madrid Protocol to extend trademark filings internationally:
   NZ, Australia, UK, EU in a single application
 - File before any press release, LinkedIn post, or public announcement
@@ -497,7 +497,7 @@ the same restriction as `.law` — do not attempt that either.
 ### 5.2 Provisional patent applications
 
 File provisional patents (12-month placeholder, inexpensive) on:
-- The AI research methodology used by The Oracle (cross-domain legal+accounting query resolution)
+- The AI research methodology used by Marco (cross-domain legal+accounting query resolution)
 - The AI dictation legal vocabulary training methodology
 - The multi-jurisdiction company incorporation workflow (Section 2.2b)
   — the specific methodology of simultaneous legal+accounting AI analysis
@@ -530,7 +530,7 @@ getting sued into oblivion. Read it carefully. Follow it absolutely.
 ### 6.1 What you CAN use freely
 
 The following are public domain in the United States. You may index, search,
-summarise, and surface them in The Oracle without any licensing fees:
+summarise, and surface them in Marco without any licensing fees:
 
 - All US federal and state court decisions (published opinions)
 - All US federal statutes (US Code)
@@ -588,7 +588,7 @@ Every single AI-generated legal or accounting output on Marco Reid must display:
 > Marco Reid is a tool for professionals, not a substitute for professional judgment."
 
 This statement must appear:
-- On every Oracle research result
+- On every Marco research result
 - On every AI-generated document draft
 - In the platform terms of service (prominently, not buried)
 - In the onboarding flow (with explicit acknowledgement checkbox)
@@ -760,7 +760,7 @@ Features that create the deepest dependency (build first, build best):
 - Billing history and time tracking — years of financial records nobody moves
 - Client matter history — the complete record of every case ever handled
 - AI Dictation — daily muscle memory, impossible to retrain once established
-- The Oracle — used 20 times a day, becomes the way lawyers think
+- Marco — used 20 times a day, becomes the way lawyers think
 
 Features that create shallow dependency (build later):
 - Marketing pages and intake forms
@@ -806,10 +806,10 @@ search term we target. The hook looks different. The line is always the same.
 | Audience | What they need | How Marco Reid reaches them |
 |---|---|---|
 | Attorneys and law firms | Practice management, research, billing, dictation | Professional platform pages + AILA/ABA outreach |
-| CPAs and accounting firms | Accounting automation, tax, Oracle, dictation | Professional platform pages + AICPA outreach |
+| CPAs and accounting firms | Accounting automation, tax, Marco, dictation | Professional platform pages + AICPA outreach |
 | Small businesses | Tax advice, legal compliance, find a professional | Consumer landing pages + SEO content |
 | General public | Find a lawyer, find an accountant, understand their rights | Consumer landing pages + educational content |
-| Corporates and enterprises | Multi-seat platform, Oracle API, white-label | Enterprise pages + direct sales outreach |
+| Corporates and enterprises | Multi-seat platform, Marco API, white-label | Enterprise pages + direct sales outreach |
 
 ### 11.3 The SEO keyword territories — cast every hook
 
@@ -866,7 +866,7 @@ separately indexed by Google. Each one is a hook aimed at a different fish.
 marcoreid.com/                          — Professional homepage (existing)
 marcoreid.com/law/                      — Marco Reid Law platform page
 marcoreid.com/accounting/               — Marco Reid Accounting platform page
-marcoreid.com/oracle/                   — The Oracle product page
+marcoreid.com/oracle/                   — Marco product page
 marcoreid.com/dictation/                — AI Dictation product page
 marcoreid.com/pricing/                  — Pricing page
 
@@ -904,7 +904,7 @@ person who lands on it.
 
 ### 11.6 The content machine — SEO at scale
 
-The Oracle generates content-quality legal and accounting explanations.
+Marco generates content-quality legal and accounting explanations.
 Marco Reid should publish 3–5 educational articles per week targeting
 Territory 3 and Territory 4 keyword searches above. Each article:
 
@@ -963,7 +963,7 @@ from first client contact to final invoice, powered by AI throughout.
 - "The operating system for your legal practice"
 - "Every tool your firm needs, in one platform"
 - "Built by professionals, powered by AI"
-- "The Oracle — research that crosses every boundary"
+- "Marco — research that crosses every boundary"
 - "Marco Reid Dictation — the only dictation tool that speaks law"
 
 ### 11.4 Early adopter strategy
@@ -1001,17 +1001,17 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 **Marco Reid Law**
 - Starter: $99/month — AI Dictation + basic case management (solo attorney)
-- Professional: $199/month — full platform except Oracle (small firm)
-- Firm: $399/month per seat — full platform including Oracle Law
+- Professional: $199/month — full platform except Marco (small firm)
+- Firm: $399/month per seat — full platform including Marco Law
 
 **Marco Reid Accounting**
 - Starter: $79/month — AI Dictation + basic accounting tools (solo CPA)
-- Professional: $149/month — full platform except Oracle
-- Firm: $299/month per seat — full platform including Oracle Accounting
+- Professional: $149/month — full platform except Marco
+- Firm: $299/month per seat — full platform including Marco Accounting
 
-**The Oracle**
-- Cross-domain: $499/month — Oracle Law + Oracle Accounting combined
-- Enterprise: $999/month — Oracle + white-label + API access + priority support
+**Marco**
+- Cross-domain: $499/month — Marco Law + Marco Accounting combined
+- Enterprise: $999/month — Marco + white-label + API access + priority support
 
 **Immigration Marketplace (within Marco Reid Law)**
 - 5% clip on all escrow transactions — passive recurring revenue
@@ -1033,7 +1033,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 - [ ] IP holding entity formed
 - [ ] All IP assigned from personal ownership to IP holding entity
 - [ ] IP licensing agreements between holding entity and operating companies
-- [ ] Trademark applications filed — Marco Reid, The Oracle (US + Madrid Protocol)
+- [ ] Trademark applications filed — Marco Reid, Marco (US + Madrid Protocol)
 - [ ] Provisional patent applications filed
 - [ ] IOLTA compliance analysis completed by legal tech attorney
 - [ ] Privacy policy drafted and reviewed by privacy attorney
@@ -1072,8 +1072,8 @@ AICPA strategy — the professional community trusts peers, not ads.
 
 ### Phase 1 — The Hook (build first, launch when faultless)
 1. AI Dictation — legal and accounting vocabulary, available to both wings
-2. The Oracle (Law) — public domain case law and statute research
-3. The Oracle (Accounting) — public domain tax and regulatory research
+2. Marco (Law) — public domain case law and statute research
+3. Marco (Accounting) — public domain tax and regulatory research
 4. Basic case management — matters, tasks, deadlines, document storage
 5. Basic billing — time tracking, invoices, Stripe payment collection
 6. Trust accounting — IOLTA compliant (after legal clearance)
@@ -1082,7 +1082,7 @@ AICPA strategy — the professional community trusts peers, not ads.
 ### Phase 2 — The Platform
 1. Document AI — drafting and review
 2. Client CRM and intake
-3. The Oracle cross-domain — the premium tier
+3. Marco cross-domain — the premium tier
 4. Marco Reid Immigration module (from Verom.ai, rebranded)
 5. Corporate law, family law, IP practice modules
 6. Marco Reid Accounting full suite
@@ -1091,8 +1091,8 @@ AICPA strategy — the professional community trusts peers, not ads.
 ### Phase 3 — The Moat
 1. Judge analytics and litigation pattern recognition
 2. Firm performance analytics
-3. White-label The Oracle for law schools and bar associations
-4. Public API for The Oracle
+3. White-label Marco for law schools and bar associations
+4. Public API for Marco
 5. International expansion (AU, NZ, UK content layers)
 6. Mobile apps (iOS and Android)
 
@@ -1117,12 +1117,12 @@ AICPA strategy — the professional community trusts peers, not ads.
 - Referral programme mirroring the attorney programme
 - Cross-referral between law and accounting wings — the network effect
 
-### The Oracle as a loss leader
-- Offer The Oracle at a deeply discounted rate or free trial to
+### Marco as a loss leader
+- Offer Marco at a deeply discounted rate or free trial to
   established law firms and accounting firms
-- Once a firm's attorneys and CPAs are using The Oracle daily,
+- Once a firm's attorneys and CPAs are using Marco daily,
   switching cost becomes enormous
-- Upsell to full platform once Oracle dependency is established
+- Upsell to full platform once Marco dependency is established
 
 ---
 
@@ -1179,7 +1179,7 @@ These rules govern how Claude assists with Marco Reid in every session.
     "Marco Reid" — capital A, capital R, everything else lowercase. Never
     "MARCOREID", never "Marcoreid", never "marcoreid" in any user-facing text.
     Product names follow the same rule: "Marco Reid Law", "Marco Reid Accounting",
-    "Marco Reid Voice". "The Oracle" has a capital T and capital O.
+    "Marco Reid Voice". "Marco" has a capital T and capital O.
     This applies to all headings, body text, navigation, footer, metadata,
     and schema markup across the entire site. The only exception is CSS
     class names and code identifiers which may use different casing.
@@ -1259,7 +1259,7 @@ depart from it requires explicit discussion and a documented decision.
 |---|---|---|---|
 | Westlaw (Thomson Reuters) | Deepest case law database | Expensive, UI stuck in 2010, no practice management | We do everything in one platform |
 | LexisNexis (RELX) | Research + risk data combined | Same pricing problem, same UI problem | Same |
-| Clio | Best practice management | No Oracle-equivalent research AI | We have both |
+| Clio | Best practice management | No Marco-equivalent research AI | We have both |
 | Bloomberg Law | Financial/securities depth | Weak for solo and small firm attorneys | We price for solo and SMB |
 | Wolters Kluwer | Tax and accounting depth | Fragmented products, no unified platform | Marco Reid is one login for everything |
 
@@ -1345,7 +1345,7 @@ on other platforms. It must never happen on ours.
 
 ### 21.2 What we build to prevent this
 
-Every single case citation produced by The Oracle must go through a
+Every single case citation produced by Marco must go through a
 mandatory verification layer before it is displayed to the user:
 
 1. **Citation existence check** — before displaying any case citation,
@@ -1369,7 +1369,7 @@ mandatory verification layer before it is displayed to the user:
    attorney review and insertion.
 
 5. **Hallucination warning on every research result** — in addition to
-   the standard AI disclaimer, every Oracle research result must display:
+   the standard AI disclaimer, every Marco research result must display:
 
    > "Always verify every case citation before relying on it in any
    > court filing or legal document. Marco Reid's citation verification
@@ -1398,7 +1398,7 @@ invents a tax code provision, cites a non-existent IRS ruling, or
 fabricates a regulatory threshold could cause a CPA to file an incorrect
 return, resulting in client penalties and professional sanctions.
 
-The same verification principle applies to The Oracle — Accounting:
+The same verification principle applies to Marco — Accounting:
 - Every IRS code section cited must link to the official IRS source
 - Every regulatory citation must link to the official CFR or equivalent
 - Unverified regulatory citations must carry the same warning badge system
@@ -1605,10 +1605,10 @@ in the build we currently are.
 - [ ] 1.6 Execute IP licensing agreements between holding entity and
        operating companies
 - [ ] 1.7 Engage IP/patent attorney
-- [ ] 1.8 File provisional patent applications (Oracle AI methodology,
+- [ ] 1.8 File provisional patent applications (Marco AI methodology,
        Dictation legal vocabulary methodology)
 - [ ] 1.9 File trademark applications — "Marco Reid" (USPTO + Madrid Protocol)
-- [ ] 1.10 Confirm "The Oracle" trademark availability and file if clear
+- [ ] 1.10 Confirm "Marco" trademark availability and file if clear
 
 **Stage 1 gate: ALL boxes checked before proceeding to Stage 2**
 
@@ -1628,7 +1628,7 @@ in the build we currently are.
 - [x] 2.6 Create marcoreid-com GitHub repository — DONE March 2026
 - [ ] 2.7 Create the following remaining repositories:
        - marcoreid-accounting (Marco Reid Accounting wing, migrated from Astra)
-       - marcoreid-oracle (The Oracle AI engine — shared across both wings)
+       - marcoreid-oracle (Marco AI engine — shared across both wings)
        - marcoreid-dictation (AI Dictation tool — shared across both wings)
 - [ ] 2.8 Commit this CLAUDE.md to the root of EVERY repository
        IMPORTANT: The CLAUDE.md is a document only — it does not auto-create
@@ -1673,7 +1673,7 @@ in the build we currently are.
 - [ ] 4.7 Build user consent flow — privacy, terms, AI disclaimer acknowledgement
        checkbox — into onboarding before any account can be created
 - [ ] 4.8 Implement AI hallucination disclaimer and citation verification
-       system (Section 21) into The Oracle before any legal research is shown
+       system (Section 21) into Marco before any legal research is shown
 
 **Stage 4 gate: ALL boxes checked before proceeding to Stage 5**
 
@@ -1683,9 +1683,9 @@ in the build we currently are.
 *Build faultless. Do not rush to launch.*
 
 - [ ] 5.1 AI Dictation — legal and accounting vocabulary, shared across both wings
-- [ ] 5.2 The Oracle (Law) — public domain case law and statute research
+- [ ] 5.2 Marco (Law) — public domain case law and statute research
        with citation verification layer
-- [ ] 5.3 The Oracle (Accounting) — public domain tax and regulatory research
+- [ ] 5.3 Marco (Accounting) — public domain tax and regulatory research
 - [ ] 5.4 Basic case management — matters, tasks, deadlines, document storage
 - [ ] 5.5 Basic billing — time tracking, invoices, Stripe payment collection
 - [ ] 5.6 Trust accounting — IOLTA compliant (only after Stage 4.6 clearance)
@@ -1839,7 +1839,7 @@ the judgment work. That is the promise. That is the transformation.
 ### 26.2 The four collaboration relationships
 
 ```
-Lawyer ↔ Accountant          (cross-professional — the Oracle bridge)
+Lawyer ↔ Accountant          (cross-professional — Marco bridge)
 Lawyer ↔ Client              (attorney-client — privileged, encrypted)
 Accountant ↔ Client          (CPA-client — confidential, encrypted)
 Client ↔ Client              (referral — rare but powerful)
@@ -1950,7 +1950,7 @@ colleague. This is the highest-conversion acquisition channel possible.
 When a lawyer and accountant are collaborating on the same client:
 - Both can see the shared documents and correspondence
 - Both can message each other and the client in the same thread
-- The Oracle cross-domain tier is automatically activated for that matter
+- Marco cross-domain tier is automatically activated for that matter
 - Billing is handled separately — each professional bills their client
   independently through their own Marco Reid billing system
 
@@ -2026,7 +2026,7 @@ professional, you get the benefit of that intelligence."**
 
 Specific copy directions for consumer pages:
 
-- "Marco Reid attorneys use The Oracle — the most advanced legal research
+- "Marco Reid attorneys use Marco — the most advanced legal research
   AI ever built. That means faster answers, more thorough research,
   and better outcomes for your matter."
 
@@ -2074,7 +2074,7 @@ File provisional patents immediately on:
 - Email extraction workflow (chat thread → formatted email draft)
 - Cross-professional matter invitation flow with shared workspace
 - Matter-centric notification hook system (interaction = marketing event)
-- Unified law + accounting collaboration workspace with Oracle integration
+- Unified law + accounting collaboration workspace with Marco integration
 
 Provisional patents are inexpensive ($1,500–3,000 each with an attorney)
 and establish priority date for 12 months. File before any public demo.
@@ -2087,7 +2087,7 @@ copyrighted to the IP holding entity the moment it is written.
 Ensure IP assignment agreements are signed by all contributors.
 
 **Layer 4 — Trademark (protects the brand)**
-"Marco Reid," "The Oracle," and any unique product names within the
+"Marco Reid," "Marco," and any unique product names within the
 collaboration system (e.g. if "Matter Bridge" or "Marco Reid Connect"
 becomes a named feature) should be trademarked before public launch.
 
@@ -2101,13 +2101,13 @@ becomes a named feature) should be trademarked before public launch.
   once the provisional patent is filed
 - Use the same visual design, layout, and interaction patterns
   once trade dress is established
-- Use the Marco Reid name or The Oracle name after trademark registration
+- Use the Marco Reid name or Marco name after trademark registration
 - Copy code directly from the Marco Reid codebase (copyright infringement)
 
 **The honest truth:**
 A well-funded competitor can build similar individual features.
 What they cannot do is replicate the COMBINATION — the specific
-integration of law + accounting + collaboration + Oracle + consumer
+integration of law + accounting + collaboration + Marco + consumer
 marketplace + dictation under one brand, with the data flywheel
 that Marco Reid builds from day one. That combination is the moat.
 The IP protection layers are the legal expression of that moat.
@@ -2115,7 +2115,7 @@ Together they make copying Marco Reid expensive, slow, and risky.
 
 **Keeping everything within the platform is deliberate genius.**
 Every chat, every video call, every document signed, every meeting
-held inside Marco Reid generates data that feeds the Oracle flywheel,
+held inside Marco Reid generates data that feeds Marco flywheel,
 creates an audit trail that protects professionals legally, deepens
 the switching cost for every user, and keeps the Marco Reid brand
 in the interaction. Using Zoom directly, or WhatsApp, or email —
@@ -2149,7 +2149,7 @@ to GitHub with timestamps.
 A competitor can build messaging. A competitor can build scheduling.
 A competitor can build a client portal. What a competitor CANNOT do
 is replicate the specific combination of: matter-centric organisation,
-cross-professional Oracle bridge, email extraction, meeting-as-hook
+cross-professional Marco bridge, email extraction, meeting-as-hook
 notification design, and consumer portal quality — all inside a single
 unified platform that owns both law and accounting simultaneously.
 That combination, in its entirety, is Marco Reid. That is the trade dress.
@@ -2178,7 +2178,7 @@ Does it feel effortless.
 **Sin 1 — Making professionals leave their flow.**
 A lawyer drafting a contract should never have to open a new tab,
 navigate to a different section, or interrupt what they are doing
-to access the Oracle, check a deadline, or find a client detail.
+to access Marco, check a deadline, or find a client detail.
 Everything they might need is available in context, inline, instantly.
 
 **Sin 2 — Hiding features behind menus.**
@@ -2187,12 +2187,12 @@ Navigation must be flat, labelled clearly, and consistent everywhere.
 No buried settings. No features that require a tutorial to discover.
 
 **Sin 3 — Making them wait.**
-Every Oracle query must return in under 3 seconds. Every page must
+Every Marco query must return in under 3 seconds. Every page must
 load in under 1 second. Every action must have instant visual feedback.
 A professional who clicks a button and sees nothing happen for two
 seconds has already lost trust in the platform.
 
-### 27.3 The Oracle draw-down — the killer workflow
+### 27.3 Marco draw-down — the killer workflow
 
 This is the feature that makes Marco Reid feel like a superpower.
 
@@ -2203,21 +2203,21 @@ open a new tab, go to Westlaw, log in, search, find the case, copy the
 citation, switch back, paste it in. Five minutes. Flow completely broken.
 
 **The Marco Reid version:**
-The lawyer is drafting. They hit ⌘K (or tap the Oracle icon in the
+The lawyer is drafting. They hit ⌘K (or tap Marco icon in the
 toolbar). A drawer slides in from the right — they never leave the
 document. They type "California non-compete enforceability standard."
-The Oracle returns three verified cases in under 3 seconds. They click
+Marco returns three verified cases in under 3 seconds. They click
 "Insert citation" on the one they want. It drops directly into the
 document at the cursor position, formatted correctly, citation verified.
 Total time: 25 seconds. Flow never broken.
 
-**Where the Oracle draw-down appears:**
+**Where Marco draw-down appears:**
 - Inside the Document Editor (drafting contracts, motions, briefs)
 - Inside the Message Composer (responding to client questions)
 - Inside Case Management (adding research notes to a matter)
 - Inside the Tax filing workflow (checking a regulation mid-entry)
 - Inside the Billing notes (referencing a matter precedent)
-- As a floating global command: ⌘K from anywhere opens the Oracle
+- As a floating global command: ⌘K from anywhere opens Marco
 
 **The insert modes:**
 - Insert citation — drops the formatted case/statute citation at cursor
@@ -2226,7 +2226,7 @@ Total time: 25 seconds. Flow never broken.
 - Copy to clipboard — for manual placement anywhere
 
 **The verification badge on every insert:**
-Every Oracle result inserted into a document carries a small ✓ badge
+Every Marco result inserted into a document carries a small ✓ badge
 showing it was verified against the authoritative public source.
 This is both a quality signal and a legal protection — the attorney
 can prove the citation was verified at the time of insertion.
@@ -2238,7 +2238,7 @@ can prove the citation was verified at the time of insertion.
 ◎ Dashboard          — unified command centre
 ⚖ Matters            — all active cases/engagements
 ◈ Clients            — CRM and client profiles
-◎ The Oracle         — research (also accessible inline everywhere)
+◎ Marco         — research (also accessible inline everywhere)
 ⊕ Documents          — all files, drafts, templates
 ⏱ Billing            — time tracking and invoices
 ✦ Calendar           — meetings and deadlines
@@ -2255,7 +2255,7 @@ Maximum depth: two clicks from the sidebar to any specific record.
 Type anything. Find anything. Do anything.
 - "New matter" → creates a new matter
 - "Rodriguez visa" → opens the Rodriguez matter
-- "Non-compete California" → opens Oracle with that query
+- "Non-compete California" → opens Marco with that query
 - "Invoice #1047" → opens that invoice
 - "Schedule meeting" → opens meeting scheduler
 - "Trust account balance" → shows trust balance inline
@@ -2325,7 +2325,7 @@ server/client component optimisation, and future-proofing.
 ```
 app/
   components/
-    oracle/          — Oracle draw-down, results, insert system
+    oracle/          — Marco draw-down, results, insert system
     collaboration/   — Messaging, meetings, scheduling
     email/           — Email dashboard, composer, inbox
     editor/          — Document editor, rich text
@@ -2450,13 +2450,13 @@ If they do, it is an emergency that requires immediate action.
 Email is where lawyers and accountants spend 40–60% of their day.
 Right now that time lives in Gmail or Outlook — outside Marco Reid,
 untagged to matters, unsearchable by client, disconnected from
-the Oracle, and generating zero data for the platform.
+Marco, and generating zero data for the platform.
 
 Bringing email inside Marco Reid is the single most powerful
 remaining hook in the entire platform. The moment a professional
 does their email inside Marco Reid, they are inside the platform
 for the majority of their working day. Every other feature —
-the Oracle, the matter view, the billing, the calendar — becomes
+Marco, the matter view, the billing, the calendar — becomes
 instantly reachable from the thing they are already doing.
 
 ### 29.2 What Marco Reid Email provides
@@ -2469,7 +2469,7 @@ instantly reachable from the thing they are already doing.
 - Unified inbox across all firm email addresses
 
 **Inside the email composer:**
-- Oracle draw-down button — research and insert at any point while writing
+- Marco draw-down button — research and insert at any point while writing
 - Meeting scheduler — converts any email into a meeting invite in one click
 - Matter tagging — tag the email to a client matter before sending
 - Document attachment from matter files — no more hunting in folders
@@ -2483,7 +2483,7 @@ instantly reachable from the thing they are already doing.
 - Thread view with full matter context in the right sidebar
 - One-click "Add to matter record" for any email or thread
 - Smart filters — by matter, by client, by urgency, by follow-up needed
-- Oracle sidebar — research any question raised in an email instantly
+- Marco sidebar — research any question raised in an email instantly
 
 **Email as a hook for non-platform users:**
 When a professional sends an email from Marco Reid to a client who is
@@ -2498,7 +2498,7 @@ Every outbound email is a warm invitation.
 Connect existing email accounts (Gmail, Outlook) via OAuth.
 Professionals keep their existing email address but work through
 the Marco Reid email interface. All Marco Reid features available.
-Matter tagging and Oracle draw-down work on top of their
+Matter tagging and Marco draw-down work on top of their
 existing email. This is fastest to market and lowest friction.
 
 Technical: Gmail API + Microsoft Graph API + Nylas API (unified)
@@ -2507,7 +2507,7 @@ Technical: Gmail API + Microsoft Graph API + Nylas API (unified)
 Marco Reid hosts the firm's email domain entirely.
 Professionals get @theirfirm.marcoreid.com or bring their own domain.
 Full email hosting, storage, and delivery through Marco Reid.
-More control, more data, deeper Oracle integration.
+More control, more data, deeper Marco integration.
 
 Technical: Cloudflare Email Routing + Resend for outbound +
 custom IMAP server or Postmark Inbound for received mail.
@@ -2530,7 +2530,7 @@ Additional revenue: $50–200/month per firm on top of platform fee.
 │          │                              │ Filed: Mar 15 │
 │ Sent     │  ● Marcus Rodriguez          │ Status: Active│
 │          │  Re: Meeting Thursday        │               │
-│ Drafts   │  1 hour ago                  │ [Oracle]      │
+│ Drafts   │  1 hour ago                  │ [Marco]      │
 │ 3        │                              │ Ask about this│
 │          │  Patricia Thornton           │ matter...     │
 │ Matters  │  Contract review complete    │               │
@@ -2540,11 +2540,11 @@ Additional revenue: $50–200/month per firm on top of platform fee.
 └──────────┴──────────────────────────────┴───────────────┘
 ```
 
-### 29.5 Oracle draw-down inside email — the genius moment
+### 29.5 Marco draw-down inside email — the genius moment
 
 A lawyer is writing an email to a client explaining why their
 non-compete clause is unenforceable in California. They hit
-the Oracle button inside the email composer. The Oracle drawer
+Marco button inside the email composer. Marco drawer
 slides in. They search, get the Edwards case, hit Insert Citation.
 The citation drops into the email body, formatted correctly.
 They send a professional, verified, authoritative email response
@@ -2600,7 +2600,7 @@ $200/month — a trivial upsell that significantly deepens lock-in.
 |---|---|---|
 | WisprFlow | Best general AI dictation, cross-platform, 100+ languages | Standalone tool — no platform integration |
 | Dragon Legal | Deep legal vocabulary, Windows-dominant, $699 | Expensive, standalone, no AI research integration |
-| Philips SpeechLive | Legal-specific, practice management hooks | Closed ecosystem, no accounting, no Oracle |
+| Philips SpeechLive | Legal-specific, practice management hooks | Closed ecosystem, no accounting, no Marco |
 | SuperWhisper | Offline, privacy-first, Mac/iOS | Mac only, no collaboration, no platform |
 | BlabbyAI | Custom modes, legal Latin terms | Standalone Windows app, no ecosystem |
 | Otter.ai | Meeting transcription, Zoom integration | Not for drafting, not legal/accounting specific |
@@ -2712,7 +2712,7 @@ Two separate concerns, two separate systems, working together.
 - Professional grammar maintained even in casual internal messages
 - Names and firm names spelled correctly after first use
 
-**Oracle query input**
+**Marco query input**
 - Dictate research questions naturally
 - "What are the California non-compete enforceability standards
   for a technology company employee earning over two hundred
@@ -2760,9 +2760,9 @@ mark urgent, attach the I-129 receipt notice from the matter"
   No clicking. No switching apps.
 
 Inside document editor:
-"Ask the Oracle — what is the California standard for
+"Ask Marco — what is the California standard for
 adverse possession, insert the controlling case as a citation"
-→ Oracle queried, top verified case returned, citation
+→ Marco queried, top verified case returned, citation
   inserted at cursor. Attorney never stopped dictating.
 
 Inside billing:
@@ -2865,11 +2865,11 @@ the platform has.
 ### 30.6 Where Marco Reid Voice appears in the build sequence
 
 Marco Reid Voice is Phase 1. It is the hook. It ships before
-The Oracle, before case management, before billing.
+Marco, before case management, before billing.
 
 The reason: a professional whose first interaction with Marco Reid
 is speaking an email instead of typing it has already felt the
-platform's value. Before they explore the Oracle, before they
+platform's value. Before they explore Marco, before they
 set up a matter, Marco Reid Voice has already transformed their day.
 
 That first 30-second experience of speaking an email and
@@ -2881,7 +2881,7 @@ is the moment Marco Reid becomes irreplaceable.
 - Email composer — microphone in toolbar
 - Document editor — microphone in toolbar
 - Message composer — microphone icon in input
-- Oracle query input — microphone icon in search bar
+- Marco query input — microphone icon in search bar
 - Matter notes — microphone in note editor
 
 ---
@@ -2897,8 +2897,8 @@ is the moment Marco Reid becomes irreplaceable.
 |---|---|---|---|---|
 | Phase 1 | New Zealand | 12,000 | 35,000 | Home market — validate and build case studies first |
 | Phase 1 | Australia | 80,000 | 160,000 | Home region — fast word of mouth, familiar regulation |
-| Phase 2 | United States | 1.3 million | 660,000 | Main event — largest revenue, deepest Oracle data |
-| Phase 3 | United Kingdom | 200,000 | 350,000 | Post-Brexit complexity drives Oracle demand |
+| Phase 2 | United States | 1.3 million | 660,000 | Main event — largest revenue, deepest Marco data |
+| Phase 3 | United Kingdom | 200,000 | 350,000 | Post-Brexit complexity drives Marco demand |
 | Phase 3 | Canada | 130,000 | 200,000 | Close to US law, bilingual Quebec moat |
 | Phase 4 | Pacific Islands | Growing | Growing | 0047 strategic synergy — zero competition |
 | Phase 5 | Singapore + Malaysia | 25,000 | 80,000 | SE Asia gateway, long-term exit value |
@@ -2918,14 +2918,14 @@ Smaller professional communities mean word travels fast —
 one respected Auckland attorney recommending Marco Reid reaches
 hundreds of colleagues within weeks. The NZ Law Society and
 CAANZ accounting body are accessible and relationship-driven.
-Oracle built on NZ + Australian public domain law from day one.
+Marco built on NZ + Australian public domain law from day one.
 AustLII and NZLII provide comprehensive free data sources.
 GST zero-rating on exported digital services = revenue advantage.
 
 **Phase 2 — The big move: United States**
 After NZ + AU validation, the US is the main event.
 1.3 million attorneys. 660,000 CPAs. The legal tech market
-alone is worth $1.2 billion annually. The Oracle is extended
+alone is worth $1.2 billion annually. Marco is extended
 with US public domain case law and IRS tax data.
 IOLTA compliance cleared before US launch (Section 7).
 AILA and AICPA conference strategy activated.
@@ -2933,10 +2933,10 @@ Delaware C-Corp entity operational for US contracts.
 
 **Phase 3 — English-speaking common law expansion: UK + Canada**
 United Kingdom: 200,000 solicitors, post-Brexit complexity,
-enormous Oracle demand for cross-border law and tax intelligence.
+enormous Marco demand for cross-border law and tax intelligence.
 Canada: 130,000 lawyers, close to US law, bilingual Quebec moat.
 Both share the same common law architecture as NZ, AU, and US —
-Oracle data extensions are the primary work, not architectural changes.
+Marco data extensions are the primary work, not architectural changes.
 
 **Phase 4 — Pacific Islands**
 Strategic play tied directly to the 0047 MVNO connectivity platform.
@@ -2955,7 +2955,7 @@ footprint to any exit story.
 **The goal: all markets. No exceptions. No market left behind.**
 The platform is architected from day one to support every
 jurisdiction listed above. The data layers, compliance frameworks,
-and Oracle sources are all documented. The only variable is timing.
+and Marco sources are all documented. The only variable is timing.
 
 ### 31.3 Data residency architecture — build this right from day one
 
@@ -3042,9 +3042,9 @@ via Wise Business before repatriation to NZ entity.
 Dual-qualified NZ/US accountant manages transfer pricing
 between NZ Ltd and Delaware C-Corp from day one.
 
-### 31.6 Oracle data sources by market
+### 31.6 Marco data sources by market
 
-The Oracle is only as good as its data. Each market requires
+Marco is only as good as its data. Each market requires
 its own verified public domain data sources.
 
 **United States (Phase 1):**
@@ -3205,7 +3205,7 @@ the trust accounting module launches in Australia.
 - [ ] TPB compliance statement added to accounting product pages
 - [ ] State-by-state trust accounting analysis commissioned
 - [ ] AU user data stored on ap-southeast-2 Supabase region
-- [ ] Australian-specific Oracle data (AustLII) integrated
+- [ ] Australian-specific Marco data (AustLII) integrated
 
 ---
 
@@ -3260,7 +3260,7 @@ the trust accounting module launches in Australia.
 - [ ] D&O insurance in place for Delaware C-Corp
 - [ ] Stripe Tax enabled for all US transactions
 - [ ] US user data stored on us-east-1 Supabase region
-- [ ] US Oracle data (CourtListener, Congress.gov, IRS) integrated
+- [ ] US Marco data (CourtListener, Congress.gov, IRS) integrated
 
 ---
 
@@ -3323,7 +3323,7 @@ Formed when UK revenue approaches GBP £50,000/year.
 - [ ] UK VAT registration when threshold approached
 - [ ] UK Ltd Company formed when revenue warrants
 - [ ] UK user data stored on eu-west-2 (London) Supabase region
-- [ ] UK Oracle data (BAILII, legislation.gov.uk, HMRC) integrated
+- [ ] UK Marco data (BAILII, legislation.gov.uk, HMRC) integrated
 - [ ] WCAG 2.1 AA accessibility compliance (UK Equality Act 2010)
 
 ---
@@ -3353,7 +3353,7 @@ exceeds CAD $30,000/year (federal threshold).
   Penalties up to CAD $10M per violation. Take this seriously.
 - Electronic Commerce Act — e-signature validity varies by province
 - Quebec Civil Code — Quebec uses civil law, not common law.
-  The Oracle requires a separate Quebec civil law data layer.
+  Marco requires a separate Quebec civil law data layer.
   This is a meaningful technical project — plan for it.
 - Law society trust accounting rules vary by province —
   same analysis required as US and AU before trust module launches
@@ -3368,9 +3368,9 @@ exceeds CAD $30,000/year (federal threshold).
 **The Quebec opportunity:**
 Quebec is the only Canadian province using French civil law.
 English-language legal tech almost universally ignores Quebec.
-An Oracle that covers both Canadian common law AND Quebec
+An Marco that covers both Canadian common law AND Quebec
 civil law — in both English and French — is a unique moat
-that no competitor has built. Consider bilingual Oracle
+that no competitor has built. Consider bilingual Marco
 capability as a Phase 3 premium feature.
 
 **Pre-launch checklist Canada:**
@@ -3380,8 +3380,8 @@ capability as a Phase 3 premium feature.
 - [ ] Revenu Québec QST registration if marketing to Quebec firms
 - [ ] Law Society of Ontario and CPA Canada outreach initiated
 - [ ] Province-by-province trust accounting analysis commissioned
-- [ ] Canadian Oracle data (CanLII, Justice Laws) integrated
-- [ ] Quebec civil law Oracle layer planned (Phase 3 premium)
+- [ ] Canadian Marco data (CanLII, Justice Laws) integrated
+- [ ] Quebec civil law Marco layer planned (Phase 3 premium)
 - [ ] Canadian user data stored on us-east-1 or dedicated CA region
 
 ---
@@ -3424,9 +3424,9 @@ Key considerations:
   Pacific currency processing. USD billing recommended.
 - English is the professional language in all target markets.
 
-**The Pacific Oracle:**
+**The Pacific Marco:**
 Pacific Island case law is sparse and largely unpublished.
-The Oracle value in Pacific markets is primarily:
+Marco value in Pacific markets is primarily:
 - NZ and Australian case law (highly persuasive in Pacific courts)
 - UK Privy Council decisions (final court of appeal for some)
 - Local statutes (limited but available from official sources)
@@ -3437,7 +3437,7 @@ a market with almost no existing legal research infrastructure.
 - [ ] 0047 partnership formalised and Pacific connectivity live
 - [ ] Fiji Law Society and FIA outreach via NZ contacts
 - [ ] USD billing configured for Pacific Island clients
-- [ ] Pacific Oracle data sources identified and integrated
+- [ ] Pacific Marco data sources identified and integrated
 - [ ] CAANZ relationship leveraged for Pacific accounting bodies
 
 ---
@@ -3445,7 +3445,7 @@ a market with almost no existing legal research infrastructure.
 ### 32.7 Singapore and Malaysia — Phase 5
 
 **Singapore:**
-- English common law system — Oracle extension is straightforward
+- English common law system — Marco extension is straightforward
 - Personal Data Protection Act 2012 (PDPA) — Singapore's privacy law,
   similar to GDPR in structure
 - Law Society of Singapore — 6,000 members
@@ -3458,8 +3458,8 @@ a market with almost no existing legal research infrastructure.
 **Malaysia:**
 - Hybrid legal system: common law for commercial matters,
   Islamic law (Syariah) for personal/family matters
-- Syariah law dimension requires careful Oracle scoping —
-  the Oracle covers Malaysian commercial common law only
+- Syariah law dimension requires careful Marco scoping —
+  Marco covers Malaysian commercial common law only
   unless a specific Syariah module is built (Phase 5+)
 - Personal Data Protection Act 2010 (PDPA Malaysia)
 - Malaysian Bar Council — 20,000 members
@@ -3470,7 +3470,7 @@ a market with almost no existing legal research infrastructure.
 - [ ] Singapore PDPA compliance review
 - [ ] Malaysian PDPA compliance review
 - [ ] Singapore LegalTech roadmap reviewed (MAS and Law Society)
-- [ ] Oracle scoped for Malaysian commercial law only (not Syariah)
+- [ ] Marco scoped for Malaysian commercial law only (not Syariah)
 - [ ] Regional legal counsel engaged for Singapore entry
 
 ---
@@ -3581,13 +3581,13 @@ marcoreid.com/law/immigration/matters   — case management
 marcoreid.com/law/immigration/forms     — USCIS form library
 marcoreid.com/law/immigration/clients   — three-sided marketplace
 marcoreid.com/law/immigration/audit     — ICE audit simulator
-marcoreid.com/law/immigration/oracle    — Oracle Immigration research
+marcoreid.com/law/immigration/oracle    — Marco Immigration research
 ```
 
 **What Verom.ai gains from being inside Marco Reid:**
 - Marco Reid Voice — attorneys dictate case notes and client updates
-- The Oracle — instant immigration law research inline
-- Marco Reid Email — matter-centric email with Oracle in the composer
+- Marco — instant immigration law research inline
+- Marco Reid Email — matter-centric email with Marco in the composer
 - Collaboration tools — lawyer/accountant bridge for visa+tax matters
 - Billing and trust accounting — integrated fee collection
 - Client portal — clients track their own case status
@@ -3595,7 +3595,7 @@ marcoreid.com/law/immigration/oracle    — Oracle Immigration research
 
 ### 33.4 The immigration + accounting cross-domain opportunity
 
-Immigration is one of the most powerful use cases for The Oracle
+Immigration is one of the most powerful use cases for Marco
 cross-domain tier. Every immigration matter has accounting implications:
 
 - H-1B visa holders: dual-status tax year, FICA implications
@@ -3608,7 +3608,7 @@ cross-domain tier. Every immigration matter has accounting implications:
 
 An immigration attorney and their client's CPA need to talk
 constantly. Marco Reid is the only platform that puts both of them
-in the same workspace with the Oracle answering cross-domain
+in the same workspace with Marco answering cross-domain
 queries that require both legal and accounting intelligence.
 This is the Marco Reid Immigration module's most powerful
 differentiator over every standalone immigration tool.
@@ -3621,7 +3621,7 @@ provides an employer-facing tool that simulates an ICE
 I-9 audit, identifies compliance gaps, and generates a
 remediation plan before a real audit occurs.
 
-This feature must be preserved exactly, enhanced with Oracle
+This feature must be preserved exactly, enhanced with Marco
 intelligence, and marketed aggressively to:
 - HR departments of companies sponsoring foreign workers
 - Corporate attorneys managing employer immigration compliance
@@ -3654,7 +3654,7 @@ to preserve any inbound links and search rankings built on it.
 - [ ] Marketplace and escrow infrastructure mapped to Stripe Connect
 - [ ] Existing user data migration plan documented
 - [ ] Marco Reid Immigration UI built in Marco Reid design system
-- [ ] Oracle Immigration research layer integrated
+- [ ] Marco Immigration research layer integrated
 - [ ] Marco Reid Voice added to all immigration input fields
 - [ ] Cross-professional bridge connected (attorney ↔ accountant)
 - [ ] verom.ai redirect configured in Cloudflare
@@ -3664,7 +3664,7 @@ to preserve any inbound links and search rankings built on it.
 ### 33.8 Where Marco Reid Immigration sits in the build sequence
 
 Marco Reid Immigration is a Phase 2 module — it follows the Phase 1
-core platform (authentication, dashboard, Marco Reid Voice, Oracle,
+core platform (authentication, dashboard, Marco Reid Voice, Marco,
 basic case management, billing). The reason it is Phase 2 rather
 than Phase 1 is that the migration requires the core platform
 to exist first. You cannot build a room before you build the house.
@@ -3698,7 +3698,7 @@ like WisprFlow — but connected to the full Marco Reid platform.
 
 A lawyer using the Marco Reid app can dictate into Word,
 into Outlook, into any application on their computer —
-and every dictation is matter-aware, Oracle-connected,
+and every dictation is matter-aware, Marco-connected,
 and logged to their Marco Reid account automatically.
 
 **Domain to purchase immediately: `marcoreid.app`**
@@ -3749,7 +3749,7 @@ The Marco Reid mobile app gives professionals:
 - Secure client messaging — respond instantly from mobile
 - Document signing on the go — e-sign from a phone
 - Calendar and meeting management
-- Oracle on mobile — research from a phone in court
+- Marco on mobile — research from a phone in court
 - Push notifications for urgent matters and deadlines
 
 **The microphone advantage on mobile:**
@@ -3785,11 +3785,11 @@ platform rather than operating as a standalone tool.
 | Legal vocabulary intelligence | ✗ | ✗ | ✓ | ✓ |
 | Accounting vocabulary | ✗ | ✗ | ✗ | ✓ |
 | Multi-language professional | ✓ basic | ✓ basic | ✗ | ✓ deep |
-| Oracle integration | ✗ | ✗ | ✗ | ✓ |
+| Marco integration | ✗ | ✗ | ✗ | ✓ |
 | Matter-aware dictation | ✗ | ✗ | ✗ | ✓ |
 | Voice commands to platform | ✗ | ✗ | ✗ | ✓ |
 | Instant messaging | ✗ | ✗ | ✗ | ✓ |
-| Email with Oracle | ✗ | ✗ | ✗ | ✓ |
+| Email with Marco | ✗ | ✗ | ✗ | ✓ |
 | Calendar + meetings | ✗ | ✗ | ✗ | ✓ |
 | Offline capability | Limited | ✗ | ✓ | ✓ (Tauri) |
 | SOC 2 Type II | ✗ | ✓ | ✓ | Phase 3 |
@@ -3818,7 +3818,7 @@ Tailwind CSS v4     — Latest utility-first CSS
 Neon (PostgreSQL)   — Serverless, branching, multi-region
 Prisma v6           — Type-safe ORM, migrations
 Stripe              — Payments, Connect, Tax
-Claude API          — The Oracle, document AI, Voice processing
+Claude API          — Marco, document AI, Voice processing
 Vercel              — Hosting, Edge Functions, Analytics
 Cloudflare          — DNS, CDN, DDoS, Email Routing
 NextAuth.js v5      — Authentication, session management
@@ -3906,7 +3906,7 @@ entirely in Marco Reid's design system. It is used by:
 For Marco Reid specifically:
 - Real-time collaborative editing (multiple attorneys in one doc)
   via Tiptap's Collaboration extension + Yjs CRDT
-- Oracle citations inserted as custom Tiptap nodes
+- Marco citations inserted as custom Tiptap nodes
   (they render with the ✓ verification badge, cannot be
   accidentally deleted without confirmation)
 - Marco Reid Voice dictation inserts at cursor via Tiptap commands
@@ -3917,7 +3917,7 @@ For Marco Reid specifically:
 
 This is the document editor that makes attorneys stop
 using Word. The moment a lawyer edits a contract in
-Marco Reid and sees Oracle citations appearing with
+Marco Reid and sees Marco citations appearing with
 verification badges, real-time collaboration, version
 history, and voice input — they never open Word again.
 
@@ -3952,14 +3952,14 @@ a platform professionals abandon regardless of features.
 
 **The targets:**
 - Page load (first contentful paint): under 1 second
-- Oracle query response: under 3 seconds
+- Marco query response: under 3 seconds
 - Marco Reid Voice transcription: under 500ms for short utterances
 - Message delivery: under 100ms (WebSocket)
 - Document sync: under 50ms between collaborators
 
 **How we hit them:**
 Vercel Edge Functions run at the edge, close to the user.
-A NZ attorney queries the Oracle — the edge function runs
+A NZ attorney queries Marco — the edge function runs
 in Sydney, not Virginia. Response is 150ms not 350ms.
 
 React Server Components stream content immediately.
@@ -4310,7 +4310,7 @@ when it presents itself to any government tax authority.
 1. **Compliance architecture** — every tax calculation must
    be auditable. Every GST computation, every AIM provisional
    tax figure, every PAYE deduction must trace back to the
-   exact rule in the tax code. The Oracle provides the
+   exact rule in the tax code. Marco provides the
    research layer. The calculation engine applies it.
    Government evaluators want to see the calculation logic,
    not just the output.
@@ -4544,13 +4544,13 @@ IRD updates its determinations:
 - Specified lease payments
 - Employee share scheme deductions
 
-The Oracle — Accounting is available inside every
+Marco — Accounting is available inside every
 adjustment entry. An accountant unsure whether a specific
 expenditure qualifies for a particular AIM adjustment
-can query the Oracle directly from the adjustment form
+can query Marco directly from the adjustment form
 and get a verified answer in seconds.
 
-This combination — AIM compliance automation plus Oracle
+This combination — AIM compliance automation plus Marco
 research intelligence — is something no current AIM
 provider offers. It makes Marco Reid AIM the most
 sophisticated AIM implementation in the NZ market.
@@ -4855,8 +4855,8 @@ hours in NZ, AU, and US time zones. Outside those hours
 an AI assistant handles tier-one questions with human
 escalation for anything complex.
 
-The Oracle as onboarding assistant: During the first
-30 days, the Oracle is tuned to answer questions about
+Marco as onboarding assistant: During the first
+30 days, Marco is tuned to answer questions about
 Marco Reid itself — "how do I set up a trust account,"
 "where do I find the AIM dashboard," "how do I add a
 court deadline" — in addition to legal and accounting
@@ -4881,7 +4881,7 @@ their first 30 days?
 
 For lawyers: meaningful action = first matter created,
 first document uploaded, first time entry logged, or
-first Oracle query run.
+first Marco query run.
 
 For accountants: meaningful action = first client
 added, first bank feed connected, first AIM filing
@@ -4929,12 +4929,12 @@ set up as the last one was.
 
 ---
 
-## 38. The Oracle as Support — No Separate Support System
+## 38. Marco as Support — No Separate Support System
 
 ### 39.1 The insight that changes everything
 
-The Oracle is Claude. Claude is the Oracle.
-The support agent is the Oracle.
+Marco is Claude. Claude is Marco.
+The support agent is Marco.
 There is no separate system.
 
 This is not a feature decision. It is an architectural
@@ -4952,13 +4952,13 @@ The support loop that every competitor inflicts:
 8. Professional is furious before the problem is even solved
 
 Marco Reid has none of this. Because there is no bot.
-There is no separate support system. There is the Oracle —
+There is no separate support system. There is Marco —
 which already knows everything about the professional,
 their account, their matters, and their question —
-and a human who sees the full Oracle conversation
+and a human who sees the full Marco conversation
 if escalation is genuinely needed.
 
-### 39.2 How Oracle support works
+### 39.2 How Marco support works
 
 **The trigger:**
 From anywhere in the platform, the professional says
@@ -4967,7 +4967,7 @@ path — speak the question, get the answer, keep working.
 No support window to open. No form to fill in.
 No category to select. Just ask.
 
-**What the Oracle knows when answering a support question:**
+**What Marco knows when answering a support question:**
 - The professional's full account status and tier
 - Every matter currently active in their account
 - Their billing history and current invoice status
@@ -4980,14 +4980,14 @@ No category to select. Just ask.
 This context transforms every support interaction.
 Instead of "how do I view my trust account balance"
 getting a generic answer about where to find trust accounts,
-the Oracle says: "Your trust account balance is currently
+Marco says: "Your trust account balance is currently
 $3,200. It is under Billing → Trust Accounts in your
 left sidebar. Your last deposit was $1,500 on March 14."
 
 That is not support. That is a colleague.
 
-**The Oracle support system prompt:**
-When the Oracle is operating in support mode it has
+**Marco support system prompt:**
+When Marco is operating in support mode it has
 an additional layer of context: the full Marco Reid
 platform documentation, every feature, every workflow,
 every known issue, and the professional's account data.
@@ -5004,7 +5004,7 @@ A lawyer is in the middle of drafting a motion.
 They say: "How do I add a filing deadline to this matter
 that automatically calculates the response deadline?"
 
-The Oracle responds — by voice if they prefer,
+Marco responds — by voice if they prefer,
 or in the sidebar if they are mid-document:
 "I can add that now. The motion you are drafting
 is tagged to the Rodriguez matter. Should I add
@@ -5023,12 +5023,12 @@ because Marco Reid took the action.
 
 ### 39.4 When a human is needed — zero friction escalation
 
-Sometimes the Oracle cannot resolve something.
+Sometimes Marco cannot resolve something.
 A billing dispute. A data issue. A complex migration problem.
 A professional who wants to talk to a person.
 
 When escalation happens:
-- The human support specialist sees the full Oracle
+- The human support specialist sees the full Marco
   conversation — every question asked, every answer given
 - They see the professional's account in full context
 - They know exactly what was tried and what failed
@@ -5036,7 +5036,7 @@ When escalation happens:
 
 The human greeting is:
 "Hi [Name], I can see you were asking about [specific issue]
-and the Oracle suggested [X]. I am looking at your account
+and Marco suggested [X]. I am looking at your account
 now — can you confirm this is about the [matter name]
 or is it a different matter?"
 
@@ -5051,10 +5051,10 @@ The credential re-verification loop that every professional
 has experienced with other platforms is eliminated entirely
 by design.
 
-The Oracle knows who the professional is because they
+Marco knows who the professional is because they
 are already authenticated and logged into Marco Reid.
 There is no verification step for support questions
-because the Oracle is already inside their authenticated
+because Marco is already inside their authenticated
 session. It knows their account. It knows their data.
 It does not need to ask them to prove who they are.
 
@@ -5075,7 +5075,7 @@ One step. Clear reason. No repetition.
 
 **On the platform, prominently:**
 
-"Marco Reid support is powered by The Oracle —
+"Marco Reid support is powered by Marco —
 the same AI that answers your legal and accounting
 research questions. It knows your account, your matters,
 and your question before you finish asking it.
@@ -5083,14 +5083,14 @@ No bots. No tickets. No hold music.
 If you need a human, you get one — and they already
 know exactly what you need."
 
-### 39.7 The 95% Oracle resolution target
+### 39.7 The 95% Marco resolution target
 
 **This is a formal product and business target, not a hope.**
 
 95% of all Marco Reid support queries are resolved by
-the Oracle without human involvement. This is achievable
+Marco without human involvement. This is achievable
 because of how Marco Reid is designed — not because the
-Oracle is unusually powerful, but because the combination
+Marco is unusually powerful, but because the combination
 of full account context, platform knowledge, Marco Reid Voice
 as the zero-friction input method, and a product built
 to be genuinely faultless means the vast majority of
@@ -5102,28 +5102,28 @@ The 5% that reaches a human is the genuinely valuable 5%:
 - Edge cases in trust accounting or AIM calculations
 - Professionals going through an unusual situation
   that benefits from a specialist's eye
-- Anything the Oracle flags as beyond its confidence level
+- Anything Marco flags as beyond its confidence level
 
 The human specialists who handle that 5% are not a
 cost centre. They are a quality signal. A small team
 of deeply knowledgeable professionals who only handle
 meaningful complexity, who always have full context,
-and who never waste a second on questions the Oracle
+and who never waste a second on questions Marco
 already answered. That team stays small as Marco Reid
 scales to tens of thousands of professionals.
 
-Higher Oracle query volume is a sign of health, not burden.
+Higher Marco query volume is a sign of health, not burden.
 When finding an answer is instant and frictionless,
 professionals ask small questions immediately rather
 than letting confusion build into frustration.
 Engaged professionals ask more questions and stay longer.
-The Oracle answering 10,000 queries a day costs the
+Marco answering 10,000 queries a day costs the
 same as answering 100. That is the economics of AI
 support done correctly.
 
 ### 39.8 What this means for support cost
 
-The Oracle handling 80-90% of support queries is not
+Marco handling 80-90% of support queries is not
 just a better experience — it is a better business.
 
 Every professional platform's largest operational cost
@@ -5132,7 +5132,7 @@ of support staff. QuickBooks has thousands. Xero has
 extensive support teams across multiple countries.
 
 Marco Reid's support cost structure is fundamentally
-different. The Oracle handles the vast majority of
+different. Marco handles the vast majority of
 queries automatically, with full context, instantly,
 at any hour, in any language. Human support specialists
 handle the genuinely complex escalations — meaning
@@ -5144,17 +5144,17 @@ This creates a support operation that is simultaneously
 better than every competitor and dramatically cheaper
 to run. That cost advantage compounds as scale increases.
 Every new professional who joins the platform adds
-queries that the Oracle handles without adding
+queries that Marco handles without adding
 proportional support headcount.
 
-### 39.8 Multi-language Oracle support
+### 39.8 Multi-language Marco support
 
 Marco Reid Voice supports nine languages at launch.
-Oracle support operates in every one of them.
+Marco support operates in every one of them.
 
 A Spanish-speaking immigration attorney in Miami
 asks their support question in Spanish.
-The Oracle answers in Spanish — with perfect understanding
+Marco answers in Spanish — with perfect understanding
 of the legal terminology they used, because Marco Reid Voice's
 professional language intelligence works in Spanish too.
 
@@ -5183,7 +5183,7 @@ matter outcome they record — this is proprietary behavioural data that
 no competitor can access without your user base.
 
 Westlaw has 50 years of attorney behaviour data. You start building yours
-from day one. In five years, The Oracle answers questions Westlaw cannot
+from day one. In five years, Marco answers questions Westlaw cannot
 answer — because those patterns lived exclusively inside Marco Reid's walls.
 
 **How to build it:**
@@ -5191,7 +5191,7 @@ answer — because those patterns lived exclusively inside Marco Reid's walls.
   used to improve AI models
 - Every query, document action, and matter resolution tagged and stored
   with full anonymisation
-- Quarterly model improvement cycles — The Oracle gets measurably smarter
+- Quarterly model improvement cycles — Marco gets measurably smarter
   every 90 days
 - This data asset lives in the IP holding entity, not the operating company
 
@@ -5279,10 +5279,10 @@ credibility that consumer directories will never have.
 
 ---
 
-### 25.6 International Common Law Expansion — four jurisdictions, one Oracle
+### 25.6 International Common Law Expansion — four jurisdictions, one Marco
 
 Australia, United Kingdom, Canada, and New Zealand share common law
-traditions descended from the same English legal system. The Oracle
+traditions descended from the same English legal system. Marco
 can cover all four with jurisdiction-specific data layers on top of
 the same architecture.
 
@@ -5296,24 +5296,24 @@ United Kingdom → Canada
 
 What changes per jurisdiction: data sources, bar rules, trust accounting
 equivalents, currency handling.
-What does NOT change: The Oracle engine, practice management, dictation,
+What does NOT change: Marco engine, practice management, dictation,
 accounting wing.
 
 ---
 
 ### 25.7 The API Economy — become the infrastructure layer
 
-The Oracle opens as a public API. Other legal tech products, court systems,
+Marco opens as a public API. Other legal tech products, court systems,
 law school tools, and enterprise platforms pay per query to access
 Marco Reid's legal and accounting intelligence.
 
-Building what The Oracle does from scratch costs $50–100M and 10 years.
+Building what Marco does from scratch costs $50–100M and 10 years.
 Plugging into the API costs $499/month. Competitors will plug in.
 That makes Marco Reid infrastructure — and you cannot compete with
 infrastructure. You can only plug into it or be left behind.
 
 **Timing:** Phase 3 only — after query volume proves the intelligence
-value. Do not open the API before The Oracle is demonstrably smarter
+value. Do not open the API before Marco is demonstrably smarter
 than what a developer could build independently.
 
 ---
@@ -5324,7 +5324,7 @@ When all seven plays are active:
 
 | Play | What it locks in |
 |---|---|
-| Data flywheel | The Oracle gets smarter than any competitor can replicate |
+| Data flywheel | Marco gets smarter than any competitor can replicate |
 | Law school pipeline | Every new attorney already knows Marco Reid |
 | CLE accreditation | Attorneys are professionally obligated to engage |
 | Regulatory monitoring | Leaving creates professional liability risk |
@@ -5356,7 +5356,7 @@ It is the layer those platforms wish they had built first.
 | 2.3 | March 2026 | Five-audience strategy and SEO keyword territory architecture added |
 | 2.4 | March 2026 | Collaboration architecture — instant messaging, meetings, cross-professional bridge, client portal hooks |
 | 2.5 | March 2026 | Time/money value proposition and trademark/IP protection strategy added |
-| 2.6 | March 2026 | UX Philosophy — Oracle draw-down, two-click navigation, command palette, dashboard design |
+| 2.6 | March 2026 | UX Philosophy — Marco draw-down, two-click navigation, command palette, dashboard design |
 | 2.7 | March 2026 | Technology Architecture — React components only, two-layer system, intellectual crawlers. Email Platform added |
 | 2.8 | March 2026 | Marco Reid Voice as Universal Input Layer. Product name locked. Tagline: "Speak. It is done." |
 | 2.9 | March 2026 | Geographic Markets — NZ+AU Phase 1, US Phase 2, UK+Canada Phase 3, Pacific Phase 4, SE Asia Phase 5 |
@@ -5370,7 +5370,7 @@ It is the layer those platforms wish they had built first.
 | 3.7 | March 2026 | Government Authority Strategy — IRD, ATO, HMRC, CRA |
 | 3.8 | March 2026 | Marco Reid AIM flagship product — IRD partnership centrepiece |
 | 3.9 | March 2026 | Onboarding — 10-minute value principle, competitive analysis, AI data migration, 30-day success metric |
-| 4.0 | March 2026 | Oracle as Support — 95% resolution target, no separate bot, full account context, zero re-verification |
+| 4.0 | March 2026 | Marco as Support — 95% resolution target, no separate bot, full account context, zero re-verification |
 | 4.1 | March 2026 | CLEAN REBUILD — all 40 sections correctly ordered and numbered. Document is now the definitive version. |
 
 ---

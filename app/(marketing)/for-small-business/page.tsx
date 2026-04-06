@@ -37,7 +37,7 @@ export default function ForSmallBusinessPage() {
 
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Faster research", desc: "Your lawyer uses The Oracle \u2014 the most advanced legal research AI ever built. That means faster answers, more thorough research, and better outcomes for your matter." },
+              { title: "Faster research", desc: "Your lawyer uses Marco \u2014 the most advanced legal research AI ever built. That means faster answers, more thorough research, and better outcomes for your matter." },
               { title: "Real-time tax intelligence", desc: "Your accountant works with AI that reads every tax code change in real time. Your CPA never misses a deduction that affects you." },
               { title: "Transparent communication", desc: "Track your matter status, view documents, message your professional, and sign documents through the secure client portal. No more chasing for updates." },
               { title: "Better accuracy", desc: "Every citation and regulation your professional relies on is verified against authoritative public sources. Zero hallucinated case law. Zero fabricated tax rulings." },

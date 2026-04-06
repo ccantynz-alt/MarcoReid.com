@@ -35,7 +35,7 @@ const painPoints = [
   },
   {
     pain: "Shepard\u2019s Citations is powerful but locked behind the LexisNexis paywall. No alternative outside their ecosystem",
-    solution: "The Oracle verifies citations against public domain sources \u2014 CourtListener, GovInfo, IRS.gov \u2014 no paywall, no lock-in",
+    solution: "Marco verifies citations against public domain sources \u2014 CourtListener, GovInfo, IRS.gov \u2014 no paywall, no lock-in",
   },
   {
     pain: "LexisNexis has no voice dictation. No way to speak research queries or dictate documents",
@@ -43,7 +43,7 @@ const painPoints = [
   },
   {
     pain: "LexisNexis cannot answer questions that span legal and accounting domains simultaneously",
-    solution: "The Oracle crosses the law-accounting boundary in a single query. Immigration tax implications? One search. One answer. Nobody else can do this",
+    solution: "Marco crosses the law-accounting boundary in a single query. Immigration tax implications? One search. One answer. Nobody else can do this",
   },
 ];
 
@@ -107,7 +107,7 @@ export default function CompareLexisNexisPage() {
           <Reveal delay={0.1}>
             <div className="mt-10 flex justify-center gap-4">
               <Button href="/pricing" size="lg">See pricing</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
+              <Button href="/oracle" variant="secondary" size="lg">Explore Marco</Button>
             </div>
           </Reveal>
         </Container>

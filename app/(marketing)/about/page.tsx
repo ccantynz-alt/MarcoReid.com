@@ -72,7 +72,7 @@ export default function AboutPage() {
             {[
               { name: "Marco Reid Legal", desc: "Full-stack legal practice management. Case management, billing, trust accounting, court calendaring, document AI, e-signatures, client portal, depositions, courtroom technology.", href: "/law" },
               { name: "Marco Reid Accounting", desc: "AI-powered accounting. Bank feeds, automated reconciliation, tax compliance across 50 states, receipt scanning, AI spreadsheets, financial reporting.", href: "/accounting" },
-              { name: "The Oracle", desc: "Cross-domain legal and accounting AI research. Every citation verified. Legal, accounting, IP, and cross-domain queries. The research engine nobody else can build.", href: "/oracle" },
+              { name: "Marco", desc: "Cross-domain legal and accounting AI research. Every citation verified. Legal, accounting, IP, and cross-domain queries. The research engine nobody else can build.", href: "/oracle" },
               { name: "Marco Reid Voice", desc: "The platform\u2019s intelligence layer. Speak anywhere you can type. Legal and accounting vocabulary. 9 languages. Voice commands that file, bill, schedule, and research.", href: "/dictation" },
             ].map((p) => (
               <Reveal key={p.name} delay={0.05}>

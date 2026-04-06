@@ -23,7 +23,7 @@ const schema = {
 const painPoints = [
   {
     pain: "Clio has no AI legal research. You still need Westlaw or LexisNexis",
-    solution: "Marco Reid includes The Oracle \u2014 AI-powered legal research with verified citations. No separate subscription needed",
+    solution: "Marco Reid includes Marco \u2014 AI-powered legal research with verified citations. No separate subscription needed",
   },
   {
     pain: "Clio has no voice dictation. You still need Dragon at $699",
@@ -35,7 +35,7 @@ const painPoints = [
   },
   {
     pain: "Clio\u2019s document editor is basic. You still need Word or Google Docs",
-    solution: "Marco Reid Document AI drafts, reviews, and edits \u2014 with The Oracle available inline for research while you write",
+    solution: "Marco Reid Document AI drafts, reviews, and edits \u2014 with Marco available inline for research while you write",
   },
   {
     pain: "Clio charges per feature. Manage, Grow, Suite \u2014 you pay more for every capability",

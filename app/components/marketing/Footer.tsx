@@ -4,7 +4,7 @@ const links = {
   products: [
     { label: "Marco Reid Legal", href: "/law" },
     { label: "Marco Reid Accounting", href: "/accounting" },
-    { label: "The Oracle", href: "/oracle" },
+    { label: "Marco", href: "/oracle" },
     { label: "Marco Reid Voice", href: "/dictation" },
     { label: "Marco Reid Courtroom", href: "/courtroom" },
     { label: "Pricing", href: "/pricing" },

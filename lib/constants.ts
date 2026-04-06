@@ -12,7 +12,7 @@ export const NAV_LINKS = [
   { label: "Legal", href: "/law" },
   { label: "Accounting", href: "/accounting" },
   { label: "Courtroom", href: "/courtroom" },
-  { label: "Oracle", href: "/oracle" },
+  { label: "Marco", href: "/oracle" },
   { label: "Voice", href: "/dictation" },
   { label: "Pricing", href: "/pricing" },
 ] as const;
@@ -53,11 +53,11 @@ export const PRODUCTS: Record<string, Product> = {
     ],
   },
   oracle: {
-    name: "The Oracle",
+    name: "Marco",
     slug: "/oracle",
-    tagline: "Research that crosses every boundary",
+    tagline: "The greatest AI-generated mind for law and accountancy",
     description:
-      "Cross-domain legal and accounting AI research. Ask questions that span both disciplines simultaneously. Every citation verified against authoritative public domain sources.",
+      "Cross-domain legal and accounting AI research. Ask Marco questions that span both disciplines simultaneously. Every citation verified against authoritative public domain sources.",
     features: [
       "Legal research across all public domain case law and statutes",
       "Accounting research across tax codes and regulations",
@@ -121,10 +121,10 @@ export const LAW_PRICING: PricingTier[] = [
     name: "Firm",
     price: "$399",
     period: "/seat/month",
-    description: "Full platform with Oracle for growing firms",
+    description: "Full platform with Marco for growing firms",
     features: [
       "Everything in Professional",
-      "The Oracle \u2014 Law",
+      "Marco \u2014 Law",
       "Citation verification system",
       "Firm analytics and reporting",
       "Priority support",
@@ -166,10 +166,10 @@ export const ACCOUNTING_PRICING: PricingTier[] = [
     name: "Firm",
     price: "$299",
     period: "/seat/month",
-    description: "Full platform with Oracle for growing firms",
+    description: "Full platform with Marco for growing firms",
     features: [
       "Everything in Professional",
-      "The Oracle \u2014 Accounting",
+      "Marco \u2014 Accounting",
       "Regulatory verification system",
       "Firm analytics and reporting",
       "Priority support",
@@ -183,7 +183,7 @@ export const ORACLE_PRICING: PricingTier[] = [
     name: "Cross-Domain",
     price: "$499",
     period: "/month",
-    description: "Oracle Law + Oracle Accounting combined",
+    description: "Marco Law + Marco Accounting combined",
     features: [
       "Legal research with citation verification",
       "Accounting and tax research",
@@ -197,7 +197,7 @@ export const ORACLE_PRICING: PricingTier[] = [
     name: "Enterprise",
     price: "$999",
     period: "/month",
-    description: "Oracle + API access + white-label",
+    description: "Marco + API access + white-label",
     features: [
       "Everything in Cross-Domain",
       "API access",

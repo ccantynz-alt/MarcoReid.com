@@ -150,7 +150,7 @@ export default function DictationPage() {
               },
               {
                 context: "Inside document editor",
-                command: "\"Ask the Oracle — what is the California standard for adverse possession, insert the controlling case as a citation.\"",
+                command: "\"Ask Marco — what is the California standard for adverse possession, insert the controlling case as a citation.\"",
                 result: "Oracle queried. Top verified case returned. Citation inserted at cursor. Attorney never stopped dictating.",
               },
               {

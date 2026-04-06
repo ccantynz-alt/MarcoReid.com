@@ -12,7 +12,7 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent pricing for Marco Reid Legal, Marco Reid Accounting, and The Oracle. Plans for solo practitioners to growing firms.",
+    "Transparent pricing for Marco Reid Legal, Marco Reid Accounting, and Marco. Plans for solo practitioners to growing firms.",
 };
 
 const schema = {
@@ -153,7 +153,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <p className="text-center text-xs font-bold uppercase tracking-wider text-plum-600">
-              The Oracle
+              Marco
             </p>
             <h2 className="mt-3 text-center text-display font-serif text-navy-800">
               Cross-domain intelligence.

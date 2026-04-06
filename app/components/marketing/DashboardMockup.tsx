@@ -23,7 +23,7 @@ export default function DashboardMockup() {
               { icon: "◎", label: "Dashboard", active: true },
               { icon: "⚖", label: "Matters", count: "24" },
               { icon: "◈", label: "Clients", count: "86" },
-              { icon: "◉", label: "The Oracle" },
+              { icon: "◉", label: "Marco" },
               { icon: "⊕", label: "Documents" },
               { icon: "⏱", label: "Billing" },
               { icon: "✦", label: "Calendar" },

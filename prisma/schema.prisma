@@ -56,7 +56,7 @@ model OracleQuery {
   domain        QueryDomain     // Legal, Accounting, Cross-domain, IP
   jurisdiction  String?         // US, NZ, AU, UK, or specific state
   context       String?         // Matter context, previous queries, etc.
-  response      String          // The Oracle's full response
+  response      String          // Marco's full response
   citations     OracleCitation[]
   feedback      OracleFeedback[]
   matterId      String?         // Link to matter if query was in-context
@@ -110,7 +110,7 @@ model OracleFeedback {
 }
 
 // ============================================================
-// DATA SOURCES — what The Oracle knows about
+// DATA SOURCES — what Marco knows about
 // ============================================================
 
 model DataSource {

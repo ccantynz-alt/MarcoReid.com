@@ -147,7 +147,7 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
               Marco Reid Legal replaces all of them. Case management. Billing. Trust accounting.
               Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
-              The Oracle for research. Marco Reid Voice for dictation. One login. One bill.
+              Marco for research. Marco Reid Voice for dictation. One login. One bill.
               From $99/month.
             </p>
           </Reveal>
@@ -174,7 +174,7 @@ export default function HomePage() {
                 <p className="text-2xl">&#8984;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Research mid-document</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Hit &#8984;K. The Oracle slides in. &ldquo;California non-compete standard.&rdquo;
+                  Hit &#8984;K. Marco slides in. &ldquo;California non-compete standard.&rdquo;
                   Three verified cases in 3 seconds. Insert citation at cursor. 25 seconds total.
                   Westlaw takes 5 minutes.
                 </p>
@@ -235,9 +235,9 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 2: The Oracle — MASSIVE showcase                      */}
+      {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="The Oracle">
+      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -246,10 +246,10 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-plum-600">
-                  The Oracle
+                  Marco
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  You spend 4 hours researching what The Oracle answers in 25 seconds.
+                  You spend 4 hours researching what Marco answers in 25 seconds.
                 </h2>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Hit &#8984;K. The Oracle slides in without leaving your document. Type your question.
+              Hit &#8984;K. Marco slides in without leaving your document. Type your question.
               Three verified cases in 3 seconds. Click &ldquo;Insert citation.&rdquo; Done. 25 seconds.
               And it works for both legal AND accounting research simultaneously &mdash;
               because nobody else owns both sides. Cross-domain queries that Westlaw, LexisNexis,
@@ -328,7 +328,7 @@ export default function HomePage() {
 
           <Reveal delay={0.2}>
             <div className="mt-12 flex gap-4">
-              <Button href="/oracle">Learn more about The Oracle</Button>
+              <Button href="/oracle">Learn more about Marco</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
             </div>
           </Reveal>
@@ -364,7 +364,7 @@ export default function HomePage() {
               Every dictation tool on the market is an island. Dragon can&rsquo;t log a billing entry.
               WisprFlow can&rsquo;t schedule a meeting tagged to a matter. Otter can&rsquo;t query a legal
               research database. They transcribe words. That&rsquo;s it. They sit outside your workflow.
-              transcribe. It files motions, logs billing, schedules meetings, queries The Oracle,
+              transcribe. It files motions, logs billing, schedules meetings, queries Marco,
               and sends matter-tagged messages. All by speaking. In 9 languages.
             </p>
           </Reveal>
@@ -410,7 +410,7 @@ export default function HomePage() {
               },
               {
                 context: "Inside documents",
-                command: "\"Ask the Oracle \u2014 California adverse possession standard, insert the controlling case.\"",
+                command: "\"Ask Marco \u2014 California adverse possession standard, insert the controlling case.\"",
                 result: "Oracle queried. Citation inserted at cursor. Never stopped dictating.",
               },
               {
@@ -474,7 +474,7 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
               Marco Reid Courtroom: AI transcription that replaces stenographers. Tamper-evident
               evidence with cryptographic chain of custody. Judge analytics that tell you
-              ruling patterns before you walk in. And The Oracle on your iPad &mdash;
+              ruling patterns before you walk in. And Marco on your iPad &mdash;
               verify any citation in 3 seconds, mid-hearing. Permission-based. Court-admissible.
             </p>
           </Reveal>
@@ -542,7 +542,7 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
               Marco Reid Accounting: bank feeds via Plaid that never miss a transaction. AI
               reconciliation that turns months into minutes. Tax compliance across 50 states.
-              The Oracle for accounting &mdash; IRS code, revenue rulings, Treasury regs answered
+              Marco for accounting &mdash; IRS code, revenue rulings, Treasury regs answered
               in 3 seconds. Voice journal entries. And direct collaboration with lawyers on
               shared matters. One platform for both professions.
             </p>
@@ -667,8 +667,8 @@ export default function HomePage() {
               "Case management", "Trust accounting (IOLTA)", "Court-rules calendaring",
               "Document AI & editor", "Billing & time tracking", "E-signatures",
               "Legal forms library", "Client portal", "Secure messaging",
-              "Email integration", "Calendar & meetings", "The Oracle (Legal)",
-              "The Oracle (Accounting)", "Marco Reid Voice (9 languages)", "Bank feed integration",
+              "Email integration", "Calendar & meetings", "Marco (Legal)",
+              "Marco (Accounting)", "Marco Reid Voice (9 languages)", "Bank feed integration",
               "AI reconciliation", "Tax compliance (50 states)", "Receipt scanning",
               "AI spreadsheets", "Firm analytics",
               "Company incorporation", "Conflict checking",
@@ -732,7 +732,7 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href="/law" size="lg">Explore Marco Reid Legal</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
+              <Button href="/oracle" variant="secondary" size="lg">Explore Marco</Button>
               <Button href="/pricing" variant="ghost">View pricing &rarr;</Button>
             </div>
           </Reveal>

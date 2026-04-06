@@ -3,7 +3,7 @@ import { VerificationStatus, OracleCitationResult } from "./types";
 /**
  * Citation verification engine.
  *
- * Every citation The Oracle returns MUST pass through this layer before
+ * Every citation Marco returns MUST pass through this layer before
  * being displayed to the user. Per Claude.MD Section 21:
  * - Citation existence check against authoritative public sources
  * - Dead link prevention — every citation must include a source link

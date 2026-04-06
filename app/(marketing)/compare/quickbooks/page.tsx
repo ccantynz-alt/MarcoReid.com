@@ -23,7 +23,7 @@ const schema = {
 const painPoints = [
   {
     pain: "QuickBooks has no AI tax research. CPAs still call taxation agents or spend 20 minutes searching IRS.gov manually for every question",
-    solution: "The Oracle for Accounting answers tax research questions in seconds with verified IRS citations. Section 199A threshold? Answered in 3 seconds, with source link. No phone call needed",
+    solution: "Marco for Accounting answers tax research questions in seconds with verified IRS citations. Section 199A threshold? Answered in 3 seconds, with source link. No phone call needed",
   },
   {
     pain: "QuickBooks has no voice input. Every journal entry, every expense, every note is typed manually",
@@ -43,7 +43,7 @@ const painPoints = [
   },
   {
     pain: "Pages take 10 seconds to load in 2025. \u201CEverything takes twice as long in QBO than Desktop.\u201D Customer support described as \u201Cutterley shocked at the lack of service\u201D \u2014 reps who are not accountants",
-    solution: "Marco Reid is built for speed. Every page under 1 second. Every Oracle query under 3 seconds. Support powered by The Oracle with account context. 95% of queries resolved instantly",
+    solution: "Marco Reid is built for speed. Every page under 1 second. Every Oracle query under 3 seconds. Support powered by Marco with account context. 95% of queries resolved instantly",
   },
 ];
 

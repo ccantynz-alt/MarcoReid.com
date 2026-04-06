@@ -10,7 +10,7 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Marco Reid Accounting \u2014 AI-Powered Accounting That CPAs Trust",
   description:
-    "Automated bookkeeping, bank feed integration, tax compliance, receipt scanning, AI spreadsheets, and The Oracle for accounting. Built for CPAs who demand precision.",
+    "Automated bookkeeping, bank feed integration, tax compliance, receipt scanning, AI spreadsheets, and Marco for accounting. Built for CPAs who demand precision.",
 };
 
 const schema = {
@@ -42,7 +42,7 @@ export default function AccountingPage() {
           <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Xero, QuickBooks, and MYOB handle bookkeeping. Marco Reid Accounting handles everything.
             Automated reconciliation. Bank feeds that never miss a transaction. Tax compliance
-            across 50 states. Receipt scanning in seconds. AI spreadsheets. And The Oracle for
+            across 50 states. Receipt scanning in seconds. AI spreadsheets. And Marco for
             accounting &mdash; tax research that answers in seconds what used to take hours.
           </p>
           <div className="mt-12 animate-fade-up-3 opacity-0">
@@ -163,13 +163,13 @@ export default function AccountingPage() {
 
             <Reveal delay={0.05}>
               <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
-                <p className="text-xs font-semibold tracking-widest text-purple-400">The Oracle for accounting</p>
+                <p className="text-xs font-semibold tracking-widest text-purple-400">Marco for accounting</p>
                 <h3 className="mt-4 font-serif text-headline text-navy-700">
                   Tax research in seconds, not hours.
                 </h3>
                 <p className="mt-4 leading-relaxed text-navy-400">
                   Every IRS code section, every revenue ruling, every regulatory citation &mdash;
-                  verified against official sources. A CPA mid-return can query The Oracle without
+                  verified against official sources. A CPA mid-return can query Marco without
                   leaving their workflow. &ldquo;Section 199A deduction threshold for a
                   qualified business&rdquo; &mdash; answered instantly, cited correctly.
                 </p>
@@ -210,7 +210,7 @@ export default function AccountingPage() {
               { title: "Receipt scanning", desc: "Photo to auto-coded expense in seconds" },
               { title: "AI spreadsheets", desc: "Financial modelling with AI and voice assistance" },
               { title: "E-signatures", desc: "Engagement letters signed inside the platform" },
-              { title: "The Oracle", desc: "Tax and regulatory research with citation verification" },
+              { title: "Marco", desc: "Tax and regulatory research with citation verification" },
               { title: "Marco Reid Voice", desc: "Dictate entries, queries, and commands by speaking" },
               { title: "Client management", desc: "CRM, engagement tracking, billing" },
               { title: "Financial reporting", desc: "Automated statements, IRS and state filings" },
