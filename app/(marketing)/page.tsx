@@ -40,6 +40,11 @@ export default function HomePage() {
       <SchemaMarkup schema={organizationSchema} />
       <SchemaMarkup schema={softwareSchema} />
 
+      {/* DEPLOY CANARY — orange band so Craig can confirm updates are flowing */}
+      <div className="bg-orange-500 py-4 text-center text-lg font-bold uppercase tracking-widest text-white">
+        🟧 MARCO REID — DEPLOY CANARY ACTIVE 🟧
+      </div>
+
       {/* ============================================================ */}
       {/* HERO — The grand entrance                                     */}
       {/* ============================================================ */}
