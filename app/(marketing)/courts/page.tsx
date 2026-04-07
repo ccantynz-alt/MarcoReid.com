@@ -81,7 +81,7 @@ export default function CourtsPage() {
           </h1>
           <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Courts run on paper, fax, and software written before the iPhone. Court reporters
-            are retiring faster than they're replaced. Pro se litigants drown the docket.
+            are retiring faster than they&apos;re replaced. Pro se litigants drown the docket.
             Marco Reid Courts is the complete AI platform for the third branch of government &mdash;
             five products that turn the courtroom into the most advanced room in the building.
           </p>
