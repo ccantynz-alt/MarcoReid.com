@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import VoiceMockup from "@/app/components/marketing/VoiceMockup";
 import Reveal from "@/app/components/effects/Reveal";
-import MockupReveal from "@/app/components/effects/MockupReveal";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
-import TypingDemo from "@/app/components/effects/TypingDemo";
+
+const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"));
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
+const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 
 
 export const metadata: Metadata = {
@@ -58,7 +60,7 @@ export default function DictationPage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
       {/* Live typing demo */}
@@ -150,8 +152,8 @@ export default function DictationPage() {
               },
               {
                 context: "Inside document editor",
-                command: "\"Ask Marco — what is the California standard for adverse possession, insert the controlling case as a citation.\"",
-                result: "Oracle queried. Top verified case returned. Citation inserted at cursor. Attorney never stopped dictating.",
+                command: "\"Ask Marco \u2014 what is the California standard for adverse possession, insert the controlling case as a citation.\"",
+                result: "Marco queried. Top verified case returned. Citation inserted at cursor. Attorney never stopped dictating.",
               },
               {
                 context: "Inside billing",

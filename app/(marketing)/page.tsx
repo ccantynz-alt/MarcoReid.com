@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BRAND } from "@/lib/constants";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import Button from "@/app/components/shared/Button";
-import OracleMockup from "@/app/components/marketing/OracleMockup";
-import VoiceMockup from "@/app/components/marketing/VoiceMockup";
-import DashboardMockup from "@/app/components/marketing/DashboardMockup";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
 import Reveal from "@/app/components/effects/Reveal";
-import MockupReveal from "@/app/components/effects/MockupReveal";
-import TypingDemo from "@/app/components/effects/TypingDemo";
+
+const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"));
+const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"));
+const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"));
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
+const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 
 export const metadata: Metadata = {
   title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
@@ -147,7 +149,7 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
               Marco Reid Legal replaces all of them. Case management. Billing. Trust accounting.
               Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
-              Marco for research. Marco Reid Voice for dictation. One login. One bill.
+              The Oracle for research. Marco Reid Voice for dictation. One login. One bill.
               From $99/month.
             </p>
           </Reveal>
@@ -667,8 +669,8 @@ export default function HomePage() {
               "Case management", "Trust accounting (IOLTA)", "Court-rules calendaring",
               "Document AI & editor", "Billing & time tracking", "E-signatures",
               "Legal forms library", "Client portal", "Secure messaging",
-              "Email integration", "Calendar & meetings", "Marco (Legal)",
-              "Marco (Accounting)", "Marco Reid Voice (9 languages)", "Bank feed integration",
+              "Email integration", "Calendar & meetings", "The Oracle (Legal)",
+              "The Oracle (Accounting)", "Marco Reid Voice (9 languages)", "Bank feed integration",
               "AI reconciliation", "Tax compliance (50 states)", "Receipt scanning",
               "AI spreadsheets", "Firm analytics",
               "Company incorporation", "Conflict checking",
@@ -732,7 +734,7 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button href="/law" size="lg">Explore Marco Reid Legal</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore Marco</Button>
+              <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
               <Button href="/pricing" variant="ghost">View pricing &rarr;</Button>
             </div>
           </Reveal>

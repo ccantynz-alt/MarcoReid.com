@@ -4,7 +4,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      disallow: "/",
+      allow: "/",
+      disallow: ["/dashboard", "/admin", "/api", "/login"],
     },
+    sitemap: "https://marcoreid.com/sitemap.xml",
   };
 }

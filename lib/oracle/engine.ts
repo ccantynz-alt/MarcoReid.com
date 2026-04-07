@@ -10,7 +10,7 @@ import {
 import { AI_DISCLAIMER } from "@/lib/constants";
 
 /**
- * Marco Engine — the brain of Marco Reid.
+ * The Marco Engine \u2014 the brain of Marco Reid.
  *
  * This is the core AI research system. It:
  * 1. Detects the query domain (legal, accounting, cross-domain, IP)
@@ -70,7 +70,7 @@ function detectDomain(query: string, requestDomain?: OracleDomain): OracleDomain
  * Build the system prompt based on the domain.
  */
 function buildSystemPrompt(domain: OracleDomain, jurisdiction?: string): string {
-  const base = `You are Marco, the AI research engine built into Marco Reid — the professional intelligence platform for law and accounting. You provide research assistance to licensed professionals.
+  const base = `You are Marco, the AI research engine built into Marco Reid \u2014 the professional intelligence platform for law and accounting. You provide research assistance to licensed professionals.
 
 CRITICAL RULES:
 1. ONLY cite real cases, statutes, regulations, and rulings that actually exist.
@@ -78,7 +78,7 @@ CRITICAL RULES:
 3. NEVER fabricate a citation. If you are not certain a case exists, say so explicitly.
 4. Always specify the jurisdiction.
 5. Provide practical analysis, not just citations.
-6. You assist professionals — you do not provide legal or tax advice.`;
+6. You assist professionals \u2014 you do not provide legal or tax advice.`;
 
   const jurisdictionNote = jurisdiction
     ? `\nFocus on ${jurisdiction} law and regulations unless the query specifies otherwise.`
@@ -95,7 +95,7 @@ You specialise in accounting and tax research: IRS code sections, revenue ruling
 
     CROSS_DOMAIN: `${base}
 ${jurisdictionNote}
-You specialise in questions that span BOTH legal and accounting/tax domains simultaneously. This is your unique capability — no other research tool can answer questions that require both legal analysis and tax/accounting intelligence. Provide analysis from both perspectives and cite both legal and tax authorities.`,
+You specialise in questions that span BOTH legal and accounting/tax domains simultaneously. This is your unique capability \u2014 no other research tool can answer questions that require both legal analysis and tax/accounting intelligence. Provide analysis from both perspectives and cite both legal and tax authorities.`,
 
     IP: `${base}
 ${jurisdictionNote}
@@ -130,8 +130,8 @@ function extractCitations(text: string): OracleCitationResult[] {
     });
   }
 
-  // Match IRC sections: "IRC § 199A" or "26 U.S.C. § 199A"
-  const ircPattern = /(?:IRC|I\.R\.C\.|26\s+U\.S\.C\.)\s*§\s*(\d+[A-Z]?(?:\([a-z0-9]+\))*)/gi;
+  // Match IRC sections: "IRC \u00a7 199A" or "26 U.S.C. \u00a7 199A"
+  const ircPattern = /(?:IRC|I\.R\.C\.|26\s+U\.S\.C\.)\s*\u00a7\s*(\d+[A-Z]?(?:\([a-z0-9]+\))*)/gi;
   while ((match = ircPattern.exec(text)) !== null) {
     citations.push({
       title: `Internal Revenue Code Section ${match[1]}`,
@@ -146,7 +146,7 @@ function extractCitations(text: string): OracleCitationResult[] {
   }
 
   // Match Treasury Regulations
-  const treasPattern = /Treas\.?\s*Reg\.?\s*§?\s*([\d.]+(?:\([a-z0-9]+\))*)/gi;
+  const treasPattern = /Treas\.?\s*Reg\.?\s*\u00a7?\s*([\d.]+(?:\([a-z0-9]+\))*)/gi;
   while ((match = treasPattern.exec(text)) !== null) {
     citations.push({
       title: `Treasury Regulation ${match[1]}`,
@@ -185,7 +185,7 @@ function extractCitations(text: string): OracleCitationResult[] {
 }
 
 /**
- * Retrieve memory context for a user — previous queries on the same
+ * Retrieve memory context for a user \u2014 previous queries on the same
  * topic or matter, to give Marco continuity.
  */
 async function getMemoryContext(
@@ -213,7 +213,7 @@ async function getMemoryContext(
   const context = recentQueries
     .map(
       (q) =>
-        `[Previous query - ${q.domain} - ${q.createdAt.toISOString().split("T")[0]}]: "${q.query}" → Summary: ${q.response.substring(0, 200)}...`
+        `[Previous query - ${q.domain} - ${q.createdAt.toISOString().split("T")[0]}]: "${q.query}" \u2192 Summary: ${q.response.substring(0, 200)}...`
     )
     .join("\n");
 
@@ -280,7 +280,7 @@ async function logQuery(
 }
 
 /**
- * THE MAIN ORACLE FUNCTION.
+ * THE MAIN MARCO FUNCTION.
  *
  * This is the brain. It takes a query, thinks about it, researches it,
  * verifies every citation, logs everything for learning, and returns

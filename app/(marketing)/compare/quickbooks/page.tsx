@@ -6,7 +6,7 @@ import Reveal from "@/app/components/effects/Reveal";
 import { BRAND } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Marco Reid vs QuickBooks \u2014 AI-Powered Accounting That Does More",
+  title: "Marco Reid vs QuickBooks — AI-Powered Accounting That Does More",
   description:
     "Why CPAs are switching from QuickBooks to Marco Reid Accounting. Bank feeds, AI reconciliation, tax research, voice entries, and integration with the legal side.",
 };
@@ -38,12 +38,12 @@ const painPoints = [
     solution: "Marco Reid AI reconciliation reads every transaction, matches it against bank statements, and reconciles automatically. You review and approve",
   },
   {
-    pain: "Users report 400\u2013600% price increases when forced from Desktop to Online. One user: \u201C70% increase for the same basic features I\u2019ve used for two decades.\u201D Features constantly moved to higher tiers",
-    solution: "Marco Reid Accounting includes everything \u2014 bank feeds, tax compliance, receipt scanning, Oracle research, Voice dictation \u2014 in one plan. Transparent pricing. No forced migrations. No surprise tier changes",
+    pain: "Users report 400–600% price increases when forced from Desktop to Online. One user: “70% increase for the same basic features I’ve used for two decades.” Features constantly moved to higher tiers",
+    solution: "Marco Reid Accounting includes everything — bank feeds, tax compliance, receipt scanning, Marco research, Voice dictation — in one plan. Transparent pricing. No forced migrations. No surprise tier changes",
   },
   {
-    pain: "Pages take 10 seconds to load in 2025. \u201CEverything takes twice as long in QBO than Desktop.\u201D Customer support described as \u201Cutterley shocked at the lack of service\u201D \u2014 reps who are not accountants",
-    solution: "Marco Reid is built for speed. Every page under 1 second. Every Oracle query under 3 seconds. Support powered by Marco with account context. 95% of queries resolved instantly",
+    pain: "Pages take 10 seconds to load in 2025. “Everything takes twice as long in QBO than Desktop.” Customer support described as “utterley shocked at the lack of service” — reps who are not accountants",
+    solution: "Marco Reid is built for speed. Every page under 1 second. Every Marco query under 3 seconds. Support powered by Marco with account context. 95% of queries resolved instantly",
   },
 ];
 

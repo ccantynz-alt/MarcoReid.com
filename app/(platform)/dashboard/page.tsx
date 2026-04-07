@@ -100,8 +100,15 @@ export default async function DashboardPage() {
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map((item) => (
-          <Link
+        {[
+          { title: "Matters", desc: "Manage your active cases and engagements", count: "0" },
+          { title: "Clients", desc: "Your client directory and CRM", count: "0" },
+          { title: "Marco", desc: "AI-powered legal and accounting research", count: null },
+          { title: "Documents", desc: "Files, drafts, and templates", count: "0" },
+          { title: "Billing", desc: "Time tracking, invoices, and payments", count: "0" },
+          { title: "Messages", desc: "Secure matter-centric conversations", count: "0" },
+        ].map((item) => (
+          <div
             key={item.title}
             href={item.href}
             className={`group block rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 ${accentRing[item.accent]}`}

@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import OracleMockup from "@/app/components/marketing/OracleMockup";
 import Reveal from "@/app/components/effects/Reveal";
-import MockupReveal from "@/app/components/effects/MockupReveal";
+
+const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"));
+const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
 
 
 export const metadata: Metadata = {
@@ -51,7 +53,7 @@ export default function OraclePage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
       {/* Oracle mockup */}
@@ -331,7 +333,7 @@ export default function OraclePage() {
               That query requires both legal research and tax intelligence simultaneously.
               Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both
               sides of the law-accounting boundary. Only Marco Reid can answer it &mdash; because
-              Marco spans both domains in a single search.
+              The Oracle spans both domains in a single search.
             </p>
           </Reveal>
           <Reveal delay={0.2}>

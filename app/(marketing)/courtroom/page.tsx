@@ -4,13 +4,15 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
+import dynamic from "next/dynamic";
+
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
   title: "Marco Reid Courtroom \u2014 The Most Advanced Courtroom Technology Ever Built",
   description:
-    "Depositions with AI transcription. Courtroom e-filing. Evidence management with chain of custody. Real-time Oracle research mid-hearing. Judge analytics. The courtroom goes digital.",
+    "Depositions with AI transcription. Courtroom e-filing. Evidence management with chain of custody. Real-time Marco research mid-hearing. Judge analytics. The courtroom goes digital.",
 };
 
 const schema = {
@@ -116,7 +118,7 @@ export default function CourtroomPage() {
               { title: "Real-time AI transcription", desc: "Marco Reid Voice transcribes with legal vocabulary, speaker ID, and timestamps. Replaces $300\u2013500/day court reporters." },
               { title: "Video + transcript sync", desc: "Click any line in the transcript \u2014 video jumps to that moment. Click any video moment \u2014 transcript highlights. Frame-by-frame." },
               { title: "Exhibit management", desc: "Pull up any exhibit from the matter files instantly during deposition. Tag exhibits as they\u2019re referenced." },
-              { title: "Oracle mid-deposition", desc: "Check a citation or statute the witness mentions in real time. The attorney never loses the thread." },
+              { title: "Marco mid-deposition", desc: "Check a citation or statute the witness mentions in real time. The attorney never loses the thread." },
               { title: "AI summary generation", desc: "After the session: structured summary with key testimony, objections, exhibits referenced, and action items." },
               { title: "Opposing counsel access", desc: "The other side gets transcript and exhibit access through the platform. Another hook that brings new users." },
             ].map((f) => (

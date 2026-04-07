@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Container from "@/app/components/shared/Container";
 import Reveal from "@/app/components/effects/Reveal";
+import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Marco Reid",
@@ -36,87 +37,7 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <form className="mt-12 space-y-6">
-                <div>
-                  <label htmlFor="contact-name" className="block text-sm font-medium text-navy-600">
-                    Name
-                  </label>
-                  <input
-                    id="contact-name"
-                    name="name"
-                    type="text"
-                    required
-                    className="mt-2 block w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 placeholder-navy-300 transition-colors focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-email" className="block text-sm font-medium text-navy-600">
-                    Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    required
-                    className="mt-2 block w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 placeholder-navy-300 transition-colors focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500"
-                    placeholder="you@yourfirm.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-firm" className="block text-sm font-medium text-navy-600">
-                    Firm name
-                  </label>
-                  <input
-                    id="contact-firm"
-                    name="firm"
-                    type="text"
-                    className="mt-2 block w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 placeholder-navy-300 transition-colors focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500"
-                    placeholder="Your firm (optional)"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-subject" className="block text-sm font-medium text-navy-600">
-                    Subject
-                  </label>
-                  <select
-                    id="contact-subject"
-                    name="subject"
-                    className="mt-2 block w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 transition-colors focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500"
-                  >
-                    <option>General enquiry</option>
-                    <option>Pricing question</option>
-                    <option>Security question</option>
-                    <option>Partnership opportunity</option>
-                    <option>Early access request</option>
-                    <option>Press / media</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="contact-message" className="block text-sm font-medium text-navy-600">
-                    Message
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={5}
-                    required
-                    className="mt-2 block w-full rounded-lg border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 placeholder-navy-300 transition-colors focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500"
-                    placeholder="How can we help?"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="flex w-full min-h-touch items-center justify-center rounded-lg bg-navy-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2"
-                >
-                  Send message
-                </button>
-              </form>
+              <ContactForm />
             </Reveal>
           </div>
         </Container>

@@ -4,7 +4,7 @@ import Button from "@/app/components/shared/Button";
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
-  title: "Marco Reid for Small Business \u2014 Legal and Accounting Made Simple",
+  title: "Marco Reid for Small Business — Legal and Accounting Made Simple",
   description:
     "Find a lawyer. Find an accountant. Get the professional help your business needs. Marco Reid connects small businesses with professionals who use the most advanced tools available.",
 };
@@ -21,7 +21,7 @@ export default function ForSmallBusinessPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
             Marco Reid professionals use the most advanced legal and accounting
-            technology ever built. When you work with an Marco Reid professional,
+            technology ever built. When you work with a Marco Reid professional,
             your business gets the benefit of that intelligence.
           </p>
         </Container>
@@ -37,11 +37,11 @@ export default function ForSmallBusinessPage() {
 
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Faster research", desc: "Your lawyer uses Marco \u2014 the most advanced legal research AI ever built. That means faster answers, more thorough research, and better outcomes for your matter." },
+              { title: "Faster research", desc: "Your lawyer uses Marco — the most advanced legal research AI ever built. That means faster answers, more thorough research, and better outcomes for your matter." },
               { title: "Real-time tax intelligence", desc: "Your accountant works with AI that reads every tax code change in real time. Your CPA never misses a deduction that affects you." },
               { title: "Transparent communication", desc: "Track your matter status, view documents, message your professional, and sign documents through the secure client portal. No more chasing for updates." },
               { title: "Better accuracy", desc: "Every citation and regulation your professional relies on is verified against authoritative public sources. Zero hallucinated case law. Zero fabricated tax rulings." },
-              { title: "Lower costs", desc: "When your lawyer saves 15\u201320 hours per week, those savings can be passed to you. Marco Reid professionals are more efficient, which means better value." },
+              { title: "Lower costs", desc: "When your lawyer saves 15–20 hours per week, those savings can be passed to you. Marco Reid professionals are more efficient, which means better value." },
               { title: "One platform", desc: "Your lawyer and accountant can collaborate on your matter inside the same platform. No more information lost between disconnected systems." },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>

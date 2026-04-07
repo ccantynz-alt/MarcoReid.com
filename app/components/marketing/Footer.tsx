@@ -4,7 +4,7 @@ const links = {
   products: [
     { label: "Marco Reid Legal", href: "/law" },
     { label: "Marco Reid Accounting", href: "/accounting" },
-    { label: "Marco", href: "/oracle" },
+    { label: "Marco", href: "/marco" },
     { label: "Marco Reid Voice", href: "/dictation" },
     { label: "Marco Reid Courtroom", href: "/courtroom" },
     { label: "Pricing", href: "/pricing" },
@@ -84,7 +84,7 @@ export default function Footer() {
 
         <div className="mt-16 border-t border-navy-200 pt-8">
           <p className="text-xs text-navy-400">
-            &copy; {new Date().getFullYear()} Marco Reid. Auckland, New Zealand. All rights reserved.
+            &copy; {new Date().getFullYear()} Reid &amp; Associates. Auckland, New Zealand. All rights reserved.
           </p>
         </div>
       </div>

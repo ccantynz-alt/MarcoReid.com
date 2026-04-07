@@ -4,7 +4,9 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
-import AnimatedCounter from "@/app/components/effects/AnimatedCounter";
+import dynamic from "next/dynamic";
+
+const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
@@ -19,7 +21,7 @@ const schema = {
   name: "Marco Reid Accounting",
   applicationCategory: "Accounting",
   operatingSystem: "Web",
-  description: "AI-powered accounting platform with bank feed integration, automated reconciliation, tax compliance, and cross-domain Oracle research for CPAs.",
+  description: "AI-powered accounting platform with bank feed integration, automated reconciliation, tax compliance, and cross-domain Marco research for CPAs.",
   url: `${BRAND.url}/accounting`,
 };
 
@@ -49,7 +51,7 @@ export default function AccountingPage() {
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />

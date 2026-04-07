@@ -1,6 +1,93 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* ── Design tokens ─────────────────────────────────────────────── */
+
+@theme {
+  /* Colors: Navy */
+  --color-navy-50: #f5f6f8;
+  --color-navy-100: #e8eaef;
+  --color-navy-200: #cdd1dc;
+  --color-navy-300: #a5adc0;
+  --color-navy-400: #7681a0;
+  --color-navy-500: #1a2e5a;
+  --color-navy-600: #152650;
+  --color-navy-700: #111e40;
+  --color-navy-800: #0d1730;
+  --color-navy-900: #090f20;
+  --color-navy-950: #050913;
+
+  /* Colors: Forest */
+  --color-forest-50: #f0f7f4;
+  --color-forest-100: #dceddf;
+  --color-forest-200: #b8dbc0;
+  --color-forest-300: #86c298;
+  --color-forest-400: #55a670;
+  --color-forest-500: #2d6a4f;
+  --color-forest-600: #245a42;
+  --color-forest-700: #1c4735;
+  --color-forest-800: #153528;
+  --color-forest-900: #0f241b;
+
+  /* Colors: Plum */
+  --color-plum-50: #f8f4f8;
+  --color-plum-100: #ede4ed;
+  --color-plum-200: #d9c5d9;
+  --color-plum-300: #bf9ebf;
+  --color-plum-400: #a47aa4;
+  --color-plum-500: #6b2d6b;
+  --color-plum-600: #5c265c;
+  --color-plum-700: #481e48;
+  --color-plum-800: #351735;
+  --color-plum-900: #220f22;
+
+  /* Typography */
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --text-hero: clamp(2.75rem, 6vw, 5.5rem);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.03em;
+
+  --text-display: clamp(2rem, 4vw, 3.75rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.025em;
+
+  --text-headline: clamp(1.5rem, 2.5vw, 2rem);
+  --text-headline--line-height: 1.2;
+  --text-headline--letter-spacing: -0.015em;
+
+  --text-subhead: clamp(1.125rem, 1.5vw, 1.375rem);
+  --text-subhead--line-height: 1.5;
+
+  /* Sizing */
+  --min-h-touch: 44px;
+  --min-w-touch: 44px;
+
+  /* Shadows */
+  --shadow-mockup: 0 32px 64px -16px rgba(26, 46, 90, 0.12), 0 16px 32px -8px rgba(26, 46, 90, 0.08), 0 0 0 1px rgba(26, 46, 90, 0.06);
+  --shadow-mockup-hover: 0 40px 80px -16px rgba(26, 46, 90, 0.16), 0 20px 40px -8px rgba(26, 46, 90, 0.1), 0 0 0 1px rgba(26, 46, 90, 0.08);
+  --shadow-card: 0 1px 3px rgba(26, 46, 90, 0.04);
+  --shadow-card-hover: 0 8px 24px rgba(26, 46, 90, 0.08), 0 2px 8px rgba(26, 46, 90, 0.04);
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  --animate-fade-up: fadeUp 0.8s ease-out forwards;
+  --animate-fade-up-1: fadeUp 0.8s ease-out 0.15s forwards;
+  --animate-fade-up-2: fadeUp 0.8s ease-out 0.3s forwards;
+  --animate-fade-up-3: fadeUp 0.8s ease-out 0.45s forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Base styles ───────────────────────────────────────────────── */
 
 @layer base {
   body {
@@ -13,6 +100,8 @@
     @apply bg-navy-500 text-white;
   }
 }
+
+/* ── Component styles ──────────────────────────────────────────── */
 
 /* Mockup window */
 .mockup-window {

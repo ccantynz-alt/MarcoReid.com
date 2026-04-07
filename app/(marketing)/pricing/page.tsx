@@ -116,7 +116,7 @@ export default function PricingPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-navy-50/50 to-white pt-32 pb-16 sm:pt-40">
+      <section className="bg-linear-to-b from-navy-50/50 to-white pt-32 pb-16 sm:pt-40">
         <div className="mx-auto max-w-6xl px-6 text-center sm:px-8 lg:px-12">
           <h1 className="text-hero font-serif text-navy-800">
             Simple, transparent pricing.
@@ -174,7 +174,7 @@ export default function PricingPage() {
         <div className="h-px bg-navy-100" />
       </div>
 
-      {/* Oracle */}
+      {/* Marco */}
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>

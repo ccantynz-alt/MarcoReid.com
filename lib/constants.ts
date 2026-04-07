@@ -6,13 +6,14 @@ export const BRAND = {
   description:
     "The operating system for legal and accounting professionals. Every tool your firm needs, in one platform.",
   url: "https://marcoreid.com",
+  company: "Reid & Associates",
 } as const;
 
 export const NAV_LINKS = [
   { label: "Legal", href: "/law" },
   { label: "Accounting", href: "/accounting" },
   { label: "Courtroom", href: "/courtroom" },
-  { label: "Marco", href: "/oracle" },
+  { label: "Marco", href: "/marco" },
   { label: "Voice", href: "/dictation" },
   { label: "Pricing", href: "/pricing" },
 ] as const;
@@ -52,10 +53,10 @@ export const PRODUCTS: Record<string, Product> = {
       "Client management and billing",
     ],
   },
-  oracle: {
+  marco: {
     name: "Marco",
-    slug: "/oracle",
-    tagline: "The greatest AI-generated mind for law and accountancy",
+    slug: "/marco",
+    tagline: "Your AI partner for law and accounting",
     description:
       "Cross-domain legal and accounting AI research. Ask Marco questions that span both disciplines simultaneously. Every citation verified against authoritative public domain sources.",
     features: [
@@ -183,7 +184,7 @@ export const ORACLE_PRICING: PricingTier[] = [
     name: "Cross-Domain",
     price: "$499",
     period: "/month",
-    description: "Marco Law + Marco Accounting combined",
+    description: "Marco for Law + Accounting combined",
     features: [
       "Legal research with citation verification",
       "Accounting and tax research",
