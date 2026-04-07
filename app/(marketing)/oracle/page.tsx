@@ -12,7 +12,7 @@ const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal
 
 
 export const metadata: Metadata = {
-  title: "The Oracle \u2014 The Most Intelligent Legal and Accounting Research Engine Ever Built",
+  title: "Marco \u2014 The Most Intelligent Legal and Accounting Research Engine Ever Built",
   description:
     "Cross-domain legal and accounting AI research. Every citation verified. Ask questions that span both disciplines. Tax codes, IRS rulings, case law, and regulations \u2014 the research engine nobody else can build.",
 };
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "The Oracle",
+  name: "Marco",
   applicationCategory: "Research",
   operatingSystem: "Web",
   description: "Cross-domain legal and accounting AI research with mandatory citation verification. Public domain case law, statutes, tax codes, and regulations.",
@@ -36,7 +36,7 @@ export default function OraclePage() {
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Container className="relative text-center">
           <p className="animate-fade-up text-xs font-medium uppercase tracking-widest text-plum-600 opacity-0">
-            The Oracle
+            Marco
           </p>
           <h1 className="mt-8 animate-fade-up-1 text-hero font-serif opacity-0">
             <span className="text-navy-700">The most intelligent</span>
@@ -68,7 +68,7 @@ export default function OraclePage() {
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
       {/* The killer workflow — Oracle draw-down */}
-      <section className="py-32 sm:py-44" aria-label="The Oracle draw-down">
+      <section className="py-32 sm:py-44" aria-label="Marco draw-down">
         <Container narrow>
           <Reveal>
             <p className="text-xs font-medium uppercase tracking-widest text-plum-600">
@@ -91,10 +91,10 @@ export default function OraclePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-4 rounded-2xl border border-purple-500/20 bg-plum-50 p-8">
-              <p className="text-xs font-semibold tracking-widest text-plum-600">With The Oracle</p>
+              <p className="text-xs font-semibold tracking-widest text-plum-600">With Marco</p>
               <p className="mt-4 leading-relaxed text-navy-400">
                 You&rsquo;re drafting. You hit &thinsp;<span className="rounded bg-navy-100 px-2 py-0.5 font-mono text-sm text-plum-600">&#8984;K</span>&thinsp;.
-                The Oracle slides in from the right &mdash; you never leave the document.
+                Marco slides in from the right &mdash; you never leave the document.
                 You type &ldquo;California non-compete enforceability standard.&rdquo;
                 Three verified cases in under 3 seconds. You click &ldquo;Insert citation.&rdquo;
                 It drops directly into your document at the cursor position, formatted correctly,
@@ -152,7 +152,7 @@ export default function OraclePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-forest-600">
-                  The Oracle &mdash; Accounting
+                  Marco &mdash; Accounting
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
                   Tax research answered in seconds, not hours.
@@ -164,7 +164,7 @@ export default function OraclePage() {
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
               Most accountants ring a taxation agent to verify what they&rsquo;re doing is correct.
-              That call takes time. The answer takes longer. With The Oracle for Accounting,
+              That call takes time. The answer takes longer. With Marco for Accounting,
               every IRS code section, every revenue ruling, every regulatory citation is verified
               against official sources and returned in seconds. The CPA never leaves their workflow.
             </p>
@@ -196,7 +196,7 @@ export default function OraclePage() {
                 for a married couple filing jointly in 2026?&rdquo;
               </p>
               <p className="mt-4 text-sm leading-relaxed text-navy-400">
-                The Oracle returns the exact threshold, the relevant IRC section, the applicable
+                Marco returns the exact threshold, the relevant IRC section, the applicable
                 Treasury Regulation, and links to the official IRS source &mdash; all verified,
                 all cited, all in under 3 seconds. The CPA who used to spend 20 minutes searching
                 IRS.gov now has their answer before they finish their coffee.
@@ -218,7 +218,7 @@ export default function OraclePage() {
               </div>
               <div>
                 <p className="text-xs font-bold tracking-wider text-navy-500">
-                  The Oracle &mdash; Intellectual Property
+                  Marco &mdash; Intellectual Property
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
                   Patents. Trademarks. Copyright. Trade secrets.
@@ -230,10 +230,10 @@ export default function OraclePage() {
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
               IP attorneys bill $500&ndash;$800/hour and do enormous amounts of research.
-              The Oracle for IP is a dedicated domain that understands patent claims,
+              Marco for IP is a dedicated domain that understands patent claims,
               trademark likelihood of confusion, prior art analysis, and IP case law.
               And because IP work always has tax implications &mdash; licensing revenue,
-              IP holding entity structures, R&amp;D credits &mdash; The Oracle spans
+              IP holding entity structures, R&amp;D credits &mdash; Marco spans
               both IP law and accounting in a single query.
             </p>
           </Reveal>

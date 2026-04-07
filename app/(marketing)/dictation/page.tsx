@@ -260,8 +260,9 @@ export default function DictationPage() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-12 flex justify-center gap-4">
-              <Button href="/pricing" size="lg">See pricing</Button>
+            <div className="mt-12 flex flex-wrap justify-center gap-4">
+              <Button href="/voice" size="lg">Try it now</Button>
+              <Button href="/pricing" variant="secondary" size="lg">See pricing</Button>
               <Button href="/law" variant="secondary" size="lg">Explore Law</Button>
             </div>
           </Reveal>

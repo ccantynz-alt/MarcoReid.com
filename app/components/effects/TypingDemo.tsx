@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const phrases = [
   "Schedule a call with Patricia Thornton, Thursday at two pm.",
   "Log four point five hours on the Rodriguez H-1B matter.",
-  "Ask the Oracle — California non-compete enforceability.",
+  "Ask Marco — California non-compete enforceability.",
   "Draft a response to Marcus regarding the filing deadline.",
   "Send the engagement letter to Chen for e-signature.",
   "What are the tax implications of this corporate structure?",

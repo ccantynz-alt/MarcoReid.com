@@ -15,7 +15,7 @@ const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal
 export const metadata: Metadata = {
   title: "Marco Reid Legal \u2014 The Operating System for Your Legal Practice",
   description:
-    "Full-stack legal practice management powered by AI. Case management, billing, trust accounting, document drafting, court-rules calendaring, and The Oracle legal research. One platform replaces everything.",
+    "Full-stack legal practice management powered by AI. Case management, billing, trust accounting, document drafting, court-rules calendaring, and Marco legal research. One platform replaces everything.",
 };
 
 const schema = {
@@ -165,7 +165,7 @@ export default function LawPage() {
                 <p className="mt-4 leading-relaxed text-navy-400">
                   You&rsquo;re drafting a non-compete clause. Not sure about California&rsquo;s standard.
                   You hit &thinsp;<span className="rounded bg-navy-100 px-2 py-0.5 font-mono text-sm text-forest-600">&#8984;K</span>&thinsp;
-                  &mdash; The Oracle slides in from the right. You type your question. Three verified
+                  &mdash; Marco slides in from the right. You type your question. Three verified
                   cases in under 3 seconds. You click &ldquo;Insert citation.&rdquo; It drops into your document
                   at the cursor, formatted correctly, verified. Total time: 25 seconds.
                   On Westlaw, that&rsquo;s 5 minutes and your flow is destroyed.
@@ -260,7 +260,7 @@ export default function LawPage() {
                 </h3>
                 <p className="mt-4 leading-relaxed text-navy-400">
                   The client specifies where they&rsquo;ll operate and what the business does.
-                  The Oracle &mdash; Legal and Accounting simultaneously &mdash; recommends the optimal
+                  Marco &mdash; Legal and Accounting simultaneously &mdash; recommends the optimal
                   entity type per jurisdiction, analyses tax implications across all countries involved,
                   recommends an asset protection structure, identifies legal vulnerabilities,
                   generates all formation documents pre-populated with client data, routes them for
@@ -292,7 +292,7 @@ export default function LawPage() {
               Schedule depositions inside the platform. Record video built-in or via Zoom.
               Marco Reid Voice transcribes the entire deposition in real time &mdash; legal vocabulary,
               speaker identification, timestamps. Pull up exhibits from the matter files instantly.
-              Query The Oracle mid-deposition to check a citation the witness mentions.
+              Query Marco mid-deposition to check a citation the witness mentions.
               AI generates a structured summary with key testimony, objections, and action items.
               Every word searchable, linked to the matter, timestamped to the video.
               Opposing counsel gets access through the platform &mdash; another hook.
@@ -316,7 +316,7 @@ export default function LawPage() {
               Electronic filing with courts where APIs exist. Real-time courtroom transcription
               via Marco Reid Voice. Digital exhibit management on iPad or laptop. Court-rules
               calendaring that auto-calculates every downstream deadline. Judge analytics showing
-              ruling patterns, motion grant rates, and sentencing trends. And The Oracle
+              ruling patterns, motion grant rates, and sentencing trends. And Marco
               available on your iPad mid-hearing &mdash; verify a citation opposing counsel just
               raised in 3 seconds. That is a superpower in a courtroom.
             </p>
@@ -353,7 +353,7 @@ export default function LawPage() {
               { title: "Instant messaging", desc: "Matter-centric, encrypted, archived, exportable" },
               { title: "Email integration", desc: "Gmail and Outlook inside Marco Reid with Oracle access" },
               { title: "Scheduling & meetings", desc: "Calendar sync, Zoom links, post-meeting AI summaries" },
-              { title: "The Oracle", desc: "AI legal research with citation verification, inline everywhere" },
+              { title: "Marco", desc: "AI legal research with citation verification, inline everywhere" },
               { title: "Company incorporation", desc: "Automated entity formation — LLC, Ltd, C-Corp — with AI-populated documents and e-filing" },
               { title: "Conflict checking", desc: "Automated conflict of interest detection across all matters and parties" },
               { title: "Depositions", desc: "Video, real-time AI transcription, exhibit management, and AI summaries" },
@@ -399,7 +399,7 @@ export default function LawPage() {
           <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/pricing" size="lg">See pricing</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
+              <Button href="/oracle" variant="secondary" size="lg">Explore Marco</Button>
             </div>
           </Reveal>
         </Container>

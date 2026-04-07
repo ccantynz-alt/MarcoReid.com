@@ -58,7 +58,7 @@ export const PRODUCTS: Record<string, Product> = {
     slug: "/marco",
     tagline: "Your AI partner for law and accounting",
     description:
-      "Cross-domain legal and accounting AI research. Ask questions that span both disciplines simultaneously. Every citation verified against authoritative public domain sources.",
+      "Cross-domain legal and accounting AI research. Ask Marco questions that span both disciplines simultaneously. Every citation verified against authoritative public domain sources.",
     features: [
       "Legal research across all public domain case law and statutes",
       "Accounting research across tax codes and regulations",
