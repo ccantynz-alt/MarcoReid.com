@@ -12,7 +12,7 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.82.0",
+    "@anthropic-ai/sdk": "^0.86.0",
     "@prisma/client": "^5.22.0",
     "@tailwindcss/postcss": "^4.2.2",
     "bcryptjs": "^3.0.3",
