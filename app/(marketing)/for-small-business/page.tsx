@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  url: `${BRAND.url}/for-small-business`,
+  name: `${BRAND.name} for Small Business`,
   mainEntity: [
     {
       "@type": "Question",
