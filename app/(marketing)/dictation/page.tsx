@@ -14,9 +14,22 @@ const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 
 
 export const metadata: Metadata = {
-  title: "Marco Reid Voice \u2014 The Most Advanced Professional Voice Platform Ever Built",
+  title: "Marco Reid Voice — The Most Advanced Professional Voice Platform Ever Built",
   description:
-    "Not a dictation tool. The platform\u2019s intelligence layer. Legal and accounting vocabulary in 9 languages. Voice commands that file, bill, schedule, and research.",
+    "Not a dictation tool. The platform\u2019s intelligence layer. Legal and accounting vocabulary in 9 languages. Voice-to-chat, voice-to-text, voice commands that file, bill, schedule, and research. Professional connections via email.",
+  keywords: [
+    "Marco Reid Voice",
+    "voice to text lawyer",
+    "voice to chat legal",
+    "legal voice dictation",
+    "AI dictation for lawyers",
+    "voice messaging attorneys",
+    "professional voice dictation",
+    "legal transcription software",
+    "voice commands law firm",
+    "accounting voice dictation",
+    "multilingual legal dictation",
+  ],
 };
 
 const schema = {
@@ -25,13 +38,81 @@ const schema = {
   name: "Marco Reid Voice",
   applicationCategory: "Productivity",
   operatingSystem: "Web",
-  description: "Universal voice input layer for legal and accounting professionals. 9 languages with professional vocabulary intelligence. Voice commands across the entire platform.",
+  description: "Universal voice input layer for legal and accounting professionals. Voice-to-chat, voice-to-text, and voice commands across the entire platform. 9 languages with professional vocabulary intelligence.",
   url: `${BRAND.url}/dictation`,
 };
 
 const languages = [
   "English", "Spanish", "Mandarin", "Hindi", "Japanese",
   "French", "Arabic", "Portuguese", "Korean",
+];
+
+const platformSurfaces = [
+  { surface: "Document Editor", desc: "Dictate contracts, briefs, memos — formatted as you speak" },
+  { surface: "Email Composer", desc: "Draft and send emails by voice with matter tagging" },
+  { surface: "Marco Oracle", desc: "Ask research questions by voice, hear results read back" },
+  { surface: "Matter Notes", desc: "Dictate case notes that auto-attach to the right matter" },
+  { surface: "Billing Entries", desc: "Log time and describe work by speaking naturally" },
+  { surface: "Calendar", desc: "Schedule meetings, set reminders, create events by voice" },
+  { surface: "Messages", desc: "Voice-to-chat — speak and colleagues read it instantly" },
+  { surface: "Case Management", desc: "Update matter status, assign tasks, add deadlines" },
+  { surface: "Trust Accounting", desc: "Record transactions, run reconciliations by voice" },
+  { surface: "Tax Filing", desc: "Navigate tax forms, enter data, run calculations" },
+  { surface: "Client Portal", desc: "Draft client updates and status messages by voice" },
+  { surface: "Depositions", desc: "Real-time transcription with legal vocabulary intelligence" },
+];
+
+const competitors = [
+  {
+    name: "Marco Reid Voice",
+    integration: true,
+    legal: true,
+    commands: true,
+    languages: true,
+    connections: true,
+    chat: true,
+    highlight: true,
+  },
+  {
+    name: "WisprFlow",
+    integration: false,
+    legal: false,
+    commands: false,
+    languages: false,
+    connections: false,
+    chat: false,
+    highlight: false,
+  },
+  {
+    name: "Dragon Legal",
+    integration: false,
+    legal: true,
+    commands: false,
+    languages: false,
+    connections: false,
+    chat: false,
+    highlight: false,
+  },
+  {
+    name: "Otter.ai",
+    integration: false,
+    legal: false,
+    commands: false,
+    languages: false,
+    connections: false,
+    chat: false,
+    highlight: false,
+  },
+  {
+    name: "Philips SpeechLive",
+    integration: false,
+    legal: true,
+    commands: false,
+    languages: false,
+    connections: false,
+    chat: false,
+    highlight: false,
+  },
 ];
 
 export default function DictationPage() {
@@ -131,6 +212,169 @@ export default function DictationPage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
+      {/* Voice-to-Chat */}
+      <section className="py-32 sm:py-44" aria-label="Voice to chat">
+        <Container>
+          <div className="mx-auto max-w-4xl">
+            <Reveal>
+              <p className="text-xs font-medium uppercase tracking-widest text-forest-600">
+                Voice-to-Chat
+              </p>
+              <h2 className="mt-6 text-display font-serif text-navy-700">
+                Speak into a matter thread.
+                <br />
+                <span className="text-forest-500">Colleagues read it instantly.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-8 text-xl leading-relaxed text-navy-400">
+                No typing. No switching apps. Open a matter thread, tap the microphone,
+                and speak. Your words become messages. Voice messages are auto-transcribed
+                and fully searchable. Tag a matter. Mention a colleague. Share a case update.
+                All by voice.
+              </p>
+            </Reveal>
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+              {[
+                {
+                  title: "Instant transcription",
+                  desc: "Words appear as text messages within seconds. Recipients read them on any device — desktop, tablet, phone.",
+                },
+                {
+                  title: "Matter-tagged threads",
+                  desc: "Every voice message is automatically attached to the correct matter. Full audit trail. Full searchability.",
+                },
+                {
+                  title: "Cross-border collaboration",
+                  desc: "Speak in Spanish. Your colleague reads it in English. 9 languages with real-time translation built in.",
+                },
+              ].map((item) => (
+                <Reveal key={item.title} delay={0.05}>
+                  <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                    <p className="font-semibold text-navy-700">{item.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-400">{item.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
+      {/* Voice-to-Text */}
+      <section className="py-32 sm:py-44" aria-label="Voice to text">
+        <Container>
+          <div className="mx-auto max-w-4xl">
+            <Reveal>
+              <p className="text-xs font-medium uppercase tracking-widest text-forest-600">
+                Voice-to-Text
+              </p>
+              <h2 className="mt-6 text-display font-serif text-navy-700">
+                Beyond transcription.
+                <br />
+                <span className="text-forest-500">Context-aware professional text.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-8 text-xl leading-relaxed text-navy-400">
+                Dictate a contract clause and it formats as a contract clause. Dictate a
+                case note and it structures as a case note. Dictate a tax memo and it
+                organises with proper headings, citations, and IRC section references.
+                The intelligence layer understands what you are writing, not just what
+                you are saying.
+              </p>
+            </Reveal>
+            <div className="mt-12 space-y-4">
+              {[
+                {
+                  label: "Legal drafting",
+                  example: "\"Notwithstanding the foregoing, the indemnifying party shall...\"",
+                  result: "Formatted as contract clause with proper legal styling. Latin terms preserved. Citation format maintained.",
+                },
+                {
+                  label: "Case notes",
+                  example: "\"Client called regarding the Rodriguez H-1B petition, USCIS issued RFE on specialty occupation...\"",
+                  result: "Structured with date, matter reference, agency, and action items. Auto-tagged to matter.",
+                },
+                {
+                  label: "Tax memo",
+                  example: "\"Under IRC section 199A, the qualified business income deduction allows...\"",
+                  result: "Organised with proper heading hierarchy. IRC sections hyperlinked. GAAP references formatted.",
+                },
+              ].map((item) => (
+                <Reveal key={item.label} delay={0.05}>
+                  <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-navy-500">{item.label}</p>
+                    <p className="mt-3 text-lg italic text-navy-700">{item.example}</p>
+                    <p className="mt-3 text-sm text-forest-600">&rarr; {item.result}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
+      {/* Professional Connections via Email */}
+      <section className="py-32 sm:py-44" aria-label="Professional connections">
+        <Container>
+          <div className="mx-auto max-w-4xl">
+            <Reveal>
+              <p className="text-xs font-medium uppercase tracking-widest text-forest-600">
+                Professional connections
+              </p>
+              <h2 className="mt-6 text-display font-serif text-navy-700">
+                Say the email address.
+                <br />
+                <span className="text-forest-500">Marco handles the rest.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-8 text-xl leading-relaxed text-navy-400">
+                Professionals connect using email addresses. Say &ldquo;send a message to
+                partner@lawfirm.com about the Rodriguez matter&rdquo; and Marco Reid Voice
+                finds or invites that professional, creates the matter connection, and sends
+                the message. No contact lists to manage. No apps to download. No friend requests.
+                Just speak the email address and the connection happens.
+              </p>
+            </Reveal>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+              {[
+                {
+                  title: "Instant professional lookup",
+                  desc: "Speak an email address. If they are on Marco Reid, the connection is instant. If not, they receive an invitation branded to your firm.",
+                },
+                {
+                  title: "Cross-professional bridge",
+                  desc: "Lawyers connect with accountants. CPAs connect with attorneys. The cross-professional bridge that no other platform can build.",
+                },
+                {
+                  title: "Matter-based collaboration",
+                  desc: "Connections are matter-centric. Invite a CPA to a client matter with one voice command. They see exactly what they need — nothing more.",
+                },
+                {
+                  title: "Voice invitations",
+                  desc: "Say \"invite Sarah Chen at chen@cpa.com to the Thornton acquisition\". Invitation sent. Shared workspace created. Done.",
+                },
+              ].map((item) => (
+                <Reveal key={item.title} delay={0.05}>
+                  <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                    <p className="font-semibold text-navy-700">{item.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-400">{item.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
       {/* Voice commands that actually DO things */}
       <section className="py-32 sm:py-44" aria-label="Voice commands">
         <Container>
@@ -165,6 +409,16 @@ export default function DictationPage() {
                 command: "\"Schedule a call with Patricia Thornton, Thursday at two pm, thirty minutes, tag it to the Thornton acquisition matter, send her a Zoom link.\"",
                 result: "Meeting created. Matter tagged. Zoom generated. Calendar invite sent. Done.",
               },
+              {
+                context: "Inside messages",
+                command: "\"Send a voice message to the Thornton team \u2014 deposition rescheduled to next Tuesday, please update your calendars.\"",
+                result: "Voice transcribed. Message sent to all matter participants. Calendar update suggested. Audit trail recorded.",
+              },
+              {
+                context: "Inside Marco Oracle",
+                command: "\"What are the current USCIS processing times for I-140 EB-2 at the Nebraska Service Center?\"",
+                result: "Marco queried by voice. Response streamed with verified sources. Citation badges displayed. Results read aloud if requested.",
+              },
             ].map((cmd) => (
               <Reveal key={cmd.context} delay={0.05}>
                 <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
@@ -180,31 +434,135 @@ export default function DictationPage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
+      {/* Platform Integration Map */}
+      <section className="py-32 sm:py-44" aria-label="Platform integration">
+        <Container>
+          <Reveal>
+            <p className="text-center text-xs font-medium uppercase tracking-widest text-navy-500">
+              Available everywhere
+            </p>
+            <h2 className="mt-6 text-center text-display font-serif text-navy-700">
+              12 platform surfaces. One voice layer.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-center text-lg text-navy-400">
+              Everywhere you can type, you can speak. Voice is not a feature bolted onto
+              the side. It is woven into every input surface across the entire Marco Reid platform.
+            </p>
+          </Reveal>
+          <div className="mx-auto mt-16 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {platformSurfaces.map((s) => (
+              <Reveal key={s.surface} delay={0.03}>
+                <div className="rounded-xl border border-navy-100 bg-white p-5 shadow-card transition-colors hover:border-forest-200">
+                  <p className="font-semibold text-navy-700">{s.surface}</p>
+                  <p className="mt-1.5 text-sm text-navy-400">{s.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
       {/* Stats */}
       <section className="py-32 sm:py-44" aria-label="Time savings">
         <Container>
-          <div className="grid gap-8 sm:grid-cols-3 text-center">
-            <Reveal delay={0.1}>
+          <div className="grid gap-8 sm:grid-cols-5 text-center">
+            <Reveal delay={0.05}>
               <p className="font-serif text-display text-navy-700">
                 <AnimatedCounter end={4} suffix="h" />
               </p>
               <p className="mt-2 text-sm text-navy-400">recovered every single day</p>
             </Reveal>
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1}>
               <p className="font-serif text-display text-forest-600">
                 $<AnimatedCounter end={1400} />
               </p>
-              <p className="mt-2 text-sm text-navy-400">daily billing capacity from one feature</p>
+              <p className="mt-2 text-sm text-navy-400">daily billing capacity</p>
             </Reveal>
-            <Reveal delay={0.3}>
+            <Reveal delay={0.15}>
               <p className="font-serif text-display text-navy-500">
                 <AnimatedCounter end={9} />
               </p>
-              <p className="mt-2 text-sm text-navy-400">languages with professional vocabulary</p>
+              <p className="mt-2 text-sm text-navy-400">languages at launch</p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="font-serif text-display text-forest-600">
+                <AnimatedCounter end={99} suffix="%" />
+              </p>
+              <p className="mt-2 text-sm text-navy-400">accuracy on legal terms</p>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <p className="font-serif text-display text-navy-500">
+                <AnimatedCounter end={12} />
+              </p>
+              <p className="mt-2 text-sm text-navy-400">platform surfaces</p>
             </Reveal>
           </div>
         </Container>
       </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
+
+      {/* Competitive Comparison */}
+      <section className="py-32 sm:py-44" aria-label="Comparison">
+        <Container>
+          <Reveal>
+            <p className="text-center text-xs font-medium uppercase tracking-widest text-navy-500">
+              The competition
+            </p>
+            <h2 className="mt-6 text-center text-display font-serif text-navy-700">
+              Every competitor is standalone. Marco Reid Voice IS the platform.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-16 max-w-4xl overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-navy-200">
+                    <th className="pb-4 text-left font-semibold text-navy-700">Feature</th>
+                    {competitors.map((c) => (
+                      <th
+                        key={c.name}
+                        className={`pb-4 text-center font-semibold ${c.highlight ? "text-forest-600" : "text-navy-500"}`}
+                      >
+                        {c.name}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-navy-100">
+                  {(
+                    [
+                      ["Platform Integration", "integration"],
+                      ["Legal Vocabulary", "legal"],
+                      ["Voice Commands", "commands"],
+                      ["9 Languages", "languages"],
+                      ["Professional Connections", "connections"],
+                      ["Voice-to-Chat", "chat"],
+                    ] as const
+                  ).map(([label, key]) => (
+                    <tr key={label}>
+                      <td className="py-3 text-navy-600">{label}</td>
+                      {competitors.map((c) => (
+                        <td key={c.name} className="py-3 text-center">
+                          {c[key] ? (
+                            <span className="text-forest-500" aria-label="Yes">&#10003;</span>
+                          ) : (
+                            <span className="text-navy-300" aria-label="No">&mdash;</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
       {/* Languages */}
       <section className="relative py-32 sm:py-44" aria-label="Languages">
