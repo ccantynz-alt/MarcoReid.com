@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import type Anthropic from "@anthropic-ai/sdk";
 import { prisma } from "@/lib/prisma";
 import { verifyCitation } from "./verify";
 import {
@@ -22,9 +22,17 @@ import { AI_DISCLAIMER } from "@/lib/constants";
  * 7. Returns verified results to the user
  */
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+let _anthropic: Anthropic | null = null;
+
+async function getAnthropic(): Promise<Anthropic> {
+  if (!_anthropic) {
+    const { default: AnthropicSDK } = await import("@anthropic-ai/sdk");
+    _anthropic = new AnthropicSDK({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+    });
+  }
+  return _anthropic;
+}
 
 /**
  * Detect the query domain based on keywords and context.
@@ -309,6 +317,7 @@ export async function queryOracle(
   }`;
 
   // 4. Query Claude
+  const anthropic = await getAnthropic();
   const message = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4096,
