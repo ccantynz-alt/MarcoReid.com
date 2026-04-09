@@ -12,25 +12,25 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.82.0",
+    "@anthropic-ai/sdk": "^0.86.1",
     "@prisma/client": "^5.22.0",
     "@tailwindcss/postcss": "^4.2.2",
     "bcryptjs": "^3.0.3",
-    "next": "^16.2.2",
+    "next": "^16.2.3",
     "next-auth": "^4.24.13",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
-    "@next/bundle-analyzer": "^16.2.2",
+    "@next/bundle-analyzer": "^16.2.3",
     "@playwright/test": "^1.59.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.2",
+    "eslint-config-next": "^16.2.3",
     "postcss": "^8",
     "prisma": "^5.22.0",
     "tailwindcss": "^4.2.2",
