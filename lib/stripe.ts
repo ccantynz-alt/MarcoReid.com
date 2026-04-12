@@ -1,10 +1,22 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2024-11-20.acacia",
-  typescript: true,
-});
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2025-02-24.acacia",
+    typescript: true,
+  });
+}
+
+export const stripe = /* @__PURE__ */ (() => {
+  let instance: Stripe;
+  return new Proxy({} as Stripe, {
+    get(_target, prop, receiver) {
+      if (!instance) instance = getStripe();
+      return Reflect.get(instance, prop, receiver);
+    },
+  });
+})();
 
 export async function getOrCreateCustomer(
   userId: string,

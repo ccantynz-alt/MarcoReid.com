@@ -6,7 +6,7 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(
   _req: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const session = await getServerSession(authOptions);
   const sessionUser = session?.user as { id?: string; role?: string } | undefined;
@@ -14,8 +14,9 @@ export async function POST(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { id } = await params;
   const payment = await prisma.marketplacePayment.findUnique({
-    where: { id: params.id },
+    where: { id },
   });
   if (!payment) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
