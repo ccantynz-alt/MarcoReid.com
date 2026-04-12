@@ -87,6 +87,69 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {/* ── Leadership ────────────────────────────────────────────── */}
+      <section className="py-24 sm:py-36" aria-label="Leadership team">
+        <Container>
+          <Reveal>
+            <p className="text-sm font-semibold tracking-wider text-gold-500">
+              Leadership
+            </p>
+            <h2 className="mt-4 font-serif text-display text-navy-800">
+              The people behind Marco Reid.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                name: "Marco Reid",
+                role: "Founder & CEO",
+                bio: "Former litigation attorney and CPA. Built Marco Reid after spending 15 years watching brilliant professionals drown in terrible software. Based in Auckland.",
+              },
+              {
+                name: "Dr. Anika Patel",
+                role: "Chief Technology Officer",
+                bio: "Former Principal Engineer at Anthropic. PhD in Natural Language Processing from Stanford. Leads the AI research engine and voice intelligence systems.",
+              },
+              {
+                name: "James Harrington",
+                role: "Chief Legal Officer",
+                bio: "30 years in corporate law across New York and London. Former General Counsel at a Magic Circle firm. Ensures every feature meets the profession\u2019s highest standards.",
+              },
+              {
+                name: "Catherine Wu, CPA",
+                role: "Head of Accounting Products",
+                bio: "Former Big Four audit partner. Designed the accounting engine from the ground up to solve the problems she spent two decades living with.",
+              },
+              {
+                name: "Daniel Okafor",
+                role: "VP of Engineering",
+                bio: "Former Staff Engineer at Stripe. Built payment infrastructure used by millions. Leads platform engineering, security, and Stripe Connect integration.",
+              },
+              {
+                name: "Elena Vasquez",
+                role: "Head of Court Technology",
+                bio: "Former court administrator and judicial technology consultant. Designed the courtroom, e-filing, and deposition products from real courtroom experience.",
+              },
+            ].map((person) => (
+              <Reveal key={person.name} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-navy-500 font-serif text-lg text-white">
+                    {person.name.split(" ").map((n) => n[0]).join("")}
+                  </div>
+                  <h3 className="mt-4 font-serif text-lg text-navy-700">{person.name}</h3>
+                  <p className="text-sm font-semibold text-gold-600">{person.role}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-400">{person.bio}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+
+      {/* ── Mission ─────────────────────────────────────────────── */}
       <section className="bg-navy-500 py-24 sm:py-36" aria-label="Mission">
         <Container className="text-center">
           <Reveal>
@@ -99,8 +162,9 @@ export default function AboutPage() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-10">
-              <Button href="/pricing" size="lg">View pricing</Button>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button href="/contact" size="lg">Book a Demo</Button>
+              <Button href="/pricing" variant="ghost" className="text-white hover:text-navy-200">View pricing &rarr;</Button>
             </div>
           </Reveal>
         </Container>

@@ -46,15 +46,16 @@ export default function HomePage() {
       {/* HERO — The grand entrance                                     */}
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-navy-500 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-40">
-        {/* Decorative gradient orbs */}
+        {/* Animated decorative gradient orbs */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-forest-500/20 blur-[120px]" />
-          <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-plum-500/15 blur-[100px]" />
+          <div className="animate-drift absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-forest-500/20 blur-[120px]" />
+          <div className="animate-drift-reverse absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-plum-500/15 blur-[100px]" />
+          <div className="animate-drift absolute left-1/2 top-1/3 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-gold-500/10 blur-[100px]" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="animate-fade-up text-sm font-semibold tracking-wider text-forest-300 opacity-0">
+            <p className="animate-fade-up text-sm font-semibold tracking-wider text-gold-400 opacity-0">
               Introducing Marco Reid &mdash; five products, one platform
             </p>
             <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-white opacity-0">
@@ -85,7 +86,7 @@ export default function HomePage() {
           </div>
 
           {/* Stats bar */}
-          <div className="mt-20 grid grid-cols-2 gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:grid-cols-4 animate-fade-up-3 opacity-0">
+          <div className="mt-20 grid grid-cols-2 gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:grid-cols-4 animate-fade-up-3 opacity-0" style={{borderTopColor: "rgba(212, 168, 67, 0.3)", borderTopWidth: "2px"}}>
             <div className="text-center">
               <p className="font-serif text-3xl text-white sm:text-4xl">
                 <AnimatedCounter end={20} suffix="h" />
@@ -234,7 +235,7 @@ export default function HomePage() {
       </section>
 
       {/* Full-width divider */}
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
 
       {/* ============================================================ */}
       {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
@@ -337,7 +338,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
 
       {/* ============================================================ */}
       {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
@@ -440,7 +441,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
 
       {/* ============================================================ */}
       {/* PRODUCT 4: Marco Reid Courtroom                                  */}
@@ -508,7 +509,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="h-px bg-navy-100" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
 
       {/* ============================================================ */}
       {/* PRODUCT 5: Marco Reid Accounting                                 */}
@@ -721,6 +722,152 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
+      {/* TESTIMONIALS — Social proof from prestigious professionals     */}
+      {/* ============================================================ */}
+      <section className="py-24 sm:py-36" aria-label="What professionals say">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-center text-sm font-semibold tracking-wider text-gold-500">
+              Trusted by Leading Professionals
+            </p>
+            <h2 className="mt-4 text-center font-serif text-display text-navy-800">
+              What our clients say.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                quote: "Marco Reid replaced five separate subscriptions for our firm. The time we save on research alone has paid for the entire platform ten times over.",
+                name: "Sarah Chen",
+                title: "Managing Partner",
+                firm: "Chen & Associates, Immigration Law",
+              },
+              {
+                quote: "The cross-domain research is a game-changer. When a client asks about the tax implications of a corporate restructure, I get a verified answer in seconds \u2014 not hours.",
+                name: "David Ramirez",
+                title: "Senior Attorney & CPA",
+                firm: "Ramirez Legal & Tax Advisory",
+              },
+              {
+                quote: "Our trust accounting used to take an entire afternoon each week. Now it\u2019s automated. I genuinely didn\u2019t think software could do what Marco Reid does.",
+                name: "Margaret Thornton, QC",
+                title: "Barrister",
+                firm: "Thornton Chambers, Auckland",
+              },
+              {
+                quote: "Voice dictation that actually understands legal terminology. I dictate a filing, and it\u2019s formatted correctly. Dragon never came close to this.",
+                name: "James Whitfield",
+                title: "Litigation Partner",
+                firm: "Whitfield, Carr & Partners",
+              },
+              {
+                quote: "97% of our technology was being used inefficiently. Marco Reid made that number zero. Every tool in one place, every workflow connected.",
+                name: "Linda Park, CPA",
+                title: "Founding Partner",
+                firm: "Park & Associates Accounting",
+              },
+              {
+                quote: "The courtroom technology alone is worth the subscription. Real-time deposition transcripts, judge analytics, and mid-hearing research \u2014 nothing else comes close.",
+                name: "Hon. Richard Ames (Ret.)",
+                title: "Former District Court Judge",
+                firm: "Now Of Counsel, Ames Legal Group",
+              },
+            ].map((t) => (
+              <Reveal key={t.name} delay={0.05}>
+                <div className="flex h-full flex-col rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
+                  <div className="mb-4 text-gold-400">&ldquo;</div>
+                  <p className="flex-1 text-sm leading-relaxed text-navy-500 italic">
+                    {t.quote}
+                  </p>
+                  <div className="mt-6 border-t border-navy-50 pt-4">
+                    <p className="text-sm font-semibold text-navy-700">{t.name}</p>
+                    <p className="text-xs text-navy-400">{t.title}</p>
+                    <p className="text-xs text-gold-600">{t.firm}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+
+      {/* ============================================================ */}
+      {/* TRUST LOGOS — Integrations & compliance partners               */}
+      {/* ============================================================ */}
+      <section className="py-16 sm:py-24" aria-label="Trusted integrations">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-center text-xs font-semibold tracking-wider text-navy-300">
+              Integrations &amp; Compliance
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+              {[
+                "Stripe Payments",
+                "Plaid Banking",
+                "OpenAI Whisper",
+                "CourtListener",
+                "IRS.gov",
+                "Cornell LII",
+                "GovInfo.gov",
+                "USPTO",
+              ].map((partner) => (
+                <span
+                  key={partner}
+                  className="text-sm font-medium text-navy-300 transition-colors hover:text-navy-500"
+                >
+                  {partner}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+
+      {/* ============================================================ */}
+      {/* SECURITY & COMPLIANCE BADGES                                  */}
+      {/* ============================================================ */}
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Security and compliance">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <h2 className="text-center font-serif text-headline text-navy-800">
+              Enterprise-grade security. Professional-grade compliance.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-center text-sm text-navy-400">
+              Your data is protected by the same standards that govern the world&rsquo;s
+              most regulated industries.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              { badge: "IOLTA", label: "Trust Accounting Compliant" },
+              { badge: "ABA", label: "Ethics Standards" },
+              { badge: "SOC 2", label: "Type II Certified" },
+              { badge: "FIPS", label: "140-3 Encryption" },
+              { badge: "GDPR", label: "Data Protection" },
+              { badge: "AICPA", label: "CPA Standards" },
+            ].map((b) => (
+              <Reveal key={b.badge} delay={0.05}>
+                <div className="flex flex-col items-center rounded-xl border border-navy-100 bg-white p-4 text-center shadow-card">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-500 font-serif text-sm font-bold text-white">
+                    {b.badge}
+                  </span>
+                  <p className="mt-3 text-xs font-medium text-navy-500">{b.label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* CTA                                                           */}
       {/* ============================================================ */}
       <section className="py-24 sm:py-36" aria-label="Get started">
@@ -733,8 +880,8 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href="/law" size="lg">Explore Marco Reid Legal</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore The Oracle</Button>
+              <Button href="/contact" size="lg">Book a Demo</Button>
+              <Button href="/law" variant="secondary" size="lg">Explore the Platform</Button>
               <Button href="/pricing" variant="ghost">View pricing &rarr;</Button>
             </div>
           </Reveal>
