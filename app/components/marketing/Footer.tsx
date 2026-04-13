@@ -15,8 +15,13 @@ const links = {
     { label: "Contact", href: "/contact" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Acceptable Use", href: "/acceptable-use" },
+    { label: "Cookie Policy", href: "/cookies" },
+    { label: "DMCA & Copyright", href: "/dmca" },
+    { label: "Data Processing", href: "/dpa" },
+    { label: "Refunds", href: "/refunds" },
   ],
 };
 
