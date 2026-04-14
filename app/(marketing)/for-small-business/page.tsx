@@ -55,6 +55,64 @@ export default function ForSmallBusinessPage() {
         </Container>
       </section>
 
+      <section className="py-24 sm:py-36" aria-label="How it works">
+        <Container>
+          <Reveal>
+            <h2 className="font-serif text-display text-navy-800">
+              How it works.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            {[
+              { step: "1", title: "Your lawyer or accountant uses Marco Reid", desc: "They work on the most advanced legal and accounting platform ever built. That intelligence benefits you directly." },
+              { step: "2", title: "You get a client portal", desc: "Real-time status updates, secure messaging, and document sharing. Everything about your matter in one place." },
+              { step: "3", title: "Faster results, lower bills, complete transparency", desc: "When your professional is more efficient, you get better outcomes, better value, and total visibility into your matter." },
+            ].map((s) => (
+              <Reveal key={s.step} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                  <p className="text-xs font-bold text-gold-400">Step {s.step}</p>
+                  <h3 className="mt-2 font-semibold text-navy-700">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-400">{s.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              My attorney switched to Marco Reid and my case moved twice as fast. I could see
+              everything in the portal — no more chasing updates by phone.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Rachel Torres</p>
+            <p className="text-xs text-navy-400">Small Business Owner</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-36" aria-label="Get in touch">
+        <Container className="text-center">
+          <Reveal>
+            <h2 className="font-serif text-display text-navy-800">
+              Ready to find a Marco Reid professional?
+            </h2>
+            <p className="mt-4 text-lg text-navy-400">
+              Connect with a lawyer or accountant who uses the most advanced tools available.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-10 flex justify-center gap-4">
+              <Button href="/contact" size="lg">Get in touch</Button>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
       <section className="bg-navy-50 py-24 sm:py-36" aria-label="For professionals">
         <Container className="text-center">
           <Reveal>
