@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { randomBytes } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
+import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -18,6 +19,13 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+
+    // Per-email rate limit — prevents abuse.
+    const limit = await rateLimit({
+      key: `forgot-password:${email.toLowerCase().trim()}`,
+      ...LIMITS.authForgotPassword,
+    });
+    if (!limit.ok) return rateLimitResponse(limit);
 
     const user = await prisma.user.findUnique({
       where: { email: email.toLowerCase().trim() },

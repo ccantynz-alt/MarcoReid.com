@@ -2,11 +2,23 @@ import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
+import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
+    // Per-IP rate limit — prevents signup abuse.
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+    const limit = await rateLimit({
+      key: `register:${ip}`,
+      ...LIMITS.authRegister,
+    });
+    if (!limit.ok) return rateLimitResponse(limit);
+
     const { email, password, name, firmName } = await request.json();
 
     if (!email || !password) {

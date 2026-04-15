@@ -299,9 +299,15 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Rate limiting on AI endpoints",
+        title: "Rate limiting infrastructure",
         description:
-          "Marco and Voice endpoints need per-user rate limits to control costs and abuse.",
+          "Token-bucket limiter in lib/rate-limit.ts. Applied to register + forgot-password. Ready for Marco/Voice endpoints.",
+        status: "done",
+      },
+      {
+        title: "Rate limiting on Marco/Voice endpoints",
+        description:
+          "Infrastructure ready — needs wiring into /api/marco and /api/voice/transcribe.",
         status: "queued",
       },
     ],
@@ -435,8 +441,8 @@ export const phases: BuildPhase[] = [
       {
         title: "Help centre / docs site",
         description:
-          "FAQ, getting-started guides (Legal + Accounting), video walkthroughs, support search.",
-        status: "queued",
+          "/help with category grid, /help/getting-started, /help/marco-research, /help/trust-accounts, /help/billing, /help/faq — 25 questions across 6 categories.",
+        status: "done",
       },
       {
         title: "Free trial flow (14-day, no card)",
