@@ -5,12 +5,14 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
+import FAQ from "@/app/components/shared/FAQ";
 import Reveal from "@/app/components/effects/Reveal";
 
 const VoiceMockup = dynamic(() => import("@/app/components/marketing/VoiceMockup"));
 const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
 const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
+const VideoEmbed = dynamic(() => import("@/app/components/marketing/VideoEmbed"));
 
 
 export const metadata: Metadata = {
@@ -56,7 +58,8 @@ export default function DictationPage() {
             you can speak. And it doesn&rsquo;t just transcribe &mdash; it understands your profession,
             your vocabulary, and your commands.
           </p>
-          <div className="mt-12 animate-fade-up-3 opacity-0">
+          <p className="mt-4 animate-fade-up-3 text-sm text-navy-300 opacity-0">Included with every Marco Reid subscription</p>
+          <div className="mt-8 animate-fade-up-3 opacity-0">
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
@@ -96,6 +99,12 @@ export default function DictationPage() {
           </MockupReveal>
         </Container>
       </section>
+
+          <VideoEmbed
+            title="Hear Marco Reid Voice in action"
+            description="Watch a litigation attorney dictate a filing, log their time, and send a client update — all by voice, without touching the keyboard."
+            accentColor="forest"
+          />
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
@@ -268,6 +277,30 @@ export default function DictationPage() {
           </Reveal>
         </Container>
       </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              I dictated an entire brief, logged my time, and sent the client an update — all by voice,
+              without touching my keyboard. Dragon could never do that. Nothing else even comes close.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Amanda Reeves</p>
+            <p className="text-xs text-navy-400">Immigration Attorney, Reeves Law Group</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <FAQ
+        items={[
+          { question: "How is Marco Reid Voice different from Dragon?", answer: "Dragon is standalone dictation software that costs $699 and only transcribes text. Marco Reid Voice is built into every input field across the platform — it can log billing entries, schedule meetings, query research, send messages, and draft documents, all by voice. It understands legal and accounting vocabulary natively, in 9 languages." },
+          { question: "What languages are supported?", answer: "Marco Reid Voice launches with 9 languages: English, Spanish, Mandarin Chinese, Hindi, Arabic, French, Portuguese, Japanese, and Korean. Each language includes professional vocabulary for legal and accounting terminology." },
+          { question: "Can I dictate billing entries by speaking?", answer: "Yes. Say something like 'Log four point five hours on Rodriguez H-1B, I-129 filing, standard rate' and Marco Reid Voice creates the time entry, tags the matter, applies the rate, and records the date. Ten seconds, zero typing." },
+          { question: "Does it work in every part of the platform?", answer: "Yes. Everywhere you can type, you can speak. Documents, emails, billing, scheduling, research queries, client messages, matter notes — Marco Reid Voice is the universal input layer for the entire platform." },
+          { question: "How accurate is the transcription?", answer: "Marco Reid Voice is built on OpenAI Whisper with a professional language layer trained on legal and accounting terminology. It learns your professional names, case names, and terminology over time, providing accuracy that generic dictation tools cannot match." },
+        ]}
+      />
     </>
   );
 }

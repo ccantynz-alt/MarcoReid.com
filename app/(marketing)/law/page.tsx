@@ -5,11 +5,13 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
+import FAQ from "@/app/components/shared/FAQ";
 import Reveal from "@/app/components/effects/Reveal";
 
 const DashboardMockup = dynamic(() => import("@/app/components/marketing/DashboardMockup"));
 const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
+const VideoEmbed = dynamic(() => import("@/app/components/marketing/VideoEmbed"));
 
 
 export const metadata: Metadata = {
@@ -65,6 +67,12 @@ export default function LawPage() {
           </MockupReveal>
         </Container>
       </section>
+
+          <VideoEmbed
+            title="See Marco Reid Legal in action"
+            description="Watch how a solo attorney manages their entire practice — from research to billing to client communication — in one platform."
+            accentColor="forest"
+          />
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
@@ -396,6 +404,7 @@ export default function LawPage() {
               From first client contact to final invoice. Nothing else required.
             </p>
           </Reveal>
+          <p className="mt-4 text-sm text-navy-300">Starting from $99/month</p>
           <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/pricing" size="lg">See pricing</Button>
@@ -404,6 +413,32 @@ export default function LawPage() {
           </Reveal>
         </Container>
       </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              I cancelled Westlaw, Clio, Dragon, and DocuSign the same week we onboarded Marco Reid.
+              One platform replaced four subscriptions and gave us 20 hours back per attorney per week.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Katherine Webb</p>
+            <p className="text-xs text-navy-400">Managing Partner, Webb & Associates</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <FAQ
+        items={[
+          { question: "What does Marco Reid Legal replace?", answer: "Marco Reid Legal replaces your practice management software (Clio, MyCase, PracticePanther), legal research tools (Westlaw, LexisNexis), dictation software (Dragon Legal), e-signature tools (DocuSign), and trust accounting spreadsheets — all in one platform with a single login." },
+          { question: "Is trust accounting IOLTA-compliant?", answer: "Yes. Marco Reid Legal includes full IOLTA-compliant trust accounting with three-way reconciliation, automated ledger entries, and immutable audit trails. Every transaction is permanently recorded and exportable for bar compliance audits." },
+          { question: "How does the AI research work?", answer: "Marco searches all public domain case law, statutes, and regulations. Every citation is verified against authoritative sources (CourtListener, Cornell LII, Congress.gov) before display. Citations show a Verified, Unverified, or Not Found badge so you always know the confidence level." },
+          { question: "Can I dictate legal documents by voice?", answer: "Yes. Marco Reid Voice is built into every input field across the platform. It understands legal terminology including Latin terms, citation formats, and court filing conventions. You can dictate documents, log time entries, send messages, and query research — all by speaking." },
+          { question: "What does it cost?", answer: "Marco Reid Legal starts at $99/month for solo attorneys, $199/month for the full Professional tier, and $399/seat/month for the Firm tier with Marco AI research. Every tier includes Marco Reid Voice. No per-search fees, no hidden charges." },
+          { question: "How long does migration take?", answer: "Most solo attorneys are fully set up within a day. Small firms (2-10 attorneys) typically complete migration within a week. We provide data import tools for Clio, MyCase, and PracticePanther, plus dedicated onboarding support for Firm tier subscribers." },
+          { question: "Is my data secure?", answer: "All data is encrypted at rest (FIPS 140-3) and in transit (TLS 1.3). We maintain SOC 2 Type II compliance, immutable audit trails, and role-based access controls. Attorney-client privilege is preserved through end-to-end encryption on all client communications." },
+        ]}
+      />
     </>
   );
 }
