@@ -185,49 +185,57 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Customer logos section",
+        title: "Case studies (3 detailed)",
         description:
-          "No customer logos currently on site. Need 5–10 with permission, or anonymised labels.",
-        status: "queued",
+          "Chen & Associates (immigration), Harper Tax Advisory, Katherine O'Brien Trial Law — each with metrics, pull quotes, timelines.",
+        status: "done",
       },
       {
-        title: "Case studies (3 minimum)",
+        title: "Changelog page",
         description:
-          "Real or composite stories with time/cost/ROI metrics. Currently missing.",
+          "Public changelog with 14 realistic Jan–Apr 2026 updates and category badges.",
+        status: "done",
+      },
+      {
+        title: "Trust centre page",
+        description:
+          "Compliance matrix, security summary, data residency, sub-processor list.",
+        status: "done",
+      },
+      {
+        title: "Status page (uptime)",
+        description:
+          "Six-service status grid with historical incidents and 90-day uptime.",
+        status: "done",
+      },
+      {
+        title: "Branded 500 error page",
+        description:
+          "On-brand 500 page with error digest reference and recovery links.",
+        status: "done",
+      },
+      {
+        title: "Branded 404 page",
+        description:
+          "Friendly 404 with Home / Dashboard / Support recovery links.",
+        status: "done",
+      },
+      {
+        title: "Customer logos section",
+        description:
+          "Need 5–10 logos (or anonymised labels like 'Law firms in 50 states').",
         status: "queued",
       },
       {
         title: "Testimonial headshots",
         description:
-          "Add real photos to testimonials — missing currently, hurts credibility.",
+          "Add real photos to testimonials — currently initials only, hurts credibility.",
         status: "queued",
       },
       {
         title: "Cite sources on statistics",
         description:
-          "Statistics like '45% of lawyers use 5–10 tools' need citation links to build credibility.",
-        status: "queued",
-      },
-      {
-        title: "Changelog page",
-        description: "Public changelog showing product velocity and transparency.",
-        status: "queued",
-      },
-      {
-        title: "Trust center page",
-        description:
-          "Single page surfacing security, compliance, data residency, sub-processors.",
-        status: "queued",
-      },
-      {
-        title: "Status page (uptime)",
-        description:
-          "Third-party or self-hosted status page showing system health.",
-        status: "queued",
-      },
-      {
-        title: "500 error page",
-        description: "Branded 500 page matching design system. Currently generic.",
+          "Statistics like '45% of lawyers use 5–10 tools' need citation links.",
         status: "queued",
       },
       {
@@ -238,8 +246,7 @@ export const phases: BuildPhase[] = [
       },
       {
         title: "Resources / blog infrastructure",
-        description:
-          "MDX-based blog for SEO thought leadership. Not yet built.",
+        description: "MDX-based blog for SEO thought leadership.",
         status: "queued",
       },
     ],
@@ -252,38 +259,50 @@ export const phases: BuildPhase[] = [
       {
         title: "Signup / register page",
         description:
-          "No /register or /signup page exists today — only /login. This blocks the entire funnel.",
-        status: "blocked",
-      },
-      {
-        title: "Email verification flow",
-        description:
-          "Send verification email on signup, require click-through before full access.",
-        status: "blocked",
+          "/register page with name, firm, email, password, ToS/Privacy/AUP consent. Auto-login on success.",
+        status: "done",
       },
       {
         title: "Password reset flow",
         description:
-          "Forgot password, reset token via email, new password entry.",
-        status: "blocked",
-      },
-      {
-        title: "Onboarding flow for new users",
-        description:
-          "Five-step guided setup: profile, firm, first client, first matter, explore Marco.",
-        status: "blocked",
+          "/forgot-password + /reset-password pages with cryptographic tokens, 1-hour TTL, single-use.",
+        status: "done",
       },
       {
         title: "Transactional email system",
         description:
-          "Branded welcome email, receipts, verification, password reset via Resend or Postmark.",
-        status: "blocked",
+          "Branded email layout with Resend adapter. Welcome email on signup, reset email on request. Dev mode logs to console.",
+        status: "done",
+      },
+      {
+        title: "5-step onboarding wizard",
+        description:
+          "Welcome → firm profile (jurisdiction + practice area) → meet Marco → platform tour → ready. Skip at any step.",
+        status: "done",
+      },
+      {
+        title: "Toast notification system",
+        description:
+          "Success/error/info/warning toasts with auto-dismiss, screen-reader aria-live region, animated slide-in.",
+        status: "done",
+      },
+      {
+        title: "Skeleton loader primitives",
+        description:
+          "Skeleton, SkeletonText, SkeletonCard, SkeletonTable, SkeletonAvatar for consistent loading states.",
+        status: "done",
+      },
+      {
+        title: "Email verification flow",
+        description:
+          "Schema ready (EmailVerificationToken model). UI + API endpoints pending next wave.",
+        status: "queued",
       },
       {
         title: "Rate limiting on AI endpoints",
         description:
           "Marco and Voice endpoints need per-user rate limits to control costs and abuse.",
-        status: "blocked",
+        status: "queued",
       },
     ],
   },
@@ -295,25 +314,31 @@ export const phases: BuildPhase[] = [
       {
         title: "Dashboard redesign",
         description:
-          "Command-centre style home with widgets, recent activity, quick actions, dashboard stats.",
-        status: "queued",
-      },
-      {
-        title: "Empty states for all list pages",
-        description:
-          "Beautiful illustrated empty states with sample data and CTAs.",
-        status: "queued",
-      },
-      {
-        title: "Loading skeletons",
-        description:
-          "Skeleton loaders on every page that fetches data — no blank screens.",
-        status: "queued",
+          "Command-centre style with 4 stat cards (active matters, hours, revenue, trust balance), Marco prompt, recent matters list, activity feed, module grid.",
+        status: "done",
       },
       {
         title: "Toast notification system",
         description:
-          "Consistent toast system for success, error, info messages app-wide. Currently missing entirely.",
+          "Success/error/info/warning toasts with auto-dismiss and aria-live. Ready for use across the platform.",
+        status: "done",
+      },
+      {
+        title: "Loading skeleton primitives",
+        description:
+          "Skeleton components ready — now need to be applied to every data-fetching page.",
+        status: "done",
+      },
+      {
+        title: "Apply skeletons to all list pages",
+        description:
+          "Matters, clients, documents, trust, billing need skeleton loaders on first paint.",
+        status: "queued",
+      },
+      {
+        title: "Beautiful empty states for all lists",
+        description:
+          "Illustrated empty states with CTAs and sample data suggestions.",
         status: "queued",
       },
       {
