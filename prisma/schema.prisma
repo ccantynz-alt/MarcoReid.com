@@ -44,6 +44,11 @@ model User {
   stripeConnectAccountId String?              @unique
   connectOnboarded       Boolean              @default(false)
   marketplacePayments    MarketplacePayment[] @relation("ProfessionalPayments")
+
+  // Onboarding
+  onboardedAt   DateTime?
+  jurisdiction  String?
+  practiceArea  String?
 }
 
 // ============================================================
@@ -345,6 +350,30 @@ model QueryPattern {
 // ============================================================
 // COURTS — pilot requests from court procurement leads
 // ============================================================
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  verifiedAt DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
 
 model CourtPilotRequest {
   id           String   @id @default(cuid())

@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { sendEmail, emailLayout } from "@/lib/email";
+
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +16,13 @@ export async function POST(request: Request) {
       );
     }
 
+    if (typeof email !== "string" || typeof password !== "string") {
+      return NextResponse.json(
+        { error: "Invalid input." },
+        { status: 400 }
+      );
+    }
+
     if (password.length < 8) {
       return NextResponse.json(
         { error: "Password must be at least 8 characters." },
@@ -20,8 +30,10 @@ export async function POST(request: Request) {
       );
     }
 
+    const normalisedEmail = email.toLowerCase().trim();
+
     const existingUser = await prisma.user.findUnique({
-      where: { email },
+      where: { email: normalisedEmail },
     });
 
     if (existingUser) {
@@ -35,11 +47,33 @@ export async function POST(request: Request) {
 
     const user = await prisma.user.create({
       data: {
-        email,
-        name,
-        firmName,
+        email: normalisedEmail,
+        name: typeof name === "string" ? name.trim() : null,
+        firmName: typeof firmName === "string" ? firmName.trim() || null : null,
         passwordHash,
       },
+    });
+
+    // Send welcome email (fire-and-forget; do not block signup)
+    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const { html, text } = emailLayout({
+      preheader: "Welcome to Marco Reid",
+      heading: `Welcome${user.name ? `, ${user.name.split(" ")[0]}` : ""}.`,
+      body: `
+        <p>You&rsquo;re in. Your Marco Reid account is ready.</p>
+        <p>Your dashboard is the command centre for your practice — matters, clients, documents, trust accounting, billing, and of course Marco, your AI research assistant.</p>
+        <p>If you ever need help, just reply to this email and a human will answer.</p>
+      `,
+      cta: { href: `${baseUrl}/dashboard`, label: "Open your dashboard" },
+    });
+
+    sendEmail({
+      to: user.email,
+      subject: "Welcome to Marco Reid",
+      html,
+      text,
+    }).catch(() => {
+      // Swallow email errors — account creation is the priority.
     });
 
     return NextResponse.json(
