@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
+import { randomBytes } from "node:crypto";
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
 import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
+
+const VERIFICATION_TTL_MS = 24 * 60 * 60 * 1000;
 
 export async function POST(request: Request) {
   try {
@@ -66,22 +69,36 @@ export async function POST(request: Request) {
       },
     });
 
-    // Send welcome email (fire-and-forget; do not block signup)
+    // Create email verification token
+    const verificationToken = randomBytes(32).toString("hex");
+    await prisma.emailVerificationToken.create({
+      data: {
+        token: verificationToken,
+        userId: user.id,
+        expiresAt: new Date(Date.now() + VERIFICATION_TTL_MS),
+      },
+    });
+
+    // Send welcome + verification email (fire-and-forget; do not block signup)
     const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+    const verifyUrl = `${baseUrl}/verify-email?token=${verificationToken}`;
     const { html, text } = emailLayout({
-      preheader: "Welcome to Marco Reid",
+      preheader: "Welcome to Marco Reid — please verify your email",
       heading: `Welcome${user.name ? `, ${user.name.split(" ")[0]}` : ""}.`,
       body: `
         <p>You&rsquo;re in. Your Marco Reid account is ready.</p>
-        <p>Your dashboard is the command centre for your practice — matters, clients, documents, trust accounting, billing, and of course Marco, your AI research assistant.</p>
-        <p>If you ever need help, just reply to this email and a human will answer.</p>
+        <p>Please verify your email address so we can deliver security alerts, billing receipts, and important account notices. This link expires in 24 hours.</p>
       `,
-      cta: { href: `${baseUrl}/dashboard`, label: "Open your dashboard" },
+      cta: { href: verifyUrl, label: "Verify email" },
+      footer:
+        "If the button does not work, copy and paste this link into your browser:<br>" +
+        `<span style="color:#4a5568;word-break:break-all;">${verifyUrl}</span><br><br>` +
+        "Reid &amp; Associates Ltd · Auckland, New Zealand",
     });
 
     sendEmail({
       to: user.email,
-      subject: "Welcome to Marco Reid",
+      subject: "Welcome to Marco Reid — verify your email",
       html,
       text,
     }).catch(() => {
