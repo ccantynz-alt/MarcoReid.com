@@ -4,6 +4,7 @@ const links = {
   products: [
     { label: "Marco Reid Legal", href: "/law" },
     { label: "Marco Reid Accounting", href: "/accounting" },
+    { label: "Catch-Up Centre", href: "/catch-up-centre" },
     { label: "Marco", href: "/marco" },
     { label: "Marco Reid Voice", href: "/dictation" },
     { label: "Marco Reid Courtroom", href: "/courtroom" },
@@ -13,6 +14,7 @@ const links = {
     { label: "About", href: "/about" },
     { label: "Security", href: "/security" },
     { label: "Contact", href: "/contact" },
+    { label: "Sign in", href: "/login" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },

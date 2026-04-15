@@ -52,6 +52,14 @@ export default function Header() {
             </Link>
           ))}
           <Link
+            href="/login"
+            className={`min-h-touch inline-flex items-center text-sm font-medium transition-colors hover:text-navy-600 ${
+              scrolled ? "text-navy-400" : "text-navy-300"
+            }`}
+          >
+            Sign in
+          </Link>
+          <Link
             href="/contact"
             className="ml-2 inline-flex min-h-touch items-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-navy-600 hover:shadow-md"
           >
@@ -98,6 +106,13 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/login"
+            className="block min-h-touch py-2 text-base text-navy-400 transition-colors hover:text-navy-600"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Sign in
+          </Link>
           <Link
             href="/contact"
             className="mt-4 block rounded-lg bg-navy-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
