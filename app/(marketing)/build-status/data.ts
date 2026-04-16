@@ -426,10 +426,10 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Voice dictation UI polish",
+        title: "Voice dictation — Voxlen engine port",
         description:
-          "Push-to-talk interface with live transcription, edit, insert into matter.",
-        status: "queued",
+          "Full Voxlen port: Web Audio recording with AnalyserNode waveform (64-bar canvas at 60fps), 20+ voice commands (punctuation/delete/undo/caps/stop), 4 export formats (TXT/MD/JSON/SRT), 9 languages, grammar correction ready, session history with click-to-load.",
+        status: "done",
       },
       {
         title: "Settings pages",
