@@ -28,7 +28,7 @@ export default function BillingActions({
         <button
           onClick={() => go("/api/billing/portal", "portal")}
           disabled={loading !== null}
-          className="rounded-lg bg-navy-700 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-800 disabled:opacity-50"
+          className="rounded-lg bg-navy-700 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-800 disabled:opacity-50 dark:bg-navy-600 dark:hover:bg-navy-500"
         >
           {loading === "portal" ? "Loading..." : "Manage billing"}
         </button>
@@ -37,13 +37,13 @@ export default function BillingActions({
         <button
           onClick={() => go("/api/billing/connect/onboard", "connect")}
           disabled={loading !== null}
-          className="rounded-lg border border-navy-300 bg-white px-4 py-2 text-sm font-semibold text-navy-700 hover:bg-navy-50 disabled:opacity-50"
+          className="rounded-lg border border-navy-300 bg-white px-4 py-2 text-sm font-semibold text-navy-700 hover:bg-navy-50 disabled:opacity-50 dark:border-navy-600 dark:bg-navy-800 dark:text-navy-200 dark:hover:bg-navy-700"
         >
           {loading === "connect" ? "Loading..." : "Onboard with Stripe"}
         </button>
       )}
       {connectOnboarded && (
-        <span className="rounded-lg bg-forest-100 px-4 py-2 text-sm font-semibold text-forest-800">
+        <span className="rounded-lg bg-forest-100 px-4 py-2 text-sm font-semibold text-forest-800 dark:bg-forest-900 dark:text-forest-300">
           Connect onboarded
         </span>
       )}

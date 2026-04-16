@@ -10,11 +10,11 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-navy-500 text-white hover:bg-navy-600 shadow-sm hover:shadow-md focus-visible:ring-navy-500",
+    "bg-navy-500 text-white hover:bg-navy-600 shadow-sm hover:shadow-md focus-visible:ring-navy-500 dark:bg-navy-500 dark:hover:bg-navy-400",
   secondary:
-    "bg-forest-500 text-white hover:bg-forest-600 shadow-sm hover:shadow-md focus-visible:ring-forest-500",
+    "bg-forest-500 text-white hover:bg-forest-600 shadow-sm hover:shadow-md focus-visible:ring-forest-500 dark:bg-forest-600 dark:hover:bg-forest-500",
   ghost:
-    "text-navy-500 hover:text-navy-700 focus-visible:ring-navy-500",
+    "text-navy-500 hover:text-navy-700 focus-visible:ring-navy-500 dark:text-navy-300 dark:hover:text-white",
 };
 
 const sizes = {
