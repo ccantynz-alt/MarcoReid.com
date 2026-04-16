@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import MatterDocumentsUploadButton from "@/app/components/platform/MatterDocumentsUploadButton";
 
 export const dynamic = "force-dynamic";
 
@@ -361,9 +362,15 @@ export default async function MatterDetailPage({
         <div>
           <div className="flex items-center justify-between">
             <h2 className="font-serif text-headline text-navy-800">Documents</h2>
-            <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-500">
-              {matter.documents.length}
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-500">
+                {matter.documents.length}
+              </span>
+              <MatterDocumentsUploadButton
+                matterId={matter.id}
+                clientId={matter.clientId}
+              />
+            </div>
           </div>
           <div className="mt-4 rounded-2xl border border-navy-100 bg-white shadow-card">
             {matter.documents.length === 0 ? (
