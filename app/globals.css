@@ -203,3 +203,35 @@
   80% { opacity: 0.6; transform: translateY(-80px) scale(1); }
   100% { opacity: 0; transform: translateY(-100px) scale(0); }
 }
+
+/* ── Accessibility: reduced motion ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Accessibility: consistent focus-visible ring ─────────────── */
+
+*:focus-visible {
+  outline: 2px solid var(--color-navy-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Custom focus elements opt out via .focus-ring-none */
+.focus-ring-none:focus-visible {
+  outline: none;
+}

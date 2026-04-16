@@ -45,6 +45,12 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-navy-50">
+      <a
+        href="#platform-main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-lg focus:bg-navy-500 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+      >
+        Skip to content
+      </a>
       {/* Top bar */}
       <header className="sticky top-0 z-30 border-b border-navy-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 sm:px-8 lg:px-12">
@@ -79,7 +85,7 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main>{children}</main>
+      <main id="platform-main">{children}</main>
     </div>
   );
 }
