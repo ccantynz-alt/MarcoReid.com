@@ -378,10 +378,10 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Documents — upload, preview, versioning",
+        title: "Documents — list, detail, upload modal",
         description:
-          "File upload with drag-drop, preview, versioning, matter linking.",
-        status: "queued",
+          "/documents list with kind tabs (7 types) and debounced search; /documents/[id] with preview (image/PDF), download, delete; /documents/upload deep-linkable; drag-and-drop modal with focus trap and ARIA. Storage backend is stubbed (501 STORAGE_NOT_CONFIGURED for blobs, JSON fileUrl works); swap in S3/R2/Vercel Blob when ready.",
+        status: "done",
       },
       {
         title: "Time tracking widget",
@@ -404,14 +404,14 @@ export const phases: BuildPhase[] = [
       {
         title: "Marco chat interface",
         description:
-          "ChatGPT-quality research UX with citations, follow-ups, export to document.",
-        status: "queued",
+          "Working baseline (MarcoChat component) with domain pills, jurisdiction, verification badges. /marco page wraps it with recent-queries sidebar (grouped Today/Yesterday/Last 7 days/Older) and 6 example prompts. Polish queued.",
+        status: "in_progress",
       },
       {
-        title: "Marco ⌘K command palette",
+        title: "Global ⌘K command palette",
         description:
-          "Global Cmd+K to invoke Marco from anywhere, insert citations inline.",
-        status: "queued",
+          "CommandPaletteProvider with Cmd+K / Ctrl+K shortcut in platform layout. 20+ commands grouped by Navigate / Create / Settings / Help. Arrow-key nav, Enter to select, ESC to close, keyword matching. Trigger button in top bar.",
+        status: "done",
       },
       {
         title: "Voice dictation UI polish",
