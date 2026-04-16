@@ -474,15 +474,15 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "SEO — metadata, schema, dynamic sitemap",
+        title: "SEO — sitemap, robots, JSON-LD",
         description:
-          "Per-page metadata, JSON-LD schema, dynamic sitemap, robots.txt.",
-        status: "queued",
+          "40+ URL sitemap, tightened robots (authenticated surfaces disallowed), Organization + SoftwareApplication schema, OG + Twitter metadata, keyword targeting for legal-tech.",
+        status: "done",
       },
       {
-        title: "Open Graph dynamic images",
+        title: "Dynamic OG images",
         description:
-          "Dynamic OG images for every page. Twitter card support.",
+          "Static og-image.png referenced in metadata. Dynamic per-page OG image generation pending (can use @vercel/og).",
         status: "queued",
       },
       {
