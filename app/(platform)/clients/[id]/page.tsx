@@ -87,6 +87,12 @@ export default async function ClientDetailPage({
         </div>
         <div className="flex gap-2">
           <Link
+            href={`/clients/${client.id}/edit`}
+            className="inline-flex items-center rounded-lg border border-navy-200 bg-white px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:border-navy-400"
+          >
+            Edit
+          </Link>
+          <Link
             href={`/matters/new?clientId=${client.id}`}
             className="inline-flex items-center rounded-lg bg-navy-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-navy-600"
           >
