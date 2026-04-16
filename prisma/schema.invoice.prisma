@@ -1,0 +1,74 @@
+// ============================================================
+// INVOICE — future-merge draft
+// ============================================================
+//
+// This file is a staging area for the Invoice model. It is NOT
+// part of the live Prisma schema yet. When ready, merge the
+// contents of this file into prisma/schema.prisma (and add the
+// reverse relations to User, Client, Matter) then run a migration.
+//
+// Until then, the invoice generator in /app/(platform)/billing/invoices
+// derives invoices at runtime from TimeEntry rows (using the existing
+// TimeEntry.invoiced boolean) and returns them as in-memory objects.
+// Status changes (SENT/PAID/VOID) are accepted by the PATCH endpoint
+// and logged but not persisted — persistence arrives with this schema.
+//
+// ----------------------------------------------------------------
+// Proposed additions to existing models when merging:
+//
+//   model User {
+//     ...
+//     invoices Invoice[]
+//   }
+//   model Client {
+//     ...
+//     invoices Invoice[]
+//   }
+//   model Matter {
+//     ...
+//     invoices Invoice[]
+//   }
+//
+//   // Optionally, add backreference to TimeEntry:
+//   model TimeEntry {
+//     ...
+//     invoiceId String?
+//     invoice   Invoice? @relation(fields: [invoiceId], references: [id])
+//   }
+//
+// ----------------------------------------------------------------
+//
+// model Invoice {
+//   id                String        @id @default(cuid())
+//   userId            String
+//   user              User          @relation(fields: [userId], references: [id])
+//   clientId          String
+//   client            Client        @relation(fields: [clientId], references: [id])
+//   matterId          String?
+//   matter            Matter?       @relation(fields: [matterId], references: [id])
+//   invoiceNumber     String        @unique
+//   status            InvoiceStatus @default(DRAFT)
+//   issuedAt          DateTime?
+//   dueAt             DateTime?
+//   paidAt            DateTime?
+//   subtotalCents     Int
+//   taxCents          Int           @default(0)
+//   totalCents        Int
+//   currency          String        @default("USD")
+//   notes             String?
+//   timeEntryIds      String[]
+//   createdAt         DateTime      @default(now())
+//   updatedAt         DateTime      @updatedAt
+//
+//   @@index([userId])
+//   @@index([clientId])
+//   @@index([status])
+// }
+//
+// enum InvoiceStatus {
+//   DRAFT
+//   SENT
+//   PAID
+//   VOID
+//   OVERDUE
+// }

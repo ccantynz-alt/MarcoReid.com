@@ -204,37 +204,34 @@
   100% { opacity: 0; transform: translateY(-100px) scale(0); }
 }
 
-/* ROI Calculator slider */
-.roi-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-navy-500);
-  border: 3px solid white;
-  box-shadow: 0 1px 4px rgba(26, 46, 90, 0.3);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* ── Accessibility: reduced motion ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-.roi-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 2px 8px rgba(26, 46, 90, 0.4);
+/* ── Accessibility: consistent focus-visible ring ─────────────── */
+
+*:focus-visible {
+  outline: 2px solid var(--color-navy-500);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-.roi-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-navy-500);
-  border: 3px solid white;
-  box-shadow: 0 1px 4px rgba(26, 46, 90, 0.3);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline-offset: 3px;
 }
 
-.roi-slider::-moz-range-thumb:hover {
-  transform: scale(1.15);
-  box-shadow: 0 2px 8px rgba(26, 46, 90, 0.4);
+/* Custom focus elements opt out via .focus-ring-none */
+.focus-ring-none:focus-visible {
+  outline: none;
 }
