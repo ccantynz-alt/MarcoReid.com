@@ -37,13 +37,13 @@ export default async function VoicePage() {
   return (
     <Container className="py-12">
       <div className="mb-10">
-        <p className="text-xs font-medium uppercase tracking-widest text-navy-500">
+        <p className="text-xs font-medium uppercase tracking-widest text-navy-500 dark:text-navy-400">
           Marco Reid Voice
         </p>
-        <h1 className="mt-4 font-serif text-display text-navy-800">
+        <h1 className="mt-4 font-serif text-display text-navy-800 dark:text-white">
           Speak. It is done.
         </h1>
-        <p className="mt-3 max-w-2xl text-lg text-navy-400">
+        <p className="mt-3 max-w-2xl text-lg text-navy-400 dark:text-navy-400">
           Universal speech-to-text dictation for legal and accounting
           professionals. Record, transcribe, and paste anywhere.
         </p>

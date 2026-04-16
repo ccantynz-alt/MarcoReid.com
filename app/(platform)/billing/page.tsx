@@ -15,12 +15,12 @@ function formatMoney(cents: number, currency: string) {
 
 function StatusBadge({ status }: { status: string }) {
   const colors: Record<string, string> = {
-    requires_capture: "bg-amber-100 text-amber-800",
-    captured: "bg-forest-100 text-forest-800",
-    refunded: "bg-navy-100 text-navy-700",
-    canceled: "bg-red-100 text-red-800",
+    requires_capture: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300",
+    captured: "bg-forest-100 text-forest-800 dark:bg-forest-900 dark:text-forest-300",
+    refunded: "bg-navy-100 text-navy-700 dark:bg-navy-700 dark:text-navy-300",
+    canceled: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
   };
-  const cls = colors[status] || "bg-navy-100 text-navy-700";
+  const cls = colors[status] || "bg-navy-100 text-navy-700 dark:bg-navy-700 dark:text-navy-300";
   return (
     <span className={`inline-block rounded px-2 py-0.5 text-xs font-semibold ${cls}`}>
       {status}
@@ -50,22 +50,22 @@ export default async function BillingPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
-      <h1 className="font-serif text-4xl text-navy-800">Billing</h1>
+      <h1 className="font-serif text-4xl text-navy-800 dark:text-white">Billing</h1>
 
-      <section className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
-        <h2 className="text-xl font-semibold text-navy-800">Subscription</h2>
+      <section className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800">
+        <h2 className="text-xl font-semibold text-navy-800 dark:text-white">Subscription</h2>
         <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
           <div>
-            <dt className="text-navy-400">Status</dt>
-            <dd className="text-navy-700">{user.subscriptionStatus || "No active subscription"}</dd>
+            <dt className="text-navy-400 dark:text-navy-400">Status</dt>
+            <dd className="text-navy-700 dark:text-navy-200">{user.subscriptionStatus || "No active subscription"}</dd>
           </div>
           <div>
-            <dt className="text-navy-400">Plan</dt>
-            <dd className="text-navy-700">{user.stripePriceId || "—"}</dd>
+            <dt className="text-navy-400 dark:text-navy-400">Plan</dt>
+            <dd className="text-navy-700 dark:text-navy-200">{user.stripePriceId || "—"}</dd>
           </div>
           <div>
-            <dt className="text-navy-400">Renews</dt>
-            <dd className="text-navy-700">
+            <dt className="text-navy-400 dark:text-navy-400">Renews</dt>
+            <dd className="text-navy-700 dark:text-navy-200">
               {user.subscriptionPeriodEnd
                 ? user.subscriptionPeriodEnd.toLocaleDateString()
                 : "—"}
@@ -78,24 +78,24 @@ export default async function BillingPage() {
         />
       </section>
 
-      <section className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
-        <h2 className="text-xl font-semibold text-navy-800">
+      <section className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800">
+        <h2 className="text-xl font-semibold text-navy-800 dark:text-white">
           Marketplace payments received
         </h2>
         {payments.length === 0 ? (
           <p className="mt-4 text-sm text-navy-400">No payments yet.</p>
         ) : (
-          <ul className="mt-4 divide-y divide-navy-100">
+          <ul className="mt-4 divide-y divide-navy-100 dark:divide-navy-700">
             {payments.map((p) => (
               <li
                 key={p.id}
                 className="flex items-center justify-between py-3 text-sm"
               >
                 <div>
-                  <div className="font-semibold text-navy-700">
+                  <div className="font-semibold text-navy-700 dark:text-navy-200">
                     {formatMoney(p.amountCents, p.currency)}
                   </div>
-                  <div className="text-navy-400">
+                  <div className="text-navy-400 dark:text-navy-400">
                     {p.description || p.stripePaymentIntentId}
                   </div>
                   <div className="text-xs text-navy-400">
