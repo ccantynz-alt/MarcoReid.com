@@ -97,6 +97,58 @@ export default function CompareClioPage() {
         </Container>
       </section>
 
+      <section className="bg-navy-50 py-24 sm:py-36" aria-label="Feature comparison">
+        <Container>
+          <Reveal>
+            <h2 className="text-center font-serif text-display text-navy-800">
+              Side by side.
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-xl border border-navy-100 bg-white shadow-card">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-navy-100 bg-navy-50">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-navy-400">Feature</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-navy-400">Clio</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {([
+                    { feature: "Practice management", clio: true, marcoreid: true },
+                    { feature: "AI legal research", clio: false, marcoreid: true },
+                    { feature: "Trust accounting (IOLTA)", clio: "Add-on", marcoreid: true },
+                    { feature: "Voice dictation", clio: false, marcoreid: "Built-in, 9 languages" },
+                    { feature: "Document AI drafting", clio: "Basic editor", marcoreid: true },
+                    { feature: "Court-rules calendaring", clio: "Add-on", marcoreid: true },
+                    { feature: "E-signatures", clio: "Add-on ($)", marcoreid: "Built-in" },
+                    { feature: "Accounting tools", clio: false, marcoreid: true },
+                    { feature: "Cross-domain research", clio: false, marcoreid: true },
+                    { feature: "Starting price", clio: "$49/mo (but needs 4+ add-ons)", marcoreid: "$99/mo" },
+                  ] as const).map((row, i) => (
+                    <tr key={row.feature} className={`border-b border-navy-50 ${i % 2 === 1 ? "bg-navy-50/50" : ""}`}>
+                      <td className="px-6 py-3 font-medium text-navy-700">{row.feature}</td>
+                      <td className="px-6 py-3 text-navy-400">
+                        {typeof row.clio === "boolean"
+                          ? row.clio ? <span className="text-forest-500">&#10003;</span> : <span className="text-red-400">&#10007;</span>
+                          : row.clio}
+                      </td>
+                      <td className="px-6 py-3 font-medium text-navy-700">
+                        {typeof row.marcoreid === "boolean"
+                          ? row.marcoreid ? <span className="text-forest-500">&#10003;</span> : <span className="text-red-400">&#10007;</span>
+                          : <span className="text-forest-600">{row.marcoreid}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
       <section className="py-24 sm:py-36" aria-label="Get started">
         <Container className="text-center">
           <Reveal>

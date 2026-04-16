@@ -5,10 +5,12 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
+import FAQ from "@/app/components/shared/FAQ";
 import Reveal from "@/app/components/effects/Reveal";
 
 const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"));
 const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
+const VideoEmbed = dynamic(() => import("@/app/components/marketing/VideoEmbed"));
 
 
 export const metadata: Metadata = {
@@ -49,7 +51,8 @@ export default function OraclePage() {
             disciplines simultaneously. The research engine nobody else can build &mdash;
             because nobody else owns both sides.
           </p>
-          <div className="mt-12 animate-fade-up-3 opacity-0">
+          <p className="mt-4 animate-fade-up-3 text-sm text-navy-300 opacity-0">Included with Firm tier. Standalone from $499/month</p>
+          <div className="mt-8 animate-fade-up-3 opacity-0">
             <Button href="/pricing" size="lg">See pricing</Button>
           </div>
         </Container>
@@ -64,6 +67,12 @@ export default function OraclePage() {
           </MockupReveal>
         </Container>
       </section>
+
+          <VideoEmbed
+            title="Watch Marco find and verify citations in seconds"
+            description="See how cross-domain research works — a single question that spans immigration law and tax code, answered with verified citations in under 5 seconds."
+            accentColor="plum"
+          />
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
@@ -374,6 +383,31 @@ export default function OraclePage() {
           </Reveal>
         </Container>
       </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              I asked Marco a question that required both immigration law and tax code knowledge simultaneously.
+              It gave me a verified, cited answer in four seconds. Westlaw cannot do that. Nobody else can do that.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Dr. Priya Sharma</p>
+            <p className="text-xs text-navy-400">Tax Attorney & CPA, Sharma Advisory</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <FAQ
+        items={[
+          { question: "How does citation verification work?", answer: "Every citation Marco returns is verified against authoritative public domain sources — CourtListener for case law, Cornell LII for US Code, IRS.gov for tax rulings, Congress.gov for legislation, and USPTO for patents. Each citation receives a Verified, Unverified, or Not Found badge so you always know the confidence level before relying on it." },
+          { question: "What is cross-domain research?", answer: "Cross-domain research means asking a single question that requires both legal and accounting intelligence. For example: 'What are the immigration tax implications of this corporate structure for a Tier-1 visa applicant?' This requires knowledge of immigration law AND tax code simultaneously. No other platform can answer this because no other platform owns both domains." },
+          { question: "Can Marco hallucinate or make up citations?", answer: "Marco is designed with hallucination prevention at its core. Every citation is independently verified against the actual source database before being shown to you. If a citation cannot be verified, it is flagged as Unverified or Not Found — never presented as confirmed. The system errs on the side of caution." },
+          { question: "How do I access Marco?", answer: "Marco is available everywhere on the platform via the command palette (Cmd+K or Ctrl+K). You can also access it from the dedicated Marco page, or query it by voice using Marco Reid Voice. Results can be inserted directly into documents, emails, and messages at your cursor position." },
+          { question: "What databases does Marco search?", answer: "Marco searches CourtListener (all US federal and state case law), Cornell LII (US Code), Congress.gov (legislation), IRS.gov (tax rulings and revenue procedures), GovInfo (federal regulations), USPTO (patents and trademarks), NZLII (New Zealand law), and AustLII (Australian law). All public domain. All verified." },
+          { question: "How much does Marco cost?", answer: "Marco is included in the Firm tier for both Legal ($399/seat/month) and Accounting ($299/seat/month). The standalone cross-domain tier (legal + accounting combined) is $499/month. Enterprise with API access is $999/month. All tiers include unlimited queries — no per-search fees." },
+        ]}
+      />
     </>
   );
 }

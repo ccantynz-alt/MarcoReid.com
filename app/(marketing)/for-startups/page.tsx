@@ -73,6 +73,65 @@ export default function ForStartupsPage() {
         </Container>
       </section>
 
+      <section className="py-24 sm:py-36" aria-label="From formation to funding">
+        <Container>
+          <Reveal>
+            <h2 className="font-serif text-display text-navy-800">
+              From formation to funding.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { step: "1", title: "Company incorporation and entity structuring", desc: "The right entity type for your jurisdiction, tax situation, and growth plan." },
+              { step: "2", title: "Founder agreements and IP assignment", desc: "Protect the company and every founder from day one." },
+              { step: "3", title: "Accounting setup from day one", desc: "Books that investors trust. Clean financials from the first dollar." },
+              { step: "4", title: "Fundraising document drafting", desc: "SAFEs, convertible notes, term sheets — drafted, reviewed, and ready." },
+            ].map((s) => (
+              <Reveal key={s.step} delay={0.05}>
+                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
+                  <p className="text-xs font-bold text-gold-400">Step {s.step}</p>
+                  <h3 className="mt-2 font-semibold text-navy-700">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-400">{s.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              We incorporated, set up our books, and drafted our SAFE agreement — all through
+              Marco Reid. Our seed round due diligence took 2 days instead of 2 weeks.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Alex Kim</p>
+            <p className="text-xs text-navy-400">Founder & CEO</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-36" aria-label="Get in touch">
+        <Container className="text-center">
+          <Reveal>
+            <h2 className="font-serif text-display text-navy-800">
+              Ready to build?
+            </h2>
+            <p className="mt-4 text-lg text-navy-400">
+              Talk to us about getting your startup set up on Marco Reid.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-10 flex justify-center gap-4">
+              <Button href="/contact" size="lg">Get in touch</Button>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
       <section className="bg-navy-50 py-24 sm:py-36" aria-label="CTA">
         <Container className="text-center">
           <Reveal>

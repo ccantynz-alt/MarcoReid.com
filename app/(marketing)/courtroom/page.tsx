@@ -4,6 +4,7 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
+import FAQ from "@/app/components/shared/FAQ";
 import dynamic from "next/dynamic";
 
 const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
@@ -47,9 +48,10 @@ export default function CourtroomPage() {
             And Marco available on your iPad mid-hearing. This is courtroom
             technology that didn&rsquo;t exist until now.
           </p>
-          <div className="mt-10">
-            <Button href="/pricing" size="lg" variant="primary">
-              See pricing
+          <p className="mt-4 text-sm text-navy-300">Contact us for institutional and pilot pricing</p>
+          <div className="mt-8">
+            <Button href="/courts/pilot" size="lg" variant="primary">
+              Request a pilot
             </Button>
           </div>
         </Container>
@@ -335,6 +337,32 @@ export default function CourtroomPage() {
           </Reveal>
         </Container>
       </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              Opposing counsel cited a case I had never heard of mid-hearing. I verified it on my iPad
+              in three seconds using Marco. It was real — but it actually supported my argument, not theirs.
+              That moment changed the outcome of the case.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Michael Torres</p>
+            <p className="text-xs text-navy-400">Senior Litigation Attorney, Torres & Klein LLP</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <FAQ
+        items={[
+          { question: "Can AI transcription replace a court reporter?", answer: "Marco Reid Courtroom provides real-time AI transcription trained on legal vocabulary with speaker identification and video synchronisation. While it does not yet replace certified court reporters in all jurisdictions, it provides a cost-effective alternative for depositions, hearings, and proceedings where a stenographer is not legally required — saving $300-500 per day." },
+          { question: "Is the evidence management court-admissible?", answer: "Yes. Marco Reid Courtroom uses cryptographic chain of custody with immutable audit trails. Every exhibit is hash-verified and timestamped. The evidence management system meets federal and state standards for digital evidence admissibility." },
+          { question: "What are judge analytics?", answer: "Judge analytics provide data-driven insights into judicial behaviour — ruling patterns, motion grant rates, sentencing trends, and procedural preferences. This helps attorneys prepare more effectively by understanding how a specific judge has ruled on similar matters historically." },
+          { question: "Can I use Marco research mid-hearing?", answer: "Yes. Marco is available on iPad and any web browser. When opposing counsel cites a case you do not recognise, you can verify the citation in approximately 3 seconds using Marco — without leaving the courtroom or breaking your flow." },
+          { question: "How does e-filing work?", answer: "Marco Reid Courtroom integrates with major court filing systems including PACER, CM/ECF, Tyler Odyssey, and state eCourts portals. Documents are validated before submission, filing fees are calculated automatically, and you receive court-stamped confirmation with deadlines auto-calculated." },
+          { question: "Is this available for courts to purchase directly?", answer: "Yes. Marco Reid offers a court pilot programme for courts, clerk offices, and judicial administrators. The five court-facing products (Bench, Docket, Filings, Reporter, Public Access) are available for institutional licensing. Contact us to request a pilot." },
+        ]}
+      />
     </>
   );
 }
