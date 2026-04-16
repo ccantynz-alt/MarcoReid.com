@@ -110,23 +110,18 @@ export default async function DashboardPage() {
         ].map((item) => (
           <div
             key={item.title}
-            href={item.href}
-            className={`group block rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5 ${accentRing[item.accent]}`}
+            className="group block rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <h2 className="font-semibold text-navy-700">{item.title}</h2>
-              {item.cta ? (
-                <span className="rounded-full bg-plum-50 px-2.5 py-0.5 text-xs font-medium text-plum-600">
-                  {item.cta}
-                </span>
-              ) : item.count != null ? (
+              {item.count != null ? (
                 <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-400">
                   {item.count}
                 </span>
               ) : null}
             </div>
             <p className="mt-2 text-sm text-navy-400">{item.desc}</p>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

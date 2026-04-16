@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
+import FloatingTimer from "@/app/components/platform/FloatingTimer";
 
 export default function PlatformLayout({
   children,
@@ -54,6 +55,7 @@ export default function PlatformLayout({
       </header>
 
       <main>{children}</main>
+      <FloatingTimer />
     </div>
   );
 }
