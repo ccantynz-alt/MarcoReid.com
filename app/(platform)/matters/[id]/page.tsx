@@ -191,7 +191,7 @@ export default async function MatterDetailPage({
             Ask Marco about this
           </Link>
           <Link
-            href="/matters"
+            href={`/matters/${matter.id}/edit`}
             className="inline-flex items-center rounded-lg bg-navy-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-navy-600"
           >
             Edit
