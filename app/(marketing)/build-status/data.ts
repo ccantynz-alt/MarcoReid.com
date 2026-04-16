@@ -17,9 +17,9 @@ export interface BuildPhase {
 
 export const stats: { label: string; value: string; note: string }[] = [
   {
-    label: "Audit rating",
-    value: "6.5 / 10",
-    note: "Marketing 9/10 · Platform 4/10",
+    label: "Launch blockers",
+    value: "Cleared",
+    note: "Signup · verify · reset · onboarding · rate limits · email",
   },
   {
     label: "Target readiness",
@@ -29,7 +29,7 @@ export const stats: { label: string; value: string; note: string }[] = [
   {
     label: "Quality bar",
     value: "Stripe-grade",
-    note: "Must feel premium to attorneys and CPAs",
+    note: "Premium feel for attorneys and CPAs",
   },
 ];
 
@@ -354,21 +354,27 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Matters list — search, sort, filter, bulk actions",
+        title: "Matters list — search, sort, status tabs",
         description:
-          "Current table is basic. Needs power-user features expected of Stripe/Linear-tier SaaS.",
-        status: "queued",
+          "Debounced search, status tabs with live counts (All/Active/On hold/Closed), 5 sort modes, pending-state opacity, matter number subtitle, empty states.",
+        status: "done",
       },
       {
         title: "Matter detail view with timeline",
         description:
-          "Full matter view with timeline, documents, time entries, trust balance, billing.",
-        status: "queued",
+          "4-metric bar (hours/billable/trust/docs), colour-coded timeline (5 event types), client card with avatar, documents and time entries split view, 'Ask Marco about this' link passes matterId.",
+        status: "done",
       },
       {
-        title: "Clients — search, sort, filter, engagement status",
+        title: "Clients list — search, sort, avatars",
         description:
-          "Client directory with contact cards, matters, trust balance, billing history.",
+          "Debounced search across name/email/company/phone, sort by recent/name/company, avatar circles with initials, matter count badges, email mailto links.",
+        status: "done",
+      },
+      {
+        title: "Bulk actions on matters/clients",
+        description:
+          "Select multiple rows for bulk status change, export, delete. Not yet implemented.",
         status: "queued",
       },
       {
@@ -416,8 +422,8 @@ export const phases: BuildPhase[] = [
       {
         title: "Settings pages",
         description:
-          "Profile, firm, team, billing, integrations, security, data export.",
-        status: "queued",
+          "Full /settings area: profile, firm, team, billing, integrations, security, notifications, data. Left-rail nav on desktop, scrolling tabs on mobile. Auth-gated API endpoints for profile/firm/notifications.",
+        status: "done",
       },
       {
         title: "Keyboard shortcuts + ? modal",
