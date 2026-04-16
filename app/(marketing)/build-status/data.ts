@@ -396,10 +396,22 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Billing — invoice generator, payment tracking",
+        title: "Invoice generator — full wizard",
         description:
-          "Generate branded invoices, track payments, manage subscriptions.",
-        status: "queued",
+          "/billing/invoices list with status tabs; /billing/invoices/new 4-step wizard (client → matter → time entries → tax/due); /billing/invoices/[id] print-ready invoice sheet with actions (print, PDF stub, mark sent/paid/void, email stub). Derived from invoiced TimeEntry rows; Invoice model drafted in prisma/schema.invoice.prisma for future merge.",
+        status: "done",
+      },
+      {
+        title: "Matter edit + delete",
+        description:
+          "/matters/[id]/edit with full form (title, number, practice area, client, status, description, closedAt) + inline delete confirmation.",
+        status: "done",
+      },
+      {
+        title: "Client edit + delete",
+        description:
+          "/clients/[id]/edit with contact fields, notes, inline delete confirmation warning about matter orphaning.",
+        status: "done",
       },
       {
         title: "Marco chat interface",
