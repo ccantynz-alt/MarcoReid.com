@@ -384,10 +384,10 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Time tracking widget",
+        title: "Time tracking — timer, hub, entries",
         description:
-          "Timer widget, manual entry, batch entry, conversion to invoice.",
-        status: "queued",
+          "/time hub with period tabs (Today/Week/Month/All), summary bar, filters, sort, search. TimerWidget with start/pause/stop, matter picker, localStorage persistence. FloatingTimer globally available. Quick-add form. Full table with inline edit, bulk actions (billable/non-billable/delete). /time/entry/[id]/edit page. API upgraded with q/matterId/billable/invoiced/from/to/sort + summary. DELETE blocked for invoiced entries.",
+        status: "done",
       },
       {
         title: "Trust ledger with three-way reconciliation",
@@ -438,10 +438,10 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Keyboard shortcuts + ? modal",
+        title: "Keyboard shortcuts",
         description:
-          "Power-user shortcuts for nav, actions, Marco — shown in a ? help modal.",
-        status: "queued",
+          "⌘K palette, Space-to-start-timer on TimerWidget. ? help modal showing all shortcuts queued.",
+        status: "in_progress",
       },
       {
         title: "Admin dashboard",
