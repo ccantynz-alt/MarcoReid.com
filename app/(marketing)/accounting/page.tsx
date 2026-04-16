@@ -4,6 +4,7 @@ import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
+import FAQ from "@/app/components/shared/FAQ";
 import dynamic from "next/dynamic";
 
 const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
@@ -286,6 +287,32 @@ export default function AccountingPage() {
           </Reveal>
         </Container>
       </section>
+
+      <section className="bg-navy-50 py-20 sm:py-28" aria-label="Testimonial">
+        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 text-center">
+          <Reveal>
+            <p className="text-4xl text-gold-400">&ldquo;</p>
+            <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
+              Monthly reconciliation used to take my team an entire afternoon. With Marco Reid,
+              it is automated. We review and approve in minutes. The AI tax research alone is worth
+              ten times the subscription.
+            </p>
+            <p className="mt-6 text-sm font-semibold text-navy-700">Robert Chang, CPA</p>
+            <p className="text-xs text-navy-400">Founding Partner, Chang & Associates</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <FAQ
+        items={[
+          { question: "What does Marco Reid Accounting replace?", answer: "Marco Reid Accounting replaces QuickBooks, Xero, and standalone tax research tools. It includes automated bookkeeping, bank feed integration via Plaid, AI-powered reconciliation, 50-state tax compliance, receipt scanning, financial reporting, and Marco for accounting research — all in one platform." },
+          { question: "How does bank feed integration work?", answer: "Marco Reid connects directly to your bank accounts via Plaid. Transactions are automatically pulled, categorised using AI, and matched to the correct accounts. You review and approve — the manual data entry is eliminated." },
+          { question: "Can it handle multi-state tax compliance?", answer: "Yes. Marco Reid Accounting includes tax compliance tools for all 50 US states plus federal. Tax calculations are always current, automatically updated when regulations change, and linked to Marco for instant research on any tax code question." },
+          { question: "How does Marco help with tax research?", answer: "Marco searches every IRS code section, revenue ruling, Treasury regulation, and state tax code. Every citation is verified against official sources (IRS.gov, Cornell LII, GovInfo). You can query Marco from anywhere on the platform using the command palette." },
+          { question: "What does it cost?", answer: "Marco Reid Accounting starts at $79/month for solo CPAs, $149/month for the Professional tier, and $299/seat/month for the Firm tier with Marco AI research. No per-transaction fees, no per-search charges." },
+          { question: "Can lawyers and accountants collaborate on the platform?", answer: "Yes. This is a capability unique to Marco Reid. Lawyers and accountants can share matters, exchange documents securely, and collaborate on cross-domain questions. A corporate restructure that needs both legal and tax analysis can be handled in one place." },
+        ]}
+      />
     </>
   );
 }

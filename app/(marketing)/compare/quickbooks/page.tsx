@@ -97,6 +97,59 @@ export default function CompareQuickBooksPage() {
         </Container>
       </section>
 
+      <section className="bg-navy-50 py-24 sm:py-36" aria-label="Feature comparison">
+        <Container>
+          <Reveal>
+            <h2 className="text-center font-serif text-display text-navy-800">
+              Side by side.
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-xl border border-navy-100 bg-white shadow-card">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-navy-100 bg-navy-50">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-navy-400">Feature</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-navy-400">QuickBooks</th>
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {([
+                    { feature: "Bookkeeping", quickbooks: true, marcoreid: true },
+                    { feature: "Bank feed integration", quickbooks: true, marcoreid: true },
+                    { feature: "AI tax research", quickbooks: false, marcoreid: true },
+                    { feature: "Voice input", quickbooks: false, marcoreid: "9 languages" },
+                    { feature: "AI reconciliation", quickbooks: "Manual", marcoreid: true },
+                    { feature: "50-state tax compliance", quickbooks: "Limited", marcoreid: true },
+                    { feature: "Legal collaboration", quickbooks: false, marcoreid: true },
+                    { feature: "Receipt scanning", quickbooks: true, marcoreid: true },
+                    { feature: "Financial reporting", quickbooks: true, marcoreid: true },
+                    { feature: "AI spreadsheets", quickbooks: false, marcoreid: true },
+                    { feature: "Starting price", quickbooks: "$99/mo (after price increase)", marcoreid: "$79/mo" },
+                  ] as const).map((row, i) => (
+                    <tr key={row.feature} className={`border-b border-navy-50 ${i % 2 === 1 ? "bg-navy-50/50" : ""}`}>
+                      <td className="px-6 py-3 font-medium text-navy-700">{row.feature}</td>
+                      <td className="px-6 py-3 text-navy-400">
+                        {typeof row.quickbooks === "boolean"
+                          ? row.quickbooks ? <span className="text-forest-500">&#10003;</span> : <span className="text-red-400">&#10007;</span>
+                          : row.quickbooks}
+                      </td>
+                      <td className="px-6 py-3 font-medium text-navy-700">
+                        {typeof row.marcoreid === "boolean"
+                          ? row.marcoreid ? <span className="text-forest-500">&#10003;</span> : <span className="text-red-400">&#10007;</span>
+                          : <span className="text-forest-600">{row.marcoreid}</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
       <section className="py-24 sm:py-36" aria-label="Get started">
         <Container className="text-center">
           <Reveal>

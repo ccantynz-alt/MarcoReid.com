@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import OpenAI from "openai";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -18,6 +19,13 @@ export async function POST(request: Request) {
     }
 
     const userId = (session.user as unknown as { id: string }).id;
+
+    // Per-user rate limit on voice transcription — controls Whisper API cost.
+    const limit = await rateLimit({
+      key: `voice:${userId}`,
+      ...LIMITS.voiceTranscribe,
+    });
+    if (!limit.ok) return rateLimitResponse(limit);
 
     const formData = await request.formData();
     const audio = formData.get("audio");

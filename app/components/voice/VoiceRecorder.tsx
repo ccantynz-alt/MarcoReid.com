@@ -136,7 +136,7 @@ export default function VoiceRecorder({
   const isProcessing = state === "processing";
 
   return (
-    <div className="rounded-2xl border border-forest-200 bg-forest-50 p-5 sm:p-6">
+    <div className="rounded-2xl border border-forest-200 bg-forest-50 p-5 sm:p-6 dark:border-forest-700 dark:bg-forest-900/30">
       <div className="flex items-center gap-4">
         <div className="flex h-8 items-end gap-[3px]">
           {Array.from({ length: 24 }).map((_, i) => (
@@ -153,13 +153,13 @@ export default function VoiceRecorder({
           ))}
         </div>
         <div className="flex-1">
-          <p className="text-sm font-semibold text-forest-700">
+          <p className="text-sm font-semibold text-forest-700 dark:text-forest-300">
             Marco Reid Voice
             {isRecording && " — Recording"}
             {isProcessing && " — Transcribing…"}
             {state === "success" && " — Transcribed"}
           </p>
-          <p className="mt-0.5 text-xs text-forest-500">
+          <p className="mt-0.5 text-xs text-forest-500 dark:text-forest-400">
             {placeholder || "Press Start and speak naturally. Whisper will transcribe."}
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function VoiceRecorder({
             <button
               type="button"
               onClick={handleCancel}
-              className="inline-flex min-h-touch items-center justify-center rounded-full border border-navy-200 bg-white px-6 py-2 text-sm font-semibold text-navy-700 transition-colors hover:bg-navy-50"
+              className="inline-flex min-h-touch items-center justify-center rounded-full border border-navy-200 bg-white px-6 py-2 text-sm font-semibold text-navy-700 transition-colors hover:bg-navy-50 dark:border-navy-600 dark:bg-navy-800 dark:text-navy-200 dark:hover:bg-navy-700"
             >
               Cancel
             </button>

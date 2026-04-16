@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { queryOracle } from "@/lib/oracle/engine";
 import { OracleRequest } from "@/lib/oracle/types";
+import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +14,16 @@ export async function POST(request: Request) {
         { error: "Authentication required." },
         { status: 401 }
       );
+    }
+
+    // Per-user rate limit on Marco queries — controls Claude API cost.
+    const userId = (session.user as { id?: string }).id;
+    if (userId) {
+      const limit = await rateLimit({
+        key: `marco:${userId}`,
+        ...LIMITS.marcoQuery,
+      });
+      if (!limit.ok) return rateLimitResponse(limit);
     }
 
     const body: OracleRequest = await request.json();
@@ -31,9 +42,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const userId = session.user.id;
-
-    const result = await queryOracle(userId, body);
+    const result = await queryOracle(session.user.id, body);
 
     return NextResponse.json(result);
   } catch (error) {

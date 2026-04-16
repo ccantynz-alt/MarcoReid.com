@@ -11,6 +11,7 @@ const DashboardMockup = dynamic(() => import("@/app/components/marketing/Dashboa
 const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedCounter"));
 const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
 const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
+const ROICalculator = dynamic(() => import("@/app/components/marketing/ROICalculator"));
 
 export const metadata: Metadata = {
   title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
@@ -720,6 +721,30 @@ export default function HomePage() {
               Four products. One platform. No compromises.
               The most advanced professional intelligence system ever created.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* ROI CALCULATOR — Interactive savings calculator                */}
+      {/* ============================================================ */}
+      <section className="py-24 sm:py-36 bg-navy-50" aria-label="ROI Calculator">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-center text-sm font-semibold tracking-wider text-gold-500">
+              ROI Calculator
+            </p>
+            <h2 className="mt-4 text-center font-serif text-display text-navy-800">
+              Calculate your savings.
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-navy-400">
+              See how much time and money Marco Reid saves your firm.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="mt-16">
+              <ROICalculator />
+            </div>
           </Reveal>
         </div>
       </section>

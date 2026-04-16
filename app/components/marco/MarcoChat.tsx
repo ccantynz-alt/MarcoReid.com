@@ -16,9 +16,9 @@ const DOMAIN_LABELS: Record<OracleDomain, string> = {
 };
 
 const STATUS_STYLES: Record<string, string> = {
-  VERIFIED: "bg-forest-50 text-forest-700 border-forest-200",
-  UNVERIFIED: "bg-navy-50 text-navy-500 border-navy-200",
-  NOT_FOUND: "bg-red-50 text-red-700 border-red-200",
+  VERIFIED: "bg-forest-50 text-forest-700 border-forest-200 dark:bg-forest-900 dark:text-forest-300 dark:border-forest-700",
+  UNVERIFIED: "bg-navy-50 text-navy-500 border-navy-200 dark:bg-navy-700 dark:text-navy-300 dark:border-navy-600",
+  NOT_FOUND: "bg-red-50 text-red-700 border-red-200 dark:bg-red-900 dark:text-red-300 dark:border-red-700",
 };
 
 export default function MarcoChat() {
@@ -84,11 +84,11 @@ export default function MarcoChat() {
   }
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-navy-100 bg-white shadow-card">
+    <div className="flex h-full flex-col rounded-2xl border border-navy-100 bg-white shadow-card dark:border-navy-700 dark:bg-navy-800">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-navy-100 px-6 py-4">
+      <div className="flex items-center justify-between border-b border-navy-100 px-6 py-4 dark:border-navy-700">
         <div>
-          <h2 className="font-serif text-xl text-navy-700">Marco</h2>
+          <h2 className="font-serif text-xl text-navy-700 dark:text-navy-100">Marco</h2>
           <p className="text-xs text-navy-400">
             The greatest AI-generated mind for law and accountancy
           </p>
@@ -97,7 +97,7 @@ export default function MarcoChat() {
           <select
             value={domain}
             onChange={(e) => setDomain(e.target.value as OracleDomain | "")}
-            className="rounded-lg border border-navy-200 bg-white px-3 py-1.5 text-xs text-navy-600 focus:border-navy-400 focus:outline-none"
+            className="rounded-lg border border-navy-200 bg-white px-3 py-1.5 text-xs text-navy-600 focus:border-navy-400 focus:outline-none dark:border-navy-600 dark:bg-navy-800 dark:text-navy-300"
             aria-label="Domain"
           >
             <option value="">Auto-detect</option>
@@ -111,7 +111,7 @@ export default function MarcoChat() {
             placeholder="Jurisdiction"
             value={jurisdiction}
             onChange={(e) => setJurisdiction(e.target.value)}
-            className="w-32 rounded-lg border border-navy-200 bg-white px-3 py-1.5 text-xs text-navy-600 placeholder:text-navy-300 focus:border-navy-400 focus:outline-none"
+            className="w-32 rounded-lg border border-navy-200 bg-white px-3 py-1.5 text-xs text-navy-600 placeholder:text-navy-300 focus:border-navy-400 focus:outline-none dark:border-navy-600 dark:bg-navy-800 dark:text-navy-300 dark:placeholder:text-navy-500"
           />
         </div>
       </div>
@@ -124,7 +124,7 @@ export default function MarcoChat() {
       >
         {messages.length === 0 && !loading && (
           <div className="flex h-full flex-col items-center justify-center text-center">
-            <div className="font-serif text-2xl text-navy-700">
+            <div className="font-serif text-2xl text-navy-700 dark:text-navy-100">
               Ask Marco anything.
             </div>
             <p className="mt-2 max-w-md text-sm text-navy-400">
@@ -141,7 +141,7 @@ export default function MarcoChat() {
                   key={s}
                   type="button"
                   onClick={() => setInput(s)}
-                  className="rounded-full border border-navy-200 bg-navy-50 px-3 py-1.5 text-xs text-navy-600 transition-colors hover:bg-navy-100"
+                  className="rounded-full border border-navy-200 bg-navy-50 px-3 py-1.5 text-xs text-navy-600 transition-colors hover:bg-navy-100 dark:border-navy-600 dark:bg-navy-700 dark:text-navy-300 dark:hover:bg-navy-600"
                 >
                   {s}
                 </button>
@@ -175,16 +175,16 @@ export default function MarcoChat() {
           return (
             <div key={msg.id} className="flex justify-start">
               <div className="w-full max-w-[90%] space-y-3">
-                <div className="rounded-2xl rounded-tl-md border border-navy-100 bg-navy-50 px-5 py-4">
+                <div className="rounded-2xl rounded-tl-md border border-navy-100 bg-navy-50 px-5 py-4 dark:border-navy-700 dark:bg-navy-900">
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="rounded-full bg-plum-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-plum-600">
+                    <span className="rounded-full bg-plum-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-plum-600 dark:bg-plum-900 dark:text-plum-300">
                       {DOMAIN_LABELS[r.domain]}
                     </span>
                     <span className="text-[10px] text-navy-400">
                       {(r.responseTimeMs / 1000).toFixed(1)}s
                     </span>
                   </div>
-                  <div className="whitespace-pre-wrap text-sm leading-relaxed text-navy-700">
+                  <div className="whitespace-pre-wrap text-sm leading-relaxed text-navy-700 dark:text-navy-200">
                     {r.answer}
                   </div>
                 </div>
@@ -198,11 +198,11 @@ export default function MarcoChat() {
                     {r.citations.map((c, i) => (
                       <div
                         key={`${msg.id}-c-${i}`}
-                        className="rounded-xl border border-navy-100 bg-white p-3"
+                        className="rounded-xl border border-navy-100 bg-white p-3 dark:border-navy-700 dark:bg-navy-800"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1">
-                            <p className="text-sm font-semibold text-navy-700">
+                            <p className="text-sm font-semibold text-navy-700 dark:text-navy-200">
                               {c.title}
                             </p>
                             <p className="mt-0.5 text-xs text-navy-400">
@@ -225,7 +225,7 @@ export default function MarcoChat() {
                             href={c.sourceUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-2 inline-block text-xs font-semibold text-navy-500 hover:text-navy-700"
+                            className="mt-2 inline-block text-xs font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300 dark:hover:text-white"
                           >
                             View source &rarr;
                           </a>
@@ -235,7 +235,7 @@ export default function MarcoChat() {
                   </div>
                 )}
 
-                <p className="text-[10px] italic text-navy-300">
+                <p className="text-[10px] italic text-navy-300 dark:text-navy-500">
                   {r.disclaimer}
                 </p>
               </div>
@@ -245,7 +245,7 @@ export default function MarcoChat() {
 
         {loading && (
           <div className="flex justify-start">
-            <div className="rounded-2xl rounded-tl-md border border-navy-100 bg-navy-50 px-5 py-4">
+            <div className="rounded-2xl rounded-tl-md border border-navy-100 bg-navy-50 px-5 py-4 dark:border-navy-700 dark:bg-navy-900">
               <div className="flex items-center gap-2">
                 <div className="flex gap-1">
                   <div className="h-2 w-2 animate-bounce rounded-full bg-navy-400 [animation-delay:-0.3s]" />
@@ -264,7 +264,7 @@ export default function MarcoChat() {
       {/* Input */}
       <form
         onSubmit={handleSubmit}
-        className="border-t border-navy-100 px-6 py-4"
+        className="border-t border-navy-100 px-6 py-4 dark:border-navy-700"
       >
         <div className="flex items-end gap-3">
           <textarea
@@ -279,18 +279,18 @@ export default function MarcoChat() {
             placeholder="Ask Marco a legal or accounting question…"
             rows={2}
             disabled={loading}
-            className="min-h-[60px] flex-1 resize-none rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 placeholder:text-navy-300 focus:border-navy-400 focus:outline-none disabled:opacity-50"
+            className="min-h-[60px] flex-1 resize-none rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-700 placeholder:text-navy-300 focus:border-navy-400 focus:outline-none disabled:opacity-50 dark:border-navy-600 dark:bg-navy-900 dark:text-white dark:placeholder:text-navy-500"
             maxLength={2000}
           />
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="min-h-touch shrink-0 rounded-xl bg-navy-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-600 disabled:cursor-not-allowed disabled:opacity-50"
+            className="min-h-touch shrink-0 rounded-xl bg-navy-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-600 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-navy-400"
           >
             {loading ? "Asking…" : "Ask"}
           </button>
         </div>
-        <p className="mt-2 text-[10px] text-navy-300">
+        <p className="mt-2 text-[10px] text-navy-300 dark:text-navy-500">
           Press Enter to send · Shift+Enter for new line · {input.length}/2000
         </p>
       </form>

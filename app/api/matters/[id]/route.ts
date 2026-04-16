@@ -6,7 +6,6 @@ import { MatterStatus } from "@prisma/client";
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   const { id } = await params;
   try {
     const matter = await prisma.matter.findFirst({
@@ -27,7 +26,6 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   const { id } = await params;
   try {
     const existing = await prisma.matter.findFirst({ where: { id, userId } });
@@ -55,7 +53,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   const { id } = await params;
   try {
     const existing = await prisma.matter.findFirst({ where: { id, userId } });

@@ -127,6 +127,67 @@
   background: linear-gradient(90deg, transparent 0%, var(--color-gold-400) 30%, var(--color-gold-300) 50%, var(--color-gold-400) 70%, transparent 100%);
 }
 
+/* ── Dark mode tokens ─────────────────────────────────────────── */
+
+/*
+  Dark mode is activated via:
+  1. .dark class on <html> (user override)
+  2. @media (prefers-color-scheme: dark) when user preference is "system"
+
+  Tailwind v4 supports dark: variants via .dark class on html by default.
+  We also define CSS custom properties for components that use them directly.
+*/
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    color-scheme: dark;
+
+    /* Backgrounds */
+    --dark-bg: var(--color-navy-950);
+    --dark-surface: var(--color-navy-900);
+    --dark-card: var(--color-navy-800);
+    --dark-card-border: var(--color-navy-700);
+    --dark-border: var(--color-navy-700);
+    --dark-border-subtle: var(--color-navy-800);
+
+    /* Text */
+    --dark-text-primary: #ffffff;
+    --dark-text-secondary: var(--color-navy-100);
+    --dark-text-tertiary: var(--color-navy-300);
+    --dark-text-muted: var(--color-navy-400);
+
+    /* Shadows — darker, more diffuse for dark surfaces */
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-mockup: 0 32px 64px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    --shadow-mockup-hover: 0 40px 80px -16px rgba(0, 0, 0, 0.6), 0 20px 40px -8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+}
+
+html.dark {
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --dark-bg: var(--color-navy-950);
+  --dark-surface: var(--color-navy-900);
+  --dark-card: var(--color-navy-800);
+  --dark-card-border: var(--color-navy-700);
+  --dark-border: var(--color-navy-700);
+  --dark-border-subtle: var(--color-navy-800);
+
+  /* Text */
+  --dark-text-primary: #ffffff;
+  --dark-text-secondary: var(--color-navy-100);
+  --dark-text-tertiary: var(--color-navy-300);
+  --dark-text-muted: var(--color-navy-400);
+
+  /* Shadows — darker, more diffuse for dark surfaces */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-mockup: 0 32px 64px -16px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-mockup-hover: 0 40px 80px -16px rgba(0, 0, 0, 0.6), 0 20px 40px -8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
 /* ── Base styles ───────────────────────────────────────────────── */
 
 @layer base {
@@ -134,6 +195,11 @@
     @apply font-sans text-navy-800 bg-white antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body,
+  html.dark body {
+    @apply text-navy-100 bg-navy-950;
   }
 
   ::selection {
@@ -202,4 +268,36 @@
   20% { opacity: 0.6; transform: translateY(-20px) scale(1); }
   80% { opacity: 0.6; transform: translateY(-80px) scale(1); }
   100% { opacity: 0; transform: translateY(-100px) scale(0); }
+}
+
+/* ── Accessibility: reduced motion ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Accessibility: consistent focus-visible ring ─────────────── */
+
+*:focus-visible {
+  outline: 2px solid var(--color-navy-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Custom focus elements opt out via .focus-ring-none */
+.focus-ring-none:focus-visible {
+  outline: none;
 }
