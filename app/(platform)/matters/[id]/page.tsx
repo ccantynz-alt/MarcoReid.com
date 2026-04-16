@@ -2,18 +2,20 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import MatterDocumentsUploadButton from "@/app/components/platform/MatterDocumentsUploadButton";
 
 export const dynamic = "force-dynamic";
 
 const money = (cents: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100);
 
-export default async function MatterDetailPage({ params }: { params: { id: string } }) {
+export default async function MatterDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const userId = await getUserId();
   if (!userId) redirect("/login");
 
+  const { id } = await params;
   const matter = await prisma.matter.findFirst({
-    where: { id: params.id, userId },
+    where: { id, userId },
     include: {
       client: true,
       documents: { orderBy: { createdAt: "desc" } },
@@ -46,7 +48,13 @@ export default async function MatterDetailPage({ params }: { params: { id: strin
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
-          <h2 className="font-semibold text-navy-700">Documents ({matter.documents.length})</h2>
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="font-semibold text-navy-700">Documents ({matter.documents.length})</h2>
+            <MatterDocumentsUploadButton
+              matterId={matter.id}
+              clientId={matter.clientId}
+            />
+          </div>
           {matter.documents.length === 0 ? (
             <p className="mt-3 text-sm text-navy-400">No documents yet.</p>
           ) : (
