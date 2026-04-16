@@ -527,8 +527,8 @@ export default function HomePage() {
                   Marco Reid Accounting
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  QuickBooks just raised prices 400%.
-                  And it still can&rsquo;t do tax research.
+                  Xero, QuickBooks, and MYOB do bookkeeping.
+                  Marco Reid runs the entire firm.
                 </h2>
               </div>
             </div>
@@ -536,30 +536,32 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              97% of CPA firms say they use technology inefficiently. QuickBooks pages take
-              10 seconds to load. Xero keeps removing features. Neither tool has AI research,
-              voice input, or any connection to the legal side. Your clients&rsquo; lawyers use
-              a completely different system. Nothing integrates. Everything is manual.
+              97% of CPA firms say they use technology inefficiently. Xero keeps removing
+              features. QuickBooks raised prices 400%. MYOB stopped innovating. None of
+              them handle payroll across jurisdictions. None of them file GST, VAT, and
+              sales tax in one workflow. None of them have AI research, voice input, or
+              any way to catch up a client who is ten years behind.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Marco Reid Accounting: bank feeds via Plaid that never miss a transaction. AI
-              reconciliation that turns months into minutes. Tax compliance across 50 states.
-              Marco for accounting &mdash; IRS code, revenue rulings, Treasury regs answered
-              in 3 seconds. Voice journal entries. And direct collaboration with lawyers on
-              shared matters. One platform for both professions.
+              Marco Reid Accounting is the most advanced accounting platform on earth.
+              Autonomous bookkeeping. Payroll across NZ, AU, US, UK, and Canada in one
+              run. GST, VAT, and 50-state sales tax filed automatically. Provisional and
+              income tax drafted the moment the year closes. And a Catch-Up Centre that
+              cleans up years of unfiled returns with a qualified accountant signing off
+              on every lodgement.
             </p>
           </Reveal>
 
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: "\u2193", title: "Bank feed integration", desc: "Direct Plaid connection. Auto-pull, auto-categorise, auto-match every transaction." },
-              { icon: "\u26A1", title: "AI reconciliation", desc: "Months of manual work compressed into minutes. You review. You approve. Done." },
-              { icon: "\u2713", title: "50-state tax compliance", desc: "US federal and state tax calculation. Always current. Never out of date." },
-              { icon: "\uD83D\uDCF8", title: "Receipt scanning", desc: "Photo to auto-coded expense entry in under 3 seconds from your phone." },
-              { icon: "\u25C8", title: "Oracle for accounting", desc: "Tax code research with verified citations. IRS rulings answered instantly." },
-              { icon: "\uD83C\uDF99", title: "Voice journal entries", desc: "Dictate double-entry bookkeeping. Marco Reid Voice understands debits and credits." },
+              { icon: "\u267B", title: "Autonomous bookkeeping", desc: "AI posts, reconciles, and closes the books. You review and approve in nine minutes." },
+              { icon: "\uD83D\uDCB3", title: "Payroll, 5 jurisdictions", desc: "NZ PAYE, AU PAYG, US 50-state, UK PAYE, CA CPP/EI \u2014 in one payroll run." },
+              { icon: "\u2713", title: "GST / VAT / sales tax", desc: "NZ GST, AU GST, UK VAT, CA GST/HST, and US 50-state sales tax. Filed automatically." },
+              { icon: "\uD83D\uDCC5", title: "Provisional + income tax", desc: "IR3, IR4, 1040, 1120, SA100, T1, T2 drafted the moment the year closes." },
+              { icon: "\u23EA", title: "Catch-Up Centre", desc: "Years behind? Upload what you have. AI reconstructs, files everything. Fixed-fee." },
+              { icon: "\u25C8", title: "Marco for accounting", desc: "Tax research with verified citations from IR, IRS, ATO, HMRC, and CRA in three seconds." },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
                 <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
@@ -574,8 +576,9 @@ export default function HomePage() {
           </div>
 
           <Reveal delay={0.2}>
-            <div className="mt-12 flex gap-4">
-              <Button href="/accounting">Learn more about Accounting</Button>
+            <div className="mt-12 flex flex-wrap gap-4">
+              <Button href="/accounting">Explore Accounting</Button>
+              <Button href="/catch-up-centre" variant="secondary">Catch-Up Centre</Button>
               <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
             </div>
           </Reveal>
