@@ -7,6 +7,7 @@ import {
   CommandPaletteProvider,
   useCommandPalette,
 } from "@/app/components/platform/CommandPalette";
+import FloatingTimer from "@/app/components/platform/FloatingTimer";
 
 function CommandPaletteTrigger() {
   const { open } = useCommandPalette();
@@ -86,6 +87,7 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main id="platform-main">{children}</main>
+      <FloatingTimer />
     </div>
   );
 }

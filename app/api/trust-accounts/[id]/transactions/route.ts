@@ -6,7 +6,6 @@ import { TrustTransactionType } from "@prisma/client";
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   const { id } = await params;
   try {
     const account = await prisma.trustAccount.findFirst({
@@ -27,7 +26,6 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   const { id } = await params;
   try {
     const account = await prisma.trustAccount.findFirst({
