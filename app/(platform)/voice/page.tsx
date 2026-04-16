@@ -3,20 +3,19 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Container from "@/app/components/shared/Container";
-import VoiceDictationClient, {
+import VoxlenDictationClient, {
   type TranscriptItem,
-} from "./VoiceDictationClient";
+} from "./VoxlenDictationClient";
 
 export const metadata = {
-  title: "Marco Reid Voice — Dictate anywhere",
+  title: "Marco Voice — Dictate anywhere",
+  description:
+    "AI-powered voice dictation for legal and accounting professionals. Record, transcribe, and paste anywhere.",
 };
 
 export default async function VoicePage() {
   const session = await getServerSession(authOptions);
-
-  if (!session?.user) {
-    redirect("/login");
-  }
+  if (!session?.user) redirect("/login");
 
   const userId = (session.user as unknown as { id: string }).id;
 
@@ -37,19 +36,20 @@ export default async function VoicePage() {
   return (
     <Container className="py-12">
       <div className="mb-10">
-        <p className="text-xs font-medium uppercase tracking-widest text-navy-500">
-          Marco Reid Voice
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-600">
+          Marco Voice
         </p>
-        <h1 className="mt-4 font-serif text-display text-navy-800">
+        <h1 className="mt-2 font-serif text-display text-navy-800">
           Speak. It is done.
         </h1>
         <p className="mt-3 max-w-2xl text-lg text-navy-400">
-          Universal speech-to-text dictation for legal and accounting
-          professionals. Record, transcribe, and paste anywhere.
+          Professional dictation with legal and accounting vocabulary.
+          Voice commands, grammar correction, export to TXT, Markdown, JSON, and SRT.
+          Powered by Marco.
         </p>
       </div>
 
-      <VoiceDictationClient initialTranscripts={initialTranscripts} />
+      <VoxlenDictationClient initialTranscripts={initialTranscripts} />
     </Container>
   );
 }
