@@ -390,10 +390,10 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Trust ledger with reconciliation view",
+        title: "Trust ledger with three-way reconciliation",
         description:
-          "Deposit, withdrawal, transfer UX with three-way reconciliation view.",
-        status: "queued",
+          "/trust command-centre (4 metrics, three-way reconciliation explainer, recent activity); /trust/[id] detail with live ledger, running balance, matter-linked transactions; /trust/new open-account form with opening deposit atomic. DEPOSIT/WITHDRAWAL/FEE_DRAW transaction form with overdraw prevention.",
+        status: "done",
       },
       {
         title: "Billing — invoice generator, payment tracking",
@@ -432,10 +432,10 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Admin page polish",
+        title: "Admin dashboard",
         description:
-          "Current admin is minimal. Needs user management, usage analytics, feature flags.",
-        status: "queued",
+          "5-metric bar (users, verified, admins, firms, onboarded), user table with search + role filter, status chips (verified/onboarded/subscribed), quick links to build-status, system status, changelog.",
+        status: "done",
       },
     ],
   },
@@ -546,15 +546,15 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Accessibility audit (WCAG 2.1 AA)",
+        title: "Accessibility foundations",
         description:
-          "Focus traps, skip links, ARIA review, keyboard nav, contrast audit.",
-        status: "queued",
+          "Skip-to-content links on both marketing and platform shells. Global prefers-reduced-motion fallback. Consistent :focus-visible outline (navy-500, 2-3px offset). Toast has aria-live + role='status'. Deeper WCAG 2.1 AA audit still queued.",
+        status: "done",
       },
       {
-        title: "Reduced-motion support",
+        title: "Deep WCAG 2.1 AA audit",
         description:
-          "Honour prefers-reduced-motion on all scroll animations.",
+          "Focus traps in modals, ARIA landmark review, keyboard-only smoke test, axe-core CI check, colour contrast pass.",
         status: "queued",
       },
     ],
