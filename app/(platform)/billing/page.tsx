@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -51,6 +52,23 @@ export default async function BillingPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
       <h1 className="font-serif text-4xl text-navy-800">Billing</h1>
+
+      <section className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h2 className="text-xl font-semibold text-navy-800">Invoices</h2>
+            <p className="mt-1 text-sm text-navy-400">
+              Generate invoices from your billable time and track payment status.
+            </p>
+          </div>
+          <Link
+            href="/billing/invoices"
+            className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
+          >
+            Open invoices
+          </Link>
+        </div>
+      </section>
 
       <section className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
         <h2 className="text-xl font-semibold text-navy-800">Subscription</h2>
