@@ -43,13 +43,13 @@ export default function NewMatterForm({ clients }: Props) {
   }
 
   const input =
-    "w-full rounded-lg border border-navy-200 bg-white px-4 py-2.5 text-sm text-navy-700 placeholder:text-navy-300 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-100";
-  const label = "block text-sm font-medium text-navy-600 mb-1.5";
+    "w-full rounded-lg border border-navy-200 bg-white px-4 py-2.5 text-sm text-navy-700 placeholder:text-navy-300 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-100 dark:border-navy-600 dark:bg-navy-900 dark:text-white dark:placeholder:text-navy-500 dark:focus:border-navy-400 dark:focus:ring-navy-700";
+  const label = "block text-sm font-medium text-navy-600 mb-1.5 dark:text-navy-300";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card"
+      className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800"
     >
       <div>
         <label className={label}>Client *</label>
@@ -114,20 +114,20 @@ export default function NewMatterForm({ clients }: Props) {
         />
       </div>
 
-      {error && <p className="text-sm text-plum-600">{error}</p>}
+      {error && <p className="text-sm text-plum-600 dark:text-plum-400">{error}</p>}
 
       <div className="flex items-center gap-3">
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600 disabled:opacity-50"
+          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600 disabled:opacity-50 dark:hover:bg-navy-400"
         >
           {submitting ? "Creating..." : "Create matter"}
         </button>
         <button
           type="button"
           onClick={() => router.back()}
-          className="inline-flex min-h-touch items-center rounded-lg px-5 py-3 text-sm font-semibold text-navy-500 hover:text-navy-700"
+          className="inline-flex min-h-touch items-center rounded-lg px-5 py-3 text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300 dark:hover:text-white"
         >
           Cancel
         </button>

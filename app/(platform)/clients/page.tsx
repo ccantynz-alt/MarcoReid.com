@@ -2,59 +2,85 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { Prisma } from "@prisma/client";
+import ClientsListClient from "@/app/components/platform/ClientsListClient";
 
 export const dynamic = "force-dynamic";
 
-export default async function ClientsPage() {
+interface SearchParams {
+  q?: string;
+  sort?: string;
+}
+
+export default async function ClientsPage({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
   const userId = await getUserId();
   if (!userId) redirect("/login");
 
+  const params = await searchParams;
+  const q = params.q?.trim() || "";
+  const sort = params.sort || "recent";
+
+  const where: Prisma.ClientWhereInput = { userId };
+  if (q) {
+    where.OR = [
+      { name: { contains: q, mode: "insensitive" } },
+      { email: { contains: q, mode: "insensitive" } },
+      { companyName: { contains: q, mode: "insensitive" } },
+      { phone: { contains: q, mode: "insensitive" } },
+    ];
+  }
+
+  const orderBy: Prisma.ClientOrderByWithRelationInput =
+    sort === "name"
+      ? { name: "asc" }
+      : sort === "company"
+        ? { companyName: "asc" }
+        : { createdAt: "desc" };
+
   const clients = await prisma.client.findMany({
-    where: { userId },
+    where,
     include: { _count: { select: { matters: true } } },
-    orderBy: { createdAt: "desc" },
+    orderBy,
   });
+
+  const total = await prisma.client.count({ where: { userId } });
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
-      <div className="flex items-center justify-between">
-        <h1 className="font-serif text-display text-navy-800">Clients</h1>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 className="font-serif text-display text-navy-800">Clients</h1>
+          <p className="mt-2 text-navy-400">
+            {total === 0
+              ? "No clients yet."
+              : `${total} ${total === 1 ? "client" : "clients"}`}
+          </p>
+        </div>
         <Link
           href="/clients/new"
-          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
+          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-600"
         >
           Add client
         </Link>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-card">
-        {clients.length === 0 ? (
-          <div className="p-8 text-center text-sm text-navy-400">
-            No clients yet. Add your first client to get started.
-          </div>
-        ) : (
-          <table className="w-full">
-            <thead className="border-b border-navy-100 bg-navy-50/50">
-              <tr className="text-left text-xs font-semibold uppercase tracking-wide text-navy-400">
-                <th className="px-6 py-3">Name</th>
-                <th className="px-6 py-3">Email</th>
-                <th className="px-6 py-3">Company</th>
-                <th className="px-6 py-3">Matters</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clients.map((c) => (
-                <tr key={c.id} className="border-b border-navy-50 last:border-0">
-                  <td className="px-6 py-4 text-sm font-medium text-navy-700">{c.name}</td>
-                  <td className="px-6 py-4 text-sm text-navy-500">{c.email}</td>
-                  <td className="px-6 py-4 text-sm text-navy-500">{c.companyName ?? "—"}</td>
-                  <td className="px-6 py-4 text-sm text-navy-500">{c._count.matters}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+      <ClientsListClient
+        clients={clients.map((c) => ({
+          id: c.id,
+          name: c.name,
+          email: c.email,
+          phone: c.phone,
+          companyName: c.companyName,
+          matterCount: c._count.matters,
+          createdAt: c.createdAt.toISOString(),
+        }))}
+        initialQ={q}
+        initialSort={sort}
+      />
     </div>
   );
 }

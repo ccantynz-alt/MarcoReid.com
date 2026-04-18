@@ -2,79 +2,114 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { MatterStatus, Prisma } from "@prisma/client";
+import MattersListClient from "@/app/components/platform/MattersListClient";
 
 export const dynamic = "force-dynamic";
 
-const statusStyles: Record<string, string> = {
-  ACTIVE: "bg-forest-50 text-forest-600",
-  ON_HOLD: "bg-navy-50 text-navy-500",
-  CLOSED: "bg-plum-50 text-plum-600",
-};
+interface SearchParams {
+  q?: string;
+  status?: string;
+  sort?: string;
+}
 
-export default async function MattersPage() {
+export default async function MattersPage({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
   const userId = await getUserId();
   if (!userId) redirect("/login");
 
-  const matters = await prisma.matter.findMany({
-    where: { userId },
-    include: { client: { select: { id: true, name: true } } },
-    orderBy: { openedAt: "desc" },
+  const params = await searchParams;
+  const q = params.q?.trim() || "";
+  const statusFilter = params.status?.toUpperCase() as MatterStatus | "ALL" | undefined;
+  const sort = params.sort || "recent";
+
+  const where: Prisma.MatterWhereInput = { userId };
+  if (
+    statusFilter &&
+    statusFilter !== "ALL" &&
+    (statusFilter === "ACTIVE" ||
+      statusFilter === "ON_HOLD" ||
+      statusFilter === "CLOSED")
+  ) {
+    where.status = statusFilter;
+  }
+  if (q) {
+    where.OR = [
+      { title: { contains: q, mode: "insensitive" } },
+      { matterNumber: { contains: q, mode: "insensitive" } },
+      { practiceArea: { contains: q, mode: "insensitive" } },
+      { client: { name: { contains: q, mode: "insensitive" } } },
+    ];
+  }
+
+  const orderBy: Prisma.MatterOrderByWithRelationInput =
+    sort === "title"
+      ? { title: "asc" }
+      : sort === "client"
+        ? { client: { name: "asc" } }
+        : sort === "status"
+          ? { status: "asc" }
+          : sort === "opened"
+            ? { openedAt: "desc" }
+            : { updatedAt: "desc" };
+
+  const [matters, counts] = await Promise.all([
+    prisma.matter.findMany({
+      where,
+      include: { client: { select: { id: true, name: true } } },
+      orderBy,
+    }),
+    prisma.matter.groupBy({
+      by: ["status"],
+      where: { userId },
+      _count: { _all: true },
+    }),
+  ]);
+
+  const countMap: Record<string, number> = { ALL: 0, ACTIVE: 0, ON_HOLD: 0, CLOSED: 0 };
+  counts.forEach((c) => {
+    countMap[c.status] = c._count._all;
+    countMap.ALL += c._count._all;
   });
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
-      <div className="flex items-center justify-between">
-        <h1 className="font-serif text-display text-navy-800">Matters</h1>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 className="font-serif text-display text-navy-800">Matters</h1>
+          <p className="mt-2 text-navy-400">
+            {countMap.ALL === 0
+              ? "No matters yet."
+              : `${countMap.ALL} total · ${countMap.ACTIVE} active`}
+          </p>
+        </div>
         <Link
           href="/matters/new"
-          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
+          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-600"
         >
           New matter
         </Link>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-card">
-        {matters.length === 0 ? (
-          <div className="p-8 text-center text-sm text-navy-400">
-            No matters yet. Open your first matter to begin.
-          </div>
-        ) : (
-          <table className="w-full">
-            <thead className="border-b border-navy-100 bg-navy-50/50">
-              <tr className="text-left text-xs font-semibold uppercase tracking-wide text-navy-400">
-                <th className="px-6 py-3">Title</th>
-                <th className="px-6 py-3">Client</th>
-                <th className="px-6 py-3">Status</th>
-                <th className="px-6 py-3">Opened</th>
-              </tr>
-            </thead>
-            <tbody>
-              {matters.map((m) => (
-                <tr key={m.id} className="border-b border-navy-50 last:border-0">
-                  <td className="px-6 py-4 text-sm font-medium text-navy-700">
-                    <Link href={`/matters/${m.id}`} className="hover:text-navy-900">
-                      {m.title}
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-navy-500">{m.client.name}</td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                        statusStyles[m.status] ?? "bg-navy-50 text-navy-500"
-                      }`}
-                    >
-                      {m.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-navy-500">
-                    {new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(m.openedAt)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+      <MattersListClient
+        matters={matters.map((m) => ({
+          id: m.id,
+          title: m.title,
+          matterNumber: m.matterNumber,
+          practiceArea: m.practiceArea,
+          status: m.status,
+          openedAt: m.openedAt.toISOString(),
+          updatedAt: m.updatedAt.toISOString(),
+          client: m.client,
+        }))}
+        counts={countMap}
+        initialQ={q}
+        initialStatus={statusFilter === "ALL" || !statusFilter ? "ALL" : statusFilter}
+        initialSort={sort}
+      />
     </div>
   );
 }
