@@ -134,18 +134,18 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Greeting */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-navy-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
             {new Intl.DateTimeFormat("en-US", {
               weekday: "long",
               month: "long",
               day: "numeric",
             }).format(now)}
           </p>
-          <h1 className="mt-1 font-serif text-display text-navy-800">
+          <h1 className="mt-2 font-serif text-display text-navy-800 dark:text-white">
             Welcome back{firstName ? `, ${firstName}` : ""}.
           </h1>
         </div>
@@ -169,16 +169,16 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card"
+            className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-all hover:shadow-card-hover dark:border-navy-700 dark:bg-navy-800"
           >
-            <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gold-600 dark:text-gold-400">
               {stat.label}
             </p>
-            <p className="mt-3 font-serif text-4xl text-navy-800">
+            <p className="mt-3 font-serif text-4xl text-navy-800 dark:text-white">
               {stat.value}
             </p>
             <p className="mt-1 text-sm text-navy-400">{stat.note}</p>
@@ -187,14 +187,14 @@ export default async function DashboardPage() {
       </div>
 
       {/* Marco prompt */}
-      <div className="mt-8">
+      <div className="mt-6">
         <Link
           href="/marco"
-          className="group block overflow-hidden rounded-2xl border border-plum-200 bg-gradient-to-br from-plum-50 to-white p-8 shadow-card transition-all hover:border-plum-400 hover:shadow-card-hover"
+          className="group block overflow-hidden rounded-2xl border border-gold-200 bg-gradient-to-br from-gold-50 via-white to-plum-50 p-8 shadow-card transition-all hover:border-gold-400 hover:shadow-card-hover dark:border-gold-800 dark:from-navy-800 dark:via-navy-800 dark:to-navy-800"
         >
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-plum-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600 dark:text-gold-400">
                 Ask Marco
               </p>
               <p className="mt-2 font-serif text-2xl text-navy-800">
@@ -209,7 +209,7 @@ export default async function DashboardPage() {
                 anywhere to summon Marco.
               </p>
             </div>
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-plum-500 text-white transition-transform group-hover:translate-x-1">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-500 text-white transition-transform group-hover:translate-x-1">
               <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none">
                 <path
                   d="M7 5l6 5-6 5"
