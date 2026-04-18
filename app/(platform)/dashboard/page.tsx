@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import MorningBriefing from "@/app/components/platform/MorningBriefing";
 
 export const dynamic = "force-dynamic";
 
@@ -222,6 +223,11 @@ export default async function DashboardPage() {
             </span>
           </div>
         </Link>
+      </div>
+
+      {/* Morning Briefing — listen to your news on the commute */}
+      <div className="mt-6">
+        <MorningBriefing />
       </div>
 
       {/* Activity + recent matters */}
