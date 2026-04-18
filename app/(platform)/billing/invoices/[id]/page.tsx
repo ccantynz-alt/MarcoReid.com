@@ -144,7 +144,7 @@ export default async function InvoiceDetailPage({
                 </tr>
               </thead>
               <tbody>
-                {invoice.lineItems.map((li) => (
+                {invoice.lineItems.map((li: { id: string; date: Date; description: string; minutes: number; rateInCents: number; amountCents: number }) => (
                   <tr key={li.id} className="border-b border-navy-50 align-top">
                     <td className="py-3 pr-4 text-navy-500">
                       {new Intl.DateTimeFormat("en-US", {

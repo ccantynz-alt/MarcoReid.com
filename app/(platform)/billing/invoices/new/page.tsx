@@ -51,7 +51,7 @@ export default async function NewInvoicePage() {
         firmEmail={user?.email ?? ""}
         clients={clients}
         matters={matters}
-        entries={entries.map((e) => ({
+        entries={entries.map((e: typeof entries[number]) => ({
           id: e.id,
           description: e.description,
           date: e.date.toISOString(),
