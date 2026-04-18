@@ -4,8 +4,12 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function LoginPage() {
+function LoginForm() {
+  const searchParams = useSearchParams();
+  const justRegistered = searchParams?.get("registered") === "1";
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,6 +52,11 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="mt-8">
           <div className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
+            {justRegistered && !error && (
+              <div className="mb-6 rounded-lg border border-forest-300 bg-forest-500/10 px-4 py-3 text-sm text-forest-600">
+                Account created. Please sign in to continue.
+              </div>
+            )}
             {error && (
               <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                 {error}
@@ -75,12 +84,20 @@ export default function LoginPage() {
             </div>
 
             <div className="mt-5">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-navy-600"
-              >
-                Password
-              </label>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-navy-600"
+                >
+                  Password
+                </label>
+                <Link
+                  href="/forgot-password"
+                  className="text-xs font-medium text-navy-500 hover:text-navy-700"
+                >
+                  Forgot password?
+                </Link>
+              </div>
               <input
                 id="password"
                 name="password"
@@ -105,11 +122,28 @@ export default function LoginPage() {
         </form>
 
         <p className="mt-6 text-center text-sm text-navy-400">
+          Don&rsquo;t have an account?{" "}
+          <Link
+            href="/register"
+            className="font-medium text-navy-500 hover:text-navy-700"
+          >
+            Create one
+          </Link>
+        </p>
+        <p className="mt-3 text-center text-sm text-navy-400">
           <Link href="/" className="font-medium text-navy-500 hover:text-navy-700">
             &larr; Back to Marco Reid
           </Link>
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }

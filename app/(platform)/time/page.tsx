@@ -2,128 +2,72 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import TimeHubClient from "./TimeHubClient";
 
 export const dynamic = "force-dynamic";
 
-const usd = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-export default async function TimeEntriesPage() {
+export default async function TimePage() {
   const userId = await getUserId();
   if (!userId) redirect("/login");
 
-  const entries = await prisma.timeEntry.findMany({
+  const matters = await prisma.matter.findMany({
     where: { userId },
-    include: { matter: { select: { id: true, title: true } } },
-    orderBy: { date: "desc" },
+    select: {
+      id: true,
+      title: true,
+      client: { select: { name: true } },
+    },
+    orderBy: { openedAt: "desc" },
   });
 
-  const billableEntries = entries.filter((e) => e.billable);
-  const totalBillableHours = billableEntries.reduce(
-    (sum, e) => sum + e.minutes / 60,
-    0,
-  );
-  const totalBillableAmount = billableEntries.reduce(
-    (sum, e) => sum + (e.minutes / 60) * (e.rateInCents / 100),
-    0,
-  );
+  // Default rate = most recently used rate on any entry, falling back to $300/hr
+  const lastEntry = await prisma.timeEntry.findFirst({
+    where: { userId },
+    orderBy: { createdAt: "desc" },
+    select: { rateInCents: true },
+  });
+  const defaultRateInCents = lastEntry?.rateInCents ?? 30000;
+
+  const matterOptions = matters.map((m) => ({
+    id: m.id,
+    title: m.title,
+    clientName: m.client.name,
+  }));
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
-      <div className="flex items-center justify-between">
-        <h1 className="font-serif text-display text-navy-800">Time Entries</h1>
+      <div className="flex items-baseline justify-between">
+        <div>
+          <h1 className="font-serif text-display text-navy-800">Time</h1>
+          <p className="mt-1 text-sm text-navy-400">
+            Track, review, and bill for every hour of your practice.
+          </p>
+        </div>
         <Link
-          href="/matters"
-          className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
+          href="/dashboard"
+          className="text-sm text-navy-400 hover:text-navy-600"
         >
-          New Time Entry
+          &larr; Dashboard
         </Link>
       </div>
 
-      {/* Stat cards */}
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
-          <p className="text-xs font-semibold uppercase tracking-wide text-navy-400">
-            Total Billable Hours
+      {matters.length === 0 ? (
+        <div className="mt-10 rounded-2xl border border-navy-100 bg-white p-8 text-center shadow-card">
+          <p className="text-sm text-navy-500">
+            You need at least one matter before tracking time.
           </p>
-          <p className="mt-2 font-serif text-3xl text-navy-800">
-            {totalBillableHours.toFixed(2)}
-          </p>
+          <Link
+            href="/matters/new"
+            className="mt-4 inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
+          >
+            Create a matter
+          </Link>
         </div>
-        <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
-          <p className="text-xs font-semibold uppercase tracking-wide text-navy-400">
-            Total Billable Amount
-          </p>
-          <p className="mt-2 font-serif text-3xl text-navy-800">
-            {usd.format(totalBillableAmount)}
-          </p>
+      ) : (
+        <div className="mt-8">
+          <TimeHubClient matters={matterOptions} defaultRateInCents={defaultRateInCents} />
         </div>
-      </div>
-
-      <div className="mt-8 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-card">
-        {entries.length === 0 ? (
-          <div className="p-8 text-center text-sm text-navy-400">
-            No time entries yet.
-          </div>
-        ) : (
-          <table className="w-full">
-            <thead className="border-b border-navy-100 bg-navy-50/50">
-              <tr className="text-left text-xs font-semibold uppercase tracking-wide text-navy-400">
-                <th className="px-6 py-3">Date</th>
-                <th className="px-6 py-3">Matter</th>
-                <th className="px-6 py-3">Description</th>
-                <th className="px-6 py-3 text-right">Hours</th>
-                <th className="px-6 py-3 text-right">Rate</th>
-                <th className="px-6 py-3">Billable</th>
-                <th className="px-6 py-3 text-right">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {entries.map((e) => {
-                const hours = e.minutes / 60;
-                const rate = e.rateInCents / 100;
-                const amount = hours * rate;
-
-                return (
-                  <tr key={e.id} className="border-b border-navy-50 last:border-0">
-                    <td className="px-6 py-4 text-sm text-navy-500">
-                      {new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(e.date)}
-                    </td>
-                    <td className="px-6 py-4 text-sm font-medium text-navy-700">
-                      {e.matter.title}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-navy-500">
-                      {e.description}
-                    </td>
-                    <td className="px-6 py-4 text-right text-sm text-navy-500">
-                      {hours.toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4 text-right text-sm text-navy-500">
-                      {usd.format(rate)}/hr
-                    </td>
-                    <td className="px-6 py-4">
-                      <span
-                        className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                          e.billable
-                            ? "bg-forest-50 text-forest-600"
-                            : "bg-navy-50 text-navy-400"
-                        }`}
-                      >
-                        {e.billable ? "Yes" : "No"}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-navy-700">
-                      {usd.format(amount)}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
-      </div>
+      )}
     </div>
   );
 }

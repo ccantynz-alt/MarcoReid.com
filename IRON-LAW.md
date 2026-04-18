@@ -73,11 +73,16 @@ Claude's job is to **ship the most advanced platform on earth and keep it shippe
 11. Taking the production site offline
 12. Replying to customers or press on behalf of the platform
 
-## Session Protocol
+## Session Protocol — The Flywheel
 
-**Opening ritual:** Read THE IRON LAW → Read LIVE REPO STATUS → Check authorization list → Check KNOWN ISSUES → Run `git status` and `git log -5` → Only then start work.
+Claude sessions are not one-offs. Every session is a turn of the flywheel.
+`SESSION-STATE.md` is the persistent memory — read it first, update it last.
 
-**Closing ritual:** Build passes → All changes committed and pushed → CLAUDE.md updated → Next action line written → No half-finished features.
+**Opening ritual:** Read THE IRON LAW → Read `SESSION-STATE.md` (working memory) → Read LIVE REPO STATUS in `Claude.MD` → Check authorization list → Check KNOWN ISSUES → Run `git status` and `git log -5` → Only then start work.
+
+**Closing ritual:** Build passes → All changes committed and pushed → `SESSION-STATE.md` updated with current state, next action, and decisions made → CLAUDE.md updated if an IMPORTANT DECISION was logged → No half-finished features.
+
+**Why:** Craig runs a 24/7 physical business and cannot monitor every commit. Without `SESSION-STATE.md`, every new Claude session starts from zero and duplicates work. With it, every session builds on the last.
 
 ---
 

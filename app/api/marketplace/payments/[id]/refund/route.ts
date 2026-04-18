@@ -14,7 +14,7 @@ export async function POST(
   if (!sessionUser?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
+  const { id } = await params;
   const payment = await prisma.marketplacePayment.findUnique({
     where: { id },
   });
