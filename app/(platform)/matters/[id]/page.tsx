@@ -38,6 +38,38 @@ export default async function MatterDetailPage({ params }: { params: Promise<{ i
         {matter.practiceArea ? ` • ${matter.practiceArea}` : ""} • {matter.status}
       </p>
 
+      {/* Quick actions bar */}
+      <div className="mt-4 flex gap-3">
+        <Link
+          href="/matters"
+          className="inline-flex items-center rounded-full border border-navy-200 bg-white px-4 py-1.5 text-sm font-medium text-navy-700 shadow-card transition-colors hover:bg-navy-50"
+        >
+          + Add Time Entry
+        </Link>
+        <Link
+          href="/trust"
+          className="inline-flex items-center rounded-full border border-navy-200 bg-white px-4 py-1.5 text-sm font-medium text-navy-700 shadow-card transition-colors hover:bg-navy-50"
+        >
+          View Trust Account
+        </Link>
+      </div>
+
+      {/* Quick stats bar */}
+      <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="rounded-2xl border border-navy-100 bg-white p-5 shadow-card text-center">
+          <p className="text-xs font-semibold uppercase tracking-wide text-navy-400">Documents</p>
+          <p className="mt-1 text-2xl font-bold text-navy-800">{matter.documents.length}</p>
+        </div>
+        <div className="rounded-2xl border border-navy-100 bg-white p-5 shadow-card text-center">
+          <p className="text-xs font-semibold uppercase tracking-wide text-navy-400">Time Entries</p>
+          <p className="mt-1 text-2xl font-bold text-navy-800">{matter.timeEntries.length}</p>
+        </div>
+        <div className="rounded-2xl border border-navy-100 bg-white p-5 shadow-card text-center">
+          <p className="text-xs font-semibold uppercase tracking-wide text-navy-400">Billable Total</p>
+          <p className="mt-1 text-2xl font-bold text-forest-600">{money(billableCents)}</p>
+        </div>
+      </div>
+
       {matter.description && (
         <div className="mt-6 rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-navy-400">Description</h2>
@@ -92,6 +124,14 @@ export default async function MatterDetailPage({ params }: { params: Promise<{ i
             </ul>
           )}
         </div>
+      </div>
+
+      {/* Matter notes */}
+      <div className="mt-6 rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-navy-400">Notes</h2>
+        <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-navy-600">
+          {matter.description || "No notes for this matter yet."}
+        </p>
       </div>
     </div>
   );

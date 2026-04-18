@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Providers from "./providers";
+import CookieConsent from "@/app/components/shared/CookieConsent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <Providers>{children}</Providers>
+        <CookieConsent />
       </body>
     </html>
   );
