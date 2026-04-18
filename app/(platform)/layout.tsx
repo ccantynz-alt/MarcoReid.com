@@ -21,6 +21,7 @@ const platformNav = [
   { href: "/time", label: "Time" },
   { href: "/trust", label: "Trust" },
   { href: "/billing", label: "Billing" },
+  { href: "/news", label: "News" },
 ];
 
 function CommandPaletteTrigger() {
