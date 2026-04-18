@@ -3,13 +3,14 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { TrustTransactionType } from "@prisma/client";
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     const account = await prisma.trustAccount.findFirst({
-      where: { id: params.id, userId },
+      where: { id, userId },
     });
     if (!account) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -23,13 +24,14 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   }
 }
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     const account = await prisma.trustAccount.findFirst({
-      where: { id: params.id, userId },
+      where: { id, userId },
     });
     if (!account) return NextResponse.json({ error: "Not found" }, { status: 404 });
 

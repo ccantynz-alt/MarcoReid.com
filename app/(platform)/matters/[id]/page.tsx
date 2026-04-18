@@ -8,12 +8,13 @@ export const dynamic = "force-dynamic";
 const money = (cents: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100);
 
-export default async function MatterDetailPage({ params }: { params: { id: string } }) {
+export default async function MatterDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const userId = await getUserId();
   if (!userId) redirect("/login");
 
   const matter = await prisma.matter.findFirst({
-    where: { id: params.id, userId },
+    where: { id, userId },
     include: {
       client: true,
       documents: { orderBy: { createdAt: "desc" } },

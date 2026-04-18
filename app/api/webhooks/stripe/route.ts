@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const sig = headers().get("stripe-signature");
+  const sig = (await headers()).get("stripe-signature");
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
 
   if (!sig || !secret) {
@@ -29,7 +29,8 @@ export async function POST(req: Request) {
       if (s.mode === "subscription" && s.subscription) {
         const userId =
           s.client_reference_id || (s.metadata?.userId as string | undefined);
-        const sub = await stripe.subscriptions.retrieve(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const sub: any = await stripe.subscriptions.retrieve(
           s.subscription as string,
         );
         if (userId) {
@@ -40,9 +41,9 @@ export async function POST(req: Request) {
               stripeSubscriptionId: sub.id,
               stripePriceId: sub.items.data[0]?.price.id,
               subscriptionStatus: sub.status,
-              subscriptionPeriodEnd: new Date(
-                sub.current_period_end * 1000,
-              ),
+              subscriptionPeriodEnd: sub.current_period_end
+                ? new Date(sub.current_period_end * 1000)
+                : undefined,
             },
           });
         }
@@ -51,13 +52,16 @@ export async function POST(req: Request) {
     }
 
     case "customer.subscription.updated": {
-      const sub = event.data.object as Stripe.Subscription;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const sub = event.data.object as any;
       await prisma.user.updateMany({
         where: { stripeSubscriptionId: sub.id },
         data: {
-          stripePriceId: sub.items.data[0]?.price.id,
+          stripePriceId: sub.items?.data?.[0]?.price?.id,
           subscriptionStatus: sub.status,
-          subscriptionPeriodEnd: new Date(sub.current_period_end * 1000),
+          subscriptionPeriodEnd: sub.current_period_end
+            ? new Date(sub.current_period_end * 1000)
+            : undefined,
         },
       });
       break;
