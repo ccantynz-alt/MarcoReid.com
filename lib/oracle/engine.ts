@@ -22,9 +22,13 @@ import { AI_DISCLAIMER } from "@/lib/constants";
  * 7. Returns verified results to the user
  */
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+let _anthropic: Anthropic | null = null;
+function getAnthropic() {
+  if (!_anthropic) {
+    _anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  }
+  return _anthropic;
+}
 
 /**
  * Detect the query domain based on keywords and context.
@@ -309,7 +313,7 @@ export async function queryOracle(
   }`;
 
   // 4. Query Claude
-  const message = await anthropic.messages.create({
+  const message = await getAnthropic().messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4096,
     system: systemPrompt,

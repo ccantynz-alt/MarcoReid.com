@@ -8,6 +8,7 @@ export async function POST(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   const sessionUser = session?.user as { id?: string; role?: string } | undefined;
   if (!sessionUser?.id) {

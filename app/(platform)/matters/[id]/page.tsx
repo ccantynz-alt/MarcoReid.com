@@ -12,41 +12,8 @@ const money = (cents: number) =>
     currency: "USD",
   }).format(cents / 100);
 
-const formatHours = (minutes: number) => {
-  const hours = minutes / 60;
-  if (hours >= 10) return `${Math.round(hours)}h`;
-  return `${hours.toFixed(1)}h`;
-};
-
-const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(d);
-
-const formatRelative = (d: Date) => {
-  const diff = Date.now() - d.getTime();
-  const days = Math.floor(diff / (24 * 60 * 60 * 1000));
-  if (days === 0) return "Today";
-  if (days === 1) return "Yesterday";
-  if (days < 7) return `${days} days ago`;
-  if (days < 30) return `${Math.floor(days / 7)} weeks ago`;
-  if (days < 365) return `${Math.floor(days / 30)} months ago`;
-  return `${Math.floor(days / 365)} years ago`;
-};
-
-const statusStyles: Record<string, string> = {
-  ACTIVE: "bg-forest-50 text-forest-600",
-  ON_HOLD: "bg-navy-50 text-navy-500",
-  CLOSED: "bg-plum-50 text-plum-600",
-};
-
-export default async function MatterDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function MatterDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const userId = await getUserId();
   if (!userId) redirect("/login");
 
