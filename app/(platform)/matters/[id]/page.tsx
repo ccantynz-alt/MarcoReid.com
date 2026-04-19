@@ -12,12 +12,35 @@ const money = (cents: number) =>
     currency: "USD",
   }).format(cents / 100);
 
+const formatHours = (minutes: number) => {
+  const h = minutes / 60;
+  return h >= 10 ? `${Math.round(h)}h` : `${h.toFixed(1)}h`;
+};
+
+const statusStyles: Record<string, string> = {
+  ACTIVE: "bg-forest-50 text-forest-700",
+  ON_HOLD: "bg-gold-100 text-gold-700",
+  CLOSED: "bg-navy-100 text-navy-500",
+};
+
+const formatDate = (d: Date) =>
+  new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(d);
+
+const formatRelative = (d: Date) => {
+  const diff = Date.now() - d.getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+};
+
 export default async function MatterDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const userId = await getUserId();
   if (!userId) redirect("/login");
-
-  const { id } = await params;
 
   const matter = await prisma.matter.findFirst({
     where: { id, userId },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Providers from "./providers";
+import CookieConsent from "@/app/components/shared/CookieConsent";
 import "./globals.css";
 
 const siteUrl = "https://marcoreid.com";
@@ -178,6 +179,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <Providers>{children}</Providers>
+        <CookieConsent />
       </body>
     </html>
   );
