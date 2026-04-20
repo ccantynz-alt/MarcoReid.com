@@ -92,7 +92,7 @@ export default function HomePage() {
               <p className="font-serif text-3xl text-white sm:text-4xl">
                 <AnimatedCounter end={20} suffix="h" />
               </p>
-              <p className="mt-1 text-xs text-navy-300">saved per attorney per week</p>
+              <p className="mt-1 text-xs text-navy-300">saved per professional per week</p>
             </div>
             <div className="text-center">
               <p className="font-serif text-3xl text-forest-300 sm:text-4xl">
@@ -112,6 +112,83 @@ export default function HomePage() {
               </p>
               <p className="mt-1 text-xs text-navy-300">languages from day one</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* MARKETPLACE — NZ + AU soft launch                              */}
+      {/* ============================================================ */}
+      <section className="border-b border-navy-100 bg-gold-50 py-20 sm:py-24" aria-label="Marketplace">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+                Soft launch &middot; New Zealand &amp; Australia
+              </p>
+              <h2 className="mt-4 font-serif text-display text-navy-800">
+                A two-sided platform.
+                <br />
+                <span className="text-gold-700">
+                  Citizens post. Professionals sign off.
+                </span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-600">
+                Marco Reid is opening to the public for the first time in NZ
+                and Australia. Tenancy disputes, SME tax catch-up, and more
+                on the way. AI drafts the paperwork; a licensed lawyer or
+                chartered accountant reviews and signs off before anything is
+                filed or sent.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2">
+            <Reveal>
+              <a
+                href="/for-citizens"
+                className="group block h-full rounded-2xl border border-navy-100 bg-white p-8 shadow-card transition-all hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-plum-500">
+                  For citizens
+                </p>
+                <h3 className="mt-3 font-serif text-2xl text-navy-800">
+                  Describe your problem.
+                  <br />A professional takes it on.
+                </h3>
+                <p className="mt-4 text-sm text-navy-500">
+                  Post a matter in plain English. Marco drafts the paperwork.
+                  A licensed pro reviews, signs off, and delivers the result
+                  to you. Flat lead fees, no surprises.
+                </p>
+                <p className="mt-6 text-sm font-semibold text-gold-700 group-hover:underline">
+                  Post a matter &rarr;
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <a
+                href="/marketplace"
+                className="group block h-full rounded-2xl border border-navy-100 bg-white p-8 shadow-card transition-all hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-plum-500">
+                  For lawyers &amp; accountants
+                </p>
+                <h3 className="mt-3 font-serif text-2xl text-navy-800">
+                  Qualified leads.
+                  <br />Pre-drafted paperwork.
+                </h3>
+                <p className="mt-4 text-sm text-navy-500">
+                  Flat lead fees. Never a percentage of your professional
+                  fee. Sign-off workflow, audit trail, and the full SaaS
+                  stack included. Founding pricing for the first twenty
+                  firms in each country.
+                </p>
+                <p className="mt-6 text-sm font-semibold text-gold-700 group-hover:underline">
+                  Join the marketplace &rarr;
+                </p>
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -140,7 +217,7 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              The average attorney spends more time managing software than practising law.
+              The average lawyer spends more time managing software than practising law.
               Case management in one tool. Research in another. Billing somewhere else.
               Trust accounting in a spreadsheet. Client calls falling through the cracks.
               You&rsquo;re paying $400/month for Westlaw, $100/month for Clio, $699 for Dragon,
