@@ -507,7 +507,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Beachhead practice areas seeded",
         description:
-          "Four practice areas: NZ tenancy dispute, NZ SME tax catch-up, AU residential tenancy dispute, AU SME tax catch-up. Each seeded with its own versioned acknowledgment bullets for per-matter click-through.",
+          "Fourteen practice areas across NZ + AU: tenancy, SME tax catch-up, employment, separation & parenting, wills, small claims (Disputes Tribunal / state tribunals), immigration, and sole-trader tax. Each seeded with its own versioned acknowledgment bullets for per-matter click-through.",
         status: "done",
       },
       {
@@ -556,6 +556,24 @@ export const phases: BuildPhase[] = [
         title: "Practice-area SEO landing pages",
         description:
           "/practice index + /practice/[slug] server-rendered from the DB seed. Schema.org Service markup per area with jurisdiction-aware offer price. Dynamic sitemap entries generated from active practice areas.",
+        status: "done",
+      },
+      {
+        title: "Email notifications on state transitions",
+        description:
+          "Fire-and-forget emails hook the three hot transitions: citizen posts → notify every matching verified PI-current pro; pro accepts → notify citizen with the pro's name + body; sign-off released → notify citizen the work is ready, flagged approved-as-is or amended. Dev mode logs to console; Resend adapter already wired for production.",
+        status: "done",
+      },
+      {
+        title: "Citizen cancel flow for unaccepted matters",
+        description:
+          "DELETE /api/marketplace/matters/[id] guarded on status — only DRAFT or AWAITING_PRO can be withdrawn. updateMany guard prevents a ghost cancellation racing a pro's accept. Surfaced on /matter/[id] with a confirm step.",
+        status: "done",
+      },
+      {
+        title: "Admin marketplace overview",
+        description:
+          "/admin/matters with total counts, a stalled-matters callout for AWAITING_PRO entries older than 48 hours, pending sign-off backlog, and a full active-matters table with citizen + pro columns. Links in from /admin.",
         status: "done",
       },
       {
