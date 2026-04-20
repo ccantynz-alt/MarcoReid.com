@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus, SignoffStatus } from "@prisma/client";
+import { notifyCitizenOfRelease } from "@/lib/marketplace/notifications";
 
 // POST /api/marketplace/signoff/:id/decide
 // Body: { decision: "approve" | "amend" | "reject", amendedOutput?, reviewerNotes? }
@@ -89,6 +90,9 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
         data: { status: ProMatterStatus.SIGNED_OFF },
       }),
     ]);
+    notifyCitizenOfRelease(signoff.id).catch((err) => {
+      console.error("[marketplace] notifyCitizenOfRelease dispatch failed:", err);
+    });
     return NextResponse.json({ ok: true, decision });
   }
 
@@ -114,6 +118,9 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
         data: { status: ProMatterStatus.SIGNED_OFF },
       }),
     ]);
+    notifyCitizenOfRelease(signoff.id).catch((err) => {
+      console.error("[marketplace] notifyCitizenOfRelease dispatch failed:", err);
+    });
     return NextResponse.json({ ok: true, decision });
   }
 

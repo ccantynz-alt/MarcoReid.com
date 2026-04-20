@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
+import { notifyMatchingProsOfNewMatter } from "@/lib/marketplace/notifications";
 
 // GET /api/marketplace/matters — list the current citizen's matters
 export async function GET() {
@@ -95,6 +96,13 @@ export async function POST(req: NextRequest) {
       postedAt: post ? now : null,
     },
   });
+
+  // Fire-and-forget — failures are logged but must not block the response.
+  if (post) {
+    notifyMatchingProsOfNewMatter(matter.id).catch((err) => {
+      console.error("[marketplace] notifyMatchingPros dispatch failed:", err);
+    });
+  }
 
   return NextResponse.json({ matter }, { status: 201 });
 }
