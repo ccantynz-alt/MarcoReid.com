@@ -108,7 +108,7 @@ export default function MarketplacePage() {
             your work.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/register">Apply to join</Button>
+            <Button href="/pro-onboard">Apply to join</Button>
             <Button href="#how-it-works" variant="secondary">
               How it works
             </Button>
@@ -224,7 +224,7 @@ export default function MarketplacePage() {
             we&rsquo;ll be in touch.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/contact">Apply now</Button>
+            <Button href="/pro-onboard">Apply now</Button>
             <Link
               href="/pricing"
               className="inline-flex min-h-touch items-center text-sm font-medium text-white/90 underline hover:text-white"
