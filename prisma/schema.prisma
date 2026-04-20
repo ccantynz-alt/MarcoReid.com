@@ -34,6 +34,10 @@ model User {
   trustAccounts    TrustAccount[]
   voiceTranscripts VoiceTranscript[]
 
+  // Marketplace
+  professionalProfile Professional? @relation("ProfessionalProfile")
+  citizenMatters      ProMatter[]   @relation("CitizenMatters")
+
   // Stripe — subscriptions
   stripeCustomerId      String?   @unique
   stripeSubscriptionId  String?   @unique
@@ -403,4 +407,174 @@ model CourtPilotRequest {
 
   @@index([status])
   @@index([createdAt(sort: Desc)])
+}
+
+// ============================================================
+// MARKETPLACE — citizens post matters, licensed pros accept them,
+// every AI output passes through a SignoffRequest before release.
+// Fee model respects ABA Model Rule 5.4 + NZ Lawyers and Conveyancers
+// Act fee-splitting rules: flat lead fee + SaaS subscription, never a
+// percentage of the pro's professional fee.
+// ============================================================
+
+enum ProfessionDomain {
+  LAW
+  ACCOUNTING
+}
+
+enum ProMatterStatus {
+  DRAFT              // citizen still writing the intake
+  AWAITING_PRO       // posted, waiting for a pro to accept
+  ACCEPTED           // pro accepted, in progress
+  AWAITING_SIGNOFF   // work drafted, pending final sign-off
+  SIGNED_OFF         // released to citizen
+  CLOSED
+  CANCELLED
+}
+
+enum SignoffStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  AMENDED
+}
+
+// Catalogue of practice areas. Seeded per jurisdiction so a NZ tenancy
+// matter cannot accidentally route to a US-only professional.
+model PracticeArea {
+  id                    String                    @id @default(cuid())
+  slug                  String                    @unique
+  name                  String
+  domain                ProfessionDomain
+  jurisdiction          String                    // "NZ", "AU", "US", "UK", "CA"
+  summary               String
+  intakeCopy            String                    @db.Text
+  leadFeeInCents        Int                       @default(0)
+  currency              String                    @default("NZD")
+  active                Boolean                   @default(true)
+  priority              Int                       @default(0)
+  // Per-practice-area acknowledgment — shown to citizens in the intake flow.
+  // Versioned so we can prove what a given ProMatter's owner agreed to.
+  ackVersion            String                    @default("2026-04-20")
+  ackBullets            String[]
+  professionals         ProfessionalPracticeArea[]
+  proMatters            ProMatter[]
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+
+  @@index([jurisdiction, domain])
+  @@index([active, priority])
+}
+
+// A verified licensed professional. Linked 1:1 with a User row.
+// verifiedAt is required before the pro can appear in citizen matching;
+// piPolicyExpiresAt is checked on every matter assignment — expired PI
+// insurance blocks acceptance.
+model Professional {
+  id                    String                    @id @default(cuid())
+  userId                String                    @unique
+  user                  User                      @relation("ProfessionalProfile", fields: [userId], references: [id])
+  displayName           String
+  bio                   String?                   @db.Text
+  admissionJurisdiction String
+  admissionNumber       String
+  admissionYear         Int?
+  professionalBody      String                    // "NZ Law Society", "CA ANZ", "NZICA", etc.
+  piInsurerName         String?
+  piPolicyNumber        String?
+  piPolicyExpiresAt     DateTime?
+  acceptingNewMatters   Boolean                   @default(true)
+  verifiedAt            DateTime?
+  verifiedBy            String?                   // admin User.id who verified
+  practiceAreas         ProfessionalPracticeArea[]
+  acceptedMatters       ProMatter[]               @relation("AcceptedBy")
+  signoffs              SignoffRequest[]          @relation("SignedBy")
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
+
+  @@index([admissionJurisdiction])
+  @@index([acceptingNewMatters, verifiedAt])
+}
+
+// Pro <-> PracticeArea M:N
+model ProfessionalPracticeArea {
+  professionalId  String
+  professional    Professional  @relation(fields: [professionalId], references: [id])
+  practiceAreaId  String
+  practiceArea    PracticeArea  @relation(fields: [practiceAreaId], references: [id])
+  assignedAt      DateTime      @default(now())
+
+  @@id([professionalId, practiceAreaId])
+  @@index([practiceAreaId])
+}
+
+// A citizen-posted matter. Lives through DRAFT → AWAITING_PRO → ACCEPTED
+// → AWAITING_SIGNOFF → SIGNED_OFF. leadFeeInCents is snapshotted at post
+// time so a later fee change doesn't retroactively alter the deal.
+model ProMatter {
+  id                      String          @id @default(cuid())
+  citizenUserId           String
+  citizen                 User            @relation("CitizenMatters", fields: [citizenUserId], references: [id])
+  practiceAreaId          String
+  practiceArea            PracticeArea    @relation(fields: [practiceAreaId], references: [id])
+  jurisdiction            String
+  summary                 String
+  details                 String          @db.Text
+  status                  ProMatterStatus @default(DRAFT)
+  leadFeeInCents          Int
+  consumerFeeInCents      Int?
+  currency                String          @default("NZD")
+
+  // Per-area acknowledgment snapshot — evidentiary record that this
+  // specific citizen agreed to this specific version of the intake
+  // acknowledgment for this specific practice area.
+  ackVersion              String?
+  ackAt                   DateTime?
+
+  acceptedByProId         String?
+  acceptedBy              Professional?   @relation("AcceptedBy", fields: [acceptedByProId], references: [id])
+  acceptedAt              DateTime?
+  postedAt                DateTime?
+  closedAt                DateTime?
+
+  signoffRequests         SignoffRequest[]
+
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+
+  @@index([status])
+  @@index([practiceAreaId, status])
+  @@index([citizenUserId])
+  @@index([acceptedByProId])
+}
+
+// Every AI output destined for a consumer passes through here. The
+// outputSha256 is the tamper-evidence hash — if the output or a
+// derivative is altered after sign-off, the hash mismatch catches it.
+// releasedAt gates when the consumer actually sees the work.
+model SignoffRequest {
+  id             String        @id @default(cuid())
+  proMatterId    String
+  proMatter      ProMatter     @relation(fields: [proMatterId], references: [id])
+  kind           String        // "draft-letter", "tax-return", "advice-note", etc.
+  aiOutput       String        @db.Text
+  outputSha256   String
+  rationale      String?       @db.Text
+  citationsJson  String?       @db.Text  // serialized citation refs
+
+  status         SignoffStatus @default(PENDING)
+  reviewerId     String?
+  reviewer       Professional? @relation("SignedBy", fields: [reviewerId], references: [id])
+  reviewerNotes  String?       @db.Text
+  amendedOutput  String?       @db.Text
+  amendedSha256  String?
+
+  requestedAt    DateTime      @default(now())
+  reviewedAt     DateTime?
+  releasedAt     DateTime?
+
+  @@index([proMatterId])
+  @@index([status])
+  @@index([reviewerId])
+  @@index([requestedAt])
 }
