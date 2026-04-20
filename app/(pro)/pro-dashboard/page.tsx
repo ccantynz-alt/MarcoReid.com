@@ -3,15 +3,11 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
 import ProActionButtons from "@/app/components/pro/ProActionButtons";
+import { formatFee } from "@/lib/marketplace/format";
 
 export const metadata = { title: "Queue — Marco Reid" };
 
 export const dynamic = "force-dynamic";
-
-function formatFee(cents: number, currency: string) {
-  const amount = (cents / 100).toFixed(0);
-  return `${currency} $${amount}`;
-}
 
 // Pro queue: shows AWAITING_PRO matters in the pro's verified practice
 // areas and jurisdiction, plus matters this pro has already accepted.

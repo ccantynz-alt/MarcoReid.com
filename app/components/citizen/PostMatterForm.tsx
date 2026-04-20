@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { formatFee } from "@/lib/marketplace/format";
+import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 
 interface PracticeAreaOption {
   id: string;
@@ -24,15 +26,6 @@ export interface DraftSeed {
   summary: string;
   details: string;
 }
-
-function formatFee(cents: number, currency: string) {
-  const amount = (cents / 100).toFixed(0);
-  return `${currency} $${amount}`;
-}
-
-const DETAILS_MIN = 40;
-const DETAILS_MAX = 8000;
-const SUMMARY_MAX = 200;
 
 export default function PostMatterForm({
   areas,
@@ -250,12 +243,12 @@ export default function PostMatterForm({
               id="summary"
               type="text"
               value={summary}
-              onChange={(e) => setSummary(e.target.value.slice(0, SUMMARY_MAX))}
+              onChange={(e) => setSummary(e.target.value.slice(0, MATTER_LIMITS.SUMMARY_MAX))}
               placeholder="e.g. Landlord refusing to return bond after I moved out"
               className="mt-2 w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
             />
             <p className="mt-1 text-xs text-navy-400">
-              {summary.length} / {SUMMARY_MAX}
+              {summary.length} / {MATTER_LIMITS.SUMMARY_MAX}
             </p>
           </div>
 
@@ -266,16 +259,16 @@ export default function PostMatterForm({
             <textarea
               id="details"
               value={details}
-              onChange={(e) => setDetails(e.target.value.slice(0, DETAILS_MAX))}
+              onChange={(e) => setDetails(e.target.value.slice(0, MATTER_LIMITS.DETAILS_MAX))}
               rows={10}
               placeholder="What happened? When? Who's involved? What outcome are you hoping for?"
               className="mt-2 w-full rounded-lg border border-navy-200 px-4 py-3 text-sm focus:border-gold-400 focus:outline-none"
             />
             <p className="mt-1 text-xs text-navy-400">
-              {details.length} / {DETAILS_MAX}
-              {details.length < DETAILS_MIN && (
+              {details.length} / {MATTER_LIMITS.DETAILS_MAX}
+              {details.length < MATTER_LIMITS.DETAILS_MIN && (
                 <span className="ml-2 text-amber-600">
-                  At least {DETAILS_MIN} characters required.
+                  At least {MATTER_LIMITS.DETAILS_MIN} characters required.
                 </span>
               )}
             </p>
@@ -291,7 +284,7 @@ export default function PostMatterForm({
             </button>
             <button
               type="button"
-              disabled={!summary || details.length < DETAILS_MIN}
+              disabled={!summary || details.length < MATTER_LIMITS.DETAILS_MIN}
               onClick={() => setStep(4)}
               className="rounded-lg bg-navy-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-navy-600 disabled:cursor-not-allowed disabled:bg-navy-200"
             >

@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
-import { notifyCitizenOfAcceptance } from "@/lib/marketplace/notifications";
+import {
+  notifyCitizenOfAcceptance,
+  fireAndForget,
+} from "@/lib/marketplace/notifications";
 
 // POST /api/marketplace/matters/:id/accept
 // A verified, PI-current professional claims an AWAITING_PRO matter.
@@ -75,9 +78,7 @@ export async function POST(_req: Request, ctx: { params: Promise<{ id: string }>
     return NextResponse.json({ error: "Already taken" }, { status: 409 });
   }
 
-  notifyCitizenOfAcceptance(matter.id).catch((err) => {
-    console.error("[marketplace] notifyCitizenOfAcceptance dispatch failed:", err);
-  });
+  fireAndForget("notifyCitizenOfAcceptance", notifyCitizenOfAcceptance(matter.id));
 
   return NextResponse.json({ ok: true });
 }

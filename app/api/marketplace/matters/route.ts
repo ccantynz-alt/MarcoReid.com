@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
-import { notifyMatchingProsOfNewMatter } from "@/lib/marketplace/notifications";
+import {
+  notifyMatchingProsOfNewMatter,
+  fireAndForget,
+} from "@/lib/marketplace/notifications";
+import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 
-// GET /api/marketplace/matters — list the current citizen's matters
 export async function GET() {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -20,11 +23,6 @@ export async function GET() {
   return NextResponse.json({ matters });
 }
 
-// POST /api/marketplace/matters — citizen posts a new matter.
-// Body: { practiceAreaSlug, summary, details, ackVersion, post }
-//   - If `post` is true, status goes straight to AWAITING_PRO and postedAt stamps now.
-//   - Otherwise status stays DRAFT so the citizen can come back to edit.
-// The per-area ack snapshot is recorded on the ProMatter for evidentiary purposes.
 export async function POST(req: NextRequest) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -50,14 +48,23 @@ export async function POST(req: NextRequest) {
       { status: 400 },
     );
   }
-  if (summary.length > 200) {
-    return NextResponse.json({ error: "Summary must be 200 characters or fewer" }, { status: 400 });
+  if (summary.length > MATTER_LIMITS.SUMMARY_MAX) {
+    return NextResponse.json(
+      { error: `Summary must be ${MATTER_LIMITS.SUMMARY_MAX} characters or fewer` },
+      { status: 400 },
+    );
   }
-  if (details.length < 40) {
-    return NextResponse.json({ error: "Details must be at least 40 characters" }, { status: 400 });
+  if (details.length < MATTER_LIMITS.DETAILS_MIN) {
+    return NextResponse.json(
+      { error: `Details must be at least ${MATTER_LIMITS.DETAILS_MIN} characters` },
+      { status: 400 },
+    );
   }
-  if (details.length > 8000) {
-    return NextResponse.json({ error: "Details must be 8000 characters or fewer" }, { status: 400 });
+  if (details.length > MATTER_LIMITS.DETAILS_MAX) {
+    return NextResponse.json(
+      { error: `Details must be ${MATTER_LIMITS.DETAILS_MAX} characters or fewer` },
+      { status: 400 },
+    );
   }
 
   const area = await prisma.practiceArea.findUnique({ where: { slug: practiceAreaSlug } });
@@ -97,11 +104,8 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  // Fire-and-forget — failures are logged but must not block the response.
   if (post) {
-    notifyMatchingProsOfNewMatter(matter.id).catch((err) => {
-      console.error("[marketplace] notifyMatchingPros dispatch failed:", err);
-    });
+    fireAndForget("notifyMatchingPros", notifyMatchingProsOfNewMatter(matter.id));
   }
 
   return NextResponse.json({ matter }, { status: 201 });

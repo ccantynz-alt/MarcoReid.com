@@ -3,18 +3,11 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import SignoffRequestForm from "@/app/components/pro/SignoffRequestForm";
+import { MATTER_STATUS_PRESENTATION } from "@/lib/marketplace/matter-status";
 
 export const metadata = { title: "Matter — Marco Reid" };
 
 export const dynamic = "force-dynamic";
-
-const statusLabels: Record<string, string> = {
-  ACCEPTED: "Accepted",
-  AWAITING_SIGNOFF: "Awaiting sign-off",
-  SIGNED_OFF: "Signed off",
-  CLOSED: "Closed",
-  CANCELLED: "Cancelled",
-};
 
 export default async function ProMatterPage({
   params,
@@ -58,7 +51,7 @@ export default async function ProMatterPage({
         <h1 className="mt-3 font-serif text-3xl text-navy-800">{matter.summary}</h1>
         <div className="mt-4 flex items-center gap-3 text-sm">
           <span className="rounded-full bg-forest-100 px-3 py-1 text-xs font-semibold text-forest-800">
-            {statusLabels[matter.status] ?? matter.status}
+            {MATTER_STATUS_PRESENTATION[matter.status].label}
           </span>
           {matter.acceptedAt && (
             <span className="text-navy-400">

@@ -4,51 +4,11 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus, SignoffStatus } from "@prisma/client";
 import CancelMatterButton from "@/app/components/citizen/CancelMatterButton";
+import { MATTER_STATUS_PRESENTATION } from "@/lib/marketplace/matter-status";
 
 export const metadata = { title: "Matter — Marco Reid" };
 
 export const dynamic = "force-dynamic";
-
-const statusLabels: Record<string, { label: string; tone: string; message: string }> = {
-  DRAFT: {
-    label: "Draft",
-    tone: "bg-navy-100 text-navy-600",
-    message: "You saved this matter as a draft. Submit it when you're ready.",
-  },
-  AWAITING_PRO: {
-    label: "Waiting for a professional",
-    tone: "bg-amber-100 text-amber-800",
-    message:
-      "Your matter has been posted. A verified lawyer or chartered accountant in your area will pick it up — usually within two working days.",
-  },
-  ACCEPTED: {
-    label: "Accepted",
-    tone: "bg-forest-100 text-forest-800",
-    message:
-      "A professional has accepted your matter and is working on it. You'll see any outputs here once they have been signed off.",
-  },
-  AWAITING_SIGNOFF: {
-    label: "In review",
-    tone: "bg-plum-100 text-plum-800",
-    message:
-      "A draft has been prepared and is being reviewed and signed off. Nothing is sent on your behalf until the pro approves it.",
-  },
-  SIGNED_OFF: {
-    label: "Signed off",
-    tone: "bg-gold-100 text-gold-800",
-    message: "The output below has been reviewed and released by your professional.",
-  },
-  CLOSED: {
-    label: "Closed",
-    tone: "bg-navy-100 text-navy-500",
-    message: "This matter has been closed.",
-  },
-  CANCELLED: {
-    label: "Cancelled",
-    tone: "bg-navy-100 text-navy-400",
-    message: "This matter was cancelled before completion.",
-  },
-};
 
 export default async function CitizenMatterPage({
   params,
@@ -75,11 +35,7 @@ export default async function CitizenMatterPage({
     notFound();
   }
 
-  const status = statusLabels[matter.status] ?? {
-    label: matter.status,
-    tone: "bg-navy-100 text-navy-600",
-    message: "",
-  };
+  const status = MATTER_STATUS_PRESENTATION[matter.status];
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-12">
@@ -103,7 +59,7 @@ export default async function CitizenMatterPage({
             {status.label}
           </span>
         </div>
-        <p className="mt-3 text-sm text-navy-500">{status.message}</p>
+        <p className="mt-3 text-sm text-navy-500">{status.citizenMessage}</p>
 
         {matter.acceptedBy && (
           <div className="mt-5 rounded-lg border border-navy-100 bg-navy-50 p-4">

@@ -1,22 +1,21 @@
-// Marketplace email notifications — fire-and-forget from API routes on
-// the hot state-transition paths. Failures are logged but never block the
-// caller; the state change has already committed by the time we dispatch.
-
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
 import { BRAND } from "@/lib/constants";
+import { formatFee, jurisdictionName } from "@/lib/marketplace/format";
 
 function baseUrl() {
   return process.env.NEXTAUTH_URL || BRAND.url;
 }
 
-function formatFee(cents: number, currency: string) {
-  return `${currency} $${(cents / 100).toFixed(0)}`;
+// Dispatch a notification from an API route without awaiting it. The state
+// change has already committed by the time this runs; a failed email must
+// never surface as a failed request.
+export function fireAndForget(tag: string, task: Promise<unknown>): void {
+  task.catch((err) => {
+    console.error(`[marketplace/notifications] ${tag} dispatch failed:`, err);
+  });
 }
 
-// Citizen posted a matter → notify every verified pro whose practice-area
-// list includes the area, whose admission matches the jurisdiction, who
-// is accepting new matters and whose PI is current.
 export async function notifyMatchingProsOfNewMatter(matterId: string): Promise<void> {
   const matter = await prisma.proMatter.findUnique({
     where: { id: matterId },
@@ -70,8 +69,6 @@ export async function notifyMatchingProsOfNewMatter(matterId: string): Promise<v
   );
 }
 
-// Pro accepted a matter → reassure the citizen their matter is now with a
-// qualified professional. Surface the pro's display name + professional body.
 export async function notifyCitizenOfAcceptance(matterId: string): Promise<void> {
   const matter = await prisma.proMatter.findUnique({
     where: { id: matterId },
@@ -112,7 +109,6 @@ export async function notifyCitizenOfAcceptance(matterId: string): Promise<void>
   }
 }
 
-// Sign-off released (approve or amend) → tell the citizen the work is ready.
 export async function notifyCitizenOfRelease(signoffId: string): Promise<void> {
   const signoff = await prisma.signoffRequest.findUnique({
     where: { id: signoffId },
@@ -153,23 +149,6 @@ export async function notifyCitizenOfRelease(signoffId: string): Promise<void> {
     });
   } catch (err) {
     console.error("[marketplace/notifications] notifyCitizenOfRelease failed:", err);
-  }
-}
-
-function jurisdictionName(code: string): string {
-  switch (code) {
-    case "NZ":
-      return "New Zealand";
-    case "AU":
-      return "Australia";
-    case "US":
-      return "the United States";
-    case "UK":
-      return "the United Kingdom";
-    case "CA":
-      return "Canada";
-    default:
-      return code;
   }
 }
 

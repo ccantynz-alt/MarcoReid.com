@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
+import { formatFee, jurisdictionName } from "@/lib/marketplace/format";
 
 export const metadata: Metadata = {
   title: "Practice areas — Marco Reid",
@@ -13,10 +14,6 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = "force-dynamic";
-
-function formatFee(cents: number, currency: string) {
-  return `${currency} $${(cents / 100).toFixed(0)}`;
-}
 
 export default async function PracticeIndexPage() {
   const areas = await prisma.practiceArea.findMany({
@@ -28,14 +25,6 @@ export default async function PracticeIndexPage() {
     (acc[a.jurisdiction] ??= []).push(a);
     return acc;
   }, {});
-
-  const jurisdictionNames: Record<string, string> = {
-    NZ: "New Zealand",
-    AU: "Australia",
-    US: "United States",
-    UK: "United Kingdom",
-    CA: "Canada",
-  };
 
   return (
     <>
@@ -77,7 +66,7 @@ export default async function PracticeIndexPage() {
           {Object.entries(byJurisdiction).map(([j, list]) => (
             <div key={j} className="mb-16 last:mb-0">
               <h2 className="font-serif text-3xl text-navy-800">
-                {jurisdictionNames[j] ?? j}
+                {jurisdictionName(j)}
               </h2>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {list.map((a) => (

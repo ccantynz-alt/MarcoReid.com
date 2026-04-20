@@ -3,7 +3,11 @@ import { createHash } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus, SignoffStatus } from "@prisma/client";
-import { notifyCitizenOfRelease } from "@/lib/marketplace/notifications";
+import {
+  notifyCitizenOfRelease,
+  fireAndForget,
+} from "@/lib/marketplace/notifications";
+import { SIGNOFF_LIMITS } from "@/lib/marketplace/constants";
 
 // POST /api/marketplace/signoff/:id/decide
 // Body: { decision: "approve" | "amend" | "reject", amendedOutput?, reviewerNotes? }
@@ -59,14 +63,20 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     return NextResponse.json({ error: "Already decided" }, { status: 409 });
   }
 
-  if (decision === "reject" && (!reviewerNotes || reviewerNotes.trim().length < 10)) {
-    return NextResponse.json({ error: "Rejection requires notes (10+ chars)" }, { status: 400 });
+  if (
+    decision === "reject" &&
+    (!reviewerNotes || reviewerNotes.trim().length < SIGNOFF_LIMITS.REJECT_NOTES_MIN)
+  ) {
+    return NextResponse.json(
+      { error: `Rejection requires notes (${SIGNOFF_LIMITS.REJECT_NOTES_MIN}+ chars)` },
+      { status: 400 },
+    );
   }
   if (decision === "amend") {
-    if (!amendedOutput || amendedOutput.length < 10) {
+    if (!amendedOutput || amendedOutput.length < SIGNOFF_LIMITS.AMENDED_OUTPUT_MIN) {
       return NextResponse.json({ error: "Amended output is required" }, { status: 400 });
     }
-    if (amendedOutput.length > 50_000) {
+    if (amendedOutput.length > SIGNOFF_LIMITS.AMENDED_OUTPUT_MAX) {
       return NextResponse.json({ error: "Amended output too long" }, { status: 400 });
     }
   }
@@ -90,9 +100,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
         data: { status: ProMatterStatus.SIGNED_OFF },
       }),
     ]);
-    notifyCitizenOfRelease(signoff.id).catch((err) => {
-      console.error("[marketplace] notifyCitizenOfRelease dispatch failed:", err);
-    });
+    fireAndForget("notifyCitizenOfRelease", notifyCitizenOfRelease(signoff.id));
     return NextResponse.json({ ok: true, decision });
   }
 
@@ -118,9 +126,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
         data: { status: ProMatterStatus.SIGNED_OFF },
       }),
     ]);
-    notifyCitizenOfRelease(signoff.id).catch((err) => {
-      console.error("[marketplace] notifyCitizenOfRelease dispatch failed:", err);
-    });
+    fireAndForget("notifyCitizenOfRelease", notifyCitizenOfRelease(signoff.id));
     return NextResponse.json({ ok: true, decision });
   }
 

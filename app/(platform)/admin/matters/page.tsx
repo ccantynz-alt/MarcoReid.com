@@ -4,22 +4,14 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ProMatterStatus, SignoffStatus } from "@prisma/client";
+import { formatFee } from "@/lib/marketplace/format";
+import { MATTER_STATUS_PRESENTATION } from "@/lib/marketplace/matter-status";
 
 export const metadata = { title: "Matters — Admin — Marco Reid" };
 
 export const dynamic = "force-dynamic";
 
 const STALE_HOURS = 48;
-
-const statusTone: Record<string, string> = {
-  DRAFT: "bg-navy-100 text-navy-600",
-  AWAITING_PRO: "bg-amber-100 text-amber-800",
-  ACCEPTED: "bg-forest-100 text-forest-800",
-  AWAITING_SIGNOFF: "bg-plum-100 text-plum-800",
-  SIGNED_OFF: "bg-gold-100 text-gold-800",
-  CLOSED: "bg-navy-100 text-navy-500",
-  CANCELLED: "bg-navy-100 text-navy-400",
-};
 
 function relative(d: Date | null | undefined): string {
   if (!d) return "—";
@@ -31,27 +23,24 @@ function relative(d: Date | null | undefined): string {
   return `${days}d ago`;
 }
 
-function formatFee(cents: number, currency: string) {
-  return `${currency} $${(cents / 100).toFixed(0)}`;
-}
-
 export default async function AdminMattersPage() {
   const session = await getServerSession(authOptions);
   if (!session?.user) redirect("/login");
   if ((session.user as { role?: string }).role !== "ADMIN") redirect("/dashboard");
 
-  const matters = await prisma.proMatter.findMany({
-    include: {
-      practiceArea: { select: { name: true, slug: true, jurisdiction: true } },
-      citizen: { select: { email: true, name: true } },
-      acceptedBy: { select: { displayName: true, professionalBody: true } },
-    },
-    orderBy: { createdAt: "desc" },
-  });
-
-  const pendingSignoffs = await prisma.signoffRequest.count({
-    where: { status: SignoffStatus.PENDING },
-  });
+  const [matters, pendingSignoffs] = await Promise.all([
+    prisma.proMatter.findMany({
+      include: {
+        practiceArea: { select: { name: true, slug: true, jurisdiction: true } },
+        citizen: { select: { email: true, name: true } },
+        acceptedBy: { select: { displayName: true, professionalBody: true } },
+      },
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.signoffRequest.count({
+      where: { status: SignoffStatus.PENDING },
+    }),
+  ]);
 
   const now = Date.now();
   const staleThreshold = now - STALE_HOURS * 60 * 60 * 1000;
@@ -214,9 +203,9 @@ export default async function AdminMattersPage() {
                       </td>
                       <td className="px-5 py-4">
                         <span
-                          className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${statusTone[m.status] ?? "bg-navy-100 text-navy-600"}`}
+                          className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${MATTER_STATUS_PRESENTATION[m.status].tone}`}
                         >
-                          {m.status.replace(/_/g, " ").toLowerCase()}
+                          {MATTER_STATUS_PRESENTATION[m.status].label.toLowerCase()}
                         </span>
                       </td>
                       <td className="px-5 py-4 text-xs text-navy-400">

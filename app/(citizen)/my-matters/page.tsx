@@ -1,27 +1,14 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { formatFee } from "@/lib/marketplace/format";
+import { MATTER_STATUS_PRESENTATION } from "@/lib/marketplace/matter-status";
 
 export const metadata = {
   title: "My matters — Marco Reid",
 };
 
 export const dynamic = "force-dynamic";
-
-const statusLabels: Record<string, { label: string; tone: string }> = {
-  DRAFT: { label: "Draft", tone: "bg-navy-100 text-navy-600" },
-  AWAITING_PRO: { label: "Waiting for a professional", tone: "bg-amber-100 text-amber-800" },
-  ACCEPTED: { label: "Accepted", tone: "bg-forest-100 text-forest-800" },
-  AWAITING_SIGNOFF: { label: "Awaiting sign-off", tone: "bg-plum-100 text-plum-800" },
-  SIGNED_OFF: { label: "Signed off", tone: "bg-gold-100 text-gold-800" },
-  CLOSED: { label: "Closed", tone: "bg-navy-100 text-navy-500" },
-  CANCELLED: { label: "Cancelled", tone: "bg-navy-100 text-navy-400" },
-};
-
-function formatFee(cents: number, currency: string) {
-  const amount = (cents / 100).toFixed(0);
-  return `${currency} $${amount}`;
-}
 
 export default async function MyMattersPage() {
   const userId = await getUserId();
@@ -74,7 +61,7 @@ export default async function MyMattersPage() {
       ) : (
         <ul className="mt-8 space-y-4">
           {matters.map((m) => {
-            const status = statusLabels[m.status] ?? { label: m.status, tone: "bg-navy-100 text-navy-600" };
+            const status = MATTER_STATUS_PRESENTATION[m.status];
             return (
               <li key={m.id}>
                 <Link

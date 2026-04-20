@@ -2,13 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
-import { notifyMatchingProsOfNewMatter } from "@/lib/marketplace/notifications";
+import {
+  notifyMatchingProsOfNewMatter,
+  fireAndForget,
+} from "@/lib/marketplace/notifications";
+import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 
-// PATCH /api/marketplace/matters/:id — citizen updates their own DRAFT
-// matter. Body: { summary, details, practiceAreaSlug?, ackVersion?, post? }.
-// Post=true promotes from DRAFT to AWAITING_PRO (locks the snapshot).
-// Once AWAITING_PRO or beyond, editing is not permitted — the pro is
-// reading it and a shifting target would be unfair.
+// Only DRAFT is editable. Once posted the pro is reading it and a
+// shifting target would be unfair; the status guard on updateMany also
+// prevents a race with a concurrent accept.
 export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const userId = await getUserId();
@@ -34,14 +36,23 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
       { status: 400 },
     );
   }
-  if (summary.length > 200) {
-    return NextResponse.json({ error: "Summary must be 200 characters or fewer" }, { status: 400 });
+  if (summary.length > MATTER_LIMITS.SUMMARY_MAX) {
+    return NextResponse.json(
+      { error: `Summary must be ${MATTER_LIMITS.SUMMARY_MAX} characters or fewer` },
+      { status: 400 },
+    );
   }
-  if (details.length < 40) {
-    return NextResponse.json({ error: "Details must be at least 40 characters" }, { status: 400 });
+  if (details.length < MATTER_LIMITS.DETAILS_MIN) {
+    return NextResponse.json(
+      { error: `Details must be at least ${MATTER_LIMITS.DETAILS_MIN} characters` },
+      { status: 400 },
+    );
   }
-  if (details.length > 8000) {
-    return NextResponse.json({ error: "Details must be 8000 characters or fewer" }, { status: 400 });
+  if (details.length > MATTER_LIMITS.DETAILS_MAX) {
+    return NextResponse.json(
+      { error: `Details must be ${MATTER_LIMITS.DETAILS_MAX} characters or fewer` },
+      { status: 400 },
+    );
   }
 
   const existing = await prisma.proMatter.findUnique({
@@ -53,32 +64,16 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   if (existing.status !== ProMatterStatus.DRAFT) {
-    return NextResponse.json(
-      { error: "Only drafts can be edited" },
-      { status: 409 },
-    );
+    return NextResponse.json({ error: "Only drafts can be edited" }, { status: 409 });
   }
 
-  // Determine the target area — allow switching while still DRAFT.
-  let targetAreaId = existing.practiceAreaId;
-  let targetAreaJurisdiction: string | null = null;
-  let targetAreaAckVersion: string | null = null;
-  let targetAreaLeadFee: number | null = null;
-  let targetAreaCurrency: string | null = null;
-
-  const lookupSlug = practiceAreaSlug ?? undefined;
-  if (lookupSlug || post) {
-    const area = await prisma.practiceArea.findUnique({
-      where: lookupSlug ? { slug: lookupSlug } : { id: existing.practiceAreaId },
-    });
-    if (!area || !area.active) {
-      return NextResponse.json({ error: "Practice area not available" }, { status: 400 });
-    }
-    targetAreaId = area.id;
-    targetAreaJurisdiction = area.jurisdiction;
-    targetAreaAckVersion = area.ackVersion;
-    targetAreaLeadFee = area.leadFeeInCents;
-    targetAreaCurrency = area.currency;
+  const targetArea = await prisma.practiceArea.findUnique({
+    where: practiceAreaSlug
+      ? { slug: practiceAreaSlug }
+      : { id: existing.practiceAreaId },
+  });
+  if (!targetArea || !targetArea.active) {
+    return NextResponse.json({ error: "Practice area not available" }, { status: 400 });
   }
 
   if (post) {
@@ -88,7 +83,7 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
         { status: 400 },
       );
     }
-    if (ackVersion !== targetAreaAckVersion) {
+    if (ackVersion !== targetArea.ackVersion) {
       return NextResponse.json(
         { error: "Acknowledgment version is out of date — please re-read and re-acknowledge" },
         { status: 409 },
@@ -99,36 +94,44 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   const now = new Date();
   const nextStatus = post ? ProMatterStatus.AWAITING_PRO : ProMatterStatus.DRAFT;
 
-  const updated = await prisma.proMatter.update({
-    where: { id: existing.id },
+  // Guarded update: status must still be DRAFT when we commit. Prevents
+  // a race where the user is editing while a pro somehow accepted.
+  const result = await prisma.proMatter.updateMany({
+    where: {
+      id: existing.id,
+      citizenUserId: userId,
+      status: ProMatterStatus.DRAFT,
+    },
     data: {
       summary,
       details,
-      practiceAreaId: targetAreaId,
-      ...(targetAreaJurisdiction ? { jurisdiction: targetAreaJurisdiction } : {}),
-      ...(targetAreaLeadFee !== null ? { leadFeeInCents: targetAreaLeadFee } : {}),
-      ...(targetAreaCurrency ? { currency: targetAreaCurrency } : {}),
+      practiceAreaId: targetArea.id,
+      jurisdiction: targetArea.jurisdiction,
+      leadFeeInCents: targetArea.leadFeeInCents,
+      currency: targetArea.currency,
       status: nextStatus,
-      ackVersion: post ? targetAreaAckVersion : null,
+      ackVersion: post ? targetArea.ackVersion : null,
       ackAt: post ? now : null,
       postedAt: post ? now : null,
     },
   });
 
-  if (post) {
-    notifyMatchingProsOfNewMatter(updated.id).catch((err) => {
-      console.error("[marketplace] notifyMatchingPros dispatch failed:", err);
-    });
+  if (result.count === 0) {
+    return NextResponse.json(
+      { error: "Draft state changed — please reload and try again" },
+      { status: 409 },
+    );
   }
 
-  return NextResponse.json({ matter: updated });
+  if (post) {
+    fireAndForget("notifyMatchingPros", notifyMatchingProsOfNewMatter(existing.id));
+  }
+
+  return NextResponse.json({ ok: true });
 }
 
-// DELETE /api/marketplace/matters/:id — citizen cancels their own matter.
-// Only permitted before a pro has accepted. Once accepted, the matter
-// must run its course or be closed through a separate workflow.
-// Uses updateMany guarded on status so a race with a pro's accept call
-// can't leave a ghosted matter behind.
+// Cancellation is only permitted before a pro has accepted. The guarded
+// updateMany prevents a concurrent accept from leaving a ghost cancel.
 export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const userId = await getUserId();

@@ -6,6 +6,7 @@ import { BRAND } from "@/lib/constants";
 import Container from "@/app/components/shared/Container";
 import Button from "@/app/components/shared/Button";
 import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
+import { formatFee, jurisdictionName } from "@/lib/marketplace/format";
 
 export async function generateStaticParams() {
   const areas = await prisma.practiceArea.findMany({
@@ -27,18 +28,13 @@ export async function generateMetadata({
   });
   if (!area) return { title: "Practice area not found" };
 
-  const jurisdictionName = area.jurisdiction === "NZ" ? "New Zealand" : area.jurisdiction === "AU" ? "Australia" : area.jurisdiction;
   const domainLabel = area.domain === "LAW" ? "legal" : "accounting";
 
   return {
-    title: `${area.name} — ${jurisdictionName} ${domainLabel} help, AI-drafted, professionally signed off`,
+    title: `${area.name} — ${jurisdictionName(area.jurisdiction)} ${domainLabel} help, AI-drafted, professionally signed off`,
     description: area.summary,
     alternates: { canonical: `${BRAND.url}/practice/${slug}` },
   };
-}
-
-function formatFee(cents: number, currency: string) {
-  return `${currency} $${(cents / 100).toFixed(0)}`;
 }
 
 export default async function PracticeAreaPage({
@@ -52,8 +48,7 @@ export default async function PracticeAreaPage({
   });
   if (!area || !area.active) notFound();
 
-  const jurisdictionName =
-    area.jurisdiction === "NZ" ? "New Zealand" : area.jurisdiction === "AU" ? "Australia" : area.jurisdiction;
+  const jurisdictionLabel = jurisdictionName(area.jurisdiction);
   const domainLabel = area.domain === "LAW" ? "Lawyer" : "Chartered Accountant";
 
   const schema = {
@@ -88,7 +83,7 @@ export default async function PracticeAreaPage({
         </div>
         <Container className="relative">
           <p className="text-sm font-semibold tracking-wider text-gold-400">
-            {jurisdictionName} &middot; {area.domain === "LAW" ? "Legal" : "Accounting"}
+            {jurisdictionLabel} &middot; {area.domain === "LAW" ? "Legal" : "Accounting"}
           </p>
           <h1 className="mt-4 max-w-3xl font-serif text-hero text-white">
             {area.name}
@@ -165,7 +160,7 @@ export default async function PracticeAreaPage({
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-navy-100">
             Four short steps. We&rsquo;ll match you with a verified{" "}
-            {domainLabel.toLowerCase()} admitted in {jurisdictionName}.
+            {domainLabel.toLowerCase()} admitted in {jurisdictionLabel}.
           </p>
           <div className="mt-8 flex items-center justify-center">
             <Button href="/post-matter">Post a matter</Button>
