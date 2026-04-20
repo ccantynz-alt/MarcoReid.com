@@ -17,19 +17,19 @@ export interface BuildPhase {
 
 export const stats: { label: string; value: string; note: string }[] = [
   {
-    label: "Launch blockers",
-    value: "Cleared",
-    note: "Signup · verify · reset · onboarding · rate limits · email",
+    label: "Soft launch",
+    value: "NZ + AU",
+    note: "Law and accounting · beachhead = tenancy + SME catch-up",
+  },
+  {
+    label: "Shield doctrine",
+    value: "Sign-off",
+    note: "Every consumer-facing AI output approved by a licensed pro before release",
   },
   {
     label: "Target readiness",
     value: "Private beta",
-    note: "Invite-only launch to first 20 firms",
-  },
-  {
-    label: "Quality bar",
-    value: "Stripe-grade",
-    note: "Premium feel for attorneys and CPAs",
+    note: "Twenty founding firms in NZ + twenty in AU",
   },
 ];
 
@@ -483,6 +483,79 @@ export const phases: BuildPhase[] = [
         title: "Multi-jurisdiction news sources (NZ / AU / UK / CA)",
         description:
           "US-heavy today. Add LawNews NZ, Lawyers Weekly AU, Law Society Gazette UK, Canadian Lawyer, plus tax-authority release feeds (IRD, ATO, HMRC, CRA) so Marco Reid delivers on its five-jurisdiction positioning.",
+        status: "queued",
+      },
+    ],
+  },
+  {
+    title: "Marketplace — Two-sided platform",
+    description:
+      "The NZ + AU soft-launch target. Citizens post matters, verified professionals accept them, every AI output passes through a sign-off queue before release.",
+    items: [
+      {
+        title: "Platform acknowledgment at signup",
+        description:
+          "Five plain-language bullets shown on /register in addition to the standard ToS/Privacy/AUP checkbox. Version + timestamp + IP + user-agent captured per user for the evidentiary record. Explicitly preserves non-waivable CGA 1993 (NZ) and ACL (AU) consumer rights — we own the carve-out instead of pretending it doesn't exist.",
+        status: "done",
+      },
+      {
+        title: "Marketplace Prisma spine",
+        description:
+          "PracticeArea, Professional, ProfessionalPracticeArea, ProMatter, SignoffRequest models with ProfessionDomain, ProMatterStatus, SignoffStatus enums. Fee model is flat lead fee + SaaS, never a % take-rate — respects ABA Model Rule 5.4 and NZ Lawyers and Conveyancers Act.",
+        status: "done",
+      },
+      {
+        title: "Beachhead practice areas seeded",
+        description:
+          "Four practice areas: NZ tenancy dispute, NZ SME tax catch-up, AU residential tenancy dispute, AU SME tax catch-up. Each seeded with its own versioned acknowledgment bullets for per-matter click-through.",
+        status: "done",
+      },
+      {
+        title: "/for-citizens marketing page",
+        description:
+          "Citizen-facing landing: hero, four-step explainer, beachhead practice-area cards, embedded platform statement, CTA to register. NZ + AU first.",
+        status: "done",
+      },
+      {
+        title: "/marketplace pro-signup page",
+        description:
+          "Lawyer/accountant-facing landing: qualified leads, flat fees, sign-off workflow, verification checklist, founding-firm programme for first 20 in NZ + AU.",
+        status: "done",
+      },
+      {
+        title: "Citizen intake flow",
+        description:
+          "Multi-step intake: practice area → jurisdiction → problem description → per-area acknowledgment → post. Creates ProMatter in DRAFT, transitions to AWAITING_PRO on post.",
+        status: "queued",
+      },
+      {
+        title: "Professional acceptance flow",
+        description:
+          "Pro dashboard: pending matters in their practice areas + jurisdiction, one-click accept, inherit draft, or pass. PI expiry gate.",
+        status: "queued",
+      },
+      {
+        title: "Sign-off queue UI",
+        description:
+          "Every AI output waits in /signoff with outputSha256 tamper-evidence. Approve / amend / reject with notes. Audit trail surfaces to both pro and citizen.",
+        status: "queued",
+      },
+      {
+        title: "Professional verification workflow",
+        description:
+          "Admin screen to review new Professional applications: admission number check, PI insurance document upload, verifiedAt stamp.",
+        status: "queued",
+      },
+      {
+        title: "Stripe Connect for lead fees + consumer fees",
+        description:
+          "Lead fee charged to citizen on post, platform keeps it. Consumer fees (for self-serve products) flow through Connect to the pro minus Marco Reid's flat facilitation fee.",
+        status: "queued",
+      },
+      {
+        title: "Regulatory memo (NZ + AU)",
+        description:
+          "Independent NZ lawyer + CA ANZ CPA review of ToS, sign-off architecture, and marketplace model. Non-negotiable before go-live.",
         status: "queued",
       },
     ],

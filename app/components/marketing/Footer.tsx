@@ -10,6 +10,10 @@ const links = {
     { label: "Marco Reid Courtroom", href: "/courtroom" },
     { label: "Pricing", href: "/pricing" },
   ],
+  marketplace: [
+    { label: "For citizens", href: "/for-citizens" },
+    { label: "Join as a professional", href: "/marketplace" },
+  ],
   company: [
     { label: "About", href: "/about" },
     { label: "Case studies", href: "/case-studies" },
@@ -61,6 +65,18 @@ export default function Footer() {
             </p>
             <ul className="mt-4 space-y-3">
               {links.products.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-navy-500 transition-colors hover:text-navy-700">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-gold-600">
+              Marketplace
+            </p>
+            <ul className="mt-4 space-y-3">
+              {links.marketplace.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-navy-500 transition-colors hover:text-navy-700">
                     {l.label}

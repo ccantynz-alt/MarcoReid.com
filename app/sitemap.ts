@@ -26,7 +26,11 @@ const entries: Entry[] = [
   // Audience pages
   { path: "/for-small-business", changeFrequency: "monthly", priority: 0.7 },
   { path: "/for-startups", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/for-citizens", changeFrequency: "weekly", priority: 0.9 },
   { path: "/immigration", changeFrequency: "monthly", priority: 0.7 },
+
+  // Marketplace
+  { path: "/marketplace", changeFrequency: "weekly", priority: 0.9 },
 
   // Compare
   { path: "/compare/westlaw", changeFrequency: "monthly", priority: 0.7 },
@@ -90,6 +94,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/for-small-business`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/for-startups`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/for-citizens`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/marketplace`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/compare/westlaw`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/clio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/quickbooks`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
