@@ -17,6 +17,14 @@ interface PracticeAreaOption {
   ackBullets: string[];
 }
 
+export interface DraftSeed {
+  id: string;
+  jurisdiction: string;
+  practiceAreaSlug: string;
+  summary: string;
+  details: string;
+}
+
 function formatFee(cents: number, currency: string) {
   const amount = (cents / 100).toFixed(0);
   return `${currency} $${amount}`;
@@ -26,13 +34,20 @@ const DETAILS_MIN = 40;
 const DETAILS_MAX = 8000;
 const SUMMARY_MAX = 200;
 
-export default function PostMatterForm({ areas }: { areas: PracticeAreaOption[] }) {
+export default function PostMatterForm({
+  areas,
+  draft,
+}: {
+  areas: PracticeAreaOption[];
+  draft?: DraftSeed;
+}) {
   const router = useRouter();
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
-  const [jurisdiction, setJurisdiction] = useState<string>("NZ");
-  const [areaSlug, setAreaSlug] = useState<string>("");
-  const [summary, setSummary] = useState("");
-  const [details, setDetails] = useState("");
+  const editing = Boolean(draft);
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(editing ? 3 : 1);
+  const [jurisdiction, setJurisdiction] = useState<string>(draft?.jurisdiction ?? "NZ");
+  const [areaSlug, setAreaSlug] = useState<string>(draft?.practiceAreaSlug ?? "");
+  const [summary, setSummary] = useState(draft?.summary ?? "");
+  const [details, setDetails] = useState(draft?.details ?? "");
   const [acked, setAcked] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -52,8 +67,12 @@ export default function PostMatterForm({ areas }: { areas: PracticeAreaOption[] 
     setSubmitting(true);
     setError(null);
     try {
-      const res = await fetch("/api/marketplace/matters", {
-        method: "POST",
+      const url = editing
+        ? `/api/marketplace/matters/${draft!.id}`
+        : "/api/marketplace/matters";
+      const method = editing ? "PATCH" : "POST";
+      const res = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           practiceAreaSlug: selectedArea.slug,

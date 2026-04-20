@@ -131,6 +131,24 @@ export default async function CitizenMatterPage({
       {(matter.status === ProMatterStatus.DRAFT ||
         matter.status === ProMatterStatus.AWAITING_PRO) && (
         <section className="mt-8 rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
+          {matter.status === ProMatterStatus.DRAFT && (
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg bg-navy-50 p-4">
+              <div>
+                <p className="text-sm font-semibold text-navy-700">
+                  This matter is still a draft.
+                </p>
+                <p className="mt-1 text-xs text-navy-500">
+                  Nothing has been posted to the marketplace yet. Resume editing and post when you&rsquo;re ready.
+                </p>
+              </div>
+              <Link
+                href={`/post-matter/${matter.id}`}
+                className="inline-flex items-center rounded-lg bg-gold-500 px-4 py-2 text-sm font-semibold text-white hover:bg-gold-600"
+              >
+                Continue editing &rarr;
+              </Link>
+            </div>
+          )}
           <CancelMatterButton matterId={matter.id} />
         </section>
       )}
