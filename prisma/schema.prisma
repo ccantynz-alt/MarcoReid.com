@@ -50,6 +50,17 @@ model User {
   onboardedAt   DateTime?
   jurisdiction  String?
   practiceArea  String?
+
+  // Consent audit trail — evidentiary record for ToS + platform acknowledgment.
+  // Versioned so we can tell who accepted which wording. IP + user-agent
+  // captured at signup for the same reason. See lib/consent.ts for the current
+  // versions and the acknowledgment text.
+  tosVersion         String?
+  tosAcceptedAt      DateTime?
+  platformAckVersion String?
+  platformAckAt      DateTime?
+  signupIp           String?
+  signupUserAgent    String?
 }
 
 // ============================================================

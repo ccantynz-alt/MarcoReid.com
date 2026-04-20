@@ -23,6 +23,14 @@ This is the same flywheel pattern that `OracleQuery`, `OracleFeedback`, and `Que
 
 **Vision aligned this session:** Marco Reid is not a legal/accounting SaaS — it is a **two-sided platform** connecting citizens with licensed professionals, with AI-drafted work and qualified human sign-off on every consumer-facing output. NZ + AU chosen as the soft-launch beachhead (law + accounting), with Catch-Up Centre as a critical wedge product. Target: weeks to a working marketplace MVP, not years.
 
+**Signup consent upgrade shipped this session:**
+
+- New `lib/consent.ts` holds `CURRENT_TOS_VERSION`, `CURRENT_PLATFORM_ACK_VERSION`, and the five-bullet platform acknowledgment. Plain-language by design — plain language carries more evidentiary weight and is harder to set aside as unconscionable.
+- `/register` now shows the five bullets in a highlighted card and requires a second checkbox before the submit button unlocks. The two acknowledgments are distinct: one for ToS/Privacy/AUP, one for the platform statement.
+- `/api/auth/register` rejects unless both flags are `true`, and stamps the user with `tosVersion`, `tosAcceptedAt`, `platformAckVersion`, `platformAckAt`, `signupIp`, `signupUserAgent` for the evidentiary record.
+- Prisma `User` model gained the six consent-audit fields above. Craig to run `prisma migrate dev --name add_consent_audit` when ready.
+- Acknowledgment explicitly preserves non-waivable CGA 1993 (NZ) and ACL (AU) consumer rights. We own the carve-out instead of pretending it doesn't exist — that is what makes the rest enforceable.
+
 **Header refactor shipped this session:**
 
 - Trimmed `NAV_LINKS` from 7 → 4 (Legal · Accounting · Marco · Pricing). Catch-Up Centre, Courtroom, and Voice now live on product pages, homepage sections, and the footer instead of competing for header real estate — the header needs to scale to dozens of practice-area modules without breaking.
