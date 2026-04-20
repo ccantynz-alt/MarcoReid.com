@@ -17,7 +17,26 @@ This is the same flywheel pattern that `OracleQuery`, `OracleFeedback`, and `Que
 
 ---
 
-## Current state — last updated 2026-04-20
+## Current state — last updated 2026-04-20 (PM session)
+
+**Marketplace spine is now end-to-end working on branch `claude/investigate-refund-usage-97xly`:**
+
+- **Citizen path**: `/post-matter` (4-step: jurisdiction → area → describe → per-area ack + confirm) → creates `ProMatter` in `AWAITING_PRO` (or `DRAFT` if "Save as draft"). `/my-matters` shows status badges across DRAFT/AWAITING_PRO/ACCEPTED/AWAITING_SIGNOFF/SIGNED_OFF/CLOSED/CANCELLED. Per-area ack version is snapshotted on the ProMatter row.
+- **Pro path**: `/pro-dashboard` lists `AWAITING_PRO` matters filtered by the pro's verified practice areas AND jurisdiction. PI-expiry and verified-at are hard-gated at the API — unverified pros and expired PI cannot accept. Optimistic `updateMany` guard on status prevents two pros winning the same accept race.
+- **Sign-off doctrine wired**: `/pro-matter/[id]` lets the accepted pro paste AI-drafted output and create a `SignoffRequest` with a SHA-256 tamper-evidence hash (moves matter to `AWAITING_SIGNOFF`). `/signoff` is the queue: approve/amend/reject. Approve + amend release with `releasedAt` stamp; reject returns matter to `ACCEPTED`. Amended output captures `amendedSha256` alongside the original `outputSha256` so both are audit-provable.
+- **Route groups**: `(citizen)` for citizen-facing marketplace pages, `(pro)` for professional-facing. Each has its own auth-gated `layout.tsx`. `(platform)` is unchanged (firm-side).
+- **API surface**: `GET/POST /api/marketplace/matters`, `GET /api/marketplace/practice-areas`, `POST /api/marketplace/matters/[id]/accept`, `POST .../pass`, `POST .../signoff`, `POST /api/marketplace/signoff/[id]/decide`.
+- **Homepage + marketing**: homepage now surfaces the marketplace (gold-50 band, two CTA cards); NZ/AU attorney→lawyer sweep landed across 24 marketing files.
+
+**Still to build (in priority order):**
+
+1. **Professional onboarding** — citizens can register, but admitted pros have no flow to create a `Professional` profile. Need `/pro/onboard` with admission details, PI upload, practice-area selection.
+2. **Admin verification screen** — admin toggles `verifiedAt` + `verifiedBy` after human review. Without this, every pro is stuck in "pending review" state.
+3. **Citizen-facing matter detail page** — show the released/amended sign-off output to the citizen once `status = SIGNED_OFF`. Right now `/my-matters` shows the status but not the deliverable.
+4. **Stripe Connect integration** — lead fees to platform, consumer fees escrowed and released on sign-off. Schema already has `leadFeeInCents` + `consumerFeeInCents` snapshots.
+5. **Regulatory memo** — NZ lawyer + AU lawyer sign-off on the sign-off doctrine architecture.
+
+## Current state — last updated 2026-04-20 (AM session)
 
 **Branch:** `claude/investigate-refund-usage-97xly`
 
