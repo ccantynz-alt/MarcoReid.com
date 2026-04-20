@@ -120,7 +120,7 @@ export default function ForCitizensPage() {
             filed or sent on your behalf.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/register">Post a matter</Button>
+            <Button href="/post-matter">Post a matter</Button>
             <Button href="#how-it-works" variant="secondary">
               How it works
             </Button>
@@ -251,7 +251,7 @@ export default function ForCitizensPage() {
             through the intake. A qualified professional takes it from there.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/register">Create account</Button>
+            <Button href="/post-matter">Post a matter</Button>
             <Link
               href="/contact"
               className="inline-flex min-h-touch items-center text-sm font-medium text-white/90 underline hover:text-white"
