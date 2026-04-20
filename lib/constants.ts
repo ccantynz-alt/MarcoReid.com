@@ -9,13 +9,13 @@ export const BRAND = {
   company: "Reid & Associates",
 } as const;
 
+// Top-nav kept tight so it scales as practice-area modules multiply.
+// Catch-Up Centre, Courtroom, and Voice are surfaced via product pages,
+// the homepage, and the footer rather than competing for header real estate.
 export const NAV_LINKS = [
   { label: "Legal", href: "/law" },
   { label: "Accounting", href: "/accounting" },
-  { label: "Catch-Up Centre", href: "/catch-up-centre" },
-  { label: "Courtroom", href: "/courtroom" },
   { label: "Marco", href: "/marco" },
-  { label: "Voice", href: "/dictation" },
   { label: "Pricing", href: "/pricing" },
 ] as const;
 
