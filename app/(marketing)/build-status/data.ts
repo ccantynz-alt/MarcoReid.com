@@ -525,26 +525,38 @@ export const phases: BuildPhase[] = [
       {
         title: "Citizen intake flow",
         description:
-          "Multi-step intake: practice area → jurisdiction → problem description → per-area acknowledgment → post. Creates ProMatter in DRAFT, transitions to AWAITING_PRO on post.",
-        status: "queued",
+          "Multi-step intake at /post-matter: jurisdiction → practice area → problem description → per-area acknowledgment → post. Creates ProMatter in DRAFT, transitions to AWAITING_PRO on post. Per-area ack version snapshotted on the matter row for evidentiary record. /my-matters lists status across the full lifecycle.",
+        status: "done",
       },
       {
         title: "Professional acceptance flow",
         description:
-          "Pro dashboard: pending matters in their practice areas + jurisdiction, one-click accept, inherit draft, or pass. PI expiry gate.",
-        status: "queued",
+          "/pro-dashboard lists AWAITING_PRO matters filtered by pro's verified practice areas AND admission jurisdiction. Verified + PI-current gate at API; optimistic updateMany on status prevents concurrent accepts winning the same matter.",
+        status: "done",
       },
       {
         title: "Sign-off queue UI",
         description:
-          "Every AI output waits in /signoff with outputSha256 tamper-evidence. Approve / amend / reject with notes. Audit trail surfaces to both pro and citizen.",
-        status: "queued",
+          "/pro-matter/[id] for the accepting pro to draft a sign-off request with SHA-256 tamper-evidence hash. /signoff queue with approve / amend / reject decisions. Amended release captures amendedSha256 alongside the original outputSha256 for audit.",
+        status: "done",
       },
       {
-        title: "Professional verification workflow",
+        title: "Citizen-side signed-off output view",
         description:
-          "Admin screen to review new Professional applications: admission number check, PI insurance document upload, verifiedAt stamp.",
-        status: "queued",
+          "/matter/[id] shows the citizen the released output once status = SIGNED_OFF, including the tamper-evidence hash and any reviewer notes. Closes the end-to-end loop.",
+        status: "done",
+      },
+      {
+        title: "Professional onboarding + verification workflow",
+        description:
+          "/pro-onboard captures admission details, PI insurance, and practice-area selection — jurisdiction gated. /admin/professionals verifies new applications with verifiedAt + verifiedBy (admin User.id) stamps.",
+        status: "done",
+      },
+      {
+        title: "Practice-area SEO landing pages",
+        description:
+          "/practice index + /practice/[slug] server-rendered from the DB seed. Schema.org Service markup per area with jurisdiction-aware offer price. Dynamic sitemap entries generated from active practice areas.",
+        status: "done",
       },
       {
         title: "Stripe Connect for lead fees + consumer fees",

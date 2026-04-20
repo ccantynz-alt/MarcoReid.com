@@ -76,40 +76,43 @@ export default async function MyMattersPage() {
           {matters.map((m) => {
             const status = statusLabels[m.status] ?? { label: m.status, tone: "bg-navy-100 text-navy-600" };
             return (
-              <li
-                key={m.id}
-                className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs uppercase tracking-wider text-navy-400">
-                      {m.practiceArea.name} &middot; {m.practiceArea.jurisdiction}
-                    </p>
-                    <p className="mt-2 font-serif text-lg text-navy-800">
-                      {m.summary}
-                    </p>
-                    <p className="mt-1 text-xs text-navy-400">
-                      Posted {m.postedAt ? new Date(m.postedAt).toLocaleDateString() : "— draft"}
-                    </p>
+              <li key={m.id}>
+                <Link
+                  href={`/matter/${m.id}`}
+                  className="block rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-all hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-wider text-navy-400">
+                        {m.practiceArea.name} &middot; {m.practiceArea.jurisdiction}
+                      </p>
+                      <p className="mt-2 font-serif text-lg text-navy-800">
+                        {m.summary}
+                      </p>
+                      <p className="mt-1 text-xs text-navy-400">
+                        Posted {m.postedAt ? new Date(m.postedAt).toLocaleDateString() : "— draft"}
+                      </p>
+                    </div>
+                    <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${status.tone}`}
+                    >
+                      {status.label}
+                    </span>
                   </div>
-                  <span
-                    className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${status.tone}`}
-                  >
-                    {status.label}
-                  </span>
-                </div>
-                {m.acceptedBy && (
-                  <p className="mt-4 rounded-lg bg-navy-50 p-3 text-sm text-navy-600">
-                    Accepted by{" "}
-                    <strong className="text-navy-800">{m.acceptedBy.displayName}</strong> ·{" "}
-                    {m.acceptedBy.professionalBody}
-                  </p>
-                )}
-                <div className="mt-4 flex items-center justify-between text-sm">
-                  <span className="text-navy-400">
-                    Lead fee: {formatFee(m.leadFeeInCents, m.currency)}
-                  </span>
-                </div>
+                  {m.acceptedBy && (
+                    <p className="mt-4 rounded-lg bg-navy-50 p-3 text-sm text-navy-600">
+                      Accepted by{" "}
+                      <strong className="text-navy-800">{m.acceptedBy.displayName}</strong> ·{" "}
+                      {m.acceptedBy.professionalBody}
+                    </p>
+                  )}
+                  <div className="mt-4 flex items-center justify-between text-sm">
+                    <span className="text-navy-400">
+                      Lead fee: {formatFee(m.leadFeeInCents, m.currency)}
+                    </span>
+                    <span className="font-semibold text-navy-600">Open &rarr;</span>
+                  </div>
+                </Link>
               </li>
             );
           })}

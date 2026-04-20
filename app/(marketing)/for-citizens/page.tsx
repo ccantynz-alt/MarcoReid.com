@@ -183,7 +183,10 @@ export default function ForCitizensPage() {
           <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2">
             {beachheadAreas.map((a) => (
               <Reveal key={a.slug}>
-                <div className="h-full rounded-2xl border border-navy-100 bg-white p-8 shadow-card transition-all hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover">
+                <Link
+                  href={`/practice/${a.slug}`}
+                  className="block h-full rounded-2xl border border-navy-100 bg-white p-8 shadow-card transition-all hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-card-hover"
+                >
                   <div className="flex items-center gap-3">
                     <span className="text-2xl" aria-hidden="true">
                       {a.flag}
@@ -197,12 +200,20 @@ export default function ForCitizensPage() {
                   </h3>
                   <p className="mt-3 text-sm text-navy-500">{a.summary}</p>
                   <p className="mt-4 text-sm font-semibold text-gold-600">
-                    {a.fee}
+                    {a.fee} &rarr;
                   </p>
-                </div>
+                </Link>
               </Reveal>
             ))}
           </div>
+          <p className="mt-10 text-center">
+            <Link
+              href="/practice"
+              className="inline-flex items-center text-sm font-semibold text-navy-600 underline hover:text-navy-800"
+            >
+              See every practice area we&rsquo;re currently live in &rarr;
+            </Link>
+          </p>
         </Container>
       </section>
 
