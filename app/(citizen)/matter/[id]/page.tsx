@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
-import { SignoffStatus } from "@prisma/client";
+import { ProMatterStatus, SignoffStatus } from "@prisma/client";
+import CancelMatterButton from "@/app/components/citizen/CancelMatterButton";
 
 export const metadata = { title: "Matter — Marco Reid" };
 
@@ -126,6 +127,13 @@ export default async function CitizenMatterPage({
           {matter.details}
         </p>
       </section>
+
+      {(matter.status === ProMatterStatus.DRAFT ||
+        matter.status === ProMatterStatus.AWAITING_PRO) && (
+        <section className="mt-8 rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
+          <CancelMatterButton matterId={matter.id} />
+        </section>
+      )}
 
       {matter.signoffRequests.length > 0 && (
         <section className="mt-8">
