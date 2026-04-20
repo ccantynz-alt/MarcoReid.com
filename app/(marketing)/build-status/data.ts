@@ -449,6 +449,42 @@ export const phases: BuildPhase[] = [
           "5-metric bar (users, verified, admins, firms, onboarded), user table with search + role filter, status chips (verified/onboarded/subscribed), quick links to build-status, system status, changelog.",
         status: "done",
       },
+      {
+        title: "Industry News hub (/news)",
+        description:
+          "Login-gated daily reading room aggregating 9 RSS feeds — ABA Journal, National Law Review, JD Supra, Reuters Legal, Courthouse News, Journal of Accountancy, Accounting Today, The Tax Adviser, IPWatchdog. Server-side fetch with 30-min cache, Promise.allSettled so one broken feed can't take the page down, category filter (legal/accounting/tax/ip/courts), grouped sections with source attribution and time-ago stamps.",
+        status: "done",
+      },
+      {
+        title: "Morning Briefing on dashboard",
+        description:
+          "Dashboard widget surfacing the day's top headlines with text-to-speech so lawyers and accountants can listen on the commute. Pulls from the same feed cache as /news.",
+        status: "done",
+      },
+      {
+        title: "News personalisation (practice area + jurisdiction)",
+        description:
+          "Per-user filter so a NZ property lawyer doesn't see US class-action headlines. Store preferences on User (practiceAreas[], jurisdictions[]) and filter feed results server-side. Defaults derived from onboarding answers.",
+        status: "queued",
+      },
+      {
+        title: "Save / bookmark / mark-read on news",
+        description:
+          "Per-user persistence — bookmark an article, mark as read, resume where you left off. Needs NewsBookmark + NewsRead models on Prisma, optimistic UI, and a 'Saved' tab on /news.",
+        status: "queued",
+      },
+      {
+        title: "Daily email digest",
+        description:
+          "Morning email with the user's top 10 headlines, segmented by practice area, delivered via Resend. Opt-in at onboarding with a one-click unsubscribe. Same feed cache, rendered through the branded email layout.",
+        status: "queued",
+      },
+      {
+        title: "Multi-jurisdiction news sources (NZ / AU / UK / CA)",
+        description:
+          "US-heavy today. Add LawNews NZ, Lawyers Weekly AU, Law Society Gazette UK, Canadian Lawyer, plus tax-authority release feeds (IRD, ATO, HMRC, CRA) so Marco Reid delivers on its five-jurisdiction positioning.",
+        status: "queued",
+      },
     ],
   },
   {
@@ -554,8 +590,8 @@ export const phases: BuildPhase[] = [
       {
         title: "Dark mode",
         description:
-          "Full dark mode across platform (marketing can stay light).",
-        status: "queued",
+          "Full dark mode across platform with toggle, settings page, and CSS tokens (marketing stays light).",
+        status: "done",
       },
       {
         title: "Accessibility foundations",
