@@ -13,7 +13,7 @@ const metrics = [
   { value: "3 \u2192 0", label: "Consecutive jury verdicts for plaintiff" },
   { value: "41 hrs", label: "Trial prep time, down from 180" },
   { value: "$1.9M", label: "Average verdict over the three trials" },
-  { value: "1", label: "Attorney on the case. Every time." },
+  { value: "1", label: "Lawyer on the case. Every time." },
 ];
 
 const timeline = [

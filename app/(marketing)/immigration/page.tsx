@@ -10,7 +10,7 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Marco Reid Immigration \u2014 AI-Powered Immigration Compliance",
   description:
-    "Visa case management, RFE drafting, deadline tracking, USCIS form automation, and Marco for immigration. Built for immigration attorneys and compliance teams.",
+    "Visa case management, RFE drafting, deadline tracking, USCIS form automation, and Marco for immigration. Built for immigration lawyers and compliance teams.",
 };
 
 const schema = {

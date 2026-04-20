@@ -70,7 +70,7 @@ export default function LawPage() {
 
           <VideoEmbed
             title="See Marco Reid Legal in action"
-            description="Watch how a solo attorney manages their entire practice — from research to billing to client communication — in one platform."
+            description="Watch how a solo lawyer manages their entire practice — from research to billing to client communication — in one platform."
             accentColor="forest"
           />
 
@@ -89,7 +89,7 @@ export default function LawPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-8 text-xl leading-relaxed text-navy-400">
-              The average attorney spends more time on admin than on actual legal work.
+              The average lawyer spends more time on admin than on actual legal work.
               Westlaw in one tab. Clio in another. Email in a third. Billing software somewhere else.
               Trust accounting in a spreadsheet. Client calls falling through the cracks.
               Court deadlines tracked on sticky notes.
@@ -112,7 +112,7 @@ export default function LawPage() {
               <p className="font-serif text-display text-navy-700">
                 <AnimatedCounter end={20} suffix="h" />
               </p>
-              <p className="mt-2 text-sm text-navy-400">saved per week, per attorney</p>
+              <p className="mt-2 text-sm text-navy-400">saved per week, per lawyer</p>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="font-serif text-display text-forest-600">
@@ -329,7 +329,7 @@ export default function LawPage() {
               raised in 3 seconds. That is a superpower in a courtroom.
             </p>
             <p className="mt-4 text-sm font-medium text-navy-500">
-              When a court uses Marco Reid for filing, every attorney who appears in that court needs Marco Reid. The court becomes the hook.
+              When a court uses Marco Reid for filing, every lawyer who appears in that court needs Marco Reid. The court becomes the hook.
             </p>
           </div>
         </div>
@@ -420,7 +420,7 @@ export default function LawPage() {
             <p className="text-4xl text-gold-400">&ldquo;</p>
             <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
               I cancelled Westlaw, Clio, Dragon, and DocuSign the same week we onboarded Marco Reid.
-              One platform replaced four subscriptions and gave us 20 hours back per attorney per week.
+              One platform replaced four subscriptions and gave us 20 hours back per lawyer per week.
             </p>
             <p className="mt-6 text-sm font-semibold text-navy-700">Katherine Webb</p>
             <p className="text-xs text-navy-400">Managing Partner, Webb & Associates</p>
@@ -434,8 +434,8 @@ export default function LawPage() {
           { question: "Is trust accounting IOLTA-compliant?", answer: "Yes. Marco Reid Legal includes full IOLTA-compliant trust accounting with three-way reconciliation, automated ledger entries, and immutable audit trails. Every transaction is permanently recorded and exportable for bar compliance audits." },
           { question: "How does the AI research work?", answer: "Marco searches all public domain case law, statutes, and regulations. Every citation is verified against authoritative sources (CourtListener, Cornell LII, Congress.gov) before display. Citations show a Verified, Unverified, or Not Found badge so you always know the confidence level." },
           { question: "Can I dictate legal documents by voice?", answer: "Yes. Marco Reid Voice is built into every input field across the platform. It understands legal terminology including Latin terms, citation formats, and court filing conventions. You can dictate documents, log time entries, send messages, and query research — all by speaking." },
-          { question: "What does it cost?", answer: "Marco Reid Legal starts at $99/month for solo attorneys, $199/month for the full Professional tier, and $399/seat/month for the Firm tier with Marco AI research. Every tier includes Marco Reid Voice. No per-search fees, no hidden charges." },
-          { question: "How long does migration take?", answer: "Most solo attorneys are fully set up within a day. Small firms (2-10 attorneys) typically complete migration within a week. We provide data import tools for Clio, MyCase, and PracticePanther, plus dedicated onboarding support for Firm tier subscribers." },
+          { question: "What does it cost?", answer: "Marco Reid Legal starts at $99/month for solo lawyers, $199/month for the full Professional tier, and $399/seat/month for the Firm tier with Marco AI research. Every tier includes Marco Reid Voice. No per-search fees, no hidden charges." },
+          { question: "How long does migration take?", answer: "Most solo lawyers are fully set up within a day. Small firms (2-10 lawyers) typically complete migration within a week. We provide data import tools for Clio, MyCase, and PracticePanther, plus dedicated onboarding support for Firm tier subscribers." },
           { question: "Is my data secure?", answer: "All data is encrypted at rest (FIPS 140-3) and in transit (TLS 1.3). We maintain SOC 2 Type II compliance, immutable audit trails, and role-based access controls. Attorney-client privilege is preserved through end-to-end encryption on all client communications." },
         ]}
       />

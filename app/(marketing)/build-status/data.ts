@@ -181,7 +181,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Testimonials on homepage",
         description:
-          "Six testimonials from attorneys, CPAs, judges with names and firms.",
+          "Six testimonials from lawyers, CPAs, judges with names and firms.",
         status: "done",
       },
       {
@@ -574,7 +574,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Free trial flow (14-day, no card)",
         description:
-          "Let attorneys try before buying. Auto-convert with reminder emails.",
+          "Let lawyers try before buying. Auto-convert with reminder emails.",
         status: "queued",
       },
       {
@@ -727,9 +727,9 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Attorney review of legal documents",
+        title: "Lawyer review of legal documents",
         description:
-          "Once funded, get Terms, Privacy, DPA reviewed by a NZ/US attorney.",
+          "Once funded, get Terms, Privacy, DPA reviewed by a NZ/US lawyer.",
         status: "queued",
       },
     ],

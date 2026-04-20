@@ -69,7 +69,7 @@ const compliance = [
   { standard: "Australian Privacy Act", status: "Built-in", desc: "Compliant with 2022 reforms and enhanced enforcement" },
   { standard: "CCPA", status: "Built-in", desc: "California consumer privacy rights implemented" },
   { standard: "UK GDPR", status: "Built-in", desc: "Post-Brexit UK data protection compliance" },
-  { standard: "IOLTA compliance", status: "In progress", desc: "50-state trust accounting analysis with legal tech attorney" },
+  { standard: "IOLTA compliance", status: "In progress", desc: "50-state trust accounting analysis with legal tech lawyer" },
   { standard: "WCAG 2.1 AA", status: "Built-in", desc: "Accessibility compliance across all interfaces" },
 ];
 
@@ -177,7 +177,7 @@ export default function SecurityPage() {
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-navy-400">
               Each firm is assigned a data region at signup. All data is stored exclusively
-              in that region. A US attorney&rsquo;s data never touches the Sydney server.
+              in that region. A US lawyer&rsquo;s data never touches the Sydney server.
               An Australian CPA&rsquo;s data never touches the Virginia server.
             </p>
           </Reveal>

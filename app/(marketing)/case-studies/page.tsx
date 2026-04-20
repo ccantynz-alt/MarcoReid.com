@@ -17,7 +17,7 @@ const studies = [
     practice: "Immigration",
     headline: "1,530 hours recovered annually across 340 monthly matters",
     summary:
-      "A 14-attorney immigration firm cut visa research from 4.5 hours to 25 seconds per matter by moving Marco into their intake workflow.",
+      "A 14-lawyer immigration firm cut visa research from 4.5 hours to 25 seconds per matter by moving Marco into their intake workflow.",
   },
   {
     slug: "tax-practice",

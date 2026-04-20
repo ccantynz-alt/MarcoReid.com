@@ -54,7 +54,7 @@ export default function PublicPage() {
               <p>
                 Published opinions take months to appear on court websites &mdash; if they
                 appear at all. Transcripts cost dollars per page through PACER. Docket entries
-                are written in codes that only attorneys can parse. For the 25 million US
+                are written in codes that only lawyers can parse. For the 25 million US
                 residents with limited English proficiency, court records might as well not
                 exist. The gap between the promise of open justice and the reality of public
                 access has never been wider.
@@ -160,7 +160,7 @@ export default function PublicPage() {
               },
               {
                 title: "Searchable opinion database",
-                desc: "Published opinions become instantly searchable the moment they are filed. Full-text search, citation linking, and topic classification make it easy for attorneys, researchers, and the public to find the law that governs their lives &mdash; without a Westlaw subscription.",
+                desc: "Published opinions become instantly searchable the moment they are filed. Full-text search, citation linking, and topic classification make it easy for lawyers, researchers, and the public to find the law that governs their lives &mdash; without a Westlaw subscription.",
               },
               {
                 title: "Multi-language translation",

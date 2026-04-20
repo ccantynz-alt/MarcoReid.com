@@ -168,7 +168,7 @@ export default function ROICalculator() {
       {/* ── LEFT: Inputs ────────────────────────────────────────── */}
       <div className="space-y-8">
         <SliderInput
-          label="Number of attorneys / CPAs"
+          label="Number of lawyers / CPAs"
           value={professionals}
           min={1}
           max={50}

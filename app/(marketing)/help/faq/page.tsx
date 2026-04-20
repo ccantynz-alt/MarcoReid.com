@@ -20,7 +20,7 @@ const groups: Group[] = [
     items: [
       {
         q: "What is Marco Reid?",
-        a: "Marco Reid is a practice-management platform for attorneys and accountants. It combines an AI research assistant (Marco), matter and client management, trust accounting, document handling, voice dictation, and billing into a single workspace.",
+        a: "Marco Reid is a practice-management platform for lawyers and accountants. It combines an AI research assistant (Marco), matter and client management, trust accounting, document handling, voice dictation, and billing into a single workspace.",
       },
       {
         q: "Who is it built for?",
@@ -47,7 +47,7 @@ const groups: Group[] = [
     items: [
       {
         q: "Where is my data stored?",
-        a: "In the region you select at sign-up: Virginia (US), Sydney (Australia and NZ), London (UK), or Frankfurt (EU). Data never leaves that region. A US attorney\u2019s data never touches the Sydney server, and vice versa.",
+        a: "In the region you select at sign-up: Virginia (US), Sydney (Australia and NZ), London (UK), or Frankfurt (EU). Data never leaves that region. A US lawyer\u2019s data never touches the Sydney server, and vice versa.",
       },
       {
         q: "Is my data encrypted?",

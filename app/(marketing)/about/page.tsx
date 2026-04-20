@@ -37,7 +37,7 @@ export default function AboutPage() {
           <Reveal delay={0.1}>
             <p className="mt-8 text-xl leading-relaxed text-navy-400">
               Lawyers and accountants are drowning. Not in clients &mdash; in software.
-              The average attorney uses 7&ndash;10 different tools that don&rsquo;t talk to each other.
+              The average lawyer uses 7&ndash;10 different tools that don&rsquo;t talk to each other.
               Research in one tab. Case management in another. Billing somewhere else.
               Trust accounting in a spreadsheet. Client calls falling through the cracks.
             </p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
               {
                 name: "Marco Reid",
                 role: "Founder & CEO",
-                bio: "Former litigation attorney and CPA. Built Marco Reid after spending 15 years watching brilliant professionals drown in terrible software. Based in Auckland.",
+                bio: "Former litigation lawyer and CPA. Built Marco Reid after spending 15 years watching brilliant professionals drown in terrible software. Based in Auckland.",
               },
               {
                 name: "Dr. Anika Patel",

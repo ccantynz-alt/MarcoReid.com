@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const tiers = [
   {
     name: "Solo",
-    audience: "Independent attorneys and CPAs",
+    audience: "Independent lawyers and CPAs",
     desc: "Everything one practitioner needs: Marco research, matters, clients, one trust account, and voice dictation.",
     seats: "1 seat",
   },
@@ -243,7 +243,7 @@ export default function BillingPage() {
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-navy-500">
                 Administrators add users from Settings &rarr; Team. Enter the
-                person&rsquo;s email, choose a role (administrator, attorney,
+                person&rsquo;s email, choose a role (administrator, lawyer,
                 accountant, paralegal, bookkeeper, or custom), and send the
                 invitation. The new seat appears on your next invoice,
                 prorated from the day it was added.

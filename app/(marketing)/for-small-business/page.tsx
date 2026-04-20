@@ -86,7 +86,7 @@ export default function ForSmallBusinessPage() {
           <Reveal>
             <p className="text-4xl text-gold-400">&ldquo;</p>
             <p className="mt-2 font-serif text-xl italic leading-relaxed text-navy-600">
-              My attorney switched to Marco Reid and my case moved twice as fast. I could see
+              My lawyer switched to Marco Reid and my case moved twice as fast. I could see
               everything in the portal — no more chasing updates by phone.
             </p>
             <p className="mt-6 text-sm font-semibold text-navy-700">Rachel Torres</p>

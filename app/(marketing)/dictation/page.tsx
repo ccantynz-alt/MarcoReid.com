@@ -102,7 +102,7 @@ export default function DictationPage() {
 
           <VideoEmbed
             title="Hear Marco Reid Voice in action"
-            description="Watch a litigation attorney dictate a filing, log their time, and send a client update — all by voice, without touching the keyboard."
+            description="Watch a litigation lawyer dictate a filing, log their time, and send a client update — all by voice, without touching the keyboard."
             accentColor="forest"
           />
 
@@ -162,7 +162,7 @@ export default function DictationPage() {
               {
                 context: "Inside document editor",
                 command: "\"Ask Marco \u2014 what is the California standard for adverse possession, insert the controlling case as a citation.\"",
-                result: "Marco queried. Top verified case returned. Citation inserted at cursor. Attorney never stopped dictating.",
+                result: "Marco queried. Top verified case returned. Citation inserted at cursor. Lawyer never stopped dictating.",
               },
               {
                 context: "Inside billing",
@@ -228,9 +228,9 @@ export default function DictationPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-6 max-w-xl text-lg text-navy-400">
-              Not just transcription. A Spanish-speaking immigration attorney dictating in
+              Not just transcription. A Spanish-speaking immigration lawyer dictating in
               Spanish gets the same professional language understanding as an English-speaking
-              attorney. &ldquo;Demandante&rdquo; is not corrected to &ldquo;plaintiff.&rdquo;
+              lawyer. &ldquo;Demandante&rdquo; is not corrected to &ldquo;plaintiff.&rdquo;
               The intelligence is language-aware.
             </p>
           </Reveal>
@@ -287,7 +287,7 @@ export default function DictationPage() {
               without touching my keyboard. Dragon could never do that. Nothing else even comes close.
             </p>
             <p className="mt-6 text-sm font-semibold text-navy-700">Amanda Reeves</p>
-            <p className="text-xs text-navy-400">Immigration Attorney, Reeves Law Group</p>
+            <p className="text-xs text-navy-400">Immigration Lawyer, Reeves Law Group</p>
           </Reveal>
         </div>
       </section>

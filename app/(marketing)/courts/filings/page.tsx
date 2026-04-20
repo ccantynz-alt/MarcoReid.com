@@ -46,7 +46,7 @@ export default function FilingsPage() {
               <p>
                 E-filing should be the simplest part of the justice system. Instead, it is a
                 nightmare of disconnected portals, incompatible formats, and instructions written
-                for attorneys who already know the system. Pro se litigants &mdash; who now make
+                for lawyers who already know the system. Pro se litigants &mdash; who now make
                 up the majority of civil cases &mdash; cannot navigate PACER, CM/ECF, or any of
                 the state-level systems without legal training. The result is a flood of rejected
                 filings, missed deadlines, and cases that stall before they ever reach a judge.
@@ -56,7 +56,7 @@ export default function FilingsPage() {
                 a re-submission, and another round of manual review. Data entry and validation
                 consume hours that should be spent on case processing. Filing errors waste
                 everyone&rsquo;s time &mdash; the litigant who doesn&rsquo;t understand what went
-                wrong, the attorney who filled out the wrong form, and the clerk who has to explain
+                wrong, the lawyer who filled out the wrong form, and the clerk who has to explain
                 the same mistake for the hundredth time that week.
               </p>
               <p>
@@ -83,7 +83,7 @@ export default function FilingsPage() {
               {
                 step: "1",
                 title: "Fill forms with AI auto-complete",
-                desc: "Litigants or attorneys answer plain-language questions. Marco determines which forms are needed, maps answers to the correct fields, and generates court-ready documents &mdash; in any of 100+ supported languages.",
+                desc: "Litigants or lawyers answer plain-language questions. Marco determines which forms are needed, maps answers to the correct fields, and generates court-ready documents &mdash; in any of 100+ supported languages.",
               },
               {
                 step: "2",
@@ -148,7 +148,7 @@ export default function FilingsPage() {
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-navy-400">
               70% of family court cases involve self-represented litigants. They navigate
               40-page instruction manuals, arcane form codes, and filing systems designed for
-              attorneys. Most get it wrong &mdash; 60% of pro se filings contain errors that
+              lawyers. Most get it wrong &mdash; 60% of pro se filings contain errors that
               delay justice. Marco Reid Filings changes that.
             </p>
           </Reveal>

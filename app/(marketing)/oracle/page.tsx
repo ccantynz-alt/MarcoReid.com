@@ -238,7 +238,7 @@ export default function OraclePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              IP attorneys bill $500&ndash;$800/hour and do enormous amounts of research.
+              IP lawyers bill $500&ndash;$800/hour and do enormous amounts of research.
               Marco for IP is a dedicated domain that understands patent claims,
               trademark likelihood of confusion, prior art analysis, and IP case law.
               And because IP work always has tax implications &mdash; licensing revenue,
@@ -280,7 +280,7 @@ export default function OraclePage() {
               Every citation verified before you see it.
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-navy-400">
-              In 2023, a New York attorney was sanctioned for submitting AI-fabricated citations to a federal court.
+              In 2023, a New York lawyer was sanctioned for submitting AI-fabricated citations to a federal court.
               That will never happen on Marco Reid. Every case, every statute, every ruling is checked against
               authoritative public domain sources before it reaches your screen.
             </p>
@@ -393,7 +393,7 @@ export default function OraclePage() {
               It gave me a verified, cited answer in four seconds. Westlaw cannot do that. Nobody else can do that.
             </p>
             <p className="mt-6 text-sm font-semibold text-navy-700">Dr. Priya Sharma</p>
-            <p className="text-xs text-navy-400">Tax Attorney & CPA, Sharma Advisory</p>
+            <p className="text-xs text-navy-400">Tax Lawyer & CPA, Sharma Advisory</p>
           </Reveal>
         </div>
       </section>

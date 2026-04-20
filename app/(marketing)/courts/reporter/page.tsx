@@ -54,7 +54,7 @@ export default function ReporterPage() {
                 &mdash; when one is available. Many proceedings go entirely unrecorded because no
                 reporter could be booked. In rural jurisdictions, courts rely on aging digital
                 recording equipment with no real-time capability and no searchable output.
-                Attorneys wait weeks or months for transcripts. Appeals stall. Justice slows to
+                Lawyers wait weeks or months for transcripts. Appeals stall. Justice slows to
                 a crawl.
               </p>
               <p>
@@ -90,7 +90,7 @@ export default function ReporterPage() {
               {
                 step: "3",
                 title: "Certified, searchable output",
-                desc: "The moment the hearing ends, a certified transcript is available &mdash; timestamped, searchable, and exportable in every standard format. No weeks-long turnaround. No per-page fees. Attorneys can cite testimony within hours.",
+                desc: "The moment the hearing ends, a certified transcript is available &mdash; timestamped, searchable, and exportable in every standard format. No weeks-long turnaround. No per-page fees. Lawyers can cite testimony within hours.",
               },
             ].map((s) => (
               <Reveal key={s.step} delay={0.1}>
@@ -161,7 +161,7 @@ export default function ReporterPage() {
               },
               {
                 title: "Instant searchable transcripts",
-                desc: "Traditional court reporting means weeks of turnaround for a transcript. With Marco, the searchable, time-stamped record is available the moment the hearing ends. Attorneys can cite testimony within hours, not months. Appeals move faster.",
+                desc: "Traditional court reporting means weeks of turnaround for a transcript. With Marco, the searchable, time-stamped record is available the moment the hearing ends. Lawyers can cite testimony within hours, not months. Appeals move faster.",
               },
             ].map((card) => (
               <Reveal key={card.title} delay={0.05}>

@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     q: "What if my state has unusual rules?",
-    a: "Trust accounting rules vary significantly by jurisdiction. Marco Reid encodes the rules we have verified with a legal-tech attorney for each state; where a rule is unclear, Marco presents the conservative interpretation and links to the state bar\u2019s guidance. For jurisdictions we haven\u2019t finalised, see the state-specific rules section above.",
+    a: "Trust accounting rules vary significantly by jurisdiction. Marco Reid encodes the rules we have verified with a legal-tech lawyer for each state; where a rule is unclear, Marco presents the conservative interpretation and links to the state bar\u2019s guidance. For jurisdictions we haven\u2019t finalised, see the state-specific rules section above.",
   },
   {
     q: "Can I give my bookkeeper access to trust accounts only?",
@@ -261,7 +261,7 @@ export default function TrustAccountsPage() {
                 monthly reconciliation, some quarterly; some mandate a
                 specific chart of accounts; some prohibit certain types of
                 earned-fee transfers. Marco Reid encodes the rules we have
-                verified with a legal-tech attorney for each state and
+                verified with a legal-tech lawyer for each state and
                 applies them automatically when you choose that jurisdiction
                 for a matter.
               </p>

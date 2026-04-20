@@ -851,7 +851,7 @@ export default function HomePage() {
               {
                 quote: "The cross-domain research is a game-changer. When a client asks about the tax implications of a corporate restructure, I get a verified answer in seconds \u2014 not hours.",
                 name: "David Ramirez",
-                title: "Senior Attorney & CPA",
+                title: "Senior Lawyer & CPA",
                 firm: "Ramirez Legal & Tax Advisory",
               },
               {

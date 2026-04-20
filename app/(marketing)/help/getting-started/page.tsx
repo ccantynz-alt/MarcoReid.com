@@ -43,7 +43,7 @@ const steps = [
   {
     title: "Open your first matter",
     paragraphs: [
-      "From the client record, click \u201cOpen matter.\u201d Give the matter a clear internal title, choose the practice area, and set the responsible attorney or accountant. The matter inherits the client\u2019s jurisdiction by default \u2014 change it if the matter is governed elsewhere.",
+      "From the client record, click \u201cOpen matter.\u201d Give the matter a clear internal title, choose the practice area, and set the responsible lawyer or accountant. The matter inherits the client\u2019s jurisdiction by default \u2014 change it if the matter is governed elsewhere.",
       "Choose a fee arrangement: hourly, flat fee, contingency, or retainer. Retainer matters automatically link to a trust account so funds stay segregated.",
       "Add the initial participants \u2014 the team members who should see this matter. Everyone else in the firm is locked out until granted access.",
     ],
@@ -64,7 +64,7 @@ const steps = [
     title: "Enable Marco Reid Voice",
     paragraphs: [
       "Voice turns dictation into structured notes. Open any matter, click the microphone icon, and start speaking. Marco transcribes in real time and auto-formats headings, lists, and action items.",
-      "On first use you\u2019ll grant microphone permission and choose a dictation profile \u2014 attorney, CPA, or general. The profile biases the language model toward the vocabulary of your practice so obscure terms transcribe cleanly.",
+      "On first use you\u2019ll grant microphone permission and choose a dictation profile \u2014 lawyer, CPA, or general. The profile biases the language model toward the vocabulary of your practice so obscure terms transcribe cleanly.",
       "Once you\u2019re finished, Marco offers to file the note to the matter, draft a client update email, or generate a follow-up task list. Everything is editable before it\u2019s saved.",
     ],
     screenshot:

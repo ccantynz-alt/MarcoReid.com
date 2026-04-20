@@ -226,7 +226,7 @@ export default function TrustCenterPage() {
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-navy-400">
               Each firm is assigned a data region at signup. All data lives and
-              is processed exclusively in that region. A US attorney&rsquo;s
+              is processed exclusively in that region. A US lawyer&rsquo;s
               data never touches the Sydney server. An Australian CPA&rsquo;s
               data never touches Virginia.
             </p>

@@ -120,7 +120,7 @@ export default function CourtroomPage() {
               { title: "Real-time AI transcription", desc: "Marco Reid Voice transcribes with legal vocabulary, speaker ID, and timestamps. Replaces $300\u2013500/day court reporters." },
               { title: "Video + transcript sync", desc: "Click any line in the transcript \u2014 video jumps to that moment. Click any video moment \u2014 transcript highlights. Frame-by-frame." },
               { title: "Exhibit management", desc: "Pull up any exhibit from the matter files instantly during deposition. Tag exhibits as they\u2019re referenced." },
-              { title: "Marco mid-deposition", desc: "Check a citation or statute the witness mentions in real time. The attorney never loses the thread." },
+              { title: "Marco mid-deposition", desc: "Check a citation or statute the witness mentions in real time. The lawyer never loses the thread." },
               { title: "AI summary generation", desc: "After the session: structured summary with key testimony, objections, exhibits referenced, and action items." },
               { title: "Opposing counsel access", desc: "The other side gets transcript and exhibit access through the platform. Another hook that brings new users." },
             ].map((f) => (
@@ -158,7 +158,7 @@ export default function CourtroomPage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Electronic filing with courts where APIs are available. The attorney files from
+              Electronic filing with courts where APIs are available. The lawyer files from
               inside Marco Reid, the court receives it electronically, and the filing is automatically
               logged in the matter with court-stamped confirmation. Court-rules calendaring
               auto-calculates every downstream deadline the moment the filing is confirmed.
@@ -172,7 +172,7 @@ export default function CourtroomPage() {
               </p>
               <p className="mt-4 font-serif text-headline text-white">
                 When a court adopts Marco Reid Courtroom for e-filing and document management,
-                every attorney who appears in that court needs Marco Reid to file.
+                every lawyer who appears in that court needs Marco Reid to file.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-navy-200">
                 That is not a sales conversation. It is a requirement. The court becomes the
@@ -250,7 +250,7 @@ export default function CourtroomPage() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
               Ruling patterns. Motion grant rates. Sentencing trends. Win/loss ratios by case type.
               Average time to decision. Preference for oral argument vs. written submissions.
-              All sourced from public domain court records. The attorney who knows the judge
+              All sourced from public domain court records. The lawyer who knows the judge
               wins more often.
             </p>
           </Reveal>
@@ -275,8 +275,8 @@ export default function CourtroomPage() {
           <Reveal delay={0.1}>
             <div className="mt-12 grid gap-4 sm:grid-cols-3">
               {[
-                { title: "Firm-level permission", desc: "Firm administrators grant Courtroom access to specific attorneys within their practice." },
-                { title: "Court-level access", desc: "Court administrators can grant and revoke e-filing access for attorneys appearing in their jurisdiction." },
+                { title: "Firm-level permission", desc: "Firm administrators grant Courtroom access to specific lawyers within their practice." },
+                { title: "Court-level access", desc: "Court administrators can grant and revoke e-filing access for lawyers appearing in their jurisdiction." },
                 { title: "Stricter security tier", desc: "All courtroom data subject to FIPS 140-3, chain of custody, and immutable audit trails. Higher than standard platform security." },
               ].map((f) => (
                 <div key={f.title} className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
@@ -348,7 +348,7 @@ export default function CourtroomPage() {
               That moment changed the outcome of the case.
             </p>
             <p className="mt-6 text-sm font-semibold text-navy-700">Michael Torres</p>
-            <p className="text-xs text-navy-400">Senior Litigation Attorney, Torres & Klein LLP</p>
+            <p className="text-xs text-navy-400">Senior Litigation Lawyer, Torres & Klein LLP</p>
           </Reveal>
         </div>
       </section>
@@ -357,7 +357,7 @@ export default function CourtroomPage() {
         items={[
           { question: "Can AI transcription replace a court reporter?", answer: "Marco Reid Courtroom provides real-time AI transcription trained on legal vocabulary with speaker identification and video synchronisation. While it does not yet replace certified court reporters in all jurisdictions, it provides a cost-effective alternative for depositions, hearings, and proceedings where a stenographer is not legally required — saving $300-500 per day." },
           { question: "Is the evidence management court-admissible?", answer: "Yes. Marco Reid Courtroom uses cryptographic chain of custody with immutable audit trails. Every exhibit is hash-verified and timestamped. The evidence management system meets federal and state standards for digital evidence admissibility." },
-          { question: "What are judge analytics?", answer: "Judge analytics provide data-driven insights into judicial behaviour — ruling patterns, motion grant rates, sentencing trends, and procedural preferences. This helps attorneys prepare more effectively by understanding how a specific judge has ruled on similar matters historically." },
+          { question: "What are judge analytics?", answer: "Judge analytics provide data-driven insights into judicial behaviour — ruling patterns, motion grant rates, sentencing trends, and procedural preferences. This helps lawyers prepare more effectively by understanding how a specific judge has ruled on similar matters historically." },
           { question: "Can I use Marco research mid-hearing?", answer: "Yes. Marco is available on iPad and any web browser. When opposing counsel cites a case you do not recognise, you can verify the citation in approximately 3 seconds using Marco — without leaving the courtroom or breaking your flow." },
           { question: "How does e-filing work?", answer: "Marco Reid Courtroom integrates with major court filing systems including PACER, CM/ECF, Tyler Odyssey, and state eCourts portals. Documents are validated before submission, filing fees are calculated automatically, and you receive court-stamped confirmation with deadlines auto-calculated." },
           { question: "Is this available for courts to purchase directly?", answer: "Yes. Marco Reid offers a court pilot programme for courts, clerk offices, and judicial administrators. The five court-facing products (Bench, Docket, Filings, Reporter, Public Access) are available for institutional licensing. Contact us to request a pilot." },

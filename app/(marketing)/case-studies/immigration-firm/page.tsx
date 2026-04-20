@@ -6,7 +6,7 @@ import Reveal from "@/app/components/effects/Reveal";
 export const metadata: Metadata = {
   title: "Case Study \u2014 Chen & Associates Immigration Law",
   description:
-    "How a 14-attorney immigration firm cut visa research from 4.5 hours to 25 seconds per matter, recovering 1,530 billable hours per year with Marco Reid.",
+    "How a 14-lawyer immigration firm cut visa research from 4.5 hours to 25 seconds per matter, recovering 1,530 billable hours per year with Marco Reid.",
 };
 
 const metrics = [
@@ -19,7 +19,7 @@ const metrics = [
 const timeline = [
   {
     date: "July 2025",
-    event: "Initial discovery call. 14 attorneys; 3,900 matters per year.",
+    event: "Initial discovery call. 14 lawyers; 3,900 matters per year.",
   },
   {
     date: "August 2025",
@@ -49,7 +49,7 @@ export default function ImmigrationFirmCaseStudyPage() {
             Immigration Law
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
-            How a 14-attorney firm reduced visa research from 4.5 hours to 25
+            How a 14-lawyer firm reduced visa research from 4.5 hours to 25
             seconds per matter &mdash; and recovered 1,530 billable hours a year.
           </p>
         </Container>
@@ -105,7 +105,7 @@ export default function ImmigrationFirmCaseStudyPage() {
                 <p>
                   Intake flows were rebuilt around Marco. Paralegals now ask Marco
                   the initial eligibility and risk-flag questions directly inside
-                  the matter workspace, and escalate to attorneys only when a
+                  the matter workspace, and escalate to lawyers only when a
                   real legal judgement is required &mdash; rather than for
                   procedural lookups.
                 </p>

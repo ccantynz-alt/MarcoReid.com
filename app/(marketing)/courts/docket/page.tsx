@@ -51,7 +51,7 @@ export default function DocketPage() {
                 knew were moved.
               </p>
               <p>
-                Public access to court schedules is nonexistent in many jurisdictions. Attorneys call
+                Public access to court schedules is nonexistent in many jurisdictions. Lawyers call
                 the clerk&rsquo;s office to confirm hearing dates. Jurors show up on the wrong day.
                 Witnesses wait for hours because the docket ran long and nobody sent an update. Every
                 inefficiency costs the court money and erodes public trust in the system.
@@ -85,7 +85,7 @@ export default function DocketPage() {
               {
                 step: "2",
                 title: "Notify parties and interpreters",
-                desc: "Parties, attorneys, interpreters, and witnesses are notified via SMS and email in their preferred language. Continuances trigger cascading updates so no one is left in the dark.",
+                desc: "Parties, lawyers, interpreters, and witnesses are notified via SMS and email in their preferred language. Continuances trigger cascading updates so no one is left in the dark.",
               },
               {
                 step: "3",
@@ -154,7 +154,7 @@ export default function DocketPage() {
             {[
               {
                 title: "AI-optimised scheduling",
-                desc: "Marco analyses judge availability, courtroom capacity, case complexity, and attorney schedules to propose optimal hearing times. Double-bookings and cascading continuances become impossible &mdash; the system will not allow a conflict to be created in the first place.",
+                desc: "Marco analyses judge availability, courtroom capacity, case complexity, and lawyer schedules to propose optimal hearing times. Double-bookings and cascading continuances become impossible &mdash; the system will not allow a conflict to be created in the first place.",
               },
               {
                 title: "Automated conflict detection",
@@ -162,7 +162,7 @@ export default function DocketPage() {
               },
               {
                 title: "SMS & email reminders",
-                desc: "Defendants, witnesses, jurors, and attorneys receive automated reminders via SMS and email in their preferred language &mdash; 7 days, 3 days, and 24 hours before their hearing. Courts using automated reminders report reducing no-show rates by 60% or more.",
+                desc: "Defendants, witnesses, jurors, and lawyers receive automated reminders via SMS and email in their preferred language &mdash; 7 days, 3 days, and 24 hours before their hearing. Courts using automated reminders report reducing no-show rates by 60% or more.",
               },
             ].map((card) => (
               <Reveal key={card.title} delay={0.05}>

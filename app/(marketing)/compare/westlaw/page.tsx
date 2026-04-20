@@ -23,7 +23,7 @@ const schema = {
 
 const painPoints = [
   {
-    pain: "Westlaw costs $400\u2013$600+ per user per month for research alone. Out-of-plan search fees described by users as \u201Cbeyond absurd.\u201D One attorney: \u201CI currently pay one-sixth the cost to a competitor for comparable results.\u201D",
+    pain: "Westlaw costs $400\u2013$600+ per user per month for research alone. Out-of-plan search fees described by users as \u201Cbeyond absurd.\u201D One lawyer: \u201CI currently pay one-sixth the cost to a competitor for comparable results.\u201D",
     solution: "Marco Reid includes Marco research, practice management, billing, trust accounting, dictation, and client portal \u2014 from $99/month. No surprise fees. No per-search charges. Everything included.",
   },
   {
