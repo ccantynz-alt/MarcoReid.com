@@ -131,7 +131,25 @@ export default function AdminPage() {
       </div>
 
       {/* Quick links */}
-      <div className="mt-8 grid gap-3 sm:grid-cols-3">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <Link
+          href="/admin/matters"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">Matters</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            Marketplace overview, stalled matters, sign-off queue
+          </p>
+        </Link>
+        <Link
+          href="/admin/professionals"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">Professionals</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            Verify pros, review PI insurance, practice areas
+          </p>
+        </Link>
         <Link
           href="/build-status"
           className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
