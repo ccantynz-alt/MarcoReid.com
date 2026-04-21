@@ -34,7 +34,21 @@ export default async function ProDashboardPage() {
   const piOk =
     !!pro.piPolicyExpiresAt && pro.piPolicyExpiresAt.getTime() > Date.now();
   const subscribed = hasActiveProSubscription(pro.user.subscriptionStatus);
-  const canAccept = !!pro.verifiedAt && pro.acceptingNewMatters && piOk && subscribed;
+
+  // Resolve the first blocking condition so the banner shows one reason,
+  // not a pileup. Order mirrors the user's journey: verification →
+  // insurance → self-paused → subscription.
+  const blockReason: "unverified" | "pi" | "paused" | "unsubscribed" | null =
+    !pro.verifiedAt
+      ? "unverified"
+      : !piOk
+        ? "pi"
+        : !pro.acceptingNewMatters
+          ? "paused"
+          : !subscribed
+            ? "unsubscribed"
+            : null;
+  const canAccept = blockReason === null;
 
   const [available, mine] = await Promise.all([
     prisma.proMatter.findMany({
@@ -55,19 +69,22 @@ export default async function ProDashboardPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
-      {!canAccept && (
+      {blockReason && (
         <div className="mb-8 rounded-2xl border border-amber-200 bg-amber-50 p-6">
           <p className="text-xs font-semibold uppercase tracking-wider text-amber-800">
             Acceptance blocked
           </p>
           <p className="mt-2 text-sm text-amber-900">
-            {!pro.verifiedAt && "Your profile is pending verification by a Marco Reid admin. "}
-            {!piOk && "Your professional indemnity insurance is missing or expired — please update it before accepting matters. "}
-            {pro.verifiedAt && piOk && !pro.acceptingNewMatters && "You have turned off new matter acceptance in settings. "}
-            {pro.verifiedAt && piOk && pro.acceptingNewMatters && !subscribed &&
-              "An active marketplace subscription is required to accept matters. "}
+            {blockReason === "unverified" &&
+              "Your profile is pending verification by a Marco Reid admin."}
+            {blockReason === "pi" &&
+              "Your professional indemnity insurance is missing or expired — please update it before accepting matters."}
+            {blockReason === "paused" &&
+              "You have turned off new matter acceptance in settings."}
+            {blockReason === "unsubscribed" &&
+              "An active marketplace subscription is required to accept matters."}
           </p>
-          {!subscribed && pro.verifiedAt && piOk && pro.acceptingNewMatters && (
+          {blockReason === "unsubscribed" && (
             <Link
               href="/pro-pricing"
               className="mt-3 inline-flex items-center rounded-lg bg-amber-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-amber-800"

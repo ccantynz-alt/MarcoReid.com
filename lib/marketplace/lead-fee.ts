@@ -1,12 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { createLeadFeeCheckoutSession } from "@/lib/stripe";
-import { BRAND } from "@/lib/constants";
+import { appBaseUrl } from "@/lib/constants";
 import { MatterAddonKind } from "@prisma/client";
 import { priceForAddon } from "@/lib/marketplace/addons";
-
-function baseUrl() {
-  return process.env.NEXTAUTH_URL || BRAND.url;
-}
 
 // Start the lead-fee Stripe Checkout for a freshly-posted matter. The matter
 // sits in AWAITING_PAYMENT until the webhook confirms payment; pros don't
@@ -45,7 +41,7 @@ export async function startLeadFeeCheckoutForMatter(params: {
     });
   }
 
-  const base = baseUrl();
+  const base = appBaseUrl();
   const checkout = await createLeadFeeCheckoutSession({
     lineItems,
     customerEmail: citizen.email,

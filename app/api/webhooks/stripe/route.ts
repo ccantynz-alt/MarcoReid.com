@@ -8,6 +8,8 @@ import {
   fireAndForget,
   notifyMatchingProsOfNewMatter,
 } from "@/lib/marketplace/notifications";
+import { PAYMENT_KINDS, PAYMENT_STATUSES } from "@/lib/marketplace/constants";
+import { refundLeadFeeForMatter } from "@/lib/marketplace/refunds";
 
 export const runtime = "nodejs";
 
@@ -54,7 +56,7 @@ export async function POST(req: Request) {
         }
       } else if (
         s.mode === "payment" &&
-        s.metadata?.kind === "lead-fee" &&
+        s.metadata?.kind === PAYMENT_KINDS.LEAD_FEE &&
         s.metadata?.matterId &&
         s.payment_status === "paid" &&
         s.payment_intent
@@ -74,18 +76,18 @@ export async function POST(req: Request) {
           where: { stripePaymentIntentId: pi.id },
           create: {
             stripePaymentIntentId: pi.id,
-            kind: "lead-fee",
+            kind: PAYMENT_KINDS.LEAD_FEE,
             payerUserId: s.metadata.citizenUserId || undefined,
             professionalUserId: null,
             amountCents: pi.amount,
             applicationFeeCents: 0,
             currency: pi.currency,
-            status: "succeeded",
+            status: PAYMENT_STATUSES.SUCCEEDED,
             description: pi.description || undefined,
             matterId,
             capturedAt: new Date(),
           },
-          update: { status: "succeeded", capturedAt: new Date() },
+          update: { status: PAYMENT_STATUSES.SUCCEEDED, capturedAt: new Date() },
         });
 
         if (promoted.count > 0) {
@@ -103,16 +105,11 @@ export async function POST(req: Request) {
             select: { status: true },
           });
           if (current?.status === ProMatterStatus.CANCELLED) {
-            try {
-              await stripe.refunds.create({ payment_intent: pi.id });
-              await prisma.marketplacePayment.updateMany({
-                where: { stripePaymentIntentId: pi.id },
-                data: { status: "refunded" },
-              });
-            } catch (err) {
+            const refund = await refundLeadFeeForMatter(matterId);
+            if (!refund.ok) {
               console.error(
                 "[webhooks/stripe] auto-refund after cancel-during-checkout failed:",
-                err,
+                refund.error,
               );
             }
           }
@@ -171,11 +168,11 @@ export async function POST(req: Request) {
             amountCents: pi.amount,
             applicationFeeCents: pi.application_fee_amount || 0,
             currency: pi.currency,
-            status: "requires_capture",
+            status: PAYMENT_STATUSES.REQUIRES_CAPTURE,
             description: pi.description || undefined,
             matterId: pi.metadata?.matterId || undefined,
           },
-          update: { status: "requires_capture" },
+          update: { status: PAYMENT_STATUSES.REQUIRES_CAPTURE },
         });
       }
       break;
@@ -185,7 +182,7 @@ export async function POST(req: Request) {
       const pi = event.data.object as Stripe.PaymentIntent;
       await prisma.marketplacePayment.updateMany({
         where: { stripePaymentIntentId: pi.id },
-        data: { status: "captured", capturedAt: new Date() },
+        data: { status: PAYMENT_STATUSES.CAPTURED, capturedAt: new Date() },
       });
       break;
     }
@@ -194,7 +191,7 @@ export async function POST(req: Request) {
       const pi = event.data.object as Stripe.PaymentIntent;
       await prisma.marketplacePayment.updateMany({
         where: { stripePaymentIntentId: pi.id },
-        data: { status: "canceled" },
+        data: { status: PAYMENT_STATUSES.CANCELED },
       });
       break;
     }
@@ -204,7 +201,7 @@ export async function POST(req: Request) {
       if (charge.payment_intent) {
         await prisma.marketplacePayment.updateMany({
           where: { stripePaymentIntentId: charge.payment_intent as string },
-          data: { status: "refunded" },
+          data: { status: PAYMENT_STATUSES.REFUNDED },
         });
       }
       break;

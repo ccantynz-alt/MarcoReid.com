@@ -4,7 +4,7 @@ import { getUserId } from "@/lib/session";
 import { MatterAddonKind, ProMatterStatus } from "@prisma/client";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
-import { isMatterAddonKind, priceForAddon } from "@/lib/marketplace/addons";
+import { parseAddonKinds, priceForAddon } from "@/lib/marketplace/addons";
 
 export async function GET() {
   const userId = await getUserId();
@@ -41,11 +41,7 @@ export async function POST(req: NextRequest) {
     addons?: unknown[];
   };
 
-  // Accept only known add-on kinds; deduplicate so a client can't inflate
-  // the bill by sending the same kind three times.
-  const addonKinds: MatterAddonKind[] = Array.from(
-    new Set((addons ?? []).filter(isMatterAddonKind)),
-  );
+  const addonKinds: MatterAddonKind[] = parseAddonKinds(addons);
 
   if (!practiceAreaSlug || !summary || !details) {
     return NextResponse.json(

@@ -15,3 +15,16 @@ export const SIGNOFF_KINDS = {
 } as const;
 
 export type SignoffKind = (typeof SIGNOFF_KINDS)[keyof typeof SIGNOFF_KINDS];
+
+export const PAYMENT_KINDS = {
+  LEAD_FEE: "lead-fee",
+  CONSUMER_FEE: "consumer-fee",
+} as const;
+
+export const PAYMENT_STATUSES = {
+  SUCCEEDED: "succeeded",
+  REFUNDED: "refunded",
+  REQUIRES_CAPTURE: "requires_capture",
+  CAPTURED: "captured",
+  CANCELED: "canceled",
+} as const;

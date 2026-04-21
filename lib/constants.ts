@@ -9,6 +9,13 @@ export const BRAND = {
   company: "Reid & Associates",
 } as const;
 
+// Absolute base URL for redirects/links generated server-side. NEXTAUTH_URL
+// is the source of truth in every deployed env (preview, staging, prod);
+// BRAND.url is the production fallback for local builds without the env var.
+export function appBaseUrl(): string {
+  return process.env.NEXTAUTH_URL || BRAND.url;
+}
+
 // Top-nav kept tight so it scales as practice-area modules multiply.
 // Catch-Up Centre, Courtroom, and Voice are surfaced via product pages,
 // the homepage, and the footer rather than competing for header real estate.

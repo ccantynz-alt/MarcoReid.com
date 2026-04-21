@@ -85,25 +85,26 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     return NextResponse.json({ error: "Matter is no longer a draft" }, { status: 409 });
   }
 
-  await prisma.signoffRequest.create({
-    data: {
-      proMatterId: matter.id,
-      kind: SIGNOFF_KINDS.COMPANY_FORMATION_PACK,
-      aiOutput: cf.draftPack,
-      outputSha256: cf.draftPackSha256,
-      rationale: cf.recommendationRationale ?? null,
-      status: SignoffStatus.PENDING,
-    },
-  });
-
-  const { url } = await startLeadFeeCheckoutForMatter({
-    matterId: matter.id,
-    citizenUserId: userId,
-    amountCents: matter.leadFeeInCents,
-    currency: matter.currency,
-    areaName: matter.practiceArea.name,
-    jurisdiction: matter.jurisdiction,
-  });
+  const [, { url }] = await Promise.all([
+    prisma.signoffRequest.create({
+      data: {
+        proMatterId: matter.id,
+        kind: SIGNOFF_KINDS.COMPANY_FORMATION_PACK,
+        aiOutput: cf.draftPack,
+        outputSha256: cf.draftPackSha256,
+        rationale: cf.recommendationRationale ?? null,
+        status: SignoffStatus.PENDING,
+      },
+    }),
+    startLeadFeeCheckoutForMatter({
+      matterId: matter.id,
+      citizenUserId: userId,
+      amountCents: matter.leadFeeInCents,
+      currency: matter.currency,
+      areaName: matter.practiceArea.name,
+      jurisdiction: matter.jurisdiction,
+    }),
+  ]);
 
   return NextResponse.json({ ok: true, checkoutUrl: url });
 }

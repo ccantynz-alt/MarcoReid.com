@@ -17,13 +17,19 @@ export async function POST(_req: Request, ctx: { params: Promise<{ id: string }>
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const pro = await prisma.professional.findUnique({
-    where: { userId },
-    include: {
-      practiceAreas: { select: { practiceAreaId: true } },
-      user: { select: { subscriptionStatus: true } },
-    },
-  });
+  const [pro, matter] = await Promise.all([
+    prisma.professional.findUnique({
+      where: { userId },
+      include: {
+        practiceAreas: { select: { practiceAreaId: true } },
+        user: { select: { subscriptionStatus: true } },
+      },
+    }),
+    prisma.proMatter.findUnique({
+      where: { id },
+      select: { id: true, status: true, practiceAreaId: true, jurisdiction: true },
+    }),
+  ]);
   if (!pro) return NextResponse.json({ error: "Not a professional" }, { status: 403 });
 
   if (!pro.verifiedAt) {
@@ -54,10 +60,6 @@ export async function POST(_req: Request, ctx: { params: Promise<{ id: string }>
     );
   }
 
-  const matter = await prisma.proMatter.findUnique({
-    where: { id },
-    select: { id: true, status: true, practiceAreaId: true, jurisdiction: true },
-  });
   if (!matter) return NextResponse.json({ error: "Not found" }, { status: 404 });
   if (matter.status !== ProMatterStatus.AWAITING_PRO) {
     return NextResponse.json({ error: "This matter is not available" }, { status: 409 });

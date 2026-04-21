@@ -14,7 +14,6 @@ export interface ProPlan {
   priceMonthlyCents: number;
   currency: string;
   features: string[];
-  stripePriceIdEnvVar: string;
 }
 
 export const PRO_PLANS: ProPlan[] = [
@@ -29,7 +28,6 @@ export const PRO_PLANS: ProPlan[] = [
       "Verified profile badge",
       "Email support",
     ],
-    stripePriceIdEnvVar: "STRIPE_PRICE_PRO_ESSENTIALS",
   },
   {
     tier: "pro",
@@ -43,7 +41,6 @@ export const PRO_PLANS: ProPlan[] = [
       "Unlimited practice areas",
       "Priority email support",
     ],
-    stripePriceIdEnvVar: "STRIPE_PRICE_PRO_PRO",
   },
   {
     tier: "firm",
@@ -57,7 +54,6 @@ export const PRO_PLANS: ProPlan[] = [
       "Custom firm branding",
       "Dedicated account manager",
     ],
-    stripePriceIdEnvVar: "STRIPE_PRICE_PRO_FIRM",
   },
 ];
 
@@ -69,10 +65,14 @@ export function planByTier(tier: ProPlanTier): ProPlan | undefined {
   return PRO_PLANS.find((p) => p.tier === tier);
 }
 
+const TIER_PRICE_ENV: Record<ProPlanTier, string> = {
+  essentials: "STRIPE_PRICE_PRO_ESSENTIALS",
+  pro: "STRIPE_PRICE_PRO_PRO",
+  firm: "STRIPE_PRICE_PRO_FIRM",
+};
+
 export function priceIdForTier(tier: ProPlanTier): string | undefined {
-  const plan = planByTier(tier);
-  if (!plan) return undefined;
-  return process.env[plan.stripePriceIdEnvVar];
+  return process.env[TIER_PRICE_ENV[tier]];
 }
 
 // Returns true if the subscription status indicates the pro has current

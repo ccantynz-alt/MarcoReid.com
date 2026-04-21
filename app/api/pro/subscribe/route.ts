@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { createCheckoutSession } from "@/lib/stripe";
-import { BRAND } from "@/lib/constants";
+import { appBaseUrl } from "@/lib/constants";
 import { isProPlanTier, priceIdForTier } from "@/lib/marketplace/pro-plans";
 
 // POST /api/pro/subscribe  { tier: "essentials" | "pro" | "firm" }
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const base = process.env.NEXTAUTH_URL || BRAND.url;
+  const base = appBaseUrl();
   const checkout = await createCheckoutSession({
     userId,
     priceId,

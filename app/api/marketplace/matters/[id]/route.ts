@@ -4,8 +4,8 @@ import { getUserId } from "@/lib/session";
 import { MatterAddonKind, ProMatterStatus } from "@prisma/client";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
-import { isMatterAddonKind, priceForAddon } from "@/lib/marketplace/addons";
-import { stripe } from "@/lib/stripe";
+import { parseAddonKinds, priceForAddon } from "@/lib/marketplace/addons";
+import { refundLeadFeeForMatter } from "@/lib/marketplace/refunds";
 
 // Only DRAFT is editable. Once posted the pro is reading it and a
 // shifting target would be unfair; the status guard on updateMany also
@@ -30,9 +30,7 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
     addons?: unknown[];
   };
 
-  const addonKinds: MatterAddonKind[] = Array.from(
-    new Set((addons ?? []).filter(isMatterAddonKind)),
-  );
+  const addonKinds: MatterAddonKind[] = parseAddonKinds(addons);
 
   if (!summary || !details) {
     return NextResponse.json(
@@ -188,26 +186,15 @@ export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string 
     );
   }
 
-  const payment = await prisma.marketplacePayment.findFirst({
-    where: { matterId: matter.id, kind: "lead-fee", status: "succeeded" },
-    select: { id: true, stripePaymentIntentId: true },
-  });
-
   // Refund first so we don't end up with a cancelled matter and a charge
-  // still on the citizen's card. Stripe refunds are idempotent on the
-  // PaymentIntent so retries are safe.
-  if (payment) {
-    try {
-      await stripe.refunds.create({
-        payment_intent: payment.stripePaymentIntentId,
-      });
-    } catch (err) {
-      console.error("[marketplace/matters] lead-fee refund failed:", err);
-      return NextResponse.json(
-        { error: "Could not refund the lead fee — please try again or contact support" },
-        { status: 502 },
-      );
-    }
+  // still on the citizen's card.
+  const refund = await refundLeadFeeForMatter(matter.id);
+  if (!refund.ok) {
+    console.error("[marketplace/matters] lead-fee refund failed:", refund.error);
+    return NextResponse.json(
+      { error: "Could not refund the lead fee — please try again or contact support" },
+      { status: 502 },
+    );
   }
 
   const result = await prisma.proMatter.updateMany({
@@ -228,13 +215,6 @@ export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string 
       { error: "Matter has already been accepted and cannot be cancelled" },
       { status: 409 },
     );
-  }
-
-  if (payment) {
-    await prisma.marketplacePayment.update({
-      where: { id: payment.id },
-      data: { status: "refunded" },
-    });
   }
 
   return NextResponse.json({ ok: true });

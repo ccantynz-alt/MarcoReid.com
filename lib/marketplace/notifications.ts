@@ -1,11 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
-import { BRAND } from "@/lib/constants";
+import { appBaseUrl } from "@/lib/constants";
 import { formatFee, jurisdictionName } from "@/lib/marketplace/format";
-
-function baseUrl() {
-  return process.env.NEXTAUTH_URL || BRAND.url;
-}
 
 // Dispatch a notification from an API route without awaiting it. The state
 // change has already committed by the time this runs; a failed email must
@@ -39,7 +35,7 @@ export async function notifyMatchingProsOfNewMatter(matterId: string): Promise<v
 
   if (pros.length === 0) return;
 
-  const dashboardUrl = `${baseUrl()}/pro-dashboard`;
+  const dashboardUrl = `${appBaseUrl()}/pro-dashboard`;
   const feeLabel = formatFee(matter.leadFeeInCents, matter.currency);
 
   await Promise.allSettled(
@@ -86,7 +82,7 @@ export async function notifyCitizenOfAcceptance(matterId: string): Promise<void>
   });
   if (!matter || !matter.citizen?.email || !matter.acceptedBy) return;
 
-  const matterUrl = `${baseUrl()}/matter/${matter.id}`;
+  const matterUrl = `${appBaseUrl()}/matter/${matter.id}`;
   const { html, text } = emailLayout({
     preheader: "A qualified professional has accepted your matter",
     heading: "Your matter has been accepted",
@@ -127,7 +123,7 @@ export async function notifyCitizenOfRelease(signoffId: string): Promise<void> {
   if (!signoff || !signoff.proMatter.citizen?.email) return;
 
   const matter = signoff.proMatter;
-  const matterUrl = `${baseUrl()}/matter/${matter.id}`;
+  const matterUrl = `${appBaseUrl()}/matter/${matter.id}`;
   const amended = signoff.amendedOutput && signoff.amendedOutput.length > 0;
 
   const { html, text } = emailLayout({

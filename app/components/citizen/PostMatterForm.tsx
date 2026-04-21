@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { MatterAddonKind } from "@prisma/client";
 import { formatFee } from "@/lib/marketplace/format";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
-import { addonsForJurisdiction } from "@/lib/marketplace/addons";
+import { addonEntriesForJurisdiction } from "@/lib/marketplace/addons";
 
 interface PracticeAreaOption {
   id: string;
@@ -67,13 +67,19 @@ export default function PostMatterForm({
     [areas, areaSlug],
   );
 
+  const addonEntries = useMemo(
+    () =>
+      selectedArea ? addonEntriesForJurisdiction(selectedArea.jurisdiction) : [],
+    [selectedArea],
+  );
+
   const addonTotalCents = useMemo(() => {
-    if (!selectedArea) return 0;
-    const prices = addonsForJurisdiction(selectedArea.jurisdiction);
     let total = 0;
-    for (const kind of selectedAddons) total += prices[kind].cents;
+    for (const [kind, price] of addonEntries) {
+      if (selectedAddons.has(kind)) total += price.cents;
+    }
     return total;
-  }, [selectedArea, selectedAddons]);
+  }, [addonEntries, selectedAddons]);
 
   async function submit(post: boolean) {
     if (!selectedArea) return;
@@ -353,11 +359,7 @@ export default function PostMatterForm({
               refunded in full if you cancel before a pro accepts.
             </p>
             <div className="mt-4 space-y-3">
-              {(
-                Object.entries(addonsForJurisdiction(selectedArea.jurisdiction)) as Array<
-                  [MatterAddonKind, { cents: number; label: string; description: string }]
-                >
-              ).map(([kind, price]) => {
+              {addonEntries.map(([kind, price]) => {
                 const checked = selectedAddons.has(kind);
                 return (
                   <label

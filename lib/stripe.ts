@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
+import { PAYMENT_KINDS } from "@/lib/marketplace/constants";
 
 let _stripe: Stripe | null = null;
 function getStripe() {
@@ -128,11 +129,11 @@ export async function createLeadFeeCheckoutSession(params: {
     })),
     payment_intent_data: {
       description: params.description,
-      metadata: { ...params.metadata, kind: "lead-fee" },
+      metadata: { ...params.metadata, kind: PAYMENT_KINDS.LEAD_FEE },
     },
     success_url: params.successUrl,
     cancel_url: params.cancelUrl,
-    metadata: { ...params.metadata, kind: "lead-fee" },
+    metadata: { ...params.metadata, kind: PAYMENT_KINDS.LEAD_FEE },
   });
 }
 
