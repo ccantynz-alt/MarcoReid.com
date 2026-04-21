@@ -2,11 +2,8 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus, SignoffStatus } from "@prisma/client";
-import {
-  notifyMatchingProsOfNewMatter,
-  fireAndForget,
-} from "@/lib/marketplace/notifications";
 import { SIGNOFF_KINDS } from "@/lib/marketplace/constants";
+import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
 
 // POST /api/marketplace/company-formation/:id/post
 // Body: { ackVersion }
@@ -40,7 +37,10 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
       id: true,
       citizenUserId: true,
       status: true,
-      practiceArea: { select: { ackVersion: true } },
+      leadFeeInCents: true,
+      currency: true,
+      jurisdiction: true,
+      practiceArea: { select: { ackVersion: true, name: true } },
       companyFormation: {
         select: {
           draftPack: true,
@@ -75,7 +75,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   const promoted = await prisma.proMatter.updateMany({
     where: { id: matter.id, status: ProMatterStatus.DRAFT },
     data: {
-      status: ProMatterStatus.AWAITING_PRO,
+      status: ProMatterStatus.AWAITING_PAYMENT,
       ackVersion,
       ackAt: now,
       postedAt: now,
@@ -96,7 +96,14 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     },
   });
 
-  fireAndForget("notifyMatchingPros", notifyMatchingProsOfNewMatter(matter.id));
+  const { url } = await startLeadFeeCheckoutForMatter({
+    matterId: matter.id,
+    citizenUserId: userId,
+    amountCents: matter.leadFeeInCents,
+    currency: matter.currency,
+    areaName: matter.practiceArea.name,
+    jurisdiction: matter.jurisdiction,
+  });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, checkoutUrl: url });
 }

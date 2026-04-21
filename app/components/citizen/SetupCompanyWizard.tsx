@@ -189,9 +189,13 @@ export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ackVersion: area.ackVersion }),
       });
+      const data = await res.json();
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data?.error ?? "Could not post the matter");
+      }
+      if (data?.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+        return;
       }
       router.push("/my-matters");
     } catch (e) {
@@ -505,7 +509,7 @@ function Step6Confirm({
           onClick={onPost}
           className="rounded-lg bg-gold-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-gold-600 disabled:cursor-not-allowed disabled:bg-navy-200"
         >
-          {posting ? "Posting…" : `Post · ${formatFee(area.leadFeeInCents, area.currency)}`}
+          {posting ? "Redirecting…" : `Post & pay · ${formatFee(area.leadFeeInCents, area.currency)}`}
         </button>
       </div>
     </div>
