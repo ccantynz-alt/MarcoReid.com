@@ -6,6 +6,7 @@ import {
   notifyMatchingProsOfNewMatter,
   fireAndForget,
 } from "@/lib/marketplace/notifications";
+import { SIGNOFF_KINDS } from "@/lib/marketplace/constants";
 
 // POST /api/marketplace/company-formation/:id/post
 // Body: { ackVersion }
@@ -87,7 +88,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   await prisma.signoffRequest.create({
     data: {
       proMatterId: matter.id,
-      kind: "company-formation-pack",
+      kind: SIGNOFF_KINDS.COMPANY_FORMATION_PACK,
       aiOutput: cf.draftPack,
       outputSha256: cf.draftPackSha256,
       rationale: cf.recommendationRationale ?? null,

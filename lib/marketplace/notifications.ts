@@ -112,9 +112,11 @@ export async function notifyCitizenOfAcceptance(matterId: string): Promise<void>
 export async function notifyCitizenOfRelease(signoffId: string): Promise<void> {
   const signoff = await prisma.signoffRequest.findUnique({
     where: { id: signoffId },
-    include: {
+    select: {
+      amendedOutput: true,
       proMatter: {
-        include: {
+        select: {
+          id: true,
           citizen: { select: { email: true, name: true } },
           practiceArea: { select: { name: true } },
           acceptedBy: { select: { displayName: true } },

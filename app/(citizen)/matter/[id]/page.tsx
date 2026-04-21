@@ -6,6 +6,7 @@ import { ProMatterStatus, SignoffStatus } from "@prisma/client";
 import CancelMatterButton from "@/app/components/citizen/CancelMatterButton";
 import FormationPackActions from "@/app/components/citizen/FormationPackActions";
 import { MATTER_STATUS_PRESENTATION } from "@/lib/marketplace/matter-status";
+import { SIGNOFF_KINDS } from "@/lib/marketplace/constants";
 
 export const metadata = { title: "Matter — Marco Reid" };
 
@@ -125,7 +126,7 @@ export default async function CitizenMatterPage({
               const isAmended = s.status === SignoffStatus.AMENDED;
               const content = isAmended ? s.amendedOutput ?? s.aiOutput : s.aiOutput;
               const hash = isAmended ? s.amendedSha256 ?? s.outputSha256 : s.outputSha256;
-              const isFormationPack = s.kind === "company-formation-pack";
+              const isFormationPack = s.kind === SIGNOFF_KINDS.COMPANY_FORMATION_PACK;
               const title = isFormationPack ? "Formation pack" : s.kind;
               const filename = isFormationPack
                 ? `formation-pack-${(matter.companyFormation?.proposedName ?? "company").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.md`

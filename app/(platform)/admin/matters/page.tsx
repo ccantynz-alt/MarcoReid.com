@@ -12,6 +12,7 @@ export const metadata = { title: "Matters — Admin — Marco Reid" };
 export const dynamic = "force-dynamic";
 
 const STALE_HOURS = 48;
+const MATTER_PAGE_SIZE = 200;
 
 function relative(d: Date | null | undefined): string {
   if (!d) return "—";
@@ -28,45 +29,56 @@ export default async function AdminMattersPage() {
   if (!session?.user) redirect("/login");
   if ((session.user as { role?: string }).role !== "ADMIN") redirect("/dashboard");
 
-  const [matters, pendingSignoffs] = await Promise.all([
+  const staleBefore = new Date(Date.now() - STALE_HOURS * 60 * 60 * 1000);
+
+  const [active, stuck, statusGroups, pendingSignoffs] = await Promise.all([
     prisma.proMatter.findMany({
+      where: {
+        status: { notIn: [ProMatterStatus.CLOSED, ProMatterStatus.CANCELLED] },
+      },
       include: {
         practiceArea: { select: { name: true, slug: true, jurisdiction: true } },
         citizen: { select: { email: true, name: true } },
         acceptedBy: { select: { displayName: true, professionalBody: true } },
       },
       orderBy: { createdAt: "desc" },
+      take: MATTER_PAGE_SIZE,
+    }),
+    prisma.proMatter.findMany({
+      where: {
+        status: ProMatterStatus.AWAITING_PRO,
+        postedAt: { lt: staleBefore },
+      },
+      include: {
+        practiceArea: { select: { name: true, jurisdiction: true } },
+        citizen: { select: { email: true, name: true } },
+      },
+      orderBy: { postedAt: "asc" },
+      take: MATTER_PAGE_SIZE,
+    }),
+    prisma.proMatter.groupBy({
+      by: ["status"],
+      _count: { _all: true },
     }),
     prisma.signoffRequest.count({
       where: { status: SignoffStatus.PENDING },
     }),
   ]);
 
-  const now = Date.now();
-  const staleThreshold = now - STALE_HOURS * 60 * 60 * 1000;
+  const byStatus = new Map<ProMatterStatus, number>(
+    statusGroups.map((g) => [g.status, g._count._all]),
+  );
+  const countFor = (s: ProMatterStatus) => byStatus.get(s) ?? 0;
 
   const counts = {
-    total: matters.length,
-    draft: matters.filter((m) => m.status === ProMatterStatus.DRAFT).length,
-    awaiting: matters.filter((m) => m.status === ProMatterStatus.AWAITING_PRO).length,
-    accepted: matters.filter((m) => m.status === ProMatterStatus.ACCEPTED).length,
-    awaitingSignoff: matters.filter((m) => m.status === ProMatterStatus.AWAITING_SIGNOFF).length,
-    signedOff: matters.filter((m) => m.status === ProMatterStatus.SIGNED_OFF).length,
-    cancelled: matters.filter((m) => m.status === ProMatterStatus.CANCELLED).length,
+    total: statusGroups.reduce((acc, g) => acc + g._count._all, 0),
+    draft: countFor(ProMatterStatus.DRAFT),
+    awaiting: countFor(ProMatterStatus.AWAITING_PRO),
+    accepted: countFor(ProMatterStatus.ACCEPTED),
+    awaitingSignoff: countFor(ProMatterStatus.AWAITING_SIGNOFF),
+    signedOff: countFor(ProMatterStatus.SIGNED_OFF),
+    cancelled: countFor(ProMatterStatus.CANCELLED),
   };
-
-  const stuck = matters.filter(
-    (m) =>
-      m.status === ProMatterStatus.AWAITING_PRO &&
-      m.postedAt &&
-      m.postedAt.getTime() < staleThreshold,
-  );
-
-  const active = matters.filter(
-    (m) =>
-      m.status !== ProMatterStatus.CLOSED &&
-      m.status !== ProMatterStatus.CANCELLED,
-  );
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
