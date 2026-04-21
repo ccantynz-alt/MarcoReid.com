@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { createLeadFeeCheckoutSession } from "@/lib/stripe";
 import { BRAND } from "@/lib/constants";
+import { MatterAddonKind } from "@prisma/client";
+import { priceForAddon } from "@/lib/marketplace/addons";
 
 function baseUrl() {
   return process.env.NEXTAUTH_URL || BRAND.url;
@@ -8,7 +10,9 @@ function baseUrl() {
 
 // Start the lead-fee Stripe Checkout for a freshly-posted matter. The matter
 // sits in AWAITING_PAYMENT until the webhook confirms payment; pros don't
-// see it until the status flips to AWAITING_PRO.
+// see it until the status flips to AWAITING_PRO. Selected add-ons ride in
+// the same Checkout as additional line items so they share the PaymentIntent
+// with the lead fee — a cancel-before-accept refund sweeps the lot.
 export async function startLeadFeeCheckoutForMatter(params: {
   matterId: string;
   citizenUserId: string;
@@ -16,6 +20,7 @@ export async function startLeadFeeCheckoutForMatter(params: {
   currency: string;
   areaName: string;
   jurisdiction: string;
+  addons?: MatterAddonKind[];
 }): Promise<{ url: string }> {
   const citizen = await prisma.user.findUnique({
     where: { id: params.citizenUserId },
@@ -23,10 +28,26 @@ export async function startLeadFeeCheckoutForMatter(params: {
   });
   if (!citizen) throw new Error("Citizen not found");
 
+  const currency = params.currency.toLowerCase();
+  const lineItems: Array<{ name: string; unitAmountCents: number; currency: string }> = [
+    {
+      name: `${params.areaName} — ${params.jurisdiction} — lead fee`,
+      unitAmountCents: params.amountCents,
+      currency,
+    },
+  ];
+  for (const kind of params.addons ?? []) {
+    const addon = priceForAddon(params.jurisdiction, kind);
+    lineItems.push({
+      name: addon.label,
+      unitAmountCents: addon.cents,
+      currency,
+    });
+  }
+
   const base = baseUrl();
   const checkout = await createLeadFeeCheckoutSession({
-    amountCents: params.amountCents,
-    currency: params.currency.toLowerCase(),
+    lineItems,
     customerEmail: citizen.email,
     description: `${params.areaName} — ${params.jurisdiction} — lead fee`,
     successUrl: `${base}/my-matters?paid=${params.matterId}`,

@@ -108,8 +108,7 @@ export async function createConnectAccountLink(params: {
 }
 
 export async function createLeadFeeCheckoutSession(params: {
-  amountCents: number;
-  currency: string;
+  lineItems: Array<{ name: string; unitAmountCents: number; currency: string }>;
   customerEmail: string;
   description: string;
   successUrl: string;
@@ -119,16 +118,14 @@ export async function createLeadFeeCheckoutSession(params: {
   return stripe.checkout.sessions.create({
     mode: "payment",
     customer_email: params.customerEmail,
-    line_items: [
-      {
-        price_data: {
-          currency: params.currency,
-          product_data: { name: params.description },
-          unit_amount: params.amountCents,
-        },
-        quantity: 1,
+    line_items: params.lineItems.map((item) => ({
+      price_data: {
+        currency: item.currency,
+        product_data: { name: item.name },
+        unit_amount: item.unitAmountCents,
       },
-    ],
+      quantity: 1,
+    })),
     payment_intent_data: {
       description: params.description,
       metadata: { ...params.metadata, kind: "lead-fee" },

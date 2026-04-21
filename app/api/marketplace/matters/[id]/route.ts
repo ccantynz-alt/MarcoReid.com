@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
-import { ProMatterStatus } from "@prisma/client";
+import { MatterAddonKind, ProMatterStatus } from "@prisma/client";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
+import { isMatterAddonKind, priceForAddon } from "@/lib/marketplace/addons";
 import { stripe } from "@/lib/stripe";
 
 // Only DRAFT is editable. Once posted the pro is reading it and a
@@ -20,13 +21,18 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
-  const { summary, details, practiceAreaSlug, ackVersion, post } = (body ?? {}) as {
+  const { summary, details, practiceAreaSlug, ackVersion, post, addons } = (body ?? {}) as {
     summary?: string;
     details?: string;
     practiceAreaSlug?: string;
     ackVersion?: string;
     post?: boolean;
+    addons?: unknown[];
   };
+
+  const addonKinds: MatterAddonKind[] = Array.from(
+    new Set((addons ?? []).filter(isMatterAddonKind)),
+  );
 
   if (!summary || !details) {
     return NextResponse.json(
@@ -122,6 +128,22 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   }
 
   if (post) {
+    // Replace any prior selection (draft edits can add or drop add-ons).
+    await prisma.proMatterAddon.deleteMany({ where: { matterId: existing.id } });
+    if (addonKinds.length > 0) {
+      await prisma.proMatterAddon.createMany({
+        data: addonKinds.map((kind) => {
+          const price = priceForAddon(targetArea.jurisdiction, kind);
+          return {
+            matterId: existing.id,
+            kind,
+            priceCents: price.cents,
+            currency: targetArea.currency,
+          };
+        }),
+      });
+    }
+
     const { url } = await startLeadFeeCheckoutForMatter({
       matterId: existing.id,
       citizenUserId: userId,
@@ -129,6 +151,7 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
       currency: targetArea.currency,
       areaName: targetArea.name,
       jurisdiction: targetArea.jurisdiction,
+      addons: addonKinds,
     });
     return NextResponse.json({ ok: true, checkoutUrl: url });
   }

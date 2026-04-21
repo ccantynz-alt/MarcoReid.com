@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
-import { ProMatterStatus } from "@prisma/client";
+import { MatterAddonKind, ProMatterStatus } from "@prisma/client";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
+import { isMatterAddonKind, priceForAddon } from "@/lib/marketplace/addons";
 
 export async function GET() {
   const userId = await getUserId();
@@ -31,13 +32,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { practiceAreaSlug, summary, details, ackVersion, post } = (body ?? {}) as {
+  const { practiceAreaSlug, summary, details, ackVersion, post, addons } = (body ?? {}) as {
     practiceAreaSlug?: string;
     summary?: string;
     details?: string;
     ackVersion?: string;
     post?: boolean;
+    addons?: unknown[];
   };
+
+  // Accept only known add-on kinds; deduplicate so a client can't inflate
+  // the bill by sending the same kind three times.
+  const addonKinds: MatterAddonKind[] = Array.from(
+    new Set((addons ?? []).filter(isMatterAddonKind)),
+  );
 
   if (!practiceAreaSlug || !summary || !details) {
     return NextResponse.json(
@@ -98,6 +106,18 @@ export async function POST(req: NextRequest) {
       ackVersion: post ? area.ackVersion : null,
       ackAt: post ? now : null,
       postedAt: post ? now : null,
+      addons: post
+        ? {
+            create: addonKinds.map((kind) => {
+              const price = priceForAddon(area.jurisdiction, kind);
+              return {
+                kind,
+                priceCents: price.cents,
+                currency: area.currency,
+              };
+            }),
+          }
+        : undefined,
     },
   });
 
@@ -109,6 +129,7 @@ export async function POST(req: NextRequest) {
       currency: area.currency,
       areaName: area.name,
       jurisdiction: area.jurisdiction,
+      addons: addonKinds,
     });
     return NextResponse.json({ matter, checkoutUrl: url }, { status: 201 });
   }
