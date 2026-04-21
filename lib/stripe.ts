@@ -109,6 +109,7 @@ export async function createConnectAccountLink(params: {
 
 export async function createMarketplaceCheckoutSession(params: {
   amountCents: number;
+  currency: string;
   professionalConnectAccountId: string;
   customerEmail?: string;
   description: string;
@@ -124,7 +125,7 @@ export async function createMarketplaceCheckoutSession(params: {
     line_items: [
       {
         price_data: {
-          currency: "usd",
+          currency: params.currency,
           product_data: { name: params.description },
           unit_amount: params.amountCents,
         },

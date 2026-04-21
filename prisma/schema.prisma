@@ -218,7 +218,7 @@ model MarketplacePayment {
   stripePaymentIntentId String    @unique
   amountCents           Int
   applicationFeeCents   Int
-  currency              String    @default("usd")
+  currency              String    @default("nzd")
   status                String
   description           String?
   matterId              String?
