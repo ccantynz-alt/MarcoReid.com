@@ -177,6 +177,29 @@ export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
+  const [posting, setPosting] = useState(false);
+
+  async function postMatter() {
+    if (!preview || !area) return;
+    setPosting(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/marketplace/company-formation/${preview.matterId}/post`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ackVersion: area.ackVersion }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data?.error ?? "Could not post the matter");
+      }
+      router.push("/my-matters");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
+      setPosting(false);
+    }
+  }
+
   return (
     <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card sm:p-10">
       <Stepper step={step} />
@@ -239,20 +262,15 @@ export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
         />
       )}
 
-      {step > 5 && area && (
-        <div className="text-sm text-navy-500">
-          Wizard step {step} arriving in the next commit. Lead fee for{" "}
-          {area.jurisdiction}: {formatFee(area.leadFeeInCents, area.currency)}.
-          <div className="mt-6">
-            <button
-              type="button"
-              onClick={() => setStep(Math.max(1, step - 1))}
-              className="text-sm text-navy-500 hover:text-navy-700"
-            >
-              &larr; Back
-            </button>
-          </div>
-        </div>
+      {step === 6 && area && preview && (
+        <Step6Confirm
+          area={area}
+          preview={preview}
+          posting={posting}
+          error={error}
+          onBack={() => setStep(5)}
+          onPost={postMatter}
+        />
       )}
     </div>
   );
@@ -409,6 +427,85 @@ function Step2Founders({
           className="rounded-lg bg-navy-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-navy-600 disabled:cursor-not-allowed disabled:bg-navy-200"
         >
           Continue &rarr;
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Step6Confirm({
+  area,
+  preview,
+  posting,
+  error,
+  onBack,
+  onPost,
+}: {
+  area: AreaOption;
+  preview: PreviewState;
+  posting: boolean;
+  error: string | null;
+  onBack: () => void;
+  onPost: () => void;
+}) {
+  const [acked, setAcked] = useState(false);
+  return (
+    <div>
+      <h2 className="font-serif text-2xl text-navy-800">Post to a licensed professional.</h2>
+      <p className="mt-2 text-sm text-navy-500">
+        Posting opens the pack to verified lawyers and accountants in{" "}
+        {area.jurisdiction}. The first qualified pro to accept reviews the
+        draft and either approves it, amends it, or sends it back.
+      </p>
+
+      <div className="mt-6 rounded-lg border border-navy-100 bg-navy-50/50 p-4 text-sm">
+        <p className="font-semibold text-navy-700">Pack fingerprint</p>
+        <p className="mt-1 break-all font-mono text-[10px] text-navy-500">{preview.sha256}</p>
+      </div>
+
+      <ul className="mt-6 space-y-3">
+        {area.ackBullets.map((bullet) => (
+          <li
+            key={bullet}
+            className="flex gap-3 rounded-lg border border-navy-100 bg-navy-50 p-4"
+          >
+            <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gold-500" aria-hidden="true" />
+            <p className="text-sm text-navy-700">{bullet}</p>
+          </li>
+        ))}
+      </ul>
+
+      <label className="mt-6 flex items-start gap-3 rounded-lg border border-gold-200 bg-gold-50 p-4">
+        <input
+          type="checkbox"
+          checked={acked}
+          onChange={(e) => setAcked(e.target.checked)}
+          className="mt-1 h-4 w-4 rounded border-navy-300 text-navy-600 focus:ring-navy-500"
+        />
+        <span className="text-sm text-navy-700">
+          I&rsquo;ve read the points above and understand that this pack is a
+          draft. Nothing is filed, registered, or sent on my behalf until a
+          licensed professional has reviewed and signed it off.
+        </span>
+      </label>
+
+      {error && (
+        <p className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          {error}
+        </p>
+      )}
+
+      <div className="mt-8 flex items-center justify-between">
+        <button type="button" onClick={onBack} className="text-sm text-navy-500 hover:text-navy-700">
+          &larr; Back
+        </button>
+        <button
+          type="button"
+          disabled={!acked || posting}
+          onClick={onPost}
+          className="rounded-lg bg-gold-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-gold-600 disabled:cursor-not-allowed disabled:bg-navy-200"
+        >
+          {posting ? "Posting…" : `Post · ${formatFee(area.leadFeeInCents, area.currency)}`}
         </button>
       </div>
     </div>
