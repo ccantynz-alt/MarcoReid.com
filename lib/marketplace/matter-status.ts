@@ -12,6 +12,12 @@ export const MATTER_STATUS_PRESENTATION: Record<ProMatterStatus, StatusPresentat
     tone: "bg-navy-100 text-navy-600",
     citizenMessage: "You saved this matter as a draft. Submit it when you're ready.",
   },
+  AWAITING_PAYMENT: {
+    label: "Awaiting payment",
+    tone: "bg-amber-100 text-amber-800",
+    citizenMessage:
+      "Finish the lead-fee checkout to post your matter. We don't show it to professionals until payment clears.",
+  },
   AWAITING_PRO: {
     label: "Waiting for a professional",
     tone: "bg-amber-100 text-amber-800",

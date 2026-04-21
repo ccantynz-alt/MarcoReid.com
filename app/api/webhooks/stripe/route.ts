@@ -3,6 +3,11 @@ import type Stripe from "stripe";
 import { headers } from "next/headers";
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
+import { ProMatterStatus } from "@prisma/client";
+import {
+  fireAndForget,
+  notifyMatchingProsOfNewMatter,
+} from "@/lib/marketplace/notifications";
 
 export const runtime = "nodejs";
 
@@ -46,6 +51,48 @@ export async function POST(req: Request) {
                 : undefined,
             },
           });
+        }
+      } else if (
+        s.mode === "payment" &&
+        s.metadata?.kind === "lead-fee" &&
+        s.metadata?.matterId &&
+        s.payment_status === "paid" &&
+        s.payment_intent
+      ) {
+        const matterId = s.metadata.matterId;
+        const pi = await stripe.paymentIntents.retrieve(s.payment_intent as string);
+
+        // Promote the matter only if it's still awaiting payment. Anything
+        // else (already promoted, cancelled, replayed event) we ignore —
+        // Stripe retries the webhook freely and we must be idempotent.
+        const promoted = await prisma.proMatter.updateMany({
+          where: { id: matterId, status: ProMatterStatus.AWAITING_PAYMENT },
+          data: { status: ProMatterStatus.AWAITING_PRO },
+        });
+
+        await prisma.marketplacePayment.upsert({
+          where: { stripePaymentIntentId: pi.id },
+          create: {
+            stripePaymentIntentId: pi.id,
+            kind: "lead-fee",
+            payerUserId: s.metadata.citizenUserId || undefined,
+            professionalUserId: null,
+            amountCents: pi.amount,
+            applicationFeeCents: 0,
+            currency: pi.currency,
+            status: "succeeded",
+            description: pi.description || undefined,
+            matterId,
+            capturedAt: new Date(),
+          },
+          update: { status: "succeeded", capturedAt: new Date() },
+        });
+
+        if (promoted.count > 0) {
+          fireAndForget(
+            "notifyMatchingProsOfNewMatter",
+            notifyMatchingProsOfNewMatter(matterId),
+          );
         }
       }
       break;

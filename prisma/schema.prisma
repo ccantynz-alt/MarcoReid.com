@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
 }
 
 // ============================================================
@@ -16,15 +16,15 @@ enum Role {
 }
 
 model User {
-  id            String           @id @default(cuid())
-  email         String           @unique
-  emailVerifiedAt DateTime?
-  name          String?
-  passwordHash  String
-  role          Role             @default(USER)
-  firmName      String?
-  createdAt     DateTime         @default(now())
-  updatedAt     DateTime         @updatedAt
+  id               String            @id @default(cuid())
+  email            String            @unique
+  emailVerifiedAt  DateTime?
+  name             String?
+  passwordHash     String
+  role             Role              @default(USER)
+  firmName         String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
   queries          OracleQuery[]
   feedback         OracleFeedback[]
   clients          Client[]
@@ -51,9 +51,9 @@ model User {
   marketplacePayments    MarketplacePayment[] @relation("ProfessionalPayments")
 
   // Onboarding
-  onboardedAt   DateTime?
-  jurisdiction  String?
-  practiceArea  String?
+  onboardedAt  DateTime?
+  jurisdiction String?
+  practiceArea String?
 
   // Consent audit trail — evidentiary record for ToS + platform acknowledgment.
   // Versioned so we can tell who accepted which wording. IP + user-agent
@@ -213,9 +213,12 @@ model TrustTransaction {
 model MarketplacePayment {
   id                    String    @id @default(cuid())
   payerUserId           String?
-  professionalUserId    String
-  professional          User      @relation("ProfessionalPayments", fields: [professionalUserId], references: [id])
+  // Null for lead-fee payments — platform revenue, no pro on the hook yet.
+  professionalUserId    String?
+  professional          User?     @relation("ProfessionalPayments", fields: [professionalUserId], references: [id])
   stripePaymentIntentId String    @unique
+  // Distinguishes platform revenue (lead-fee) from Connect-escrow pro revenue (consumer-fee).
+  kind                  String    @default("consumer-fee")
   amountCents           Int
   applicationFeeCents   Int
   currency              String    @default("nzd")
@@ -227,6 +230,7 @@ model MarketplacePayment {
   updatedAt             DateTime  @updatedAt
 
   @@index([professionalUserId])
+  @@index([matterId])
   @@index([status])
 }
 
@@ -368,24 +372,24 @@ model QueryPattern {
 // ============================================================
 
 model PasswordResetToken {
-  id        String   @id @default(cuid())
-  token     String   @unique
+  id        String    @id @default(cuid())
+  token     String    @unique
   userId    String
   expiresAt DateTime
   usedAt    DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
   @@index([userId])
   @@index([expiresAt])
 }
 
 model EmailVerificationToken {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  userId    String
-  expiresAt DateTime
+  id         String    @id @default(cuid())
+  token      String    @unique
+  userId     String
+  expiresAt  DateTime
   verifiedAt DateTime?
-  createdAt DateTime @default(now())
+  createdAt  DateTime  @default(now())
 
   @@index([userId])
   @@index([expiresAt])
@@ -423,11 +427,12 @@ enum ProfessionDomain {
 }
 
 enum ProMatterStatus {
-  DRAFT              // citizen still writing the intake
-  AWAITING_PRO       // posted, waiting for a pro to accept
-  ACCEPTED           // pro accepted, in progress
-  AWAITING_SIGNOFF   // work drafted, pending final sign-off
-  SIGNED_OFF         // released to citizen
+  DRAFT // citizen still writing the intake
+  AWAITING_PAYMENT // posted; lead fee checkout open, not yet paid
+  AWAITING_PRO // posted + paid, waiting for a pro to accept
+  ACCEPTED // pro accepted, in progress
+  AWAITING_SIGNOFF // work drafted, pending final sign-off
+  SIGNED_OFF // released to citizen
   CLOSED
   CANCELLED
 }
@@ -442,25 +447,25 @@ enum SignoffStatus {
 // Catalogue of practice areas. Seeded per jurisdiction so a NZ tenancy
 // matter cannot accidentally route to a US-only professional.
 model PracticeArea {
-  id                    String                    @id @default(cuid())
-  slug                  String                    @unique
-  name                  String
-  domain                ProfessionDomain
-  jurisdiction          String                    // "NZ", "AU", "US", "UK", "CA"
-  summary               String
-  intakeCopy            String                    @db.Text
-  leadFeeInCents        Int                       @default(0)
-  currency              String                    @default("NZD")
-  active                Boolean                   @default(true)
-  priority              Int                       @default(0)
+  id             String                     @id @default(cuid())
+  slug           String                     @unique
+  name           String
+  domain         ProfessionDomain
+  jurisdiction   String // "NZ", "AU", "US", "UK", "CA"
+  summary        String
+  intakeCopy     String                     @db.Text
+  leadFeeInCents Int                        @default(0)
+  currency       String                     @default("NZD")
+  active         Boolean                    @default(true)
+  priority       Int                        @default(0)
   // Per-practice-area acknowledgment — shown to citizens in the intake flow.
   // Versioned so we can prove what a given ProMatter's owner agreed to.
-  ackVersion            String                    @default("2026-04-20")
-  ackBullets            String[]
-  professionals         ProfessionalPracticeArea[]
-  proMatters            ProMatter[]
-  createdAt             DateTime                  @default(now())
-  updatedAt             DateTime                  @updatedAt
+  ackVersion     String                     @default("2026-04-20")
+  ackBullets     String[]
+  professionals  ProfessionalPracticeArea[]
+  proMatters     ProMatter[]
+  createdAt      DateTime                   @default(now())
+  updatedAt      DateTime                   @updatedAt
 
   @@index([jurisdiction, domain])
   @@index([active, priority])
@@ -471,26 +476,26 @@ model PracticeArea {
 // piPolicyExpiresAt is checked on every matter assignment — expired PI
 // insurance blocks acceptance.
 model Professional {
-  id                    String                    @id @default(cuid())
-  userId                String                    @unique
-  user                  User                      @relation("ProfessionalProfile", fields: [userId], references: [id])
+  id                    String                     @id @default(cuid())
+  userId                String                     @unique
+  user                  User                       @relation("ProfessionalProfile", fields: [userId], references: [id])
   displayName           String
-  bio                   String?                   @db.Text
+  bio                   String?                    @db.Text
   admissionJurisdiction String
   admissionNumber       String
   admissionYear         Int?
-  professionalBody      String                    // "NZ Law Society", "CA ANZ", "NZICA", etc.
+  professionalBody      String // "NZ Law Society", "CA ANZ", "NZICA", etc.
   piInsurerName         String?
   piPolicyNumber        String?
   piPolicyExpiresAt     DateTime?
-  acceptingNewMatters   Boolean                   @default(true)
+  acceptingNewMatters   Boolean                    @default(true)
   verifiedAt            DateTime?
-  verifiedBy            String?                   // admin User.id who verified
+  verifiedBy            String? // admin User.id who verified
   practiceAreas         ProfessionalPracticeArea[]
-  acceptedMatters       ProMatter[]               @relation("AcceptedBy")
-  signoffs              SignoffRequest[]          @relation("SignedBy")
-  createdAt             DateTime                  @default(now())
-  updatedAt             DateTime                  @updatedAt
+  acceptedMatters       ProMatter[]                @relation("AcceptedBy")
+  signoffs              SignoffRequest[]           @relation("SignedBy")
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
 
   @@index([admissionJurisdiction])
   @@index([acceptingNewMatters, verifiedAt])
@@ -498,11 +503,11 @@ model Professional {
 
 // Pro <-> PracticeArea M:N
 model ProfessionalPracticeArea {
-  professionalId  String
-  professional    Professional  @relation(fields: [professionalId], references: [id])
-  practiceAreaId  String
-  practiceArea    PracticeArea  @relation(fields: [practiceAreaId], references: [id])
-  assignedAt      DateTime      @default(now())
+  professionalId String
+  professional   Professional @relation(fields: [professionalId], references: [id])
+  practiceAreaId String
+  practiceArea   PracticeArea @relation(fields: [practiceAreaId], references: [id])
+  assignedAt     DateTime     @default(now())
 
   @@id([professionalId, practiceAreaId])
   @@index([practiceAreaId])
@@ -512,36 +517,36 @@ model ProfessionalPracticeArea {
 // → AWAITING_SIGNOFF → SIGNED_OFF. leadFeeInCents is snapshotted at post
 // time so a later fee change doesn't retroactively alter the deal.
 model ProMatter {
-  id                      String          @id @default(cuid())
-  citizenUserId           String
-  citizen                 User            @relation("CitizenMatters", fields: [citizenUserId], references: [id])
-  practiceAreaId          String
-  practiceArea            PracticeArea    @relation(fields: [practiceAreaId], references: [id])
-  jurisdiction            String
-  summary                 String
-  details                 String          @db.Text
-  status                  ProMatterStatus @default(DRAFT)
-  leadFeeInCents          Int
-  consumerFeeInCents      Int?
-  currency                String          @default("NZD")
+  id                 String          @id @default(cuid())
+  citizenUserId      String
+  citizen            User            @relation("CitizenMatters", fields: [citizenUserId], references: [id])
+  practiceAreaId     String
+  practiceArea       PracticeArea    @relation(fields: [practiceAreaId], references: [id])
+  jurisdiction       String
+  summary            String
+  details            String          @db.Text
+  status             ProMatterStatus @default(DRAFT)
+  leadFeeInCents     Int
+  consumerFeeInCents Int?
+  currency           String          @default("NZD")
 
   // Per-area acknowledgment snapshot — evidentiary record that this
   // specific citizen agreed to this specific version of the intake
   // acknowledgment for this specific practice area.
-  ackVersion              String?
-  ackAt                   DateTime?
+  ackVersion String?
+  ackAt      DateTime?
 
-  acceptedByProId         String?
-  acceptedBy              Professional?   @relation("AcceptedBy", fields: [acceptedByProId], references: [id])
-  acceptedAt              DateTime?
-  postedAt                DateTime?
-  closedAt                DateTime?
+  acceptedByProId String?
+  acceptedBy      Professional? @relation("AcceptedBy", fields: [acceptedByProId], references: [id])
+  acceptedAt      DateTime?
+  postedAt        DateTime?
+  closedAt        DateTime?
 
-  signoffRequests         SignoffRequest[]
-  companyFormation        CompanyFormationIntake?
+  signoffRequests  SignoffRequest[]
+  companyFormation CompanyFormationIntake?
 
-  createdAt               DateTime        @default(now())
-  updatedAt               DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([status])
   @@index([practiceAreaId, status])
@@ -554,53 +559,53 @@ model ProMatter {
 // ProMatter; the signed-off pack lives on a SignoffRequest so the
 // tamper-evidence chain is consistent with every other matter type.
 model CompanyFormationIntake {
-  id                         String    @id @default(cuid())
-  proMatterId                String    @unique
-  proMatter                  ProMatter @relation(fields: [proMatterId], references: [id], onDelete: Cascade)
+  id          String    @id @default(cuid())
+  proMatterId String    @unique
+  proMatter   ProMatter @relation(fields: [proMatterId], references: [id], onDelete: Cascade)
 
   // Home jurisdiction — the founder's country of residence / tax base.
   // Drives which professional body signs the overall plan off.
-  homeJurisdiction           String                    // "NZ" | "AU"
+  homeJurisdiction String // "NZ" | "AU"
 
   // Proposed naming
-  proposedName               String?
-  alternateName              String?
+  proposedName  String?
+  alternateName String?
 
   // Business purpose
-  purpose                    String                    @db.Text
-  industry                   String?
+  purpose  String  @db.Text
+  industry String?
 
   // Founders + equity (array of { name, email, equityPct, role, address })
-  foundersJson               Json
+  foundersJson Json
 
   // Market + operating profile (drives cross-border structure)
-  operatingCountries         String[]                  // where work is actually done
-  salesMarkets               String[]                  // where customers pay: NZ, AU, US, UK, EU, GLOBAL
-  productType                String                    // SOFTWARE | PHYSICAL_GOODS | SERVICES | DIGITAL_CONTENT | MIXED
-  ipValue                    String                    // HIGH | MEDIUM | LOW
-  investorAppetite           String                    // BOOTSTRAP | ANGEL | VC | PE
-  assetProtectionLevel       String                    // STANDARD | AGGRESSIVE
+  operatingCountries   String[] // where work is actually done
+  salesMarkets         String[] // where customers pay: NZ, AU, US, UK, EU, GLOBAL
+  productType          String // SOFTWARE | PHYSICAL_GOODS | SERVICES | DIGITAL_CONTENT | MIXED
+  ipValue              String // HIGH | MEDIUM | LOW
+  investorAppetite     String // BOOTSTRAP | ANGEL | VC | PE
+  assetProtectionLevel String // STANDARD | AGGRESSIVE
 
   expectedAnnualRevenueCents Int?
-  willHaveEmployees          Boolean   @default(false)
-  willTakeInvestment         Boolean   @default(false)
-  isNonProfit                Boolean   @default(false)
+  willHaveEmployees          Boolean @default(false)
+  willTakeInvestment         Boolean @default(false)
+  isNonProfit                Boolean @default(false)
   registeredOffice           String?
 
   // Recommendation — Json so the plan graph is preserved losslessly.
   // Shape: { entities, ownership, ipLicensing, tradingFlow, tax, setupOrder, signoffJurisdictions }
-  structurePlan              Json?
-  recommendationRationale    String?                   @db.Text
-  recommendedAt              DateTime?
+  structurePlan           Json?
+  recommendationRationale String?   @db.Text
+  recommendedAt           DateTime?
 
   // Drafted pack (markdown) prior to sign-off. Snapshotted into a
   // SignoffRequest when the citizen posts the matter to the marketplace.
-  draftPack                  String?                   @db.Text
-  draftPackSha256            String?
-  draftedAt                  DateTime?
+  draftPack       String?   @db.Text
+  draftPackSha256 String?
+  draftedAt       DateTime?
 
-  createdAt                  DateTime  @default(now())
-  updatedAt                  DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([homeJurisdiction])
 }
@@ -610,25 +615,25 @@ model CompanyFormationIntake {
 // derivative is altered after sign-off, the hash mismatch catches it.
 // releasedAt gates when the consumer actually sees the work.
 model SignoffRequest {
-  id             String        @id @default(cuid())
-  proMatterId    String
-  proMatter      ProMatter     @relation(fields: [proMatterId], references: [id])
-  kind           String        // "draft-letter", "tax-return", "advice-note", etc.
-  aiOutput       String        @db.Text
-  outputSha256   String
-  rationale      String?       @db.Text
-  citationsJson  String?       @db.Text  // serialized citation refs
+  id            String    @id @default(cuid())
+  proMatterId   String
+  proMatter     ProMatter @relation(fields: [proMatterId], references: [id])
+  kind          String // "draft-letter", "tax-return", "advice-note", etc.
+  aiOutput      String    @db.Text
+  outputSha256  String
+  rationale     String?   @db.Text
+  citationsJson String?   @db.Text // serialized citation refs
 
-  status         SignoffStatus @default(PENDING)
-  reviewerId     String?
-  reviewer       Professional? @relation("SignedBy", fields: [reviewerId], references: [id])
-  reviewerNotes  String?       @db.Text
-  amendedOutput  String?       @db.Text
-  amendedSha256  String?
+  status        SignoffStatus @default(PENDING)
+  reviewerId    String?
+  reviewer      Professional? @relation("SignedBy", fields: [reviewerId], references: [id])
+  reviewerNotes String?       @db.Text
+  amendedOutput String?       @db.Text
+  amendedSha256 String?
 
-  requestedAt    DateTime      @default(now())
-  reviewedAt     DateTime?
-  releasedAt     DateTime?
+  requestedAt DateTime  @default(now())
+  reviewedAt  DateTime?
+  releasedAt  DateTime?
 
   @@index([proMatterId])
   @@index([status])

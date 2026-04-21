@@ -107,6 +107,38 @@ export async function createConnectAccountLink(params: {
   return { url: link.url, accountId };
 }
 
+export async function createLeadFeeCheckoutSession(params: {
+  amountCents: number;
+  currency: string;
+  customerEmail: string;
+  description: string;
+  successUrl: string;
+  cancelUrl: string;
+  metadata: Record<string, string>;
+}): Promise<Stripe.Checkout.Session> {
+  return stripe.checkout.sessions.create({
+    mode: "payment",
+    customer_email: params.customerEmail,
+    line_items: [
+      {
+        price_data: {
+          currency: params.currency,
+          product_data: { name: params.description },
+          unit_amount: params.amountCents,
+        },
+        quantity: 1,
+      },
+    ],
+    payment_intent_data: {
+      description: params.description,
+      metadata: { ...params.metadata, kind: "lead-fee" },
+    },
+    success_url: params.successUrl,
+    cancel_url: params.cancelUrl,
+    metadata: { ...params.metadata, kind: "lead-fee" },
+  });
+}
+
 export async function createMarketplaceCheckoutSession(params: {
   amountCents: number;
   currency: string;
