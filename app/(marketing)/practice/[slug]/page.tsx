@@ -50,6 +50,9 @@ export default async function PracticeAreaPage({
 
   const jurisdictionLabel = jurisdictionName(area.jurisdiction);
   const domainLabel = area.domain === "LAW" ? "Lawyer" : "Chartered Accountant";
+  const isCompanyFormation = area.slug === "nz-company-formation" || area.slug === "au-company-formation";
+  const ctaHref = isCompanyFormation ? "/setup-company" : "/post-matter";
+  const ctaLabel = isCompanyFormation ? "Set up a company" : "Post a matter";
 
   const schema = {
     "@context": "https://schema.org",
@@ -90,7 +93,7 @@ export default async function PracticeAreaPage({
           </h1>
           <p className="mt-6 max-w-2xl text-xl text-navy-100">{area.summary}</p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Button href="/post-matter">Post a matter</Button>
+            <Button href={ctaHref}>{ctaLabel}</Button>
             <Link
               href="/for-citizens"
               className="inline-flex min-h-touch items-center text-sm font-medium text-white/90 underline hover:text-white"
@@ -156,14 +159,17 @@ export default async function PracticeAreaPage({
       <section className="bg-navy-500 py-16">
         <Container className="text-center">
           <h2 className="font-serif text-headline text-white">
-            Post your {area.name.toLowerCase()} matter.
+            {isCompanyFormation
+              ? `Design your ${jurisdictionLabel} company structure.`
+              : `Post your ${area.name.toLowerCase()} matter.`}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-navy-100">
-            Four short steps. We&rsquo;ll match you with a verified{" "}
-            {domainLabel.toLowerCase()} admitted in {jurisdictionLabel}.
+            {isCompanyFormation
+              ? `Tell us about founders, markets, and how protected you want to be. Marco drafts a multi-jurisdiction structure and a verified ${domainLabel.toLowerCase()} admitted in ${jurisdictionLabel} signs it off.`
+              : `Four short steps. We'll match you with a verified ${domainLabel.toLowerCase()} admitted in ${jurisdictionLabel}.`}
           </p>
           <div className="mt-8 flex items-center justify-center">
-            <Button href="/post-matter">Post a matter</Button>
+            <Button href={ctaHref}>{ctaLabel}</Button>
           </div>
         </Container>
       </section>
