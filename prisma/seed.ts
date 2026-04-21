@@ -312,6 +312,46 @@ const PRACTICE_AREAS = [
       "Lead fee is a flat AUD $79. Further accounting fees are separate and disclosed before work starts.",
     ],
   },
+  {
+    slug: "nz-company-formation",
+    name: "Company formation & cross-border structure (NZ)",
+    domain: "LAW" as const,
+    jurisdiction: "NZ",
+    summary:
+      "Full company setup — NZ Ltd, family trusts, and cross-border overlays (Wyoming LLC, Delaware C-Corp, Cook Islands trust) designed for maximum asset protection.",
+    intakeCopy:
+      "Tell Marco who you are, what you're building, where your customers live, and how aggressively you want to protect your assets. Marco designs the full structure — holding company, operating entities, trust layers, IP licensing, and tax flow — and drafts every form, resolution, and intercompany agreement. A NZ-admitted lawyer signs off the overall plan; any US or offshore components are packaged for your local attorney to execute.",
+    leadFeeInCents: 24900,
+    currency: "NZD",
+    priority: 110,
+    ackBullets: [
+      "Marco Reid designs the structure and drafts the paperwork. A lawyer admitted in New Zealand reviews and signs off the overall plan before any entity is formed.",
+      "Cross-border structures (US LLCs, Delaware C-Corps, Cook Islands trusts, etc.) are packaged ready-to-execute — but the foreign entity is always formed by a lawyer admitted in that jurisdiction. Marco Reid coordinates, the local attorney executes.",
+      "Tax outcomes depend on IRD rulings, NZ–US / NZ–AU tax treaties, and CFC / FIF rules. Structure recommendations always require independent confirmation by a chartered accountant before any entity is formed.",
+      "Asset-protection levels ('standard', 'aggressive', 'maximum') are design goals, not guarantees. A determined creditor with a court order can reach most assets; proper structure raises the cost and difficulty of reaching them.",
+      "Lead fee is a flat NZD $249 for the intake + structure design. Lawyer sign-off, overseas attorney fees, and companies-office / ASIC / Wyoming SOS / IRS filing fees are separate and disclosed up-front.",
+    ],
+  },
+  {
+    slug: "au-company-formation",
+    name: "Company formation & cross-border structure (AU)",
+    domain: "LAW" as const,
+    jurisdiction: "AU",
+    summary:
+      "Full company setup — Pty Ltd, discretionary trusts, and cross-border overlays (Wyoming LLC, Delaware C-Corp, Cook Islands trust) designed for maximum asset protection.",
+    intakeCopy:
+      "Tell Marco who you are, what you're building, where your customers live, and how aggressively you want to protect your assets. Marco designs the full structure — Pty Ltd, discretionary or unit trust, US operating entity, IP licensing, and tax flow — and drafts every form, resolution, and intercompany agreement. An Australian-admitted lawyer signs off the overall plan; any US or offshore components are packaged for your local attorney.",
+    leadFeeInCents: 24900,
+    currency: "AUD",
+    priority: 110,
+    ackBullets: [
+      "Marco Reid designs the structure and drafts the paperwork. A lawyer admitted in an Australian state or territory reviews and signs off the overall plan before any entity is formed.",
+      "Cross-border structures (US LLCs, Delaware C-Corps, Cook Islands trusts, etc.) are packaged ready-to-execute — but the foreign entity is always formed by a lawyer admitted in that jurisdiction. Marco Reid coordinates, the local attorney executes.",
+      "Tax outcomes depend on ATO rulings, AU–US / AU–NZ tax treaties, and CFC / controlled entity rules. Structure recommendations always require independent confirmation by a registered tax agent before any entity is formed.",
+      "Asset-protection levels ('standard', 'aggressive', 'maximum') are design goals, not guarantees. A determined creditor with a court order can reach most assets; proper structure raises the cost and difficulty of reaching them.",
+      "Lead fee is a flat AUD $249 for the intake + structure design. Lawyer sign-off, overseas attorney fees, and ASIC / Wyoming SOS / IRS filing fees are separate and disclosed up-front.",
+    ],
+  },
 ];
 
 async function main() {

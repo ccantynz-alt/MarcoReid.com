@@ -538,6 +538,7 @@ model ProMatter {
   closedAt                DateTime?
 
   signoffRequests         SignoffRequest[]
+  companyFormation        CompanyFormationIntake?
 
   createdAt               DateTime        @default(now())
   updatedAt               DateTime        @updatedAt
@@ -546,6 +547,62 @@ model ProMatter {
   @@index([practiceAreaId, status])
   @@index([citizenUserId])
   @@index([acceptedByProId])
+}
+
+// Company-formation intake. Holds the structured questionnaire answers and
+// the AI-generated structure plan + drafted formation pack. One per
+// ProMatter; the signed-off pack lives on a SignoffRequest so the
+// tamper-evidence chain is consistent with every other matter type.
+model CompanyFormationIntake {
+  id                         String    @id @default(cuid())
+  proMatterId                String    @unique
+  proMatter                  ProMatter @relation(fields: [proMatterId], references: [id], onDelete: Cascade)
+
+  // Home jurisdiction — the founder's country of residence / tax base.
+  // Drives which professional body signs the overall plan off.
+  homeJurisdiction           String                    // "NZ" | "AU"
+
+  // Proposed naming
+  proposedName               String?
+  alternateName              String?
+
+  // Business purpose
+  purpose                    String                    @db.Text
+  industry                   String?
+
+  // Founders + equity (array of { name, email, equityPct, role, address })
+  foundersJson               Json
+
+  // Market + operating profile (drives cross-border structure)
+  operatingCountries         String[]                  // where work is actually done
+  salesMarkets               String[]                  // where customers pay: NZ, AU, US, UK, EU, GLOBAL
+  productType                String                    // SOFTWARE | PHYSICAL_GOODS | SERVICES | DIGITAL_CONTENT | MIXED
+  ipValue                    String                    // HIGH | MEDIUM | LOW
+  investorAppetite           String                    // BOOTSTRAP | ANGEL | VC | PE
+  assetProtectionLevel       String                    // STANDARD | AGGRESSIVE | MAXIMUM
+
+  expectedAnnualRevenueCents Int?
+  willHaveEmployees          Boolean   @default(false)
+  willTakeInvestment         Boolean   @default(false)
+  isNonProfit                Boolean   @default(false)
+  registeredOffice           String?
+
+  // Recommendation — Json so the plan graph is preserved losslessly.
+  // Shape: { entities, ownership, ipLicensing, tradingFlow, tax, setupOrder, signoffJurisdictions }
+  structurePlan              Json?
+  recommendationRationale    String?                   @db.Text
+  recommendedAt              DateTime?
+
+  // Drafted pack (markdown) prior to sign-off. Snapshotted into a
+  // SignoffRequest when the citizen posts the matter to the marketplace.
+  draftPack                  String?                   @db.Text
+  draftPackSha256            String?
+  draftedAt                  DateTime?
+
+  createdAt                  DateTime  @default(now())
+  updatedAt                  DateTime  @updatedAt
+
+  @@index([homeJurisdiction])
 }
 
 // Every AI output destined for a consumer passes through here. The
