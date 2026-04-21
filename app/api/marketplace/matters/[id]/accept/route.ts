@@ -6,6 +6,7 @@ import {
   notifyCitizenOfAcceptance,
   fireAndForget,
 } from "@/lib/marketplace/notifications";
+import { hasActiveProSubscription } from "@/lib/marketplace/pro-plans";
 
 // POST /api/marketplace/matters/:id/accept
 // A verified, PI-current professional claims an AWAITING_PRO matter.
@@ -20,6 +21,7 @@ export async function POST(_req: Request, ctx: { params: Promise<{ id: string }>
     where: { userId },
     include: {
       practiceAreas: { select: { practiceAreaId: true } },
+      user: { select: { subscriptionStatus: true } },
     },
   });
   if (!pro) return NextResponse.json({ error: "Not a professional" }, { status: 403 });
@@ -40,6 +42,15 @@ export async function POST(_req: Request, ctx: { params: Promise<{ id: string }>
     return NextResponse.json(
       { error: "Professional indemnity insurance is missing or expired" },
       { status: 403 },
+    );
+  }
+  if (!hasActiveProSubscription(pro.user.subscriptionStatus)) {
+    return NextResponse.json(
+      {
+        error:
+          "An active Marco Reid marketplace subscription is required before you can accept matters.",
+      },
+      { status: 402 },
     );
   }
 

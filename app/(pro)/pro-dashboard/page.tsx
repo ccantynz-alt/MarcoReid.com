@@ -4,6 +4,7 @@ import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
 import ProActionButtons from "@/app/components/pro/ProActionButtons";
 import { formatFee } from "@/lib/marketplace/format";
+import { hasActiveProSubscription } from "@/lib/marketplace/pro-plans";
 
 export const metadata = { title: "Queue — Marco Reid" };
 
@@ -23,6 +24,7 @@ export default async function ProDashboardPage() {
       practiceAreas: {
         include: { practiceArea: { select: { id: true, name: true, jurisdiction: true } } },
       },
+      user: { select: { subscriptionStatus: true } },
     },
   });
   if (!pro) return null;
@@ -31,7 +33,8 @@ export default async function ProDashboardPage() {
 
   const piOk =
     !!pro.piPolicyExpiresAt && pro.piPolicyExpiresAt.getTime() > Date.now();
-  const canAccept = !!pro.verifiedAt && pro.acceptingNewMatters && piOk;
+  const subscribed = hasActiveProSubscription(pro.user.subscriptionStatus);
+  const canAccept = !!pro.verifiedAt && pro.acceptingNewMatters && piOk && subscribed;
 
   const [available, mine] = await Promise.all([
     prisma.proMatter.findMany({
@@ -61,7 +64,17 @@ export default async function ProDashboardPage() {
             {!pro.verifiedAt && "Your profile is pending verification by a Marco Reid admin. "}
             {!piOk && "Your professional indemnity insurance is missing or expired — please update it before accepting matters. "}
             {pro.verifiedAt && piOk && !pro.acceptingNewMatters && "You have turned off new matter acceptance in settings. "}
+            {pro.verifiedAt && piOk && pro.acceptingNewMatters && !subscribed &&
+              "An active marketplace subscription is required to accept matters. "}
           </p>
+          {!subscribed && pro.verifiedAt && piOk && pro.acceptingNewMatters && (
+            <Link
+              href="/pro-pricing"
+              className="mt-3 inline-flex items-center rounded-lg bg-amber-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-amber-800"
+            >
+              Choose a plan
+            </Link>
+          )}
         </div>
       )}
 
