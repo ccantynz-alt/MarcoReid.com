@@ -81,6 +81,10 @@ export default function PostMatterForm({
         setSubmitting(false);
         return;
       }
+      if (data?.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+        return;
+      }
       router.push("/my-matters");
     } catch {
       setError("Network error — please try again");
@@ -363,7 +367,7 @@ export default function PostMatterForm({
                 disabled={!acked || submitting}
                 className="rounded-lg bg-gold-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-gold-600 disabled:cursor-not-allowed disabled:bg-navy-200"
               >
-                {submitting ? "Posting…" : `Post matter · ${formatFee(selectedArea.leadFeeInCents, selectedArea.currency)}`}
+                {submitting ? "Redirecting…" : `Post & pay · ${formatFee(selectedArea.leadFeeInCents, selectedArea.currency)}`}
               </button>
             </div>
           </div>

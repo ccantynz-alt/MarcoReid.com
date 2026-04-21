@@ -2,11 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
-import {
-  notifyMatchingProsOfNewMatter,
-  fireAndForget,
-} from "@/lib/marketplace/notifications";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
+import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
 
 export async function GET() {
   const userId = await getUserId();
@@ -86,7 +83,7 @@ export async function POST(req: NextRequest) {
   }
 
   const now = new Date();
-  const status = post ? ProMatterStatus.AWAITING_PRO : ProMatterStatus.DRAFT;
+  const status = post ? ProMatterStatus.AWAITING_PAYMENT : ProMatterStatus.DRAFT;
 
   const matter = await prisma.proMatter.create({
     data: {
@@ -105,7 +102,15 @@ export async function POST(req: NextRequest) {
   });
 
   if (post) {
-    fireAndForget("notifyMatchingPros", notifyMatchingProsOfNewMatter(matter.id));
+    const { url } = await startLeadFeeCheckoutForMatter({
+      matterId: matter.id,
+      citizenUserId: userId,
+      amountCents: area.leadFeeInCents,
+      currency: area.currency,
+      areaName: area.name,
+      jurisdiction: area.jurisdiction,
+    });
+    return NextResponse.json({ matter, checkoutUrl: url }, { status: 201 });
   }
 
   return NextResponse.json({ matter }, { status: 201 });

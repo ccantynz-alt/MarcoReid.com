@@ -2,11 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
-import {
-  notifyMatchingProsOfNewMatter,
-  fireAndForget,
-} from "@/lib/marketplace/notifications";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
+import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
 
 // Only DRAFT is editable. Once posted the pro is reading it and a
 // shifting target would be unfair; the status guard on updateMany also
@@ -92,7 +89,7 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   }
 
   const now = new Date();
-  const nextStatus = post ? ProMatterStatus.AWAITING_PRO : ProMatterStatus.DRAFT;
+  const nextStatus = post ? ProMatterStatus.AWAITING_PAYMENT : ProMatterStatus.DRAFT;
 
   // Guarded update: status must still be DRAFT when we commit. Prevents
   // a race where the user is editing while a pro somehow accepted.
@@ -124,7 +121,15 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   }
 
   if (post) {
-    fireAndForget("notifyMatchingPros", notifyMatchingProsOfNewMatter(existing.id));
+    const { url } = await startLeadFeeCheckoutForMatter({
+      matterId: existing.id,
+      citizenUserId: userId,
+      amountCents: targetArea.leadFeeInCents,
+      currency: targetArea.currency,
+      areaName: targetArea.name,
+      jurisdiction: targetArea.jurisdiction,
+    });
+    return NextResponse.json({ ok: true, checkoutUrl: url });
   }
 
   return NextResponse.json({ ok: true });
