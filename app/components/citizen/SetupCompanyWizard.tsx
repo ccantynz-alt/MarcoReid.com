@@ -18,7 +18,7 @@ type Home = "NZ" | "AU";
 type ProductType = "SOFTWARE" | "PHYSICAL_GOODS" | "SERVICES" | "DIGITAL_CONTENT" | "MIXED";
 type IpValue = "HIGH" | "MEDIUM" | "LOW";
 type Investor = "BOOTSTRAP" | "ANGEL" | "VC" | "PE";
-type Protection = "STANDARD" | "AGGRESSIVE" | "MAXIMUM";
+type Protection = "STANDARD" | "AGGRESSIVE";
 
 interface FounderRow {
   name: string;
@@ -657,9 +657,9 @@ function Step4Protection({
       <h2 className="font-serif text-2xl text-navy-800">How protected do you want to be?</h2>
       <p className="mt-2 text-sm text-navy-500">
         Marco uses these signals to decide whether you need a bare home
-        company, a trust overlay, a separate IP-holding entity, or a Cook
-        Islands international trust. Aggressive tiers cost more to maintain
-        and attract more professional scrutiny.
+        company, a trust overlay with corporate trustee, or a separate
+        IP-holding entity. Aggressive tiers cost more to maintain and
+        attract more professional scrutiny.
       </p>
 
       <Radio
@@ -689,13 +689,12 @@ function Step4Protection({
 
       <Radio
         label="Asset-protection tier"
-        hint="Decides the entity count and the tolerance for complexity. MAXIMUM includes a Cook Islands overlay."
+        hint="Decides the entity count and the tolerance for complexity."
         value={protection.assetProtectionLevel}
         onChange={(v) => setProtection({ ...protection, assetProtectionLevel: v as Protection })}
         options={[
           { value: "STANDARD", label: "Standard — single company, nothing fancy" },
           { value: "AGGRESSIVE", label: "Aggressive — trust overlay + corporate trustee" },
-          { value: "MAXIMUM", label: "Maximum — offshore trust layer on top" },
         ]}
       />
 

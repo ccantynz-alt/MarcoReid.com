@@ -579,7 +579,7 @@ model CompanyFormationIntake {
   productType                String                    // SOFTWARE | PHYSICAL_GOODS | SERVICES | DIGITAL_CONTENT | MIXED
   ipValue                    String                    // HIGH | MEDIUM | LOW
   investorAppetite           String                    // BOOTSTRAP | ANGEL | VC | PE
-  assetProtectionLevel       String                    // STANDARD | AGGRESSIVE | MAXIMUM
+  assetProtectionLevel       String                    // STANDARD | AGGRESSIVE
 
   expectedAnnualRevenueCents Int?
   willHaveEmployees          Boolean   @default(false)

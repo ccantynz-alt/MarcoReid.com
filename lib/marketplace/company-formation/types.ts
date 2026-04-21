@@ -11,7 +11,7 @@ export interface FormationIntakeInput {
   productType: "SOFTWARE" | "PHYSICAL_GOODS" | "SERVICES" | "DIGITAL_CONTENT" | "MIXED";
   ipValue: "HIGH" | "MEDIUM" | "LOW";
   investorAppetite: "BOOTSTRAP" | "ANGEL" | "VC" | "PE";
-  assetProtectionLevel: "STANDARD" | "AGGRESSIVE" | "MAXIMUM";
+  assetProtectionLevel: "STANDARD" | "AGGRESSIVE";
   expectedAnnualRevenueCents?: number;
   willHaveEmployees: boolean;
   willTakeInvestment: boolean;
@@ -38,7 +38,7 @@ export interface StructurePlan {
   tax: TaxSummary;
   setupOrder: SetupStep[];
   signoffJurisdictions: string[];
-  assetProtectionTier: "STANDARD" | "AGGRESSIVE" | "MAXIMUM";
+  assetProtectionTier: "STANDARD" | "AGGRESSIVE";
 }
 
 export interface PlanEntity {

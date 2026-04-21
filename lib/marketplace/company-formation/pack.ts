@@ -242,14 +242,6 @@ function checklistFor(jurisdiction: string): string[] {
         "Open a US business bank account (Mercury, Brex, or similar).",
         "Register for state sales tax in any state that crosses economic-nexus thresholds.",
       ];
-    case "CK":
-      return [
-        "Engage a licensed Cook Islands trustee company.",
-        "Execute the trust deed with the Cook Islands trustee as trustee.",
-        "Document the source and lawfulness of all settled assets (clawback-protection record).",
-        "File the trust under the Cook Islands International Trusts Act (registration gives statutory protection).",
-        "Document the duress-clause protections and the trustee's discretionary powers.",
-      ];
     default:
       return [`Consult a licensed attorney admitted in ${jurisdiction} to execute all local filings.`];
   }

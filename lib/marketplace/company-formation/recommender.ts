@@ -34,7 +34,6 @@ export function recommendStructure(input: FormationIntakeInput): {
   const highIp = input.ipValue === "HIGH";
   const wantsVc = input.investorAppetite === "VC" || input.investorAppetite === "PE";
   const aggressive = input.assetProtectionLevel !== "STANDARD";
-  const maximum = input.assetProtectionLevel === "MAXIMUM";
 
   const name = input.proposedName || "NewCo";
 
@@ -168,31 +167,7 @@ export function recommendStructure(input: FormationIntakeInput): {
     }
   }
 
-  // Entity 5 — Cook Islands asset-protection trust for MAXIMUM tier.
-  // Sits above the home trust. Cook Islands trust law does not
-  // recognise foreign judgments, and the two-year clawback window is
-  // the strongest in the common-law world.
-  if (maximum) {
-    entities.push({
-      id: "ci-trust",
-      role: "TRUST",
-      jurisdiction: "CK",
-      type: "Cook Islands International Trust",
-      name: `${name} Protection Trust`,
-      purpose: "Ultimate asset-protection layer; holds the beneficial interest in the home trust and IP co.",
-      rationale:
-        "Cook Islands does not recognise foreign (incl. NZ, AU, US) judgments. Statute of limitations for clawback is two years from settlement. Trustee must be a licensed Cook Islands trust company, which adds cost but provides statutory 'duress' protection preventing compelled repatriation.",
-    });
-    ownership.push({
-      ownerId: "ci-trust",
-      ownedId: "home-trust",
-      equityPct: 100,
-      notes: "Cook Islands trust holds the beneficial interest; home trust remains the local legal owner.",
-    });
-    signoffJurisdictions.add("CK");
-  }
-
-  // ----- Setup order: home first, then US, then offshore -----
+  // ----- Setup order: home first, then US -----
   let order = 1;
   if (aggressive) {
     setupOrder.push({
@@ -241,15 +216,6 @@ export function recommendStructure(input: FormationIntakeInput): {
       action: `Open US bank account (Mercury or Relay) and Stripe US for ${name}${wantsVc ? ", Inc." : " LLC"}.`,
       responsible: "CITIZEN",
       deliverable: "Opened bank account, active Stripe US, payment processor integration.",
-    });
-  }
-  if (maximum) {
-    setupOrder.push({
-      order: order++,
-      jurisdiction: "CK",
-      action: `Settle ${name} Protection Trust in the Cook Islands with a licensed trustee.`,
-      responsible: "LOCAL_ATTORNEY",
-      deliverable: "Cook Islands trust deed, settlor declaration, trustee appointment, duress-clause protection memo.",
     });
   }
   setupOrder.push({
@@ -304,11 +270,6 @@ export function recommendStructure(input: FormationIntakeInput): {
     "Every structure recommendation requires independent confirmation by a chartered accountant / registered tax agent before any entity is formed.",
     "Asset-protection tiers are design goals, not guarantees; a determined creditor with a court order can reach most assets — proper structure raises cost and difficulty.",
   ];
-  if (maximum) {
-    caveats.push(
-      "Cook Islands trust settlements within 2 years of a known creditor claim may be clawed back. Settle before a dispute arises or not at all.",
-    );
-  }
 
   // ----- Rationale (one paragraph; surfaced to citizen + sign-off) -----
   const rationaleParts: string[] = [];
@@ -330,11 +291,6 @@ export function recommendStructure(input: FormationIntakeInput): {
   if (highIp) {
     rationaleParts.push(
       `Separate IP-holding company licensing the IP to every operating entity — crown jewels isolated from operating liability.`,
-    );
-  }
-  if (maximum) {
-    rationaleParts.push(
-      `Cook Islands trust above the home trust — maximum-tier asset protection, no foreign-judgment recognition, two-year clawback window.`,
     );
   }
   const rationale = rationaleParts.join(" ");
