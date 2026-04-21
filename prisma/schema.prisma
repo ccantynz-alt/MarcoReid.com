@@ -544,6 +544,7 @@ model ProMatter {
 
   signoffRequests  SignoffRequest[]
   companyFormation CompanyFormationIntake?
+  addons           ProMatterAddon[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -552,6 +553,28 @@ model ProMatter {
   @@index([practiceAreaId, status])
   @@index([citizenUserId])
   @@index([acceptedByProId])
+}
+
+// Optional paid upgrades a citizen can add at post time. They're priced
+// and collected together with the lead fee in one Stripe Checkout, so a
+// refund of the lead fee (cancel-before-accept) sweeps these up for free.
+enum MatterAddonKind {
+  EXPEDITED_SIGNOFF // pro commits to a 24h sign-off window
+  SECOND_OPINION // independent review by a second verified pro
+  ESIGNATURE_BUNDLE // witnessed e-signature on released documents
+}
+
+model ProMatterAddon {
+  id         String          @id @default(cuid())
+  matterId   String
+  matter     ProMatter       @relation(fields: [matterId], references: [id], onDelete: Cascade)
+  kind       MatterAddonKind
+  priceCents Int
+  currency   String
+  createdAt  DateTime        @default(now())
+
+  @@unique([matterId, kind])
+  @@index([matterId])
 }
 
 // Company-formation intake. Holds the structured questionnaire answers and
