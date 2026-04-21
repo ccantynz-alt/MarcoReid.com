@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { formatFee } from "@/lib/marketplace/format";
 
 export interface AreaOption {
@@ -82,13 +83,99 @@ const BLANK_PROTECTION: ProtectionProfile = {
   registeredOffice: "",
 };
 
+interface PreviewState {
+  matterId: string;
+  pack: string;
+  sha256: string;
+  rationale: string;
+  plan: { entities: { name: string; type: string; jurisdiction: string; role: string }[]; signoffJurisdictions: string[]; assetProtectionTier: string };
+}
+
 export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
+  const router = useRouter();
   const [step, setStep] = useState<number>(1);
   const [home, setHome] = useState<Home>("NZ");
   const [founders, setFounders] = useState<FounderRow[]>([{ ...BLANK_FOUNDER, equityPct: 100 }]);
   const [business, setBusiness] = useState<BusinessProfile>(BLANK_BUSINESS("NZ"));
   const [protection, setProtection] = useState<ProtectionProfile>(BLANK_PROTECTION);
+  const [preview, setPreview] = useState<PreviewState | null>(null);
+  const [drafting, setDrafting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const area = areas.find((a) => a.jurisdiction === home) ?? null;
+
+  function intakeBody() {
+    return {
+      homeJurisdiction: home,
+      proposedName: business.proposedName || undefined,
+      alternateName: business.alternateName || undefined,
+      purpose: business.purpose,
+      industry: business.industry || undefined,
+      founders,
+      operatingCountries: business.operatingCountries,
+      salesMarkets: business.salesMarkets,
+      productType: business.productType,
+      ipValue: protection.ipValue,
+      investorAppetite: protection.investorAppetite,
+      assetProtectionLevel: protection.assetProtectionLevel,
+      expectedAnnualRevenueCents: protection.expectedAnnualRevenueCents ?? undefined,
+      willHaveEmployees: protection.willHaveEmployees,
+      willTakeInvestment: protection.willTakeInvestment,
+      isNonProfit: protection.isNonProfit,
+      registeredOffice: protection.registeredOffice || undefined,
+    };
+  }
+
+  async function draftPack() {
+    setDrafting(true);
+    setError(null);
+    try {
+      let matterId = preview?.matterId;
+      if (!matterId) {
+        const res = await fetch("/api/marketplace/company-formation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(intakeBody()),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error ?? "Could not create the draft");
+        matterId = data.matter.id as string;
+      } else {
+        const res = await fetch(`/api/marketplace/company-formation/${matterId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(intakeBody()),
+        });
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data?.error ?? "Could not save your edits");
+        }
+      }
+      const rec = await fetch(`/api/marketplace/company-formation/${matterId}/recommend`, { method: "POST" });
+      const recData = await rec.json();
+      if (!rec.ok) throw new Error(recData?.error ?? "Could not compute a structure");
+      const pack = await fetch(`/api/marketplace/company-formation/${matterId}/draft-pack`, { method: "POST" });
+      const packData = await pack.json();
+      if (!pack.ok) throw new Error(packData?.error ?? "Could not render the pack");
+      setPreview({
+        matterId,
+        pack: packData.pack,
+        sha256: packData.sha256,
+        rationale: recData.rationale,
+        plan: recData.plan,
+      });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
+    } finally {
+      setDrafting(false);
+    }
+  }
+
+  useEffect(() => {
+    if (step === 5 && !preview && !drafting) {
+      draftPack();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]);
 
   return (
     <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card sm:p-10">
@@ -134,11 +221,25 @@ export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
           protection={protection}
           setProtection={setProtection}
           onBack={() => setStep(3)}
-          onNext={() => setStep(5)}
+          onNext={() => {
+            setPreview(null);
+            setStep(5);
+          }}
         />
       )}
 
-      {step > 4 && area && (
+      {step === 5 && (
+        <Step5Preview
+          drafting={drafting}
+          preview={preview}
+          error={error}
+          onBack={() => setStep(4)}
+          onRedraft={draftPack}
+          onNext={() => setStep(6)}
+        />
+      )}
+
+      {step > 5 && area && (
         <div className="text-sm text-navy-500">
           Wizard step {step} arriving in the next commit. Lead fee for{" "}
           {area.jurisdiction}: {formatFee(area.leadFeeInCents, area.currency)}.
@@ -309,6 +410,129 @@ function Step2Founders({
         >
           Continue &rarr;
         </button>
+      </div>
+    </div>
+  );
+}
+
+function Step5Preview({
+  drafting,
+  preview,
+  error,
+  onBack,
+  onRedraft,
+  onNext,
+}: {
+  drafting: boolean;
+  preview: PreviewState | null;
+  error: string | null;
+  onBack: () => void;
+  onRedraft: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div>
+      <h2 className="font-serif text-2xl text-navy-800">Here&rsquo;s the structure Marco drafted.</h2>
+      <p className="mt-2 text-sm text-navy-500">
+        This is an auto-generated draft. Nothing is filed. A licensed pro has
+        to sign off before any entity is registered.
+      </p>
+
+      {drafting && (
+        <div className="mt-6 rounded-lg border border-navy-100 bg-navy-50 p-6 text-sm text-navy-600">
+          Drafting your structure — this usually takes a couple of seconds…
+        </div>
+      )}
+
+      {error && (
+        <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+          {error}
+          <div className="mt-3">
+            <button
+              type="button"
+              onClick={onRedraft}
+              className="rounded-lg border border-red-300 bg-white px-3 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-100"
+            >
+              Try again
+            </button>
+          </div>
+        </div>
+      )}
+
+      {preview && !drafting && (
+        <>
+          <div className="mt-6 rounded-xl border border-navy-100 bg-navy-50/50 p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-navy-500">
+                Asset-protection tier
+              </p>
+              <span className="rounded-full bg-navy-700 px-3 py-1 text-xs font-semibold text-white">
+                {preview.plan.assetProtectionTier}
+              </span>
+            </div>
+            <p className="mt-4 text-sm text-navy-700">{preview.rationale}</p>
+          </div>
+
+          <div className="mt-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-navy-500">Entities</p>
+            <div className="mt-2 space-y-2">
+              {preview.plan.entities.map((e) => (
+                <div key={e.name} className="rounded-lg border border-navy-100 bg-white p-3 text-sm">
+                  <p className="font-serif text-navy-800">{e.name}</p>
+                  <p className="text-xs text-navy-500">
+                    {e.type} · {e.jurisdiction} · {e.role}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 rounded-lg border border-navy-100 bg-white p-3 text-xs text-navy-500">
+            <p>
+              <span className="font-semibold text-navy-700">Sign-off required in:</span>{" "}
+              {preview.plan.signoffJurisdictions.join(", ")}
+            </p>
+            <p className="mt-1 break-all">
+              <span className="font-semibold text-navy-700">Pack fingerprint:</span>{" "}
+              <code className="text-[10px]">{preview.sha256}</code>
+            </p>
+          </div>
+
+          <details className="mt-5 rounded-lg border border-navy-100 bg-white">
+            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-navy-700">
+              Preview the full markdown pack
+            </summary>
+            <pre className="max-h-[400px] overflow-auto border-t border-navy-100 bg-navy-50/40 p-4 text-[11px] leading-relaxed text-navy-700">
+              {preview.pack}
+            </pre>
+          </details>
+        </>
+      )}
+
+      <div className="mt-8 flex items-center justify-between">
+        <button type="button" onClick={onBack} className="text-sm text-navy-500 hover:text-navy-700">
+          &larr; Back
+        </button>
+        <div className="flex gap-3">
+          {preview && (
+            <button
+              type="button"
+              onClick={onRedraft}
+              disabled={drafting}
+              className="rounded-lg border border-navy-200 px-4 py-2.5 text-sm font-semibold text-navy-600 hover:bg-navy-50 disabled:opacity-50"
+            >
+              Redraft
+            </button>
+          )}
+          <button
+            type="button"
+            disabled={!preview || drafting}
+            onClick={onNext}
+            className="rounded-lg bg-navy-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-navy-600 disabled:cursor-not-allowed disabled:bg-navy-200"
+          >
+            Continue &rarr;
+          </button>
+        </div>
       </div>
     </div>
   );
