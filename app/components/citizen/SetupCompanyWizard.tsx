@@ -15,6 +15,9 @@ export interface AreaOption {
 
 type Home = "NZ" | "AU";
 type ProductType = "SOFTWARE" | "PHYSICAL_GOODS" | "SERVICES" | "DIGITAL_CONTENT" | "MIXED";
+type IpValue = "HIGH" | "MEDIUM" | "LOW";
+type Investor = "BOOTSTRAP" | "ANGEL" | "VC" | "PE";
+type Protection = "STANDARD" | "AGGRESSIVE" | "MAXIMUM";
 
 interface FounderRow {
   name: string;
@@ -32,6 +35,17 @@ interface BusinessProfile {
   productType: ProductType;
   operatingCountries: string[];
   salesMarkets: string[];
+}
+
+interface ProtectionProfile {
+  ipValue: IpValue;
+  investorAppetite: Investor;
+  assetProtectionLevel: Protection;
+  expectedAnnualRevenueCents: number | null;
+  willHaveEmployees: boolean;
+  willTakeInvestment: boolean;
+  isNonProfit: boolean;
+  registeredOffice: string;
 }
 
 const COUNTRIES = ["NZ", "AU", "US", "UK", "CA", "SG", "EU"] as const;
@@ -57,11 +71,23 @@ const BLANK_BUSINESS = (home: Home): BusinessProfile => ({
   salesMarkets: [home],
 });
 
+const BLANK_PROTECTION: ProtectionProfile = {
+  ipValue: "LOW",
+  investorAppetite: "BOOTSTRAP",
+  assetProtectionLevel: "STANDARD",
+  expectedAnnualRevenueCents: null,
+  willHaveEmployees: false,
+  willTakeInvestment: false,
+  isNonProfit: false,
+  registeredOffice: "",
+};
+
 export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
   const [step, setStep] = useState<number>(1);
   const [home, setHome] = useState<Home>("NZ");
   const [founders, setFounders] = useState<FounderRow[]>([{ ...BLANK_FOUNDER, equityPct: 100 }]);
   const [business, setBusiness] = useState<BusinessProfile>(BLANK_BUSINESS("NZ"));
+  const [protection, setProtection] = useState<ProtectionProfile>(BLANK_PROTECTION);
   const area = areas.find((a) => a.jurisdiction === home) ?? null;
 
   return (
@@ -102,7 +128,17 @@ export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
         />
       )}
 
-      {step > 3 && area && (
+      {step === 4 && (
+        <Step4Protection
+          home={home}
+          protection={protection}
+          setProtection={setProtection}
+          onBack={() => setStep(3)}
+          onNext={() => setStep(5)}
+        />
+      )}
+
+      {step > 4 && area && (
         <div className="text-sm text-navy-500">
           Wizard step {step} arriving in the next commit. Lead fee for{" "}
           {area.jurisdiction}: {formatFee(area.leadFeeInCents, area.currency)}.
@@ -275,6 +311,193 @@ function Step2Founders({
         </button>
       </div>
     </div>
+  );
+}
+
+function Step4Protection({
+  home,
+  protection,
+  setProtection,
+  onBack,
+  onNext,
+}: {
+  home: Home;
+  protection: ProtectionProfile;
+  setProtection: (p: ProtectionProfile) => void;
+  onBack: () => void;
+  onNext: () => void;
+}) {
+  const currency = home === "NZ" ? "NZD" : "AUD";
+  const revenueDollars =
+    protection.expectedAnnualRevenueCents != null ? protection.expectedAnnualRevenueCents / 100 : "";
+
+  return (
+    <div>
+      <h2 className="font-serif text-2xl text-navy-800">How protected do you want to be?</h2>
+      <p className="mt-2 text-sm text-navy-500">
+        Marco uses these signals to decide whether you need a bare home
+        company, a trust overlay, a separate IP-holding entity, or a Cook
+        Islands international trust. Aggressive tiers cost more to maintain
+        and attract more professional scrutiny.
+      </p>
+
+      <Radio
+        label="How valuable is the IP?"
+        hint="If the business lives or dies on proprietary software, patents, or trade secrets, say HIGH so Marco splits it into its own holding entity."
+        value={protection.ipValue}
+        onChange={(v) => setProtection({ ...protection, ipValue: v as IpValue })}
+        options={[
+          { value: "LOW", label: "Low — commodity product or service" },
+          { value: "MEDIUM", label: "Medium — some proprietary assets" },
+          { value: "HIGH", label: "High — IP is the business" },
+        ]}
+      />
+
+      <Radio
+        label="Investor appetite"
+        hint="VC/PE-track founders usually need a US C-Corp on top; bootstrappers usually don't."
+        value={protection.investorAppetite}
+        onChange={(v) => setProtection({ ...protection, investorAppetite: v as Investor })}
+        options={[
+          { value: "BOOTSTRAP", label: "Bootstrapped — no outside money planned" },
+          { value: "ANGEL", label: "Angel — friends, family, or angel syndicate" },
+          { value: "VC", label: "Venture — targeting institutional VC" },
+          { value: "PE", label: "Private equity / late stage" },
+        ]}
+      />
+
+      <Radio
+        label="Asset-protection tier"
+        hint="Decides the entity count and the tolerance for complexity. MAXIMUM includes a Cook Islands overlay."
+        value={protection.assetProtectionLevel}
+        onChange={(v) => setProtection({ ...protection, assetProtectionLevel: v as Protection })}
+        options={[
+          { value: "STANDARD", label: "Standard — single company, nothing fancy" },
+          { value: "AGGRESSIVE", label: "Aggressive — trust overlay + corporate trustee" },
+          { value: "MAXIMUM", label: "Maximum — offshore trust layer on top" },
+        ]}
+      />
+
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <label className="text-xs font-semibold text-navy-600">
+          Expected year-1 revenue ({currency})
+          <input
+            type="number"
+            min={0}
+            step={1000}
+            value={revenueDollars}
+            onChange={(e) =>
+              setProtection({
+                ...protection,
+                expectedAnnualRevenueCents: e.target.value ? Math.round(Number(e.target.value) * 100) : null,
+              })
+            }
+            placeholder="e.g. 250000"
+            className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm font-normal focus:border-gold-400 focus:outline-none"
+          />
+        </label>
+        <label className="text-xs font-semibold text-navy-600">
+          Registered office (optional)
+          <input
+            type="text"
+            value={protection.registeredOffice}
+            onChange={(e) => setProtection({ ...protection, registeredOffice: e.target.value })}
+            placeholder="Street address in your home jurisdiction"
+            className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm font-normal focus:border-gold-400 focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <div className="mt-5 space-y-2">
+        <Toggle
+          label="Will you hire employees?"
+          value={protection.willHaveEmployees}
+          onChange={(v) => setProtection({ ...protection, willHaveEmployees: v })}
+        />
+        <Toggle
+          label="Will you take outside investment in the next 12 months?"
+          value={protection.willTakeInvestment}
+          onChange={(v) => setProtection({ ...protection, willTakeInvestment: v })}
+        />
+        <Toggle
+          label="Is this a non-profit / charity?"
+          value={protection.isNonProfit}
+          onChange={(v) => setProtection({ ...protection, isNonProfit: v })}
+        />
+      </div>
+
+      <div className="mt-8 flex items-center justify-between">
+        <button type="button" onClick={onBack} className="text-sm text-navy-500 hover:text-navy-700">
+          &larr; Back
+        </button>
+        <button
+          type="button"
+          onClick={onNext}
+          className="rounded-lg bg-navy-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-navy-600"
+        >
+          Continue &rarr;
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Radio({
+  label,
+  hint,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  hint?: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: { value: string; label: string }[];
+}) {
+  return (
+    <div className="mt-5">
+      <p className="text-xs font-semibold text-navy-600">{label}</p>
+      {hint && <p className="mt-1 text-xs text-navy-400">{hint}</p>}
+      <div className="mt-2 grid gap-2">
+        {options.map((o) => (
+          <button
+            key={o.value}
+            type="button"
+            onClick={() => onChange(o.value)}
+            className={`rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
+              value === o.value
+                ? "border-gold-400 bg-gold-50 text-navy-800"
+                : "border-navy-200 bg-white text-navy-600 hover:border-navy-300"
+            }`}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Toggle({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: boolean;
+  onChange: (v: boolean) => void;
+}) {
+  return (
+    <label className="flex items-center gap-3 rounded-lg border border-navy-100 bg-navy-50/40 px-3 py-2 text-sm text-navy-700">
+      <input
+        type="checkbox"
+        checked={value}
+        onChange={(e) => onChange(e.target.checked)}
+        className="h-4 w-4 rounded border-navy-300 text-navy-600 focus:ring-navy-500"
+      />
+      {label}
+    </label>
   );
 }
 
