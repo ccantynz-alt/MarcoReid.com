@@ -4,6 +4,7 @@ import { getUserId } from "@/lib/session";
 import { ProMatterStatus } from "@prisma/client";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
 import { startLeadFeeCheckoutForMatter } from "@/lib/marketplace/lead-fee";
+import { stripe } from "@/lib/stripe";
 
 // Only DRAFT is editable. Once posted the pro is reading it and a
 // shifting target would be unfair; the status guard on updateMany also
@@ -137,6 +138,8 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
 
 // Cancellation is only permitted before a pro has accepted. The guarded
 // updateMany prevents a concurrent accept from leaving a ghost cancel.
+// If the citizen already paid the lead fee (AWAITING_PRO), we refund it
+// before flipping status so they don't end up paying for nothing.
 export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const userId = await getUserId();
@@ -150,32 +153,65 @@ export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string 
   if (matter.citizenUserId !== userId) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
-  if (
-    matter.status !== ProMatterStatus.DRAFT &&
-    matter.status !== ProMatterStatus.AWAITING_PRO
-  ) {
+  const cancellable: ProMatterStatus[] = [
+    ProMatterStatus.DRAFT,
+    ProMatterStatus.AWAITING_PAYMENT,
+    ProMatterStatus.AWAITING_PRO,
+  ];
+  if (!cancellable.includes(matter.status)) {
     return NextResponse.json(
       { error: "This matter has been accepted and cannot be cancelled from here" },
       { status: 409 },
     );
   }
 
+  const payment = await prisma.marketplacePayment.findFirst({
+    where: { matterId: matter.id, kind: "lead-fee", status: "succeeded" },
+    select: { id: true, stripePaymentIntentId: true },
+  });
+
+  // Refund first so we don't end up with a cancelled matter and a charge
+  // still on the citizen's card. Stripe refunds are idempotent on the
+  // PaymentIntent so retries are safe.
+  if (payment) {
+    try {
+      await stripe.refunds.create({
+        payment_intent: payment.stripePaymentIntentId,
+      });
+    } catch (err) {
+      console.error("[marketplace/matters] lead-fee refund failed:", err);
+      return NextResponse.json(
+        { error: "Could not refund the lead fee — please try again or contact support" },
+        { status: 502 },
+      );
+    }
+  }
+
   const result = await prisma.proMatter.updateMany({
-    where: {
-      id: matter.id,
-      status: { in: [ProMatterStatus.DRAFT, ProMatterStatus.AWAITING_PRO] },
-    },
-    data: {
-      status: ProMatterStatus.CANCELLED,
-      closedAt: new Date(),
-    },
+    where: { id: matter.id, status: { in: cancellable } },
+    data: { status: ProMatterStatus.CANCELLED, closedAt: new Date() },
   });
 
   if (result.count === 0) {
+    // Rare: a pro accepted between our read and our write. The refund
+    // (if any) has already been submitted to Stripe — surface loudly so
+    // ops can reconcile rather than silently losing the signal.
+    console.error(
+      "[marketplace/matters] cancel race: matter",
+      matter.id,
+      "was accepted mid-cancel; lead-fee refund may have fired",
+    );
     return NextResponse.json(
       { error: "Matter has already been accepted and cannot be cancelled" },
       { status: 409 },
     );
+  }
+
+  if (payment) {
+    await prisma.marketplacePayment.update({
+      where: { id: payment.id },
+      data: { status: "refunded" },
+    });
   }
 
   return NextResponse.json({ ok: true });

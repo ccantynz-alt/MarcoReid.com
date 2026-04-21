@@ -48,7 +48,9 @@ export default function CancelMatterButton({ matterId }: { matterId: string }) {
         Cancel this matter?
       </p>
       <p className="mt-1 text-sm text-red-700">
-        It will be withdrawn from the marketplace. You can post a new matter at any time.
+        It will be withdrawn from the marketplace. If you&rsquo;ve already
+        paid the lead fee and no professional has accepted yet, you&rsquo;ll
+        be refunded in full.
       </p>
       {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
       <div className="mt-4 flex flex-wrap gap-3">

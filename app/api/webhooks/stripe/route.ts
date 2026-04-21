@@ -93,6 +93,29 @@ export async function POST(req: Request) {
             "notifyMatchingProsOfNewMatter",
             notifyMatchingProsOfNewMatter(matterId),
           );
+        } else {
+          // Matter wasn't in AWAITING_PAYMENT — either a replayed event
+          // (harmless) or the citizen cancelled between Checkout and the
+          // webhook landing. If the matter is now CANCELLED, refund so
+          // we never keep money for a dead matter.
+          const current = await prisma.proMatter.findUnique({
+            where: { id: matterId },
+            select: { status: true },
+          });
+          if (current?.status === ProMatterStatus.CANCELLED) {
+            try {
+              await stripe.refunds.create({ payment_intent: pi.id });
+              await prisma.marketplacePayment.updateMany({
+                where: { stripePaymentIntentId: pi.id },
+                data: { status: "refunded" },
+              });
+            } catch (err) {
+              console.error(
+                "[webhooks/stripe] auto-refund after cancel-during-checkout failed:",
+                err,
+              );
+            }
+          }
         }
       }
       break;
