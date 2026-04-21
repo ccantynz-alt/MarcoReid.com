@@ -14,6 +14,7 @@ export interface AreaOption {
 }
 
 type Home = "NZ" | "AU";
+type ProductType = "SOFTWARE" | "PHYSICAL_GOODS" | "SERVICES" | "DIGITAL_CONTENT" | "MIXED";
 
 interface FounderRow {
   name: string;
@@ -23,21 +24,64 @@ interface FounderRow {
   residency?: string;
 }
 
+interface BusinessProfile {
+  proposedName: string;
+  alternateName: string;
+  purpose: string;
+  industry: string;
+  productType: ProductType;
+  operatingCountries: string[];
+  salesMarkets: string[];
+}
+
+const COUNTRIES = ["NZ", "AU", "US", "UK", "CA", "SG", "EU"] as const;
+const PRODUCT_TYPES: { value: ProductType; label: string }[] = [
+  { value: "SOFTWARE", label: "Software / SaaS" },
+  { value: "PHYSICAL_GOODS", label: "Physical goods" },
+  { value: "SERVICES", label: "Services" },
+  { value: "DIGITAL_CONTENT", label: "Digital content" },
+  { value: "MIXED", label: "Mixed" },
+];
+
 const STEPS = ["Home", "Founders", "Business", "Protection", "Preview", "Confirm"] as const;
 
 const BLANK_FOUNDER: FounderRow = { name: "", email: "", equityPct: 0, role: "", residency: "" };
+
+const BLANK_BUSINESS = (home: Home): BusinessProfile => ({
+  proposedName: "",
+  alternateName: "",
+  purpose: "",
+  industry: "",
+  productType: "MIXED",
+  operatingCountries: [home],
+  salesMarkets: [home],
+});
 
 export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
   const [step, setStep] = useState<number>(1);
   const [home, setHome] = useState<Home>("NZ");
   const [founders, setFounders] = useState<FounderRow[]>([{ ...BLANK_FOUNDER, equityPct: 100 }]);
+  const [business, setBusiness] = useState<BusinessProfile>(BLANK_BUSINESS("NZ"));
   const area = areas.find((a) => a.jurisdiction === home) ?? null;
 
   return (
     <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card sm:p-10">
       <Stepper step={step} />
 
-      {step === 1 && <Step1Home home={home} setHome={setHome} onNext={() => setStep(2)} />}
+      {step === 1 && (
+        <Step1Home
+          home={home}
+          setHome={(h) => {
+            setHome(h);
+            setBusiness((b) => ({
+              ...b,
+              operatingCountries: b.operatingCountries.includes(h) ? b.operatingCountries : [h, ...b.operatingCountries],
+              salesMarkets: b.salesMarkets.includes(h) ? b.salesMarkets : [h, ...b.salesMarkets],
+            }));
+          }}
+          onNext={() => setStep(2)}
+        />
+      )}
 
       {step === 2 && (
         <Step2Founders
@@ -48,7 +92,17 @@ export default function SetupCompanyWizard({ areas }: { areas: AreaOption[] }) {
         />
       )}
 
-      {step > 2 && area && (
+      {step === 3 && (
+        <Step3Business
+          home={home}
+          business={business}
+          setBusiness={setBusiness}
+          onBack={() => setStep(2)}
+          onNext={() => setStep(4)}
+        />
+      )}
+
+      {step > 3 && area && (
         <div className="text-sm text-navy-500">
           Wizard step {step} arriving in the next commit. Lead fee for{" "}
           {area.jurisdiction}: {formatFee(area.leadFeeInCents, area.currency)}.
@@ -219,6 +273,177 @@ function Step2Founders({
         >
           Continue &rarr;
         </button>
+      </div>
+    </div>
+  );
+}
+
+function Step3Business({
+  home,
+  business,
+  setBusiness,
+  onBack,
+  onNext,
+}: {
+  home: Home;
+  business: BusinessProfile;
+  setBusiness: (b: BusinessProfile) => void;
+  onBack: () => void;
+  onNext: () => void;
+}) {
+  const valid = business.purpose.trim().length >= 40 && business.operatingCountries.length > 0 && business.salesMarkets.length > 0;
+
+  function toggleMarket(field: "operatingCountries" | "salesMarkets", code: string) {
+    const current = business[field];
+    const next = current.includes(code)
+      ? current.filter((c) => c !== code)
+      : [...current, code];
+    setBusiness({ ...business, [field]: next });
+  }
+
+  return (
+    <div>
+      <h2 className="font-serif text-2xl text-navy-800">What is the business?</h2>
+      <p className="mt-2 text-sm text-navy-500">
+        Plain-English is fine. The purpose drives how Marco structures IP
+        ownership and trading flow — the more specific the better.
+      </p>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <label className="text-xs font-semibold text-navy-600">
+          Proposed company name
+          <input
+            type="text"
+            value={business.proposedName}
+            onChange={(e) => setBusiness({ ...business, proposedName: e.target.value })}
+            placeholder="e.g. Kowhai Labs"
+            className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm font-normal focus:border-gold-400 focus:outline-none"
+          />
+        </label>
+        <label className="text-xs font-semibold text-navy-600">
+          Alternate name (backup)
+          <input
+            type="text"
+            value={business.alternateName}
+            onChange={(e) => setBusiness({ ...business, alternateName: e.target.value })}
+            className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm font-normal focus:border-gold-400 focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <label className="mt-5 block text-xs font-semibold text-navy-600">
+        What will the business do? (40+ chars)
+        <textarea
+          value={business.purpose}
+          onChange={(e) => setBusiness({ ...business, purpose: e.target.value.slice(0, 2000) })}
+          rows={5}
+          placeholder="We build a SaaS product that helps hospitality venues manage staff rostering. We'll sell to venues in NZ, AU, and the US via a self-serve signup."
+          className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm font-normal focus:border-gold-400 focus:outline-none"
+        />
+        <span className="mt-1 block text-xs text-navy-400">{business.purpose.length} / 2000</span>
+      </label>
+
+      <label className="mt-5 block text-xs font-semibold text-navy-600">
+        Industry (optional)
+        <input
+          type="text"
+          value={business.industry}
+          onChange={(e) => setBusiness({ ...business, industry: e.target.value })}
+          placeholder="Hospitality tech, fintech, e-commerce…"
+          className="mt-1 w-full rounded-lg border border-navy-200 px-3 py-2 text-sm font-normal focus:border-gold-400 focus:outline-none"
+        />
+      </label>
+
+      <div className="mt-5">
+        <p className="text-xs font-semibold text-navy-600">Product type</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {PRODUCT_TYPES.map((p) => (
+            <button
+              key={p.value}
+              type="button"
+              onClick={() => setBusiness({ ...business, productType: p.value })}
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                business.productType === p.value
+                  ? "border-gold-400 bg-gold-50 text-navy-800"
+                  : "border-navy-200 bg-white text-navy-600 hover:border-navy-300"
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <MarketToggle
+        label="Countries you'll operate from"
+        hint="Where staff, servers, or day-to-day activity actually live."
+        selected={business.operatingCountries}
+        required={home}
+        onToggle={(c) => toggleMarket("operatingCountries", c)}
+      />
+      <MarketToggle
+        label="Countries you'll sell into"
+        hint="Where your customers are. US customers usually trigger a Wyoming or Delaware overlay."
+        selected={business.salesMarkets}
+        required={home}
+        onToggle={(c) => toggleMarket("salesMarkets", c)}
+      />
+
+      <div className="mt-8 flex items-center justify-between">
+        <button type="button" onClick={onBack} className="text-sm text-navy-500 hover:text-navy-700">
+          &larr; Back
+        </button>
+        <button
+          type="button"
+          disabled={!valid}
+          onClick={onNext}
+          className="rounded-lg bg-navy-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-navy-600 disabled:cursor-not-allowed disabled:bg-navy-200"
+        >
+          Continue &rarr;
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MarketToggle({
+  label,
+  hint,
+  selected,
+  required,
+  onToggle,
+}: {
+  label: string;
+  hint: string;
+  selected: string[];
+  required: string;
+  onToggle: (code: string) => void;
+}) {
+  return (
+    <div className="mt-5">
+      <p className="text-xs font-semibold text-navy-600">{label}</p>
+      <p className="mt-1 text-xs text-navy-400">{hint}</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {COUNTRIES.map((c) => {
+          const isSelected = selected.includes(c);
+          const isRequired = c === required;
+          return (
+            <button
+              key={c}
+              type="button"
+              onClick={() => !isRequired && onToggle(c)}
+              disabled={isRequired}
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                isSelected
+                  ? "border-gold-400 bg-gold-50 text-navy-800"
+                  : "border-navy-200 bg-white text-navy-600 hover:border-navy-300"
+              } ${isRequired ? "cursor-not-allowed opacity-80" : ""}`}
+              title={isRequired ? "Always included — home jurisdiction" : undefined}
+            >
+              {c}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
