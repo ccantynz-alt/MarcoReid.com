@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { ProMatterStatus, SignoffStatus } from "@prisma/client";
 import CancelMatterButton from "@/app/components/citizen/CancelMatterButton";
+import FormationPackActions from "@/app/components/citizen/FormationPackActions";
 import { MATTER_STATUS_PRESENTATION } from "@/lib/marketplace/matter-status";
 
 export const metadata = { title: "Matter — Marco Reid" };
@@ -24,6 +25,7 @@ export default async function CitizenMatterPage({
     include: {
       practiceArea: { select: { name: true, jurisdiction: true } },
       acceptedBy: { select: { displayName: true, professionalBody: true, admissionJurisdiction: true, admissionNumber: true } },
+      companyFormation: { select: { proposedName: true, homeJurisdiction: true } },
       signoffRequests: {
         where: { status: { in: [SignoffStatus.APPROVED, SignoffStatus.AMENDED] } },
         orderBy: { releasedAt: "desc" },
@@ -123,13 +125,18 @@ export default async function CitizenMatterPage({
               const isAmended = s.status === SignoffStatus.AMENDED;
               const content = isAmended ? s.amendedOutput ?? s.aiOutput : s.aiOutput;
               const hash = isAmended ? s.amendedSha256 ?? s.outputSha256 : s.outputSha256;
+              const isFormationPack = s.kind === "company-formation-pack";
+              const title = isFormationPack ? "Formation pack" : s.kind;
+              const filename = isFormationPack
+                ? `formation-pack-${(matter.companyFormation?.proposedName ?? "company").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.md`
+                : `${s.kind}.md`;
               return (
                 <li
                   key={s.id}
                   className="rounded-2xl border border-gold-200 bg-white p-6 shadow-card"
                 >
                   <div className="flex items-center justify-between">
-                    <p className="font-semibold text-navy-700">{s.kind}</p>
+                    <p className="font-semibold text-navy-700">{title}</p>
                     <span
                       className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                         isAmended ? "bg-plum-100 text-plum-800" : "bg-forest-100 text-forest-800"
@@ -141,6 +148,17 @@ export default async function CitizenMatterPage({
                   <p className="mt-1 text-xs text-navy-400">
                     Released {s.releasedAt ? new Date(s.releasedAt).toLocaleString() : ""}
                   </p>
+
+                  {isFormationPack && (
+                    <FormationPackActions
+                      filename={filename}
+                      pack={content}
+                      sha256={hash}
+                      proposedName={matter.companyFormation?.proposedName}
+                      jurisdiction={matter.companyFormation?.homeJurisdiction ?? matter.practiceArea.jurisdiction}
+                      professionalName={matter.acceptedBy?.displayName}
+                    />
+                  )}
 
                   <pre className="mt-4 whitespace-pre-wrap rounded-lg border border-navy-100 bg-navy-50 p-5 font-mono text-sm text-navy-800">
                     {content}
