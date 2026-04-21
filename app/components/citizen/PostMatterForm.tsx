@@ -2,8 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { MatterAddonKind } from "@prisma/client";
 import { formatFee } from "@/lib/marketplace/format";
 import { MATTER_LIMITS } from "@/lib/marketplace/constants";
+import { addonsForJurisdiction } from "@/lib/marketplace/addons";
 
 interface PracticeAreaOption {
   id: string;
@@ -44,6 +46,16 @@ export default function PostMatterForm({
   const [acked, setAcked] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedAddons, setSelectedAddons] = useState<Set<MatterAddonKind>>(new Set());
+
+  function toggleAddon(kind: MatterAddonKind) {
+    setSelectedAddons((prev) => {
+      const next = new Set(prev);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
+  }
 
   const jurisdictionAreas = useMemo(
     () => areas.filter((a) => a.jurisdiction === jurisdiction),
@@ -54,6 +66,14 @@ export default function PostMatterForm({
     () => areas.find((a) => a.slug === areaSlug) ?? null,
     [areas, areaSlug],
   );
+
+  const addonTotalCents = useMemo(() => {
+    if (!selectedArea) return 0;
+    const prices = addonsForJurisdiction(selectedArea.jurisdiction);
+    let total = 0;
+    for (const kind of selectedAddons) total += prices[kind].cents;
+    return total;
+  }, [selectedArea, selectedAddons]);
 
   async function submit(post: boolean) {
     if (!selectedArea) return;
@@ -73,6 +93,7 @@ export default function PostMatterForm({
           details,
           ackVersion: post ? selectedArea.ackVersion : undefined,
           post,
+          addons: post ? Array.from(selectedAddons) : undefined,
         }),
       });
       const data = await res.json();
@@ -323,6 +344,51 @@ export default function PostMatterForm({
             ))}
           </ul>
 
+          <div className="mt-8">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-navy-500">
+              Optional upgrades
+            </h3>
+            <p className="mt-1 text-sm text-navy-400">
+              Add any that matter to you. Charged together with the lead fee;
+              refunded in full if you cancel before a pro accepts.
+            </p>
+            <div className="mt-4 space-y-3">
+              {(
+                Object.entries(addonsForJurisdiction(selectedArea.jurisdiction)) as Array<
+                  [MatterAddonKind, { cents: number; label: string; description: string }]
+                >
+              ).map(([kind, price]) => {
+                const checked = selectedAddons.has(kind);
+                return (
+                  <label
+                    key={kind}
+                    className={`flex cursor-pointer items-start gap-3 rounded-lg border p-4 transition-colors ${
+                      checked
+                        ? "border-gold-400 bg-gold-50"
+                        : "border-navy-100 bg-white hover:border-navy-300"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleAddon(kind)}
+                      className="mt-1 h-4 w-4 rounded border-navy-300 text-navy-600 focus:ring-navy-500"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-baseline justify-between gap-3">
+                        <span className="font-semibold text-navy-700">{price.label}</span>
+                        <span className="text-sm font-semibold text-navy-700">
+                          +{formatFee(price.cents, selectedArea.currency)}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm text-navy-500">{price.description}</p>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
           <label className="mt-6 flex items-start gap-3 rounded-lg border border-gold-200 bg-gold-50 p-4">
             <input
               type="checkbox"
@@ -367,7 +433,9 @@ export default function PostMatterForm({
                 disabled={!acked || submitting}
                 className="rounded-lg bg-gold-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-gold-600 disabled:cursor-not-allowed disabled:bg-navy-200"
               >
-                {submitting ? "Redirecting…" : `Post & pay · ${formatFee(selectedArea.leadFeeInCents, selectedArea.currency)}`}
+                {submitting
+                  ? "Redirecting…"
+                  : `Post & pay · ${formatFee(selectedArea.leadFeeInCents + addonTotalCents, selectedArea.currency)}`}
               </button>
             </div>
           </div>
