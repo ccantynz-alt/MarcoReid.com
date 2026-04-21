@@ -24,6 +24,12 @@ export default function ForStartupsPage() {
             Tax strategy. Everything a startup needs from day one, powered by
             professionals who use the most advanced tools available.
           </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Button href="/setup-company" size="lg">Set up a company</Button>
+            <Button href="/post-matter" variant="secondary" size="lg">
+              Post a matter
+            </Button>
+          </div>
         </Container>
       </section>
 
