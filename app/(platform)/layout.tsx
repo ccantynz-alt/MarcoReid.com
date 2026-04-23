@@ -21,7 +21,7 @@ const platformNav = [
   { href: "/voice", label: "Voice" },
   { href: "/time", label: "Time" },
   { href: "/trust", label: "Trust" },
-  { href: "/accounting", label: "Accounting" },
+  { href: "/books", label: "Books" },
   { href: "/aml", label: "AML" },
   { href: "/billing", label: "Billing" },
   { href: "/news", label: "News" },

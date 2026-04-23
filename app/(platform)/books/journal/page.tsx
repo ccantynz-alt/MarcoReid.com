@@ -1,5 +1,5 @@
 /**
- * /accounting/journal — list of journal entries.
+ * /books/journal — list of journal entries.
  *
  * Most-recent first. Each row shows the running debit/credit totals so
  * an unbalanced DRAFT is visible at a glance.
@@ -49,11 +49,11 @@ export default async function JournalPage() {
           <p className="mt-2 text-navy-500 dark:text-navy-300">{entries.length} entries.</p>
         </div>
         <div className="flex gap-2">
-          <Link href="/accounting" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
+          <Link href="/books" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
             ← Overview
           </Link>
           <Link
-            href="/accounting/journal/new"
+            href="/books/journal/new"
             className="rounded-lg bg-navy-500 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-600"
           >
             New entry

@@ -1,5 +1,5 @@
 /**
- * /accounting/coa — Chart of accounts.
+ * /books/coa — Chart of accounts.
  *
  * Server-renders a tree (parent + children) grouped by `AccountType`.
  * Includes a "seed default chart" form action so a fresh firm can pick
@@ -47,8 +47,8 @@ async function seedAction(formData: FormData) {
   const jurisdiction = formData.get("jurisdiction") as Jurisdiction | null;
   if (!jurisdiction || !["NZ", "AU", "UK", "US"].includes(jurisdiction)) return;
   await seedDefaultChartOfAccounts(userId, jurisdiction);
-  revalidatePath("/accounting/coa");
-  revalidatePath("/accounting");
+  revalidatePath("/books/coa");
+  revalidatePath("/books");
 }
 
 export default async function ChartOfAccountsPage() {
@@ -78,7 +78,7 @@ export default async function ChartOfAccountsPage() {
           </p>
         </div>
         <Link
-          href="/accounting"
+          href="/books"
           className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300"
         >
           ← Overview

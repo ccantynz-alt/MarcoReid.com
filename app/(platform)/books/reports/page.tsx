@@ -1,5 +1,5 @@
 /**
- * /accounting/reports — Trial balance, P&L, and balance sheet rendered
+ * /books/reports — Trial balance, P&L, and balance sheet rendered
  * from POSTED journal lines.
  *
  * Single page; period-MTD and asOf-today defaults so the page is useful
@@ -45,7 +45,7 @@ export default async function ReportsPage() {
             Computed live from posted journal lines.
           </p>
         </div>
-        <Link href="/accounting" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
+        <Link href="/books" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
           ← Overview
         </Link>
       </div>

@@ -1,5 +1,5 @@
 /**
- * /accounting — General ledger overview.
+ * /books — General ledger overview.
  *
  * Pulls a small slice of each report directly from Prisma so the page
  * is server-rendered and free of fetch round-trips.
@@ -61,7 +61,7 @@ export default async function AccountingOverviewPage() {
             Seed a starter chart of accounts from the COA page to get started.
           </p>
           <Link
-            href="/accounting/coa"
+            href="/books/coa"
             className="mt-3 inline-flex rounded-lg bg-gold-500 px-4 py-2 text-sm font-semibold text-white hover:bg-gold-600"
           >
             Set up chart of accounts
@@ -71,7 +71,7 @@ export default async function AccountingOverviewPage() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Link
-          href="/accounting/coa"
+          href="/books/coa"
           className="rounded-2xl border border-navy-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-navy-700 dark:bg-navy-900"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">Accounts</p>
@@ -79,7 +79,7 @@ export default async function AccountingOverviewPage() {
           <p className="mt-1 text-sm text-navy-500 dark:text-navy-300">Chart of accounts</p>
         </Link>
         <Link
-          href="/accounting/transactions"
+          href="/books/transactions"
           className="rounded-2xl border border-navy-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-navy-700 dark:bg-navy-900"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">To categorise</p>
@@ -87,7 +87,7 @@ export default async function AccountingOverviewPage() {
           <p className="mt-1 text-sm text-navy-500 dark:text-navy-300">Uncategorised transactions</p>
         </Link>
         <Link
-          href="/accounting/banks"
+          href="/books/banks"
           className="rounded-2xl border border-navy-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-navy-700 dark:bg-navy-900"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">Connections</p>
@@ -95,7 +95,7 @@ export default async function AccountingOverviewPage() {
           <p className="mt-1 text-sm text-navy-500 dark:text-navy-300">Bank feeds</p>
         </Link>
         <Link
-          href="/accounting/reports"
+          href="/books/reports"
           className="rounded-2xl border border-navy-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-navy-700 dark:bg-navy-900"
         >
           <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">Net income</p>
@@ -108,7 +108,7 @@ export default async function AccountingOverviewPage() {
         <section className="rounded-2xl border border-navy-200 bg-white p-6 dark:border-navy-700 dark:bg-navy-900">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-serif text-xl text-navy-700 dark:text-navy-100">Trial balance preview</h2>
-            <Link href="/accounting/reports" className="text-xs font-semibold text-gold-600 hover:text-gold-700">
+            <Link href="/books/reports" className="text-xs font-semibold text-gold-600 hover:text-gold-700">
               Full report →
             </Link>
           </div>
@@ -146,7 +146,7 @@ export default async function AccountingOverviewPage() {
         <section className="rounded-2xl border border-navy-200 bg-white p-6 dark:border-navy-700 dark:bg-navy-900">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-serif text-xl text-navy-700 dark:text-navy-100">Profit &amp; Loss — MTD</h2>
-            <Link href="/accounting/reports" className="text-xs font-semibold text-gold-600 hover:text-gold-700">
+            <Link href="/books/reports" className="text-xs font-semibold text-gold-600 hover:text-gold-700">
               Full report →
             </Link>
           </div>
@@ -173,19 +173,19 @@ export default async function AccountingOverviewPage() {
 
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
-          href="/accounting/banks"
+          href="/books/banks"
           className="rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-600"
         >
           Connect a bank
         </Link>
         <Link
-          href="/accounting/journal/new"
+          href="/books/journal/new"
           className="rounded-lg border border-navy-300 px-5 py-2.5 text-sm font-semibold text-navy-600 hover:bg-navy-50 dark:border-navy-600 dark:text-navy-200 dark:hover:bg-navy-800"
         >
           New journal entry
         </Link>
         <Link
-          href="/accounting/transactions"
+          href="/books/transactions"
           className="rounded-lg border border-navy-300 px-5 py-2.5 text-sm font-semibold text-navy-600 hover:bg-navy-50 dark:border-navy-600 dark:text-navy-200 dark:hover:bg-navy-800"
         >
           Review transactions

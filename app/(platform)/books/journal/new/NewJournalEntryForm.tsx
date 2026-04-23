@@ -92,7 +92,7 @@ export default function NewJournalEntryForm({ accounts }: { accounts: AccountOpt
         if (!posted.ok) throw new Error(postedJson.error ?? "Failed to post");
       }
 
-      router.push("/accounting/journal");
+      router.push("/books/journal");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");

@@ -1,5 +1,5 @@
 /**
- * /accounting/banks — Bank connection list + connect CTAs.
+ * /books/banks — Bank connection list + connect CTAs.
  *
  * Each provider gets its own Connect button. Until provider keys are
  * configured the button posts a stub explaining what's needed. When
@@ -55,7 +55,7 @@ export default async function BanksPage() {
             Marco Reid pulls bank data direct from neutral open-banking infrastructure providers — never via a competitor's API.
           </p>
         </div>
-        <Link href="/accounting" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
+        <Link href="/books" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
           ← Overview
         </Link>
       </div>

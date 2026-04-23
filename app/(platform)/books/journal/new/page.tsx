@@ -1,5 +1,5 @@
 /**
- * /accounting/journal/new — multi-line journal entry form.
+ * /books/journal/new — multi-line journal entry form.
  *
  * Server component that fetches the COA, then hands off to the client
  * component that owns the dynamic line editor.
@@ -38,7 +38,7 @@ export default async function NewJournalEntryPage() {
           </p>
         </div>
         <Link
-          href="/accounting/journal"
+          href="/books/journal"
           className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300"
         >
           ← All entries

@@ -1,5 +1,5 @@
 /**
- * /accounting/transactions — bank transaction queue.
+ * /books/transactions — bank transaction queue.
  *
  * Defaults to UNCATEGORISED, with a status filter for the other states.
  * The categorise action lives in the client component so the dropdown +
@@ -73,7 +73,7 @@ export default async function TransactionsPage({
             Pulled direct from your bank via open-banking infrastructure. Categorise to post.
           </p>
         </div>
-        <Link href="/accounting" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
+        <Link href="/books" className="text-sm font-semibold text-navy-500 hover:text-navy-700 dark:text-navy-300">
           ← Overview
         </Link>
       </div>
@@ -85,7 +85,7 @@ export default async function TransactionsPage({
           return (
             <Link
               key={s}
-              href={`/accounting/transactions?status=${s}`}
+              href={`/books/transactions?status=${s}`}
               className={`rounded-full px-4 py-1.5 text-xs font-semibold ${
                 active
                   ? "bg-navy-500 text-white"
