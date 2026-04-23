@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import PlatformSiblingsWidget from "./components/PlatformSiblingsWidget";
 
 interface UserRecord {
   id: string;
@@ -95,6 +96,8 @@ export default function AdminPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <PlatformSiblingsWidget />
+
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-plum-600">
