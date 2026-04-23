@@ -578,3 +578,147 @@ model SignoffRequest {
   @@index([reviewerId])
   @@index([requestedAt])
 }
+
+// ============================================================
+// ============ TRUST ACCOUNTING ============
+// ============================================================
+// Jurisdiction-aware trust ledger for legal practice management.
+// Models are prefixed with `Legal` to coexist with the simpler
+// per-client trust models defined earlier in this schema. The
+// engine here is the canonical source of truth for three-way
+// reconciliation under NZ LCA, AU state acts, UK SRA Accounts
+// Rules, and US IOLTA programs.
+
+enum TrustJurisdiction {
+  NZ_LCA       // NZ Lawyers and Conveyancers Act
+  AU_VIC       // Victoria
+  AU_NSW
+  AU_QLD
+  AU_WA
+  AU_SA
+  AU_TAS
+  AU_ACT
+  AU_NT
+  UK_SRA       // SRA Accounts Rules
+  US_IOLTA     // generic IOLTA — state subdivision later
+}
+
+enum LegalTrustAccountStatus {
+  ACTIVE
+  INACTIVE
+  CLOSED
+}
+
+enum LegalTrustTransactionType {
+  DEPOSIT
+  WITHDRAWAL
+  TRANSFER_IN
+  TRANSFER_OUT
+  INTEREST_CREDIT
+  BANK_FEE
+  CORRECTION
+}
+
+enum LegalTrustTransactionStatus {
+  PENDING
+  CLEARED
+  RECONCILED
+  VOIDED
+}
+
+enum LegalTrustReconciliationStatus {
+  OPEN
+  BALANCED
+  OUT_OF_BALANCE
+  LOCKED
+}
+
+model LegalTrustAccount {
+  id                 String                   @id @default(cuid())
+  firmId             String                   // FK to a future Firm; for now just a string
+  name               String
+  jurisdiction       TrustJurisdiction
+  bankName           String
+  bankAccountMasked  String                   // last-4 only
+  bsbOrSortCode      String?                  // AU BSB / UK sort code / NZ branch
+  routingNumber      String?                  // US ABA
+  iban               String?                  // UK / EU optional
+  currency           String                   @default("NZD")
+  openingBalance     Decimal                  @default(0) @db.Decimal(18, 2)
+  status             LegalTrustAccountStatus  @default(ACTIVE)
+  openedAt           DateTime                 @default(now())
+  closedAt           DateTime?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  ledgers            LegalTrustClientLedger[]
+  transactions       LegalTrustTransaction[]
+  reconciliations    LegalTrustReconciliation[]
+
+  @@index([firmId, status])
+}
+
+model LegalTrustClientLedger {
+  // Per-client sub-ledger inside a trust account. Each client's money is
+  // tracked separately even though it sits in a pooled bank account.
+  id              String                   @id @default(cuid())
+  trustAccountId  String
+  clientId        String                   // FK to existing Client model (string ref)
+  matterId        String?                  // optional FK to Matter
+  reference       String                   // human-readable label
+  openingBalance  Decimal                  @default(0) @db.Decimal(18, 2)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+
+  trustAccount    LegalTrustAccount        @relation(fields: [trustAccountId], references: [id])
+  transactions    LegalTrustTransaction[]
+
+  @@index([trustAccountId, clientId])
+}
+
+model LegalTrustTransaction {
+  id                  String                       @id @default(cuid())
+  trustAccountId      String
+  clientLedgerId      String?                      // null for bank-level entries (interest, fees)
+  type                LegalTrustTransactionType
+  status              LegalTrustTransactionStatus  @default(PENDING)
+  amount              Decimal                      @db.Decimal(18, 2)
+  balanceAfter        Decimal?                     @db.Decimal(18, 2)
+  description         String
+  bankReference       String?
+  reconciliationId    String?
+  occurredAt          DateTime                     @default(now())
+  createdAt           DateTime                     @default(now())
+  updatedAt           DateTime                     @updatedAt
+  voidedAt            DateTime?
+  voidReason          String?
+
+  trustAccount        LegalTrustAccount            @relation(fields: [trustAccountId], references: [id])
+  clientLedger        LegalTrustClientLedger?      @relation(fields: [clientLedgerId], references: [id])
+  reconciliation      LegalTrustReconciliation?    @relation(fields: [reconciliationId], references: [id])
+
+  @@index([trustAccountId, occurredAt])
+  @@index([status])
+}
+
+model LegalTrustReconciliation {
+  id                   String                          @id @default(cuid())
+  trustAccountId       String
+  periodStart          DateTime
+  periodEnd            DateTime
+  bankStatementBalance Decimal                         @db.Decimal(18, 2)
+  ledgerBalance        Decimal                         @db.Decimal(18, 2)
+  clientLedgerSum      Decimal                         @db.Decimal(18, 2)
+  variance             Decimal                         @db.Decimal(18, 2)
+  status               LegalTrustReconciliationStatus  @default(OPEN)
+  reconciledById       String?                         // FK to User
+  reconciledAt         DateTime?
+  notes                String?                         @db.Text
+  createdAt            DateTime                        @default(now())
+  updatedAt            DateTime                        @updatedAt
+
+  trustAccount         LegalTrustAccount               @relation(fields: [trustAccountId], references: [id])
+  transactions         LegalTrustTransaction[]
+
+  @@index([trustAccountId, periodEnd])
+}
