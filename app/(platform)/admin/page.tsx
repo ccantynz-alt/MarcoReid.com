@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import PlatformSiblingsWidget from "./components/PlatformSiblingsWidget";
 
 interface UserRecord {
   id: string;
@@ -95,6 +96,8 @@ export default function AdminPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <PlatformSiblingsWidget />
+
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-plum-600">
@@ -130,8 +133,53 @@ export default function AdminPage() {
         ))}
       </div>
 
-      {/* Quick links */}
-      <div className="mt-8 grid gap-3 sm:grid-cols-3">
+      {/* Admin v2 capabilities */}
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <Link
+          href="/admin/revenue"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">Revenue</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            MRR, ARR, weekly trend, churn
+          </p>
+        </Link>
+        <Link
+          href="/admin/signoffs"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">Sign-off oversight</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            Read-only global queue of pending sign-offs
+          </p>
+        </Link>
+        <Link
+          href="/admin/aml-flags"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">AML oversight</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            HIGH-risk subjects, EDD, draft SARs
+          </p>
+        </Link>
+        <Link
+          href="/admin/audit"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">Audit log</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            Combined audit events, sortable + filterable
+          </p>
+        </Link>
+        <Link
+          href="/admin/cost"
+          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
+        >
+          <p className="font-medium text-navy-700">AI cost</p>
+          <p className="mt-0.5 text-xs text-navy-400">
+            Current-month tokens and estimated spend
+          </p>
+        </Link>
         <Link
           href="/build-status"
           className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
@@ -139,24 +187,6 @@ export default function AdminPage() {
           <p className="font-medium text-navy-700">Build status</p>
           <p className="mt-0.5 text-xs text-navy-400">
             Live phase tracker for the whole platform
-          </p>
-        </Link>
-        <Link
-          href="/status"
-          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
-        >
-          <p className="font-medium text-navy-700">System status</p>
-          <p className="mt-0.5 text-xs text-navy-400">
-            Uptime and recent incidents
-          </p>
-        </Link>
-        <Link
-          href="/changelog"
-          className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
-        >
-          <p className="font-medium text-navy-700">Changelog</p>
-          <p className="mt-0.5 text-xs text-navy-400">
-            Public platform updates
           </p>
         </Link>
       </div>
@@ -235,19 +265,22 @@ export default function AdminPage() {
                       className="border-b border-navy-50 hover:bg-navy-50/50"
                     >
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
+                        <Link
+                          href={`/admin/users/${user.id}`}
+                          className="flex items-center gap-3"
+                        >
                           <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 text-xs font-semibold text-navy-600">
                             {(user.name || user.email).charAt(0).toUpperCase()}
                           </span>
                           <div>
-                            <p className="font-medium text-navy-700">
+                            <p className="font-medium text-navy-700 hover:underline">
                               {user.name || "—"}
                             </p>
                             <p className="text-xs text-navy-400">
                               {user.email}
                             </p>
                           </div>
-                        </div>
+                        </Link>
                       </td>
                       <td className="px-6 py-4 text-navy-500">
                         {user.firmName || "—"}
