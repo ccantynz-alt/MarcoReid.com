@@ -753,3 +753,195 @@ model LegalTrustReconciliation {
 
   @@index([trustAccountId, periodEnd])
 }
+
+// ============================================================
+// ============ AML / CDD ============
+// AUSTRAC Tranche 2 ready (commences 1 July 2026 in Australia).
+// Multi-jurisdiction by design: NZ DIA, AU AUSTRAC, UK HMRC, US FinCEN.
+// All material state changes are mirrored into AmlAuditEntry (append-only)
+// so the regulator audit trail is tamper-evident.
+// ============================================================
+
+enum AmlJurisdiction {
+  NZ_DIA           // Department of Internal Affairs supervises lawyers/accountants
+  AU_AUSTRAC       // Tranche 2 from 1 Jul 2026
+  UK_HMRC          // Money Laundering Regulations 2017
+  US_FINCEN        // BOI + state AML
+}
+
+enum CddRiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  UNACCEPTABLE
+}
+
+enum CddStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  APPROVED
+  REJECTED
+  REQUIRES_EDD
+  EXPIRED
+}
+
+enum CddCheckType {
+  IDENTITY
+  ADDRESS
+  PEP
+  SANCTIONS
+  ADVERSE_MEDIA
+  SOURCE_OF_FUNDS
+  BENEFICIAL_OWNERSHIP
+}
+
+enum CddCheckResult {
+  CLEAR
+  HIT
+  REVIEW_REQUIRED
+  PENDING
+  ERROR
+}
+
+enum SarStatus {
+  DRAFT
+  SUBMITTED
+  ACKNOWLEDGED
+  CLOSED
+}
+
+model AmlProgram {
+  // Each firm's AML/CTF program — the doctrine document required by the regulator
+  id                  String             @id @default(cuid())
+  firmId              String
+  jurisdiction        AmlJurisdiction
+  version             Int                @default(1)
+  effectiveFrom       DateTime           @default(now())
+  effectiveTo         DateTime?
+  documentSha256      String             // tamper-evidence hash
+  storedDocumentRef   String             // R2 key for the actual PDF/MD
+  approvedById        String?            // FK to User (compliance officer)
+  approvedAt          DateTime?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  @@index([firmId, jurisdiction])
+}
+
+model CddSubject {
+  // The person or entity being CDD'd. Could be the matter's client, a beneficial owner, etc.
+  id                  String        @id @default(cuid())
+  firmId              String
+  matterId            String?       // optional link
+  clientId            String?       // optional link to existing Client
+  subjectType         String        // "INDIVIDUAL" | "ENTITY"
+  legalName           String
+  preferredName       String?
+  dateOfBirth         DateTime?
+  countryOfResidence  String?
+  countryOfCitizenship String?
+  addressLine1        String?
+  addressLine2        String?
+  city                String?
+  region              String?
+  postalCode          String?
+  country             String?
+  entityType          String?       // "COMPANY" | "TRUST" | "PARTNERSHIP" | etc.
+  entityRegistrationNumber String?
+  entityJurisdiction  String?
+  riskLevel           CddRiskLevel  @default(MEDIUM)
+  status              CddStatus     @default(NOT_STARTED)
+  expiresAt           DateTime?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  checks              CddCheck[]
+  beneficialOwners    CddBeneficialOwner[]
+  sourceOfFunds       CddSourceOfFunds[]
+
+  @@index([firmId, status])
+  @@index([expiresAt])
+}
+
+model CddCheck {
+  id              String         @id @default(cuid())
+  subjectId       String
+  type            CddCheckType
+  result          CddCheckResult
+  performedAt     DateTime       @default(now())
+  performedById   String?        // FK to User
+  vendorRef       String?        // external check ID for audit
+  rawResultRef    String?        // R2 key for the raw vendor payload
+  notes           String?        @db.Text
+  createdAt       DateTime       @default(now())
+
+  subject         CddSubject     @relation(fields: [subjectId], references: [id])
+
+  @@index([subjectId, type])
+}
+
+model CddBeneficialOwner {
+  // For entity subjects, the beneficial owner chain
+  id              String         @id @default(cuid())
+  subjectId       String
+  ownerName       String
+  ownerType       String         // INDIVIDUAL | ENTITY
+  ownershipPct    Decimal        @db.Decimal(5,2)
+  controlNotes    String?        @db.Text
+  ownerSubjectId  String?        // recursive — the BO is itself a CddSubject if individual
+  createdAt       DateTime       @default(now())
+
+  subject         CddSubject     @relation(fields: [subjectId], references: [id])
+
+  @@index([subjectId])
+}
+
+model CddSourceOfFunds {
+  id              String         @id @default(cuid())
+  subjectId       String
+  category        String         // SALARY | BUSINESS_INCOME | INHERITANCE | INVESTMENT | LOAN | OTHER
+  description     String         @db.Text
+  amountStated    Decimal?       @db.Decimal(18,2)
+  currency        String         @default("NZD")
+  evidenceRef     String?        // R2 key for evidence document
+  verifiedById    String?        // FK to User
+  verifiedAt      DateTime?
+  createdAt       DateTime       @default(now())
+
+  subject         CddSubject     @relation(fields: [subjectId], references: [id])
+
+  @@index([subjectId])
+}
+
+model SarReport {
+  // Suspicious Activity Report
+  id              String      @id @default(cuid())
+  firmId          String
+  jurisdiction    AmlJurisdiction
+  subjectId       String?
+  matterId        String?
+  reportNumber    String?     @unique
+  status          SarStatus   @default(DRAFT)
+  narrative       String      @db.Text
+  submittedAt     DateTime?
+  submittedById   String?
+  acknowledgedAt  DateTime?
+  acknowledgmentRef String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([firmId, status])
+}
+
+model AmlAuditEntry {
+  // Append-only AML audit log (no updates, no deletes)
+  id              String        @id @default(cuid())
+  firmId          String
+  actorUserId     String?
+  action          String        // PROGRAM_APPROVED | CDD_STARTED | CDD_CHECK_RAN | CDD_APPROVED | CDD_REJECTED | EDD_TRIGGERED | SAR_DRAFTED | SAR_SUBMITTED
+  subjectRef      String?       // related entity id
+  payloadSha256   String        // hash of the action payload for tamper evidence
+  occurredAt      DateTime      @default(now())
+
+  @@index([firmId, occurredAt])
+}
