@@ -271,7 +271,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Transactional email system",
         description:
-          "Branded email layout with Resend adapter. Welcome email on signup, reset email on request. Dev mode logs to console.",
+          "Branded email layout wired through the in-family AlecRae adapter with outbox fallback. Welcome email on signup, reset email on request. Dev mode logs to console.",
         status: "done",
       },
       {
@@ -476,7 +476,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Daily email digest",
         description:
-          "Morning email with the user's top 10 headlines, segmented by practice area, delivered via Resend. Opt-in at onboarding with a one-click unsubscribe. Same feed cache, rendered through the branded email layout.",
+          "Morning email with the user's top 10 headlines, segmented by practice area, delivered via AlecRae. Opt-in at onboarding with a one-click unsubscribe. Same feed cache, rendered through the branded email layout.",
         status: "queued",
       },
       {
@@ -613,9 +613,9 @@ export const phases: BuildPhase[] = [
       "The final gate before first paying customer. Nothing here can be skipped.",
     items: [
       {
-        title: "End-to-end Playwright tests",
+        title: "End-to-end test coverage (Gatetest)",
         description:
-          "Signup, subscribe, create matter, dictate, query Marco, generate invoice.",
+          "Signup, subscribe, create matter, dictate, query Marco, generate invoice. Runner-agnostic scenarios live in /e2e; the in-family Gatetest tenant drives execution once provisioned.",
         status: "queued",
       },
       {

@@ -20,8 +20,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Log the contact submission (replace with email service in production)
-    // e.g. SendGrid, Resend, AWS SES, or store in database
+    // Log the contact submission. Outbound notification to the support
+    // inbox is wired via `lib/email.ts` (AlecRae) in a follow-up stream.
     console.info("[contact]", {
       name,
       email,

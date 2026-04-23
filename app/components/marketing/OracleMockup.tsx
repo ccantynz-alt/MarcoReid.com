@@ -30,7 +30,7 @@ export default function OracleMockup() {
         {/* Results label */}
         <div className="mt-5 flex items-center justify-between">
           <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">
-            3 verified results &middot; 1.2 seconds
+            3 results &middot; 1.2 seconds
           </p>
           <div className="flex gap-2">
             <span className="rounded-md bg-navy-50 px-2.5 py-1 text-xs font-medium text-navy-500">All</span>
@@ -54,7 +54,7 @@ export default function OracleMockup() {
               </div>
               <span className="flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-bold text-forest-600">
                 <span className="h-2 w-2 rounded-full bg-forest-500" />
-                Verified
+                Source extracted
               </span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-navy-500">
@@ -90,7 +90,7 @@ export default function OracleMockup() {
               </div>
               <span className="flex items-center gap-1.5 rounded-full bg-forest-50 px-3 py-1 text-xs font-bold text-forest-600">
                 <span className="h-2 w-2 rounded-full bg-forest-500" />
-                Verified
+                Source extracted
               </span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-navy-500">

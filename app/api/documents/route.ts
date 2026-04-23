@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { DocumentKind } from "@prisma/client";
+
+export const runtime = "nodejs";
 
 const VALID_KINDS = new Set<string>([
   "CONTRACT",
@@ -15,6 +20,14 @@ const VALID_KINDS = new Set<string>([
 ]);
 
 const VALID_SORTS = new Set(["recent", "title", "size", "kind"]);
+
+// Local dev upload root — gitignored via /.dev-uploads/ in .gitignore.
+const DEV_UPLOAD_DIR = path.join(process.cwd(), ".dev-uploads");
+
+function sanitiseFileName(name: string): string {
+  // Keep dots so extensions survive, but collapse anything weird.
+  return name.replace(/[^\w.\-]+/g, "_").slice(0, 120);
+}
 
 export async function GET(req: NextRequest) {
   const userId = await getUserId();
@@ -88,11 +101,10 @@ export async function GET(req: NextRequest) {
  *  - JSON body with { title, fileName, fileUrl, fileSize, mimeType, kind?, matterId?, clientId? }
  *  - multipart/form-data with `file` plus the metadata fields above
  *
- * NOTE: file storage backend (S3 / R2 / Vercel Blob) is not yet wired up.
- * If a real `file` blob is uploaded via FormData we currently return 501 so
- * the client can fall back to its preview-mode stub. JSON callers (with a
- * provided fileUrl) continue to work — that's how seed data and the
- * preview-mode client both create rows.
+ * In dev (NODE_ENV !== "production") real file uploads are persisted to
+ * `./.dev-uploads/` and exposed via the `/api/documents/file/<id>` route
+ * so the dashboard can preview them. In prod, file blobs still return 501
+ * until the Crontech R2 tenant is provisioned for Marco Reid.
  */
 export async function POST(req: NextRequest) {
   const userId = await getUserId();
@@ -125,16 +137,39 @@ export async function POST(req: NextRequest) {
       clientId = (form.get("clientId") as string | null) || null;
 
       if (file && typeof file === "object" && "size" in file) {
-        // Real binary upload requested but no storage backend configured.
-        return NextResponse.json(
-          {
-            error: "File storage not configured",
-            code: "STORAGE_NOT_CONFIGURED",
-            message:
-              "Real file storage is being configured. The client will fall back to preview mode.",
-          },
-          { status: 501 }
-        );
+        const isProd = process.env.NODE_ENV === "production";
+
+        if (isProd) {
+          // Crontech R2 wiring lands in a later stream. Message is
+          // deliberately explicit so it reads sensibly in a demo.
+          return NextResponse.json(
+            {
+              error: "File storage pending Crontech R2 tenant provisioning",
+              code: "STORAGE_NOT_CONFIGURED",
+              message:
+                "Real file storage is pending the Crontech R2 tenant provisioning for Marco Reid. The client will fall back to preview mode.",
+            },
+            { status: 501 }
+          );
+        }
+
+        // Dev-mode: write the blob to ./.dev-uploads and return a
+        // signed-URL-shaped response the client already knows how to
+        // handle.
+        const blob = file as File;
+        const safeName = sanitiseFileName(blob.name || fileName || "upload.bin");
+        const id = randomUUID();
+        const targetDir = path.join(DEV_UPLOAD_DIR, id);
+        await mkdir(targetDir, { recursive: true });
+        const targetPath = path.join(targetDir, safeName);
+        const buf = Buffer.from(await blob.arrayBuffer());
+        await writeFile(targetPath, buf);
+
+        fileName = fileName ?? blob.name ?? safeName;
+        fileSize = fileSize ?? blob.size;
+        mimeType = mimeType ?? blob.type ?? "application/octet-stream";
+        fileUrl = `/api/documents/file/${id}/${safeName}`;
+        title = title ?? fileName;
       }
     } else {
       const body = await req.json().catch(() => ({}));

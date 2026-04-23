@@ -1,30 +1,98 @@
-// Transactional email adapter.
-// In production, wire up Resend or Postmark. For now, this logs to console
-// and can be toggled on with RESEND_API_KEY in the environment.
+// Transactional email adapter for Marco Reid.
+//
+// AlecRae (Crontech family) is the sole outbound provider. In dev, when
+// ALECRAE_API_KEY is unset, emails are logged to the console so flows stay
+// testable without a live tenant. In any mode, send failures are enqueued
+// to the EmailOutbox table and retried by drainEmailOutbox().
+
+import { randomUUID } from "node:crypto";
+import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@prisma/client";
 
 interface SendEmailParams {
   to: string;
   subject: string;
   html: string;
   text?: string;
+  from?: string;
+  messageId?: string;
+  headers?: Record<string, string>;
 }
 
 interface EmailResult {
   ok: boolean;
   id?: string;
   error?: string;
+  queued?: boolean; // true if the send failed and we parked it in EmailOutbox
+}
+
+const DEFAULT_FROM =
+  process.env.ALECRAE_FROM_ADDRESS ||
+  "Marco Reid <noreply@mail.marcoreid.com>";
+const BASE_URL =
+  process.env.ALECRAE_BASE_URL || "https://api.alecrae.com/v1";
+
+// Retry policy for the AlecRae call itself. Separate from the outbox drain.
+const MAX_ATTEMPTS = 3;
+const BASE_BACKOFF_MS = 500;
+
+function jitteredBackoff(attempt: number): number {
+  const base = BASE_BACKOFF_MS * 2 ** (attempt - 1);
+  return base + Math.floor(Math.random() * base);
+}
+
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+interface AlecRaePayload {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+  text?: string;
+  message_id: string;
+  headers?: Record<string, string>;
+}
+
+async function postToAlecRae(
+  apiKey: string,
+  payload: AlecRaePayload
+): Promise<{ ok: boolean; id?: string; error?: string }> {
+  try {
+    const res = await fetch(`${BASE_URL}/send`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      return { ok: false, error: `AlecRae ${res.status}: ${body}` };
+    }
+    const data = (await res.json().catch(() => ({}))) as { id?: string };
+    return { ok: true, id: data.id ?? payload.message_id };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    return { ok: false, error: message };
+  }
 }
 
 export async function sendEmail(params: SendEmailParams): Promise<EmailResult> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM || "Marco Reid <noreply@marcoreid.com>";
+  const apiKey = process.env.ALECRAE_API_KEY;
+  const from = params.from ?? DEFAULT_FROM;
+  const messageId = params.messageId ?? randomUUID();
 
-  // Development / unconfigured mode: log to console so you can copy the link
+  // Dev / unconfigured mode: log to console so flows remain testable.
   if (!apiKey) {
     // eslint-disable-next-line no-console
     console.log("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     // eslint-disable-next-line no-console
-    console.log(`📧 Email (dev mode — no RESEND_API_KEY configured)`);
+    console.log("📧 Email (dev mode — ALECRAE_API_KEY not set)");
+    // eslint-disable-next-line no-console
+    console.log(`Message-ID: ${messageId}`);
     // eslint-disable-next-line no-console
     console.log(`To:      ${params.to}`);
     // eslint-disable-next-line no-console
@@ -37,39 +105,158 @@ export async function sendEmail(params: SendEmailParams): Promise<EmailResult> {
     console.log(params.text || params.html);
     // eslint-disable-next-line no-console
     console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    return { ok: true, id: "dev-" + Date.now() };
+    return { ok: true, id: `dev-${messageId}` };
   }
 
+  const payload: AlecRaePayload = {
+    from,
+    to: params.to,
+    subject: params.subject,
+    html: params.html,
+    text: params.text,
+    message_id: messageId,
+    headers: params.headers,
+  };
+
+  // Three attempts with jittered exponential backoff (500ms base).
+  let lastError: string | undefined;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const res = await postToAlecRae(apiKey, payload);
+    if (res.ok) {
+      return { ok: true, id: res.id };
+    }
+    lastError = res.error;
+    if (attempt < MAX_ATTEMPTS) {
+      await sleep(jitteredBackoff(attempt));
+    }
+  }
+
+  // Persistent failure — park it in the outbox for a later drain pass.
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
+    await prisma.emailOutbox.create({
+      data: {
         to: params.to,
+        from,
         subject: params.subject,
         html: params.html,
-        text: params.text,
-      }),
+        messageId,
+        headers: (params.headers ?? {}) as Prisma.InputJsonValue,
+        attemptCount: MAX_ATTEMPTS,
+        lastAttemptAt: new Date(),
+        status: "PENDING",
+        errorMessage: lastError ?? null,
+      },
     });
-
-    if (!res.ok) {
-      const body = await res.text();
-      return { ok: false, error: `Resend API error ${res.status}: ${body}` };
-    }
-
-    const data = (await res.json()) as { id: string };
-    return { ok: true, id: data.id };
   } catch (err) {
+    // If even the outbox insert fails, we surface the original error.
+    // This is almost always a DB-outage case — the caller decides what to do.
     const message = err instanceof Error ? err.message : String(err);
-    return { ok: false, error: message };
+    return {
+      ok: false,
+      error: `AlecRae failed (${lastError ?? "unknown"}); outbox enqueue failed: ${message}`,
+    };
   }
+
+  return { ok: false, error: lastError, queued: true };
 }
 
-// Shared branded email wrapper
+// ----------------------------------------------------------------
+// Outbox drain — called by a later cron trigger. Export only.
+// ----------------------------------------------------------------
+
+const DEAD_LETTER_AFTER_MS = 24 * 60 * 60 * 1000; // 24h
+
+export interface DrainResult {
+  scanned: number;
+  sent: number;
+  deadLettered: number;
+  retried: number;
+}
+
+/**
+ * Iterate EmailOutbox rows in PENDING status. For each, try to send via
+ * AlecRae again. On success mark SENT. On failure increment attemptCount
+ * and, if the row is older than 24h, move it to DEAD_LETTER.
+ *
+ * This function does not schedule itself — a separate cron trigger (wired
+ * in a later stream) is the entry point.
+ */
+export async function drainEmailOutbox(): Promise<DrainResult> {
+  const apiKey = process.env.ALECRAE_API_KEY;
+  // Without a configured tenant there is nothing we can do.
+  if (!apiKey) return { scanned: 0, sent: 0, deadLettered: 0, retried: 0 };
+
+  const pending = await prisma.emailOutbox.findMany({
+    where: { status: "PENDING" },
+    orderBy: { createdAt: "asc" },
+    take: 100,
+  });
+
+  let sent = 0;
+  let deadLettered = 0;
+  let retried = 0;
+  const now = Date.now();
+
+  for (const row of pending) {
+    const payload: AlecRaePayload = {
+      from: row.from,
+      to: row.to,
+      subject: row.subject,
+      html: row.html,
+      message_id: row.messageId,
+      headers:
+        row.headers && typeof row.headers === "object"
+          ? (row.headers as Record<string, string>)
+          : undefined,
+    };
+
+    const res = await postToAlecRae(apiKey, payload);
+    if (res.ok) {
+      await prisma.emailOutbox.update({
+        where: { id: row.id },
+        data: {
+          status: "SENT",
+          lastAttemptAt: new Date(),
+          attemptCount: row.attemptCount + 1,
+          errorMessage: null,
+        },
+      });
+      sent++;
+      continue;
+    }
+
+    const ageMs = now - row.createdAt.getTime();
+    if (ageMs >= DEAD_LETTER_AFTER_MS) {
+      await prisma.emailOutbox.update({
+        where: { id: row.id },
+        data: {
+          status: "DEAD_LETTER",
+          lastAttemptAt: new Date(),
+          attemptCount: row.attemptCount + 1,
+          errorMessage: res.error ?? "exceeded 24h retry window",
+        },
+      });
+      deadLettered++;
+    } else {
+      await prisma.emailOutbox.update({
+        where: { id: row.id },
+        data: {
+          lastAttemptAt: new Date(),
+          attemptCount: row.attemptCount + 1,
+          errorMessage: res.error ?? null,
+        },
+      });
+      retried++;
+    }
+  }
+
+  return { scanned: pending.length, sent, deadLettered, retried };
+}
+
+// ----------------------------------------------------------------
+// Shared branded email layout (unchanged).
+// ----------------------------------------------------------------
+
 export function emailLayout(opts: {
   preheader: string;
   heading: string;
