@@ -970,3 +970,224 @@ model SignoffAuditEntry {
   @@index([actorUserId])
   @@index([occurredAt])
 }
+
+// ============================================================
+// GENERAL LEDGER
+// ============================================================
+//
+// Marco Reid runs its own general ledger. We are not a plugin on top of
+// somebody else's accounting product — we are the source of truth.
+// Bank feeds arrive direct from neutral open-banking infrastructure
+// (Akahu in NZ, Basiq in AU, Plaid in US, TrueLayer in UK), are
+// deduplicated against `providerTxId`, suggested against the firm's own
+// chart of accounts, and posted into double-entry journals once a human
+// confirms. Every report (trial balance, P&L, balance sheet) is computed
+// from POSTED `JournalLine` rows — never from running totals on accounts,
+// which are derivable, not authoritative.
+
+enum AccountType {
+  ASSET
+  LIABILITY
+  EQUITY
+  REVENUE
+  EXPENSE
+  CONTRA_ASSET
+  CONTRA_LIABILITY
+}
+
+enum AccountSubType {
+  // Assets
+  CASH
+  BANK
+  ACCOUNTS_RECEIVABLE
+  INVENTORY
+  FIXED_ASSET
+  PREPAID
+  OTHER_ASSET
+  // Liabilities
+  ACCOUNTS_PAYABLE
+  TAX_PAYABLE
+  LOAN_PAYABLE
+  OTHER_LIABILITY
+  // Equity
+  OWNER_EQUITY
+  RETAINED_EARNINGS
+  // Revenue
+  SERVICE_REVENUE
+  PRODUCT_REVENUE
+  OTHER_INCOME
+  // Expense
+  COST_OF_SALES
+  OPERATING_EXPENSE
+  PAYROLL_EXPENSE
+  TAX_EXPENSE
+  INTEREST_EXPENSE
+  OTHER_EXPENSE
+}
+
+enum JournalStatus {
+  DRAFT
+  POSTED
+  VOIDED
+}
+
+enum BankFeedProvider {
+  AKAHU // NZ
+  BASIQ // AU
+  PLAID // US
+  TRUELAYER // UK
+}
+
+enum BankFeedStatus {
+  ACTIVE
+  PAUSED
+  ERROR
+  REVOKED
+}
+
+enum BankTransactionStatus {
+  UNCATEGORISED
+  SUGGESTED
+  CATEGORISED
+  RECONCILED
+  IGNORED
+}
+
+model ChartOfAccounts {
+  id          String         @id @default(cuid())
+  firmId      String
+  code        String // e.g., "1000", "4000"
+  name        String // e.g., "Cash on Hand"
+  type        AccountType
+  subType     AccountSubType
+  parentId    String? // for sub-accounts
+  isActive    Boolean        @default(true)
+  description String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  parent       ChartOfAccounts?  @relation("AccountTree", fields: [parentId], references: [id])
+  children     ChartOfAccounts[] @relation("AccountTree")
+  journalLines JournalLine[]
+
+  @@unique([firmId, code])
+  @@index([firmId, type])
+}
+
+model JournalEntry {
+  id          String        @id @default(cuid())
+  firmId      String
+  entryNumber Int // sequential per firm
+  entryDate   DateTime
+  description String
+  reference   String? // external reference (invoice #, bank tx id)
+  status      JournalStatus @default(DRAFT)
+  postedAt    DateTime?
+  postedById  String?
+  voidedAt    DateTime?
+  voidReason  String?
+  sourceType  String? // MANUAL | BANK_IMPORT | INVOICE | PAYROLL | RECURRING
+  sourceRef   String? // id of the source record
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  lines JournalLine[]
+
+  @@unique([firmId, entryNumber])
+  @@index([firmId, entryDate])
+  @@index([status])
+}
+
+model JournalLine {
+  id             String   @id @default(cuid())
+  journalEntryId String
+  accountId      String
+  debit          Decimal  @default(0) @db.Decimal(18, 2)
+  credit         Decimal  @default(0) @db.Decimal(18, 2)
+  description    String?
+  createdAt      DateTime @default(now())
+
+  journalEntry JournalEntry    @relation(fields: [journalEntryId], references: [id])
+  account      ChartOfAccounts @relation(fields: [accountId], references: [id])
+
+  @@index([journalEntryId])
+  @@index([accountId])
+}
+
+model BankConnection {
+  id                   String           @id @default(cuid())
+  firmId               String
+  provider             BankFeedProvider
+  providerAccountId    String // provider's connection identifier
+  institutionName      String
+  status               BankFeedStatus   @default(ACTIVE)
+  lastSyncedAt         DateTime?
+  encryptedAccessToken String?          @db.Text // sealed token; rotation handled later
+  errorMessage         String?
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  bankAccounts BankAccount[]
+
+  @@index([firmId, status])
+}
+
+model BankAccount {
+  id                  String    @id @default(cuid())
+  firmId              String
+  bankConnectionId    String? // null for manually added
+  ledgerAccountId     String? // FK to ChartOfAccounts when mapped
+  providerAccountId   String? // provider-side account id
+  name                String
+  accountNumberMasked String // last-4 only
+  accountType         String // CHECKING | SAVINGS | CREDIT_CARD | LOAN
+  currency            String    @default("NZD")
+  currentBalance      Decimal?  @db.Decimal(18, 2)
+  availableBalance    Decimal?  @db.Decimal(18, 2)
+  lastBalanceAt       DateTime?
+  isActive            Boolean   @default(true)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  bankConnection BankConnection?   @relation(fields: [bankConnectionId], references: [id])
+  transactions   BankTransaction[]
+
+  @@index([firmId, isActive])
+}
+
+model BankTransaction {
+  id                   String                @id @default(cuid())
+  bankAccountId        String
+  providerTxId         String // provider's transaction id, used for dedup
+  amount               Decimal               @db.Decimal(18, 2)
+  currency             String                @default("NZD")
+  description          String
+  merchantName         String?
+  category             String? // raw category from provider
+  occurredAt           DateTime
+  importedAt           DateTime              @default(now())
+  status               BankTransactionStatus @default(UNCATEGORISED)
+  suggestedAccountId   String? // ChartOfAccounts id suggested by AI
+  matchedJournalLineId String? // FK once reconciled
+  notes                String?
+
+  bankAccount BankAccount @relation(fields: [bankAccountId], references: [id])
+
+  @@unique([bankAccountId, providerTxId])
+  @@index([bankAccountId, occurredAt])
+  @@index([status])
+}
+
+model CategorisationRule {
+  id           String   @id @default(cuid())
+  firmId       String
+  matchPattern String // regex or contains
+  matchField   String // "DESCRIPTION" | "MERCHANT" | "CATEGORY"
+  accountId    String // ChartOfAccounts to assign
+  isActive     Boolean  @default(true)
+  hits         Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([firmId, isActive])
+}
