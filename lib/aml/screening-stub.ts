@@ -32,29 +32,29 @@ export interface ScreeningResult {
 const CLEAR: ScreeningResult = { result: "CLEAR", hits: [] };
 
 export async function screenForPep(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   name: string,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   dob?: Date | null,
 ): Promise<ScreeningResult> {
   // Stub: real screening data source wires here later.
+  void name;
+  void dob;
   return CLEAR;
 }
 
 export async function screenForSanctions(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   name: string,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   country?: string | null,
 ): Promise<ScreeningResult> {
   // Stub: real screening data source wires here later.
+  void name;
+  void country;
   return CLEAR;
 }
 
 export async function screenForAdverseMedia(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   name: string,
 ): Promise<ScreeningResult> {
   // Stub: real screening data source wires here later.
+  void name;
   return CLEAR;
 }
