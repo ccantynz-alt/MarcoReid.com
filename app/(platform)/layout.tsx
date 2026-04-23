@@ -9,6 +9,7 @@ import {
   useCommandPalette,
 } from "@/app/components/platform/CommandPalette";
 import FloatingTimer from "@/app/components/platform/FloatingTimer";
+import ImpersonationBanner from "@/app/components/platform/ImpersonationBanner";
 import DarkModeToggle from "@/app/components/shared/DarkModeToggle";
 
 const platformNav = [
@@ -65,6 +66,7 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-navy-50 dark:bg-navy-950">
+      <ImpersonationBanner />
       <a
         href="#platform-main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-lg focus:bg-navy-500 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
