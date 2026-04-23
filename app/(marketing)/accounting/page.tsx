@@ -11,7 +11,7 @@ const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedC
 import Reveal from "@/app/components/effects/Reveal";
 
 export const metadata: Metadata = {
-  title: "Marco Reid Accounting \u2014 The Most Advanced Accounting Platform on Earth",
+  title: "Marco Reid Accounting \u2014 Autonomous Accounting With Human Sign-Off",
   description:
     "Autonomous bookkeeping, payroll across five jurisdictions, GST / VAT / sales-tax filing, provisional and income tax, and a Catch-Up Centre for years-behind filers. AI does the work. A qualified accountant signs off.",
 };
@@ -23,7 +23,7 @@ const schema = {
   applicationCategory: "Accounting",
   operatingSystem: "Web",
   description:
-    "The most advanced accounting platform on earth. Autonomous bookkeeping, payroll, GST / VAT / sales tax filing, provisional and income tax, and a Catch-Up Centre for years-behind clients. Direct e-filing to IR, IRS, ATO, HMRC, and CRA.",
+    "Autonomous bookkeeping with human sign-off. Payroll, GST / VAT / sales tax filing, provisional and income tax, and a Catch-Up Centre for years-behind clients. Direct e-filing to IR, IRS, ATO, HMRC, and CRA.",
   url: `${BRAND.url}/accounting`,
 };
 
@@ -31,7 +31,7 @@ const pillars = [
   {
     tag: "Autonomous bookkeeping",
     title: "Books that close themselves.",
-    body: "Bank feeds auto-pull, AI auto-codes, reconciliation auto-runs, month-end auto-closes. You review and approve. What took a junior accountant a week now takes you nine minutes. Xero and QuickBooks promised this. Marco Reid actually delivers it.",
+    body: "Bank feeds auto-pull, AI auto-codes, reconciliation auto-runs, month-end auto-closes. You review and approve. What took a junior accountant a week now takes you nine minutes. Bookkeeping that closes itself, with a qualified accountant signing off at the end.",
   },
   {
     tag: "Payroll \u2014 every jurisdiction",
@@ -305,7 +305,7 @@ export default function AccountingPage() {
 
       <FAQ
         items={[
-          { question: "What does Marco Reid Accounting replace?", answer: "Marco Reid Accounting replaces QuickBooks, Xero, and standalone tax research tools. It includes automated bookkeeping, bank feed integration via Plaid, AI-powered reconciliation, 50-state tax compliance, receipt scanning, financial reporting, and Marco for accounting research — all in one platform." },
+          { question: "What does Marco Reid Accounting cover?", answer: "Marco Reid Accounting brings autonomous bookkeeping, bank feed integration, AI-powered reconciliation, 50-state tax compliance, receipt scanning, financial reporting, and Marco for accounting research into a single platform — with a qualified accountant signing off on every filing." },
           { question: "How does bank feed integration work?", answer: "Marco Reid connects directly to your bank accounts via Plaid. Transactions are automatically pulled, categorised using AI, and matched to the correct accounts. You review and approve — the manual data entry is eliminated." },
           { question: "Can it handle multi-state tax compliance?", answer: "Yes. Marco Reid Accounting includes tax compliance tools for all 50 US states plus federal. Tax calculations are always current, automatically updated when regulations change, and linked to Marco for instant research on any tax code question." },
           { question: "How does Marco help with tax research?", answer: "Marco searches every IRS code section, revenue ruling, Treasury regulation, and state tax code. Every citation is verified against official sources (IRS.gov, Cornell LII, GovInfo). You can query Marco from anywhere on the platform using the command palette." },

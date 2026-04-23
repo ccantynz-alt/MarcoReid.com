@@ -132,7 +132,7 @@ export default function HomePage() {
                   Marco Reid Legal
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  Westlaw in one tab. Clio in another. Email in a third. Sound familiar?
+                  Research in one tab. Case management in another. Email in a third. Sound familiar?
                 </h2>
               </div>
             </div>
@@ -143,8 +143,8 @@ export default function HomePage() {
               The average attorney spends more time managing software than practising law.
               Case management in one tool. Research in another. Billing somewhere else.
               Trust accounting in a spreadsheet. Client calls falling through the cracks.
-              You&rsquo;re paying $400/month for Westlaw, $100/month for Clio, $699 for Dragon,
-              $15/month for DocuSign &mdash; and none of them talk to each other.
+              Hundreds of dollars a month split across four or five disconnected
+              subscriptions &mdash; and none of them talk to each other.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -272,8 +272,8 @@ export default function HomePage() {
               Hit &#8984;K. Marco slides in without leaving your document. Type your question.
               Three verified cases in 3 seconds. Click &ldquo;Insert citation.&rdquo; Done. 25 seconds.
               And it works for both legal AND accounting research simultaneously &mdash;
-              because nobody else owns both sides. Cross-domain queries that Westlaw, LexisNexis,
-              and Harvey AI simply cannot answer.
+              because nobody else owns both sides. Cross-domain queries that single-discipline
+              research tools simply cannot answer.
             </p>
           </Reveal>
 
@@ -324,7 +324,8 @@ export default function HomePage() {
               </p>
               <p className="mt-4 text-sm leading-relaxed text-navy-200">
                 That query requires both legal research and tax intelligence simultaneously.
-                Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both sides.
+                A research tool that only knows law cannot answer it. A bookkeeping tool that only
+                knows numbers cannot answer it. Nobody else owns both sides.
                 This is a category that did not exist before Marco Reid created it.
               </p>
             </div>
@@ -527,7 +528,7 @@ export default function HomePage() {
                   Marco Reid Accounting
                 </p>
                 <h2 className="font-serif text-display text-navy-800">
-                  Xero, QuickBooks, and MYOB do bookkeeping.
+                  Legacy ledger tools do bookkeeping.
                   Marco Reid runs the entire firm.
                 </h2>
               </div>
@@ -536,8 +537,8 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              97% of CPA firms say they use technology inefficiently. Xero keeps removing
-              features. QuickBooks raised prices 400%. MYOB stopped innovating. None of
+              97% of CPA firms say they use technology inefficiently. Legacy ledger tools
+              keep stripping features, raising prices, and standing still. None of
               them handle payroll across jurisdictions. None of them file GST, VAT, and
               sales tax in one workflow. None of them have AI research, voice input, or
               any way to catch up a client who is ten years behind.
@@ -545,8 +546,8 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Marco Reid Accounting is the most advanced accounting platform on earth.
-              Autonomous bookkeeping. Payroll across NZ, AU, US, UK, and Canada in one
+              Marco Reid Accounting is autonomous bookkeeping with human sign-off.
+              Payroll across NZ, AU, US, UK, and Canada in one
               run. GST, VAT, and 50-state sales tax filed automatically. Provisional and
               income tax drafted the moment the year closes. And a Catch-Up Centre that
               cleans up years of unfiled returns with a qualified accountant signing off
@@ -634,19 +635,19 @@ export default function HomePage() {
 
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {[
-              { from: "Westlaw / LexisNexis", pain: "Research that costs $400+/mo, trapped in a separate tab, with no connection to your cases or documents", link: "/compare/westlaw" },
-              { from: "Clio", pain: "Good case management, but no research AI, no voice dictation, no accounting, no document AI. You still need 4 other tools", link: "/compare/clio" },
-              { from: "QuickBooks / Xero", pain: "Basic bookkeeping with no AI, no tax research, no voice input, and zero integration with the legal side", link: "/compare/quickbooks" },
-              { from: "Dragon Legal", pain: "$699 standalone dictation that can\u2019t file a motion, log a time entry, or query a research database. An island", link: "/compare/westlaw" },
+              { from: "Standalone legal research", pain: "Research that costs $400+/mo, trapped in a separate tab, with no connection to your cases or documents", link: "/compare/westlaw" },
+              { from: "Standalone case management", pain: "Workflow tooling with no research AI, no voice dictation, no accounting, no document AI. Still leaves you stitching four other tools together", link: "/law" },
+              { from: "Legacy ledger tools", pain: "Basic bookkeeping with no AI, no tax research, no voice input, and zero integration with the legal side", link: "/accounting" },
+              { from: "Standalone dictation", pain: "Standalone dictation that can\u2019t file a motion, log a time entry, or query a research database. An island", link: "/dictation" },
             ].map((item) => (
               <Reveal key={item.from} delay={0.05}>
                 <a
                   href={item.link}
                   className="block rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10"
                 >
-                  <p className="text-xs font-bold tracking-wider text-navy-300">Replacing {item.from}</p>
+                  <p className="text-xs font-bold tracking-wider text-navy-300">Beyond {item.from}</p>
                   <p className="mt-3 text-sm leading-relaxed text-navy-100">{item.pain}</p>
-                  <p className="mt-4 text-xs font-semibold text-forest-300">See comparison &rarr;</p>
+                  <p className="mt-4 text-xs font-semibold text-forest-300">See how Marco Reid compares &rarr;</p>
                 </a>
               </Reveal>
             ))}
@@ -664,8 +665,8 @@ export default function HomePage() {
               Everything. One platform. One login.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-lg text-navy-400">
-              This is what replaces Westlaw, Clio, QuickBooks, DocuSign,
-              Dragon, and everything in between.
+              This is what consolidates research, case management, accounting, e-signature,
+              dictation, and everything in between into a single platform.
             </p>
           </Reveal>
 
@@ -877,7 +878,7 @@ export default function HomePage() {
             {[
               { badge: "IOLTA", label: "Trust Accounting Compliant" },
               { badge: "ABA", label: "Ethics Standards" },
-              { badge: "SOC 2", label: "Type II Certified" },
+              { badge: "SOC 2", label: "Type II audit in progress" },
               { badge: "FIPS", label: "140-3 Encryption" },
               { badge: "GDPR", label: "Data Protection" },
               { badge: "AICPA", label: "CPA Standards" },
