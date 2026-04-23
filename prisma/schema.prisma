@@ -604,6 +604,8 @@ model SignoffRequest {
   reviewedAt     DateTime?
   releasedAt     DateTime?
 
+  auditEntries   SignoffAuditEntry[]
+
   @@index([proMatterId])
   @@index([status])
   @@index([reviewerId])
@@ -944,4 +946,27 @@ model AmlAuditEntry {
   occurredAt      DateTime      @default(now())
 
   @@index([firmId, occurredAt])
+}
+
+// ============================================================
+// SIGNOFF AUDIT
+// ============================================================
+// Append-only audit log for sign-off actions. Each row captures who
+// did what on a SignoffRequest and the SHA256 of the payload at the
+// moment of action — any later tampering is detectable by hash
+// mismatch. Coexists with AmlAuditEntry (different domains).
+
+model SignoffAuditEntry {
+  id             String         @id @default(cuid())
+  signoffId      String
+  signoff        SignoffRequest @relation(fields: [signoffId], references: [id])
+  actorUserId    String         // User.id of the reviewer who acted
+  action         String         // "APPROVE" | "REJECT" | "AMEND"
+  payloadSha256  String         // sha256 of the output state captured at action-time
+  notes          String?        @db.Text
+  occurredAt     DateTime       @default(now())
+
+  @@index([signoffId])
+  @@index([actorUserId])
+  @@index([occurredAt])
 }
