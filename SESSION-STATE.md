@@ -17,6 +17,66 @@ This is the same flywheel pattern that `OracleQuery`, `OracleFeedback`, and `Que
 
 ---
 
+## Current state — last updated 2026-04-23
+
+**Branch:** `claude/infrastructure-catchup-bxUfH`
+
+**Family alignment locked this session.** Marco Reid is one of four products Craig owns. The family:
+
+- **Crontech** (crontech.ai) — platform, hosting, orchestrator, AI Builder
+- **Gluecron** (gluecron.com) — git hosting
+- **Gatetest** (gatetest.io) — automated E2E + visual QA
+- **AlecRae** — transactional email
+
+Marco Reid will onboard to Crontech as a deployed project (no rewrite — stays Next.js 16). The repo dogfoods the family end-to-end: AlecRae for email, Gatetest for E2E, Gluecron for git (migration to follow), Crontech orchestrator for hosting (cutover from Vercel during onboarding). Stealth-fortress doctrine in force: no competitor names anywhere in crawl-visible content; positive framing only; no "replaces X" attack lines until Phase 3-B unlocks.
+
+**Wave 1 Stream 1 shipped:**
+
+- Playwright removed entirely (`@playwright/test`, config, scripts, `*.spec.ts` → `*.scenario.ts`)
+- Resend removed entirely (was never installed but references stripped)
+- Gatetest scaffold landed (`gatetest.config.ts`, `scripts/gatetest-run.mjs`, env vars)
+- `lib/email.ts` rewritten: AlecRae sole provider with 3-attempt jittered backoff, dev-mode console logger when `ALECRAE_API_KEY` unset
+- New Prisma `EmailOutbox` model (PENDING / SENT / DEAD_LETTER) for persistent-failure queue
+- `drainEmailOutbox()` retries persistent failures, dead-letters at 24h
+- `app/api/alecrae/webhook/route.ts` — HMAC-SHA256 verified delivery webhook receiver
+- `app/api/documents/route.ts` — dev writes to `./.dev-uploads/`, prod 501 message updated to "pending Crontech R2 tenant provisioning"
+- Oracle "Verified" badge softened to "Source extracted" pending real verification wiring
+- Marketing competitor names scrubbed from 13 files; two unsalvageable comparison pages (`compare/clio`, `compare/quickbooks`) deleted
+- README rewritten — Marco Reid-specific, family-aligned, no template boilerplate
+- `.env.example` reorganised with AlecRae, Gatetest, R2, bank-feed (Akahu/Basiq/Plaid/TrueLayer) blocks
+
+**Wave 1 Streams 2-6 firing in parallel via worktree-isolated agents:**
+
+- Stream 2: trust-account engine (jurisdiction-aware schema, three-way reconciliation, statements, UI + API)
+- Stream 3: AUSTRAC Tranche 2 / AML-CDD module (program templates, CDD subjects, checks, BO/SOF, SAR drafts, immutable audit log)
+- Stream 4: marketplace end-to-end (professional onboarding + admin verification, citizen intake, sign-off review queue with tamper-evidence)
+- Stream 5: admin panel v2 + `/api/platform-status` shared family contract + sibling-products widget
+- Stream 6: own general ledger + direct bank-feed adapters (Akahu/Basiq primary; Plaid/TrueLayer scaffolds) + AI categorisation
+
+## Next action
+
+Merge the five worktree branches back to `claude/infrastructure-catchup-bxUfH` as each agent completes, resolve any `prisma/schema.prisma` section overlaps, run `npm run build` on the consolidated state, push, then plan Wave 2.
+
+## Decisions this session (IMPORTANT — do not reverse without written approval)
+
+1. **Marco Reid onboards to Crontech as a deployed project. No rewrite.** Stack stays Next.js 16 / Prisma / Postgres. The four-product family shares one platform, one billing, one identity. The previously-considered Vultr / Hetzner sovereign infra build is cancelled — Crontech IS the sovereign infra.
+2. **Playwright and Resend are competitors. Never reintroduce.** They are on the family's replaces-list. Same applies to GitHub, GitLab, Bitbucket, Cypress, Percy, Chromatic, Mailgun, SendGrid, Postmark, Cloudflare-as-named-competitor, Vercel long-term, Render, Netlify, Heroku, v0.dev, Webflow, Squarespace, Wix, Framer, Xero, MYOB, QuickBooks, Intuit, Sage, FreeAgent, Clio, LEAP, Actionstep, Smokeball, MyCase, PracticePanther, Harvey, CoCounsel, Ironclad, Spellbook, Robin AI, Pilot.com, Digits, Puzzle, Karbon, Ignition, TaxDome, Canopy, Hnry, LegalZoom, Rocket Lawyer, DoNotPay.
+3. **Stealth-fortress doctrine in force.** Crawl-visible content uses positive framing only — no "replaces X", no "smoke them out", no "most advanced platform on earth", no SOC 2 claim (only "in progress"). Phase 3-B reinstates competitive marketing once the legal/compliance/infrastructure fortress is real.
+4. **AlecRae is the sole transactional email provider.** Resilience comes from internal retry + `EmailOutbox` queue, not a second vendor. "Fall back to AlecRae itself."
+5. **Bank feeds go DIRECT via open-banking infrastructure (Akahu, Basiq, Plaid, TrueLayer).** Marco Reid never depends on a competitor's API for the backbone. Xero/MYOB/QBO/Sage/FreeAgent are migration import lanes only — never a runtime dependency.
+6. **AUSTRAC Tranche 2 (1 July 2026) is the AU wedge.** Wave 1 Stream 3 ships the AML-CDD module to hit this window.
+7. **Marketplace fee model: flat referral or SaaS seat — never % take-rate on the pro's work.** ABA Rule 5.4 blocks % in 48 US states; NZ LCA and SRA ABS are more permissive. Build marketplace lock-in in NZ + AU first; US enters via Arizona ABS or pure SaaS-seat structure.
+
+## Open questions for Craig
+
+- **Crontech tenant provisioning for Marco Reid** — when to request the AlecRae tenant, R2 bucket, and orchestrator slot. Until then, dev mode handles it.
+- **Bank-feed sandbox keys** — Akahu, Basiq, Plaid, TrueLayer all have free sandbox tiers. Drop keys into `.env.example` to wire real connections.
+- **Hetzner / OVH / Vultr spend** — cancelled. Zero infra spend needed; Crontech inherits.
+
+---
+
+## Prior state below (kept for history)
+
 ## Current state — last updated 2026-04-20
 
 **Branch:** `claude/investigate-refund-usage-97xly`
