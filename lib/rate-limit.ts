@@ -1,7 +1,7 @@
 // Token-bucket style rate limiter.
 //
 // This implementation is in-memory and therefore per-instance. In a
-// multi-instance deployment (Vercel serverless, multiple regions, etc.)
+// multi-instance deployment (serverless, multiple regions, etc.)
 // you should swap the `bucketStore` for a Redis/Upstash KV backing.
 // The `RateLimitStore` interface below makes that substitution trivial.
 
@@ -15,7 +15,7 @@ export interface RateLimitStore {
   set(key: string, bucket: Bucket): Promise<void>;
 }
 
-// In-memory store — fine for a single-instance dev environment or Vercel
+// In-memory store — fine for a single-instance dev environment or
 // preview builds. Not appropriate for horizontally scaled production.
 class MemoryStore implements RateLimitStore {
   private store = new Map<string, Bucket>();

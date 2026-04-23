@@ -76,8 +76,8 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Vercel deployment pipeline",
-        description: "Builds passing on Vercel with all required env vars.",
+        title: "Crontech deployment pipeline",
+        description: "Builds passing on Crontech with all required env vars.",
         status: "done",
       },
       {
@@ -157,9 +157,9 @@ export const phases: BuildPhase[] = [
         status: "done",
       },
       {
-        title: "Compare pages (Clio, Westlaw, LexisNexis, QuickBooks)",
+        title: "Compare pages (Westlaw, LexisNexis)",
         description:
-          "Honest head-to-head comparison tables with clear differentiators.",
+          "Capability-led comparison tables with clear differentiators.",
         status: "done",
       },
       {
@@ -380,7 +380,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Documents — list, detail, upload modal",
         description:
-          "/documents list with kind tabs (7 types) and debounced search; /documents/[id] with preview (image/PDF), download, delete; /documents/upload deep-linkable; drag-and-drop modal with focus trap and ARIA. Storage backend is stubbed (501 STORAGE_NOT_CONFIGURED for blobs, JSON fileUrl works); swap in S3/R2/Vercel Blob when ready.",
+          "/documents list with kind tabs (7 types) and debounced search; /documents/[id] with preview (image/PDF), download, delete; /documents/upload deep-linkable; drag-and-drop modal with focus trap and ARIA. Storage backend is stubbed (501 STORAGE_NOT_CONFIGURED for blobs, JSON fileUrl works); Crontech R2 wiring lands in a later stream.",
         status: "done",
       },
       {
@@ -530,7 +530,7 @@ export const phases: BuildPhase[] = [
       {
         title: "Dynamic OG images",
         description:
-          "Static og-image.png referenced in metadata. Dynamic per-page OG image generation pending (can use @vercel/og).",
+          "Static og-image.png referenced in metadata. Dynamic per-page OG image generation pending.",
         status: "queued",
       },
       {
@@ -624,9 +624,9 @@ export const phases: BuildPhase[] = [
         status: "queued",
       },
       {
-        title: "Vercel Analytics or Plausible",
+        title: "Privacy-respecting analytics",
         description:
-          "Privacy-respecting analytics for traffic and conversion funnels.",
+          "First-party analytics for traffic and conversion funnels, served through the platform.",
         status: "queued",
       },
       {

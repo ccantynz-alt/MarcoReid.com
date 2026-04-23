@@ -127,7 +127,7 @@ const groups: Group[] = [
       },
       {
         q: "Can I connect my accounting system?",
-        a: "Yes. Xero, QuickBooks Online, and MYOB are supported today. Invoices raised in Marco Reid post to the connected accounting system; time entries and disbursements flow the same way. We do not replace your firm\u2019s general ledger.",
+        a: "Yes. The major cloud ledgers used in NZ, AU, US, UK, and Canada are supported today. Invoices raised in Marco Reid post to your connected accounting system; time entries and disbursements flow the same way. You can also run Marco Reid Accounting as your firm\u2019s general ledger directly.",
       },
       {
         q: "Is there an API?",
@@ -149,7 +149,7 @@ const groups: Group[] = [
       },
       {
         q: "Do you help with migrating from another system?",
-        a: "Yes. Our team runs structured migrations from Clio, MyCase, PracticePanther, Karbon, and a handful of smaller platforms at no charge for annual subscriptions. Custom migrations from bespoke systems are quoted per engagement.",
+        a: "Yes. Our team runs structured migrations from the major legal practice management platforms and from common accounting workflow tools at no charge for annual subscriptions. Custom migrations from bespoke systems are quoted per engagement.",
       },
     ],
   },

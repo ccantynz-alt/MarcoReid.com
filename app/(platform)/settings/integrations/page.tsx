@@ -68,9 +68,9 @@ export default async function IntegrationsSettingsPage() {
       status: "coming-soon",
     },
     {
-      key: "clio",
-      name: "Clio export",
-      desc: "Migrate matters, contacts, and time entries from Clio.",
+      key: "legacy-pms-import",
+      name: "Legacy practice management import",
+      desc: "Migrate matters, contacts, and time entries from your existing practice management system.",
       status: "coming-soon",
     },
   ];

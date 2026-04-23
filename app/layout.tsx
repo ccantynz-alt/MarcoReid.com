@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "law firm software",
     "dictation for lawyers",
     "cross-domain legal research",
-    "Clio alternative",
+    "all-in-one practice management",
     "Westlaw alternative",
   ],
   authors: [{ name: "Reid & Associates Ltd" }],

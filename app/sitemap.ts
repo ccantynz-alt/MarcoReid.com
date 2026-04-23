@@ -30,8 +30,6 @@ const entries: Entry[] = [
 
   // Compare
   { path: "/compare/westlaw", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/clio", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/quickbooks", changeFrequency: "monthly", priority: 0.7 },
   { path: "/compare/lexisnexis", changeFrequency: "monthly", priority: 0.7 },
 
   // Resources
@@ -91,8 +89,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/for-small-business`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/for-startups`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/westlaw`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/compare/clio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/compare/quickbooks`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/lexisnexis`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 }

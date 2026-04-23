@@ -340,8 +340,9 @@ export default function OraclePage() {
           <Reveal delay={0.15}>
             <p className="mt-6 text-xl leading-relaxed text-navy-400">
               That query requires both legal research and tax intelligence simultaneously.
-              Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both
-              sides of the law-accounting boundary. Only Marco Reid can answer it &mdash; because
+              A research tool that only knows law cannot answer it. A bookkeeping tool that only
+              knows numbers cannot answer it. Nobody else owns both sides of the law-accounting
+              boundary. Only Marco Reid can answer it &mdash; because
               The Oracle spans both domains in a single search.
             </p>
           </Reveal>

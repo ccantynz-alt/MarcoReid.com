@@ -30,8 +30,8 @@ const painPoints = [
     solution: "Marco Reid is one unified platform. Research, practice management, billing, dictation, documents, client portal — one login, one bill. Nothing costs extra",
   },
   {
-    pain: "Harvey AI partnership expected to push costs $400–$600 per lawyer per year on top of existing subscriptions. One firm was quoted over £200 per lawyer for AI — after one email the price was slashed 60%. Harvey itself costs $1,000–$1,200/month per lawyer",
-    solution: "Marco Reid’s Marco is included in the platform price. No AI surcharge. No Harvey-level pricing. Cross-domain research verified against public sources, from $99/month",
+    pain: "Add-on AI partnerships push costs $400–$600 per lawyer per year on top of existing subscriptions. Some firms have been quoted over £200 per lawyer for AI alone, with stand-alone legal AI products charging $1,000–$1,200/month per lawyer",
+    solution: "Marco Reid’s Marco is included in the platform price. No AI surcharge. No four-figure per-lawyer add-ons. Cross-domain research verified against public sources, from $99/month",
   },
   {
     pain: "Shepard’s Citations is powerful but locked behind the LexisNexis paywall. No alternative outside their ecosystem",

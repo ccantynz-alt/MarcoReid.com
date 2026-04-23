@@ -31,8 +31,8 @@ const painPoints = [
     solution: "Marco Reid is built for 2026. Clean, fast, designed for how lawyers actually work. Two clicks to anything. \u2318K command palette finds anything instantly.",
   },
   {
-    pain: "Westlaw is ONLY research. You still need Clio for case management, QuickBooks for billing, DocuSign for signatures, Dragon for dictation",
-    solution: "Marco Reid replaces all of them. One platform. One login. One bill",
+    pain: "Westlaw is ONLY research. You still need separate tools for case management, billing, signatures, and dictation",
+    solution: "Marco Reid covers all of them. One platform. One login. One bill",
   },
   {
     pain: "You leave your document to research. Open a new tab. Log in. Search. Copy. Switch back. Paste. Five minutes. Flow destroyed",

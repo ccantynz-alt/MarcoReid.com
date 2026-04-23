@@ -40,7 +40,7 @@ export const PRODUCTS: Record<string, Product> = {
   accounting: {
     name: "Marco Reid Accounting",
     slug: "/accounting",
-    tagline: "The most advanced accounting platform on earth",
+    tagline: "Autonomous accounting with human sign-off",
     description:
       "Autonomous bookkeeping, payroll across five jurisdictions, GST / VAT / sales-tax filing, provisional and income tax, and a Catch-Up Centre that cleans up years of unfiled returns \u2014 all driven by AI that works while you sleep.",
     features: [
