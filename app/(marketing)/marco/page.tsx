@@ -8,7 +8,7 @@ import AiDisclaimer from "@/app/components/shared/AiDisclaimer";
 import FAQ from "@/app/components/shared/FAQ";
 import Reveal from "@/app/components/effects/Reveal";
 
-const OracleMockup = dynamic(() => import("@/app/components/marketing/OracleMockup"));
+const MarcoMockup = dynamic(() => import("@/app/components/marketing/MarcoMockup"));
 const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
 const VideoEmbed = dynamic(() => import("@/app/components/marketing/VideoEmbed"));
 
@@ -26,10 +26,10 @@ const schema = {
   applicationCategory: "Research",
   operatingSystem: "Web",
   description: "Cross-domain legal and accounting AI research with mandatory citation verification. Public domain case law, statutes, tax codes, and regulations.",
-  url: `${BRAND.url}/oracle`,
+  url: `${BRAND.url}/marco`,
 };
 
-export default function OraclePage() {
+export default function MarcoPage() {
   return (
     <>
       <SchemaMarkup schema={schema} />
@@ -59,11 +59,11 @@ export default function OraclePage() {
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-white to-transparent" />
       </section>
 
-      {/* Oracle mockup */}
-      <section className="py-20 sm:py-32" aria-label="Oracle preview">
+      {/* Marco research mockup */}
+      <section className="py-20 sm:py-32" aria-label="Marco research preview">
         <Container>
           <MockupReveal className="mx-auto max-w-4xl">
-            <OracleMockup />
+            <MarcoMockup />
           </MockupReveal>
         </Container>
       </section>
@@ -76,7 +76,7 @@ export default function OraclePage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
-      {/* The killer workflow — Oracle draw-down */}
+      {/* The killer workflow — Marco draw-down */}
       <section className="py-32 sm:py-44" aria-label="Marco draw-down">
         <Container narrow>
           <Reveal>
@@ -151,8 +151,8 @@ export default function OraclePage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
-      {/* Oracle for Accounting — the other half */}
-      <section className="py-32 sm:py-44 bg-navy-50" aria-label="Oracle for Accounting">
+      {/* Marco for Accounting — the other half */}
+      <section className="py-32 sm:py-44 bg-navy-50" aria-label="Marco for Accounting">
         <Container>
           <Reveal>
             <div className="flex items-center gap-4">
@@ -217,8 +217,8 @@ export default function OraclePage() {
 
       <div className="h-px bg-navy-100 mx-auto max-w-sm" />
 
-      {/* Oracle for IP */}
-      <section className="py-32 sm:py-44" aria-label="Oracle for IP">
+      {/* Marco for IP */}
+      <section className="py-32 sm:py-44" aria-label="Marco for IP">
         <Container>
           <Reveal>
             <div className="flex items-center gap-4">
@@ -342,7 +342,7 @@ export default function OraclePage() {
               That query requires both legal research and tax intelligence simultaneously.
               Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both
               sides of the law-accounting boundary. Only Marco Reid can answer it &mdash; because
-              The Oracle spans both domains in a single search.
+              Marco spans both domains in a single search.
             </p>
           </Reveal>
           <Reveal delay={0.2}>

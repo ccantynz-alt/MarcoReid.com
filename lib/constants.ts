@@ -202,7 +202,7 @@ export const ACCOUNTING_PRICING: PricingTier[] = [
   },
 ];
 
-export const ORACLE_PRICING: PricingTier[] = [
+export const MARCO_PRICING: PricingTier[] = [
   {
     name: "Cross-Domain",
     price: "$499",

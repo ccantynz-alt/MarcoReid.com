@@ -2,12 +2,13 @@ import Anthropic from "@anthropic-ai/sdk";
 import { prisma } from "@/lib/prisma";
 import { verifyCitation } from "./verify";
 import {
-  OracleRequest,
-  OracleResponse,
-  OracleCitationResult,
-  OracleDomain,
+  MarcoRequest,
+  MarcoResponse,
+  MarcoCitationResult,
+  MarcoDomain,
 } from "./types";
 import { AI_DISCLAIMER } from "@/lib/constants";
+import { recordEvent } from "@/lib/flywheel";
 
 /**
  * The Marco Engine \u2014 the brain of Marco Reid.
@@ -33,7 +34,7 @@ function getAnthropic() {
 /**
  * Detect the query domain based on keywords and context.
  */
-function detectDomain(query: string, requestDomain?: OracleDomain): OracleDomain {
+function detectDomain(query: string, requestDomain?: MarcoDomain): MarcoDomain {
   if (requestDomain) return requestDomain;
 
   const q = query.toLowerCase();
@@ -73,7 +74,7 @@ function detectDomain(query: string, requestDomain?: OracleDomain): OracleDomain
 /**
  * Build the system prompt based on the domain.
  */
-function buildSystemPrompt(domain: OracleDomain, jurisdiction?: string): string {
+function buildSystemPrompt(domain: MarcoDomain, jurisdiction?: string): string {
   const base = `You are Marco, the AI research engine built into Marco Reid \u2014 the professional intelligence platform for law and accounting. You provide research assistance to licensed professionals.
 
 CRITICAL RULES:
@@ -88,7 +89,7 @@ CRITICAL RULES:
     ? `\nFocus on ${jurisdiction} law and regulations unless the query specifies otherwise.`
     : "";
 
-  const domainPrompts: Record<OracleDomain, string> = {
+  const domainPrompts: Record<MarcoDomain, string> = {
     LEGAL: `${base}
 ${jurisdictionNote}
 You specialise in legal research: case law, statutes, regulations, court rules, and legal analysis. You have knowledge of US federal and state law, NZ law, Australian law, and UK law. For every case you cite, provide the full citation including volume, reporter, and page number.`,
@@ -113,8 +114,8 @@ You specialise in intellectual property law: patents, trademarks, copyright, tra
  * Extract citations from the AI response text.
  * Looks for case names, statute references, and regulatory citations.
  */
-function extractCitations(text: string): OracleCitationResult[] {
-  const citations: OracleCitationResult[] = [];
+function extractCitations(text: string): MarcoCitationResult[] {
+  const citations: MarcoCitationResult[] = [];
 
   // Match case citations: "Name v. Name (Year)" or "Name v. Name, Vol Reporter Page"
   const casePattern =
@@ -197,7 +198,7 @@ async function getMemoryContext(
   query: string,
   matterId?: string
 ): Promise<string> {
-  const recentQueries = await prisma.oracleQuery.findMany({
+  const recentQueries = await prisma.marcoQuery.findMany({
     where: {
       userId,
       ...(matterId ? { matterId } : {}),
@@ -229,12 +230,12 @@ async function getMemoryContext(
  */
 async function logQuery(
   userId: string,
-  request: OracleRequest,
-  response: OracleResponse,
-  verifiedCitations: OracleCitationResult[]
+  request: MarcoRequest,
+  response: MarcoResponse,
+  verifiedCitations: MarcoCitationResult[]
 ): Promise<string> {
   // Save the query
-  const savedQuery = await prisma.oracleQuery.create({
+  const savedQuery = await prisma.marcoQuery.create({
     data: {
       userId,
       query: request.query,
@@ -290,10 +291,10 @@ async function logQuery(
  * verifies every citation, logs everything for learning, and returns
  * a verified response.
  */
-export async function queryOracle(
+export async function queryMarco(
   userId: string,
-  request: OracleRequest
-): Promise<OracleResponse> {
+  request: MarcoRequest
+): Promise<MarcoResponse> {
   const startTime = Date.now();
 
   // 1. Detect domain
@@ -334,7 +335,7 @@ export async function queryOracle(
   const responseTimeMs = Date.now() - startTime;
 
   // 7. Build the response
-  const response: OracleResponse = {
+  const response: MarcoResponse = {
     answer,
     citations: verifiedCitations,
     domain,
@@ -343,7 +344,32 @@ export async function queryOracle(
   };
 
   // 8. Log everything for the flywheel
-  await logQuery(userId, request, response, verifiedCitations);
+  const savedQueryId = await logQuery(userId, request, response, verifiedCitations);
+
+  // 9. Write to the platform learning ledger. Severity reflects the
+  //    health of the answer: any NOT_FOUND citation is a critical
+  //    signal; all-VERIFIED is positive; anything else is info.
+  const hasNotFound = verifiedCitations.some((c) => c.status === "NOT_FOUND");
+  const allVerified =
+    verifiedCitations.length > 0 &&
+    verifiedCitations.every((c) => c.status === "VERIFIED");
+  await recordEvent({
+    kind: "AI_QUERY",
+    severity: hasNotFound ? "CRITICAL" : allVerified ? "POSITIVE" : "INFO",
+    userId,
+    surface: request.surface ?? "marco-chat",
+    practiceArea: request.matterId ? undefined : domain.toLowerCase(),
+    jurisdiction: request.jurisdiction,
+    marcoQueryId: savedQueryId,
+    payload: {
+      domain,
+      citationCount: verifiedCitations.length,
+      verifiedCount: verifiedCitations.filter((c) => c.status === "VERIFIED").length,
+      unverifiedCount: verifiedCitations.filter((c) => c.status === "UNVERIFIED").length,
+      notFoundCount: verifiedCitations.filter((c) => c.status === "NOT_FOUND").length,
+      responseTimeMs,
+    },
+  });
 
   return response;
 }

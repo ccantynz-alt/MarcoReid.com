@@ -48,7 +48,7 @@ export const phases: BuildPhase[] = [
       {
         title: "PostgreSQL database via Prisma 7",
         description:
-          "Full schema for users, clients, matters, documents, trust, oracle, voice.",
+          "Full schema for users, clients, matters, documents, trust, Marco research, voice.",
         status: "done",
       },
       {

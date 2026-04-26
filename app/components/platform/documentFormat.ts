@@ -7,6 +7,8 @@ export const KIND_LABEL: Record<DocumentKind, string> = {
   EVIDENCE: "Evidence",
   INVOICE: "Invoice",
   RECEIPT: "Receipt",
+  ENGAGEMENT_LETTER: "Engagement letter",
+  WILL: "Will",
   OTHER: "Other",
 };
 
@@ -17,14 +19,18 @@ export const KIND_BADGE: Record<DocumentKind, string> = {
   EVIDENCE: "bg-gold-50 text-gold-700",
   INVOICE: "bg-forest-50 text-forest-600",
   RECEIPT: "bg-forest-50 text-forest-600",
+  ENGAGEMENT_LETTER: "bg-plum-50 text-plum-600",
+  WILL: "bg-gold-50 text-gold-700",
   OTHER: "bg-navy-50 text-navy-400",
 };
 
 export const KIND_ORDER: DocumentKind[] = [
+  "ENGAGEMENT_LETTER",
   "CONTRACT",
   "LETTER",
   "COURT_FILING",
   "EVIDENCE",
+  "WILL",
   "INVOICE",
   "RECEIPT",
   "OTHER",

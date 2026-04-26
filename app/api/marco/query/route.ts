@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { queryOracle } from "@/lib/oracle/engine";
-import { OracleRequest } from "@/lib/oracle/types";
+import { queryMarco } from "@/lib/marco/engine";
+import { MarcoRequest } from "@/lib/marco/types";
 import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       if (!limit.ok) return rateLimitResponse(limit);
     }
 
-    const body: OracleRequest = await request.json();
+    const body: MarcoRequest = await request.json();
 
     if (!body.query || body.query.trim().length === 0) {
       return NextResponse.json(
@@ -42,11 +42,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await queryOracle(session.user.id, body);
+    const result = await queryMarco(session.user.id, body);
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error("Oracle query error:", error);
+    console.error("Marco query error:", error);
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 }

@@ -190,7 +190,7 @@ export default async function DashboardPage() {
       {/* Marco prompt */}
       <div className="mt-6">
         <Link
-          href="/marco"
+          href="/dashboard/marco"
           className="group block overflow-hidden rounded-2xl border border-gold-200 bg-gradient-to-br from-gold-50 via-white to-plum-50 p-8 shadow-card transition-all hover:border-gold-400 hover:shadow-card-hover dark:border-gold-800 dark:from-navy-800 dark:via-navy-800 dark:to-navy-800"
         >
           <div className="flex flex-wrap items-center justify-between gap-4">

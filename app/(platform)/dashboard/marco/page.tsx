@@ -83,7 +83,7 @@ export default async function MarcoPage() {
   const userId = (session?.user as { id?: string } | undefined)?.id;
   if (!userId) redirect("/login");
 
-  const recentQueries = await prisma.oracleQuery.findMany({
+  const recentQueries = await prisma.marcoQuery.findMany({
     where: { userId },
     select: { id: true, query: true, createdAt: true, domain: true },
     orderBy: { createdAt: "desc" },

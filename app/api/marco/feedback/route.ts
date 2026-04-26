@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { recordAiFeedback } from "@/lib/flywheel";
 
 export async function POST(request: Request) {
   try {
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
     const userId = session.user.id;
 
     // Save feedback
-    const feedback = await prisma.oracleFeedback.create({
+    const feedback = await prisma.marcoFeedback.create({
       data: {
         queryId,
         userId,
@@ -46,14 +47,14 @@ export async function POST(request: Request) {
     });
 
     // Update query pattern average rating (flywheel learning)
-    const query = await prisma.oracleQuery.findUnique({
+    const query = await prisma.marcoQuery.findUnique({
       where: { id: queryId },
       select: { query: true, domain: true },
     });
 
     if (query) {
       const normalised = query.query.toLowerCase().trim().substring(0, 200);
-      const allFeedback = await prisma.oracleFeedback.findMany({
+      const allFeedback = await prisma.marcoFeedback.findMany({
         where: {
           query: {
             query: { startsWith: normalised.substring(0, 50) },
@@ -72,12 +73,18 @@ export async function POST(request: Request) {
       });
     }
 
+    // Feed the platform flywheel.
+    await recordAiFeedback(userId, queryId, feedback.id, rating, {
+      helpful: helpful ?? null,
+      accurate: accurate ?? null,
+    });
+
     return NextResponse.json({
       message: "Feedback recorded. Thank you.",
       feedbackId: feedback.id,
     });
   } catch (error) {
-    console.error("Oracle feedback error:", error);
+    console.error("Marco feedback error:", error);
     return NextResponse.json(
       { error: "Something went wrong." },
       { status: 500 }

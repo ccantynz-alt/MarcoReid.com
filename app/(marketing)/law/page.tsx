@@ -162,7 +162,7 @@ export default function LawPage() {
             </div>
           </Reveal>
 
-          {/* Oracle mid-document */}
+          {/* Marco mid-document */}
           <Reveal delay={0.1}>
             <div className="mx-auto mt-6 max-w-3xl">
               <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
@@ -359,7 +359,7 @@ export default function LawPage() {
               { title: "Legal forms library", desc: "Every court form, AI pre-populated from matter data" },
               { title: "Client portal", desc: "Secure document sharing, messaging, and status updates" },
               { title: "Instant messaging", desc: "Matter-centric, encrypted, archived, exportable" },
-              { title: "Email integration", desc: "Gmail and Outlook inside Marco Reid with Oracle access" },
+              { title: "Email integration", desc: "Gmail and Outlook inside Marco Reid with Marco research access" },
               { title: "Scheduling & meetings", desc: "Calendar sync, Zoom links, post-meeting AI summaries" },
               { title: "Marco", desc: "AI legal research with citation verification, inline everywhere" },
               { title: "Company incorporation", desc: "Automated entity formation — LLC, Ltd, C-Corp — with AI-populated documents and e-filing" },
@@ -367,7 +367,7 @@ export default function LawPage() {
               { title: "Depositions", desc: "Video, real-time AI transcription, exhibit management, and AI summaries" },
               { title: "Courtroom e-filing", desc: "Electronic filing with courts where APIs are available" },
               { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends by judge" },
-              { title: "IP law (Oracle)", desc: "Patent search, trademark analysis, copyright, trade secrets via Oracle IP" },
+              { title: "IP law (Marco)", desc: "Patent search, trademark analysis, copyright, trade secrets via Marco for IP" },
               { title: "Immutable audit trails", desc: "Cryptographically signed, append-only logs. Courtroom-admissible evidence chain" },
               { title: "FIPS 140-3 encryption", desc: "Federal court standard encryption for all data at rest and in transit" },
               { title: "Chain of custody", desc: "Complete tracking of every document: who created, accessed, modified, when, from where" },
@@ -408,7 +408,7 @@ export default function LawPage() {
           <Reveal delay={0.2}>
             <div className="mt-12 flex justify-center gap-4">
               <Button href="/pricing" size="lg">See pricing</Button>
-              <Button href="/oracle" variant="secondary" size="lg">Explore Marco</Button>
+              <Button href="/marco" variant="secondary" size="lg">Explore Marco</Button>
             </div>
           </Reveal>
         </Container>
