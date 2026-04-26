@@ -12,7 +12,7 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.90.0",
+    "@anthropic-ai/sdk": "^0.91.1",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@tailwindcss/postcss": "^4.2.4",
@@ -22,7 +22,7 @@
     "openai": "^6.34.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "stripe": "^22.0.2"
+    "stripe": "^22.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
