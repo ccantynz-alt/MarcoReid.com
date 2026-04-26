@@ -107,8 +107,8 @@ export function CommandPaletteProvider({
         label: "Ask Marco",
         description: "Open the AI research assistant",
         section: "Navigate",
-        action: nav("/marco"),
-        keywords: ["ai", "research", "oracle", "query"],
+        action: nav("/dashboard/marco"),
+        keywords: ["ai", "research", "marco", "query"],
       },
       {
         id: "nav-matters",

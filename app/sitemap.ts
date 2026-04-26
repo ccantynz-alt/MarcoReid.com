@@ -21,7 +21,6 @@ const entries: Entry[] = [
   { path: "/marco", changeFrequency: "weekly", priority: 0.9 },
   { path: "/dictation", changeFrequency: "weekly", priority: 0.9 },
   { path: "/courtroom", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/oracle", changeFrequency: "monthly", priority: 0.7 },
 
   // Audience pages
   { path: "/for-small-business", changeFrequency: "monthly", priority: 0.7 },

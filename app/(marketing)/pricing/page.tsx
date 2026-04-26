@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   LAW_PRICING,
   ACCOUNTING_PRICING,
-  ORACLE_PRICING,
+  MARCO_PRICING,
   BRAND,
 } from "@/lib/constants";
 import { PricingTier } from "@/lib/types";
@@ -10,7 +10,7 @@ import SchemaMarkup from "@/app/components/shared/SchemaMarkup";
 import Reveal from "@/app/components/effects/Reveal";
 import SubscribeButton from "@/app/components/pricing/SubscribeButton";
 
-type PricingCategory = "legal" | "accounting" | "oracle";
+type PricingCategory = "legal" | "accounting" | "marco";
 
 function priceIdFor(category: PricingCategory, tierName: string): string | undefined {
   const key = tierName.toUpperCase().replace(/[^A-Z]/g, "_");
@@ -24,7 +24,7 @@ function priceIdFor(category: PricingCategory, tierName: string): string | undef
     if (key.includes("PROFESSIONAL")) return process.env.STRIPE_PRICE_ACCOUNTING_PROFESSIONAL;
     if (key.includes("FIRM")) return process.env.STRIPE_PRICE_ACCOUNTING_FIRM;
   }
-  if (category === "oracle") {
+  if (category === "marco") {
     if (key.includes("CROSS")) return process.env.STRIPE_PRICE_MARCO_CROSSDOMAIN;
     if (key.includes("ENTERPRISE")) return process.env.STRIPE_PRICE_MARCO_ENTERPRISE;
   }
@@ -186,8 +186,8 @@ export default function PricingPage() {
             </h2>
           </Reveal>
           <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
-            {ORACLE_PRICING.map((tier) => (
-              <PricingCard key={tier.name} tier={tier} category="oracle" />
+            {MARCO_PRICING.map((tier) => (
+              <PricingCard key={tier.name} tier={tier} category="marco" />
             ))}
           </div>
         </div>

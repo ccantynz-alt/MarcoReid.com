@@ -2,7 +2,7 @@ import Link from "next/link";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "gold";
   size?: "sm" | "md" | "lg";
   href?: string;
   className?: string;
@@ -15,6 +15,8 @@ const variants = {
     "bg-forest-500 text-white hover:bg-forest-600 shadow-sm hover:shadow-md focus-visible:ring-forest-500 dark:bg-forest-600 dark:hover:bg-forest-500",
   ghost:
     "text-navy-500 hover:text-navy-700 focus-visible:ring-navy-500 dark:text-navy-300 dark:hover:text-white",
+  gold:
+    "bg-gold-400 text-navy-900 hover:bg-gold-300 shadow-sm hover:shadow-md focus-visible:ring-gold-400",
 };
 
 const sizes = {

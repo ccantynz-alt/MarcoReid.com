@@ -1,6 +1,6 @@
 "use client";
 
-export default function OracleMockup() {
+export default function MarcoMockup() {
   return (
     <div className="mockup-window mx-auto w-full">
       <div className="mockup-titlebar">
