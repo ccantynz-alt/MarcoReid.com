@@ -1,5 +1,6 @@
 import Header from "@/app/components/marketing/Header";
 import Footer from "@/app/components/marketing/Footer";
+import ForceLightTheme from "@/app/components/marketing/ForceLightTheme";
 
 export default function MarketingLayout({
   children,
@@ -8,6 +9,7 @@ export default function MarketingLayout({
 }) {
   return (
     <>
+      <ForceLightTheme />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-20 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:text-navy-700"
