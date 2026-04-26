@@ -25,8 +25,8 @@ model User {
   firmName      String?
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt
-  queries          OracleQuery[]
-  feedback         OracleFeedback[]
+  queries          MarcoQuery[]
+  feedback         MarcoFeedback[]
   clients          Client[]
   matters          Matter[]
   documents        Document[]
@@ -250,7 +250,10 @@ model VoiceTranscript {
 }
 
 // ============================================================
-// THE ORACLE — Brain, Memory, and Flywheel
+// MARCO — Brain, Memory, and Flywheel.
+// (DB table names kept as Oracle* via @@map so existing data and any
+// running migrations stay valid; the TypeScript surface is fully
+// renamed.)
 // ============================================================
 
 enum QueryDomain {
@@ -267,33 +270,34 @@ enum CitationStatus {
 }
 
 // Every query ever made — the memory
-model OracleQuery {
-  id             String           @id @default(cuid())
+model MarcoQuery {
+  id             String          @id @default(cuid())
   userId         String
-  user           User             @relation(fields: [userId], references: [id])
+  user           User            @relation(fields: [userId], references: [id])
   query          String // The raw question asked
   domain         QueryDomain // Legal, Accounting, Cross-domain, IP
   jurisdiction   String? // US, NZ, AU, UK, or specific state
   context        String? // Matter context, previous queries, etc.
   response       String // Marco's full response
-  citations      OracleCitation[]
-  feedback       OracleFeedback[]
+  citations      MarcoCitation[]
+  feedback       MarcoFeedback[]
   matterId       String? // Link to matter if query was in-context
   surface        String? // Where the query was made: document, email, cmd-k, etc.
   responseTimeMs Int? // How long the response took
-  createdAt      DateTime         @default(now())
+  createdAt      DateTime        @default(now())
 
   @@index([userId])
   @@index([domain])
   @@index([createdAt])
   @@index([jurisdiction])
+  @@map("OracleQuery")
 }
 
 // Every citation returned — verified or not
-model OracleCitation {
+model MarcoCitation {
   id           String         @id @default(cuid())
   queryId      String
-  query        OracleQuery    @relation(fields: [queryId], references: [id])
+  query        MarcoQuery     @relation(fields: [queryId], references: [id])
   title        String // Case name, statute title, IRS section
   citation     String // Formal citation string
   sourceUrl    String? // Direct link to authoritative source
@@ -309,23 +313,25 @@ model OracleCitation {
   @@index([queryId])
   @@index([status])
   @@index([sourceDb])
+  @@map("OracleCitation")
 }
 
 // User feedback on results — the flywheel learning signal
-model OracleFeedback {
-  id        String      @id @default(cuid())
+model MarcoFeedback {
+  id        String     @id @default(cuid())
   queryId   String
-  query     OracleQuery @relation(fields: [queryId], references: [id])
+  query     MarcoQuery @relation(fields: [queryId], references: [id])
   userId    String
-  user      User        @relation(fields: [userId], references: [id])
+  user      User       @relation(fields: [userId], references: [id])
   rating    Int // 1-5 star rating
   helpful   Boolean? // Was this result helpful?
   accurate  Boolean? // Was this result accurate?
   comment   String? // Free text feedback
-  createdAt DateTime    @default(now())
+  createdAt DateTime   @default(now())
 
   @@index([queryId])
   @@index([userId])
+  @@map("OracleFeedback")
 }
 
 // ============================================================

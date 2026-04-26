@@ -1,4 +1,4 @@
-import { VerificationStatus, OracleCitationResult } from "./types";
+import { VerificationStatus, MarcoCitationResult } from "./types";
 
 /**
  * Citation verification engine.
@@ -183,8 +183,8 @@ function verifyUSPTOCitation(citation: string): VerifyResult | null {
  * can confirm it, NOT_FOUND if actively contradicted.
  */
 export async function verifyCitation(
-  citationResult: OracleCitationResult
-): Promise<OracleCitationResult> {
+  citationResult: MarcoCitationResult
+): Promise<MarcoCitationResult> {
   const { citation, title } = citationResult;
 
   // Try IRS/tax citations first (fast, no API call)

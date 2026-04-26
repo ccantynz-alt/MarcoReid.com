@@ -25,6 +25,16 @@ const nextConfig = {
         destination: "/marco",
         permanent: true,
       },
+      {
+        source: "/api/oracle/query",
+        destination: "/api/marco/query",
+        permanent: true,
+      },
+      {
+        source: "/api/oracle/feedback",
+        destination: "/api/marco/feedback",
+        permanent: true,
+      },
     ];
   },
 

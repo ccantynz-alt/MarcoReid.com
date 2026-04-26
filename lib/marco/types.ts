@@ -1,17 +1,17 @@
-export type OracleDomain = "LEGAL" | "ACCOUNTING" | "CROSS_DOMAIN" | "IP";
+export type MarcoDomain = "LEGAL" | "ACCOUNTING" | "CROSS_DOMAIN" | "IP";
 
 export type VerificationStatus = "VERIFIED" | "UNVERIFIED" | "NOT_FOUND";
 
-export interface OracleRequest {
+export interface MarcoRequest {
   query: string;
-  domain?: OracleDomain;
+  domain?: MarcoDomain;
   jurisdiction?: string;
   matterId?: string;
   surface?: string; // "document", "email", "cmd-k", "billing", "message"
   context?: string; // Previous queries or matter context for memory
 }
 
-export interface OracleCitationResult {
+export interface MarcoCitationResult {
   title: string;
   citation: string;
   sourceUrl: string | null;
@@ -22,10 +22,10 @@ export interface OracleCitationResult {
   dateDecided: string | null;
 }
 
-export interface OracleResponse {
+export interface MarcoResponse {
   answer: string;
-  citations: OracleCitationResult[];
-  domain: OracleDomain;
+  citations: MarcoCitationResult[];
+  domain: MarcoDomain;
   responseTimeMs: number;
   disclaimer: string;
 }
@@ -33,7 +33,7 @@ export interface OracleResponse {
 // Data source configurations for each legal/accounting database
 export interface DataSourceConfig {
   name: string;
-  domain: OracleDomain;
+  domain: MarcoDomain;
   baseUrl: string;
   searchEndpoint: string;
   verifyEndpoint?: string;
