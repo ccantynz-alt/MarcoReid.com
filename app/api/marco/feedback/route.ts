@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { recordAiFeedback } from "@/lib/flywheel";
 
 export async function POST(request: Request) {
   try {
@@ -71,6 +72,12 @@ export async function POST(request: Request) {
         data: { avgRating },
       });
     }
+
+    // Feed the platform flywheel.
+    await recordAiFeedback(userId, queryId, feedback.id, rating, {
+      helpful: helpful ?? null,
+      accurate: accurate ?? null,
+    });
 
     return NextResponse.json({
       message: "Feedback recorded. Thank you.",

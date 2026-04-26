@@ -8,6 +8,7 @@ import {
   MarcoDomain,
 } from "./types";
 import { AI_DISCLAIMER } from "@/lib/constants";
+import { recordEvent } from "@/lib/flywheel";
 
 /**
  * The Marco Engine \u2014 the brain of Marco Reid.
@@ -343,7 +344,32 @@ export async function queryMarco(
   };
 
   // 8. Log everything for the flywheel
-  await logQuery(userId, request, response, verifiedCitations);
+  const savedQueryId = await logQuery(userId, request, response, verifiedCitations);
+
+  // 9. Write to the platform learning ledger. Severity reflects the
+  //    health of the answer: any NOT_FOUND citation is a critical
+  //    signal; all-VERIFIED is positive; anything else is info.
+  const hasNotFound = verifiedCitations.some((c) => c.status === "NOT_FOUND");
+  const allVerified =
+    verifiedCitations.length > 0 &&
+    verifiedCitations.every((c) => c.status === "VERIFIED");
+  await recordEvent({
+    kind: "AI_QUERY",
+    severity: hasNotFound ? "CRITICAL" : allVerified ? "POSITIVE" : "INFO",
+    userId,
+    surface: request.surface ?? "marco-chat",
+    practiceArea: request.matterId ? undefined : domain.toLowerCase(),
+    jurisdiction: request.jurisdiction,
+    marcoQueryId: savedQueryId,
+    payload: {
+      domain,
+      citationCount: verifiedCitations.length,
+      verifiedCount: verifiedCitations.filter((c) => c.status === "VERIFIED").length,
+      unverifiedCount: verifiedCitations.filter((c) => c.status === "UNVERIFIED").length,
+      notFoundCount: verifiedCitations.filter((c) => c.status === "NOT_FOUND").length,
+      responseTimeMs,
+    },
+  });
 
   return response;
 }

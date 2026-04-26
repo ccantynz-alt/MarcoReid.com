@@ -34,6 +34,10 @@ model User {
   trustAccounts    TrustAccount[]
   voiceTranscripts VoiceTranscript[]
 
+  // Flywheel
+  learningEvents     LearningEvent[]      @relation("LearningEventActor")
+  firmHealthSnapshots FirmHealthSnapshot[] @relation("FirmHealthSnapshots")
+
   // Marketplace
   professionalProfile Professional? @relation("ProfessionalProfile")
   citizenMatters      ProMatter[]   @relation("CitizenMatters")
@@ -583,4 +587,119 @@ model SignoffRequest {
   @@index([status])
   @@index([reviewerId])
   @@index([requestedAt])
+}
+
+// ============================================================
+// PLATFORM FLYWHEEL — central learning ledger.
+//
+// Every meaningful signal in the platform writes a LearningEvent here:
+// - USAGE     : a feature was used / abandoned (telemetry)
+// - AI_QUERY  : a Marco query happened (links MarcoQuery)
+// - AI_FEEDBACK : a Marco answer was rated (links MarcoFeedback)
+// - WORKFLOW  : a matter sign-off cycle progressed (links SignoffRequest)
+// - REGULATORY: a statute / tax rule change was detected, possibly
+//               flagging open matters (links RegulatoryUpdate)
+//
+// The ledger is read in two directions:
+//   - per-firm dashboards roll it up into FirmHealthSnapshot
+//   - we (the platform) read it for build-queue prioritisation
+// ============================================================
+
+enum LearningEventKind {
+  USAGE
+  AI_QUERY
+  AI_FEEDBACK
+  WORKFLOW
+  REGULATORY
+}
+
+enum LearningEventSeverity {
+  INFO
+  POSITIVE   // Good outcome (fast cycle, high rating, correct flag)
+  NEGATIVE   // Bad outcome (failed answer, missed deadline, NOT_FOUND)
+  CRITICAL   // Hard blocker (sign-off rejected, regulatory miss)
+}
+
+model LearningEvent {
+  id                  String                @id @default(cuid())
+  kind                LearningEventKind
+  severity            LearningEventSeverity @default(INFO)
+  userId              String?
+  user                User?                 @relation("LearningEventActor", fields: [userId], references: [id])
+
+  // Context tags — none are mandatory but each makes future querying easier.
+  surface             String?               // "marco-chat", "voice", "billing", "trust", etc.
+  practiceArea        String?               // matches PracticeArea.slug or generic tag
+  jurisdiction        String?               // NZ / AU / US / UK / CA
+
+  // Pointers to source records — typically zero or one is non-null.
+  marcoQueryId        String?
+  marcoFeedbackId     String?
+  signoffRequestId    String?
+  proMatterId         String?
+  voiceTranscriptId   String?
+  regulatoryUpdateId  String?
+  regulatoryUpdate    RegulatoryUpdate?     @relation(fields: [regulatoryUpdateId], references: [id])
+
+  payload             Json?                 // event-specific structured data
+  scoreDelta          Float?                // contribution to firm-health / AI-quality scoring
+  createdAt           DateTime              @default(now())
+
+  @@index([kind, createdAt])
+  @@index([userId, createdAt])
+  @@index([severity, createdAt])
+  @@index([practiceArea, jurisdiction])
+  @@index([surface])
+}
+
+// Regulatory radar. Every detected change of consequence — a statute
+// amendment, an IRD/IRS notice, a CA ANZ practice note, a court
+// decision that flips precedent — is recorded here. The matters
+// pipeline matches open matters against `practiceAreas` and the
+// matching pro / firm gets a flag in their dashboard.
+model RegulatoryUpdate {
+  id              String          @id @default(cuid())
+  jurisdiction    String          // "NZ", "AU", "UK", "EU", "US", "CA"
+  regime          String          // "Privacy Act 2020", "AML/CFT Act 2009", "Income Tax Act 2007", etc.
+  citation        String          // Section, regulation number, case ref
+  title           String
+  summary         String          @db.Text
+  effectiveAt     DateTime?
+  sourceUrl       String?
+  practiceAreas   String[]        // slug tags — matches against open ProMatter rows
+  severity        LearningEventSeverity @default(INFO)
+  detectedAt      DateTime        @default(now())
+  events          LearningEvent[]
+
+  @@index([jurisdiction, regime])
+  @@index([detectedAt(sort: Desc)])
+  @@index([severity, detectedAt])
+}
+
+// Nightly per-firm rollup of the LearningEvent ledger. Read by the
+// firm's dashboard so the partner sees their own flywheel turn.
+model FirmHealthSnapshot {
+  id                       String   @id @default(cuid())
+  userId                   String
+  user                     User     @relation("FirmHealthSnapshots", fields: [userId], references: [id])
+  asOf                     DateTime
+
+  weeklyActiveFeatures     Int      @default(0)
+  marcoQueriesThisWeek     Int      @default(0)
+  marcoAvgRating           Float?
+  marcoUnverifiedRate      Float?           // 0..1 — fraction of citations Unverified
+
+  signoffsCompletedThisWeek Int     @default(0)
+  signoffAvgCycleHours     Float?
+  signoffRejectionRate     Float?            // 0..1
+
+  cpdHoursLogged           Float?
+  amlAssessmentsCurrent    Int      @default(0)
+  trustReconciliationOk    Boolean  @default(true)
+  regulatoryFlagsOpen      Int      @default(0)
+
+  createdAt                DateTime @default(now())
+
+  @@unique([userId, asOf])
+  @@index([asOf])
 }
