@@ -52,6 +52,8 @@ const entries: Entry[] = [
   // Trust & security
   { path: "/security", changeFrequency: "monthly", priority: 0.8 },
   { path: "/trust-center", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/data-residency", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/trial", changeFrequency: "weekly", priority: 0.9 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },
