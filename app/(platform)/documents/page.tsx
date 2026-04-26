@@ -92,6 +92,8 @@ export default async function DocumentsPage({ searchParams }: PageProps) {
     EVIDENCE: 0,
     INVOICE: 0,
     RECEIPT: 0,
+    ENGAGEMENT_LETTER: 0,
+    WILL: 0,
     OTHER: 0,
   };
   for (const row of kindCounts) {

@@ -54,6 +54,12 @@ const entries: Entry[] = [
   { path: "/trust-center", changeFrequency: "monthly", priority: 0.8 },
   { path: "/data-residency", changeFrequency: "monthly", priority: 0.8 },
   { path: "/trial", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/migration", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/aml-cft", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/cpd", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/conveyancing", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/wills", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/engagement-letters", changeFrequency: "monthly", priority: 0.7 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },

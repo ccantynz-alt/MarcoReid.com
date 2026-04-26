@@ -69,6 +69,13 @@ model User {
   platformAckAt      DateTime?
   signupIp           String?
   signupUserAgent    String?
+
+  // Practice modules
+  amlAssessments       AmlAssessment[]            @relation("AmlAssessments")
+  suspiciousReports    SuspiciousActivityReport[] @relation("SARsCreated")
+  cpdRecords           CpdRecord[]                @relation("CpdRecords")
+  conveyancingMatters  ConveyancingMatter[]       @relation("ConveyancingMatters")
+  willRecords          WillRecord[]               @relation("WillRecords")
 }
 
 // ============================================================
@@ -88,6 +95,8 @@ enum DocumentKind {
   EVIDENCE
   INVOICE
   RECEIPT
+  ENGAGEMENT_LETTER
+  WILL
   OTHER
 }
 
@@ -110,6 +119,9 @@ model Client {
   matters       Matter[]
   documents     Document[]
   trustAccounts TrustAccount[]
+  amlAssessments     AmlAssessment[]
+  suspiciousReports  SuspiciousActivityReport[] @relation("SARsByClient")
+  willsAsTestator    WillRecord[]               @relation("WillsAsTestator")
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -132,6 +144,7 @@ model Matter {
   documents         Document[]
   timeEntries       TimeEntry[]
   trustTransactions TrustTransaction[]
+  conveyancing      ConveyancingMatter?
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
 
@@ -702,4 +715,272 @@ model FirmHealthSnapshot {
 
   @@unique([userId, asOf])
   @@index([asOf])
+}
+
+// ============================================================
+// AML / CFT — Anti-Money-Laundering / Countering Financing of
+// Terrorism. NZ AML/CFT Act 2009 (and the AU AML/CTF Act 2006,
+// US BSA, UK MLR 2017) require lawyers and accountants over the
+// threshold to: identify clients (CDD), risk-rate them, monitor
+// activity, file SARs / STRs.
+// ============================================================
+
+enum CddLevel {
+  SIMPLIFIED
+  STANDARD
+  ENHANCED
+}
+
+enum AmlRiskRating {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SarStatus {
+  DRAFT
+  SUBMITTED
+  ACKNOWLEDGED
+}
+
+model AmlAssessment {
+  id                String        @id @default(cuid())
+  userId            String
+  user              User          @relation("AmlAssessments", fields: [userId], references: [id])
+  clientId          String?
+  client            Client?       @relation(fields: [clientId], references: [id])
+
+  jurisdiction      String        @default("NZ")
+  cddLevel          CddLevel      @default(STANDARD)
+  riskRating        AmlRiskRating @default(LOW)
+  riskFactors       String[]      // PEP, high-risk-jurisdiction, cash-intensive, complex-structure, etc.
+
+  identityVerified  Boolean       @default(false)
+  identityDocs      Json?         // structured doc list
+  beneficialOwner   Json?         // structured BO disclosure
+  sourceOfFunds     String?
+  sourceOfWealth    String?
+  pepStatus         Boolean       @default(false)
+  sanctionsHit      Boolean       @default(false)
+
+  reviewedAt        DateTime?
+  reviewedBy        String?       // User.id of reviewer
+  nextReviewAt      DateTime?
+
+  notes             String?       @db.Text
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([userId, riskRating])
+  @@index([clientId])
+  @@index([nextReviewAt])
+  @@index([jurisdiction])
+}
+
+model SuspiciousActivityReport {
+  id              String     @id @default(cuid())
+  userId          String
+  user            User       @relation("SARsCreated", fields: [userId], references: [id])
+  clientId        String?
+  client          Client?    @relation("SARsByClient", fields: [clientId], references: [id])
+  matterId        String?
+
+  jurisdiction    String     @default("NZ")
+  reportType      String     // "SAR", "STR", "PRESCRIBED" depending on regime
+  reportedTo      String     // "FIU" (NZ), "AUSTRAC" (AU), "FinCEN" (US), "NCA" (UK)
+
+  narrative       String     @db.Text
+  amountInCents   Int?
+  currency        String     @default("NZD")
+  triggeredBy     String?    // What flagged it (rule name, manual)
+
+  status          SarStatus  @default(DRAFT)
+  submittedAt     DateTime?
+  acknowledgedAt  DateTime?
+  reference       String?    // Regulator's reference number
+
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([userId, status])
+  @@index([clientId])
+  @@index([jurisdiction, status])
+}
+
+// ============================================================
+// CPD / CLE — Continuing Professional Development / Continuing
+// Legal Education. NZ Law Society requires 10 hours/year for
+// lawyers, with reflection. CA ANZ requires 20 hours/year for
+// chartered accountants. AU and UK have parallel regimes.
+// ============================================================
+
+model CpdRecord {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation("CpdRecords", fields: [userId], references: [id])
+
+  date            DateTime
+  title           String
+  provider        String?
+  category        String?  // "ETHICS", "CORE", "PRACTICE_MGMT", "SUBSTANTIVE", "TIKANGA"
+  hoursClaimed    Float
+  jurisdiction    String   // "NZ", "AU-NSW", "AU-VIC", "UK", etc.
+  body            String?  // "NZLS", "CA-ANZ", "CPA-AU", "Law Society NSW", etc.
+  evidenceUrl     String?  // certificate of attendance / completion
+
+  reflection      String?  @db.Text  // CPD reflection (NZLS requires this)
+  verified        Boolean  @default(false)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId, date])
+  @@index([jurisdiction])
+  @@index([userId, jurisdiction, date])
+}
+
+// ============================================================
+// CONVEYANCING — purchase / sale / refinance pipeline. High
+// volume work for NZ small firms; sits on top of the Matter
+// model but pins all the property-specific structured data.
+// ============================================================
+
+enum ConveyancingType {
+  PURCHASE
+  SALE
+  REFINANCE
+}
+
+enum ConveyancingStatus {
+  DRAFT
+  ACTIVE
+  UNCONDITIONAL
+  SETTLED
+  CANCELLED
+}
+
+model ConveyancingMatter {
+  id                    String              @id @default(cuid())
+  userId                String
+  user                  User                @relation("ConveyancingMatters", fields: [userId], references: [id])
+  matterId              String              @unique
+  matter                Matter              @relation(fields: [matterId], references: [id])
+
+  propertyAddress       String
+  certificateOfTitleRef String?             // CT reference (NZ); deed reference elsewhere
+  saleType              ConveyancingType    @default(PURCHASE)
+
+  agreementSignedAt     DateTime?
+  unconditionalAt       DateTime?
+  settlementAt          DateTime?
+
+  vendor                Json?               // structured party data
+  purchaser             Json?
+  agentDetails          Json?
+
+  purchasePriceInCents  Int?
+  depositInCents        Int?
+  currency              String              @default("NZD")
+
+  conditions            Json?               // finance, LIM, building report, due diligence, etc.
+  conditionsMet         Boolean             @default(false)
+
+  amlAssessmentId       String?             // link to the AML record covering this client
+
+  status                ConveyancingStatus  @default(DRAFT)
+
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+
+  @@index([userId, status])
+  @@index([settlementAt])
+}
+
+// ============================================================
+// WILLS REGISTER — custodian record of wills held in safe
+// custody. The will document itself is held off this row (in
+// document storage); this is the searchable register so a firm
+// can find a will when the testator dies.
+// ============================================================
+
+model WillRecord {
+  id                  String   @id @default(cuid())
+  userId              String
+  user                User     @relation("WillRecords", fields: [userId], references: [id])
+  testatorClientId    String?
+  testatorClient      Client?  @relation("WillsAsTestator", fields: [testatorClientId], references: [id])
+
+  testatorName        String
+  testatorDob         DateTime?
+
+  willDate            DateTime
+  storageLocation     String?  // "Safe Custody", "Client Held", "Off-site Vault"
+  storageRef          String?
+
+  superseded          Boolean  @default(false)
+  supersededByWillId  String?
+
+  executors           Json?
+  beneficiariesSummary Json?   // top-line only, not the full will
+
+  documentUrl         String?  // encrypted scan reference
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([userId])
+  @@index([testatorClientId])
+  @@index([willDate])
+  @@index([testatorName])
+}
+
+// ============================================================
+// MIGRATION INTAKE — firms switching from Clio / LEAP / actionstep
+// / Xero / MYOB / QuickBooks. Captures the scoping data so we can
+// quote and start the migration without a sales call.
+// ============================================================
+
+enum MigrationSourceSystem {
+  CLIO
+  LEAP
+  ACTIONSTEP
+  XERO
+  MYOB
+  QUICKBOOKS
+  IRESS
+  AFFINITY
+  OTHER
+}
+
+enum MigrationStatus {
+  NEW
+  SCOPED
+  IN_PROGRESS
+  COMPLETE
+  CANCELLED
+}
+
+model MigrationIntake {
+  id                String                 @id @default(cuid())
+  userId            String?
+  email             String
+  firmName          String?
+  contactName       String?
+  jurisdiction      String?
+  fromSystem        MigrationSourceSystem
+  estimatedClients  Int?
+  estimatedMatters  Int?
+  estimatedSizeMb   Int?
+  needsTrustData    Boolean                @default(false)
+  needsTimeData     Boolean                @default(false)
+  needsDocuments    Boolean                @default(false)
+  notes             String?                @db.Text
+  status            MigrationStatus        @default(NEW)
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  @@index([status])
+  @@index([fromSystem])
+  @@index([createdAt(sort: Desc)])
 }
