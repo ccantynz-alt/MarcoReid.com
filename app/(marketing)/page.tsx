@@ -12,6 +12,7 @@ const AnimatedCounter = dynamic(() => import("@/app/components/effects/AnimatedC
 const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal"));
 const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 const ROICalculator = dynamic(() => import("@/app/components/marketing/ROICalculator"));
+const StickyProductNav = dynamic(() => import("@/app/components/marketing/StickyProductNav"));
 
 export const metadata: Metadata = {
   title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
@@ -42,6 +43,7 @@ export default function HomePage() {
     <>
       <SchemaMarkup schema={organizationSchema} />
       <SchemaMarkup schema={softwareSchema} />
+      <StickyProductNav />
 
       {/* ============================================================ */}
       {/* HERO — The grand entrance                                     */}
@@ -115,6 +117,117 @@ export default function HomePage() {
               </p>
               <p className="mt-1 text-xs text-white/80">languages from day one</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* BENTO — at-a-glance overview of the five products              */}
+      {/* ============================================================ */}
+      <section className="py-20 sm:py-28" aria-label="Five products at a glance">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+              Five products. One platform.
+            </p>
+            <h2 className="mt-3 max-w-3xl font-serif text-display text-navy-800">
+              The whole system, in a single view.
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-navy-500">
+              Each tile below is one product. Drill into the deep dives further down,
+              or jump straight to a section using the navigator on the right.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-4 sm:grid-rows-3">
+            {/* Tile 1: Legal — large, top-left, forest accent */}
+            <Reveal delay={0.05}>
+              <a href="#law" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50 via-white to-forest-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2 sm:row-span-2">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid Legal</p>
+                  <h3 className="mt-3 font-serif text-2xl text-navy-800 sm:text-3xl">
+                    The operating system for your legal practice.
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-navy-500">
+                    Case management, billing, trust accounting, document AI, court-rules
+                    calendaring, AML/CFT, conveyancing, e-signatures — one login, one bill.
+                  </p>
+                </div>
+                <p className="mt-6 text-xs font-semibold text-forest-700 group-hover:text-forest-800">
+                  See Legal &rarr;
+                </p>
+              </a>
+            </Reveal>
+
+            {/* Tile 2: Marco — top-right, plum accent */}
+            <Reveal delay={0.1}>
+              <a href="#marco" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-plum-200 bg-gradient-to-br from-plum-50 via-white to-plum-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-plum-600">Marco</p>
+                  <h3 className="mt-3 font-serif text-xl text-navy-800 sm:text-2xl">
+                    Cross-domain research with every citation verified.
+                  </h3>
+                </div>
+                <p className="mt-4 text-xs font-semibold text-plum-700 group-hover:text-plum-800">
+                  See Marco &rarr;
+                </p>
+              </a>
+            </Reveal>
+
+            {/* Tile 3: Voice — middle-right, navy accent */}
+            <Reveal delay={0.15}>
+              <a href="#voice" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-navy-200 bg-navy-500 p-7 text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-gold-300">Voice</p>
+                  <h3 className="mt-3 font-serif text-xl">
+                    Speak. It is done.
+                  </h3>
+                  <p className="mt-3 text-xs leading-relaxed text-white/80">
+                    Nine languages on launch. Legal and accounting vocabulary built in.
+                  </p>
+                </div>
+                <p className="mt-4 text-xs font-semibold text-gold-300">
+                  See Voice &rarr;
+                </p>
+              </a>
+            </Reveal>
+
+            {/* Tile 4: Courtroom — middle-right second, plum accent */}
+            <Reveal delay={0.2}>
+              <a href="#courtroom" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-plum-200 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-plum-600">Courtroom</p>
+                  <h3 className="mt-3 font-serif text-xl text-navy-800">
+                    AI transcription, judge analytics, mid-hearing citation check.
+                  </h3>
+                </div>
+                <p className="mt-4 text-xs font-semibold text-plum-700 group-hover:text-plum-800">
+                  See Courtroom &rarr;
+                </p>
+              </a>
+            </Reveal>
+
+            {/* Tile 5: Accounting — full bottom row */}
+            <Reveal delay={0.25}>
+              <a href="#accounting" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50/60 via-white to-gold-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div className="max-w-2xl">
+                    <p className="text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid Accounting</p>
+                    <h3 className="mt-3 font-serif text-2xl text-navy-800 sm:text-3xl">
+                      Autonomous bookkeeping. Five-jurisdiction payroll. Catch-Up Centre.
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-navy-500">
+                      NZ PAYE, AU PAYG, US 50-state, UK PAYE, CA CPP/EI in one run.
+                      GST / VAT / sales tax filed automatically. Years of unfiled returns
+                      reconstructed and lodged with a qualified accountant signing off.
+                    </p>
+                  </div>
+                  <p className="text-xs font-semibold text-forest-700 group-hover:text-forest-800">
+                    See Accounting &rarr;
+                  </p>
+                </div>
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -244,7 +357,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
+      <section id="marco" className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -347,7 +460,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Voice">
+      <section id="voice" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Voice">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -450,7 +563,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PRODUCT 4: Marco Reid Courtroom                                  */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Courtroom">
+      <section id="courtroom" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Courtroom">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
@@ -518,7 +631,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PRODUCT 5: Marco Reid Accounting                                 */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Accounting">
+      <section id="accounting" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Accounting">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
