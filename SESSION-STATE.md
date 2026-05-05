@@ -17,11 +17,60 @@ This is the same flywheel pattern that `OracleQuery`, `OracleFeedback`, and `Que
 
 ---
 
-## Current state — last updated 2026-04-20
+## Current state — last updated 2026-05-05
 
-**Branch:** `claude/investigate-refund-usage-97xly`
+**Branch:** `claude/expand-professional-services-5g6Si`
 
-**Vision aligned this session:** Marco Reid is not a legal/accounting SaaS — it is a **two-sided platform** connecting citizens with licensed professionals, with AI-drafted work and qualified human sign-off on every consumer-facing output. NZ + AU chosen as the soft-launch beachhead (law + accounting), with Catch-Up Centre as a critical wedge product. Target: weeks to a working marketplace MVP, not years.
+**This session — adjacent professional services + audit-ledger spine:**
+
+Three new vertical workspace marketing pages and the cross-cutting compliance posture that every vertical promises.
+
+- `/insolvency` — for licensed insolvency practitioners. Five-phase pipeline keyed to NZ Companies Act 1993 ss239AA–256 + AU Corporations Act 2001 Pt 5.3A / Pt 5.4 / Pt 5.2, ARITA Code, ASIC RG 16/217, NZ Insolvency Practitioners Regulation Act 2019, PPSR/PPSA, AFSA, IR, ATO. Statutory deadline calendar, creditor register, recovery analysis (s295 / s588FE), regulator filings driven from the appointment record.
+- `/tax-advisors` — for tax agents and chartered tax advisers. Six advisory surfaces (positions, voluntary disclosures, binding rulings, transfer pricing, audit/dispute, verified research). Scope respects NZ IRD-listed tax agent vs AU TPB tax agent vs BAS agent — out-of-scope lodgement attempts blocked at the workflow level. Citation library across ITA 2007 (NZ), GST Act 1985 (NZ), ITAA 1936/1997 (AU), TAA 1994 (NZ), TAA 1953 (AU), IRD/ATO public ruling series.
+- `/immigration-advisers` — for NZ LIAs (IAA) and AU RMAs (OMARA). Distinct from `/immigration` (which targets US attorneys). Six-surface engagement-to-closure pipeline keyed to IAA Code of Conduct 2014 Standards 18, 19, 23, 25, 26 and OMARA Code 2021 Pts 2, 3, 6. INZ + Home Affairs coverage, ImmiAccount lodgement, seven-year retention. Distinguishes LIA, RMA, and lawyer practitioner classes.
+- `/compliance-records` — publishes the audit posture: ten ledgers, retention floors per regime, architectural rules (append-only, hash-chained, WORM, signed regulator exports, right-to-erasure with statutory carve-out, per-tenant isolation).
+
+**Schema (prisma/schema.prisma) — eight new compliance models:**
+
+- `AuditLog` — append-only, hash-chained action log. `prevHash` links to the prior row's `hash` so a tamper attempt is detectable end-to-end. Every CRUD, login, export, sign-off, consent, and regulator submission lands here.
+- `DocumentVersion` — supersede-not-delete revision history with sha256 content hash per version.
+- `CommunicationRecord` — emails, SMS, voice calls, portal messages, letters, in-person notes. Required by IAA Standard 26, OMARA Code Pt 6, NZ Conduct Rules, APES 305.
+- `RegulatorFiling` — every lodgement to IR, IRD, ATO, ASIC, AFSA, AUSTRAC, FIU, INZ, Home Affairs, USCIS, CRA, HMRC, IAA, OMARA, TPB, NZLS, LSB, OPC, OAIC. Payload hash + regulator reference + response captured.
+- `AccessGrant` — permission grants, revokes, role changes, impersonation. SOC 2 CC6 / ISO 27001 A.9 evidence.
+- `PrivacyBreachIncident` — NZ Privacy Act 2020 s114 (72hr clock), AU NDB scheme (30-day assessment), GDPR Art 33 (72hr).
+- `ComplaintRecord` — IAA, OMARA, NZLS, LSB, TPB, ARITA, CA ANZ, CPA Australia, OPC, OAIC.
+- `RetentionPolicy` + `LegalHold` — per-resource retention floors with legal-hold override. Default platform floor: 7 years.
+- `SubprocessorChange` — DPA Schedule 2 change log with customer-notify timestamp.
+
+**Wiring:**
+
+- Footer gains a "Practice areas" column (conveyancing, wills, AML/CFT, CPD, engagement letters, insolvency, tax advisors, immigration advisers). Grid widened to six columns.
+- Sitemap entries added for all four new pages.
+
+**Build:** `npm run build` clean — 104 routes, four new statics. One pre-existing build-block fixed in passing: `lib/stripe.ts` apiVersion pinned to `2026-04-22.dahlia` (the recent Stripe SDK bump in the dependabot batch had stranded the prior pin).
+
+**Migration to apply (Craig):** `prisma migrate dev --name add_audit_compliance_ledgers`. The schema validates clean; only DB migration is outstanding.
+
+## Next action
+
+Apply the migration (`prisma migrate dev --name add_audit_compliance_ledgers`), then build `lib/audit.ts` — a single helper used by every API route to insert into `AuditLog` with the prior-row hash. Without that helper wired in, the new tables exist but nothing writes to them. After that, seed `RetentionPolicy` rows for each regime listed on `/compliance-records`.
+
+## Decisions this session (IMPORTANT — do not reverse without written approval)
+
+1. **Audit posture is published, not assumed.** `/compliance-records` is a customer-facing page that documents the ten ledgers, the retention floors, and the architectural rules. We publish the bet so it can be inspected — and so it remains true.
+2. **`AuditLog` is hash-chained.** `prevHash` references the prior row's `hash`. Tamper-evidence is structural. Regulator exports ship with a verification script.
+3. **Default retention floor is 7 years.** The strictest applicable regime takes precedence per record. `LegalHold` overrides retention deletion until released.
+4. **Right-to-erasure is honoured with statutory carve-out.** Where TAA, AML/CFT, or professional rules mandate retention, we tell the data subject which section requires it — we do not silently refuse.
+5. **NZ/AU immigration adviser practitioner class is distinct from US immigration attorney work.** `/immigration-advisers` (LIA / RMA, IAA Code, OMARA Code) and `/immigration` (US attorney, USCIS / INA) are separate top-level pages. Different profession, different regulator, different retention obligations. Do not merge them.
+6. **The audit ledger is the spine for every vertical.** Insolvency, tax advisory, and immigration advisory all *promise* the audit posture on their pages. Every new vertical from here builds on `AuditLog`, `DocumentVersion`, `RegulatorFiling`, and `CommunicationRecord` — not on its own bespoke logging.
+
+---
+
+## Earlier session log
+
+### 2026-04-20 — Marketplace foundations + signup consent + header refactor
+
+**Vision aligned that session:** Marco Reid is not a legal/accounting SaaS — it is a **two-sided platform** connecting citizens with licensed professionals, with AI-drafted work and qualified human sign-off on every consumer-facing output. NZ + AU chosen as the soft-launch beachhead (law + accounting), with Catch-Up Centre as a critical wedge product. Target: weeks to a working marketplace MVP, not years.
 
 **Signup consent upgrade shipped this session:**
 
