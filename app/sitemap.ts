@@ -60,6 +60,10 @@ const entries: Entry[] = [
   { path: "/conveyancing", changeFrequency: "monthly", priority: 0.7 },
   { path: "/wills", changeFrequency: "monthly", priority: 0.7 },
   { path: "/engagement-letters", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/insolvency", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/tax-advisors", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/immigration-advisers", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/compliance-records", changeFrequency: "monthly", priority: 0.7 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },
@@ -101,5 +105,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/compare/clio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/quickbooks`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/lexisnexis`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/insolvency`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/tax-advisors`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/immigration-advisers`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/compliance-records`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 }

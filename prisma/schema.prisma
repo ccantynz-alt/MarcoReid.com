@@ -76,6 +76,16 @@ model User {
   cpdRecords           CpdRecord[]                @relation("CpdRecords")
   conveyancingMatters  ConveyancingMatter[]       @relation("ConveyancingMatters")
   willRecords          WillRecord[]               @relation("WillRecords")
+
+  // Compliance ledgers — append-only, retention-bound, regulator-exportable.
+  auditLogs            AuditLog[]                 @relation("AuditLogActor")
+  communications       CommunicationRecord[]      @relation("CommunicationActor")
+  regulatorFilings     RegulatorFiling[]          @relation("RegulatorFilingFiledBy")
+  accessGrantsMade     AccessGrant[]              @relation("AccessGrantGrantor")
+  accessGrantsHeld     AccessGrant[]              @relation("AccessGrantSubject")
+  privacyBreachReports PrivacyBreachIncident[]    @relation("PrivacyBreachReporter")
+  complaintsLogged     ComplaintRecord[]          @relation("ComplaintLoggedBy")
+  legalHoldsRequested  LegalHold[]                @relation("LegalHoldRequester")
 }
 
 // ============================================================
@@ -155,20 +165,21 @@ model Matter {
 }
 
 model Document {
-  id        String       @id @default(cuid())
+  id        String            @id @default(cuid())
   userId    String
-  user      User         @relation(fields: [userId], references: [id])
+  user      User              @relation(fields: [userId], references: [id])
   matterId  String?
-  matter    Matter?      @relation(fields: [matterId], references: [id])
+  matter    Matter?           @relation(fields: [matterId], references: [id])
   clientId  String?
-  client    Client?      @relation(fields: [clientId], references: [id])
+  client    Client?           @relation(fields: [clientId], references: [id])
   title     String
   fileName  String
   fileUrl   String
   fileSize  Int
   mimeType  String
-  kind      DocumentKind @default(OTHER)
-  createdAt DateTime     @default(now())
+  kind      DocumentKind      @default(OTHER)
+  versions  DocumentVersion[]
+  createdAt DateTime          @default(now())
   updatedAt DateTime     @updatedAt
 
   @@index([userId])
@@ -983,4 +994,372 @@ model MigrationIntake {
   @@index([status])
   @@index([fromSystem])
   @@index([createdAt(sort: Desc)])
+}
+
+// ============================================================
+// COMPLIANCE LEDGERS — append-only audit infrastructure.
+//
+// Retention floors driven by the strictest regime in scope:
+//   - NZ AML/CFT Act 2009: 5 yrs from end of business relationship.
+//   - AU AML/CTF Act 2006: 7 yrs.
+//   - NZ Tax Administration Act 1994 s22: 7 yrs.
+//   - AU TAA 1953 / ITAA 1997: 5 yrs (transfer pricing 5 yrs from lodgement).
+//   - NZ Lawyers' Trust Account Regulations 2008: 6 yrs.
+//   - NZ Lawyers and Conveyancers Act 2006 + Rules: 7 yrs typical.
+//   - AU APES 305 / 310: 7 yrs.
+//   - NZ IAA Code of Conduct 2014 Standard 27: 7 yrs from completion.
+//   - AU OMARA Code of Conduct 2021 Pt 6: 7 yrs.
+//   - AU ASIC RG 217 + ARITA Code: 7 yrs post-administration.
+//   - NZ Privacy Act 2020 + AU Privacy Act 1988: only as long as necessary,
+//     with statutory carve-outs above taking precedence.
+//
+// Default platform floor: 7 years. LegalHold can extend indefinitely.
+// All tables in this section are append-only — no UPDATE, no DELETE — so
+// they can be backed by WORM-style storage (e.g. S3 Object Lock) and
+// cryptographically chained for tamper-evidence.
+// ============================================================
+
+enum AuditAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  EXPORT
+  LOGIN
+  LOGOUT
+  SIGNOFF_REQUEST
+  SIGNOFF_APPROVE
+  SIGNOFF_REJECT
+  CONSENT_GRANT
+  CONSENT_WITHDRAW
+  REGULATOR_SUBMIT
+}
+
+// Generic immutable action log — every CRUD on every record. The spine.
+//
+// `prevHash` links to the prior log row's `hash`; `hash` is sha256 over
+// (prevHash || canonicalJson(rest of row)). A break in the chain is
+// tamper-evident even if the database itself is compromised.
+model AuditLog {
+  id            String      @id @default(cuid())
+  actorId       String?
+  actor         User?       @relation("AuditLogActor", fields: [actorId], references: [id])
+  actorEmail    String?
+  action        AuditAction
+  resourceType  String
+  resourceId    String
+  // Before/after JSON for UPDATE; null for CREATE/DELETE/READ as appropriate.
+  before        Json?
+  after         Json?
+  ipAddress     String?
+  userAgent     String?     @db.Text
+  // Tamper-evidence chain. prevHash references the previous row's hash so a
+  // regulator export can verify the chain end-to-end.
+  prevHash      String?
+  hash          String
+  createdAt     DateTime    @default(now())
+
+  @@index([actorId, createdAt(sort: Desc)])
+  @@index([resourceType, resourceId, createdAt(sort: Desc)])
+  @@index([action, createdAt(sort: Desc)])
+  @@index([createdAt(sort: Desc)])
+}
+
+// Document version history — supersede, never delete. Every revision keeps
+// a content hash so a later audit can prove the document said what we say
+// it said. The current Document row points at the latest version.
+model DocumentVersion {
+  id            String   @id @default(cuid())
+  documentId    String
+  document      Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  versionNumber Int
+  contentHash   String
+  storageUrl    String
+  storageBytes  Int?
+  createdById   String?
+  createdByEmail String?
+  changeNote    String?  @db.Text
+  createdAt     DateTime @default(now())
+
+  @@unique([documentId, versionNumber])
+  @@index([contentHash])
+  @@index([createdAt(sort: Desc)])
+}
+
+enum CommunicationChannel {
+  EMAIL
+  SMS
+  VOICE_CALL
+  PORTAL_MESSAGE
+  LETTER
+  IN_PERSON_NOTE
+}
+
+enum CommunicationDirection {
+  INBOUND
+  OUTBOUND
+}
+
+// Every client-facing communication. Required by IAA Standard 26
+// (file notes), OMARA Code Pt 6, Lawyers Conduct and Client Care Rules,
+// and APES 305 contemporaneous engagement records.
+model CommunicationRecord {
+  id            String                 @id @default(cuid())
+  matterId      String?
+  clientEmail   String?
+  actorId       String?
+  actor         User?                  @relation("CommunicationActor", fields: [actorId], references: [id])
+  channel       CommunicationChannel
+  direction     CommunicationDirection
+  subject       String?
+  body          String                 @db.Text
+  bodyHash      String
+  attachmentUrls Json?
+  occurredAt    DateTime
+  createdAt     DateTime               @default(now())
+
+  @@index([matterId, occurredAt(sort: Desc)])
+  @@index([actorId, occurredAt(sort: Desc)])
+  @@index([channel, occurredAt(sort: Desc)])
+}
+
+enum Regulator {
+  IRD_NZ
+  IR_NZ_COMPANIES_OFFICE
+  ATO_AU
+  ASIC_AU
+  AFSA_AU
+  AUSTRAC_AU
+  FIU_NZ
+  HMRC_UK
+  CRA_CA
+  IRS_US
+  USCIS_US
+  INZ_NZ
+  HOMEAFFAIRS_AU
+  IAA_NZ
+  OMARA_AU
+  TPB_AU
+  NZLS_NZ
+  LSB_AU
+  OPC_NZ
+  OAIC_AU
+  OTHER
+}
+
+enum FilingStatus {
+  DRAFT
+  SUBMITTED
+  ACKNOWLEDGED
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+}
+
+// Every filing made to a regulator. Critical evidence: "did we lodge that?"
+// The regulatorReference is the receipt number returned by the regulator;
+// payloadHash is a sha256 over the exact payload submitted so a later
+// dispute can be resolved deterministically.
+model RegulatorFiling {
+  id                 String       @id @default(cuid())
+  matterId           String?
+  filedById          String?
+  filedBy            User?        @relation("RegulatorFilingFiledBy", fields: [filedById], references: [id])
+  regulator          Regulator
+  filingType         String
+  jurisdiction       String?
+  payloadHash        String
+  payloadStorageUrl  String?
+  regulatorReference String?
+  status             FilingStatus @default(DRAFT)
+  submittedAt        DateTime?
+  acknowledgedAt     DateTime?
+  responseHash       String?
+  responseStorageUrl String?
+  notes              String?      @db.Text
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  @@index([regulator, submittedAt(sort: Desc)])
+  @@index([matterId, submittedAt(sort: Desc)])
+  @@index([status])
+  @@index([regulatorReference])
+}
+
+enum AccessGrantAction {
+  GRANT
+  REVOKE
+  ROLE_CHANGE
+  IMPERSONATE_BEGIN
+  IMPERSONATE_END
+}
+
+// Permission changes — who granted what to whom, when, and why.
+// Required for SOC 2 CC6, ISO 27001 A.9, and supports privacy-regulator
+// inquiries about "who could see this client's data on Date X."
+model AccessGrant {
+  id          String            @id @default(cuid())
+  grantorId   String?
+  grantor     User?             @relation("AccessGrantGrantor", fields: [grantorId], references: [id])
+  subjectId   String
+  subject     User              @relation("AccessGrantSubject", fields: [subjectId], references: [id])
+  resourceType String
+  resourceId   String?
+  permission   String
+  action       AccessGrantAction
+  reason       String?           @db.Text
+  ipAddress    String?
+  createdAt    DateTime          @default(now())
+
+  @@index([subjectId, createdAt(sort: Desc)])
+  @@index([resourceType, resourceId])
+  @@index([action, createdAt(sort: Desc)])
+}
+
+enum BreachAssessment {
+  PENDING
+  NOT_NOTIFIABLE
+  NOTIFIABLE
+}
+
+enum BreachStatus {
+  OPEN
+  CONTAINED
+  REMEDIATED
+  REGULATOR_NOTIFIED
+  CLOSED
+}
+
+// Privacy breach register. NZ Privacy Act 2020 s114 (notify within 72hrs of
+// becoming aware where serious harm is likely). AU Privacy Act 1988 NDB
+// scheme (assess within 30 days, notify if eligible). GDPR Art 33/34 (72hrs).
+model PrivacyBreachIncident {
+  id                String           @id @default(cuid())
+  reportedById      String?
+  reportedBy        User?            @relation("PrivacyBreachReporter", fields: [reportedById], references: [id])
+  discoveredAt      DateTime
+  containedAt       DateTime?
+  affectedSubjects  Int?
+  description       String           @db.Text
+  rootCause         String?          @db.Text
+  remediation       String?          @db.Text
+  assessment        BreachAssessment @default(PENDING)
+  assessmentDueAt   DateTime?
+  status            BreachStatus     @default(OPEN)
+  notifiedRegulator Boolean          @default(false)
+  regulatorNotifiedAt DateTime?
+  regulatorRefs     Json?
+  notifiedSubjectsAt DateTime?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@index([discoveredAt(sort: Desc)])
+  @@index([status])
+  @@index([assessment])
+}
+
+enum ComplaintForum {
+  INTERNAL
+  IAA_NZ
+  OMARA_AU
+  NZLS_NZ
+  LSB_AU
+  TPB_AU
+  CA_ANZ
+  CPA_AUSTRALIA
+  ARITA
+  OPC_NZ
+  OAIC_AU
+  OTHER
+}
+
+enum ComplaintStatus {
+  OPEN
+  UNDER_REVIEW
+  RESPONDED
+  ESCALATED
+  RESOLVED
+  WITHDRAWN
+}
+
+// Complaint register. Required by IAA Code Standard 4 (NZ), OMARA Code
+// 2021 cl 6.4 (AU), NZLS Conduct & Client Care Rules, TPB Code item 12.
+model ComplaintRecord {
+  id            String           @id @default(cuid())
+  loggedById    String?
+  loggedBy      User?            @relation("ComplaintLoggedBy", fields: [loggedById], references: [id])
+  matterId      String?
+  complainant   String
+  forum         ComplaintForum
+  receivedAt    DateTime
+  summary       String           @db.Text
+  responseDueAt DateTime?
+  responseAt    DateTime?
+  outcome       String?          @db.Text
+  status        ComplaintStatus  @default(OPEN)
+  externalRef   String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@index([status])
+  @@index([forum])
+  @@index([receivedAt(sort: Desc)])
+}
+
+// Per-record-type retention rule. Resolves to the strictest applicable
+// regime for the customer in scope. Concrete rows (e.g. "AML CDD =
+// 7 years (AU AML/CTF Act 2006 s107)") are seeded at deploy time.
+model RetentionPolicy {
+  id            String   @id @default(cuid())
+  resourceType  String
+  jurisdiction  String
+  authority     String
+  retentionDays Int
+  trigger       String
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([resourceType, jurisdiction, authority])
+  @@index([resourceType])
+}
+
+enum LegalHoldStatus {
+  ACTIVE
+  RELEASED
+}
+
+// Legal hold — overrides retention deletion until released. Required for
+// litigation, regulator investigation, or live insurance claim.
+model LegalHold {
+  id            String          @id @default(cuid())
+  resourceType  String
+  resourceId    String
+  reason        String          @db.Text
+  authority     String?
+  requestedById String?
+  requestedBy   User?           @relation("LegalHoldRequester", fields: [requestedById], references: [id])
+  status        LegalHoldStatus @default(ACTIVE)
+  startedAt     DateTime        @default(now())
+  releasedAt    DateTime?
+  releaseReason String?         @db.Text
+
+  @@index([resourceType, resourceId, status])
+  @@index([status])
+}
+
+// Subprocessor changes for the DPA Schedule 2. Customers must be notifiable
+// of new subprocessors; this is the canonical record.
+model SubprocessorChange {
+  id              String   @id @default(cuid())
+  subprocessor    String
+  purpose         String
+  jurisdiction    String?
+  changeKind      String
+  effectiveAt     DateTime
+  customerNotifyAt DateTime?
+  notes           String?  @db.Text
+  createdAt       DateTime @default(now())
+
+  @@index([effectiveAt(sort: Desc)])
 }
