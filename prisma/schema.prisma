@@ -86,6 +86,11 @@ model User {
   privacyBreachReports PrivacyBreachIncident[]    @relation("PrivacyBreachReporter")
   complaintsLogged     ComplaintRecord[]          @relation("ComplaintLoggedBy")
   legalHoldsRequested  LegalHold[]                @relation("LegalHoldRequester")
+
+  // Firm membership — the multi-tenancy spine. A user belongs to one or more
+  // firms via FirmMembership; each membership carries credentials, bar numbers,
+  // and sign-off authority. See models below.
+  firmMemberships      FirmMembership[]           @relation("FirmMembershipUser")
 }
 
 // ============================================================
@@ -1362,4 +1367,295 @@ model SubprocessorChange {
   createdAt       DateTime @default(now())
 
   @@index([effectiveAt(sort: Desc)])
+}
+
+// ============================================================
+// FIRM TENANCY — the multi-tenancy spine. Firms are the buyer of
+// record. Users belong to firms via FirmMembership. White-label,
+// templates, trust accounts, PII insurance, CPD provider status,
+// and default sign-off authorities all attach at the Firm level.
+//
+// Sign-off Doctrine: every consumer-facing output that leaves the
+// platform passes through SignoffRequest and is approved by a
+// FirmMembership row whose `signoffAuthority = true` and whose
+// PractitionerCredential is valid for the relevant jurisdiction.
+// ============================================================
+
+enum FirmType {
+  LAW_FIRM
+  ACCOUNTING_FIRM
+  MULTI_DISCIPLINARY_PRACTICE   // legal + accounting under one roof (AU MDPs)
+  INSOLVENCY_PRACTICE
+  IMMIGRATION_ADVISORY
+  TAX_PRACTICE                   // dedicated tax-agent firm
+  BARRISTER_CHAMBERS             // NZ + AU + UK barristers
+  IN_HOUSE_LEGAL                 // corporate legal department
+  GOVERNMENT_LEGAL               // Crown Law, AGS, DOJ
+  COMMUNITY_LAW                  // pro bono / legal aid
+  OTHER
+}
+
+enum PractitionerCredential {
+  // NZ legal
+  BARRISTER_SOLICITOR_NZ          // dual admission — most NZ lawyers
+  BARRISTER_NZ                    // bar-only
+  SOLICITOR_NZ
+  LICENSED_CONVEYANCER_NZ
+  LICENSED_IMMIGRATION_ADVISER_NZ
+  // AU legal
+  AUSTRALIAN_LEGAL_PRACTITIONER
+  AUSTRALIAN_BARRISTER
+  AUSTRALIAN_SOLICITOR
+  REGISTERED_MIGRATION_AGENT_AU
+  // US legal
+  US_ATTORNEY                     // state bar admission — record state in barJurisdictions
+  // UK legal
+  UK_SOLICITOR                    // SRA-regulated
+  UK_BARRISTER                    // BSB-regulated
+  UK_LEGAL_EXECUTIVE              // CILEX
+  // Canada legal
+  CANADIAN_LAWYER                 // provincial law society
+  // NZ + AU accountancy
+  CHARTERED_ACCOUNTANT_NZ_AU      // CA ANZ
+  CPA_AUSTRALIA
+  IPA_MEMBER                      // Institute of Public Accountants AU
+  // US accountancy
+  CPA_US                          // state board
+  EA_US                           // Enrolled Agent
+  // UK accountancy
+  ICAEW_FELLOW
+  ICAEW_MEMBER
+  ACCA_MEMBER
+  CIMA_MEMBER
+  // Canadian accountancy
+  CPA_CANADA
+  // Tax practitioner
+  TAX_AGENT_NZ                    // IRD-listed
+  TAX_AGENT_AU                    // TPB-registered
+  BAS_AGENT_AU                    // TPB-registered (BAS scope)
+  // Insolvency
+  REGISTERED_INSOLVENCY_PRACTITIONER_NZ
+  REGISTERED_LIQUIDATOR_AU
+  REGISTERED_TRUSTEE_AU
+  CHARTERED_INSOLVENCY_PRACTITIONER_UK
+  // Other professional
+  NOTARY_PUBLIC_NZ
+  NOTARY_PUBLIC_AU
+  TRUST_LAWYER_SPECIALIST
+  OTHER
+}
+
+model Firm {
+  id                String     @id @default(cuid())
+  name              String
+  legalName         String?
+  firmType          FirmType
+  jurisdictions     String[]   // ISO codes: NZ, AU, US, UK, CA
+  primaryContactId  String?
+
+  // Identifiers per jurisdiction
+  nzbn              String?
+  abn               String?
+  acn               String?
+  einUs             String?
+  ukCompanyNumber   String?
+
+  // White-label
+  logoUrl           String?
+  brandPrimaryHex   String?
+  whiteLabelDomain  String?
+  defaultCoverPhrase String?   // "Reviewed and signed by [Name], [Credential]"
+
+  // Default templates — JSON map of resourceType -> templateId so the firm's
+  // preferred wording flows automatically into every client engagement.
+  templateOverrides Json?
+
+  // PII insurance
+  piInsurerName     String?
+  piPolicyNumber    String?
+  piPolicyExpiresAt DateTime?
+
+  // CPD provider status
+  cpdProviderApprovalNzls    String?
+  cpdProviderApprovalCaAnz   String?
+  cpdProviderApprovalLca     String?
+  cpdProviderApprovalCpaAu   String?
+  cpdProviderApprovalAicpa   String?
+
+  // Stripe billing for the firm (separate from individual user subscriptions
+  // when the firm pays for all seats centrally)
+  stripeCustomerId        String?  @unique
+  stripeSubscriptionId    String?  @unique
+  stripePriceId           String?
+  subscriptionStatus      String?
+  subscriptionPeriodEnd   DateTime?
+
+  members           FirmMembership[]
+  legalDocumentTemplates LegalDocumentTemplate[]
+  entityFormations  EntityFormation[]
+
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  @@index([firmType])
+  @@index([jurisdictions])
+  @@index([whiteLabelDomain])
+}
+
+model FirmMembership {
+  id                    String                   @id @default(cuid())
+  firmId                String
+  firm                  Firm                     @relation(fields: [firmId], references: [id], onDelete: Cascade)
+  userId                String
+  user                  User                     @relation("FirmMembershipUser", fields: [userId], references: [id], onDelete: Cascade)
+  credentials           PractitionerCredential[]
+  // Bar / registration numbers per credential (parallel array)
+  registrationNumbers   String[]
+  // Jurisdictions in which this practitioner is licensed to practise
+  practiceJurisdictions String[]
+  // Sign-off authority — can this membership approve SignoffRequests?
+  signoffAuthority      Boolean                  @default(false)
+  signoffJurisdictions  String[]
+  // Firm admin — can configure templates, billing, members?
+  isAdmin               Boolean                  @default(false)
+  // Tax-agent / BAS-agent scope flags (AU TPB)
+  tpbScope              String?                  // "tax_agent", "bas_agent", "tax_agent_restricted"
+  // Title — Partner, Senior Associate, Solicitor, Senior Tax Adviser, etc.
+  title                 String?
+  joinedAt              DateTime                 @default(now())
+  leftAt                DateTime?
+
+  @@unique([firmId, userId])
+  @@index([userId])
+  @@index([signoffAuthority])
+}
+
+// ============================================================
+// LEGAL DOCUMENT TEMPLATES — the firm-overridable library that
+// generates the SaaS legal pack. Each template is versioned;
+// each customer instance is reviewed via SignoffRequest before
+// release. Marco Reid ships defaults; firms override.
+// ============================================================
+
+enum LegalDocumentKind {
+  TERMS_OF_SERVICE
+  PRIVACY_POLICY
+  ACCEPTABLE_USE_POLICY
+  COOKIE_POLICY
+  REFUND_POLICY
+  DPA
+  AI_DISCLOSURE
+  AI_OUTPUT_DISCLAIMER
+  SLA
+  SUBPROCESSOR_LIST
+  DMCA_POLICY
+  CCPA_DISCLOSURE
+  TRADEMARK_NOTICE
+  TRUST_DEED
+  SHAREHOLDERS_AGREEMENT
+  EMPLOYMENT_AGREEMENT
+  CONTRACTOR_AGREEMENT
+  IP_ASSIGNMENT
+  NDA
+  ENGAGEMENT_LETTER
+  MUTUAL_NDA
+  OTHER
+}
+
+model LegalDocumentTemplate {
+  id              String            @id @default(cuid())
+  // Null firmId = Marco Reid platform default. Non-null = firm override.
+  firmId          String?
+  firm            Firm?             @relation(fields: [firmId], references: [id], onDelete: Cascade)
+  kind            LegalDocumentKind
+  jurisdiction    String            // ISO + sub-jurisdiction (e.g. "US-CA" for California)
+  name            String
+  version         String
+  body            String            @db.Text
+  variables       Json?             // template variables exposed to render
+  citations       Json?             // citations the template references
+  active          Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@unique([firmId, kind, jurisdiction, version])
+  @@index([kind, jurisdiction])
+}
+
+// ============================================================
+// ENTITY FORMATION — the Marco Reid Launch state machine.
+// Tracks the formation of a customer entity from intake to
+// fully-incorporated, with sign-off, partner-filing, and EIN
+// progression. Sits alongside RegulatorFiling for the formal
+// regulator submissions.
+// ============================================================
+
+enum EntityFormationType {
+  US_DELAWARE_C_CORP
+  US_DELAWARE_LLC
+  US_WYOMING_LLC
+  US_NEVADA_C_CORP
+  US_OTHER_STATE
+  NZ_LIMITED
+  AU_PROPRIETARY_LIMITED
+  AU_PUBLIC_COMPANY
+  UK_LIMITED
+  UK_LLP
+  SG_PRIVATE_LIMITED
+  CA_FEDERAL_CORP
+  CA_PROVINCIAL_CORP
+  OTHER
+}
+
+enum EntityFormationStatus {
+  DRAFT
+  AWAITING_SIGNOFF
+  FILING_SUBMITTED
+  FILING_ACCEPTED
+  AWAITING_EIN
+  AWAITING_BANK
+  COMPLETE
+  REJECTED
+  CANCELLED
+}
+
+model EntityFormation {
+  id                   String                @id @default(cuid())
+  firmId               String?
+  firm                 Firm?                 @relation(fields: [firmId], references: [id])
+  founderUserId        String?
+  proposedName         String
+  formationType        EntityFormationType
+  jurisdiction         String                // ISO subcode where filed
+  status               EntityFormationStatus  @default(DRAFT)
+  // Authorised share / capital structure (C-Corp / Pty Ltd / Ltd)
+  authorisedShares     Int?
+  parValueCents        Int?
+  // Registered agent partner (Harvard, Northwest, Cogency, internal)
+  registeredAgentName  String?
+  registeredAgentRef   String?
+  // EIN / IRD / ABN / ACN / company number once issued
+  einUs                String?
+  irdNumberNz          String?
+  abnAu                String?
+  acnAu                String?
+  companyNumberUk      String?
+  companyNumberNz      String?
+  // Filings linked
+  certificateUrl       String?
+  certificateHash      String?
+  // Bank account partner (Mercury, Wise, Brex, etc.)
+  bankPartnerName      String?
+  bankAccountRef       String?
+  // Sign-off + filing references
+  signoffRequestId     String?
+  regulatorFilingId    String?
+  notes                String?               @db.Text
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  @@index([firmId])
+  @@index([founderUserId])
+  @@index([status])
+  @@index([formationType])
 }
