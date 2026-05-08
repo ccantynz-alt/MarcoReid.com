@@ -46,7 +46,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 |---|---|---|---|
 | 1 | Specialty matrix marketplace (50 × 4 jurisdictions = 200 SEO entry points) | 🟡 | `/specialties` index live with 56 specialties, profession + jurisdiction filters, search. 6 flagship deep pages live (family, employment, commercial-corporate, IP, audit-assurance, SMSF). Remaining 50 deep pages queued |
 | 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door shipped this commit. Template engine + 100 forms is Wave 2 |
-| 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | ⬜ | Wave 2 |
+| 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | 🟡 | `lib/court-rules.ts` shipped with 28 rules across NZ/AU/UK/US. `/tools/court-rules` interactive calculator live (pick rule + trigger date → cited deadline). Public-holiday calendars + service-of-process variations + fuller rule catalogue queued |
 | 4 | Multi-jurisdictional referral rail | ⬜ | Wave 4 |
 | 5 | Document automation studio (variables-once-fill-forever) | ⬜ | Wave 2 |
 | 6 | Marco Legal Research (citations across NZLII / AustLII / BAILII / CourtListener) | ⬜ | Wave 2 |
@@ -134,7 +134,8 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/specialties/intellectual-property` (deep page, NZ + AU + UK + US) | ✅ |
 | `/specialties/audit-assurance` (deep page, NZ + AU + UK + US) | ✅ |
 | `/specialties/smsf` (deep page, AU wedge) | ✅ |
-| `/specialties/litigation` (deep page) | ⬜ |
+| `/specialties/litigation` (deep page) | ✅ |
+| `/tools/court-rules` (deadline calculator) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |

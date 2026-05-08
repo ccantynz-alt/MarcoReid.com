@@ -29,6 +29,7 @@ export const SPECIALTIES: ReadonlyArray<SpecialtyRow> = [
     jurisdictions: ["NZ", "AU", "UK", "US"],
     summary:
       "Civil disputes, court applications, evidence, examinations, judgments. District through to appellate.",
+    deepPage: true,
   },
   {
     slug: "criminal-defence",
