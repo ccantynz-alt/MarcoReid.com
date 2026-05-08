@@ -51,7 +51,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 5 | Document automation studio (variables-once-fill-forever) | 🟡 | Template engine live (`lib/templates/engine.ts`): variable contracts, substitution, watermark wrapper, registry. NDA template authored across 4 jurisdictions as canonical first template. Firm-side template-override UI (Wave 4) still queued |
 | 6 | Marco Legal Research (citations across NZLII / AustLII / BAILII / CourtListener) | 🟡 | `/marco/legal` live with research box + 12-source catalogue (NZLII / AustLII / BAILII / CourtListener / CAP / Cornell LII / SCOTUS / legislation portals). `/api/marco/research` endpoint serves demo-mode responses with VERIFIED / UNVERIFIED / NOT_FOUND citations. Real Anthropic-driven research swaps in once `ANTHROPIC_API_KEY` is set in Vercel |
 | 7 | Court e-filing integration | ⬜ | Wave 5 |
-| 8 | Unified conflict + KYC + AML | ⬜ | Wave 4 |
+| 8 | Unified conflict + KYC + AML | 🟡 | `/tools/conflict-check` interactive intake live: party name, type, jurisdiction, country of operation. Runs four checks (firm matter ledger, sanctions, PEP, adverse media) and outputs a Low/Medium/High risk rating + jurisdiction-specific recommendation. Demo-mode heuristics client-side; real engine swaps in once UN / OFAC / EU / MFAT / DFAT / OFSI feeds are wired. Schema: `AmlAssessment` already in place |
 | 9 | Three-mode billing (contingent / flat-fee / hourly) | ⬜ | Wave 3 |
 | 10 | Public document generator → sign-off paywall | 🟡 | `/generate` flow live (intake → watermarked draft → sign-off CTA). Sign-off payment + routing is Wave 4 |
 
@@ -143,6 +143,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/directory/[slug]` (verified-pro profile pages) | ✅ |
 | `/cross-border-admission` (multi-jurisdictional pathway service) | ✅ |
 | `/launch` (Marco Reid Launch — flagship incorporation product) | ✅ |
+| `/tools/conflict-check` (unified conflict + KYC + AML intake) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |

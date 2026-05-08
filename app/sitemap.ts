@@ -78,6 +78,7 @@ const entries: Entry[] = [
   { path: "/specialties/litigation", changeFrequency: "monthly", priority: 0.8 },
   // Tools
   { path: "/tools/court-rules", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/tools/conflict-check", changeFrequency: "weekly", priority: 0.85 },
   // Marco research centres
   { path: "/marco/legal", changeFrequency: "weekly", priority: 0.9 },
   { path: "/marco/accounting", changeFrequency: "weekly", priority: 0.9 },
