@@ -30,6 +30,7 @@ const links = {
   ],
   forPublic: [
     { label: "Generate a document", href: "/generate" },
+    { label: "Marco Reid Launch (incorporate)", href: "/launch" },
     { label: "Find a professional", href: "/directory" },
     { label: "All specialties", href: "/specialties" },
     { label: "Court-rules calculator", href: "/tools/court-rules" },

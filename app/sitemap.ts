@@ -86,6 +86,8 @@ const entries: Entry[] = [
   { path: "/directory", changeFrequency: "daily", priority: 0.9 },
   // Cross-border admission
   { path: "/cross-border-admission", changeFrequency: "monthly", priority: 0.8 },
+  // Marco Reid Launch
+  { path: "/launch", changeFrequency: "weekly", priority: 0.9 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },

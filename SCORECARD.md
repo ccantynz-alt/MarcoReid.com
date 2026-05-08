@@ -82,7 +82,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 26 | Liability shield architecture (structural sign-off + watermarks) | 🟢 | End-to-end live: public draft → /generate/[draftId]/signoff intake → SignoffRequest queue → /admin/signoffs review → approve transitions DocumentDraft to SIGNED with credentialled stamp. Two AuditLog rows per approval. Marketplace Professional supply side (Wave 4) replaces admin-as-reviewer stand-in |
 | 27 | Public networking + professional directory | 🟡 | `/directory` index live + `/directory/[slug]` profile pages live. Filtered to publishedToDirectory + verifiedAt. Empty state surfaces /for-attorneys + /for-accountants. Schema extended: Professional gains slug, photoUrl, headline, firmDisplayName, languages, hourlyRate, flatSignoff, publishedToDirectory. Search/filter UI + claim flow queued |
 | 28 | Daily personalised intelligence digest | ⬜ | Wave 4 |
-| 29 | Self-serve incorporation as front-door (Marco Reid Launch) | ⬜ | Wave 5 |
+| 29 | Self-serve incorporation as front-door (Marco Reid Launch) | 🟡 | `/launch` flagship product page live: 8-stage pipeline (intake + structure design → DE filing → EIN → US bank → founder pack → SaaS legal pack → cross-border tax → annual compliance autopilot), 3-tier pricing (Solo Founder $1,499, Funded Startup $3,499, Enterprise custom), full Stripe Atlas comparison table. Schema: EntityFormation already in place. Workflow API + partner integrations (Harvard / Northwest / Mercury) queued |
 | 30 | Court dictation (real-time legal vocabulary transcription) | ⬜ | Wave 5+ |
 
 ---
@@ -142,6 +142,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/directory` (professional directory index) | ✅ |
 | `/directory/[slug]` (verified-pro profile pages) | ✅ |
 | `/cross-border-admission` (multi-jurisdictional pathway service) | ✅ |
+| `/launch` (Marco Reid Launch — flagship incorporation product) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |
