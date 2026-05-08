@@ -1,0 +1,23 @@
+/**
+ * lib/templates/index.ts — entry point.
+ *
+ * Importing this module side-effect-registers every template into the
+ * engine registry. Add new template files to the imports below and they
+ * are picked up automatically by /api/generate/intake.
+ */
+
+// Side-effect imports — each module calls registerTemplate() at load.
+import "./nda";
+
+// Re-export the engine API.
+export {
+  findTemplate,
+  listTemplates,
+  templatesForSlug,
+  templatesForJurisdiction,
+  substitute,
+  wrapWithWatermark,
+  type DocumentTemplate,
+  type Jurisdiction,
+  type TemplateVariable,
+} from "./engine";

@@ -45,10 +45,10 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | # | Move | Status | Notes |
 |---|---|---|---|
 | 1 | Specialty matrix marketplace (50 × 4 jurisdictions = 200 SEO entry points) | 🟡 | `/specialties` index live with 56 specialties, profession + jurisdiction filters, search. 6 flagship deep pages live (family, employment, commercial-corporate, IP, audit-assurance, SMSF). Remaining 50 deep pages queued |
-| 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door shipped this commit. Template engine + 100 forms is Wave 2 |
+| 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door + template engine + first template (NDA × NZ/AU/UK/US) live. Engine reads from `lib/templates/*` and the public intake automatically renders any registered (slug, jurisdiction) pair. Adding a new template is a single TS module. ~496 templates queued |
 | 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | 🟡 | `lib/court-rules.ts` shipped with 28 rules across NZ/AU/UK/US. `/tools/court-rules` interactive calculator live (pick rule + trigger date → cited deadline). Public-holiday calendars + service-of-process variations + fuller rule catalogue queued |
 | 4 | Multi-jurisdictional referral rail | ⬜ | Wave 4 |
-| 5 | Document automation studio (variables-once-fill-forever) | ⬜ | Wave 2 |
+| 5 | Document automation studio (variables-once-fill-forever) | 🟡 | Template engine live (`lib/templates/engine.ts`): variable contracts, substitution, watermark wrapper, registry. NDA template authored across 4 jurisdictions as canonical first template. Firm-side template-override UI (Wave 4) still queued |
 | 6 | Marco Legal Research (citations across NZLII / AustLII / BAILII / CourtListener) | 🟡 | `/marco/legal` live with research box + 12-source catalogue (NZLII / AustLII / BAILII / CourtListener / CAP / Cornell LII / SCOTUS / legislation portals). `/api/marco/research` endpoint serves demo-mode responses with VERIFIED / UNVERIFIED / NOT_FOUND citations. Real Anthropic-driven research swaps in once `ANTHROPIC_API_KEY` is set in Vercel |
 | 7 | Court e-filing integration | ⬜ | Wave 5 |
 | 8 | Unified conflict + KYC + AML | ⬜ | Wave 4 |

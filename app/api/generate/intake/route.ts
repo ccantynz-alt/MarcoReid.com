@@ -3,6 +3,11 @@ import { createHash } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { writeAuditLog } from "@/lib/audit";
 import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
+import {
+  findTemplate,
+  wrapWithWatermark,
+  type Jurisdiction as TemplateJurisdiction,
+} from "@/lib/templates";
 
 export const runtime = "nodejs";
 
@@ -204,11 +209,33 @@ export async function POST(request: Request) {
         : null;
 
     const docType = classifyDocType(situation);
-    const draftBody = renderStubDraft({
-      jurisdiction,
-      docTypeLabel: docType.label,
-      situation,
-    });
+
+    // Try the real template engine first. If a template is registered for
+    // the (slug, jurisdiction) pair, render it with empty values (the
+    // engine substitutes [Label] placeholders for missing required fields,
+    // which becomes the natural prompt list for the citizen + reviewer).
+    // If no template is registered, fall back to the stub body so the
+    // pipeline still produces output the watermark + sign-off can attach to.
+    const template = findTemplate(
+      docType.slug,
+      jurisdiction as TemplateJurisdiction,
+    );
+
+    let draftBody: string;
+    if (template) {
+      const rendered = template.render({});
+      draftBody = wrapWithWatermark({
+        body: rendered,
+        jurisdiction: jurisdiction as TemplateJurisdiction,
+        templateLabel: template.label,
+      });
+    } else {
+      draftBody = renderStubDraft({
+        jurisdiction,
+        docTypeLabel: docType.label,
+        situation,
+      });
+    }
     const bodyHash = createHash("sha256").update(draftBody).digest("hex");
     const userAgent =
       request.headers.get("user-agent")?.slice(0, 512) ?? null;
@@ -223,6 +250,8 @@ export async function POST(request: Request) {
           docTypeLabel: docType.label,
           confidence: docType.confidence,
           extractedBy: "heuristic-v1",
+          templateRendered: Boolean(template),
+          templateLabel: template?.label ?? null,
         },
         body: draftBody,
         bodyHash,
