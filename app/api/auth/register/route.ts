@@ -4,6 +4,7 @@ import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
 import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
+import { writeAuditLog } from "@/lib/audit";
 import {
   CURRENT_TOS_VERSION,
   CURRENT_PLATFORM_ACK_VERSION,
@@ -114,6 +115,42 @@ export async function POST(request: Request) {
         signupIp: ip === "unknown" ? null : ip,
         signupUserAgent: userAgent,
       },
+    });
+
+    // Append to the hash-chained AuditLog. Two rows per signup: one for the
+    // user creation itself, one for the consent acknowledgments. Recorded
+    // here (not in a middleware) because the chain has to ship synchronously
+    // with the mutation, and consent records have a heightened evidentiary
+    // bar — see lib/consent.ts and /compliance-records.
+    await writeAuditLog({
+      actorId: user.id,
+      actorEmail: user.email,
+      action: "CREATE",
+      resourceType: "User",
+      resourceId: user.id,
+      after: {
+        email: user.email,
+        name: user.name,
+        firmName: user.firmName,
+        role: user.role,
+      },
+      ipAddress: ip === "unknown" ? null : ip,
+      userAgent,
+    });
+    await writeAuditLog({
+      actorId: user.id,
+      actorEmail: user.email,
+      action: "CONSENT_GRANT",
+      resourceType: "User",
+      resourceId: user.id,
+      after: {
+        tosVersion: user.tosVersion,
+        tosAcceptedAt: user.tosAcceptedAt?.toISOString() ?? null,
+        platformAckVersion: user.platformAckVersion,
+        platformAckAt: user.platformAckAt?.toISOString() ?? null,
+      },
+      ipAddress: ip === "unknown" ? null : ip,
+      userAgent,
     });
 
     // Create email verification token
