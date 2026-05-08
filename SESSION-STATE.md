@@ -6,6 +6,167 @@
 
 ---
 
+## Current state — last updated 2026-05-08
+
+**Branch:** `claude/expand-professional-services-5g6Si` (now equivalent to `main`).
+
+**Production:** Live at `https://marcoreid.com` (and `https://www.marcoreid.com`). Vercel deploys clean. Neon DB is in sync via `prisma db push`. Admin user `admin@marcoreid.com / changeme123` (rotate before public launch — Neon password should also be rotated; previous one was exposed in chat).
+
+**Strategic decisions locked this session (2026-05-07 + 2026-05-08):**
+
+1. **Marco Reid is a two-sided platform with the attorney/accountant as the irreplaceable layer**, not the bypassed one. Stripe Atlas commoditised entity formation by decoupling mechanical filing from professional sign-off; Marco Reid recouples them and gives the professional the productivity unlock + the relationship.
+2. **Infrastructure-capture defence ("too embedded to attack")**. Build to be indispensable to attorneys' and accountants' daily work — CPD, trust accounting, court filing, PII insurer discounts, regulator filing — so that bar/professional-body attacks are politically impossible because the bar's own members depend on the platform. Westlaw / Bloomberg / Clio / Xero / PEXA precedent.
+3. **Sign-off Doctrine is structural, not aspirational.** Every consumer-facing AI output passes through `SignoffRequest`. Until signed, output watermarked "DRAFT — Not legal/tax advice." Once signed, "Reviewed and signed by [Name], [Credential], [Date]" stamped on every page.
+4. **Pricing model is Rule 5.4 / Lawyers and Conveyancers Act compliant.** SaaS subscription to firm + flat lead-qualification fees. Never percentage-of-engagement. Two transactions, two engagement letters, two relationships per client (firm-to-client + Marco Reid-to-firm). Clio model.
+5. **DavenRoe is the accountancy backbone.** Wholesale port of DavenRoe's catch-up, forensics, payroll, ledger, bank feeds, migration framework, and compliance calendar into Marco Reid as the accountancy division. Rebrand and integrate with Marco Reid's `Firm`/`AuditLog`/`SignoffRequest` spine. Stack mismatch (DavenRoe = FastAPI + React Vite; Marco Reid = Next.js 16 + Prisma) means architectural port not copy-paste.
+6. **Multi-jurisdiction URL strategy: subdirectories + defensive ccTLDs.** `marcoreid.com/{nz,au,uk,us}/` as canonical structure (single codebase, unified brand authority). Register `marcoreid.co.nz`, `marcoreid.com.au`, `marcoreid.co.uk` as defensive ccTLDs (~NZ$80/yr total) that 301-redirect to the canonical subdirectories. Next.js i18n + hreflang for local SEO.
+
+## The 30 killer moves (the strategic backlog)
+
+### Lawyer / Attorney side
+
+1. Specialty matrix marketplace — 50 specialties × 4 jurisdictions = 200 SEO entry points
+2. AI form library — 500+ pre-drafted forms per jurisdiction (free draft / paid sign-off)
+3. Court-rules engine — every court's deadlines + service rules across NZ/AU/UK/US
+4. Multi-jurisdictional referral rail — NZ→US co-counsel routing with both signing
+5. Document automation studio — variables-once, fill-forever templating
+6. Marco Legal Research — citation verification across NZLII / AustLII / BAILII / CourtListener
+7. Court e-filing integration — direct lodgement rails per jurisdiction
+8. Unified conflict + KYC + AML — OFAC, UN, MFAT, DFAT, PEP + firm conflict ledger
+9. Three-mode billing — contingent, flat-fee, hourly all native
+10. Public document generator → sign-off paywall — public free draft, paid sign-off
+
+### Accountancy side (DavenRoe-derived)
+
+11. Catch-Up Annihilator — 5-year bank-feed catch-up + accountant-grade pack PDF
+12. Forensic Intelligence — Benford's, ghost vendor, money trail, payment splitting
+13. Multi-jurisdictional ledger — one CoA, NZ GST + AU BAS + UK VAT + US 50-state
+14. Cross-border tax-treaty engine — 6 bilateral DTAs, auto-WHT optimisation
+15. Native 4-country payroll — NZ PAYE, AU PAYG, UK PAYE, US fed+state
+16. Multi-region bank feeds — Akahu (NZ), Basiq (AU), Plaid (US/CA), TrueLayer (UK)
+17. Multi-agent AI — 6 specialists coordinated by orchestrator
+18. Autonomous month-end close — reconciliation + accruals + depreciation + FX in seconds
+19. Migration framework — real OAuth pulls from Xero / QBO / MYOB / Sage / FreshBooks
+20. Compliance calendar — 40+ deadlines tracked across 4 jurisdictions
+
+### Cross-cutting (drawn from Craig's strategic message 2026-05-08)
+
+21. Competitor + internet intelligence audit — 50–70% ahead of Xero / QBO / MYOB / Sage / NetSuite / Clio / MyCase / Centerbase / PracticePanther in every category
+22. Public document generator as front-door fishhook — anyone can come, AI drafts, free draft, pay for sign-off
+23. Public matter intake AI — plain-English description → jurisdiction + practice area + urgency + lawyer match
+24. Multi-jurisdictional license expansion service — actively help NZ lawyers admit in AU (TTMRA), UK (QLTS), US (state reciprocity); same for accountants (CA ANZ ↔ ICAEW MRA, CPA US reciprocity). Marco Reid as the professionals' visa office
+25. Marco split into 3 research centres — Marco Legal, Marco Accounting, Marco Forensic
+26. Liability shield architecture — structural Sign-off gating, watermarks before sign-off, named-and-credentialled stamps after
+27. Public networking + professional directory — public-facing pro profiles, ratings, specialties, jurisdictions, languages, fees
+28. Daily personalised intelligence digest — AI-curated regulatory + court updates per professional's specialties
+29. Self-serve incorporation as front-door — Marco Reid Launch as top-of-funnel acquisition
+30. Court dictation — real-time legal-vocabulary transcription, witness Q&A, evidence tagging (future add-on)
+
+## The 6-wave build plan
+
+### Wave 0 — Map + competitor audit (next session, 1 day)
+
+No code until this is done. Deliverables:
+
+- Screenshots-led audit of current platform UI (admin, dashboard, settings, etc.) — honest catalogue of every visual + structural gap
+- Audience map — 5 distinct logged-in personas (platform admin, NZ law-firm partner, AU CA, US barrister doing sign-off, citizen). First 5 seconds, what they want, what they fear missing
+- 4-jurisdiction × user-role × specialty matrix — every URL, every nav, every screen
+- Practice-area branch tree per profession — full specialty trees the way a partner would expect to see them
+- Workflow walkthroughs — onboarding firm, adding client, opening matter, drafting doc, sign-off, release, billing
+- Visual system carry-over from marketing pages (navy / forest / gold / plum, serif type, spotlight cards, Reveal animations)
+- Competitor scorecard — Xero, QBO, MYOB, Sage Intacct, NetSuite, FreshBooks, Clio, MyCase, Centerbase, PracticePanther. Goal: 50–70% ahead in every feature category
+- Build order with no half-finished features — agreed before any Tailwind class is written
+
+### Wave 1 — Foundations + public front door (week 1)
+
+- Light theme on platform area (kills the "dark and ugly" complaint)
+- Jurisdiction-aware Firm (NZ/AU/UK/US toggle on signup) + i18n routing under `/nz/`, `/au/`, `/uk/`, `/us/`
+- Role-routed `/dashboard` (admin / firm / citizen) — checks `role` + `FirmMembership`, redirects accordingly
+- Specialty matrix surfaced in firm UI
+- Public document generator shell + intake AI
+- Public matter intake AI ("describe your situation in plain English")
+- Sign-off paywall structural (free draft → pay → professional signs → released)
+
+### Wave 2 — AI forms + court rules + Marco × 3 (week 2)
+
+- 50–100 forms per jurisdiction (highest-volume first: leases, NDAs, wills, employment, partnership, shareholder, deeds, court applications)
+- Court-rules engine — deadlines, service rules, filing locations per court per jurisdiction
+- Marco Legal Research — citation verification across NZLII / AustLII / BAILII / CourtListener
+- Marco Accounting Research — IR / ATO / IRS / HMRC / CRA rulings + tax codes
+- Marco Forensic Research — fraud patterns, audit standards, evidence procedures
+
+### Wave 3 — Accountancy (DavenRoe port, weeks 3–4)
+
+- Architectural port of DavenRoe modules (FastAPI + SQLAlchemy → Next.js API routes + Prisma)
+- Catch-Up Annihilator + accountant-grade pack PDF
+- Forensic Intelligence (Benford's, ghost vendor, money trail, payment splitting)
+- Multi-jurisdictional ledger (NZ GST + AU BAS + UK VAT + US 50-state in one CoA)
+- Cross-border tax-treaty engine
+- Native 4-country payroll
+- Bank feeds (Akahu, Basiq, Plaid, TrueLayer)
+- Migration framework (Xero, QBO, MYOB, Sage, FreshBooks)
+- Compliance calendar
+- Re-skinned to Marco Reid brand
+- Wired to Marco Reid `Firm`/`AuditLog`/`SignoffRequest` spine
+
+### Wave 4 — Marketplace + networking + license expansion (week 5)
+
+- Multi-jurisdictional referral rail
+- Public-to-pro matching by specialty + jurisdiction
+- Unified conflict + KYC + AML workflow
+- Public-facing pro profiles + ratings + specialty/jurisdiction filtering (SEO indexable)
+- Multi-jurisdictional license expansion service (TTMRA, QLTS, MRA pathways)
+- Daily personalised intelligence digest (regulatory radar by specialty)
+
+### Wave 5 — Court e-filing, ID capture, dictation (weeks 6–8)
+
+- Direct lodgement rails per jurisdiction (NZ District / High / Family; AU Federal + state; US PACER + state; UK CE-File)
+- ID capture (Stripe Identity / Onfido / Persona)
+- Court dictation (real-time legal-vocabulary transcription)
+
+### Wave 6 — Continuous (post-launch)
+
+- Specialty-by-specialty deepening (the long tail)
+- Vertical specialisations (construction, healthcare, nonprofit, e-commerce)
+- PWA + native mobile shell
+- SOC 2 Type II prep
+- Bar / CA ANZ / TPB / OMARA accreditation paperwork
+- PII insurer outreach (NZLS PII Scheme broker, Lawcover AU)
+
+## Today's session log (2026-05-07 → 2026-05-08)
+
+**What shipped to production:**
+- Six new marketing pages: `/insolvency`, `/tax-advisors`, `/immigration-advisers`, `/compliance-records`, `/for-attorneys`, `/for-accountants`
+- Schema additions: `AuditLog` (hash-chained), `DocumentVersion`, `CommunicationRecord`, `RegulatorFiling`, `AccessGrant`, `PrivacyBreachIncident`, `ComplaintRecord`, `RetentionPolicy`, `LegalHold`, `SubprocessorChange`, `Firm`, `FirmMembership`, `LegalDocumentTemplate`, `EntityFormation`. Plus `FirmType`, `PractitionerCredential` (30+ credentials), `LegalDocumentKind`, `EntityFormationType`, `EntityFormationStatus` enums
+- Footer + sitemap wired with new pages
+- Stripe API version bumped to 2026-04-22.dahlia (unblocked Vercel build)
+- `lib/prisma.ts` migrated to PrismaPg adapter for Prisma 7 runtime compatibility
+- `prisma.config.ts` wired with datasource + seed config + dotenv loading
+- `prisma/seed.ts` rewritten for Prisma 7 PrismaPg adapter
+- `prisma/schema.prisma` datasource simplified to Prisma 7 spec
+- `package.json` gained `tsx`, `dotenv` deps
+- `SESSION-STATE.md` flywheel updated (this update)
+
+**What's still queued (carried into next session):**
+- `lib/audit.ts` — hash-chained audit-write helper + `verifyAuditChain()` for regulator export
+- Wire `lib/audit.ts` into `/api/auth/register` as proof of concept
+- Practice-area coverage breadth — see Wave 0 + Wave 2
+
+**Decisions logged this session (do not reverse without written approval):**
+
+7. **Subdirectory URL strategy** locked. `marcoreid.com/{nz,au,uk,us}/`. ccTLDs registered defensively but redirect to canonical subdirectories.
+8. **DavenRoe → Marco Reid accountancy division** locked. Architectural port (not copy-paste) due to stack mismatch.
+9. **Wave 0 (map + competitor audit) is mandatory** before any Wave 1+ code. Discipline over speed.
+10. **The 30-move scorecard is the canonical strategic backlog.** Future sessions identify the highest-priority open move and execute. No "what's next?" — the answer is always "the next P0/P1 from the scorecard."
+
+## Next action
+
+Wave 0 — open with screenshots of current platform UI, walk through the audience map, IA matrix, specialty trees, workflows, visual system carry-over, competitor scorecard. No code until the map is agreed.
+
+---
+
+## Earlier session log
+
 ## How the flywheel works
 
 1. **Open a session** → the opening ritual reads `IRON-LAW.md`, `Claude.MD`, and then `SESSION-STATE.md` so Claude picks up exactly where the last session left off.
