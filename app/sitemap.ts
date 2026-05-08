@@ -27,6 +27,7 @@ const entries: Entry[] = [
   { path: "/for-startups", changeFrequency: "monthly", priority: 0.7 },
   { path: "/for-attorneys", changeFrequency: "monthly", priority: 0.9 },
   { path: "/for-accountants", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/generate", changeFrequency: "weekly", priority: 0.95 },
   { path: "/immigration", changeFrequency: "monthly", priority: 0.7 },
 
   // Compare

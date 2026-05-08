@@ -1659,3 +1659,65 @@ model EntityFormation {
   @@index([status])
   @@index([formationType])
 }
+
+// ============================================================
+// DOCUMENT DRAFT — the public document generator's anchor record.
+//
+// Anyone (anonymous or signed-in) can describe a situation in plain
+// English; we extract structured intent (jurisdiction + suggested
+// document type + parties + key terms) and persist it as a DocumentDraft.
+// The draft body is generated against a LegalDocumentTemplate and watermarked
+// until a SignoffRequest is approved.
+//
+// Sign-off Doctrine: nothing renders without the watermark until a licensed
+// professional approves the SignoffRequest tied to this draft. Once signed,
+// the draft transitions to SIGNED and the cover page carries the
+// professional's name + credential + jurisdiction + date.
+// ============================================================
+
+enum DocumentDraftStatus {
+  DRAFTING
+  READY_FOR_REVIEW
+  AWAITING_SIGNOFF
+  SIGNED
+  EXPIRED
+  CANCELLED
+}
+
+model DocumentDraft {
+  id                  String              @id @default(cuid())
+  // null when public/anonymous; populated once an account is linked.
+  ownerUserId         String?
+  contactEmail        String?
+  jurisdiction        String              // ISO code: NZ, AU, UK, US
+  // Plain-English description from the intake form.
+  situation           String              @db.Text
+  // AI-extracted structured intent — document type slug, parties, fields,
+  // urgency, suggested template id. Stored as JSON to keep the schema
+  // flexible while the extraction pipeline evolves.
+  extracted           Json?
+  // Reference to the LegalDocumentTemplate used to produce the body.
+  templateId          String?
+  // Versioned body. Watermarked until signed.
+  body                String              @db.Text
+  bodyHash            String?
+  status              DocumentDraftStatus @default(DRAFTING)
+  // Signoff trail
+  signoffRequestId    String?
+  signedByUserId      String?
+  signedByCredential  String?
+  signedByJurisdiction String?
+  signedAt            DateTime?
+  // Anti-abuse
+  ipAddress           String?
+  userAgent           String?             @db.Text
+  expiresAt           DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  @@index([ownerUserId])
+  @@index([contactEmail])
+  @@index([jurisdiction])
+  @@index([status])
+  @@index([createdAt(sort: Desc)])
+}

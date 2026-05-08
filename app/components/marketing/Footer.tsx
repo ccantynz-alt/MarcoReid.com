@@ -27,6 +27,12 @@ const links = {
     { label: "Migration", href: "/migration" },
     { label: "Trial", href: "/trial" },
   ],
+  forPublic: [
+    { label: "Generate a document", href: "/generate" },
+    { label: "Catch-Up Centre", href: "/catch-up-centre" },
+    { label: "Marco research", href: "/marco" },
+    { label: "Pricing", href: "/pricing" },
+  ],
   company: [
     { label: "About", href: "/about" },
     { label: "Case studies", href: "/case-studies" },

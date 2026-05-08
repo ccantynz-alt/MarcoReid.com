@@ -1,0 +1,201 @@
+# SCORECARD.md — Live build tracker
+
+> The single source of truth for what's shipped and what's still in queue.
+> Update this file on every commit. ✅ = shipped, 🟡 = in flight, ⬜ = queued, ❌ = blocked.
+> If you're trying to figure out "have we built X?" — this file answers it.
+
+Last updated: 2026-05-08
+
+---
+
+## Foundation (the spine the 30 moves plug into)
+
+| Item | Status | Commit |
+|---|---|---|
+| `Firm` + `FirmMembership` schema | ✅ | f4ac314 |
+| 30+ `PractitionerCredential` enum values (NZ/AU/UK/US/CA legal + accounting) | ✅ | f4ac314 |
+| `FirmType` enum (LAW_FIRM, ACCOUNTING_FIRM, MULTI_DISCIPLINARY, INSOLVENCY, IMMIGRATION_ADVISORY, TAX_PRACTICE, BARRISTER_CHAMBERS, IN_HOUSE_LEGAL, GOVERNMENT_LEGAL, COMMUNITY_LAW) | ✅ | f4ac314 |
+| `LegalDocumentTemplate` (firm-overridable) + 21-doc `LegalDocumentKind` enum | ✅ | f4ac314 |
+| `EntityFormation` + state machine | ✅ | f4ac314 |
+| `AuditLog` (hash-chained) schema | ✅ | f1a10bd |
+| `lib/audit.ts` writeAuditLog + verifyAuditChain | ✅ | cdc86b6 |
+| First wired endpoint (`/api/auth/register` writes 2 audit rows) | ✅ | cdc86b6 |
+| `DocumentVersion` (supersede-not-delete) schema | ✅ | f1a10bd |
+| `CommunicationRecord` (file notes ledger) schema | ✅ | f1a10bd |
+| `RegulatorFiling` (every regulator submission) schema | ✅ | f1a10bd |
+| `AccessGrant` (permission change log) schema | ✅ | f1a10bd |
+| `PrivacyBreachIncident` (Privacy Act / NDB / GDPR register) schema | ✅ | f1a10bd |
+| `ComplaintRecord` (IAA / OMARA / NZLS / TPB / ARITA) schema | ✅ | f1a10bd |
+| `RetentionPolicy` + `LegalHold` schema | ✅ | f1a10bd |
+| `SubprocessorChange` (DPA Schedule 2) schema | ✅ | f1a10bd |
+| `DocumentDraft` (public draft anchor) schema | ✅ | this commit |
+| `SignoffRequest` model | ✅ | (earlier session) |
+| Consent audit fields on User (ToS + platform ack + IP + UA) | ✅ | (earlier session) |
+| Stripe API version pinned to 2026-04-22.dahlia | ✅ | f1a10bd |
+| Prisma 7 PrismaPg adapter migration | ✅ | ae9ce1f |
+| `prisma.config.ts` datasource + seed wired | ✅ | 5f9b711, 874f840 |
+| Production deployment live (https://marcoreid.com) | ✅ | f72da9d |
+
+---
+
+## The 30 killer moves
+
+### Lawyer / Attorney side
+
+| # | Move | Status | Notes |
+|---|---|---|---|
+| 1 | Specialty matrix marketplace (50 × 4 jurisdictions = 200 SEO entry points) | ⬜ | Wave 1–2; depends on Wave 0 specialty tree |
+| 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door shipped this commit. Template engine + 100 forms is Wave 2 |
+| 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | ⬜ | Wave 2 |
+| 4 | Multi-jurisdictional referral rail | ⬜ | Wave 4 |
+| 5 | Document automation studio (variables-once-fill-forever) | ⬜ | Wave 2 |
+| 6 | Marco Legal Research (citations across NZLII / AustLII / BAILII / CourtListener) | ⬜ | Wave 2 |
+| 7 | Court e-filing integration | ⬜ | Wave 5 |
+| 8 | Unified conflict + KYC + AML | ⬜ | Wave 4 |
+| 9 | Three-mode billing (contingent / flat-fee / hourly) | ⬜ | Wave 3 |
+| 10 | Public document generator → sign-off paywall | 🟡 | `/generate` flow live (intake → watermarked draft → sign-off CTA). Sign-off payment + routing is Wave 4 |
+
+### Accountancy side (DavenRoe-derived)
+
+| # | Move | Status | Notes |
+|---|---|---|---|
+| 11 | Catch-Up Annihilator (5-year bank-feed catch-up + accountant-grade pack) | ⬜ | Wave 3 — DavenRoe port |
+| 12 | Forensic Intelligence (Benford's, ghost vendor, money trail, payment splitting) | ⬜ | Wave 3 — DavenRoe port |
+| 13 | Multi-jurisdictional ledger (NZ GST + AU BAS + UK VAT + US 50-state) | ⬜ | Wave 3 — DavenRoe port |
+| 14 | Cross-border tax-treaty engine (6 bilateral DTAs) | ⬜ | Wave 3 — DavenRoe port |
+| 15 | Native 4-country payroll | ⬜ | Wave 3 — DavenRoe port |
+| 16 | Multi-region bank feeds (Akahu / Basiq / Plaid / TrueLayer) | ⬜ | Wave 3 — DavenRoe port |
+| 17 | Multi-agent AI (6 specialists) | ⬜ | Wave 3 — DavenRoe port |
+| 18 | Autonomous month-end close | ⬜ | Wave 3 — DavenRoe port |
+| 19 | Migration framework (Xero / QBO / MYOB / Sage / FreshBooks) | ⬜ | Wave 3 — DavenRoe port |
+| 20 | Compliance calendar (40+ deadlines, 4 jurisdictions) | ⬜ | Wave 3 — DavenRoe port |
+
+### Cross-cutting
+
+| # | Move | Status | Notes |
+|---|---|---|---|
+| 21 | Competitor + internet intelligence audit | ⬜ | Wave 0 (mapping session) |
+| 22 | Public document generator as front-door fishhook | 🟡 | Front-door page + intake + watermarked draft live this commit |
+| 23 | Public matter intake AI | 🟡 | Heuristic classifier shipped; Claude-based extraction is Wave 2 |
+| 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | ⬜ | Wave 4 |
+| 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | ⬜ | Wave 2 |
+| 26 | Liability shield architecture (structural sign-off + watermarks) | 🟡 | Watermark UI shipped on `/generate/[draftId]`. Full SignoffRequest gating is Wave 1 |
+| 27 | Public networking + professional directory | ⬜ | Wave 4 |
+| 28 | Daily personalised intelligence digest | ⬜ | Wave 4 |
+| 29 | Self-serve incorporation as front-door (Marco Reid Launch) | ⬜ | Wave 5 |
+| 30 | Court dictation (real-time legal vocabulary transcription) | ⬜ | Wave 5+ |
+
+---
+
+## Wave progress
+
+| Wave | Focus | % shipped |
+|---|---|---|
+| 0 | Map + competitor audit | 0% — pending |
+| 1 | Foundations + public front door | ~30% — DocumentDraft + /generate front door + audit chain live |
+| 2 | AI forms + court rules + Marco × 3 | 0% |
+| 3 | DavenRoe accountancy port | 0% — awaiting repo access |
+| 4 | Marketplace + networking + license expansion | 0% |
+| 5 | Court e-filing, ID capture, dictation | 0% |
+| 6 | Continuous post-launch | n/a |
+
+---
+
+## Marketing / public surface
+
+| Page | Status |
+|---|---|
+| `/` (homepage with bento + sticky product navigator) | ✅ |
+| `/law` (legal product) | ✅ |
+| `/accounting` (accounting product) | ✅ |
+| `/marco` (research) | ✅ |
+| `/dictation` (voice) | ✅ |
+| `/courtroom` (litigation tooling) | ✅ |
+| `/catch-up-centre` (years-behind tax catchup) | ✅ |
+| `/aml-cft` | ✅ |
+| `/conveyancing` | ✅ |
+| `/wills` (wills register) | ✅ |
+| `/cpd` | ✅ |
+| `/engagement-letters` | ✅ |
+| `/insolvency` (IP practitioners NZ + AU) | ✅ |
+| `/tax-advisors` (tax agents NZ + AU + US + UK) | ✅ |
+| `/immigration-advisers` (LIA + RMA) | ✅ |
+| `/immigration` (US immigration attorneys) | ✅ |
+| `/migration` (firm-side data migration) | ✅ |
+| `/compliance-records` (audit posture) | ✅ |
+| `/for-attorneys` (supply-side moat) | ✅ |
+| `/for-accountants` (supply-side moat) | ✅ |
+| `/generate` (public document generator) | ✅ |
+| `/generate/[draftId]` (watermarked draft view + sign-off CTA) | ✅ |
+| Practice-area pages — family law | ⬜ |
+| Practice-area pages — employment | ⬜ |
+| Practice-area pages — commercial / corporate / M&A | ⬜ |
+| Practice-area pages — IP | ⬜ |
+| Practice-area pages — litigation | ⬜ |
+| Practice-area pages — Te Tiriti / Māori legal | ⬜ |
+| Practice-area pages — audit / assurance | ⬜ |
+| Practice-area pages — business advisory | ⬜ |
+| Practice-area pages — SMSF | ⬜ |
+| Practice-area pages — forensic accounting | ⬜ |
+
+---
+
+## Platform / logged-in surface (the bit that needs Wave 0 mapping)
+
+| Surface | Status | Notes |
+|---|---|---|
+| `/dashboard` (smart router) | ⬜ | Currently single-page for all roles |
+| `/admin` (Marco Reid platform admin) | 🟡 | Stub exists, no real surfaces |
+| `/firm/*` (firm/practitioner workspace) | ⬜ | Wave 1 |
+| `/portal/*` (citizen/client view) | ⬜ | Wave 1 |
+| Light theme on platform | ⬜ | Wave 1 — visible quality issue |
+| Specialty matrix in firm UI | ⬜ | Wave 1 |
+| Sign-off queue UI | ⬜ | Wave 1 |
+| Audit ledger viewer | ⬜ | Wave 2 |
+| Regulator-filing log viewer | ⬜ | Wave 2 |
+
+---
+
+## Operational / production health
+
+| Item | Status |
+|---|---|
+| Vercel build green | ✅ |
+| Neon database in sync (`prisma db push` succeeded) | ✅ |
+| Admin user seeded | ✅ |
+| `NEXTAUTH_SECRET` in Vercel | ✅ |
+| `NEXTAUTH_URL` in Vercel | ✅ |
+| `DATABASE_URL` in Vercel + .env.local | ✅ |
+| Custom domain `marcoreid.com` connected | ✅ |
+| ccTLD defensive registration (`.co.nz`, `.com.au`, `.co.uk`) | ⬜ |
+| Vercel→GitHub auto-deploy fully working | 🟡 — was broken; reconnected |
+| Stripe live keys for production billing | ⬜ |
+| ANTHROPIC_API_KEY for Marco research | ⬜ |
+| Bank-feed credentials (Akahu, Basiq, Plaid, TrueLayer) | ⬜ |
+| Migration credentials (Xero / QBO / MYOB / Sage / FreshBooks OAuth) | ⬜ |
+
+---
+
+## Decisions logged (do not reverse without written approval)
+
+1. Sign-off Doctrine is structural, not aspirational
+2. NZ + AU are the soft-launch beachhead
+3. Top-nav is tight on purpose (4 items)
+4. Fee-splitting rules are real — SaaS subscription + flat lead-qualification fees only
+5. AI speed ≠ legal speed — sign-off rails not shortcut-able
+6. Catch-Up Centre is a top-level product, not a sub-page of /accounting
+7. Accounting is positioned multi-jurisdiction from day one
+8. "Autonomous" replaces "automated" as the lead adjective for bookkeeping
+9. Every filing claims a qualified accountant sign-off
+10. Session flywheel lives in SESSION-STATE.md
+11. Audit posture is published, not assumed
+12. AuditLog is hash-chained
+13. Default retention floor is 7 years
+14. Right-to-erasure honoured with statutory carve-out
+15. NZ/AU immigration adviser practitioner class is distinct from US immigration attorney work
+16. Audit ledger is the spine for every vertical
+17. Subdirectory URL strategy locked (`marcoreid.com/{nz,au,uk,us}/`)
+18. DavenRoe → Marco Reid accountancy division (architectural port)
+19. Wave 0 mapping is mandatory before Wave 1+ code
+20. The 30-move scorecard IS the canonical strategic backlog
+21. Audit writes are synchronous (not fire-and-forget) before response returns
