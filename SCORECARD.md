@@ -79,7 +79,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 23 | Public matter intake AI | 🟡 | Heuristic classifier shipped; Claude-based extraction is Wave 2 |
 | 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | ⬜ | Wave 4 |
 | 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | ⬜ | Wave 2 |
-| 26 | Liability shield architecture (structural sign-off + watermarks) | 🟡 | Watermark UI shipped on `/generate/[draftId]`. Full SignoffRequest gating is Wave 1 |
+| 26 | Liability shield architecture (structural sign-off + watermarks) | 🟢 | End-to-end live: public draft → /generate/[draftId]/signoff intake → SignoffRequest queue → /admin/signoffs review → approve transitions DocumentDraft to SIGNED with credentialled stamp. Two AuditLog rows per approval. Marketplace Professional supply side (Wave 4) replaces admin-as-reviewer stand-in |
 | 27 | Public networking + professional directory | ⬜ | Wave 4 |
 | 28 | Daily personalised intelligence digest | ⬜ | Wave 4 |
 | 29 | Self-serve incorporation as front-door (Marco Reid Launch) | ⬜ | Wave 5 |

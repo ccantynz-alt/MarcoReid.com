@@ -593,17 +593,37 @@ model ProMatter {
 // releasedAt gates when the consumer actually sees the work.
 model SignoffRequest {
   id             String        @id @default(cuid())
-  proMatterId    String
-  proMatter      ProMatter     @relation(fields: [proMatterId], references: [id])
-  kind           String        // "draft-letter", "tax-return", "advice-note", etc.
+  // A SignoffRequest attaches to EITHER a ProMatter (full citizen-to-pro
+  // engagement via the marketplace) OR a DocumentDraft (cold public draft
+  // before a matter exists). Exactly one of these foreign keys is non-null
+  // at any time; the other must be null. Enforced at write time in the
+  // application layer.
+  proMatterId    String?
+  proMatter      ProMatter?    @relation(fields: [proMatterId], references: [id])
+  documentDraftId String?
+  documentDraft  DocumentDraft? @relation(fields: [documentDraftId], references: [id])
+
+  kind           String        // "draft-letter", "tax-return", "advice-note", "public-document-draft"
   aiOutput       String        @db.Text
   outputSha256   String
   rationale      String?       @db.Text
   citationsJson  String?       @db.Text  // serialized citation refs
+  // Jurisdiction the requester wants the sign-off in (NZ / AU / UK / US).
+  // Used to route to a credentialled professional.
+  jurisdiction   String?
+  // Free-text notes from the requester to the reviewer.
+  requesterNotes String?       @db.Text
+  // Free-text contact (email) for cold-public-draft sign-offs without a
+  // citizen account yet.
+  requesterEmail String?
 
   status         SignoffStatus @default(PENDING)
   reviewerId     String?
   reviewer       Professional? @relation("SignedBy", fields: [reviewerId], references: [id])
+  // Admin-as-reviewer stand-in for early-stage flows before the marketplace
+  // Professional supply side is wired (Wave 4). Marco Reid platform admins
+  // can approve sign-offs and the approval is logged here.
+  adminReviewerId String?
   reviewerNotes  String?       @db.Text
   amendedOutput  String?       @db.Text
   amendedSha256  String?
@@ -613,8 +633,10 @@ model SignoffRequest {
   releasedAt     DateTime?
 
   @@index([proMatterId])
+  @@index([documentDraftId])
   @@index([status])
   @@index([reviewerId])
+  @@index([adminReviewerId])
   @@index([requestedAt])
 }
 
@@ -1703,6 +1725,7 @@ model DocumentDraft {
   bodyHash            String?
   status              DocumentDraftStatus @default(DRAFTING)
   // Signoff trail
+  signoffRequests      SignoffRequest[]
   signoffRequestId    String?
   signedByUserId      String?
   signedByCredential  String?

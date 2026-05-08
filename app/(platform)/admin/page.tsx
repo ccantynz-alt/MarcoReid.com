@@ -131,7 +131,16 @@ export default function AdminPage() {
       </div>
 
       {/* Quick links */}
-      <div className="mt-8 grid gap-3 sm:grid-cols-3">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Link
+          href="/admin/signoffs"
+          className="rounded-xl border border-gold-300 bg-gradient-to-br from-gold-50 via-white to-white p-4 shadow-card transition-colors hover:border-gold-500"
+        >
+          <p className="font-medium text-navy-800">Sign-off queue</p>
+          <p className="mt-0.5 text-xs text-navy-500">
+            Pending public-document sign-offs
+          </p>
+        </Link>
         <Link
           href="/build-status"
           className="rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-colors hover:border-navy-300"
