@@ -41,7 +41,7 @@ function classifyDocType(situation: string): {
     {
       slug: "employment-agreement",
       label: "Employment agreement",
-      needles: ["employee", "employer", "employment", "salary", "wages"],
+      needles: ["employee", "employer", "employment", "salary", "wages", "hire", "hiring", "contract of employment"],
     },
     {
       slug: "shareholders-agreement",
