@@ -77,7 +77,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 21 | Competitor + internet intelligence audit | ⬜ | Wave 0 (mapping session) |
 | 22 | Public document generator as front-door fishhook | 🟡 | Front-door page + intake + watermarked draft live this commit |
 | 23 | Public matter intake AI | 🟡 | Heuristic classifier shipped; Claude-based extraction is Wave 2 |
-| 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | ⬜ | Wave 4 |
+| 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | 🟡 | `/cross-border-admission` live with 8 high-volume pathways: NZ↔AU TTMRA, NZ/AU→UK SQE, NZ/AU→US bar reciprocity + LL.M. + UBE, CA ANZ→ICAEW MRA, CA ANZ→AICPA via IQEX, CA ANZ→CPA Canada via CRE, AU TPB→NZ IRD agent. Each pathway carries authority + steps + timeline + fees. Eligibility checker + document-pack assembly + mentor matching queued |
 | 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | 🟢 | `/marco/legal`, `/marco/accounting`, `/marco/forensic` all live with shared `MarcoCentrePage` template, `MarcoResearchBox` interactive component, and a per-domain source catalogue (Legal: 12 sources, Accounting: 6, Forensic: 5). `MarcoResearchBox` posts to `/api/marco/research` and renders Verified / Unverified / Not Found citation pills |
 | 26 | Liability shield architecture (structural sign-off + watermarks) | 🟢 | End-to-end live: public draft → /generate/[draftId]/signoff intake → SignoffRequest queue → /admin/signoffs review → approve transitions DocumentDraft to SIGNED with credentialled stamp. Two AuditLog rows per approval. Marketplace Professional supply side (Wave 4) replaces admin-as-reviewer stand-in |
 | 27 | Public networking + professional directory | 🟡 | `/directory` index live + `/directory/[slug]` profile pages live. Filtered to publishedToDirectory + verifiedAt. Empty state surfaces /for-attorneys + /for-accountants. Schema extended: Professional gains slug, photoUrl, headline, firmDisplayName, languages, hourlyRate, flatSignoff, publishedToDirectory. Search/filter UI + claim flow queued |
@@ -141,6 +141,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/marco/forensic` (forensic research centre) | ✅ |
 | `/directory` (professional directory index) | ✅ |
 | `/directory/[slug]` (verified-pro profile pages) | ✅ |
+| `/cross-border-admission` (multi-jurisdictional pathway service) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |

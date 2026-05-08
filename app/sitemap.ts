@@ -84,6 +84,8 @@ const entries: Entry[] = [
   { path: "/marco/forensic", changeFrequency: "weekly", priority: 0.85 },
   // Professional directory
   { path: "/directory", changeFrequency: "daily", priority: 0.9 },
+  // Cross-border admission
+  { path: "/cross-border-admission", changeFrequency: "monthly", priority: 0.8 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },

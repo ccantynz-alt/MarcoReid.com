@@ -23,6 +23,7 @@ const links = {
   forFirms: [
     { label: "For attorneys", href: "/for-attorneys" },
     { label: "For accountants", href: "/for-accountants" },
+    { label: "Cross-border admission", href: "/cross-border-admission" },
     { label: "Compliance records", href: "/compliance-records" },
     { label: "Migration", href: "/migration" },
     { label: "Trial", href: "/trial" },
