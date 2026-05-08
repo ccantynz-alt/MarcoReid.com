@@ -1765,3 +1765,40 @@ model DocumentDraft {
   @@index([status])
   @@index([createdAt(sort: Desc)])
 }
+
+// ============================================================
+// DIGEST SUBSCRIPTION — daily personalised regulatory + court update
+// digest. Subscribers pick specialties + jurisdictions; the cron worker
+// (Wave 4 follow-up) picks up new RegulatoryUpdate rows matching the
+// subscription, formats a per-user email, and sends.
+// ============================================================
+
+enum DigestFrequency {
+  DAILY
+  WEEKDAYS
+  WEEKLY
+}
+
+model DigestSubscription {
+  id              String           @id @default(cuid())
+  email           String
+  // Optional userId once the subscriber has an account.
+  userId          String?
+  /// ISO codes — NZ, AU, UK, US.
+  jurisdictions   String[]
+  /// Slugs from lib/specialties.ts. Empty = all specialties for the
+  /// subscriber's jurisdictions.
+  specialties     String[]
+  frequency       DigestFrequency  @default(DAILY)
+  active          Boolean          @default(true)
+  // Token used to unsubscribe via email link without auth.
+  unsubscribeToken String          @unique
+  confirmedAt     DateTime?
+  lastSentAt      DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@unique([email, frequency])
+  @@index([active])
+  @@index([userId])
+}

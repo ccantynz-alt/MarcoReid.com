@@ -152,6 +152,43 @@ No code until this is done. Deliverables:
 - Bar / CA ANZ / TPB / OMARA accreditation paperwork
 - PII insurer outreach (NZLS PII Scheme broker, Lawcover AU)
 
+## Autonomous wave (2026-05-08 — second half of day)
+
+After the autonomous-execution protocol locked, Claude executed eleven
+consecutive ship cycles without prompts:
+
+1. `cdc86b6` — `lib/audit.ts` + `/api/auth/register` wired (#26 Liability shield → 🟢)
+2. `b26713d` — `/specialties` matrix + 6 deep flagship pages (#1 → 🟡)
+3. `2cbcd2c` — public-draft → SignoffRequest → admin approve loop closed
+4. `91fddf1` — court-rules calculator + `/specialties/litigation` (#3 → 🟡)
+5. `3830975` — `/marco/legal` + `/marco/accounting` + `/marco/forensic` (#25 → 🟢, #6 → 🟡); autonomous protocol locked in this commit
+6. `678daee` — document automation engine + NDA × 4 jurisdictions (#5 → 🟡)
+7. `e8c66c3` — `/directory` + verified-pro profile pages (#27 → 🟡)
+8. `0deab04` — homepage "Available now" section surfaces 6 tools
+9. `2d9a196` — `/cross-border-admission` (TTMRA / SQE / IQEX / CRE) (#24 → 🟡)
+10. `d7b42f9` — `/launch` (Marco Reid Launch flagship) (#29 → 🟡)
+11. `8531345` — `/tools/conflict-check` unified intake (#8 → 🟡)
+12. (this commit) — `/digest` + `DigestSubscription` schema + subscribe API (#28 → 🟡)
+
+Scorecard delta across the wave:
+- 🟢 Done: 0 → 2
+- 🟡 In flight: 6 → 13
+- ⬜ Queued: 23 → 15
+
+Routes shipped: 104 → 126 (22 new pages).
+
+Schema additions across the wave:
+- `DocumentDraft` + `DocumentDraftStatus` enum
+- `SignoffRequest` extended (proMatterId nullable, documentDraftId,
+  jurisdiction, requesterEmail/Notes, adminReviewerId)
+- `Professional` extended (slug, photoUrl, headline, firmDisplayName,
+  languages, hourlyRate, flatSignoff, publishedToDirectory)
+- `DigestSubscription` + `DigestFrequency` enum
+
+Two production migrations are needed against Neon (`prisma db push`):
+the SignoffRequest extension landed earlier; DocumentDraft + Professional
+extensions + DigestSubscription land in this batch.
+
 ## Today's session log (2026-05-07 → 2026-05-08)
 
 **What shipped to production:**

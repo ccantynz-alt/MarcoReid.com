@@ -81,7 +81,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | 🟢 | `/marco/legal`, `/marco/accounting`, `/marco/forensic` all live with shared `MarcoCentrePage` template, `MarcoResearchBox` interactive component, and a per-domain source catalogue (Legal: 12 sources, Accounting: 6, Forensic: 5). `MarcoResearchBox` posts to `/api/marco/research` and renders Verified / Unverified / Not Found citation pills |
 | 26 | Liability shield architecture (structural sign-off + watermarks) | 🟢 | End-to-end live: public draft → /generate/[draftId]/signoff intake → SignoffRequest queue → /admin/signoffs review → approve transitions DocumentDraft to SIGNED with credentialled stamp. Two AuditLog rows per approval. Marketplace Professional supply side (Wave 4) replaces admin-as-reviewer stand-in |
 | 27 | Public networking + professional directory | 🟡 | `/directory` index live + `/directory/[slug]` profile pages live. Filtered to publishedToDirectory + verifiedAt. Empty state surfaces /for-attorneys + /for-accountants. Schema extended: Professional gains slug, photoUrl, headline, firmDisplayName, languages, hourlyRate, flatSignoff, publishedToDirectory. Search/filter UI + claim flow queued |
-| 28 | Daily personalised intelligence digest | ⬜ | Wave 4 |
+| 28 | Daily personalised intelligence digest | 🟡 | `/digest` landing + interactive subscribe form live. `DigestSubscription` schema added (email, jurisdictions, specialties, frequency: DAILY/WEEKDAYS/WEEKLY, unsubscribeToken). `/api/digest/subscribe` endpoint upserts on (email, frequency). Cron worker + email template + RegulatoryUpdate matcher queued (Wave 4 follow-up — needs cron infrastructure) |
 | 29 | Self-serve incorporation as front-door (Marco Reid Launch) | 🟡 | `/launch` flagship product page live: 8-stage pipeline (intake + structure design → DE filing → EIN → US bank → founder pack → SaaS legal pack → cross-border tax → annual compliance autopilot), 3-tier pricing (Solo Founder $1,499, Funded Startup $3,499, Enterprise custom), full Stripe Atlas comparison table. Schema: EntityFormation already in place. Workflow API + partner integrations (Harvard / Northwest / Mercury) queued |
 | 30 | Court dictation (real-time legal vocabulary transcription) | ⬜ | Wave 5+ |
 
@@ -144,6 +144,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/cross-border-admission` (multi-jurisdictional pathway service) | ✅ |
 | `/launch` (Marco Reid Launch — flagship incorporation product) | ✅ |
 | `/tools/conflict-check` (unified conflict + KYC + AML intake) | ✅ |
+| `/digest` (daily intelligence digest subscribe) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |
