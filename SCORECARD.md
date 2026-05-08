@@ -49,7 +49,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | 🟡 | `lib/court-rules.ts` shipped with 28 rules across NZ/AU/UK/US. `/tools/court-rules` interactive calculator live (pick rule + trigger date → cited deadline). Public-holiday calendars + service-of-process variations + fuller rule catalogue queued |
 | 4 | Multi-jurisdictional referral rail | ⬜ | Wave 4 |
 | 5 | Document automation studio (variables-once-fill-forever) | ⬜ | Wave 2 |
-| 6 | Marco Legal Research (citations across NZLII / AustLII / BAILII / CourtListener) | ⬜ | Wave 2 |
+| 6 | Marco Legal Research (citations across NZLII / AustLII / BAILII / CourtListener) | 🟡 | `/marco/legal` live with research box + 12-source catalogue (NZLII / AustLII / BAILII / CourtListener / CAP / Cornell LII / SCOTUS / legislation portals). `/api/marco/research` endpoint serves demo-mode responses with VERIFIED / UNVERIFIED / NOT_FOUND citations. Real Anthropic-driven research swaps in once `ANTHROPIC_API_KEY` is set in Vercel |
 | 7 | Court e-filing integration | ⬜ | Wave 5 |
 | 8 | Unified conflict + KYC + AML | ⬜ | Wave 4 |
 | 9 | Three-mode billing (contingent / flat-fee / hourly) | ⬜ | Wave 3 |
@@ -78,7 +78,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 22 | Public document generator as front-door fishhook | 🟡 | Front-door page + intake + watermarked draft live this commit |
 | 23 | Public matter intake AI | 🟡 | Heuristic classifier shipped; Claude-based extraction is Wave 2 |
 | 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | ⬜ | Wave 4 |
-| 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | ⬜ | Wave 2 |
+| 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | 🟢 | `/marco/legal`, `/marco/accounting`, `/marco/forensic` all live with shared `MarcoCentrePage` template, `MarcoResearchBox` interactive component, and a per-domain source catalogue (Legal: 12 sources, Accounting: 6, Forensic: 5). `MarcoResearchBox` posts to `/api/marco/research` and renders Verified / Unverified / Not Found citation pills |
 | 26 | Liability shield architecture (structural sign-off + watermarks) | 🟢 | End-to-end live: public draft → /generate/[draftId]/signoff intake → SignoffRequest queue → /admin/signoffs review → approve transitions DocumentDraft to SIGNED with credentialled stamp. Two AuditLog rows per approval. Marketplace Professional supply side (Wave 4) replaces admin-as-reviewer stand-in |
 | 27 | Public networking + professional directory | ⬜ | Wave 4 |
 | 28 | Daily personalised intelligence digest | ⬜ | Wave 4 |
@@ -136,6 +136,9 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/specialties/smsf` (deep page, AU wedge) | ✅ |
 | `/specialties/litigation` (deep page) | ✅ |
 | `/tools/court-rules` (deadline calculator) | ✅ |
+| `/marco/legal` (legal research centre) | ✅ |
+| `/marco/accounting` (accounting research centre) | ✅ |
+| `/marco/forensic` (forensic research centre) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |

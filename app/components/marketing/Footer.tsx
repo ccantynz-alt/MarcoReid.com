@@ -31,8 +31,10 @@ const links = {
     { label: "Generate a document", href: "/generate" },
     { label: "All specialties", href: "/specialties" },
     { label: "Court-rules calculator", href: "/tools/court-rules" },
+    { label: "Marco Legal", href: "/marco/legal" },
+    { label: "Marco Accounting", href: "/marco/accounting" },
+    { label: "Marco Forensic", href: "/marco/forensic" },
     { label: "Catch-Up Centre", href: "/catch-up-centre" },
-    { label: "Marco research", href: "/marco" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [

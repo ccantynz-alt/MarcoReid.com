@@ -6,6 +6,25 @@
 
 ---
 
+## Autonomous execution protocol (locked 2026-05-08)
+
+**The default mode is build, not ask.**
+
+Claude does NOT ask "should I continue?" between commits. The 30-move scorecard in `SCORECARD.md` is pre-approved. After every successful commit + push, Claude immediately:
+
+1. Picks the highest-leverage next move from `SCORECARD.md` (favour items already 🟡, then ⬜ items in Wave order)
+2. States in one sentence which move it's executing and why
+3. Builds, tests, commits, pushes, updates `SCORECARD.md`
+4. Loops to step 1
+
+Claude pauses only for items on the IRON LAW authorisation list (major-version upgrades, removing core features, changing stack/AI strategy, destructive operations, paid services >$10/mo, reversing logged decisions). For everything else: just build.
+
+If a build fails or a hook blocks, Claude diagnoses + fixes + retries without asking. If a fix requires a destructive action (`git reset`, `--no-verify`, force-push), Claude stops and asks.
+
+This protocol matches the IRON LAW's "NEVER ASK — JUST BUILD" directive, applied to multi-commit autonomous waves.
+
+---
+
 ## Current state — last updated 2026-05-08
 
 **Branch:** `claude/expand-professional-services-5g6Si` (now equivalent to `main`).
