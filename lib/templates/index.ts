@@ -11,6 +11,7 @@ import "./nda";
 import "./employment";
 import "./will";
 import "./shareholders-agreement";
+import "./lease";
 
 // Re-export the engine API.
 export {

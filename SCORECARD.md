@@ -45,7 +45,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | # | Move | Status | Notes |
 |---|---|---|---|
 | 1 | Specialty matrix marketplace (50 × 4 jurisdictions = 200 SEO entry points) | 🟡 | `/specialties` index live with 56 specialties, profession + jurisdiction filters, search. 6 flagship deep pages live (family, employment, commercial-corporate, IP, audit-assurance, SMSF). Remaining 50 deep pages queued |
-| 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door + template engine + 4 templates × 4 jurisdictions = 16 substantive drafts: NDA (mutual), Employment Agreement, Will + Testamentary Trust, and Shareholders / Stockholders Agreement (vesting + ROFR + tag-along + drag-along + reserved matters; ties into Marco Reid Launch). Engine reads from `lib/templates/*` and the public intake automatically renders any registered (slug, jurisdiction) pair. ~484 templates queued |
+| 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door + template engine + 5 templates × 4 jurisdictions = 20 substantive drafts: NDA (mutual), Employment Agreement, Will + Testamentary Trust, Shareholders / Stockholders Agreement, and Residential Tenancy Agreement / AST / Lease. Engine reads from `lib/templates/*`. ~480 templates queued |
 | 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | 🟡 | `lib/court-rules.ts` shipped with 28 rules across NZ/AU/UK/US. `/tools/court-rules` interactive calculator live (pick rule + trigger date → cited deadline). Public-holiday calendars + service-of-process variations + fuller rule catalogue queued |
 | 4 | Multi-jurisdictional referral rail | ⬜ | Wave 4 |
 | 5 | Document automation studio (variables-once-fill-forever) | 🟡 | Template engine live (`lib/templates/engine.ts`): variable contracts, substitution, watermark wrapper, registry. NDA template authored across 4 jurisdictions as canonical first template. Firm-side template-override UI (Wave 4) still queued |
@@ -219,3 +219,4 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 19. Wave 0 mapping is mandatory before Wave 1+ code
 20. The 30-move scorecard IS the canonical strategic backlog
 21. Audit writes are synchronous (not fire-and-forget) before response returns
+22. **Internationalisation deferred until NZ/AU/UK/US mature** (locked 2026-05-08). Adding Japanese / French / German / Spanish / Chinese UI before the four anchor jurisdictions are mature would split focus. One country at a time, mature first, then expand. Reconsider when all four anchor jurisdictions are 🟢 across the scorecard.
