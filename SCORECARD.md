@@ -4,7 +4,7 @@
 > Update this file on every commit. ✅ = shipped, 🟡 = in flight, ⬜ = queued, ❌ = blocked.
 > If you're trying to figure out "have we built X?" — this file answers it.
 
-Last updated: 2026-05-08
+Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 
 ---
 
@@ -44,7 +44,7 @@ Last updated: 2026-05-08
 
 | # | Move | Status | Notes |
 |---|---|---|---|
-| 1 | Specialty matrix marketplace (50 × 4 jurisdictions = 200 SEO entry points) | ⬜ | Wave 1–2; depends on Wave 0 specialty tree |
+| 1 | Specialty matrix marketplace (50 × 4 jurisdictions = 200 SEO entry points) | 🟡 | `/specialties` index live with 56 specialties, profession + jurisdiction filters, search. 6 flagship deep pages live (family, employment, commercial-corporate, IP, audit-assurance, SMSF). Remaining 50 deep pages queued |
 | 2 | AI form library (500+ pre-drafted forms per jurisdiction) | 🟡 | `/generate` front-door shipped this commit. Template engine + 100 forms is Wave 2 |
 | 3 | Court-rules engine (every court's deadlines + service rules across NZ/AU/UK/US) | ⬜ | Wave 2 |
 | 4 | Multi-jurisdictional referral rail | ⬜ | Wave 4 |
@@ -127,16 +127,22 @@ Last updated: 2026-05-08
 | `/for-accountants` (supply-side moat) | ✅ |
 | `/generate` (public document generator) | ✅ |
 | `/generate/[draftId]` (watermarked draft view + sign-off CTA) | ✅ |
-| Practice-area pages — family law | ⬜ |
-| Practice-area pages — employment | ⬜ |
-| Practice-area pages — commercial / corporate / M&A | ⬜ |
-| Practice-area pages — IP | ⬜ |
-| Practice-area pages — litigation | ⬜ |
-| Practice-area pages — Te Tiriti / Māori legal | ⬜ |
-| Practice-area pages — audit / assurance | ⬜ |
-| Practice-area pages — business advisory | ⬜ |
-| Practice-area pages — SMSF | ⬜ |
-| Practice-area pages — forensic accounting | ⬜ |
+| `/specialties` (filterable matrix of 56 specialties) | ✅ |
+| `/specialties/family` (deep page, NZ + AU + UK + US) | ✅ |
+| `/specialties/employment` (deep page, NZ + AU + UK + US) | ✅ |
+| `/specialties/commercial-corporate` (deep page, NZ + AU + UK + US) | ✅ |
+| `/specialties/intellectual-property` (deep page, NZ + AU + UK + US) | ✅ |
+| `/specialties/audit-assurance` (deep page, NZ + AU + UK + US) | ✅ |
+| `/specialties/smsf` (deep page, AU wedge) | ✅ |
+| `/specialties/litigation` (deep page) | ⬜ |
+| `/specialties/te-tiriti-maori` (deep page) | ⬜ |
+| `/specialties/business-advisory` (deep page) | ⬜ |
+| `/specialties/forensic-accounting` (deep page) | ⬜ |
+| `/specialties/transfer-pricing` (deep page) | ⬜ |
+| `/specialties/international-tax` (deep page) | ⬜ |
+| `/specialties/rd-tax-credits` (deep page) | ⬜ |
+| `/specialties/crypto-accounting` (deep page) | ⬜ |
+| `/specialties/[other 41]` deep pages | ⬜ |
 
 ---
 

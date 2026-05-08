@@ -29,6 +29,7 @@ const links = {
   ],
   forPublic: [
     { label: "Generate a document", href: "/generate" },
+    { label: "All specialties", href: "/specialties" },
     { label: "Catch-Up Centre", href: "/catch-up-centre" },
     { label: "Marco research", href: "/marco" },
     { label: "Pricing", href: "/pricing" },

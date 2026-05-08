@@ -67,6 +67,14 @@ const entries: Entry[] = [
   { path: "/tax-advisors", changeFrequency: "monthly", priority: 0.8 },
   { path: "/immigration-advisers", changeFrequency: "monthly", priority: 0.8 },
   { path: "/compliance-records", changeFrequency: "monthly", priority: 0.7 },
+  // Specialty matrix + deep pages
+  { path: "/specialties", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/specialties/family", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/employment", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/commercial-corporate", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/intellectual-property", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/audit-assurance", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/smsf", changeFrequency: "monthly", priority: 0.8 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },
