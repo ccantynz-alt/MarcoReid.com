@@ -152,10 +152,10 @@ No code until this is done. Deliverables:
 - Bar / CA ANZ / TPB / OMARA accreditation paperwork
 - PII insurer outreach (NZLS PII Scheme broker, Lawcover AU)
 
-## Autonomous wave (2026-05-08 — second half of day)
+## Autonomous wave (2026-05-08 — full day)
 
-After the autonomous-execution protocol locked, Claude executed eleven
-consecutive ship cycles without prompts:
+After the autonomous-execution protocol locked, Claude executed eighteen
+consecutive ship cycles without prompts. Listed in order:
 
 1. `cdc86b6` — `lib/audit.ts` + `/api/auth/register` wired (#26 Liability shield → 🟢)
 2. `b26713d` — `/specialties` matrix + 6 deep flagship pages (#1 → 🟡)
@@ -168,14 +168,26 @@ consecutive ship cycles without prompts:
 9. `2d9a196` — `/cross-border-admission` (TTMRA / SQE / IQEX / CRE) (#24 → 🟡)
 10. `d7b42f9` — `/launch` (Marco Reid Launch flagship) (#29 → 🟡)
 11. `8531345` — `/tools/conflict-check` unified intake (#8 → 🟡)
-12. (this commit) — `/digest` + `DigestSubscription` schema + subscribe API (#28 → 🟡)
+12. `9975ad5` — `/digest` + `DigestSubscription` schema + subscribe API (#28 → 🟡)
+13. `a0d75e1` — `/specialties/te-tiriti-maori` (NZ-credibility play)
+14. `a875a33` — Employment Agreement template × 4 jurisdictions
+15. `a3d35e9` — Will + Testamentary Trust template × 4 jurisdictions
+16. `9e4c78b` — Shareholders Agreement template × 4 jurisdictions
+17. `e91d563` — `/specialties/forensic-accounting` deep page
+18. `3a26f28` — `/research/competitor-audit` (#21 → 🟡)
+19. (this commit) — `/specialties/business-advisory` deep page
 
 Scorecard delta across the wave:
-- 🟢 Done: 0 → 2
-- 🟡 In flight: 6 → 13
-- ⬜ Queued: 23 → 15
+- 🟢 Done: 0 → 2 (#25, #26)
+- 🟡 In flight: 6 → 14 (#1, #2, #3, #5, #6, #8, #10, #21, #22, #23, #24, #27, #28, #29)
+- ⬜ Queued: 23 → 14
 
-Routes shipped: 104 → 126 (22 new pages).
+Routes shipped: 104 → 130 (26 new pages).
+Templates shipped: 0 → 16 substantive draft variants (NDA + Employment +
+Will + SHA, each × NZ + AU + UK + US).
+Specialty deep pages: 0 → 9 (family, employment, commercial-corporate,
+intellectual-property, audit-assurance, smsf, litigation, te-tiriti-maori,
+forensic-accounting, business-advisory).
 
 Schema additions across the wave:
 - `DocumentDraft` + `DocumentDraftStatus` enum

@@ -314,6 +314,7 @@ export const SPECIALTIES: ReadonlyArray<SpecialtyRow> = [
     jurisdictions: ["NZ", "AU", "UK", "US"],
     summary:
       "Strategic advice, cash-flow forecasting, KPI dashboards, virtual CFO retainers, exit-readiness.",
+    deepPage: true,
   },
   {
     slug: "forensic-accounting",
