@@ -702,6 +702,114 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
+      {/* PUBLIC TOOLS — what you can do right now                      */}
+      {/* ============================================================ */}
+      <section className="bg-white py-24 sm:py-36" aria-label="Public tools available now">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-sm font-semibold tracking-wider text-gold-600">
+              Available now
+            </p>
+            <h2 className="mt-4 font-serif text-display text-navy-800">
+              Use Marco Reid in the next two minutes.
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-navy-500">
+              You don&rsquo;t need an account. You don&rsquo;t need a credit
+              card. Pick the surface that fits what you&rsquo;re doing right
+              now &mdash; the platform&rsquo;s public tools handle the
+              first 80% of the work and route the rest to a verified
+              professional in your jurisdiction.
+            </p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                href: "/generate",
+                eyebrow: "Generate",
+                title: "Draft a legal or tax document",
+                body: "Plain-English intake. AI drafts the document against the right jurisdiction's rules. Free draft, watermarked. Pay only when a verified professional signs it.",
+                accent: "border-gold-300 bg-gradient-to-br from-gold-50 via-white to-white",
+                eyebrowClass: "text-gold-700",
+              },
+              {
+                href: "/directory",
+                eyebrow: "Directory",
+                title: "Find a verified professional",
+                body: "Verified attorneys, barristers, chartered accountants, and tax agents in NZ, AU, UK, and US. Filter by specialty + jurisdiction. Engage them directly.",
+                accent: "border-forest-300 bg-gradient-to-br from-forest-50 via-white to-white",
+                eyebrowClass: "text-forest-700",
+              },
+              {
+                href: "/specialties",
+                eyebrow: "Specialties",
+                title: "Browse 50+ practice areas",
+                body: "Every legal + accounting specialty Marco Reid covers, filterable by profession + jurisdiction. Family, employment, corporate, IP, audit, SMSF, forensic, and more.",
+                accent: "border-plum-300 bg-gradient-to-br from-plum-50 via-white to-white",
+                eyebrowClass: "text-plum-700",
+              },
+              {
+                href: "/tools/court-rules",
+                eyebrow: "Court rules",
+                title: "Deadline calculator",
+                body: "28 NZ / AU / UK / US court rules indexed. Pick the trigger event, set the date, get every downstream deadline cited to the rule that authorises it.",
+                accent: "border-navy-200 bg-white",
+                eyebrowClass: "text-navy-600",
+              },
+              {
+                href: "/marco/legal",
+                eyebrow: "Marco Legal",
+                title: "Verified-citation legal research",
+                body: "Ask any legal question. Marco drafts the answer + verifies every citation against NZLII, AustLII, BAILII, CourtListener, Cornell LII. Verified / Unverified / Not Found pills.",
+                accent: "border-navy-200 bg-white",
+                eyebrowClass: "text-navy-600",
+              },
+              {
+                href: "/marco/accounting",
+                eyebrow: "Marco Accounting",
+                title: "Tax + accounting research",
+                body: "IR / ATO / IRS / HMRC / CRA rulings, tax codes, public statements. Citation verification before any reference reaches a working paper. Cross-border tax-treaty work.",
+                accent: "border-navy-200 bg-white",
+                eyebrowClass: "text-navy-600",
+              },
+            ].map((tool) => (
+              <Reveal key={tool.href} delay={0.05}>
+                <a
+                  href={tool.href}
+                  className={`group block h-full rounded-2xl border p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover ${tool.accent}`}
+                >
+                  <p
+                    className={`text-xs font-bold uppercase tracking-wider ${tool.eyebrowClass}`}
+                  >
+                    {tool.eyebrow}
+                  </p>
+                  <h3 className="mt-3 font-serif text-xl text-navy-800 group-hover:text-navy-900">
+                    {tool.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-500">
+                    {tool.body}
+                  </p>
+                  <p className="mt-5 text-xs font-bold uppercase tracking-wider text-navy-400 group-hover:text-navy-600">
+                    Open &rarr;
+                  </p>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-navy-400">
+              Marco Reid is a tooling vendor. Every consumer-facing output
+              passes through the SignoffRequest queue and is approved by a
+              credentialled professional in the relevant jurisdiction
+              before release. See <a href="/compliance-records" className="font-semibold text-navy-600 hover:text-navy-800">/compliance-records</a> for the
+              audit posture.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* WHY PROFESSIONALS SWITCH — the pain killer                    */}
       {/* ============================================================ */}
       <section className="bg-navy-500 py-24 sm:py-36" aria-label="Why professionals switch">
