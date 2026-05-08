@@ -322,6 +322,7 @@ export const SPECIALTIES: ReadonlyArray<SpecialtyRow> = [
     jurisdictions: ["NZ", "AU", "UK", "US"],
     summary:
       "Fraud investigation, litigation support, expert-witness work, Benford's Law, ghost vendor detection.",
+    deepPage: true,
   },
   {
     slug: "management-accounting",

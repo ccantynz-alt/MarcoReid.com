@@ -77,6 +77,7 @@ const entries: Entry[] = [
   { path: "/specialties/smsf", changeFrequency: "monthly", priority: 0.8 },
   { path: "/specialties/litigation", changeFrequency: "monthly", priority: 0.8 },
   { path: "/specialties/te-tiriti-maori", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/specialties/forensic-accounting", changeFrequency: "monthly", priority: 0.8 },
   // Tools
   { path: "/tools/court-rules", changeFrequency: "weekly", priority: 0.85 },
   { path: "/tools/conflict-check", changeFrequency: "weekly", priority: 0.85 },
