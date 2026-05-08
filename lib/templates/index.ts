@@ -9,6 +9,7 @@
 // Side-effect imports — each module calls registerTemplate() at load.
 import "./nda";
 import "./employment";
+import "./will";
 
 // Re-export the engine API.
 export {
