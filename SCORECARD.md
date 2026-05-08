@@ -74,7 +74,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 
 | # | Move | Status | Notes |
 |---|---|---|---|
-| 21 | Competitor + internet intelligence audit | ⬜ | Wave 0 (mapping session) |
+| 21 | Competitor + internet intelligence audit | 🟡 | `/research/competitor-audit` shipped: scorecard against Clio + LEAP (legal PMS), Xero + QBO (accounting), Westlaw + LexisNexis (research), Stripe Atlas + Termly (founder tooling). Each row labelled Ahead / Parity / Behind / Behind (blocked) with Marco Reid notes + competitor positioning. Honest reading section flags structural Aheads, parity caveats, real Behinds, and blocked-on-partner items |
 | 22 | Public document generator as front-door fishhook | 🟡 | Front-door page + intake + watermarked draft live this commit |
 | 23 | Public matter intake AI | 🟡 | Heuristic classifier shipped; Claude-based extraction is Wave 2 |
 | 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | 🟡 | `/cross-border-admission` live with 8 high-volume pathways: NZ↔AU TTMRA, NZ/AU→UK SQE, NZ/AU→US bar reciprocity + LL.M. + UBE, CA ANZ→ICAEW MRA, CA ANZ→AICPA via IQEX, CA ANZ→CPA Canada via CRE, AU TPB→NZ IRD agent. Each pathway carries authority + steps + timeline + fees. Eligibility checker + document-pack assembly + mentor matching queued |
@@ -147,6 +147,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/digest` (daily intelligence digest subscribe) | ✅ |
 | `/specialties/te-tiriti-maori` (NZ-native specialty deep page) | ✅ |
 | `/specialties/forensic-accounting` (deep page, NZ + AU + UK + US) | ✅ |
+| `/research/competitor-audit` (live competitive scorecard) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |
