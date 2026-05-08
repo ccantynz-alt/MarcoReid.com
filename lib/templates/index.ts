@@ -10,6 +10,7 @@
 import "./nda";
 import "./employment";
 import "./will";
+import "./shareholders-agreement";
 
 // Re-export the engine API.
 export {
