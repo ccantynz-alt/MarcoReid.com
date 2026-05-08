@@ -513,16 +513,36 @@ model Professional {
   id                    String                    @id @default(cuid())
   userId                String                    @unique
   user                  User                      @relation("ProfessionalProfile", fields: [userId], references: [id])
+  // Public-facing URL slug for /directory/[slug]. Unique. Generated from
+  // displayName + admissionJurisdiction at claim time.
+  slug                  String?                   @unique
   displayName           String
+  // Public-facing photo URL (Wave 4: Vercel Blob upload).
+  photoUrl              String?
+  // Public-facing tagline (1 sentence) shown above bio in the directory.
+  headline              String?
   bio                   String?                   @db.Text
   admissionJurisdiction String
   admissionNumber       String
   admissionYear         Int?
   professionalBody      String                    // "NZ Law Society", "CA ANZ", "NZICA", etc.
+  // Optional firm affiliation (display only — relational link is via FirmMembership).
+  firmDisplayName       String?
+  // Languages spoken, surfaced for client matching.
+  languages             String[]                  @default([])
+  // Indicative hourly + flat-fee surface for the directory; sign-off pricing
+  // negotiated per matter at engagement time.
+  hourlyRateCents       Int?
+  hourlyRateCurrency    String?
+  flatSignoffCents      Int?
+  flatSignoffCurrency   String?
   piInsurerName         String?
   piPolicyNumber        String?
   piPolicyExpiresAt     DateTime?
   acceptingNewMatters   Boolean                   @default(true)
+  // Public-facing visibility — false until the pro opts in to appear in the
+  // public directory. verifiedAt independently controls credential validation.
+  publishedToDirectory  Boolean                   @default(false)
   verifiedAt            DateTime?
   verifiedBy            String?                   // admin User.id who verified
   practiceAreas         ProfessionalPracticeArea[]
@@ -533,6 +553,7 @@ model Professional {
 
   @@index([admissionJurisdiction])
   @@index([acceptingNewMatters, verifiedAt])
+  @@index([publishedToDirectory, verifiedAt])
 }
 
 // Pro <-> PracticeArea M:N

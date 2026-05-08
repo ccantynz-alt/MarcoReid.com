@@ -80,7 +80,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | 24 | Multi-jurisdictional license expansion service (TTMRA / QLTS / MRA pathways) | ⬜ | Wave 4 |
 | 25 | Marco split into 3 research centres (Legal / Accounting / Forensic) | 🟢 | `/marco/legal`, `/marco/accounting`, `/marco/forensic` all live with shared `MarcoCentrePage` template, `MarcoResearchBox` interactive component, and a per-domain source catalogue (Legal: 12 sources, Accounting: 6, Forensic: 5). `MarcoResearchBox` posts to `/api/marco/research` and renders Verified / Unverified / Not Found citation pills |
 | 26 | Liability shield architecture (structural sign-off + watermarks) | 🟢 | End-to-end live: public draft → /generate/[draftId]/signoff intake → SignoffRequest queue → /admin/signoffs review → approve transitions DocumentDraft to SIGNED with credentialled stamp. Two AuditLog rows per approval. Marketplace Professional supply side (Wave 4) replaces admin-as-reviewer stand-in |
-| 27 | Public networking + professional directory | ⬜ | Wave 4 |
+| 27 | Public networking + professional directory | 🟡 | `/directory` index live + `/directory/[slug]` profile pages live. Filtered to publishedToDirectory + verifiedAt. Empty state surfaces /for-attorneys + /for-accountants. Schema extended: Professional gains slug, photoUrl, headline, firmDisplayName, languages, hourlyRate, flatSignoff, publishedToDirectory. Search/filter UI + claim flow queued |
 | 28 | Daily personalised intelligence digest | ⬜ | Wave 4 |
 | 29 | Self-serve incorporation as front-door (Marco Reid Launch) | ⬜ | Wave 5 |
 | 30 | Court dictation (real-time legal vocabulary transcription) | ⬜ | Wave 5+ |
@@ -139,6 +139,8 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/marco/legal` (legal research centre) | ✅ |
 | `/marco/accounting` (accounting research centre) | ✅ |
 | `/marco/forensic` (forensic research centre) | ✅ |
+| `/directory` (professional directory index) | ✅ |
+| `/directory/[slug]` (verified-pro profile pages) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |

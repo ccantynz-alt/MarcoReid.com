@@ -29,12 +29,12 @@ const links = {
   ],
   forPublic: [
     { label: "Generate a document", href: "/generate" },
+    { label: "Find a professional", href: "/directory" },
     { label: "All specialties", href: "/specialties" },
     { label: "Court-rules calculator", href: "/tools/court-rules" },
     { label: "Marco Legal", href: "/marco/legal" },
     { label: "Marco Accounting", href: "/marco/accounting" },
     { label: "Marco Forensic", href: "/marco/forensic" },
-    { label: "Catch-Up Centre", href: "/catch-up-centre" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [
