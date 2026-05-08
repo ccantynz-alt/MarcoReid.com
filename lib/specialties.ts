@@ -190,6 +190,7 @@ export const SPECIALTIES: ReadonlyArray<SpecialtyRow> = [
     jurisdictions: ["NZ"],
     summary:
       "Treaty work, Māori land law (Te Ture Whenua Māori 1993), Waitangi Tribunal, Iwi negotiations.",
+    deepPage: true,
   },
   {
     slug: "indigenous-au",

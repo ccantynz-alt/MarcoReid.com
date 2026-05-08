@@ -145,6 +145,7 @@ Last updated: 2026-05-08 (specialty matrix + 6 deep pages)
 | `/launch` (Marco Reid Launch — flagship incorporation product) | ✅ |
 | `/tools/conflict-check` (unified conflict + KYC + AML intake) | ✅ |
 | `/digest` (daily intelligence digest subscribe) | ✅ |
+| `/specialties/te-tiriti-maori` (NZ-native specialty deep page) | ✅ |
 | `/specialties/te-tiriti-maori` (deep page) | ⬜ |
 | `/specialties/business-advisory` (deep page) | ⬜ |
 | `/specialties/forensic-accounting` (deep page) | ⬜ |
