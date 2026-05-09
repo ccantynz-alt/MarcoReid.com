@@ -14,6 +14,7 @@ import "./shareholders-agreement";
 import "./lease";
 import "./power-of-attorney";
 import "./sale-of-goods";
+import "./directors-resolution";
 
 // Re-export the engine API.
 export {
