@@ -13,6 +13,7 @@ import "./will";
 import "./shareholders-agreement";
 import "./lease";
 import "./power-of-attorney";
+import "./sale-of-goods";
 
 // Re-export the engine API.
 export {
