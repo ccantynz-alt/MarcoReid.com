@@ -1,6 +1,7 @@
 "use client";
 
 import ConflictChecker from "@/app/components/platform/ConflictChecker";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 export default function ConflictsPage() {
   return (
@@ -14,10 +15,9 @@ export default function ConflictsPage() {
         <ConflictChecker />
       </div>
 
-      <p className="mt-4 text-xs text-navy-400 dark:text-navy-500">
-        This check searches your existing client and matter database. It does not access external
-        databases.
-      </p>
+      <div className="mt-4">
+        <LegalDisclaimer type="CONFLICTS" variant="inline" />
+      </div>
     </div>
   );
 }

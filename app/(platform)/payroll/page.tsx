@@ -8,6 +8,7 @@ import {
   type PayFrequency,
   type PayrollResult,
 } from "@/lib/payroll";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -503,12 +504,9 @@ export default function PayrollPage() {
       )}
 
       {/* Disclaimer */}
-      <p className="mt-6 text-xs text-navy-400 dark:text-navy-500">
-        This calculator provides estimates based on standard 2024/25 tax rates.
-        It does not account for state/provincial taxes, tax credits, salary
-        sacrifice, student loan repayments, or other individual circumstances.
-        Consult a qualified professional for precise payroll calculations.
-      </p>
+      <div className="mt-8">
+        <LegalDisclaimer type="PAYROLL" variant="footer" />
+      </div>
     </div>
   );
 }

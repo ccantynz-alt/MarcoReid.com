@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { getTrustComplianceNotes } from "@/lib/trust-rules";
 import { JURISDICTIONS } from "@/lib/jurisdictions";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 export const dynamic = "force-dynamic";
 
@@ -399,6 +400,11 @@ export default async function TrustPage() {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Legal disclaimer */}
+      <div className="mt-8">
+        <LegalDisclaimer type="TRUST_ACCOUNTING" variant="footer" />
       </div>
     </div>
   );

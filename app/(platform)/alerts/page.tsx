@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AlertsClient from "./AlertsClient";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 export default function AlertsPage() {
   return (
@@ -23,6 +24,10 @@ export default function AlertsPage() {
 
       <div className="mt-8">
         <AlertsClient />
+      </div>
+
+      <div className="mt-8">
+        <LegalDisclaimer type="REGULATORY_ALERTS" variant="footer" />
       </div>
     </div>
   );

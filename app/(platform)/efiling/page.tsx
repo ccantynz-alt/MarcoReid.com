@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { COURT_FILING_SYSTEMS, type CourtFilingSystem } from "@/lib/court-efiling";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -338,6 +339,11 @@ export default function EFilingPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Legal disclaimer */}
+      <div className="mt-8">
+        <LegalDisclaimer type="COURT_FILING" variant="footer" />
       </div>
     </div>
   );

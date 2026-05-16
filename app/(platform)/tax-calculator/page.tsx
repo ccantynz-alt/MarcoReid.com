@@ -10,6 +10,7 @@ import {
   CA_PROVINCIAL_TAX,
   type TaxResult,
 } from "@/lib/tax-calculator";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -808,14 +809,9 @@ export default function TaxCalculatorPage() {
       </div>
 
       {/* Disclaimer */}
-      <p className="mt-8 text-xs text-navy-400 dark:text-navy-500">
-        This calculator provides estimates based on standard 2024/25 tax rates.
-        It does not account for tax credits, deductions (beyond the standard
-        deduction for US), rebates, surcharges, or other individual
-        circumstances. US income tax is federal only and does not include state
-        taxes. Canadian income tax shows federal rates only. Consult a qualified
-        tax professional for precise calculations.
-      </p>
+      <div className="mt-8">
+        <LegalDisclaimer type="TAX_FILING" variant="footer" />
+      </div>
     </div>
   );
 }
