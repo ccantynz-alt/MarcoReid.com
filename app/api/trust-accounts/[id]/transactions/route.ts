@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { TrustTransactionType } from "@prisma/client";
+import { validateTrustTransaction } from "@/lib/trust-rules";
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -48,6 +49,21 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       return NextResponse.json({ error: "amountInCents must be positive" }, { status: 400 });
     }
 
+    // Country-specific trust rule validation
+    const validation = validateTrustTransaction({
+      jurisdiction: account.jurisdiction ?? "US",
+      type: type as "DEPOSIT" | "WITHDRAWAL" | "FEE_DRAW",
+      amountInCents,
+      currentBalanceInCents: account.balanceInCents,
+      description,
+    });
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.errors.join(" "), errors: validation.errors, jurisdiction: validation.jurisdiction, rulesApplied: validation.rulesApplied },
+        { status: 400 },
+      );
+    }
+
     const delta = type === TrustTransactionType.DEPOSIT ? amountInCents : -amountInCents;
     const newBalance = account.balanceInCents + delta;
     if (newBalance < 0) {
@@ -75,7 +91,13 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       }),
     ]);
 
-    return NextResponse.json({ transaction, balanceInCents: newBalance }, { status: 201 });
+    return NextResponse.json({
+      transaction,
+      balanceInCents: newBalance,
+      warnings: validation.warnings,
+      rulesApplied: validation.rulesApplied,
+      jurisdiction: validation.jurisdiction,
+    }, { status: 201 });
   } catch {
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }

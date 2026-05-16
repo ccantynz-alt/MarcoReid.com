@@ -64,6 +64,29 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3">
             <CommandPaletteTrigger />
             <Link
+              href="/alerts"
+              className="hidden items-center gap-1.5 text-sm text-navy-400 transition-colors hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200 sm:flex"
+              aria-label="Regulatory alerts"
+            >
+              <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none">
+                <path
+                  d="M10 3a1 1 0 011 1v2.07A7.003 7.003 0 0117 13v1a1 1 0 01-1 1H4a1 1 0 01-1-1v-1a7.003 7.003 0 016-6.93V4a1 1 0 011-1z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M8 17a2 2 0 004 0"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Alerts
+            </Link>
+            <Link
               href="/settings/profile"
               className="hidden text-sm text-navy-400 transition-colors hover:text-navy-700 dark:text-navy-400 dark:hover:text-navy-200 sm:block"
             >

@@ -154,6 +154,7 @@ export default async function DashboardPage() {
     { title: "Trust", href: "/trust", count: trustAccounts.length },
     { title: "Voice", href: "/voice", count: null },
     { title: "Billing", href: "/billing", count: null },
+    { title: "Alerts", href: "/alerts", count: null },
   ];
 
   return (

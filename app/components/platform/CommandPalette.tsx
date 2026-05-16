@@ -152,6 +152,14 @@ export function CommandPaletteProvider({
         action: nav("/billing"),
         keywords: ["invoices", "payments", "subscription"],
       },
+      {
+        id: "nav-alerts",
+        label: "Go to Regulatory Alerts",
+        description: "Monitor law and regulation changes",
+        section: "Navigate",
+        action: nav("/alerts"),
+        keywords: ["regulatory", "legislation", "tax", "feeds", "monitoring", "compliance"],
+      },
 
       // Actions
       {

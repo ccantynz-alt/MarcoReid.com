@@ -15,6 +15,7 @@ interface Props {
   currentBalance: number;
   currency: string;
   matters: Matter[];
+  jurisdiction?: string;
 }
 
 type TxType = "DEPOSIT" | "WITHDRAWAL" | "FEE_DRAW";
@@ -24,6 +25,7 @@ export default function TrustTransactionForm({
   currentBalance,
   currency,
   matters,
+  jurisdiction = "US",
 }: Props) {
   const router = useRouter();
   const toast = useToast();
@@ -32,6 +34,7 @@ export default function TrustTransactionForm({
   const [description, setDescription] = useState("");
   const [matterId, setMatterId] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [warnings, setWarnings] = useState<string[]>([]);
 
   const amountCents = Math.round(parseFloat(amount || "0") * 100);
   const wouldOverdraw =
@@ -85,6 +88,12 @@ export default function TrustTransactionForm({
         label,
         `${description.trim()} · ${new Intl.NumberFormat("en-US", { style: "currency", currency }).format(amountCents / 100)}`,
       );
+      // Show jurisdiction-specific warnings from trust rules engine
+      if (data.warnings && data.warnings.length > 0) {
+        setWarnings(data.warnings);
+      } else {
+        setWarnings([]);
+      }
       setAmount("");
       setDescription("");
       setMatterId("");
@@ -233,6 +242,23 @@ export default function TrustTransactionForm({
       >
         {submitting ? "Recording…" : "Record transaction"}
       </button>
+
+      {/* Trust rule warnings returned by the rules engine */}
+      {warnings.length > 0 && (
+        <div className="rounded-lg border border-yellow-300 bg-yellow-50 p-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-yellow-800">
+            Compliance warnings
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {warnings.map((w, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-yellow-800">
+                <span className="mt-1 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-yellow-500" />
+                <span>{w}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </form>
   );
 }

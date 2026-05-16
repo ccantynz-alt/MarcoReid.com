@@ -98,13 +98,24 @@ export default function DocumentsListClient({
             Every contract, letter, filing and receipt — searchable and linked to your work.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => setUploadOpen(true)}
-          className="inline-flex min-h-touch items-center justify-center self-start rounded-lg bg-navy-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600 sm:self-auto"
-        >
-          Upload document
-        </button>
+        <div className="flex items-center gap-3 self-start sm:self-auto">
+          <Link
+            href="/documents/editor"
+            className="inline-flex min-h-touch items-center justify-center gap-2 rounded-lg border border-navy-200 bg-white px-5 py-3 text-sm font-semibold text-navy-600 shadow-sm transition-all hover:bg-navy-50 dark:border-navy-600 dark:bg-navy-800 dark:text-navy-200 dark:hover:bg-navy-700"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            New Document
+          </Link>
+          <button
+            type="button"
+            onClick={() => setUploadOpen(true)}
+            className="inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
+          >
+            Upload document
+          </button>
+        </div>
       </div>
 
       {/* Toolbar */}

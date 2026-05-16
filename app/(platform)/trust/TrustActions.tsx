@@ -312,6 +312,7 @@ function TransactionForm({
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [warnings, setWarnings] = useState<string[]>([]);
   const [form, setForm] = useState({
     type: "DEPOSIT" as "DEPOSIT" | "WITHDRAWAL" | "FEE_DRAW",
     amount: "",
@@ -323,6 +324,7 @@ function TransactionForm({
     e.preventDefault();
     setSubmitting(true);
     setError(null);
+    setWarnings([]);
 
     const dollars = parseFloat(form.amount);
     if (isNaN(dollars) || dollars <= 0) {
@@ -344,14 +346,20 @@ function TransactionForm({
           matterId: form.matterId || undefined,
         }),
       });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
         throw new Error(data.error || "Failed to record transaction");
       }
+      // Show jurisdiction-specific warnings from trust rules engine
+      if (data.warnings && data.warnings.length > 0) {
+        setWarnings(data.warnings);
+      }
       router.refresh();
-      onDone();
+      setForm({ ...form, amount: "", description: "", matterId: "" });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
+      setSubmitting(false);
+    } finally {
       setSubmitting(false);
     }
   }
@@ -425,6 +433,23 @@ function TransactionForm({
         </div>
 
         {error && <p className="text-sm text-plum-600">{error}</p>}
+
+        {/* Trust rule warnings returned by the rules engine */}
+        {warnings.length > 0 && (
+          <div className="rounded-lg border border-yellow-300 bg-yellow-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-yellow-800">
+              Compliance warnings
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {warnings.map((w, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-yellow-800">
+                  <span className="mt-1 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-yellow-500" />
+                  <span>{w}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="flex items-center gap-3">
           <button type="submit" disabled={submitting} className={btnPrimary}>

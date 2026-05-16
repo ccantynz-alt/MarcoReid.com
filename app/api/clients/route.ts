@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function GET() {
   const userId = await getUserId();
@@ -21,6 +22,9 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const rl = await rateLimit({ key: `clients:${userId}`, limit: 30, windowSeconds: 60 });
+  if (!rl.ok) return NextResponse.json({ error: "Too many requests" }, { status: 429 });
 
   try {
     const body = await req.json();
