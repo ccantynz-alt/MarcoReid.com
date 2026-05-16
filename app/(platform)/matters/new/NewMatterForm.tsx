@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ConflictChecker from "@/app/components/platform/ConflictChecker";
 
 interface Props {
   clients: { id: string; name: string }[];
@@ -48,10 +49,21 @@ export default function NewMatterForm({ clients }: Props) {
   const label = "block text-sm font-medium text-navy-600 mb-1.5 dark:text-navy-300";
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800"
-    >
+    <>
+      <div className="mt-8 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800">
+        <h2 className="mb-1 text-lg font-semibold text-navy-800 dark:text-white">
+          Conflict Check
+        </h2>
+        <p className="mb-4 text-sm text-navy-500 dark:text-navy-400">
+          Check for potential conflicts of interest before creating this matter.
+        </p>
+        <ConflictChecker />
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800"
+      >
       <div>
         <label className={label}>Client *</label>
         <select
@@ -149,5 +161,6 @@ export default function NewMatterForm({ clients }: Props) {
         </button>
       </div>
     </form>
+    </>
   );
 }

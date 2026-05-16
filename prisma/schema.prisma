@@ -33,6 +33,8 @@ model User {
   timeEntries      TimeEntry[]
   trustAccounts    TrustAccount[]
   voiceTranscripts VoiceTranscript[]
+  deadlines        Deadline[]
+  signatureRequests SignatureRequest[]
 
   // Stripe — subscriptions
   stripeCustomerId      String?   @unique
@@ -88,6 +90,18 @@ model Client {
   address       String?
   companyName   String?
   notes         String?
+
+  // AML/KYC
+  kycStatus       String    @default("pending") // pending, verified, flagged, expired
+  kycVerifiedAt   DateTime?
+  kycVerifiedBy   String?   // userId of the person who verified
+  kycRiskLevel    String?   // low, medium, high
+  kycNotes        String?   @db.Text
+  identityDocType String?   // passport, drivers_licence, national_id
+  identityDocRef  String?   // document reference number (encrypted at rest)
+  sourceOfFunds   String?   // employment, business, investment, inheritance, other
+  isPEP           Boolean   @default(false) // Politically Exposed Person
+
   matters       Matter[]
   documents     Document[]
   trustAccounts TrustAccount[]
@@ -114,6 +128,8 @@ model Matter {
   documents         Document[]
   timeEntries       TimeEntry[]
   trustTransactions TrustTransaction[]
+  deadlines         Deadline[]
+  signatureRequests SignatureRequest[]
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
 
@@ -136,9 +152,10 @@ model Document {
   fileUrl   String
   fileSize  Int
   mimeType  String
-  kind      DocumentKind @default(OTHER)
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  kind              DocumentKind @default(OTHER)
+  signatureRequests SignatureRequest[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 
   @@index([userId])
   @@index([matterId])
@@ -191,6 +208,64 @@ model TrustTransaction {
   createdAt      DateTime             @default(now())
 
   @@index([trustAccountId, createdAt])
+}
+
+// ============================================================
+// DEADLINES — Court-rules deadline calendar
+// ============================================================
+
+model Deadline {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  matterId     String
+  matter       Matter    @relation(fields: [matterId], references: [id])
+  title        String
+  description  String?
+  dueDate      DateTime
+  courtRule    String?   // e.g., "FRCP Rule 12(a)(1)(A)" or "NZ High Court Rule 5.25"
+  jurisdiction String?   // NZ, AU, UK, US, CA
+  status       String    @default("upcoming") // upcoming, due_today, overdue, completed, waived
+  priority     String    @default("normal") // low, normal, high, critical
+  reminderDays Int       @default(3)
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([matterId])
+  @@index([dueDate])
+  @@index([status])
+}
+
+// ============================================================
+// E-SIGNATURES — signature request tracking
+// ============================================================
+
+model SignatureRequest {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  documentId   String?
+  document     Document? @relation(fields: [documentId], references: [id])
+  matterId     String?
+  matter       Matter?  @relation(fields: [matterId], references: [id])
+  title        String
+  status       String   @default("draft") // draft, sent, viewed, signed, declined, expired
+  signerName   String
+  signerEmail  String
+  message      String?
+  sentAt       DateTime?
+  viewedAt     DateTime?
+  signedAt     DateTime?
+  declinedAt   DateTime?
+  expiresAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([matterId])
 }
 
 // ============================================================

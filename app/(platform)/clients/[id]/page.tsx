@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import KYCVerification from "@/app/components/platform/KYCVerification";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +61,13 @@ export default async function ClientDetailPage({
   const billableCents = timeEntries
     .filter((t) => t.billable)
     .reduce((sum, t) => sum + Math.round((t.minutes / 60) * t.rateInCents), 0);
+
+  // Derive jurisdiction: first matter with a jurisdiction, or user's jurisdiction
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { jurisdiction: true } });
+  const clientJurisdiction =
+    client.matters.find((m) => m.jurisdiction)?.jurisdiction ??
+    user?.jurisdiction ??
+    undefined;
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
@@ -146,6 +154,24 @@ export default async function ClientDetailPage({
             {client.documents.length === 0 ? "None yet" : "Linked to client"}
           </p>
         </div>
+      </div>
+
+      {/* AML / KYC Verification */}
+      <div className="mt-8">
+        <KYCVerification
+          client={{
+            id: client.id,
+            name: client.name,
+            kycStatus: client.kycStatus,
+            kycVerifiedAt: client.kycVerifiedAt?.toISOString() ?? null,
+            kycRiskLevel: client.kycRiskLevel,
+            identityDocType: client.identityDocType,
+            sourceOfFunds: client.sourceOfFunds,
+            isPEP: client.isPEP,
+            kycNotes: client.kycNotes,
+          }}
+          jurisdiction={clientJurisdiction}
+        />
       </div>
 
       {/* Main */}

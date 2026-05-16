@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ConflictChecker from "@/app/components/platform/ConflictChecker";
 
 export default function NewClientPage() {
   const router = useRouter();
@@ -45,6 +46,17 @@ export default function NewClientPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-12 sm:px-8 lg:px-12">
       <h1 className="font-serif text-display text-navy-800 dark:text-white">New client</h1>
+
+      <div className="mt-8 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800">
+        <h2 className="mb-1 text-lg font-semibold text-navy-800 dark:text-white">
+          Conflict Check
+        </h2>
+        <p className="mb-4 text-sm text-navy-500 dark:text-navy-400">
+          Check for potential conflicts of interest before adding this client.
+        </p>
+        <ConflictChecker />
+      </div>
+
       <form
         onSubmit={handleSubmit}
         className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800"

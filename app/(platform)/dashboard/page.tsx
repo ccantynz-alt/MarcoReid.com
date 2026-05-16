@@ -49,6 +49,8 @@ export default async function DashboardPage() {
     trustAccounts,
     recentMatters,
     recentTimeEntries,
+    upcomingDeadlines,
+    overdueDeadlines,
   ] = await Promise.all([
     prisma.matter.count({ where: { userId, status: "ACTIVE" } }),
     prisma.matter.count({ where: { userId } }),
@@ -78,6 +80,16 @@ export default async function DashboardPage() {
       orderBy: { createdAt: "desc" },
       take: 5,
     }),
+    prisma.deadline.count({
+      where: { userId, status: { notIn: ["completed", "waived"] } },
+    }),
+    prisma.deadline.count({
+      where: {
+        userId,
+        status: { notIn: ["completed", "waived"] },
+        dueDate: { lt: new Date(now.getFullYear(), now.getMonth(), now.getDate()) },
+      },
+    }),
   ]);
 
   const weekHours = weekTimeEntries.reduce((sum, t) => sum + t.minutes, 0);
@@ -99,21 +111,31 @@ export default async function DashboardPage() {
       label: "Active matters",
       value: String(activeMatters),
       note: `${totalMatters} total`,
+      highlight: false,
     },
     {
       label: "Hours this week",
       value: formatHours(weekHours),
       note: `${formatHours(weekBillableHours)} billable`,
+      highlight: false,
     },
     {
       label: "Revenue (month)",
       value: formatCurrency(monthRevenue),
       note: "From billable time",
+      highlight: false,
     },
     {
       label: "Trust balance",
       value: formatCurrency(trustTotal),
       note: `${trustAccounts.length} ${trustAccounts.length === 1 ? "account" : "accounts"}`,
+      highlight: false,
+    },
+    {
+      label: "Upcoming deadlines",
+      value: String(upcomingDeadlines),
+      note: overdueDeadlines > 0 ? `${overdueDeadlines} overdue` : "All on track",
+      highlight: overdueDeadlines > 0,
     },
   ];
 
@@ -128,6 +150,7 @@ export default async function DashboardPage() {
     { title: "Matters", href: "/matters", count: totalMatters },
     { title: "Clients", href: "/clients", count: totalClients },
     { title: "Documents", href: "/documents", count: totalDocuments },
+    { title: "Deadlines", href: "/deadlines", count: upcomingDeadlines },
     { title: "Trust", href: "/trust", count: trustAccounts.length },
     { title: "Voice", href: "/voice", count: null },
     { title: "Billing", href: "/billing", count: null },
@@ -169,7 +192,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -181,7 +204,9 @@ export default async function DashboardPage() {
             <p className="mt-3 font-serif text-4xl text-navy-800">
               {stat.value}
             </p>
-            <p className="mt-1 text-sm text-navy-400">{stat.note}</p>
+            <p className={`mt-1 text-sm ${stat.highlight ? "font-semibold text-red-600" : "text-navy-400"}`}>
+              {stat.note}
+            </p>
           </div>
         ))}
       </div>
