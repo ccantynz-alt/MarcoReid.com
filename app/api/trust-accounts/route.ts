@@ -2,7 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 
-const VALID_CURRENCIES = ["USD", "NZD", "AUD", "GBP", "EUR"];
+const VALID_CURRENCIES = ["USD", "NZD", "AUD", "GBP", "EUR", "CAD"];
+
+/** Map currency to the most likely trust accounting jurisdiction. */
+const CURRENCY_TO_JURISDICTION: Record<string, string> = {
+  NZD: "NZ",
+  AUD: "AU",
+  GBP: "UK",
+  USD: "US",
+  CAD: "CA",
+  EUR: "UK", // Default EUR to UK; can be overridden
+};
 
 export async function GET() {
   const userId = await getUserId();
@@ -61,11 +71,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Infer trust accounting jurisdiction from currency (can be overridden by explicit body.jurisdiction)
+    const jurisdiction = body.jurisdiction || CURRENCY_TO_JURISDICTION[currency] || "US";
+
     const account = await prisma.trustAccount.create({
       data: {
         userId,
         clientId,
         currency,
+        jurisdiction,
         balanceInCents: 0,
       },
       include: { client: { select: { id: true, name: true } } },

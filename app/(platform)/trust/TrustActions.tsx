@@ -41,7 +41,7 @@ interface Props {
 
 /* ---------- helpers ---------- */
 
-const CURRENCIES = ["USD", "NZD", "AUD", "GBP", "EUR"] as const;
+const CURRENCIES = ["USD", "NZD", "AUD", "GBP", "CAD", "EUR"] as const;
 
 function money(cents: number, currency: string) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(
