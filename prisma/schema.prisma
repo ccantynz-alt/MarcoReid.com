@@ -106,6 +106,7 @@ model Matter {
   title             String
   matterNumber      String?
   practiceArea      String?
+  jurisdiction      String?            // NZ, AU, UK, US, CA
   status            MatterStatus       @default(ACTIVE)
   description       String?
   openedAt          DateTime           @default(now())
@@ -170,6 +171,7 @@ model TrustAccount {
   client         Client             @relation(fields: [clientId], references: [id])
   balanceInCents Int                @default(0)
   currency       String             @default("USD")
+  jurisdiction   String             @default("US") // NZ, AU, UK, US, CA — determines trust rules
   transactions   TrustTransaction[]
   createdAt      DateTime           @default(now())
   updatedAt      DateTime           @updatedAt

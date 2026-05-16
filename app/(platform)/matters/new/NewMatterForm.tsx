@@ -16,6 +16,7 @@ export default function NewMatterForm({ clients }: Props) {
     title: "",
     matterNumber: "",
     practiceArea: "",
+    jurisdiction: "",
     status: "ACTIVE",
     description: "",
   });
@@ -91,6 +92,21 @@ export default function NewMatterForm({ clients }: Props) {
           value={form.practiceArea}
           onChange={(e) => setForm({ ...form, practiceArea: e.target.value })}
         />
+      </div>
+      <div>
+        <label className={label}>Jurisdiction</label>
+        <select
+          className={input}
+          value={form.jurisdiction}
+          onChange={(e) => setForm({ ...form, jurisdiction: e.target.value })}
+        >
+          <option value="">Select jurisdiction</option>
+          <option value="NZ">New Zealand</option>
+          <option value="AU">Australia</option>
+          <option value="UK">United Kingdom</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+        </select>
       </div>
       <div>
         <label className={label}>Status</label>

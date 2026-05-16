@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { clientId, title, matterNumber, practiceArea, status, description } = body ?? {};
+    const { clientId, title, matterNumber, practiceArea, jurisdiction, status, description } = body ?? {};
     if (!clientId || !title) {
       return NextResponse.json({ error: "clientId and title required" }, { status: 400 });
     }
@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
         title,
         matterNumber: matterNumber || null,
         practiceArea: practiceArea || null,
+        jurisdiction: jurisdiction || null,
         status: (status as MatterStatus) || MatterStatus.ACTIVE,
         description: description || null,
       },

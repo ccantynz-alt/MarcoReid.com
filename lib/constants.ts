@@ -233,6 +233,14 @@ export const ORACLE_PRICING: PricingTier[] = [
   },
 ];
 
+export const CURRENCY_PRICING: Record<string, { symbol: string; law: [number, number, number]; accounting: [number, number, number]; oracle: [number, number] }> = {
+  USD: { symbol: "$", law: [99, 199, 399], accounting: [79, 149, 299], oracle: [499, 999] },
+  NZD: { symbol: "$", law: [159, 319, 639], accounting: [129, 239, 479], oracle: [799, 1599] },
+  AUD: { symbol: "$", law: [149, 299, 599], accounting: [119, 229, 449], oracle: [749, 1499] },
+  GBP: { symbol: "£", law: [79, 159, 319], accounting: [59, 119, 239], oracle: [399, 799] },
+  CAD: { symbol: "$", law: [129, 259, 519], accounting: [99, 199, 399], oracle: [649, 1299] },
+};
+
 export const TIME_SAVINGS: TimeSaving[] = [
   {
     task: "Legal research (standard matter)",
