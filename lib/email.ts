@@ -1,12 +1,14 @@
 // Transactional email adapter.
-// In production, wire up Resend or Postmark. For now, this logs to console
-// and can be toggled on with RESEND_API_KEY in the environment.
+// Uses the Crontech Mailgun-shape API in production (CRONTECH_API_URL +
+// CRONTECH_API_KEY). Falls back to a console.log mock when the env vars
+// are not set, so local development works without credentials.
 
 interface SendEmailParams {
   to: string;
   subject: string;
   html: string;
   text?: string;
+  from?: string;
 }
 
 interface EmailResult {
@@ -16,15 +18,16 @@ interface EmailResult {
 }
 
 export async function sendEmail(params: SendEmailParams): Promise<EmailResult> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM || "Marco Reid <noreply@marcoreid.com>";
+  const apiUrl = process.env.CRONTECH_API_URL;
+  const apiKey = process.env.CRONTECH_API_KEY;
+  const from = params.from || "Marco Reid <noreply@marcoreid.com>";
 
   // Development / unconfigured mode: log to console so you can copy the link
-  if (!apiKey) {
+  if (!apiUrl || !apiKey) {
     // eslint-disable-next-line no-console
     console.log("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     // eslint-disable-next-line no-console
-    console.log(`📧 Email (dev mode — no RESEND_API_KEY configured)`);
+    console.log(`Email (dev mode — CRONTECH_API_URL / CRONTECH_API_KEY not set)`);
     // eslint-disable-next-line no-console
     console.log(`To:      ${params.to}`);
     // eslint-disable-next-line no-console
@@ -41,10 +44,10 @@ export async function sendEmail(params: SendEmailParams): Promise<EmailResult> {
   }
 
   try {
-    const res = await fetch("https://api.resend.com/emails", {
+    const response = await fetch(`${apiUrl}/api/v1/email/send`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -56,15 +59,17 @@ export async function sendEmail(params: SendEmailParams): Promise<EmailResult> {
       }),
     });
 
-    if (!res.ok) {
-      const body = await res.text();
-      return { ok: false, error: `Resend API error ${res.status}: ${body}` };
+    if (!response.ok) {
+      const body = await response.text();
+      console.error(`[email] Crontech API error ${response.status}: ${body}`);
+      return { ok: false, error: `Crontech API error ${response.status}: ${body}` };
     }
 
-    const data = (await res.json()) as { id: string };
+    const data = (await response.json()) as { id?: string };
     return { ok: true, id: data.id };
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
+    console.error("[email] Failed to send:", message);
     return { ok: false, error: message };
   }
 }

@@ -37,6 +37,7 @@ export interface DataSourceConfig {
   baseUrl: string;
   searchEndpoint: string;
   verifyEndpoint?: string;
+  description?: string;
 }
 
 export const DATA_SOURCES: DataSourceConfig[] = [
@@ -97,5 +98,20 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     domain: "LEGAL",
     baseUrl: "https://www.austlii.edu.au",
     searchEndpoint: "/cgi-bin/sinosrch.cgi",
+  },
+  // UK/Canada sources
+  {
+    name: "BAILII",
+    domain: "LEGAL",
+    baseUrl: "https://www.bailii.org/cgi-bin/markup.cgi",
+    searchEndpoint: "/form/search_cases.html",
+    description: "British and Irish Legal Information Institute — UK and Irish court decisions, legislation, and law reform reports",
+  },
+  {
+    name: "CanLII",
+    domain: "LEGAL",
+    baseUrl: "https://www.canlii.org/en",
+    searchEndpoint: "/search",
+    description: "Canadian Legal Information Institute — Canadian court decisions, legislation, and tribunal rulings across all provinces and territories",
   },
 ];
