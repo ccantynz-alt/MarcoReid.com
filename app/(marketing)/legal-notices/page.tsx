@@ -67,6 +67,7 @@ const DISCLAIMER_LABELS: Record<keyof typeof DISCLAIMERS, string> = {
   COURT_FILING: "Court E-Filing Disclaimer",
   CONFLICTS: "Conflict of Interest Disclaimer",
   REGULATORY_ALERTS: "Regulatory Alerts Disclaimer",
+  AUDIT_TRAIL: "Audit Trail Disclaimer",
   PLATFORM: "General Platform Disclaimer",
 };
 
