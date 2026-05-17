@@ -470,3 +470,74 @@ model CourtPilotRequest {
   @@index([status])
   @@index([createdAt(sort: Desc)])
 }
+
+// ============================================================
+// AUDIT TRAIL — Immutable, tamper-evident, court-admissible
+// ============================================================
+
+model AuditEvent {
+  id            String   @id @default(cuid())
+  userId        String
+  clientId      String?
+  matterId      String?
+
+  // Event classification
+  category      String   // auth, matter, client, document, trust, billing, research, voice, communication, compliance, system
+  action        String   // created, updated, deleted, viewed, exported, filed, signed, verified, searched, queried
+  resource      String   // The type of resource acted upon (matter, client, document, trust_transaction, etc.)
+  resourceId    String?  // The ID of the specific resource
+
+  // What happened
+  description   String   // Human-readable description
+  details       String?  @db.Text // JSON blob of the full change (before/after for updates)
+
+  // Integrity
+  ipAddress     String?
+  userAgent     String?
+  sessionId     String?
+
+  // Tamper evidence — each event hashes the previous event's hash (chain)
+  previousHash  String?  // SHA-256 hash of the previous event in this user's chain
+  eventHash     String   // SHA-256 hash of this event's content + previousHash
+
+  // Timestamps
+  timestamp     DateTime @default(now())
+
+  // Immutability — these records are NEVER updated or deleted
+  // Soft-delete is not available. Events are permanent.
+
+  @@index([userId])
+  @@index([clientId])
+  @@index([matterId])
+  @@index([category])
+  @@index([timestamp])
+  @@index([userId, clientId])
+  @@index([userId, timestamp])
+}
+
+// Per-client audit summary — quick access to client's complete history
+model ClientAuditSummary {
+  id            String   @id @default(cuid())
+  userId        String
+  clientId      String
+
+  totalEvents   Int      @default(0)
+  lastEventAt   DateTime?
+  lastEventHash String?  // Latest hash in the chain for this client
+
+  // Categories breakdown
+  authEvents      Int @default(0)
+  matterEvents    Int @default(0)
+  documentEvents  Int @default(0)
+  trustEvents     Int @default(0)
+  billingEvents   Int @default(0)
+  researchEvents  Int @default(0)
+  voiceEvents     Int @default(0)
+  complianceEvents Int @default(0)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([userId, clientId])
+  @@index([userId])
+}

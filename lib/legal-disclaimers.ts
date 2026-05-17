@@ -31,6 +31,10 @@ export const DISCLAIMERS = {
   REGULATORY_ALERTS:
     "Regulatory change alerts are provided for informational awareness only. They may not capture all relevant changes, may be delayed, and may not reflect the final form of enacted legislation. Do not rely solely on Marco Reid alerts for regulatory compliance. Consult official government sources and qualified professional advisors for compliance decisions.",
 
+  // Audit trail disclaimer
+  AUDIT_TRAIL:
+    "Marco Reid's audit trail system creates an immutable, cryptographically-chained record of platform activity. Each event is hashed using SHA-256 and linked to the previous event, creating a tamper-evident chain that can be independently verified. Audit records cannot be modified or deleted. This system is designed to support compliance with professional regulation, trust accounting audit requirements, and court discovery obligations across all operating jurisdictions. The audit trail records platform-level actions only — it does not constitute a complete record of all professional communications or actions taken outside the platform.",
+
   // General platform disclaimer - shows on signup/terms
   PLATFORM:
     "Marco Reid is a software platform providing tools for licensed legal and accounting professionals. It is not a law firm, accounting firm, tax agency, or professional services provider. No professional-client relationship is created by use of this platform. The platform does not provide legal advice, tax advice, or professional opinions. All outputs, calculations, research results, and recommendations must be independently verified by a qualified professional before any reliance or action.",
