@@ -146,15 +146,47 @@ export default async function DashboardPage() {
     { label: "Ask Marco", href: "/marco", accent: "plum" },
   ];
 
-  const modules = [
-    { title: "Matters", href: "/matters", count: totalMatters },
-    { title: "Clients", href: "/clients", count: totalClients },
-    { title: "Documents", href: "/documents", count: totalDocuments },
-    { title: "Deadlines", href: "/deadlines", count: upcomingDeadlines },
-    { title: "Trust", href: "/trust", count: trustAccounts.length },
-    { title: "Voice", href: "/voice", count: null },
-    { title: "Billing", href: "/billing", count: null },
-    { title: "Alerts", href: "/alerts", count: null },
+  const sections = [
+    {
+      label: "Practice",
+      items: [
+        { title: "Matters", href: "/matters", count: totalMatters, icon: "briefcase" },
+        { title: "Clients", href: "/clients", count: totalClients, icon: "users" },
+        { title: "Documents", href: "/documents", count: totalDocuments, icon: "file" },
+        { title: "Deadlines", href: "/deadlines", count: upcomingDeadlines, icon: "calendar" },
+        { title: "Conflicts", href: "/conflicts", count: null, icon: "shield" },
+      ],
+    },
+    {
+      label: "Financial",
+      items: [
+        { title: "Time & Billing", href: "/time", count: null, icon: "clock" },
+        { title: "Invoices", href: "/billing/invoices", count: null, icon: "receipt" },
+        { title: "Trust Accounts", href: "/trust", count: trustAccounts.length, icon: "vault" },
+        { title: "Payroll", href: "/payroll", count: null, icon: "calculator" },
+        { title: "Tax Calculator", href: "/tax-calculator", count: null, icon: "percent" },
+        { title: "Bank Feeds", href: "/bank-feeds", count: null, icon: "bank" },
+      ],
+    },
+    {
+      label: "AI & Research",
+      items: [
+        { title: "Ask Marco", href: "/marco", count: null, icon: "brain" },
+        { title: "Voice", href: "/voice", count: null, icon: "mic" },
+        { title: "Predictions", href: "/predictions", count: null, icon: "chart" },
+        { title: "Intelligence", href: "/intelligence", count: null, icon: "zap" },
+        { title: "Practice Analytics", href: "/practice-intelligence", count: null, icon: "bar-chart" },
+      ],
+    },
+    {
+      label: "Compliance",
+      items: [
+        { title: "E-Signatures", href: "/signatures", count: null, icon: "pen" },
+        { title: "Court E-Filing", href: "/efiling", count: null, icon: "gavel" },
+        { title: "Regulatory Alerts", href: "/alerts", count: null, icon: "bell" },
+        { title: "Audit Trail", href: "/audit", count: null, icon: "lock" },
+      ],
+    },
   ];
 
   return (
@@ -360,24 +392,29 @@ export default async function DashboardPage() {
       {/* Module grid */}
       <div className="mt-12">
         <h2 className="font-serif text-headline text-navy-800">Modules</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {modules.map((mod) => (
-            <Link
-              key={mod.title}
-              href={mod.href}
-              className="group block rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-all hover:-translate-y-0.5 hover:border-navy-300 hover:shadow-card-hover"
-            >
-              <div className="flex items-center justify-between">
-                <p className="font-semibold text-navy-700">{mod.title}</p>
-                {mod.count != null && (
-                  <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-500">
-                    {mod.count}
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
+        {sections.map((section) => (
+          <div key={section.label} className="mt-8">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-navy-400 dark:text-navy-500">
+              {section.label}
+            </h3>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {section.items.map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="flex items-center justify-between rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-all hover:shadow-card-hover hover:-translate-y-0.5 dark:border-navy-700 dark:bg-navy-800"
+                >
+                  <span className="text-sm font-medium text-navy-700 dark:text-navy-200">{item.title}</span>
+                  {item.count != null && (
+                    <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-400 dark:bg-navy-700 dark:text-navy-300">
+                      {item.count}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
