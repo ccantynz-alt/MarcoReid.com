@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { DocumentKind } from "@prisma/client";
 import DocumentIcon from "./DocumentIcon";
 import DocumentUploadModal from "./DocumentUploadModal";
+import EmptyStateShared from "./EmptyState";
 import {
   KIND_BADGE,
   KIND_LABEL,
@@ -272,34 +273,31 @@ function EmptyState({
 }) {
   if (hasFilter) {
     return (
-      <div className="px-6 py-12 text-center">
-        <p className="text-sm font-medium text-navy-700">No documents match those filters.</p>
-        <p className="mt-1 text-sm text-navy-400">
-          Try a different search term, or clear the filters to see everything.
-        </p>
-        <button
-          type="button"
-          onClick={onClear}
-          className="mt-4 inline-flex min-h-touch items-center justify-center rounded-lg border border-navy-200 px-4 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-50"
-        >
-          Clear filters
-        </button>
+      <div className="px-6 py-4">
+        <EmptyStateShared
+          icon="search"
+          title="No documents match those filters"
+          description="Try a different search term, or clear the filters to see everything."
+        />
+        <div className="flex justify-center pb-6">
+          <button
+            type="button"
+            onClick={onClear}
+            className="inline-flex min-h-touch items-center justify-center rounded-lg border border-navy-200 px-4 py-2 text-sm font-medium text-navy-600 transition-colors hover:bg-navy-50"
+          >
+            Clear filters
+          </button>
+        </div>
       </div>
     );
   }
   return (
-    <div className="px-6 py-12 text-center">
-      <p className="font-serif text-2xl text-navy-700">Your library is empty.</p>
-      <p className="mt-1 text-sm text-navy-400">
-        Upload your first document to keep it linked to a matter and a client.
-      </p>
-      <button
-        type="button"
-        onClick={onUpload}
-        className="mt-5 inline-flex min-h-touch items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
-      >
-        Upload document
-      </button>
-    </div>
+    <EmptyStateShared
+      icon="file"
+      title="No documents yet"
+      description="Upload a document or create one from scratch."
+      action={{ label: "New document", href: "/documents/editor" }}
+      secondaryAction={{ label: "Upload", href: "/documents/upload" }}
+    />
   );
 }

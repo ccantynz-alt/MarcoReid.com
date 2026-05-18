@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import SignaturesClient from "./SignaturesClient";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +53,13 @@ export default async function SignaturesPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "E-Signatures" },
+        ]}
+      />
+
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="font-serif text-display text-navy-800">E-Signatures</h1>
@@ -60,12 +67,6 @@ export default async function SignaturesPage() {
             Track and manage signature requests for your documents.
           </p>
         </div>
-        <Link
-          href="/dashboard"
-          className="text-sm text-navy-400 hover:text-navy-600"
-        >
-          &larr; Dashboard
-        </Link>
       </div>
 
       <div className="mt-8">

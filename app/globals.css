@@ -270,6 +270,17 @@ html.dark {
   100% { opacity: 0; transform: translateY(-100px) scale(0); }
 }
 
+/* ── Dashboard sparkline pulse ─────────────────────────────── */
+
+.sparkline-pulse {
+  animation: sparkline-glow 2s ease-in-out infinite;
+}
+
+@keyframes sparkline-glow {
+  0%, 100% { r: 4; opacity: 0.15; }
+  50% { r: 6; opacity: 0.3; }
+}
+
 /* ── Accessibility: reduced motion ──────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {

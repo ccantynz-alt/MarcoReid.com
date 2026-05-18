@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/components/shared/Toast";
 import RequestSignatureForm from "@/app/components/platform/RequestSignatureForm";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 export interface SignatureRequestRow {
   id: string;
@@ -184,19 +185,13 @@ export default function SignaturesClient({ signatureRequests, documents, matters
       {/* Signature request cards */}
       <div className="mt-6 space-y-4">
         {signatureRequests.length === 0 ? (
-          <div className="rounded-2xl border border-navy-100 bg-white px-6 py-12 text-center shadow-card dark:border-navy-700 dark:bg-navy-800">
-            <p className="font-serif text-lg text-navy-700 dark:text-navy-200">
-              No signature requests yet.
-            </p>
-            <p className="mt-1 text-sm text-navy-400 dark:text-navy-500">
-              Create your first signature request to track document signing.
-            </p>
-            <button
-              onClick={() => setShowForm(true)}
-              className="mt-6 inline-flex items-center justify-center rounded-lg bg-navy-500 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-600 dark:bg-navy-400 dark:text-navy-950 dark:hover:bg-navy-300"
-            >
-              Request Signature
-            </button>
+          <div className="rounded-2xl border border-navy-100 bg-white shadow-card dark:border-navy-700 dark:bg-navy-800">
+            <EmptyState
+              icon="pen"
+              title="No signature requests yet"
+              description="Create your first signature request to start collecting e-signatures."
+              action={{ label: "Request signature", href: "/signatures" }}
+            />
           </div>
         ) : (
           signatureRequests.map((sr) => (

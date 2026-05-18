@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AddDeadlineForm from "@/app/components/platform/AddDeadlineForm";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 interface MatterOption {
   id: string;
@@ -307,17 +308,13 @@ export default function DeadlinesClient({
 
       {/* Empty state */}
       {!hasActiveDeadlines && !showForm && (
-        <div className="rounded-2xl border border-navy-100 bg-white p-12 text-center shadow-card">
-          <p className="font-serif text-lg text-navy-700">No deadlines.</p>
-          <p className="mt-1 text-sm text-navy-400">
-            Add court deadlines to your matters.
-          </p>
-          <button
-            onClick={() => setShowForm(true)}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-navy-500 px-4 py-2 text-sm font-semibold text-white hover:bg-navy-600"
-          >
-            Add Deadline
-          </button>
+        <div className="rounded-2xl border border-navy-100 bg-white shadow-card">
+          <EmptyState
+            icon="calendar"
+            title="No deadlines set"
+            description="Add court deadlines, filing dates, and compliance due dates to stay on track."
+            action={{ label: "Add deadline", href: "/deadlines" }}
+          />
         </div>
       )}
 

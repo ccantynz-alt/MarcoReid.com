@@ -5,6 +5,8 @@ import { getUserId } from "@/lib/session";
 import { getTrustComplianceNotes } from "@/lib/trust-rules";
 import { JURISDICTIONS } from "@/lib/jurisdictions";
 import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 export const dynamic = "force-dynamic";
 
@@ -82,6 +84,13 @@ export default async function TrustPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Trust Accounts" },
+        ]}
+      />
+
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -271,21 +280,12 @@ export default async function TrustPage() {
           <h2 className="font-serif text-headline text-navy-800">Accounts</h2>
           <div className="mt-4 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-card">
             {accounts.length === 0 ? (
-              <div className="px-6 py-16 text-center">
-                <p className="font-serif text-xl text-navy-700">
-                  No trust accounts yet
-                </p>
-                <p className="mt-2 text-sm text-navy-400">
-                  Open your first client trust account. Every deposit,
-                  withdrawal, and fee draw will be recorded in the ledger.
-                </p>
-                <Link
-                  href="/trust/new"
-                  className="mt-6 inline-flex items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-600"
-                >
-                  Open trust account
-                </Link>
-              </div>
+              <EmptyState
+                icon="vault"
+                title="No trust accounts yet"
+                description="Create a client trust account to manage IOLTA-compliant funds."
+                action={{ label: "Create trust account", href: "/trust/new" }}
+              />
             ) : (
               <table className="w-full">
                 <thead className="border-b border-navy-100 bg-navy-50/50">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
+import EmptyState from "./EmptyState";
 
 interface Client {
   id: string;
@@ -84,24 +85,22 @@ export default function ClientsListClient({
         }`}
       >
         {clients.length === 0 ? (
-          <div className="px-6 py-16 text-center">
-            <p className="font-serif text-xl text-navy-700">
-              {q ? "No matches" : "No clients yet"}
-            </p>
-            <p className="mt-2 text-sm text-navy-400">
-              {q
-                ? "Try a different search term."
-                : "Add your first client to get started."}
-            </p>
-            {!q && (
-              <Link
-                href="/clients/new"
-                className="mt-6 inline-flex items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-600"
-              >
-                Add client
-              </Link>
-            )}
-          </div>
+          q ? (
+            <div className="px-6 py-16 text-center">
+              <EmptyState
+                icon="search"
+                title="No matches"
+                description="Try a different search term or adjust your filters."
+              />
+            </div>
+          ) : (
+            <EmptyState
+              icon="users"
+              title="No clients yet"
+              description="Add your first client to start building your practice."
+              action={{ label: "Add client", href: "/clients/new" }}
+            />
+          )
         ) : (
           <table className="w-full">
             <thead className="border-b border-navy-100 bg-navy-50/50">

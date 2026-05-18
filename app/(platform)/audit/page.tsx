@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
 
 interface AuditEvent {
   id: string;
@@ -239,6 +240,13 @@ export default function AuditTrailPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Audit Trail" },
+        ]}
+      />
+
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
