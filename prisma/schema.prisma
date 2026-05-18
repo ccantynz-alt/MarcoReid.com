@@ -35,6 +35,7 @@ model User {
   voiceTranscripts VoiceTranscript[]
   deadlines        Deadline[]
   signatureRequests SignatureRequest[]
+  professional     Professional?
 
   // Stripe — subscriptions
   stripeCustomerId      String?   @unique
@@ -49,9 +50,13 @@ model User {
   marketplacePayments    MarketplacePayment[] @relation("ProfessionalPayments")
 
   // Onboarding
-  onboardedAt   DateTime?
-  jurisdiction  String?
-  practiceArea  String?
+  onboardedAt          DateTime?
+  jurisdiction         String?
+  practiceArea         String?
+  tosAcceptedAt        DateTime?
+  tosVersion           String?
+  platformAckAt        DateTime?
+  platformAckVersion   String?
 }
 
 // ============================================================
@@ -71,6 +76,8 @@ enum DocumentKind {
   EVIDENCE
   INVOICE
   RECEIPT
+  ENGAGEMENT_LETTER
+  WILL
   OTHER
 }
 
@@ -540,4 +547,265 @@ model ClientAuditSummary {
 
   @@unique([userId, clientId])
   @@index([userId])
+}
+
+// ============================================================
+// PROFESSIONAL DIRECTORY
+// ============================================================
+
+model PracticeArea {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  slug          String   @unique
+  description   String?
+  jurisdiction  String?
+  professionals ProfessionalPracticeArea[]
+  proMatters    ProMatter[]
+  createdAt     DateTime @default(now())
+}
+
+model Professional {
+  id                     String   @id @default(cuid())
+  userId                 String   @unique
+  user                   User     @relation(fields: [userId], references: [id])
+  displayName            String
+  slug                   String   @unique
+  title                  String?
+  bio                    String?  @db.Text
+  jurisdiction           String?
+  admissionYear          Int?
+  headline               String?
+  professionalBody       String?
+  registrationNumber     String?
+  admissionNumber        String?
+  admissionJurisdiction  String?
+  firmDisplayName        String?
+  website                String?
+  phone                  String?
+  email                  String?
+  photoUrl               String?
+  officeAddress          String?
+  languages              String[]
+  hourlyRateCents        Int?
+  hourlyRateCurrency     String?
+  flatSignoffCents       Int?
+  flatSignoffCurrency    String?
+  piInsurerName          String?
+  acceptingNewMatters    Boolean  @default(true)
+  publishedToDirectory  Boolean  @default(false)
+  verifiedAt             DateTime?
+  practiceAreas          ProfessionalPracticeArea[]
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@index([publishedToDirectory, verifiedAt])
+  @@index([slug])
+}
+
+model ProfessionalPracticeArea {
+  id               String        @id @default(cuid())
+  professionalId   String
+  professional     Professional  @relation(fields: [professionalId], references: [id])
+  practiceAreaId   String
+  practiceArea     PracticeArea  @relation(fields: [practiceAreaId], references: [id])
+
+  @@unique([professionalId, practiceAreaId])
+}
+
+// ============================================================
+// DOCUMENT GENERATION (PUBLIC) + SIGNOFF
+// ============================================================
+
+model DocumentDraft {
+  id              String   @id @default(cuid())
+  contactEmail    String
+  jurisdiction    String?
+  situation       String?  @db.Text
+  extracted       Json?
+  body            String?  @db.Text
+  bodyHash        String?
+  status          String   @default("READY_FOR_REVIEW")
+  signedByUserId         String?
+  signedByCredential     String?
+  signedByJurisdiction   String?
+  signedByName           String?
+  signedAt               DateTime?
+  ipAddress       String?
+  userAgent       String?
+  expiresAt       DateTime?
+  signoffRequests SignoffRequest[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([contactEmail])
+  @@index([createdAt])
+}
+
+model SignoffRequest {
+  id               String        @id @default(cuid())
+  draftId          String
+  draft            DocumentDraft @relation(fields: [draftId], references: [id])
+  professionalId   String?
+  kind             String?
+  jurisdiction     String?
+  requesterEmail   String?
+  requesterNotes   String?
+  aiOutput         String?       @db.Text
+  outputSha256     String?
+  status           String        @default("pending")
+  requestedAt      DateTime      @default(now())
+  reviewedAt       DateTime?
+  reviewerNotes    String?
+  rejectionReason  String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@index([draftId])
+  @@index([status])
+}
+
+// ============================================================
+// EMAIL DIGEST / NEWSLETTER
+// ============================================================
+
+model DigestSubscription {
+  id              String   @id @default(cuid())
+  email           String
+  name            String?
+  active          Boolean  @default(true)
+  frequency       String   @default("weekly")
+  jurisdiction    String?
+  practiceArea    String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([email, frequency], name: "email_frequency")
+  @@index([email])
+}
+
+// ============================================================
+// DATA MIGRATION
+// ============================================================
+
+enum MigrationSourceSystem {
+  CLIO
+  LEAP
+  ACTIONSTEP
+  XERO
+  MYOB
+  QUICKBOOKS
+  IRESS
+  SMOKEBALL
+  PRACTICE_PANTHER
+  AFFINITY
+  OTHER
+}
+
+model MigrationIntake {
+  id             String                @id @default(cuid())
+  email          String
+  fromSystem     MigrationSourceSystem
+  firmName       String?
+  jurisdiction   String?
+  status         String                @default("pending")
+  notes          String?               @db.Text
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+
+  @@index([email])
+  @@index([status])
+}
+
+// ============================================================
+// FLYWHEEL — Learning events
+// ============================================================
+
+enum LearningEventKind {
+  QUERY
+  AI_QUERY
+  CITATION
+  FEEDBACK
+  AI_FEEDBACK
+  INTERACTION
+  ERROR
+  PERFORMANCE
+  USAGE
+  CONVERSION
+  SYSTEM
+  REGULATORY
+  WORKFLOW
+  LETTER
+}
+
+enum LearningEventSeverity {
+  INFO
+  POSITIVE
+  NEGATIVE
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+model LearningEvent {
+  id                  String                @id @default(cuid())
+  kind                LearningEventKind
+  severity            LearningEventSeverity @default(INFO)
+  source              String?
+  surface             String?
+  practiceArea        String?
+  jurisdiction        String?
+  marcoQueryId        String?
+  marcoFeedbackId     String?
+  signoffRequestId    String?
+  proMatterId         String?
+  voiceTranscriptId   String?
+  regulatoryUpdateId  String?
+  scoreDelta          Float?
+  payload             Json?
+  userId              String?
+  createdAt           DateTime              @default(now())
+
+  @@index([kind])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+// ============================================================
+// REGULATORY UPDATES + PRO MATTERS
+// ============================================================
+
+model RegulatoryUpdate {
+  id            String   @id @default(cuid())
+  jurisdiction  String
+  regime        String?
+  citation      String?
+  title         String
+  summary       String?  @db.Text
+  effectiveAt   DateTime?
+  sourceUrl     String?
+  practiceAreas String[]
+  severity      String   @default("INFO")
+  createdAt     DateTime @default(now())
+
+  @@index([jurisdiction])
+  @@index([createdAt])
+}
+
+model ProMatter {
+  id              String        @id @default(cuid())
+  userId          String?
+  clientEmail     String?
+  jurisdiction    String?
+  status          String        @default("AWAITING_PRO")
+  practiceAreaId  String?
+  practiceArea    PracticeArea? @relation(fields: [practiceAreaId], references: [id])
+  title           String?
+  description     String?       @db.Text
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([status])
+  @@index([jurisdiction])
+  @@index([practiceAreaId])
 }

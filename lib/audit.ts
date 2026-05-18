@@ -2,18 +2,23 @@ import { prisma } from "./prisma";
 import crypto from "crypto";
 
 export interface AuditEventInput {
-  userId: string;
-  clientId?: string;
-  matterId?: string;
-  category: "auth" | "matter" | "client" | "document" | "trust" | "billing" | "research" | "voice" | "communication" | "compliance" | "system";
-  action: "created" | "updated" | "deleted" | "viewed" | "exported" | "filed" | "signed" | "verified" | "searched" | "queried";
-  resource: string;
-  resourceId?: string;
-  description: string;
+  userId?: string | null;
+  actorId?: string | null;
+  actorEmail?: string | null;
+  clientId?: string | null;
+  matterId?: string | null;
+  category?: string;
+  action: string;
+  resource?: string;
+  resourceType?: string;
+  resourceId?: string | null;
+  description?: string;
   details?: Record<string, unknown>;
-  ipAddress?: string;
-  userAgent?: string;
-  sessionId?: string;
+  before?: Record<string, unknown>;
+  after?: Record<string, unknown>;
+  ipAddress?: string | null;
+  userAgent?: string | null;
+  sessionId?: string | null;
 }
 
 function computeHash(content: string, previousHash: string | null): string {
@@ -22,9 +27,14 @@ function computeHash(content: string, previousHash: string | null): string {
 }
 
 export async function recordAuditEvent(input: AuditEventInput): Promise<void> {
+  const effectiveUserId = input.userId || input.actorId || "system";
+  const effectiveCategory = input.category || "system";
+  const effectiveResource = input.resource || input.resourceType || "unknown";
+  const effectiveDescription = input.description || `${input.action} ${effectiveResource}`;
+  const effectiveDetails = input.details || (input.before || input.after ? { before: input.before, after: input.after } : undefined);
   // Get the previous event hash for this user (maintains chain integrity)
   const previousEvent = await prisma.auditEvent.findFirst({
-    where: { userId: input.userId },
+    where: { userId: effectiveUserId },
     orderBy: { timestamp: "desc" },
     select: { eventHash: true },
   });
@@ -33,14 +43,14 @@ export async function recordAuditEvent(input: AuditEventInput): Promise<void> {
 
   // Compute hash of this event (tamper-evident chain)
   const eventContent = JSON.stringify({
-    userId: input.userId,
+    userId: effectiveUserId,
     clientId: input.clientId,
     matterId: input.matterId,
-    category: input.category,
+    category: effectiveCategory,
     action: input.action,
-    resource: input.resource,
+    resource: effectiveResource,
     resourceId: input.resourceId,
-    description: input.description,
+    description: effectiveDescription,
     timestamp: new Date().toISOString(),
   });
 
@@ -49,14 +59,14 @@ export async function recordAuditEvent(input: AuditEventInput): Promise<void> {
   // Record the event (immutable — never updated or deleted)
   await prisma.auditEvent.create({
     data: {
-      userId: input.userId,
+      userId: effectiveUserId,
       clientId: input.clientId,
       matterId: input.matterId,
-      category: input.category,
+      category: effectiveCategory,
       action: input.action,
-      resource: input.resource,
+      resource: effectiveResource,
       resourceId: input.resourceId,
-      description: input.description,
+      description: effectiveDescription,
       details: input.details ? JSON.stringify(input.details) : null,
       ipAddress: input.ipAddress,
       userAgent: input.userAgent,
@@ -70,9 +80,9 @@ export async function recordAuditEvent(input: AuditEventInput): Promise<void> {
   if (input.clientId) {
     const categoryField = `${input.category}Events` as string;
     await prisma.clientAuditSummary.upsert({
-      where: { userId_clientId: { userId: input.userId, clientId: input.clientId } },
+      where: { userId_clientId: { userId: effectiveUserId, clientId: input.clientId } },
       create: {
-        userId: input.userId,
+        userId: effectiveUserId,
         clientId: input.clientId,
         totalEvents: 1,
         lastEventAt: new Date(),
@@ -164,3 +174,6 @@ export async function exportClientAuditTrail(userId: string, clientId: string): 
     })),
   };
 }
+
+// Alias for backward compatibility with remote code
+export const writeAuditLog = recordAuditEvent;

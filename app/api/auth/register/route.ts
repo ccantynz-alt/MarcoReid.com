@@ -4,6 +4,11 @@ import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { sendEmail, emailLayout } from "@/lib/email";
 import { rateLimit, rateLimitResponse, LIMITS } from "@/lib/rate-limit";
+import { writeAuditLog } from "@/lib/audit";
+import {
+  CURRENT_TOS_VERSION,
+  CURRENT_PLATFORM_ACK_VERSION,
+} from "@/lib/consent";
 
 export const runtime = "nodejs";
 
@@ -22,7 +27,16 @@ export async function POST(request: Request) {
     });
     if (!limit.ok) return rateLimitResponse(limit);
 
-    const { email, password, name, firmName } = await request.json();
+    const {
+      email,
+      password,
+      name,
+      firmName,
+      tosAccepted,
+      tosVersion,
+      platformAcked,
+      platformAckVersion,
+    } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json(
@@ -45,6 +59,27 @@ export async function POST(request: Request) {
       );
     }
 
+    // Consent enforcement — both flags must be present. Server-side check so
+    // someone can't tamper with the client and bypass the acknowledgments.
+    if (tosAccepted !== true) {
+      return NextResponse.json(
+        {
+          error:
+            "You must accept the Terms of Service, Privacy Policy, and Acceptable Use Policy.",
+        },
+        { status: 400 },
+      );
+    }
+    if (platformAcked !== true) {
+      return NextResponse.json(
+        {
+          error:
+            "You must acknowledge the platform statement before creating an account.",
+        },
+        { status: 400 },
+      );
+    }
+
     const normalisedEmail = email.toLowerCase().trim();
 
     const existingUser = await prisma.user.findUnique({
@@ -59,6 +94,9 @@ export async function POST(request: Request) {
     }
 
     const passwordHash = await hash(password, 12);
+    const userAgent =
+      request.headers.get("user-agent")?.slice(0, 512) ?? null;
+    const now = new Date();
 
     const user = await prisma.user.create({
       data: {
@@ -66,7 +104,53 @@ export async function POST(request: Request) {
         name: typeof name === "string" ? name.trim() : null,
         firmName: typeof firmName === "string" ? firmName.trim() || null : null,
         passwordHash,
+        tosVersion:
+          typeof tosVersion === "string" ? tosVersion : CURRENT_TOS_VERSION,
+        tosAcceptedAt: now,
+        platformAckVersion:
+          typeof platformAckVersion === "string"
+            ? platformAckVersion
+            : CURRENT_PLATFORM_ACK_VERSION,
+        platformAckAt: now,
+        signupIp: ip === "unknown" ? null : ip,
+        signupUserAgent: userAgent,
       },
+    });
+
+    // Append to the hash-chained AuditLog. Two rows per signup: one for the
+    // user creation itself, one for the consent acknowledgments. Recorded
+    // here (not in a middleware) because the chain has to ship synchronously
+    // with the mutation, and consent records have a heightened evidentiary
+    // bar — see lib/consent.ts and /compliance-records.
+    await writeAuditLog({
+      actorId: user.id,
+      actorEmail: user.email,
+      action: "CREATE",
+      resourceType: "User",
+      resourceId: user.id,
+      after: {
+        email: user.email,
+        name: user.name,
+        firmName: user.firmName,
+        role: user.role,
+      },
+      ipAddress: ip === "unknown" ? null : ip,
+      userAgent,
+    });
+    await writeAuditLog({
+      actorId: user.id,
+      actorEmail: user.email,
+      action: "CONSENT_GRANT",
+      resourceType: "User",
+      resourceId: user.id,
+      after: {
+        tosVersion: user.tosVersion,
+        tosAcceptedAt: user.tosAcceptedAt?.toISOString() ?? null,
+        platformAckVersion: user.platformAckVersion,
+        platformAckAt: user.platformAckAt?.toISOString() ?? null,
+      },
+      ipAddress: ip === "unknown" ? null : ip,
+      userAgent,
     });
 
     // Create email verification token

@@ -21,11 +21,13 @@ const entries: Entry[] = [
   { path: "/marco", changeFrequency: "weekly", priority: 0.9 },
   { path: "/dictation", changeFrequency: "weekly", priority: 0.9 },
   { path: "/courtroom", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/oracle", changeFrequency: "monthly", priority: 0.7 },
 
   // Audience pages
   { path: "/for-small-business", changeFrequency: "monthly", priority: 0.7 },
   { path: "/for-startups", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/for-attorneys", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/for-accountants", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/generate", changeFrequency: "weekly", priority: 0.95 },
   { path: "/immigration", changeFrequency: "monthly", priority: 0.7 },
 
   // Compare
@@ -53,6 +55,47 @@ const entries: Entry[] = [
   // Trust & security
   { path: "/security", changeFrequency: "monthly", priority: 0.8 },
   { path: "/trust-center", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/data-residency", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/trial", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/migration", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/aml-cft", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/cpd", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/conveyancing", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/wills", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/engagement-letters", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/insolvency", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/tax-advisors", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/immigration-advisers", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/compliance-records", changeFrequency: "monthly", priority: 0.7 },
+  // Specialty matrix + deep pages
+  { path: "/specialties", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/specialties/family", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/employment", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/commercial-corporate", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/intellectual-property", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/audit-assurance", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/smsf", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/litigation", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/te-tiriti-maori", changeFrequency: "monthly", priority: 0.85 },
+  { path: "/specialties/forensic-accounting", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/specialties/business-advisory", changeFrequency: "monthly", priority: 0.8 },
+  // Tools
+  { path: "/tools/court-rules", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/tools/conflict-check", changeFrequency: "weekly", priority: 0.85 },
+  // Marco research centres
+  { path: "/marco/legal", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/marco/accounting", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/marco/forensic", changeFrequency: "weekly", priority: 0.85 },
+  // Professional directory
+  { path: "/directory", changeFrequency: "daily", priority: 0.9 },
+  // Cross-border admission
+  { path: "/cross-border-admission", changeFrequency: "monthly", priority: 0.8 },
+  // Marco Reid Launch
+  { path: "/launch", changeFrequency: "weekly", priority: 0.9 },
+  // Research
+  { path: "/research/competitor-audit", changeFrequency: "monthly", priority: 0.7 },
+  // Digest
+  { path: "/digest", changeFrequency: "monthly", priority: 0.7 },
 
   // Legal
   { path: "/terms", changeFrequency: "monthly", priority: 0.5 },
@@ -90,9 +133,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/for-small-business`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/for-startups`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/for-attorneys`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/for-accountants`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/compare/westlaw`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/clio`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/quickbooks`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/lexisnexis`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/insolvency`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/tax-advisors`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/immigration-advisers`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/compliance-records`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 }

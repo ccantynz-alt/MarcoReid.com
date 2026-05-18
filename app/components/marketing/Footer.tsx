@@ -10,6 +10,35 @@ const links = {
     { label: "Marco Reid Courtroom", href: "/courtroom" },
     { label: "Pricing", href: "/pricing" },
   ],
+  practiceAreas: [
+    { label: "Conveyancing", href: "/conveyancing" },
+    { label: "Wills register", href: "/wills" },
+    { label: "AML / CFT", href: "/aml-cft" },
+    { label: "CPD", href: "/cpd" },
+    { label: "Engagement letters", href: "/engagement-letters" },
+    { label: "Insolvency", href: "/insolvency" },
+    { label: "Tax advisors", href: "/tax-advisors" },
+    { label: "Immigration advisers", href: "/immigration-advisers" },
+  ],
+  forFirms: [
+    { label: "For attorneys", href: "/for-attorneys" },
+    { label: "For accountants", href: "/for-accountants" },
+    { label: "Cross-border admission", href: "/cross-border-admission" },
+    { label: "Compliance records", href: "/compliance-records" },
+    { label: "Migration", href: "/migration" },
+    { label: "Trial", href: "/trial" },
+  ],
+  forPublic: [
+    { label: "Generate a document", href: "/generate" },
+    { label: "Marco Reid Launch (incorporate)", href: "/launch" },
+    { label: "Find a professional", href: "/directory" },
+    { label: "All specialties", href: "/specialties" },
+    { label: "Court-rules calculator", href: "/tools/court-rules" },
+    { label: "Marco Legal", href: "/marco/legal" },
+    { label: "Marco Accounting", href: "/marco/accounting" },
+    { label: "Marco Forensic", href: "/marco/forensic" },
+    { label: "Pricing", href: "/pricing" },
+  ],
   company: [
     { label: "About", href: "/about" },
     { label: "Case studies", href: "/case-studies" },
@@ -43,7 +72,7 @@ export default function Footer() {
     <footer className="border-t border-navy-100 bg-navy-50">
       <div className="gold-divider" />
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-12">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-7">
           <div>
             <Link href="/" className="font-serif text-xl text-navy-500">
               Marco Reid
@@ -61,6 +90,36 @@ export default function Footer() {
             </p>
             <ul className="mt-4 space-y-3">
               {links.products.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-navy-500 transition-colors hover:text-navy-700">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">
+              Practice areas
+            </p>
+            <ul className="mt-4 space-y-3">
+              {links.practiceAreas.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-navy-500 transition-colors hover:text-navy-700">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-navy-400">
+              For firms
+            </p>
+            <ul className="mt-4 space-y-3">
+              {links.forFirms.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-navy-500 transition-colors hover:text-navy-700">
                     {l.label}

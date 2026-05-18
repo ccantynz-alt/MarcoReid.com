@@ -151,7 +151,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("mr:theme");if(t==="dark"){document.documentElement.classList.add("dark")}else if(t==="light"){document.documentElement.classList.add("light")}else{if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.classList.add("dark")}}}catch(e){}})();`,
+            __html: `(function(){try{var p=window.location.pathname;var platform=/^\\/(dashboard|admin|clients|matters|documents|trust|billing|time|voice|news|settings|onboarding)\\b/.test(p);if(!platform){document.documentElement.classList.add("light");return}var t=localStorage.getItem("mr:theme");if(t==="dark"){document.documentElement.classList.add("dark")}else if(t==="light"){document.documentElement.classList.add("light")}else{if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.classList.add("dark")}}}catch(e){}})();`,
           }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

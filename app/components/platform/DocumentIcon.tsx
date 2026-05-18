@@ -12,6 +12,8 @@ const palette: Record<DocumentKind, { bg: string; fg: string }> = {
   EVIDENCE: { bg: "bg-gold-50", fg: "text-gold-600" },
   INVOICE: { bg: "bg-forest-50", fg: "text-forest-600" },
   RECEIPT: { bg: "bg-forest-50", fg: "text-forest-600" },
+  ENGAGEMENT_LETTER: { bg: "bg-plum-50", fg: "text-plum-600" },
+  WILL: { bg: "bg-gold-50", fg: "text-gold-700" },
   OTHER: { bg: "bg-navy-50", fg: "text-navy-400" },
 };
 

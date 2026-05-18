@@ -17,6 +17,27 @@ const nextConfig = {
     viewTransition: true,
   },
 
+  // 301 redirects for renamed routes (Oracle -> Marco)
+  async redirects() {
+    return [
+      {
+        source: "/oracle",
+        destination: "/marco",
+        permanent: true,
+      },
+      {
+        source: "/api/oracle/query",
+        destination: "/api/marco/query",
+        permanent: true,
+      },
+      {
+        source: "/api/oracle/feedback",
+        destination: "/api/marco/feedback",
+        permanent: true,
+      },
+    ];
+  },
+
   // CSP: Allow Google Fonts for font loading
   async headers() {
     return [

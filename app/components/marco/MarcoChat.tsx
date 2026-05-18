@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import type { OracleResponse, OracleDomain } from "@/lib/oracle/types";
+import type { MarcoResponse, MarcoDomain } from "@/lib/marco/types";
 
 type Message =
   | { role: "user"; content: string; id: string }
-  | { role: "marco"; response: OracleResponse; id: string }
+  | { role: "marco"; response: MarcoResponse; id: string }
   | { role: "error"; content: string; id: string };
 
-const DOMAIN_LABELS: Record<OracleDomain, string> = {
+const DOMAIN_LABELS: Record<MarcoDomain, string> = {
   LEGAL: "Legal",
   ACCOUNTING: "Accounting",
   CROSS_DOMAIN: "Cross-domain",
@@ -24,7 +24,7 @@ const STATUS_STYLES: Record<string, string> = {
 export default function MarcoChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [domain, setDomain] = useState<OracleDomain | "">("");
+  const [domain, setDomain] = useState<MarcoDomain | "">("");
   const [jurisdiction, setJurisdiction] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ export default function MarcoChat() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/oracle/query", {
+      const res = await fetch("/api/marco/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -67,7 +67,7 @@ export default function MarcoChat() {
         throw new Error(err.error || `Request failed (${res.status})`);
       }
 
-      const response: OracleResponse = await res.json();
+      const response: MarcoResponse = await res.json();
       setMessages((m) => [
         ...m,
         { role: "marco", response, id: `m-${Date.now()}` },
@@ -96,7 +96,7 @@ export default function MarcoChat() {
         <div className="flex flex-wrap items-center gap-2">
           <select
             value={domain}
-            onChange={(e) => setDomain(e.target.value as OracleDomain | "")}
+            onChange={(e) => setDomain(e.target.value as MarcoDomain | "")}
             className="rounded-lg border border-navy-200 bg-white px-3 py-1.5 text-xs text-navy-600 focus:border-navy-400 focus:outline-none dark:border-navy-600 dark:bg-navy-800 dark:text-navy-300"
             aria-label="Domain"
           >

@@ -4,6 +4,11 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import {
+  PLATFORM_ACK_BULLETS,
+  CURRENT_TOS_VERSION,
+  CURRENT_PLATFORM_ACK_VERSION,
+} from "@/lib/consent";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -13,6 +18,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreed, setAgreed] = useState(false);
+  const [acked, setAcked] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -32,6 +38,12 @@ export default function RegisterPage() {
       setError("Please agree to the Terms of Service and Privacy Policy.");
       return;
     }
+    if (!acked) {
+      setError(
+        "Please acknowledge the platform statement before creating your account.",
+      );
+      return;
+    }
 
     setLoading(true);
 
@@ -39,7 +51,16 @@ export default function RegisterPage() {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, firmName, email, password }),
+        body: JSON.stringify({
+          name,
+          firmName,
+          email,
+          password,
+          tosAccepted: agreed,
+          tosVersion: CURRENT_TOS_VERSION,
+          platformAcked: acked,
+          platformAckVersion: CURRENT_PLATFORM_ACK_VERSION,
+        }),
       });
 
       const data = await res.json();
@@ -229,6 +250,38 @@ export default function RegisterPage() {
                 </Link>
                 .
               </label>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-navy-100 bg-navy-50 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
+                Platform statement
+              </p>
+              <p className="mt-2 text-sm text-navy-600">
+                Please read and acknowledge before creating your account.
+              </p>
+              <ul className="mt-3 space-y-2 text-sm text-navy-600">
+                {PLATFORM_ACK_BULLETS.map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-navy-400" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 flex items-start gap-3 border-t border-navy-100 pt-4">
+                <input
+                  id="acked"
+                  type="checkbox"
+                  checked={acked}
+                  onChange={(e) => setAcked(e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-navy-300 text-navy-500 focus:ring-navy-500"
+                />
+                <label
+                  htmlFor="acked"
+                  className="text-sm font-medium text-navy-700"
+                >
+                  I understand and agree to the statement above.
+                </label>
+              </div>
             </div>
 
             <button
