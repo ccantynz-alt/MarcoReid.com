@@ -46,12 +46,12 @@ export async function generateMetadata(
   }
   return {
     title: `${pro.displayName} — ${pro.professionalBody}, ${
-      JURISDICTION_LABEL[pro.admissionJurisdiction] ?? pro.admissionJurisdiction
+      JURISDICTION_LABEL[pro.admissionJurisdiction ?? ""] ?? pro.admissionJurisdiction
     } · Marco Reid directory`,
     description:
       pro.headline ||
       `Verified ${pro.professionalBody} in ${
-        JURISDICTION_LABEL[pro.admissionJurisdiction] ??
+        JURISDICTION_LABEL[pro.admissionJurisdiction ?? ""] ??
         pro.admissionJurisdiction
       }, listed in the Marco Reid professional directory.`,
   };
@@ -73,7 +73,7 @@ export default async function DirectoryProfilePage({ params }: PageProps) {
   if (!pro.publishedToDirectory || !pro.verifiedAt) notFound();
 
   const jurisdictionLabel =
-    JURISDICTION_LABEL[pro.admissionJurisdiction] ?? pro.admissionJurisdiction;
+    JURISDICTION_LABEL[pro.admissionJurisdiction ?? ""] ?? pro.admissionJurisdiction;
 
   return (
     <>

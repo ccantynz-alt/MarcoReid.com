@@ -122,7 +122,7 @@ export default async function DirectoryPage() {
                           </h3>
                           <p className="mt-0.5 text-xs text-navy-400">
                             {p.professionalBody} &middot;{" "}
-                            {JURISDICTION_LABEL[p.admissionJurisdiction] ??
+                            {JURISDICTION_LABEL[p.admissionJurisdiction ?? ""] ??
                               p.admissionJurisdiction}
                           </p>
                           {p.firmDisplayName && (

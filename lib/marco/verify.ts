@@ -178,6 +178,44 @@ function verifyUSPTOCitation(citation: string): VerifyResult | null {
 }
 
 /**
+ * Verify a UK/Irish citation against BAILII.
+ * Returns a search URL so the user can confirm the citation manually.
+ */
+async function verifyBAILII(citation: string): Promise<VerifyResult | null> {
+  try {
+    const query = encodeURIComponent(citation);
+    const url = `https://www.bailii.org/cgi-bin/markup.cgi?doc=/form/search_cases.html&query=${query}`;
+    return {
+      status: "UNVERIFIED",
+      sourceUrl: url,
+      sourceDb: "BAILII",
+      excerpt: null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Verify a Canadian citation against CanLII.
+ * Returns a search URL so the user can confirm the citation manually.
+ */
+async function verifyCanLII(citation: string): Promise<VerifyResult | null> {
+  try {
+    const query = encodeURIComponent(citation);
+    const url = `https://www.canlii.org/en/#search/text=${query}`;
+    return {
+      status: "UNVERIFIED",
+      sourceUrl: url,
+      sourceDb: "CanLII",
+      excerpt: null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Main verification function. Attempts to verify a citation against
  * all relevant authoritative sources. Returns UNVERIFIED if no source
  * can confirm it, NOT_FOUND if actively contradicted.
@@ -219,6 +257,32 @@ export async function verifyCitation(
       sourceDb: clResult.sourceDb,
       excerpt: clResult.excerpt || citationResult.excerpt,
     };
+  }
+
+  // Try BAILII (UK/Irish case law and legislation)
+  if (citationResult.sourceDb === "BAILII") {
+    const bailiiResult = await verifyBAILII(citation);
+    if (bailiiResult) {
+      return {
+        ...citationResult,
+        status: bailiiResult.status,
+        sourceUrl: bailiiResult.sourceUrl,
+        sourceDb: bailiiResult.sourceDb,
+      };
+    }
+  }
+
+  // Try CanLII (Canadian case law and legislation)
+  if (citationResult.sourceDb === "CanLII") {
+    const canliiResult = await verifyCanLII(citation);
+    if (canliiResult) {
+      return {
+        ...citationResult,
+        status: canliiResult.status,
+        sourceUrl: canliiResult.sourceUrl,
+        sourceDb: canliiResult.sourceDb,
+      };
+    }
   }
 
   // Try GovInfo (API call — federal documents)

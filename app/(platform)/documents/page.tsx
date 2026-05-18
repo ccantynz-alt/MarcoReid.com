@@ -6,6 +6,8 @@ import { getUserId } from "@/lib/session";
 import DocumentsListClient, {
   type DocumentRow,
 } from "@/app/components/platform/DocumentsListClient";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 export const dynamic = "force-dynamic";
 
@@ -114,13 +116,42 @@ export default async function DocumentsPage({ searchParams }: PageProps) {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
-      <DocumentsListClient
-        documents={rows}
-        counts={counts}
-        initialQuery={q}
-        initialKind={kind ?? "ALL"}
-        initialSort={sort}
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Documents" },
+        ]}
       />
+
+      {totalAll === 0 ? (
+        <>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="font-serif text-display text-navy-800">Documents</h1>
+              <p className="mt-1 text-sm text-navy-400">
+                Every contract, letter, filing and receipt — searchable and linked to your work.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8">
+            <EmptyState
+              icon="file"
+              title="No documents yet"
+              description="Upload a document or create one from scratch."
+              action={{ label: "New document", href: "/documents/editor" }}
+              secondaryAction={{ label: "Upload", href: "/documents/upload" }}
+            />
+          </div>
+        </>
+      ) : (
+        <DocumentsListClient
+          documents={rows}
+          counts={counts}
+          initialQuery={q}
+          initialKind={kind ?? "ALL"}
+          initialSort={sort}
+        />
+      )}
     </div>
   );
 }

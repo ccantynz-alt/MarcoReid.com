@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { MatterStatus } from "@prisma/client";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function GET(req: NextRequest) {
   const userId = await getUserId();
@@ -24,9 +25,12 @@ export async function POST(req: NextRequest) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const rl = await rateLimit({ key: `matters:${userId}`, limit: 30, windowSeconds: 60 });
+  if (!rl.ok) return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+
   try {
     const body = await req.json();
-    const { clientId, title, matterNumber, practiceArea, status, description } = body ?? {};
+    const { clientId, title, matterNumber, practiceArea, jurisdiction, status, description } = body ?? {};
     if (!clientId || !title) {
       return NextResponse.json({ error: "clientId and title required" }, { status: 400 });
     }
@@ -41,6 +45,7 @@ export async function POST(req: NextRequest) {
         title,
         matterNumber: matterNumber || null,
         practiceArea: practiceArea || null,
+        jurisdiction: jurisdiction || null,
         status: (status as MatterStatus) || MatterStatus.ACTIVE,
         description: description || null,
       },

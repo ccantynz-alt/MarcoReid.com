@@ -60,12 +60,12 @@ export async function POST(request: Request, { params }: RouteParams) {
     const userAgent =
       request.headers.get("user-agent")?.slice(0, 512) ?? null;
     const outputSha256 = createHash("sha256")
-      .update(draft.body)
+      .update(draft.body ?? "")
       .digest("hex");
 
     const signoff = await prisma.signoffRequest.create({
       data: {
-        documentDraftId: draft.id,
+        draftId: draft.id,
         kind: "public-document-draft",
         aiOutput: draft.body,
         outputSha256,

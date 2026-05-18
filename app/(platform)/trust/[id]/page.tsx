@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { getTrustComplianceNotes } from "@/lib/trust-rules";
+import { JURISDICTIONS } from "@/lib/jurisdictions";
 import TrustTransactionForm from "@/app/components/platform/TrustTransactionForm";
 
 export const dynamic = "force-dynamic";
@@ -157,17 +159,30 @@ export default async function TrustAccountDetailPage({
               currentBalance={account.balanceInCents}
               currency={account.currency}
               matters={matters}
+              jurisdiction={account.jurisdiction ?? "US"}
             />
           </div>
 
-          <div className="mt-4 rounded-2xl border border-plum-200 bg-plum-50/40 p-5 text-sm text-navy-600">
-            <p className="font-semibold text-plum-700">IOLTA reminder</p>
-            <p className="mt-1">
-              Trust funds must be held in a separate trust account at an
-              authorised bank. This ledger records your activity — it does not
-              move money. Always reconcile against your bank statement.
-            </p>
-          </div>
+          {/* Jurisdiction-specific compliance notes */}
+          {(() => {
+            const jurisdiction = account.jurisdiction ?? "US";
+            const jData = JURISDICTIONS[jurisdiction];
+            const complianceNotes = getTrustComplianceNotes(jurisdiction);
+            const ruleName = jData?.trustAccountRules?.name ?? "Trust accounting rules";
+            return (
+              <div className="mt-4 rounded-2xl border border-plum-200 bg-plum-50/40 p-5 text-sm text-navy-600">
+                <p className="font-semibold text-plum-700">{ruleName}</p>
+                <ul className="mt-2 space-y-1.5">
+                  {complianceNotes.map((note, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-plum-400" />
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })()}
         </div>
 
         {/* Full ledger */}

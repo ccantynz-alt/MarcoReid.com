@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { Prisma } from "@prisma/client";
 import ClientsListClient from "@/app/components/platform/ClientsListClient";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 export const dynamic = "force-dynamic";
 
@@ -51,6 +53,13 @@ export default async function ClientsPage({
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Clients" },
+        ]}
+      />
+
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="font-serif text-display text-navy-800">Clients</h1>
@@ -68,19 +77,30 @@ export default async function ClientsPage({
         </Link>
       </div>
 
-      <ClientsListClient
-        clients={clients.map((c) => ({
-          id: c.id,
-          name: c.name,
-          email: c.email,
-          phone: c.phone,
-          companyName: c.companyName,
-          matterCount: c._count.matters,
-          createdAt: c.createdAt.toISOString(),
-        }))}
-        initialQ={q}
-        initialSort={sort}
-      />
+      {total === 0 ? (
+        <div className="mt-8">
+          <EmptyState
+            icon="users"
+            title="No clients yet"
+            description="Add your first client to start building your practice."
+            action={{ label: "Add client", href: "/clients/new" }}
+          />
+        </div>
+      ) : (
+        <ClientsListClient
+          clients={clients.map((c) => ({
+            id: c.id,
+            name: c.name,
+            email: c.email,
+            phone: c.phone,
+            companyName: c.companyName,
+            matterCount: c._count.matters,
+            createdAt: c.createdAt.toISOString(),
+          }))}
+          initialQ={q}
+          initialSort={sort}
+        />
+      )}
     </div>
   );
 }

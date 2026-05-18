@@ -66,8 +66,8 @@ export default async function DraftViewPage({ params }: PageProps) {
   if (!draft) notFound();
 
   const jurisdictionLabel =
-    JURISDICTION_LABELS[draft.jurisdiction] ?? draft.jurisdiction;
-  const price = jurisdictionPriceCents(draft.jurisdiction);
+    JURISDICTION_LABELS[draft.jurisdiction ?? ""] ?? draft.jurisdiction;
+  const price = jurisdictionPriceCents(draft.jurisdiction ?? "NZ");
   const extracted = draft.extracted as
     | {
         docTypeLabel?: string;

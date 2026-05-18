@@ -44,6 +44,15 @@ function detectDomain(query: string, requestDomain?: MarcoDomain): MarcoDomain {
     "filing", "jurisdiction", "precedent", "ruling", "appeal",
     "tort", "contract", "liability", "damages", "injunction",
     "habeas", "certiorari", "voir dire", "deposition",
+    // UK jurisdiction signals
+    "bailii", "uk law", "english law", "companies act 2006",
+    "insolvency act", "sra", "hmrc", "national insurance",
+    "crown court", "high court", "court of appeal",
+    "supreme court uk", "magistrates",
+    // Canadian jurisdiction signals
+    "canlii", "canadian law", "scc", "supreme court of canada",
+    "federal court of canada", "cra", "income tax act canada",
+    "criminal code", "charter of rights", "provincial court",
   ];
 
   const accountingSignals = [
@@ -92,7 +101,7 @@ CRITICAL RULES:
   const domainPrompts: Record<MarcoDomain, string> = {
     LEGAL: `${base}
 ${jurisdictionNote}
-You specialise in legal research: case law, statutes, regulations, court rules, and legal analysis. You have knowledge of US federal and state law, NZ law, Australian law, and UK law. For every case you cite, provide the full citation including volume, reporter, and page number.`,
+You specialise in legal research: case law, statutes, regulations, court rules, and legal analysis. You have knowledge of US federal and state law, NZ law, Australian law, UK and Irish law (via BAILII), and Canadian law (via CanLII). For every case you cite, provide the full citation including volume, reporter, and page number.`,
 
     ACCOUNTING: `${base}
 ${jurisdictionNote}
@@ -198,7 +207,7 @@ async function getMemoryContext(
   query: string,
   matterId?: string
 ): Promise<string> {
-  const recentQueries = await prisma.marcoQuery.findMany({
+  const recentQueries = await prisma.oracleQuery.findMany({
     where: {
       userId,
       ...(matterId ? { matterId } : {}),
@@ -235,7 +244,7 @@ async function logQuery(
   verifiedCitations: MarcoCitationResult[]
 ): Promise<string> {
   // Save the query
-  const savedQuery = await prisma.marcoQuery.create({
+  const savedQuery = await prisma.oracleQuery.create({
     data: {
       userId,
       query: request.query,

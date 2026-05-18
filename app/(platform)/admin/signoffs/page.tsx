@@ -39,7 +39,7 @@ export default async function AdminSignoffsPage() {
     where: { status: "PENDING" },
     orderBy: { requestedAt: "asc" },
     include: {
-      documentDraft: true,
+      draft: true,
     },
     take: 100,
   });
@@ -133,7 +133,7 @@ export default async function AdminSignoffsPage() {
           </div>
         ) : (
           requests.map((req) => {
-            const draft = req.documentDraft;
+            const draft = req.draft;
             const extracted = (draft?.extracted ?? null) as
               | { docTypeLabel?: string; confidence?: string }
               | null;
@@ -194,7 +194,7 @@ export default async function AdminSignoffsPage() {
                     {req.aiOutput}
                   </pre>
                   <p className="mt-2 text-[10px] text-navy-400">
-                    Output sha256: {req.outputSha256.slice(0, 16)}…
+                    Output sha256: {req.outputSha256?.slice(0, 16)}…
                   </p>
                 </details>
 

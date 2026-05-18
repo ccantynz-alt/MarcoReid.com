@@ -50,7 +50,7 @@ export async function POST(request: Request, { params }: RouteParams) {
 
     const signoff = await prisma.signoffRequest.findUnique({
       where: { id },
-      include: { documentDraft: true },
+      include: { draft: true },
     });
     if (!signoff) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -77,9 +77,9 @@ export async function POST(request: Request, { params }: RouteParams) {
       },
     });
 
-    if (signoff.documentDraft) {
+    if (signoff.draft) {
       await prisma.documentDraft.update({
-        where: { id: signoff.documentDraft.id },
+        where: { id: signoff.draft.id },
         data: {
           status: "SIGNED",
           signedByUserId: userId ?? null,
@@ -106,25 +106,25 @@ export async function POST(request: Request, { params }: RouteParams) {
         jurisdiction,
         reviewerNotes,
       },
-      ipAddress: ip === "unknown" ? null : ip,
+      ipAddress: ip === "unknown" ? undefined : ip,
       userAgent,
     });
 
-    if (signoff.documentDraft) {
+    if (signoff.draft) {
       await writeAuditLog({
         actorId: userId ?? null,
         actorEmail: userEmail ?? null,
         action: "UPDATE",
         resourceType: "DocumentDraft",
-        resourceId: signoff.documentDraft.id,
-        before: { status: signoff.documentDraft.status },
+        resourceId: signoff.draft.id,
+        before: { status: signoff.draft.status },
         after: {
           status: "SIGNED",
           signedByCredential: credentialStamp,
           signedByJurisdiction: jurisdiction,
           signedAt: now.toISOString(),
         },
-        ipAddress: ip === "unknown" ? null : ip,
+        ipAddress: ip === "unknown" ? undefined : ip,
         userAgent,
       });
     }

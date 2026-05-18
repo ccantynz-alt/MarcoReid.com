@@ -61,7 +61,7 @@ export default async function BillingSettingsPage() {
   since.setHours(0, 0, 0, 0);
 
   const [queriesThisMonth, voiceTranscripts] = await Promise.all([
-    prisma.marcoQuery.count({
+    prisma.oracleQuery.count({
       where: { userId: sessionUser.id, createdAt: { gte: since } },
     }),
     prisma.voiceTranscript.findMany({

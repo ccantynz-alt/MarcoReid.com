@@ -2,6 +2,11 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { getTrustComplianceNotes } from "@/lib/trust-rules";
+import { JURISDICTIONS } from "@/lib/jurisdictions";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 export const dynamic = "force-dynamic";
 
@@ -51,6 +56,18 @@ export default async function TrustPage() {
     }),
   ]);
 
+  // Determine the primary jurisdiction from trust accounts (most common), fallback to "US"
+  const jurisdictionCounts: Record<string, number> = {};
+  for (const a of accounts) {
+    const j = a.jurisdiction ?? "US";
+    jurisdictionCounts[j] = (jurisdictionCounts[j] || 0) + 1;
+  }
+  const primaryJurisdiction =
+    Object.entries(jurisdictionCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "US";
+  const jData = JURISDICTIONS[primaryJurisdiction];
+  const complianceNotes = getTrustComplianceNotes(primaryJurisdiction);
+  const ruleName = jData?.trustAccountRules?.name ?? "Trust accounting rules";
+
   const totalBalance = accounts.reduce((s, a) => s + a.balanceInCents, 0);
   const monthDeposits = monthTransactions
     .filter((t) => t.type === "DEPOSIT")
@@ -67,6 +84,13 @@ export default async function TrustPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Trust Accounts" },
+        ]}
+      />
+
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -74,7 +98,7 @@ export default async function TrustPage() {
             Trust accounts
           </h1>
           <p className="mt-2 text-navy-400">
-            IOLTA-compliant client trust ledger.{" "}
+            {ruleName}-compliant client trust ledger.{" "}
             {accounts.length === 0
               ? "Open your first trust account to begin."
               : `${accounts.length} ${accounts.length === 1 ? "account" : "accounts"} · ${money(totalBalance)} in trust`}
@@ -85,7 +109,7 @@ export default async function TrustPage() {
             href="/help/trust-accounts"
             className="inline-flex items-center rounded-lg border border-navy-200 bg-white px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:border-navy-400"
           >
-            IOLTA guidance
+            Trust compliance guidance
           </Link>
           <Link
             href="/trust/new"
@@ -216,6 +240,39 @@ export default async function TrustPage() {
         </div>
       </div>
 
+      {/* Jurisdiction-specific compliance notes */}
+      {accounts.length > 0 && (
+        <div className="mt-8 rounded-2xl border border-plum-200 bg-plum-50/40 p-6">
+          <div className="flex items-start gap-3">
+            <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-plum-500 text-white">
+              <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none">
+                <path
+                  d="M10 3a7 7 0 100 14 7 7 0 000-14zM10 7v4M10 13h.01"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="font-serif text-lg text-navy-700">{ruleName}</p>
+              <p className="mt-1 text-sm text-navy-500">
+                Compliance notes for your jurisdiction ({jData?.name ?? primaryJurisdiction}).
+                All trust transactions are validated against these rules.
+              </p>
+              <ul className="mt-3 space-y-1.5">
+                {complianceNotes.map((note, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-navy-600">
+                    <span className="mt-1 flex h-1.5 w-1.5 flex-shrink-0 rounded-full bg-plum-400" />
+                    <span>{note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Accounts + recent transactions */}
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
         {/* Accounts list */}
@@ -223,21 +280,12 @@ export default async function TrustPage() {
           <h2 className="font-serif text-headline text-navy-800">Accounts</h2>
           <div className="mt-4 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-card">
             {accounts.length === 0 ? (
-              <div className="px-6 py-16 text-center">
-                <p className="font-serif text-xl text-navy-700">
-                  No trust accounts yet
-                </p>
-                <p className="mt-2 text-sm text-navy-400">
-                  Open your first client trust account. Every deposit,
-                  withdrawal, and fee draw will be recorded in the ledger.
-                </p>
-                <Link
-                  href="/trust/new"
-                  className="mt-6 inline-flex items-center justify-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-600"
-                >
-                  Open trust account
-                </Link>
-              </div>
+              <EmptyState
+                icon="vault"
+                title="No trust accounts yet"
+                description="Create a client trust account to manage IOLTA-compliant funds."
+                action={{ label: "Create trust account", href: "/trust/new" }}
+              />
             ) : (
               <table className="w-full">
                 <thead className="border-b border-navy-100 bg-navy-50/50">
@@ -352,6 +400,11 @@ export default async function TrustPage() {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Legal disclaimer */}
+      <div className="mt-8">
+        <LegalDisclaimer type="TRUST_ACCOUNTING" variant="footer" />
       </div>
     </div>
   );

@@ -45,7 +45,7 @@ export default async function SignoffRequestPage({ params }: PageProps) {
 
   const existingSignoff = draft.signoffRequests[0];
   const jurisdictionLabel =
-    JURISDICTION_LABELS[draft.jurisdiction] ?? draft.jurisdiction;
+    JURISDICTION_LABELS[draft.jurisdiction ?? ""] ?? draft.jurisdiction;
 
   const extracted = draft.extracted as
     | { docTypeLabel?: string }

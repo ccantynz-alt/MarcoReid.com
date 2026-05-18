@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { MatterStatus, Prisma } from "@prisma/client";
 import MattersListClient from "@/app/components/platform/MattersListClient";
+import Breadcrumb from "@/app/components/platform/Breadcrumb";
+import EmptyState from "@/app/components/platform/EmptyState";
 
 export const dynamic = "force-dynamic";
 
@@ -77,6 +79,13 @@ export default async function MattersPage({
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
+      <Breadcrumb
+        items={[
+          { label: "Dashboard", href: "/dashboard" },
+          { label: "Matters" },
+        ]}
+      />
+
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="font-serif text-display text-navy-800">Matters</h1>
@@ -94,22 +103,33 @@ export default async function MattersPage({
         </Link>
       </div>
 
-      <MattersListClient
-        matters={matters.map((m) => ({
-          id: m.id,
-          title: m.title,
-          matterNumber: m.matterNumber,
-          practiceArea: m.practiceArea,
-          status: m.status,
-          openedAt: m.openedAt.toISOString(),
-          updatedAt: m.updatedAt.toISOString(),
-          client: m.client,
-        }))}
-        counts={countMap}
-        initialQ={q}
-        initialStatus={statusFilter === "ALL" || !statusFilter ? "ALL" : statusFilter}
-        initialSort={sort}
-      />
+      {countMap.ALL === 0 ? (
+        <div className="mt-8">
+          <EmptyState
+            icon="briefcase"
+            title="No matters yet"
+            description="Create your first matter to start managing your legal and accounting work."
+            action={{ label: "Create matter", href: "/matters/new" }}
+          />
+        </div>
+      ) : (
+        <MattersListClient
+          matters={matters.map((m) => ({
+            id: m.id,
+            title: m.title,
+            matterNumber: m.matterNumber,
+            practiceArea: m.practiceArea,
+            status: m.status,
+            openedAt: m.openedAt.toISOString(),
+            updatedAt: m.updatedAt.toISOString(),
+            client: m.client,
+          }))}
+          counts={countMap}
+          initialQ={q}
+          initialStatus={statusFilter === "ALL" || !statusFilter ? "ALL" : statusFilter}
+          initialSort={sort}
+        />
+      )}
     </div>
   );
 }

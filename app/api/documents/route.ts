@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
 import { DocumentKind } from "@prisma/client";
+import { rateLimit } from "@/lib/rate-limit";
 
 const VALID_KINDS = new Set<string>([
   "CONTRACT",
@@ -97,6 +98,9 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const userId = await getUserId();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const rl = await rateLimit({ key: `documents:${userId}`, limit: 30, windowSeconds: 60 });
+  if (!rl.ok) return NextResponse.json({ error: "Too many requests" }, { status: 429 });
 
   try {
     const contentType = req.headers.get("content-type") ?? "";

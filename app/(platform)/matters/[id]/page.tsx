@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
+import { JURISDICTIONS } from "@/lib/jurisdictions";
 import MatterDocumentsUploadButton from "@/app/components/platform/MatterDocumentsUploadButton";
 
 export const dynamic = "force-dynamic";
@@ -167,6 +168,15 @@ export default async function MatterDetailPage({ params }: { params: Promise<{ i
               <>
                 <span className="text-navy-300">·</span>
                 <span>{matter.practiceArea}</span>
+              </>
+            )}
+            {matter.jurisdiction && (
+              <>
+                <span className="text-navy-300">·</span>
+                <span>
+                  {JURISDICTIONS[matter.jurisdiction]?.flag}{" "}
+                  {JURISDICTIONS[matter.jurisdiction]?.name ?? matter.jurisdiction}
+                </span>
               </>
             )}
             <span className="text-navy-300">·</span>

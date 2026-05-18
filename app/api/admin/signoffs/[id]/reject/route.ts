@@ -40,7 +40,7 @@ export async function POST(request: Request, { params }: RouteParams) {
 
     const signoff = await prisma.signoffRequest.findUnique({
       where: { id },
-      include: { documentDraft: true },
+      include: { draft: true },
     });
     if (!signoff) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -64,9 +64,9 @@ export async function POST(request: Request, { params }: RouteParams) {
       },
     });
 
-    if (signoff.documentDraft) {
+    if (signoff.draft) {
       await prisma.documentDraft.update({
-        where: { id: signoff.documentDraft.id },
+        where: { id: signoff.draft.id },
         data: { status: "READY_FOR_REVIEW" },
       });
     }

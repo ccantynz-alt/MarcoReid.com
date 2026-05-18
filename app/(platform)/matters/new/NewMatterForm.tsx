@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ConflictChecker from "@/app/components/platform/ConflictChecker";
 
 interface Props {
   clients: { id: string; name: string }[];
@@ -16,6 +17,7 @@ export default function NewMatterForm({ clients }: Props) {
     title: "",
     matterNumber: "",
     practiceArea: "",
+    jurisdiction: "",
     status: "ACTIVE",
     description: "",
   });
@@ -47,10 +49,21 @@ export default function NewMatterForm({ clients }: Props) {
   const label = "block text-sm font-medium text-navy-600 mb-1.5 dark:text-navy-300";
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800"
-    >
+    <>
+      <div className="mt-8 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800">
+        <h2 className="mb-1 text-lg font-semibold text-navy-800 dark:text-white">
+          Conflict Check
+        </h2>
+        <p className="mb-4 text-sm text-navy-500 dark:text-navy-400">
+          Check for potential conflicts of interest before creating this matter.
+        </p>
+        <ConflictChecker />
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="mt-8 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card dark:border-navy-700 dark:bg-navy-800"
+      >
       <div>
         <label className={label}>Client *</label>
         <select
@@ -93,6 +106,21 @@ export default function NewMatterForm({ clients }: Props) {
         />
       </div>
       <div>
+        <label className={label}>Jurisdiction</label>
+        <select
+          className={input}
+          value={form.jurisdiction}
+          onChange={(e) => setForm({ ...form, jurisdiction: e.target.value })}
+        >
+          <option value="">Select jurisdiction</option>
+          <option value="NZ">New Zealand</option>
+          <option value="AU">Australia</option>
+          <option value="UK">United Kingdom</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+        </select>
+      </div>
+      <div>
         <label className={label}>Status</label>
         <select
           className={input}
@@ -133,5 +161,6 @@ export default function NewMatterForm({ clients }: Props) {
         </button>
       </div>
     </form>
+    </>
   );
 }

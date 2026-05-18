@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const userId = session.user.id;
 
     // Save feedback
-    const feedback = await prisma.marcoFeedback.create({
+    const feedback = await prisma.oracleFeedback.create({
       data: {
         queryId,
         userId,
@@ -47,14 +47,14 @@ export async function POST(request: Request) {
     });
 
     // Update query pattern average rating (flywheel learning)
-    const query = await prisma.marcoQuery.findUnique({
+    const query = await prisma.oracleQuery.findUnique({
       where: { id: queryId },
       select: { query: true, domain: true },
     });
 
     if (query) {
       const normalised = query.query.toLowerCase().trim().substring(0, 200);
-      const allFeedback = await prisma.marcoFeedback.findMany({
+      const allFeedback = await prisma.oracleFeedback.findMany({
         where: {
           query: {
             query: { startsWith: normalised.substring(0, 50) },

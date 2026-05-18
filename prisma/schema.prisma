@@ -25,22 +25,17 @@ model User {
   firmName      String?
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt
-  queries          MarcoQuery[]
-  feedback         MarcoFeedback[]
+  queries          OracleQuery[]
+  feedback         OracleFeedback[]
   clients          Client[]
   matters          Matter[]
   documents        Document[]
   timeEntries      TimeEntry[]
   trustAccounts    TrustAccount[]
   voiceTranscripts VoiceTranscript[]
-
-  // Flywheel
-  learningEvents     LearningEvent[]      @relation("LearningEventActor")
-  firmHealthSnapshots FirmHealthSnapshot[] @relation("FirmHealthSnapshots")
-
-  // Marketplace
-  professionalProfile Professional? @relation("ProfessionalProfile")
-  citizenMatters      ProMatter[]   @relation("CitizenMatters")
+  deadlines        Deadline[]
+  signatureRequests SignatureRequest[]
+  professional     Professional?
 
   // Stripe — subscriptions
   stripeCustomerId      String?   @unique
@@ -55,42 +50,13 @@ model User {
   marketplacePayments    MarketplacePayment[] @relation("ProfessionalPayments")
 
   // Onboarding
-  onboardedAt   DateTime?
-  jurisdiction  String?
-  practiceArea  String?
-
-  // Consent audit trail — evidentiary record for ToS + platform acknowledgment.
-  // Versioned so we can tell who accepted which wording. IP + user-agent
-  // captured at signup for the same reason. See lib/consent.ts for the current
-  // versions and the acknowledgment text.
-  tosVersion         String?
-  tosAcceptedAt      DateTime?
-  platformAckVersion String?
-  platformAckAt      DateTime?
-  signupIp           String?
-  signupUserAgent    String?
-
-  // Practice modules
-  amlAssessments       AmlAssessment[]            @relation("AmlAssessments")
-  suspiciousReports    SuspiciousActivityReport[] @relation("SARsCreated")
-  cpdRecords           CpdRecord[]                @relation("CpdRecords")
-  conveyancingMatters  ConveyancingMatter[]       @relation("ConveyancingMatters")
-  willRecords          WillRecord[]               @relation("WillRecords")
-
-  // Compliance ledgers — append-only, retention-bound, regulator-exportable.
-  auditLogs            AuditLog[]                 @relation("AuditLogActor")
-  communications       CommunicationRecord[]      @relation("CommunicationActor")
-  regulatorFilings     RegulatorFiling[]          @relation("RegulatorFilingFiledBy")
-  accessGrantsMade     AccessGrant[]              @relation("AccessGrantGrantor")
-  accessGrantsHeld     AccessGrant[]              @relation("AccessGrantSubject")
-  privacyBreachReports PrivacyBreachIncident[]    @relation("PrivacyBreachReporter")
-  complaintsLogged     ComplaintRecord[]          @relation("ComplaintLoggedBy")
-  legalHoldsRequested  LegalHold[]                @relation("LegalHoldRequester")
-
-  // Firm membership — the multi-tenancy spine. A user belongs to one or more
-  // firms via FirmMembership; each membership carries credentials, bar numbers,
-  // and sign-off authority. See models below.
-  firmMemberships      FirmMembership[]           @relation("FirmMembershipUser")
+  onboardedAt          DateTime?
+  jurisdiction         String?
+  practiceArea         String?
+  tosAcceptedAt        DateTime?
+  tosVersion           String?
+  platformAckAt        DateTime?
+  platformAckVersion   String?
 }
 
 // ============================================================
@@ -131,12 +97,21 @@ model Client {
   address       String?
   companyName   String?
   notes         String?
+
+  // AML/KYC
+  kycStatus       String    @default("pending") // pending, verified, flagged, expired
+  kycVerifiedAt   DateTime?
+  kycVerifiedBy   String?   // userId of the person who verified
+  kycRiskLevel    String?   // low, medium, high
+  kycNotes        String?   @db.Text
+  identityDocType String?   // passport, drivers_licence, national_id
+  identityDocRef  String?   // document reference number (encrypted at rest)
+  sourceOfFunds   String?   // employment, business, investment, inheritance, other
+  isPEP           Boolean   @default(false) // Politically Exposed Person
+
   matters       Matter[]
   documents     Document[]
   trustAccounts TrustAccount[]
-  amlAssessments     AmlAssessment[]
-  suspiciousReports  SuspiciousActivityReport[] @relation("SARsByClient")
-  willsAsTestator    WillRecord[]               @relation("WillsAsTestator")
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -152,6 +127,7 @@ model Matter {
   title             String
   matterNumber      String?
   practiceArea      String?
+  jurisdiction      String?            // NZ, AU, UK, US, CA
   status            MatterStatus       @default(ACTIVE)
   description       String?
   openedAt          DateTime           @default(now())
@@ -159,7 +135,8 @@ model Matter {
   documents         Document[]
   timeEntries       TimeEntry[]
   trustTransactions TrustTransaction[]
-  conveyancing      ConveyancingMatter?
+  deadlines         Deadline[]
+  signatureRequests SignatureRequest[]
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
 
@@ -170,22 +147,22 @@ model Matter {
 }
 
 model Document {
-  id        String            @id @default(cuid())
+  id        String       @id @default(cuid())
   userId    String
-  user      User              @relation(fields: [userId], references: [id])
+  user      User         @relation(fields: [userId], references: [id])
   matterId  String?
-  matter    Matter?           @relation(fields: [matterId], references: [id])
+  matter    Matter?      @relation(fields: [matterId], references: [id])
   clientId  String?
-  client    Client?           @relation(fields: [clientId], references: [id])
+  client    Client?      @relation(fields: [clientId], references: [id])
   title     String
   fileName  String
   fileUrl   String
   fileSize  Int
   mimeType  String
-  kind      DocumentKind      @default(OTHER)
-  versions  DocumentVersion[]
-  createdAt DateTime          @default(now())
-  updatedAt DateTime     @updatedAt
+  kind              DocumentKind @default(OTHER)
+  signatureRequests SignatureRequest[]
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 
   @@index([userId])
   @@index([matterId])
@@ -218,6 +195,7 @@ model TrustAccount {
   client         Client             @relation(fields: [clientId], references: [id])
   balanceInCents Int                @default(0)
   currency       String             @default("USD")
+  jurisdiction   String             @default("US") // NZ, AU, UK, US, CA — determines trust rules
   transactions   TrustTransaction[]
   createdAt      DateTime           @default(now())
   updatedAt      DateTime           @updatedAt
@@ -237,6 +215,64 @@ model TrustTransaction {
   createdAt      DateTime             @default(now())
 
   @@index([trustAccountId, createdAt])
+}
+
+// ============================================================
+// DEADLINES — Court-rules deadline calendar
+// ============================================================
+
+model Deadline {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  matterId     String
+  matter       Matter    @relation(fields: [matterId], references: [id])
+  title        String
+  description  String?
+  dueDate      DateTime
+  courtRule    String?   // e.g., "FRCP Rule 12(a)(1)(A)" or "NZ High Court Rule 5.25"
+  jurisdiction String?   // NZ, AU, UK, US, CA
+  status       String    @default("upcoming") // upcoming, due_today, overdue, completed, waived
+  priority     String    @default("normal") // low, normal, high, critical
+  reminderDays Int       @default(3)
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([matterId])
+  @@index([dueDate])
+  @@index([status])
+}
+
+// ============================================================
+// E-SIGNATURES — signature request tracking
+// ============================================================
+
+model SignatureRequest {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  documentId   String?
+  document     Document? @relation(fields: [documentId], references: [id])
+  matterId     String?
+  matter       Matter?  @relation(fields: [matterId], references: [id])
+  title        String
+  status       String   @default("draft") // draft, sent, viewed, signed, declined, expired
+  signerName   String
+  signerEmail  String
+  message      String?
+  sentAt       DateTime?
+  viewedAt     DateTime?
+  signedAt     DateTime?
+  declinedAt   DateTime?
+  expiresAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([matterId])
 }
 
 // ============================================================
@@ -283,10 +319,7 @@ model VoiceTranscript {
 }
 
 // ============================================================
-// MARCO — Brain, Memory, and Flywheel.
-// (DB table names kept as Oracle* via @@map so existing data and any
-// running migrations stay valid; the TypeScript surface is fully
-// renamed.)
+// THE ORACLE — Brain, Memory, and Flywheel
 // ============================================================
 
 enum QueryDomain {
@@ -303,34 +336,33 @@ enum CitationStatus {
 }
 
 // Every query ever made — the memory
-model MarcoQuery {
-  id             String          @id @default(cuid())
+model OracleQuery {
+  id             String           @id @default(cuid())
   userId         String
-  user           User            @relation(fields: [userId], references: [id])
+  user           User             @relation(fields: [userId], references: [id])
   query          String // The raw question asked
   domain         QueryDomain // Legal, Accounting, Cross-domain, IP
   jurisdiction   String? // US, NZ, AU, UK, or specific state
   context        String? // Matter context, previous queries, etc.
   response       String // Marco's full response
-  citations      MarcoCitation[]
-  feedback       MarcoFeedback[]
+  citations      OracleCitation[]
+  feedback       OracleFeedback[]
   matterId       String? // Link to matter if query was in-context
   surface        String? // Where the query was made: document, email, cmd-k, etc.
   responseTimeMs Int? // How long the response took
-  createdAt      DateTime        @default(now())
+  createdAt      DateTime         @default(now())
 
   @@index([userId])
   @@index([domain])
   @@index([createdAt])
   @@index([jurisdiction])
-  @@map("OracleQuery")
 }
 
 // Every citation returned — verified or not
-model MarcoCitation {
+model OracleCitation {
   id           String         @id @default(cuid())
   queryId      String
-  query        MarcoQuery     @relation(fields: [queryId], references: [id])
+  query        OracleQuery    @relation(fields: [queryId], references: [id])
   title        String // Case name, statute title, IRS section
   citation     String // Formal citation string
   sourceUrl    String? // Direct link to authoritative source
@@ -346,25 +378,23 @@ model MarcoCitation {
   @@index([queryId])
   @@index([status])
   @@index([sourceDb])
-  @@map("OracleCitation")
 }
 
 // User feedback on results — the flywheel learning signal
-model MarcoFeedback {
-  id        String     @id @default(cuid())
+model OracleFeedback {
+  id        String      @id @default(cuid())
   queryId   String
-  query     MarcoQuery @relation(fields: [queryId], references: [id])
+  query     OracleQuery @relation(fields: [queryId], references: [id])
   userId    String
-  user      User       @relation(fields: [userId], references: [id])
+  user      User        @relation(fields: [userId], references: [id])
   rating    Int // 1-5 star rating
   helpful   Boolean? // Was this result helpful?
   accurate  Boolean? // Was this result accurate?
   comment   String? // Free text feedback
-  createdAt DateTime   @default(now())
+  createdAt DateTime    @default(now())
 
   @@index([queryId])
   @@index([userId])
-  @@map("OracleFeedback")
 }
 
 // ============================================================
@@ -449,555 +479,213 @@ model CourtPilotRequest {
 }
 
 // ============================================================
-// MARKETPLACE — citizens post matters, licensed pros accept them,
-// every AI output passes through a SignoffRequest before release.
-// Fee model respects ABA Model Rule 5.4 + NZ Lawyers and Conveyancers
-// Act fee-splitting rules: flat lead fee + SaaS subscription, never a
-// percentage of the pro's professional fee.
+// AUDIT TRAIL — Immutable, tamper-evident, court-admissible
 // ============================================================
 
-enum ProfessionDomain {
-  LAW
-  ACCOUNTING
+model AuditEvent {
+  id            String   @id @default(cuid())
+  userId        String
+  clientId      String?
+  matterId      String?
+
+  // Event classification
+  category      String   // auth, matter, client, document, trust, billing, research, voice, communication, compliance, system
+  action        String   // created, updated, deleted, viewed, exported, filed, signed, verified, searched, queried
+  resource      String   // The type of resource acted upon (matter, client, document, trust_transaction, etc.)
+  resourceId    String?  // The ID of the specific resource
+
+  // What happened
+  description   String   // Human-readable description
+  details       String?  @db.Text // JSON blob of the full change (before/after for updates)
+
+  // Integrity
+  ipAddress     String?
+  userAgent     String?
+  sessionId     String?
+
+  // Tamper evidence — each event hashes the previous event's hash (chain)
+  previousHash  String?  // SHA-256 hash of the previous event in this user's chain
+  eventHash     String   // SHA-256 hash of this event's content + previousHash
+
+  // Timestamps
+  timestamp     DateTime @default(now())
+
+  // Immutability — these records are NEVER updated or deleted
+  // Soft-delete is not available. Events are permanent.
+
+  @@index([userId])
+  @@index([clientId])
+  @@index([matterId])
+  @@index([category])
+  @@index([timestamp])
+  @@index([userId, clientId])
+  @@index([userId, timestamp])
 }
 
-enum ProMatterStatus {
-  DRAFT              // citizen still writing the intake
-  AWAITING_PRO       // posted, waiting for a pro to accept
-  ACCEPTED           // pro accepted, in progress
-  AWAITING_SIGNOFF   // work drafted, pending final sign-off
-  SIGNED_OFF         // released to citizen
-  CLOSED
-  CANCELLED
+// Per-client audit summary — quick access to client's complete history
+model ClientAuditSummary {
+  id            String   @id @default(cuid())
+  userId        String
+  clientId      String
+
+  totalEvents   Int      @default(0)
+  lastEventAt   DateTime?
+  lastEventHash String?  // Latest hash in the chain for this client
+
+  // Categories breakdown
+  authEvents      Int @default(0)
+  matterEvents    Int @default(0)
+  documentEvents  Int @default(0)
+  trustEvents     Int @default(0)
+  billingEvents   Int @default(0)
+  researchEvents  Int @default(0)
+  voiceEvents     Int @default(0)
+  complianceEvents Int @default(0)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([userId, clientId])
+  @@index([userId])
 }
 
-enum SignoffStatus {
-  PENDING
-  APPROVED
-  REJECTED
-  AMENDED
-}
+// ============================================================
+// PROFESSIONAL DIRECTORY
+// ============================================================
 
-// Catalogue of practice areas. Seeded per jurisdiction so a NZ tenancy
-// matter cannot accidentally route to a US-only professional.
 model PracticeArea {
-  id                    String                    @id @default(cuid())
-  slug                  String                    @unique
-  name                  String
-  domain                ProfessionDomain
-  jurisdiction          String                    // "NZ", "AU", "US", "UK", "CA"
-  summary               String
-  intakeCopy            String                    @db.Text
-  leadFeeInCents        Int                       @default(0)
-  currency              String                    @default("NZD")
-  active                Boolean                   @default(true)
-  priority              Int                       @default(0)
-  // Per-practice-area acknowledgment — shown to citizens in the intake flow.
-  // Versioned so we can prove what a given ProMatter's owner agreed to.
-  ackVersion            String                    @default("2026-04-20")
-  ackBullets            String[]
-  professionals         ProfessionalPracticeArea[]
-  proMatters            ProMatter[]
-  createdAt             DateTime                  @default(now())
-  updatedAt             DateTime                  @updatedAt
-
-  @@index([jurisdiction, domain])
-  @@index([active, priority])
+  id            String   @id @default(cuid())
+  name          String   @unique
+  slug          String   @unique
+  description   String?
+  jurisdiction  String?
+  professionals ProfessionalPracticeArea[]
+  proMatters    ProMatter[]
+  createdAt     DateTime @default(now())
 }
 
-// A verified licensed professional. Linked 1:1 with a User row.
-// verifiedAt is required before the pro can appear in citizen matching;
-// piPolicyExpiresAt is checked on every matter assignment — expired PI
-// insurance blocks acceptance.
 model Professional {
-  id                    String                    @id @default(cuid())
-  userId                String                    @unique
-  user                  User                      @relation("ProfessionalProfile", fields: [userId], references: [id])
-  // Public-facing URL slug for /directory/[slug]. Unique. Generated from
-  // displayName + admissionJurisdiction at claim time.
-  slug                  String?                   @unique
-  displayName           String
-  // Public-facing photo URL (Wave 4: Vercel Blob upload).
-  photoUrl              String?
-  // Public-facing tagline (1 sentence) shown above bio in the directory.
-  headline              String?
-  bio                   String?                   @db.Text
-  admissionJurisdiction String
-  admissionNumber       String
-  admissionYear         Int?
-  professionalBody      String                    // "NZ Law Society", "CA ANZ", "NZICA", etc.
-  // Optional firm affiliation (display only — relational link is via FirmMembership).
-  firmDisplayName       String?
-  // Languages spoken, surfaced for client matching.
-  languages             String[]                  @default([])
-  // Indicative hourly + flat-fee surface for the directory; sign-off pricing
-  // negotiated per matter at engagement time.
-  hourlyRateCents       Int?
-  hourlyRateCurrency    String?
-  flatSignoffCents      Int?
-  flatSignoffCurrency   String?
-  piInsurerName         String?
-  piPolicyNumber        String?
-  piPolicyExpiresAt     DateTime?
-  acceptingNewMatters   Boolean                   @default(true)
-  // Public-facing visibility — false until the pro opts in to appear in the
-  // public directory. verifiedAt independently controls credential validation.
-  publishedToDirectory  Boolean                   @default(false)
-  verifiedAt            DateTime?
-  verifiedBy            String?                   // admin User.id who verified
-  practiceAreas         ProfessionalPracticeArea[]
-  acceptedMatters       ProMatter[]               @relation("AcceptedBy")
-  signoffs              SignoffRequest[]          @relation("SignedBy")
-  createdAt             DateTime                  @default(now())
-  updatedAt             DateTime                  @updatedAt
+  id                     String   @id @default(cuid())
+  userId                 String   @unique
+  user                   User     @relation(fields: [userId], references: [id])
+  displayName            String
+  slug                   String   @unique
+  title                  String?
+  bio                    String?  @db.Text
+  jurisdiction           String?
+  admissionYear          Int?
+  headline               String?
+  professionalBody       String?
+  registrationNumber     String?
+  admissionNumber        String?
+  admissionJurisdiction  String?
+  firmDisplayName        String?
+  website                String?
+  phone                  String?
+  email                  String?
+  photoUrl               String?
+  officeAddress          String?
+  languages              String[]
+  hourlyRateCents        Int?
+  hourlyRateCurrency     String?
+  flatSignoffCents       Int?
+  flatSignoffCurrency    String?
+  piInsurerName          String?
+  acceptingNewMatters    Boolean  @default(true)
+  publishedToDirectory  Boolean  @default(false)
+  verifiedAt             DateTime?
+  practiceAreas          ProfessionalPracticeArea[]
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 
-  @@index([admissionJurisdiction])
-  @@index([acceptingNewMatters, verifiedAt])
   @@index([publishedToDirectory, verifiedAt])
+  @@index([slug])
 }
 
-// Pro <-> PracticeArea M:N
 model ProfessionalPracticeArea {
-  professionalId  String
-  professional    Professional  @relation(fields: [professionalId], references: [id])
-  practiceAreaId  String
-  practiceArea    PracticeArea  @relation(fields: [practiceAreaId], references: [id])
-  assignedAt      DateTime      @default(now())
+  id               String        @id @default(cuid())
+  professionalId   String
+  professional     Professional  @relation(fields: [professionalId], references: [id])
+  practiceAreaId   String
+  practiceArea     PracticeArea  @relation(fields: [practiceAreaId], references: [id])
 
-  @@id([professionalId, practiceAreaId])
-  @@index([practiceAreaId])
-}
-
-// A citizen-posted matter. Lives through DRAFT → AWAITING_PRO → ACCEPTED
-// → AWAITING_SIGNOFF → SIGNED_OFF. leadFeeInCents is snapshotted at post
-// time so a later fee change doesn't retroactively alter the deal.
-model ProMatter {
-  id                      String          @id @default(cuid())
-  citizenUserId           String
-  citizen                 User            @relation("CitizenMatters", fields: [citizenUserId], references: [id])
-  practiceAreaId          String
-  practiceArea            PracticeArea    @relation(fields: [practiceAreaId], references: [id])
-  jurisdiction            String
-  summary                 String
-  details                 String          @db.Text
-  status                  ProMatterStatus @default(DRAFT)
-  leadFeeInCents          Int
-  consumerFeeInCents      Int?
-  currency                String          @default("NZD")
-
-  // Per-area acknowledgment snapshot — evidentiary record that this
-  // specific citizen agreed to this specific version of the intake
-  // acknowledgment for this specific practice area.
-  ackVersion              String?
-  ackAt                   DateTime?
-
-  acceptedByProId         String?
-  acceptedBy              Professional?   @relation("AcceptedBy", fields: [acceptedByProId], references: [id])
-  acceptedAt              DateTime?
-  postedAt                DateTime?
-  closedAt                DateTime?
-
-  signoffRequests         SignoffRequest[]
-
-  createdAt               DateTime        @default(now())
-  updatedAt               DateTime        @updatedAt
-
-  @@index([status])
-  @@index([practiceAreaId, status])
-  @@index([citizenUserId])
-  @@index([acceptedByProId])
-}
-
-// Every AI output destined for a consumer passes through here. The
-// outputSha256 is the tamper-evidence hash — if the output or a
-// derivative is altered after sign-off, the hash mismatch catches it.
-// releasedAt gates when the consumer actually sees the work.
-model SignoffRequest {
-  id             String        @id @default(cuid())
-  // A SignoffRequest attaches to EITHER a ProMatter (full citizen-to-pro
-  // engagement via the marketplace) OR a DocumentDraft (cold public draft
-  // before a matter exists). Exactly one of these foreign keys is non-null
-  // at any time; the other must be null. Enforced at write time in the
-  // application layer.
-  proMatterId    String?
-  proMatter      ProMatter?    @relation(fields: [proMatterId], references: [id])
-  documentDraftId String?
-  documentDraft  DocumentDraft? @relation(fields: [documentDraftId], references: [id])
-
-  kind           String        // "draft-letter", "tax-return", "advice-note", "public-document-draft"
-  aiOutput       String        @db.Text
-  outputSha256   String
-  rationale      String?       @db.Text
-  citationsJson  String?       @db.Text  // serialized citation refs
-  // Jurisdiction the requester wants the sign-off in (NZ / AU / UK / US).
-  // Used to route to a credentialled professional.
-  jurisdiction   String?
-  // Free-text notes from the requester to the reviewer.
-  requesterNotes String?       @db.Text
-  // Free-text contact (email) for cold-public-draft sign-offs without a
-  // citizen account yet.
-  requesterEmail String?
-
-  status         SignoffStatus @default(PENDING)
-  reviewerId     String?
-  reviewer       Professional? @relation("SignedBy", fields: [reviewerId], references: [id])
-  // Admin-as-reviewer stand-in for early-stage flows before the marketplace
-  // Professional supply side is wired (Wave 4). Marco Reid platform admins
-  // can approve sign-offs and the approval is logged here.
-  adminReviewerId String?
-  reviewerNotes  String?       @db.Text
-  amendedOutput  String?       @db.Text
-  amendedSha256  String?
-
-  requestedAt    DateTime      @default(now())
-  reviewedAt     DateTime?
-  releasedAt     DateTime?
-
-  @@index([proMatterId])
-  @@index([documentDraftId])
-  @@index([status])
-  @@index([reviewerId])
-  @@index([adminReviewerId])
-  @@index([requestedAt])
+  @@unique([professionalId, practiceAreaId])
 }
 
 // ============================================================
-// PLATFORM FLYWHEEL — central learning ledger.
-//
-// Every meaningful signal in the platform writes a LearningEvent here:
-// - USAGE     : a feature was used / abandoned (telemetry)
-// - AI_QUERY  : a Marco query happened (links MarcoQuery)
-// - AI_FEEDBACK : a Marco answer was rated (links MarcoFeedback)
-// - WORKFLOW  : a matter sign-off cycle progressed (links SignoffRequest)
-// - REGULATORY: a statute / tax rule change was detected, possibly
-//               flagging open matters (links RegulatoryUpdate)
-//
-// The ledger is read in two directions:
-//   - per-firm dashboards roll it up into FirmHealthSnapshot
-//   - we (the platform) read it for build-queue prioritisation
+// DOCUMENT GENERATION (PUBLIC) + SIGNOFF
 // ============================================================
 
-enum LearningEventKind {
-  USAGE
-  AI_QUERY
-  AI_FEEDBACK
-  WORKFLOW
-  REGULATORY
-}
-
-enum LearningEventSeverity {
-  INFO
-  POSITIVE   // Good outcome (fast cycle, high rating, correct flag)
-  NEGATIVE   // Bad outcome (failed answer, missed deadline, NOT_FOUND)
-  CRITICAL   // Hard blocker (sign-off rejected, regulatory miss)
-}
-
-model LearningEvent {
-  id                  String                @id @default(cuid())
-  kind                LearningEventKind
-  severity            LearningEventSeverity @default(INFO)
-  userId              String?
-  user                User?                 @relation("LearningEventActor", fields: [userId], references: [id])
-
-  // Context tags — none are mandatory but each makes future querying easier.
-  surface             String?               // "marco-chat", "voice", "billing", "trust", etc.
-  practiceArea        String?               // matches PracticeArea.slug or generic tag
-  jurisdiction        String?               // NZ / AU / US / UK / CA
-
-  // Pointers to source records — typically zero or one is non-null.
-  marcoQueryId        String?
-  marcoFeedbackId     String?
-  signoffRequestId    String?
-  proMatterId         String?
-  voiceTranscriptId   String?
-  regulatoryUpdateId  String?
-  regulatoryUpdate    RegulatoryUpdate?     @relation(fields: [regulatoryUpdateId], references: [id])
-
-  payload             Json?                 // event-specific structured data
-  scoreDelta          Float?                // contribution to firm-health / AI-quality scoring
-  createdAt           DateTime              @default(now())
-
-  @@index([kind, createdAt])
-  @@index([userId, createdAt])
-  @@index([severity, createdAt])
-  @@index([practiceArea, jurisdiction])
-  @@index([surface])
-}
-
-// Regulatory radar. Every detected change of consequence — a statute
-// amendment, an IRD/IRS notice, a CA ANZ practice note, a court
-// decision that flips precedent — is recorded here. The matters
-// pipeline matches open matters against `practiceAreas` and the
-// matching pro / firm gets a flag in their dashboard.
-model RegulatoryUpdate {
-  id              String          @id @default(cuid())
-  jurisdiction    String          // "NZ", "AU", "UK", "EU", "US", "CA"
-  regime          String          // "Privacy Act 2020", "AML/CFT Act 2009", "Income Tax Act 2007", etc.
-  citation        String          // Section, regulation number, case ref
-  title           String
-  summary         String          @db.Text
-  effectiveAt     DateTime?
-  sourceUrl       String?
-  practiceAreas   String[]        // slug tags — matches against open ProMatter rows
-  severity        LearningEventSeverity @default(INFO)
-  detectedAt      DateTime        @default(now())
-  events          LearningEvent[]
-
-  @@index([jurisdiction, regime])
-  @@index([detectedAt(sort: Desc)])
-  @@index([severity, detectedAt])
-}
-
-// Nightly per-firm rollup of the LearningEvent ledger. Read by the
-// firm's dashboard so the partner sees their own flywheel turn.
-model FirmHealthSnapshot {
-  id                       String   @id @default(cuid())
-  userId                   String
-  user                     User     @relation("FirmHealthSnapshots", fields: [userId], references: [id])
-  asOf                     DateTime
-
-  weeklyActiveFeatures     Int      @default(0)
-  marcoQueriesThisWeek     Int      @default(0)
-  marcoAvgRating           Float?
-  marcoUnverifiedRate      Float?           // 0..1 — fraction of citations Unverified
-
-  signoffsCompletedThisWeek Int     @default(0)
-  signoffAvgCycleHours     Float?
-  signoffRejectionRate     Float?            // 0..1
-
-  cpdHoursLogged           Float?
-  amlAssessmentsCurrent    Int      @default(0)
-  trustReconciliationOk    Boolean  @default(true)
-  regulatoryFlagsOpen      Int      @default(0)
-
-  createdAt                DateTime @default(now())
-
-  @@unique([userId, asOf])
-  @@index([asOf])
-}
-
-// ============================================================
-// AML / CFT — Anti-Money-Laundering / Countering Financing of
-// Terrorism. NZ AML/CFT Act 2009 (and the AU AML/CTF Act 2006,
-// US BSA, UK MLR 2017) require lawyers and accountants over the
-// threshold to: identify clients (CDD), risk-rate them, monitor
-// activity, file SARs / STRs.
-// ============================================================
-
-enum CddLevel {
-  SIMPLIFIED
-  STANDARD
-  ENHANCED
-}
-
-enum AmlRiskRating {
-  LOW
-  MEDIUM
-  HIGH
-}
-
-enum SarStatus {
-  DRAFT
-  SUBMITTED
-  ACKNOWLEDGED
-}
-
-model AmlAssessment {
-  id                String        @id @default(cuid())
-  userId            String
-  user              User          @relation("AmlAssessments", fields: [userId], references: [id])
-  clientId          String?
-  client            Client?       @relation(fields: [clientId], references: [id])
-
-  jurisdiction      String        @default("NZ")
-  cddLevel          CddLevel      @default(STANDARD)
-  riskRating        AmlRiskRating @default(LOW)
-  riskFactors       String[]      // PEP, high-risk-jurisdiction, cash-intensive, complex-structure, etc.
-
-  identityVerified  Boolean       @default(false)
-  identityDocs      Json?         // structured doc list
-  beneficialOwner   Json?         // structured BO disclosure
-  sourceOfFunds     String?
-  sourceOfWealth    String?
-  pepStatus         Boolean       @default(false)
-  sanctionsHit      Boolean       @default(false)
-
-  reviewedAt        DateTime?
-  reviewedBy        String?       // User.id of reviewer
-  nextReviewAt      DateTime?
-
-  notes             String?       @db.Text
-
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
-
-  @@index([userId, riskRating])
-  @@index([clientId])
-  @@index([nextReviewAt])
-  @@index([jurisdiction])
-}
-
-model SuspiciousActivityReport {
-  id              String     @id @default(cuid())
-  userId          String
-  user            User       @relation("SARsCreated", fields: [userId], references: [id])
-  clientId        String?
-  client          Client?    @relation("SARsByClient", fields: [clientId], references: [id])
-  matterId        String?
-
-  jurisdiction    String     @default("NZ")
-  reportType      String     // "SAR", "STR", "PRESCRIBED" depending on regime
-  reportedTo      String     // "FIU" (NZ), "AUSTRAC" (AU), "FinCEN" (US), "NCA" (UK)
-
-  narrative       String     @db.Text
-  amountInCents   Int?
-  currency        String     @default("NZD")
-  triggeredBy     String?    // What flagged it (rule name, manual)
-
-  status          SarStatus  @default(DRAFT)
-  submittedAt     DateTime?
-  acknowledgedAt  DateTime?
-  reference       String?    // Regulator's reference number
-
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-
-  @@index([userId, status])
-  @@index([clientId])
-  @@index([jurisdiction, status])
-}
-
-// ============================================================
-// CPD / CLE — Continuing Professional Development / Continuing
-// Legal Education. NZ Law Society requires 10 hours/year for
-// lawyers, with reflection. CA ANZ requires 20 hours/year for
-// chartered accountants. AU and UK have parallel regimes.
-// ============================================================
-
-model CpdRecord {
+model DocumentDraft {
   id              String   @id @default(cuid())
-  userId          String
-  user            User     @relation("CpdRecords", fields: [userId], references: [id])
-
-  date            DateTime
-  title           String
-  provider        String?
-  category        String?  // "ETHICS", "CORE", "PRACTICE_MGMT", "SUBSTANTIVE", "TIKANGA"
-  hoursClaimed    Float
-  jurisdiction    String   // "NZ", "AU-NSW", "AU-VIC", "UK", etc.
-  body            String?  // "NZLS", "CA-ANZ", "CPA-AU", "Law Society NSW", etc.
-  evidenceUrl     String?  // certificate of attendance / completion
-
-  reflection      String?  @db.Text  // CPD reflection (NZLS requires this)
-  verified        Boolean  @default(false)
-
+  contactEmail    String
+  jurisdiction    String?
+  situation       String?  @db.Text
+  extracted       Json?
+  body            String?  @db.Text
+  bodyHash        String?
+  status          String   @default("READY_FOR_REVIEW")
+  signedByUserId         String?
+  signedByCredential     String?
+  signedByJurisdiction   String?
+  signedByName           String?
+  signedAt               DateTime?
+  ipAddress       String?
+  userAgent       String?
+  expiresAt       DateTime?
+  signoffRequests SignoffRequest[]
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  @@index([userId, date])
-  @@index([jurisdiction])
-  @@index([userId, jurisdiction, date])
+  @@index([status])
+  @@index([contactEmail])
+  @@index([createdAt])
+}
+
+model SignoffRequest {
+  id               String        @id @default(cuid())
+  draftId          String
+  draft            DocumentDraft @relation(fields: [draftId], references: [id])
+  professionalId   String?
+  kind             String?
+  jurisdiction     String?
+  requesterEmail   String?
+  requesterNotes   String?
+  aiOutput         String?       @db.Text
+  outputSha256     String?
+  status           String        @default("pending")
+  requestedAt      DateTime      @default(now())
+  reviewedAt       DateTime?
+  reviewerNotes    String?
+  rejectionReason  String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@index([draftId])
+  @@index([status])
 }
 
 // ============================================================
-// CONVEYANCING — purchase / sale / refinance pipeline. High
-// volume work for NZ small firms; sits on top of the Matter
-// model but pins all the property-specific structured data.
+// EMAIL DIGEST / NEWSLETTER
 // ============================================================
 
-enum ConveyancingType {
-  PURCHASE
-  SALE
-  REFINANCE
-}
+model DigestSubscription {
+  id              String   @id @default(cuid())
+  email           String
+  name            String?
+  active          Boolean  @default(true)
+  frequency       String   @default("weekly")
+  jurisdiction    String?
+  practiceArea    String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-enum ConveyancingStatus {
-  DRAFT
-  ACTIVE
-  UNCONDITIONAL
-  SETTLED
-  CANCELLED
-}
-
-model ConveyancingMatter {
-  id                    String              @id @default(cuid())
-  userId                String
-  user                  User                @relation("ConveyancingMatters", fields: [userId], references: [id])
-  matterId              String              @unique
-  matter                Matter              @relation(fields: [matterId], references: [id])
-
-  propertyAddress       String
-  certificateOfTitleRef String?             // CT reference (NZ); deed reference elsewhere
-  saleType              ConveyancingType    @default(PURCHASE)
-
-  agreementSignedAt     DateTime?
-  unconditionalAt       DateTime?
-  settlementAt          DateTime?
-
-  vendor                Json?               // structured party data
-  purchaser             Json?
-  agentDetails          Json?
-
-  purchasePriceInCents  Int?
-  depositInCents        Int?
-  currency              String              @default("NZD")
-
-  conditions            Json?               // finance, LIM, building report, due diligence, etc.
-  conditionsMet         Boolean             @default(false)
-
-  amlAssessmentId       String?             // link to the AML record covering this client
-
-  status                ConveyancingStatus  @default(DRAFT)
-
-  createdAt             DateTime            @default(now())
-  updatedAt             DateTime            @updatedAt
-
-  @@index([userId, status])
-  @@index([settlementAt])
+  @@unique([email, frequency], name: "email_frequency")
+  @@index([email])
 }
 
 // ============================================================
-// WILLS REGISTER — custodian record of wills held in safe
-// custody. The will document itself is held off this row (in
-// document storage); this is the searchable register so a firm
-// can find a will when the testator dies.
-// ============================================================
-
-model WillRecord {
-  id                  String   @id @default(cuid())
-  userId              String
-  user                User     @relation("WillRecords", fields: [userId], references: [id])
-  testatorClientId    String?
-  testatorClient      Client?  @relation("WillsAsTestator", fields: [testatorClientId], references: [id])
-
-  testatorName        String
-  testatorDob         DateTime?
-
-  willDate            DateTime
-  storageLocation     String?  // "Safe Custody", "Client Held", "Off-site Vault"
-  storageRef          String?
-
-  superseded          Boolean  @default(false)
-  supersededByWillId  String?
-
-  executors           Json?
-  beneficiariesSummary Json?   // top-line only, not the full will
-
-  documentUrl         String?  // encrypted scan reference
-
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-
-  @@index([userId])
-  @@index([testatorClientId])
-  @@index([willDate])
-  @@index([testatorName])
-}
-
-// ============================================================
-// MIGRATION INTAKE — firms switching from Clio / LEAP / actionstep
-// / Xero / MYOB / QuickBooks. Captures the scoping data so we can
-// quote and start the migration without a sales call.
+// DATA MIGRATION
 // ============================================================
 
 enum MigrationSourceSystem {
@@ -1008,797 +696,116 @@ enum MigrationSourceSystem {
   MYOB
   QUICKBOOKS
   IRESS
+  SMOKEBALL
+  PRACTICE_PANTHER
   AFFINITY
   OTHER
 }
 
-enum MigrationStatus {
-  NEW
-  SCOPED
-  IN_PROGRESS
-  COMPLETE
-  CANCELLED
-}
-
 model MigrationIntake {
-  id                String                 @id @default(cuid())
-  userId            String?
-  email             String
-  firmName          String?
-  contactName       String?
-  jurisdiction      String?
-  fromSystem        MigrationSourceSystem
-  estimatedClients  Int?
-  estimatedMatters  Int?
-  estimatedSizeMb   Int?
-  needsTrustData    Boolean                @default(false)
-  needsTimeData     Boolean                @default(false)
-  needsDocuments    Boolean                @default(false)
-  notes             String?                @db.Text
-  status            MigrationStatus        @default(NEW)
-  createdAt         DateTime               @default(now())
-  updatedAt         DateTime               @updatedAt
+  id             String                @id @default(cuid())
+  email          String
+  fromSystem     MigrationSourceSystem
+  firmName       String?
+  jurisdiction   String?
+  status         String                @default("pending")
+  notes          String?               @db.Text
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 
+  @@index([email])
   @@index([status])
-  @@index([fromSystem])
-  @@index([createdAt(sort: Desc)])
 }
 
 // ============================================================
-// COMPLIANCE LEDGERS — append-only audit infrastructure.
-//
-// Retention floors driven by the strictest regime in scope:
-//   - NZ AML/CFT Act 2009: 5 yrs from end of business relationship.
-//   - AU AML/CTF Act 2006: 7 yrs.
-//   - NZ Tax Administration Act 1994 s22: 7 yrs.
-//   - AU TAA 1953 / ITAA 1997: 5 yrs (transfer pricing 5 yrs from lodgement).
-//   - NZ Lawyers' Trust Account Regulations 2008: 6 yrs.
-//   - NZ Lawyers and Conveyancers Act 2006 + Rules: 7 yrs typical.
-//   - AU APES 305 / 310: 7 yrs.
-//   - NZ IAA Code of Conduct 2014 Standard 27: 7 yrs from completion.
-//   - AU OMARA Code of Conduct 2021 Pt 6: 7 yrs.
-//   - AU ASIC RG 217 + ARITA Code: 7 yrs post-administration.
-//   - NZ Privacy Act 2020 + AU Privacy Act 1988: only as long as necessary,
-//     with statutory carve-outs above taking precedence.
-//
-// Default platform floor: 7 years. LegalHold can extend indefinitely.
-// All tables in this section are append-only — no UPDATE, no DELETE — so
-// they can be backed by WORM-style storage (e.g. S3 Object Lock) and
-// cryptographically chained for tamper-evidence.
+// FLYWHEEL — Learning events
 // ============================================================
 
-enum AuditAction {
-  CREATE
-  READ
-  UPDATE
-  DELETE
-  EXPORT
-  LOGIN
-  LOGOUT
-  SIGNOFF_REQUEST
-  SIGNOFF_APPROVE
-  SIGNOFF_REJECT
-  CONSENT_GRANT
-  CONSENT_WITHDRAW
-  REGULATOR_SUBMIT
-}
-
-// Generic immutable action log — every CRUD on every record. The spine.
-//
-// `prevHash` links to the prior log row's `hash`; `hash` is sha256 over
-// (prevHash || canonicalJson(rest of row)). A break in the chain is
-// tamper-evident even if the database itself is compromised.
-model AuditLog {
-  id            String      @id @default(cuid())
-  actorId       String?
-  actor         User?       @relation("AuditLogActor", fields: [actorId], references: [id])
-  actorEmail    String?
-  action        AuditAction
-  resourceType  String
-  resourceId    String
-  // Before/after JSON for UPDATE; null for CREATE/DELETE/READ as appropriate.
-  before        Json?
-  after         Json?
-  ipAddress     String?
-  userAgent     String?     @db.Text
-  // Tamper-evidence chain. prevHash references the previous row's hash so a
-  // regulator export can verify the chain end-to-end.
-  prevHash      String?
-  hash          String
-  createdAt     DateTime    @default(now())
-
-  @@index([actorId, createdAt(sort: Desc)])
-  @@index([resourceType, resourceId, createdAt(sort: Desc)])
-  @@index([action, createdAt(sort: Desc)])
-  @@index([createdAt(sort: Desc)])
-}
-
-// Document version history — supersede, never delete. Every revision keeps
-// a content hash so a later audit can prove the document said what we say
-// it said. The current Document row points at the latest version.
-model DocumentVersion {
-  id            String   @id @default(cuid())
-  documentId    String
-  document      Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  versionNumber Int
-  contentHash   String
-  storageUrl    String
-  storageBytes  Int?
-  createdById   String?
-  createdByEmail String?
-  changeNote    String?  @db.Text
-  createdAt     DateTime @default(now())
-
-  @@unique([documentId, versionNumber])
-  @@index([contentHash])
-  @@index([createdAt(sort: Desc)])
-}
-
-enum CommunicationChannel {
-  EMAIL
-  SMS
-  VOICE_CALL
-  PORTAL_MESSAGE
+enum LearningEventKind {
+  QUERY
+  AI_QUERY
+  CITATION
+  FEEDBACK
+  AI_FEEDBACK
+  INTERACTION
+  ERROR
+  PERFORMANCE
+  USAGE
+  CONVERSION
+  SYSTEM
+  REGULATORY
+  WORKFLOW
   LETTER
-  IN_PERSON_NOTE
 }
 
-enum CommunicationDirection {
-  INBOUND
-  OUTBOUND
+enum LearningEventSeverity {
+  INFO
+  POSITIVE
+  NEGATIVE
+  WARNING
+  ERROR
+  CRITICAL
 }
 
-// Every client-facing communication. Required by IAA Standard 26
-// (file notes), OMARA Code Pt 6, Lawyers Conduct and Client Care Rules,
-// and APES 305 contemporaneous engagement records.
-model CommunicationRecord {
-  id            String                 @id @default(cuid())
-  matterId      String?
-  clientEmail   String?
-  actorId       String?
-  actor         User?                  @relation("CommunicationActor", fields: [actorId], references: [id])
-  channel       CommunicationChannel
-  direction     CommunicationDirection
-  subject       String?
-  body          String                 @db.Text
-  bodyHash      String
-  attachmentUrls Json?
-  occurredAt    DateTime
-  createdAt     DateTime               @default(now())
-
-  @@index([matterId, occurredAt(sort: Desc)])
-  @@index([actorId, occurredAt(sort: Desc)])
-  @@index([channel, occurredAt(sort: Desc)])
-}
-
-enum Regulator {
-  IRD_NZ
-  IR_NZ_COMPANIES_OFFICE
-  ATO_AU
-  ASIC_AU
-  AFSA_AU
-  AUSTRAC_AU
-  FIU_NZ
-  HMRC_UK
-  CRA_CA
-  IRS_US
-  USCIS_US
-  INZ_NZ
-  HOMEAFFAIRS_AU
-  IAA_NZ
-  OMARA_AU
-  TPB_AU
-  NZLS_NZ
-  LSB_AU
-  OPC_NZ
-  OAIC_AU
-  OTHER
-}
-
-enum FilingStatus {
-  DRAFT
-  SUBMITTED
-  ACKNOWLEDGED
-  ACCEPTED
-  REJECTED
-  WITHDRAWN
-}
-
-// Every filing made to a regulator. Critical evidence: "did we lodge that?"
-// The regulatorReference is the receipt number returned by the regulator;
-// payloadHash is a sha256 over the exact payload submitted so a later
-// dispute can be resolved deterministically.
-model RegulatorFiling {
-  id                 String       @id @default(cuid())
-  matterId           String?
-  filedById          String?
-  filedBy            User?        @relation("RegulatorFilingFiledBy", fields: [filedById], references: [id])
-  regulator          Regulator
-  filingType         String
-  jurisdiction       String?
-  payloadHash        String
-  payloadStorageUrl  String?
-  regulatorReference String?
-  status             FilingStatus @default(DRAFT)
-  submittedAt        DateTime?
-  acknowledgedAt     DateTime?
-  responseHash       String?
-  responseStorageUrl String?
-  notes              String?      @db.Text
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
-
-  @@index([regulator, submittedAt(sort: Desc)])
-  @@index([matterId, submittedAt(sort: Desc)])
-  @@index([status])
-  @@index([regulatorReference])
-}
-
-enum AccessGrantAction {
-  GRANT
-  REVOKE
-  ROLE_CHANGE
-  IMPERSONATE_BEGIN
-  IMPERSONATE_END
-}
-
-// Permission changes — who granted what to whom, when, and why.
-// Required for SOC 2 CC6, ISO 27001 A.9, and supports privacy-regulator
-// inquiries about "who could see this client's data on Date X."
-model AccessGrant {
-  id          String            @id @default(cuid())
-  grantorId   String?
-  grantor     User?             @relation("AccessGrantGrantor", fields: [grantorId], references: [id])
-  subjectId   String
-  subject     User              @relation("AccessGrantSubject", fields: [subjectId], references: [id])
-  resourceType String
-  resourceId   String?
-  permission   String
-  action       AccessGrantAction
-  reason       String?           @db.Text
-  ipAddress    String?
-  createdAt    DateTime          @default(now())
-
-  @@index([subjectId, createdAt(sort: Desc)])
-  @@index([resourceType, resourceId])
-  @@index([action, createdAt(sort: Desc)])
-}
-
-enum BreachAssessment {
-  PENDING
-  NOT_NOTIFIABLE
-  NOTIFIABLE
-}
-
-enum BreachStatus {
-  OPEN
-  CONTAINED
-  REMEDIATED
-  REGULATOR_NOTIFIED
-  CLOSED
-}
-
-// Privacy breach register. NZ Privacy Act 2020 s114 (notify within 72hrs of
-// becoming aware where serious harm is likely). AU Privacy Act 1988 NDB
-// scheme (assess within 30 days, notify if eligible). GDPR Art 33/34 (72hrs).
-model PrivacyBreachIncident {
-  id                String           @id @default(cuid())
-  reportedById      String?
-  reportedBy        User?            @relation("PrivacyBreachReporter", fields: [reportedById], references: [id])
-  discoveredAt      DateTime
-  containedAt       DateTime?
-  affectedSubjects  Int?
-  description       String           @db.Text
-  rootCause         String?          @db.Text
-  remediation       String?          @db.Text
-  assessment        BreachAssessment @default(PENDING)
-  assessmentDueAt   DateTime?
-  status            BreachStatus     @default(OPEN)
-  notifiedRegulator Boolean          @default(false)
-  regulatorNotifiedAt DateTime?
-  regulatorRefs     Json?
-  notifiedSubjectsAt DateTime?
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-
-  @@index([discoveredAt(sort: Desc)])
-  @@index([status])
-  @@index([assessment])
-}
-
-enum ComplaintForum {
-  INTERNAL
-  IAA_NZ
-  OMARA_AU
-  NZLS_NZ
-  LSB_AU
-  TPB_AU
-  CA_ANZ
-  CPA_AUSTRALIA
-  ARITA
-  OPC_NZ
-  OAIC_AU
-  OTHER
-}
-
-enum ComplaintStatus {
-  OPEN
-  UNDER_REVIEW
-  RESPONDED
-  ESCALATED
-  RESOLVED
-  WITHDRAWN
-}
-
-// Complaint register. Required by IAA Code Standard 4 (NZ), OMARA Code
-// 2021 cl 6.4 (AU), NZLS Conduct & Client Care Rules, TPB Code item 12.
-model ComplaintRecord {
-  id            String           @id @default(cuid())
-  loggedById    String?
-  loggedBy      User?            @relation("ComplaintLoggedBy", fields: [loggedById], references: [id])
-  matterId      String?
-  complainant   String
-  forum         ComplaintForum
-  receivedAt    DateTime
-  summary       String           @db.Text
-  responseDueAt DateTime?
-  responseAt    DateTime?
-  outcome       String?          @db.Text
-  status        ComplaintStatus  @default(OPEN)
-  externalRef   String?
-  createdAt     DateTime         @default(now())
-  updatedAt     DateTime         @updatedAt
-
-  @@index([status])
-  @@index([forum])
-  @@index([receivedAt(sort: Desc)])
-}
-
-// Per-record-type retention rule. Resolves to the strictest applicable
-// regime for the customer in scope. Concrete rows (e.g. "AML CDD =
-// 7 years (AU AML/CTF Act 2006 s107)") are seeded at deploy time.
-model RetentionPolicy {
-  id            String   @id @default(cuid())
-  resourceType  String
-  jurisdiction  String
-  authority     String
-  retentionDays Int
-  trigger       String
-  notes         String?  @db.Text
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  @@unique([resourceType, jurisdiction, authority])
-  @@index([resourceType])
-}
-
-enum LegalHoldStatus {
-  ACTIVE
-  RELEASED
-}
-
-// Legal hold — overrides retention deletion until released. Required for
-// litigation, regulator investigation, or live insurance claim.
-model LegalHold {
-  id            String          @id @default(cuid())
-  resourceType  String
-  resourceId    String
-  reason        String          @db.Text
-  authority     String?
-  requestedById String?
-  requestedBy   User?           @relation("LegalHoldRequester", fields: [requestedById], references: [id])
-  status        LegalHoldStatus @default(ACTIVE)
-  startedAt     DateTime        @default(now())
-  releasedAt    DateTime?
-  releaseReason String?         @db.Text
-
-  @@index([resourceType, resourceId, status])
-  @@index([status])
-}
-
-// Subprocessor changes for the DPA Schedule 2. Customers must be notifiable
-// of new subprocessors; this is the canonical record.
-model SubprocessorChange {
-  id              String   @id @default(cuid())
-  subprocessor    String
-  purpose         String
-  jurisdiction    String?
-  changeKind      String
-  effectiveAt     DateTime
-  customerNotifyAt DateTime?
-  notes           String?  @db.Text
-  createdAt       DateTime @default(now())
-
-  @@index([effectiveAt(sort: Desc)])
-}
-
-// ============================================================
-// FIRM TENANCY — the multi-tenancy spine. Firms are the buyer of
-// record. Users belong to firms via FirmMembership. White-label,
-// templates, trust accounts, PII insurance, CPD provider status,
-// and default sign-off authorities all attach at the Firm level.
-//
-// Sign-off Doctrine: every consumer-facing output that leaves the
-// platform passes through SignoffRequest and is approved by a
-// FirmMembership row whose `signoffAuthority = true` and whose
-// PractitionerCredential is valid for the relevant jurisdiction.
-// ============================================================
-
-enum FirmType {
-  LAW_FIRM
-  ACCOUNTING_FIRM
-  MULTI_DISCIPLINARY_PRACTICE   // legal + accounting under one roof (AU MDPs)
-  INSOLVENCY_PRACTICE
-  IMMIGRATION_ADVISORY
-  TAX_PRACTICE                   // dedicated tax-agent firm
-  BARRISTER_CHAMBERS             // NZ + AU + UK barristers
-  IN_HOUSE_LEGAL                 // corporate legal department
-  GOVERNMENT_LEGAL               // Crown Law, AGS, DOJ
-  COMMUNITY_LAW                  // pro bono / legal aid
-  OTHER
-}
-
-enum PractitionerCredential {
-  // NZ legal
-  BARRISTER_SOLICITOR_NZ          // dual admission — most NZ lawyers
-  BARRISTER_NZ                    // bar-only
-  SOLICITOR_NZ
-  LICENSED_CONVEYANCER_NZ
-  LICENSED_IMMIGRATION_ADVISER_NZ
-  // AU legal
-  AUSTRALIAN_LEGAL_PRACTITIONER
-  AUSTRALIAN_BARRISTER
-  AUSTRALIAN_SOLICITOR
-  REGISTERED_MIGRATION_AGENT_AU
-  // US legal
-  US_ATTORNEY                     // state bar admission — record state in barJurisdictions
-  // UK legal
-  UK_SOLICITOR                    // SRA-regulated
-  UK_BARRISTER                    // BSB-regulated
-  UK_LEGAL_EXECUTIVE              // CILEX
-  // Canada legal
-  CANADIAN_LAWYER                 // provincial law society
-  // NZ + AU accountancy
-  CHARTERED_ACCOUNTANT_NZ_AU      // CA ANZ
-  CPA_AUSTRALIA
-  IPA_MEMBER                      // Institute of Public Accountants AU
-  // US accountancy
-  CPA_US                          // state board
-  EA_US                           // Enrolled Agent
-  // UK accountancy
-  ICAEW_FELLOW
-  ICAEW_MEMBER
-  ACCA_MEMBER
-  CIMA_MEMBER
-  // Canadian accountancy
-  CPA_CANADA
-  // Tax practitioner
-  TAX_AGENT_NZ                    // IRD-listed
-  TAX_AGENT_AU                    // TPB-registered
-  BAS_AGENT_AU                    // TPB-registered (BAS scope)
-  // Insolvency
-  REGISTERED_INSOLVENCY_PRACTITIONER_NZ
-  REGISTERED_LIQUIDATOR_AU
-  REGISTERED_TRUSTEE_AU
-  CHARTERED_INSOLVENCY_PRACTITIONER_UK
-  // Other professional
-  NOTARY_PUBLIC_NZ
-  NOTARY_PUBLIC_AU
-  TRUST_LAWYER_SPECIALIST
-  OTHER
-}
-
-model Firm {
-  id                String     @id @default(cuid())
-  name              String
-  legalName         String?
-  firmType          FirmType
-  jurisdictions     String[]   // ISO codes: NZ, AU, US, UK, CA
-  primaryContactId  String?
-
-  // Identifiers per jurisdiction
-  nzbn              String?
-  abn               String?
-  acn               String?
-  einUs             String?
-  ukCompanyNumber   String?
-
-  // White-label
-  logoUrl           String?
-  brandPrimaryHex   String?
-  whiteLabelDomain  String?
-  defaultCoverPhrase String?   // "Reviewed and signed by [Name], [Credential]"
-
-  // Default templates — JSON map of resourceType -> templateId so the firm's
-  // preferred wording flows automatically into every client engagement.
-  templateOverrides Json?
-
-  // PII insurance
-  piInsurerName     String?
-  piPolicyNumber    String?
-  piPolicyExpiresAt DateTime?
-
-  // CPD provider status
-  cpdProviderApprovalNzls    String?
-  cpdProviderApprovalCaAnz   String?
-  cpdProviderApprovalLca     String?
-  cpdProviderApprovalCpaAu   String?
-  cpdProviderApprovalAicpa   String?
-
-  // Stripe billing for the firm (separate from individual user subscriptions
-  // when the firm pays for all seats centrally)
-  stripeCustomerId        String?  @unique
-  stripeSubscriptionId    String?  @unique
-  stripePriceId           String?
-  subscriptionStatus      String?
-  subscriptionPeriodEnd   DateTime?
-
-  members           FirmMembership[]
-  legalDocumentTemplates LegalDocumentTemplate[]
-  entityFormations  EntityFormation[]
-
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
-
-  @@index([firmType])
-  @@index([jurisdictions])
-  @@index([whiteLabelDomain])
-}
-
-model FirmMembership {
-  id                    String                   @id @default(cuid())
-  firmId                String
-  firm                  Firm                     @relation(fields: [firmId], references: [id], onDelete: Cascade)
-  userId                String
-  user                  User                     @relation("FirmMembershipUser", fields: [userId], references: [id], onDelete: Cascade)
-  credentials           PractitionerCredential[]
-  // Bar / registration numbers per credential (parallel array)
-  registrationNumbers   String[]
-  // Jurisdictions in which this practitioner is licensed to practise
-  practiceJurisdictions String[]
-  // Sign-off authority — can this membership approve SignoffRequests?
-  signoffAuthority      Boolean                  @default(false)
-  signoffJurisdictions  String[]
-  // Firm admin — can configure templates, billing, members?
-  isAdmin               Boolean                  @default(false)
-  // Tax-agent / BAS-agent scope flags (AU TPB)
-  tpbScope              String?                  // "tax_agent", "bas_agent", "tax_agent_restricted"
-  // Title — Partner, Senior Associate, Solicitor, Senior Tax Adviser, etc.
-  title                 String?
-  joinedAt              DateTime                 @default(now())
-  leftAt                DateTime?
-
-  @@unique([firmId, userId])
-  @@index([userId])
-  @@index([signoffAuthority])
-}
-
-// ============================================================
-// LEGAL DOCUMENT TEMPLATES — the firm-overridable library that
-// generates the SaaS legal pack. Each template is versioned;
-// each customer instance is reviewed via SignoffRequest before
-// release. Marco Reid ships defaults; firms override.
-// ============================================================
-
-enum LegalDocumentKind {
-  TERMS_OF_SERVICE
-  PRIVACY_POLICY
-  ACCEPTABLE_USE_POLICY
-  COOKIE_POLICY
-  REFUND_POLICY
-  DPA
-  AI_DISCLOSURE
-  AI_OUTPUT_DISCLAIMER
-  SLA
-  SUBPROCESSOR_LIST
-  DMCA_POLICY
-  CCPA_DISCLOSURE
-  TRADEMARK_NOTICE
-  TRUST_DEED
-  SHAREHOLDERS_AGREEMENT
-  EMPLOYMENT_AGREEMENT
-  CONTRACTOR_AGREEMENT
-  IP_ASSIGNMENT
-  NDA
-  ENGAGEMENT_LETTER
-  MUTUAL_NDA
-  OTHER
-}
-
-model LegalDocumentTemplate {
-  id              String            @id @default(cuid())
-  // Null firmId = Marco Reid platform default. Non-null = firm override.
-  firmId          String?
-  firm            Firm?             @relation(fields: [firmId], references: [id], onDelete: Cascade)
-  kind            LegalDocumentKind
-  jurisdiction    String            // ISO + sub-jurisdiction (e.g. "US-CA" for California)
-  name            String
-  version         String
-  body            String            @db.Text
-  variables       Json?             // template variables exposed to render
-  citations       Json?             // citations the template references
-  active          Boolean           @default(true)
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-
-  @@unique([firmId, kind, jurisdiction, version])
-  @@index([kind, jurisdiction])
-}
-
-// ============================================================
-// ENTITY FORMATION — the Marco Reid Launch state machine.
-// Tracks the formation of a customer entity from intake to
-// fully-incorporated, with sign-off, partner-filing, and EIN
-// progression. Sits alongside RegulatorFiling for the formal
-// regulator submissions.
-// ============================================================
-
-enum EntityFormationType {
-  US_DELAWARE_C_CORP
-  US_DELAWARE_LLC
-  US_WYOMING_LLC
-  US_NEVADA_C_CORP
-  US_OTHER_STATE
-  NZ_LIMITED
-  AU_PROPRIETARY_LIMITED
-  AU_PUBLIC_COMPANY
-  UK_LIMITED
-  UK_LLP
-  SG_PRIVATE_LIMITED
-  CA_FEDERAL_CORP
-  CA_PROVINCIAL_CORP
-  OTHER
-}
-
-enum EntityFormationStatus {
-  DRAFT
-  AWAITING_SIGNOFF
-  FILING_SUBMITTED
-  FILING_ACCEPTED
-  AWAITING_EIN
-  AWAITING_BANK
-  COMPLETE
-  REJECTED
-  CANCELLED
-}
-
-model EntityFormation {
-  id                   String                @id @default(cuid())
-  firmId               String?
-  firm                 Firm?                 @relation(fields: [firmId], references: [id])
-  founderUserId        String?
-  proposedName         String
-  formationType        EntityFormationType
-  jurisdiction         String                // ISO subcode where filed
-  status               EntityFormationStatus  @default(DRAFT)
-  // Authorised share / capital structure (C-Corp / Pty Ltd / Ltd)
-  authorisedShares     Int?
-  parValueCents        Int?
-  // Registered agent partner (Harvard, Northwest, Cogency, internal)
-  registeredAgentName  String?
-  registeredAgentRef   String?
-  // EIN / IRD / ABN / ACN / company number once issued
-  einUs                String?
-  irdNumberNz          String?
-  abnAu                String?
-  acnAu                String?
-  companyNumberUk      String?
-  companyNumberNz      String?
-  // Filings linked
-  certificateUrl       String?
-  certificateHash      String?
-  // Bank account partner (Mercury, Wise, Brex, etc.)
-  bankPartnerName      String?
-  bankAccountRef       String?
-  // Sign-off + filing references
-  signoffRequestId     String?
-  regulatorFilingId    String?
-  notes                String?               @db.Text
-  createdAt            DateTime              @default(now())
-  updatedAt            DateTime              @updatedAt
-
-  @@index([firmId])
-  @@index([founderUserId])
-  @@index([status])
-  @@index([formationType])
-}
-
-// ============================================================
-// DOCUMENT DRAFT — the public document generator's anchor record.
-//
-// Anyone (anonymous or signed-in) can describe a situation in plain
-// English; we extract structured intent (jurisdiction + suggested
-// document type + parties + key terms) and persist it as a DocumentDraft.
-// The draft body is generated against a LegalDocumentTemplate and watermarked
-// until a SignoffRequest is approved.
-//
-// Sign-off Doctrine: nothing renders without the watermark until a licensed
-// professional approves the SignoffRequest tied to this draft. Once signed,
-// the draft transitions to SIGNED and the cover page carries the
-// professional's name + credential + jurisdiction + date.
-// ============================================================
-
-enum DocumentDraftStatus {
-  DRAFTING
-  READY_FOR_REVIEW
-  AWAITING_SIGNOFF
-  SIGNED
-  EXPIRED
-  CANCELLED
-}
-
-model DocumentDraft {
-  id                  String              @id @default(cuid())
-  // null when public/anonymous; populated once an account is linked.
-  ownerUserId         String?
-  contactEmail        String?
-  jurisdiction        String              // ISO code: NZ, AU, UK, US
-  // Plain-English description from the intake form.
-  situation           String              @db.Text
-  // AI-extracted structured intent — document type slug, parties, fields,
-  // urgency, suggested template id. Stored as JSON to keep the schema
-  // flexible while the extraction pipeline evolves.
-  extracted           Json?
-  // Reference to the LegalDocumentTemplate used to produce the body.
-  templateId          String?
-  // Versioned body. Watermarked until signed.
-  body                String              @db.Text
-  bodyHash            String?
-  status              DocumentDraftStatus @default(DRAFTING)
-  // Signoff trail
-  signoffRequests      SignoffRequest[]
+model LearningEvent {
+  id                  String                @id @default(cuid())
+  kind                LearningEventKind
+  severity            LearningEventSeverity @default(INFO)
+  source              String?
+  surface             String?
+  practiceArea        String?
+  jurisdiction        String?
+  marcoQueryId        String?
+  marcoFeedbackId     String?
   signoffRequestId    String?
-  signedByUserId      String?
-  signedByCredential  String?
-  signedByJurisdiction String?
-  signedAt            DateTime?
-  // Anti-abuse
-  ipAddress           String?
-  userAgent           String?             @db.Text
-  expiresAt           DateTime?
-  createdAt           DateTime            @default(now())
-  updatedAt           DateTime            @updatedAt
+  proMatterId         String?
+  voiceTranscriptId   String?
+  regulatoryUpdateId  String?
+  scoreDelta          Float?
+  payload             Json?
+  userId              String?
+  createdAt           DateTime              @default(now())
 
-  @@index([ownerUserId])
-  @@index([contactEmail])
-  @@index([jurisdiction])
-  @@index([status])
-  @@index([createdAt(sort: Desc)])
-}
-
-// ============================================================
-// DIGEST SUBSCRIPTION — daily personalised regulatory + court update
-// digest. Subscribers pick specialties + jurisdictions; the cron worker
-// (Wave 4 follow-up) picks up new RegulatoryUpdate rows matching the
-// subscription, formats a per-user email, and sends.
-// ============================================================
-
-enum DigestFrequency {
-  DAILY
-  WEEKDAYS
-  WEEKLY
-}
-
-model DigestSubscription {
-  id              String           @id @default(cuid())
-  email           String
-  // Optional userId once the subscriber has an account.
-  userId          String?
-  /// ISO codes — NZ, AU, UK, US.
-  jurisdictions   String[]
-  /// Slugs from lib/specialties.ts. Empty = all specialties for the
-  /// subscriber's jurisdictions.
-  specialties     String[]
-  frequency       DigestFrequency  @default(DAILY)
-  active          Boolean          @default(true)
-  // Token used to unsubscribe via email link without auth.
-  unsubscribeToken String          @unique
-  confirmedAt     DateTime?
-  lastSentAt      DateTime?
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-
-  @@unique([email, frequency])
-  @@index([active])
+  @@index([kind])
+  @@index([createdAt])
   @@index([userId])
+}
+
+// ============================================================
+// REGULATORY UPDATES + PRO MATTERS
+// ============================================================
+
+model RegulatoryUpdate {
+  id            String   @id @default(cuid())
+  jurisdiction  String
+  regime        String?
+  citation      String?
+  title         String
+  summary       String?  @db.Text
+  effectiveAt   DateTime?
+  sourceUrl     String?
+  practiceAreas String[]
+  severity      String   @default("INFO")
+  createdAt     DateTime @default(now())
+
+  @@index([jurisdiction])
+  @@index([createdAt])
+}
+
+model ProMatter {
+  id              String        @id @default(cuid())
+  userId          String?
+  clientEmail     String?
+  jurisdiction    String?
+  status          String        @default("AWAITING_PRO")
+  practiceAreaId  String?
+  practiceArea    PracticeArea? @relation(fields: [practiceAreaId], references: [id])
+  title           String?
+  description     String?       @db.Text
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([status])
+  @@index([jurisdiction])
+  @@index([practiceAreaId])
 }
