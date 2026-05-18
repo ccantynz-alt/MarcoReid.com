@@ -1231,6 +1231,7 @@ export const JURISDICTIONS: Record<string, Jurisdiction> = {
       requiresThreeWayReconciliation: true,
       interestHandling: "Interest to Law Society compensation fund or client as appropriate",
       auditFrequency: "Annual — reporting accountant's report to Law Society",
+      notes: "Governed by Solicitors Accounts Regulations 2014 (S.I. No. 516/2014). Client account must be maintained at an authorised bank in Ireland.",
     },
     professionalBodies: [
       { name: "Law Society of Ireland", abbreviation: "LSI", type: "legal", url: "https://lawsociety.ie" },
@@ -1261,6 +1262,7 @@ export const JURISDICTIONS: Record<string, Jurisdiction> = {
       taxWithholding: "PAYE (pay-as-you-earn) via Revenue Online Service (ROS)",
     },
     privacyLaw: "EU GDPR (directly applicable) + Data Protection Act 2018",
+    dataResidency: "EU data residency. GDPR applies. Data can flow freely within EEA. Adequacy decisions for NZ, UK, and others.",
     accountingStandards: ["FRS 102 (most common)", "EU-adopted IFRS (public companies)", "FRS 101 (reduced disclosure)"],
   },
 
@@ -1284,6 +1286,7 @@ export const JURISDICTIONS: Record<string, Jurisdiction> = {
       requiresThreeWayReconciliation: true,
       interestHandling: "Interest as directed by court or Law Society rules",
       auditFrequency: "Annual — accountant's report to Law Society",
+      notes: "Governed by Legal Profession (Solicitors' Accounts) Rules. Strict segregation of client money required.",
     },
     professionalBodies: [
       { name: "Law Society of Singapore", abbreviation: "LawSoc", type: "legal", url: "https://lawsociety.org.sg" },
@@ -1314,6 +1317,7 @@ export const JURISDICTIONS: Record<string, Jurisdiction> = {
       taxWithholding: "No withholding — employees file individually (unique to Singapore)",
     },
     privacyLaw: "Personal Data Protection Act 2012 (PDPA) — amended 2020",
+    dataResidency: "No mandatory data localisation. PDPA governs cross-border transfers. Transfer must ensure comparable protection.",
     accountingStandards: ["SFRS(I) (Singapore Financial Reporting Standards, IFRS-converged)", "SFRS for Small Entities"],
   },
 };
