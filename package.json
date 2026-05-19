@@ -23,7 +23,7 @@
     "@tiptap/react": "^3.23.4",
     "@tiptap/starter-kit": "^3.23.4",
     "bcryptjs": "^3.0.3",
-    "dotenv": "^16.4.5",
+    "dotenv": "^17.4.2",
     "next": "^16.2.6",
     "next-auth": "^4.24.14",
     "openai": "^6.37.0",
