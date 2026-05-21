@@ -23,6 +23,8 @@ const links = {
   forFirms: [
     { label: "For attorneys", href: "/for-attorneys" },
     { label: "For accountants", href: "/for-accountants" },
+    { label: "HR partners", href: "/hr" },
+    { label: "Client portal", href: "/portal" },
     { label: "Cross-border admission", href: "/cross-border-admission" },
     { label: "Compliance records", href: "/compliance-records" },
     { label: "Migration", href: "/migration" },
@@ -49,6 +51,7 @@ const links = {
   resources: [
     { label: "Help centre", href: "/help" },
     { label: "Getting started", href: "/help/getting-started" },
+    { label: "How it works", href: "/how-it-works" },
     { label: "FAQ", href: "/help/faq" },
     { label: "System status", href: "/status" },
   ],

@@ -1,6 +1,7 @@
 import Header from "@/app/components/marketing/Header";
 import Footer from "@/app/components/marketing/Footer";
 import ForceLightTheme from "@/app/components/marketing/ForceLightTheme";
+import QuickHelp from "@/app/components/marketing/QuickHelp";
 
 export default function MarketingLayout({
   children,
@@ -18,6 +19,7 @@ export default function MarketingLayout({
       </a>
       <Header />
       <main id="main-content">{children}</main>
+      <QuickHelp />
       <Footer />
     </>
   );

@@ -441,6 +441,102 @@ export default async function DashboardPage() {
         </Link>
       </div>
 
+      {/* Recent Messages */}
+      <section className="mt-8">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <h2 className="font-serif text-headline text-navy-800">
+              Recent Messages
+            </h2>
+            <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1.5 text-[10px] font-bold leading-none text-white">
+              3
+            </span>
+          </div>
+          <Link
+            href="/messages"
+            className="text-sm font-medium text-navy-500 hover:text-navy-700"
+          >
+            View all &rarr;
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {[
+            {
+              id: "msg-1",
+              from: "Aroha Patel",
+              initials: "AP",
+              subject: "Visa Application Update",
+              preview: "I have uploaded the additional documents you requested for the visa application.",
+              time: "12m ago",
+              unread: true,
+              encrypted: true,
+            },
+            {
+              id: "msg-2",
+              from: "James Chen",
+              initials: "JC",
+              subject: "Thornton Acquisition - Tax",
+              preview: "The section 1031 exchange analysis is complete. I am attaching the memo for your review.",
+              time: "3h ago",
+              unread: true,
+              encrypted: true,
+            },
+            {
+              id: "msg-3",
+              from: "Sarah Mitchell",
+              initials: "SM",
+              subject: "Trust Reconciliation",
+              preview: "March reconciliation is complete. All balances verified. Report attached.",
+              time: "1d ago",
+              unread: true,
+              encrypted: false,
+            },
+          ].map((msg) => (
+            <Link
+              key={msg.id}
+              href="/messages"
+              className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-5 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover"
+            >
+              {msg.unread && (
+                <span className="absolute left-0 top-0 h-full w-1 bg-red-500 rounded-l-2xl" />
+              )}
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-serif text-sm font-semibold text-navy-600">
+                  {msg.initials}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="truncate text-sm font-bold text-navy-800">
+                      {msg.from}
+                    </p>
+                    <span className="flex-shrink-0 text-[11px] tabular-nums text-navy-400">
+                      {msg.time}
+                    </span>
+                  </div>
+                  <p className="mt-0.5 truncate text-xs font-medium text-navy-600">
+                    {msg.subject}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-navy-400">
+                {msg.preview}
+              </p>
+              <div className="mt-3 flex items-center gap-2">
+                {msg.encrypted && (
+                  <span className="flex items-center gap-1 text-[10px] text-forest-600">
+                    <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2.5" y="5" width="7" height="5.5" rx="1" />
+                      <path d="M4 5V3.5a2 2 0 014 0V5" />
+                    </svg>
+                    Encrypted
+                  </span>
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Recent Activity Feed */}
       <section className="mt-8">
         <div className="flex items-center gap-3">

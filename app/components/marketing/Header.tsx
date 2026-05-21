@@ -110,6 +110,16 @@ const MEGA_NAV: NavSection[] = [
           { label: "Canada", href: "/immigration/ca" },
         ],
       },
+      {
+        label: "For HR Firms",
+        href: "/hr",
+        desc: "Recruit for top legal and accounting firms",
+      },
+      {
+        label: "Client Portal",
+        href: "/portal",
+        desc: "Track matters, documents, and invoices",
+      },
     ],
   },
   {
