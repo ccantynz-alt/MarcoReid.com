@@ -83,6 +83,14 @@ export default function HomePage() {
                 View pricing &rarr;
               </Button>
             </div>
+            <p className="mt-6 animate-fade-up-3 text-sm text-white/60 opacity-0">
+              Not a professional?{" "}
+              <a href="/generate" className="text-gold-300 underline underline-offset-2 hover:text-gold-200">Generate a document</a>
+              {" "}&middot;{" "}
+              <a href="/find-a-lawyer" className="text-gold-300 underline underline-offset-2 hover:text-gold-200">Find a lawyer</a>
+              {" "}&middot;{" "}
+              <a href="/find-an-accountant" className="text-gold-300 underline underline-offset-2 hover:text-gold-200">Find an accountant</a>
+            </p>
           </div>
 
           {/* Dashboard mockup — visual proof above the fold */}
@@ -236,483 +244,6 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* PRODUCT 1: Marco Reid Legal — MASSIVE showcase                   */}
-      {/* ============================================================ */}
-      <section id="law" className="py-28 sm:py-40 lg:py-48" aria-label="Marco Reid Legal">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          {/* Product header */}
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
-                <span className="text-xl">&#9878;</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold tracking-wider text-forest-600">
-                  Marco Reid Legal
-                </p>
-                <h2 className="font-serif text-display text-navy-800">
-                  Westlaw in one tab. Clio in another. Email in a third. Sound familiar?
-                </h2>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              The average attorney spends more time managing software than practising law.
-              Case management in one tool. Research in another. Billing somewhere else.
-              Trust accounting in a spreadsheet. Client calls falling through the cracks.
-              You&rsquo;re paying $400/month for Westlaw, $100/month for Clio, $699 for Dragon,
-              $15/month for DocuSign &mdash; and none of them talk to each other.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Marco Reid Legal replaces all of them. Case management. Billing. Trust accounting.
-              Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
-              The Oracle for research. Marco Reid Voice for dictation. One login. One bill.
-              From $99/month.
-            </p>
-          </Reveal>
-
-          {/* MASSIVE full-width dashboard mockup */}
-          <MockupReveal className="mt-16">
-            <DashboardMockup />
-          </MockupReveal>
-
-          {/* Day-in-the-life scenarios */}
-          <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Reveal delay={0.05}>
-              <div className="product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#9778;</p>
-                <h3 className="mt-3 font-serif text-lg text-navy-700">Morning dashboard</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Three deadlines. Five unread messages. Trust account reconciliation green.
-                  Te Aro conveyancing settlement flagged for today. You know everything before your coffee is cold.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="product-card product-card-plum rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#8984;</p>
-                <h3 className="mt-3 font-serif text-lg text-navy-700">Research mid-document</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Hit &#8984;K. Marco slides in. &ldquo;Restraint of trade enforceability under NZ Employment Relations Act.&rdquo;
-                  Three verified cases in 3 seconds. Insert citation at cursor. 25 seconds total.
-                  LexisNexis takes 5 minutes.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <div className="product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#127908;</p>
-                <h3 className="mt-3 font-serif text-lg text-navy-700">Bill by speaking</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  &ldquo;Log four point five hours, Patel conveyancing, settlement attendance, standard rate.&rdquo;
-                  Done. Time entry created. Matter tagged. Ten seconds. Zero typing.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#128100;</p>
-                <h3 className="mt-3 font-serif text-lg text-navy-700">Client self-serve portal</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Your client sees their visa status, documents, invoices, and can message you securely.
-                  No phone call needed. Save 30 minutes per client, per week.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.25}>
-              <div className="product-card product-card-gold rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#9741;</p>
-                <h3 className="mt-3 font-serif text-lg text-navy-700">Cross-professional bridge</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Need a CPA&rsquo;s input? Click &ldquo;Involve accounting professional.&rdquo;
-                  Share the matter. Get a response in minutes. Every collaboration is a growth event.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <div className="product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#128274;</p>
-                <h3 className="mt-3 font-serif text-lg text-navy-700">Encrypted messaging</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-400">
-                  Every message threaded by matter. End-to-end encrypted. Permanently archived.
-                  Export any thread to email or PDF in one click. Legally defensible.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.2}>
-            <div className="mt-12 flex gap-4">
-              <Button href="/law">Learn more about Marco Reid Legal</Button>
-              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Full-width divider */}
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
-      {/* ============================================================ */}
-      <section id="marco" className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
-                <span className="text-xl">&#9673;</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold tracking-wider text-plum-600">
-                  Marco
-                </p>
-                <h2 className="font-serif text-display text-navy-800">
-                  You spend 4 hours researching what Marco answers in 25 seconds.
-                </h2>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Open a new tab. Go to Westlaw. Log in. Search. Find the case. Copy the citation.
-              Switch back to your document. Paste. Reformat. Five minutes. Flow destroyed.
-              You do this 20 times a day. That&rsquo;s 100 minutes of your life &mdash; every single day &mdash;
-              spent on a workflow that should take seconds.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Hit &#8984;K. Marco slides in without leaving your document. Type your question.
-              Three verified cases in 3 seconds. Click &ldquo;Insert citation.&rdquo; Done. 25 seconds.
-              And it works for both legal AND accounting research simultaneously &mdash;
-              because nobody else owns both sides. Cross-domain queries that Westlaw, LexisNexis,
-              and Harvey AI simply cannot answer.
-            </p>
-          </Reveal>
-
-          {/* MASSIVE Marco research mockup */}
-          <MockupReveal className="mt-16">
-            <MarcoMockup />
-          </MockupReveal>
-
-          {/* Two Marco domains side by side */}
-          <div className="mt-20 grid gap-6 sm:grid-cols-2">
-            <Reveal delay={0.05}>
-              <div className="rounded-xl border border-plum-100 bg-plum-50/30 p-8">
-                <p className="text-xs font-bold tracking-wider text-plum-600">Marco &mdash; Legal</p>
-                <h3 className="mt-4 text-xl font-serif text-navy-700">
-                  Case law. Statutes. Court opinions.
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-navy-400">
-                  Every US federal and state court decision. Every statute. Every regulation.
-                  All public domain. All verified. Hit &#8984;K from any document, email, or message.
-                  Three verified cases in 3 seconds. Citation inserted at your cursor.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="rounded-xl border border-forest-200 bg-forest-50/30 p-8">
-                <p className="text-xs font-bold tracking-wider text-forest-600">Marco &mdash; Accounting</p>
-                <h3 className="mt-4 text-xl font-serif text-navy-700">
-                  Tax codes. IRS rulings. GAAP standards.
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-navy-400">
-                  Every IRS code section, revenue ruling, and Treasury regulation. 50-state tax codes.
-                  GAAP and IFRS standards. All verified against official sources. The CPA who used
-                  to call a taxation agent now has the answer in 3 seconds.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Cross-domain moat */}
-          <Reveal delay={0.15}>
-            <div className="mt-8 rounded-xl bg-navy-500 p-8 sm:p-10">
-              <p className="text-xs font-bold tracking-wider text-gold-300">
-                The cross-domain moat &mdash; legal + accounting in one query
-              </p>
-              <p className="mt-4 font-serif text-headline text-white">
-                &ldquo;What are the immigration tax implications of this corporate
-                structure for a Tier-1 visa applicant?&rdquo;
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-white/85">
-                That query requires both legal research and tax intelligence simultaneously.
-                Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both sides.
-                This is a category that did not exist before Marco Reid created it.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="mt-12 flex gap-4">
-              <Button href="/marco">Learn more about Marco</Button>
-              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
-      {/* ============================================================ */}
-      <section id="voice" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Voice">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-50">
-                <span className="text-xl">&#127908;</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold tracking-wider text-navy-500">
-                  Marco Reid Voice
-                </p>
-                <h2 className="font-serif text-display text-navy-800">
-                  Dragon costs $699 and can&rsquo;t file a motion.
-                  Marco Reid Voice can. By speaking.
-                </h2>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Every dictation tool on the market is an island. Dragon can&rsquo;t log a billing entry.
-              WisprFlow can&rsquo;t schedule a meeting tagged to a matter. Otter can&rsquo;t query a legal
-              research database. They transcribe words. That&rsquo;s it. They sit outside your workflow.
-              Marco Reid Voice doesn&rsquo;t just transcribe. It files motions, logs billing, schedules
-              meetings, queries Marco, and sends matter-tagged messages. All by speaking. In 9 languages.
-            </p>
-          </Reveal>
-
-          {/* Live typing demo — large and prominent */}
-          <Reveal delay={0.15}>
-            <div className="mt-12 rounded-xl border-2 border-forest-200 bg-forest-50 p-6 sm:p-8">
-              <div className="flex items-center gap-4">
-                <div className="relative shrink-0">
-                  <div className="pulse-ring absolute inset-0 rounded-full border-2 border-forest-400/50" />
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest-500">
-                    <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
-                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-forest-700">Marco Reid Voice &mdash; listening</p>
-                  <TypingDemo className="mt-1 text-lg" />
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* MASSIVE Voice mockup */}
-          <MockupReveal className="mt-12">
-            <VoiceMockup />
-          </MockupReveal>
-
-          {/* Voice command examples */}
-          <div className="mt-20 grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                context: "Inside email",
-                command: "\"Send this to Aroha Patel, subject conveyancing settlement update, mark urgent, attach the title search from the matter.\"",
-                result: "Recipient, subject, priority, and attachment \u2014 all set by voice.",
-              },
-              {
-                context: "Inside billing",
-                command: "\"Log four point five hours on Patel conveyancing, settlement attendance, today\u2019s date, standard rate.\"",
-                result: "Time entry created. Matter tagged. Rate applied. Ten seconds.",
-              },
-              {
-                context: "Inside documents",
-                command: "\"Ask Marco \u2014 NZ Property Law Act remedies for breach of warranty, insert the controlling case.\"",
-                result: "Marco queried. Citation inserted at cursor. Never stopped dictating.",
-              },
-              {
-                context: "Inside calendar",
-                command: "\"Schedule a call with Patricia Thornton, Thursday at two pm, tag to Thornton acquisition, send Zoom link.\"",
-                result: "Meeting created. Matter tagged. Zoom generated. Invite sent.",
-              },
-            ].map((cmd) => (
-              <Reveal key={cmd.context} delay={0.05}>
-                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card">
-                  <p className="text-xs font-bold tracking-wider text-navy-400">{cmd.context}</p>
-                  <p className="mt-3 font-serif text-sm italic leading-relaxed text-navy-700">{cmd.command}</p>
-                  <p className="mt-3 text-sm font-medium text-forest-600">&rarr; {cmd.result}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2}>
-            <div className="mt-12 flex gap-4">
-              <Button href="/dictation">Learn more about Marco Reid Voice</Button>
-              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* PRODUCT 4: Marco Reid Courtroom                                  */}
-      {/* ============================================================ */}
-      <section id="courtroom" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Courtroom">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
-                <span className="text-xl">&#9878;</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold tracking-wider text-plum-600">
-                  Marco Reid Courtroom
-                </p>
-                <h2 className="font-serif text-display text-navy-800">
-                  Court reporters cost $500/day.
-                  Marco Reid Courtroom replaces them.
-                </h2>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              Depositions still run on court reporters at $300&ndash;500 per day.
-              Evidence is managed in binders. E-filing is a nightmare of disconnected portals.
-              And when opposing counsel cites a case you don&rsquo;t recognise mid-hearing,
-              you have no way to verify it without leaving the courtroom.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Marco Reid Courtroom: AI transcription that replaces stenographers. Tamper-evident
-              evidence with cryptographic chain of custody. Judge analytics that tell you
-              ruling patterns before you walk in. And Marco on your iPad &mdash;
-              verify any citation in 3 seconds, mid-hearing. Permission-based. Court-admissible.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                { title: "AI deposition transcription", desc: "Real-time transcription with legal vocabulary, speaker ID, and video sync. Replaces $500/day court reporters." },
-                { title: "Courtroom e-filing", desc: "File electronically. Court-stamped confirmation. Deadlines auto-calculated." },
-                { title: "Tamper-evident evidence", desc: "Cryptographic chain of custody. Immutable audit trails. Court-admissible." },
-                { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends. Know the judge." },
-                { title: "Exhibit management", desc: "Numbered, tagged, annotated, presentable from iPad. Court-ready." },
-                { title: "Oracle mid-hearing", desc: "Verify a citation opposing counsel raised. 3 seconds. On your iPad." },
-              ].map((f) => (
-                <div key={f.title} className="rounded-xl border border-navy-100 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                  <p className="font-semibold text-navy-700">{f.title}</p>
-                  <p className="mt-2 text-sm text-navy-400">{f.desc}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="mt-10 flex gap-4">
-              <Button href="/courtroom">Explore Marco Reid Courtroom</Button>
-              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* PRODUCT 5: Marco Reid Accounting                                 */}
-      {/* ============================================================ */}
-      <section id="accounting" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Accounting">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          <Reveal>
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
-                <span className="text-xl">&#9671;</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold tracking-wider text-forest-600">
-                  Marco Reid Accounting
-                </p>
-                <h2 className="font-serif text-display text-navy-800">
-                  Xero, QuickBooks, and MYOB do bookkeeping.
-                  Marco Reid runs the entire firm.
-                </h2>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
-              97% of CPA firms say they use technology inefficiently. Xero keeps removing
-              features. QuickBooks raised prices 400%. MYOB stopped innovating. None of
-              them handle payroll across jurisdictions. None of them file GST, VAT, and
-              sales tax in one workflow. None of them have AI research, voice input, or
-              any way to catch up a client who is ten years behind.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
-              Marco Reid Accounting is the most advanced accounting platform on earth.
-              Autonomous bookkeeping. Payroll across NZ, AU, US, UK, and Canada in one
-              run. GST, VAT, and 50-state sales tax filed automatically. Provisional and
-              income tax drafted the moment the year closes. And a Catch-Up Centre that
-              cleans up years of unfiled returns with a qualified accountant signing off
-              on every lodgement.
-            </p>
-          </Reveal>
-
-          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: "\u267B", title: "Autonomous bookkeeping", desc: "AI posts, reconciles, and closes the books. You review and approve in nine minutes." },
-              { icon: "\uD83D\uDCB3", title: "Payroll, 5 jurisdictions", desc: "NZ PAYE, AU PAYG, US 50-state, UK PAYE, CA CPP/EI \u2014 in one payroll run." },
-              { icon: "\u2713", title: "GST / VAT / sales tax", desc: "NZ GST, AU GST, UK VAT, CA GST/HST, and US 50-state sales tax. Filed automatically." },
-              { icon: "\uD83D\uDCC5", title: "Provisional + income tax", desc: "IR3, IR4, 1040, 1120, SA100, T1, T2 drafted the moment the year closes." },
-              { icon: "\u23EA", title: "Catch-Up Centre", desc: "Years behind? Upload what you have. AI reconstructs, files everything. Fixed-fee." },
-              { icon: "\u25C8", title: "Marco for accounting", desc: "Tax research with verified citations from IR, IRS, ATO, HMRC, and CRA in three seconds." },
-            ].map((f) => (
-              <Reveal key={f.title} delay={0.05}>
-                <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-50 text-lg text-forest-600">
-                    {f.icon}
-                  </span>
-                  <h3 className="mt-4 font-semibold text-navy-700">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-400">{f.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2}>
-            <div className="mt-12 flex flex-wrap gap-4">
-              <Button href="/accounting">Explore Accounting</Button>
-              <Button href="/catch-up-centre" variant="secondary">Catch-Up Centre</Button>
-              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
       {/* PUBLIC TOOLS — what you can do right now                      */}
       {/* ============================================================ */}
       <section className="bg-white py-24 sm:py-36" aria-label="Public tools available now">
@@ -816,6 +347,487 @@ export default function HomePage() {
               before release. See <a href="/compliance-records" className="font-semibold text-navy-600 hover:text-navy-800">/compliance-records</a> for the
               audit posture.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* PRODUCT 1: Marco Reid Legal — MASSIVE showcase                   */}
+      {/* ============================================================ */}
+      <section id="law" className="py-28 sm:py-40 lg:py-48" aria-label="Marco Reid Legal">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          {/* Product header */}
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
+                <span className="text-xl">&#9878;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-forest-600">
+                  Marco Reid Legal
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  Westlaw in one tab. Clio in another. Email in a third. Sound familiar?
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              The average attorney spends more time managing software than practising law.
+              Case management in one tool. Research in another. Billing somewhere else.
+              Trust accounting in a spreadsheet. Client calls falling through the cracks.
+              You&rsquo;re paying $400/month for Westlaw, $100/month for Clio, $699 for Dragon,
+              $15/month for DocuSign &mdash; and none of them talk to each other.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              Marco Reid Legal replaces all of them. Case management. Billing. Trust accounting.
+              Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
+              The Oracle for research. Marco Reid Voice for dictation. One login. One bill.
+              From $99/month.
+            </p>
+          </Reveal>
+
+          {/* MASSIVE full-width dashboard mockup */}
+          <MockupReveal className="mt-16">
+            <DashboardMockup />
+          </MockupReveal>
+
+          {/* Day-in-the-life scenarios */}
+          <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Reveal delay={0.05}>
+              <a href="/law" className="block product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
+                <p className="text-2xl">&#9778;</p>
+                <h3 className="mt-3 font-serif text-lg text-navy-700">Morning dashboard</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                  Three deadlines. Five unread messages. Trust account reconciliation green.
+                  Te Aro conveyancing settlement flagged for today. You know everything before your coffee is cold.
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <a href="/oracle" className="block product-card product-card-plum rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
+                <p className="text-2xl">&#8984;</p>
+                <h3 className="mt-3 font-serif text-lg text-navy-700">Research mid-document</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                  Hit &#8984;K. Marco slides in. &ldquo;Restraint of trade enforceability under NZ Employment Relations Act.&rdquo;
+                  Three verified cases in 3 seconds. Insert citation at cursor. 25 seconds total.
+                  LexisNexis takes 5 minutes.
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <a href="/dictation" className="block product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
+                <p className="text-2xl">&#127908;</p>
+                <h3 className="mt-3 font-serif text-lg text-navy-700">Bill by speaking</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                  &ldquo;Log four point five hours, Patel conveyancing, settlement attendance, standard rate.&rdquo;
+                  Done. Time entry created. Matter tagged. Ten seconds. Zero typing.
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <a href="/law" className="block product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
+                <p className="text-2xl">&#128100;</p>
+                <h3 className="mt-3 font-serif text-lg text-navy-700">Client self-serve portal</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                  Your client sees their visa status, documents, invoices, and can message you securely.
+                  No phone call needed. Save 30 minutes per client, per week.
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <a href="/accounting" className="block product-card product-card-gold rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
+                <p className="text-2xl">&#9741;</p>
+                <h3 className="mt-3 font-serif text-lg text-navy-700">Cross-professional bridge</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                  Need a CPA&rsquo;s input? Click &ldquo;Involve accounting professional.&rdquo;
+                  Share the matter. Get a response in minutes. Every collaboration is a growth event.
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <a href="/law" className="block product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
+                <p className="text-2xl">&#128274;</p>
+                <h3 className="mt-3 font-serif text-lg text-navy-700">Encrypted messaging</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-400">
+                  Every message threaded by matter. End-to-end encrypted. Permanently archived.
+                  Export any thread to email or PDF in one click. Legally defensible.
+                </p>
+              </a>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 flex gap-4">
+              <Button href="/law">Learn more about Marco Reid Legal</Button>
+              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Full-width divider */}
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
+      {/* ============================================================ */}
+      <section id="marco" className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
+                <span className="text-xl">&#9673;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-plum-600">
+                  Marco
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  You spend 4 hours researching what Marco answers in 25 seconds.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              Open a new tab. Go to Westlaw. Log in. Search. Find the case. Copy the citation.
+              Switch back to your document. Paste. Reformat. Five minutes. Flow destroyed.
+              You do this 20 times a day. That&rsquo;s 100 minutes of your life &mdash; every single day &mdash;
+              spent on a workflow that should take seconds.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              Hit &#8984;K. Marco slides in without leaving your document. Type your question.
+              Three verified cases in 3 seconds. Click &ldquo;Insert citation.&rdquo; Done. 25 seconds.
+              And it works for both legal AND accounting research simultaneously &mdash;
+              because nobody else owns both sides. Cross-domain queries that Westlaw, LexisNexis,
+              and Harvey AI simply cannot answer.
+            </p>
+          </Reveal>
+
+          {/* MASSIVE Marco research mockup */}
+          <MockupReveal className="mt-16">
+            <MarcoMockup />
+          </MockupReveal>
+
+          {/* Two Marco domains side by side */}
+          <div className="mt-20 grid gap-6 sm:grid-cols-2">
+            <Reveal delay={0.05}>
+              <a href="/marco/legal" className="block rounded-xl border border-plum-100 bg-plum-50/30 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                <p className="text-xs font-bold tracking-wider text-plum-600">Marco &mdash; Legal</p>
+                <h3 className="mt-4 text-xl font-serif text-navy-700">
+                  Case law. Statutes. Court opinions.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-navy-400">
+                  Every US federal and state court decision. Every statute. Every regulation.
+                  All public domain. All verified. Hit &#8984;K from any document, email, or message.
+                  Three verified cases in 3 seconds. Citation inserted at your cursor.
+                </p>
+              </a>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <a href="/marco/accounting" className="block rounded-xl border border-forest-200 bg-forest-50/30 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                <p className="text-xs font-bold tracking-wider text-forest-600">Marco &mdash; Accounting</p>
+                <h3 className="mt-4 text-xl font-serif text-navy-700">
+                  Tax codes. IRS rulings. GAAP standards.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-navy-400">
+                  Every IRS code section, revenue ruling, and Treasury regulation. 50-state tax codes.
+                  GAAP and IFRS standards. All verified against official sources. The CPA who used
+                  to call a taxation agent now has the answer in 3 seconds.
+                </p>
+              </a>
+            </Reveal>
+          </div>
+
+          {/* Cross-domain moat */}
+          <Reveal delay={0.15}>
+            <a href="/oracle" className="mt-8 block rounded-xl bg-navy-500 p-8 sm:p-10 transition-all duration-300 hover:bg-navy-600">
+              <p className="text-xs font-bold tracking-wider text-gold-300">
+                The cross-domain moat &mdash; legal + accounting in one query
+              </p>
+              <p className="mt-4 font-serif text-headline text-white">
+                &ldquo;What are the immigration tax implications of this corporate
+                structure for a Tier-1 visa applicant?&rdquo;
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-white/85">
+                That query requires both legal research and tax intelligence simultaneously.
+                Westlaw can&rsquo;t answer it. QuickBooks can&rsquo;t answer it. Nobody else owns both sides.
+                This is a category that did not exist before Marco Reid created it.
+              </p>
+            </a>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 flex gap-4">
+              <Button href="/oracle">Learn more about Marco</Button>
+              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
+      {/* ============================================================ */}
+      <section id="voice" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Voice">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-50">
+                <span className="text-xl">&#127908;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-navy-500">
+                  Marco Reid Voice
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  Dragon costs $699 and can&rsquo;t file a motion.
+                  Marco Reid Voice can. By speaking.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              Every dictation tool on the market is an island. Dragon can&rsquo;t log a billing entry.
+              WisprFlow can&rsquo;t schedule a meeting tagged to a matter. Otter can&rsquo;t query a legal
+              research database. They transcribe words. That&rsquo;s it. They sit outside your workflow.
+              Marco Reid Voice doesn&rsquo;t just transcribe. It files motions, logs billing, schedules
+              meetings, queries Marco, and sends matter-tagged messages. All by speaking. In 9 languages.
+            </p>
+          </Reveal>
+
+          {/* Live typing demo — large and prominent */}
+          <Reveal delay={0.15}>
+            <div className="mt-12 rounded-xl border-2 border-forest-200 bg-forest-50 p-6 sm:p-8">
+              <div className="flex items-center gap-4">
+                <div className="relative shrink-0">
+                  <div className="pulse-ring absolute inset-0 rounded-full border-2 border-forest-400/50" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest-500">
+                    <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                      <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold text-forest-700">Marco Reid Voice &mdash; listening</p>
+                  <TypingDemo className="mt-1 text-lg" />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* MASSIVE Voice mockup */}
+          <MockupReveal className="mt-12">
+            <VoiceMockup />
+          </MockupReveal>
+
+          {/* Voice command examples */}
+          <div className="mt-20 grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                context: "Inside email",
+                command: "\"Send this to Aroha Patel, subject conveyancing settlement update, mark urgent, attach the title search from the matter.\"",
+                result: "Recipient, subject, priority, and attachment \u2014 all set by voice.",
+                href: "/dictation",
+              },
+              {
+                context: "Inside billing",
+                command: "\"Log four point five hours on Patel conveyancing, settlement attendance, today\u2019s date, standard rate.\"",
+                result: "Time entry created. Matter tagged. Rate applied. Ten seconds.",
+                href: "/dictation",
+              },
+              {
+                context: "Inside documents",
+                command: "\"Ask Marco \u2014 NZ Property Law Act remedies for breach of warranty, insert the controlling case.\"",
+                result: "Marco queried. Citation inserted at cursor. Never stopped dictating.",
+                href: "/dictation",
+              },
+              {
+                context: "Inside calendar",
+                command: "\"Schedule a call with Patricia Thornton, Thursday at two pm, tag to Thornton acquisition, send Zoom link.\"",
+                result: "Meeting created. Matter tagged. Zoom generated. Invite sent.",
+                href: "/dictation",
+              },
+            ].map((cmd) => (
+              <Reveal key={cmd.context} delay={0.05}>
+                <a href={cmd.href} className="block rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+                  <p className="text-xs font-bold tracking-wider text-navy-400">{cmd.context}</p>
+                  <p className="mt-3 font-serif text-sm italic leading-relaxed text-navy-700">{cmd.command}</p>
+                  <p className="mt-3 text-sm font-medium text-forest-600">&rarr; {cmd.result}</p>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 flex gap-4">
+              <Button href="/dictation">Learn more about Marco Reid Voice</Button>
+              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* PRODUCT 4: Marco Reid Courtroom                                  */}
+      {/* ============================================================ */}
+      <section id="courtroom" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Courtroom">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
+                <span className="text-xl">&#9878;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-plum-600">
+                  Marco Reid Courtroom
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  Court reporters cost $500/day.
+                  Marco Reid Courtroom replaces them.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              Depositions still run on court reporters at $300&ndash;500 per day.
+              Evidence is managed in binders. E-filing is a nightmare of disconnected portals.
+              And when opposing counsel cites a case you don&rsquo;t recognise mid-hearing,
+              you have no way to verify it without leaving the courtroom.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              Marco Reid Courtroom: AI transcription that replaces stenographers. Tamper-evident
+              evidence with cryptographic chain of custody. Judge analytics that tell you
+              ruling patterns before you walk in. And Marco on your iPad &mdash;
+              verify any citation in 3 seconds, mid-hearing. Permission-based. Court-admissible.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: "AI deposition transcription", desc: "Real-time transcription with legal vocabulary, speaker ID, and video sync. Replaces $500/day court reporters.", href: "/courtroom" },
+                { title: "Courtroom e-filing", desc: "File electronically. Court-stamped confirmation. Deadlines auto-calculated.", href: "/courtroom" },
+                { title: "Tamper-evident evidence", desc: "Cryptographic chain of custody. Immutable audit trails. Court-admissible.", href: "/courtroom" },
+                { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends. Know the judge.", href: "/courtroom" },
+                { title: "Exhibit management", desc: "Numbered, tagged, annotated, presentable from iPad. Court-ready.", href: "/courtroom" },
+                { title: "Oracle mid-hearing", desc: "Verify a citation opposing counsel raised. 3 seconds. On your iPad.", href: "/oracle" },
+              ].map((f) => (
+                <a key={f.title} href={f.href} className="block rounded-xl border border-navy-100 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <p className="font-semibold text-navy-700">{f.title}</p>
+                  <p className="mt-2 text-sm text-navy-400">{f.desc}</p>
+                </a>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex gap-4">
+              <Button href="/courtroom">Explore Marco Reid Courtroom</Button>
+              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* PRODUCT 5: Marco Reid Accounting                                 */}
+      {/* ============================================================ */}
+      <section id="accounting" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Accounting">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
+                <span className="text-xl">&#9671;</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold tracking-wider text-forest-600">
+                  Marco Reid Accounting
+                </p>
+                <h2 className="font-serif text-display text-navy-800">
+                  Xero, QuickBooks, and MYOB do bookkeeping.
+                  Marco Reid runs the entire firm.
+                </h2>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
+              97% of CPA firms say they use technology inefficiently. Xero keeps removing
+              features. QuickBooks raised prices 400%. MYOB stopped innovating. None of
+              them handle payroll across jurisdictions. None of them file GST, VAT, and
+              sales tax in one workflow. None of them have AI research, voice input, or
+              any way to catch up a client who is ten years behind.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
+              Marco Reid Accounting is the most advanced accounting platform on earth.
+              Autonomous bookkeeping. Payroll across NZ, AU, US, UK, and Canada in one
+              run. GST, VAT, and 50-state sales tax filed automatically. Provisional and
+              income tax drafted the moment the year closes. And a Catch-Up Centre that
+              cleans up years of unfiled returns with a qualified accountant signing off
+              on every lodgement.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: "\u267B", title: "Autonomous bookkeeping", desc: "AI posts, reconciles, and closes the books. You review and approve in nine minutes.", href: "/accounting" },
+              { icon: "\uD83D\uDCB3", title: "Payroll, 5 jurisdictions", desc: "NZ PAYE, AU PAYG, US 50-state, UK PAYE, CA CPP/EI \u2014 in one payroll run.", href: "/accounting" },
+              { icon: "\u2713", title: "GST / VAT / sales tax", desc: "NZ GST, AU GST, UK VAT, CA GST/HST, and US 50-state sales tax. Filed automatically.", href: "/accounting" },
+              { icon: "\uD83D\uDCC5", title: "Provisional + income tax", desc: "IR3, IR4, 1040, 1120, SA100, T1, T2 drafted the moment the year closes.", href: "/accounting" },
+              { icon: "\u23EA", title: "Catch-Up Centre", desc: "Years behind? Upload what you have. AI reconstructs, files everything. Fixed-fee.", href: "/catch-up-centre" },
+              { icon: "\u25C8", title: "Marco for accounting", desc: "Tax research with verified citations from IR, IRS, ATO, HMRC, and CRA in three seconds.", href: "/marco/accounting" },
+            ].map((f) => (
+              <Reveal key={f.title} delay={0.05}>
+                <a href={f.href} className="block rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-50 text-lg text-forest-600">
+                    {f.icon}
+                  </span>
+                  <h3 className="mt-4 font-semibold text-navy-700">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy-400">{f.desc}</p>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-12 flex flex-wrap gap-4">
+              <Button href="/accounting">Explore Accounting</Button>
+              <Button href="/catch-up-centre" variant="secondary">Catch-Up Centre</Button>
+              <Button href="/pricing" variant="ghost">Pricing &rarr;</Button>
+            </div>
           </Reveal>
         </div>
       </section>
