@@ -206,21 +206,16 @@ export default function AcademyPage() {
       {/* ============================================================ */}
       {/* HERO                                                          */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-navy-500 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-36">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="animate-drift absolute -right-48 -top-48 h-[480px] w-[480px] rounded-full bg-gold-500/15 blur-[140px]" />
-          <div className="animate-drift-reverse absolute -left-48 -bottom-32 h-[420px] w-[420px] rounded-full bg-forest-500/12 blur-[120px]" />
-        </div>
-
+      <section className="relative overflow-hidden bg-linear-to-b from-navy-50/50 to-white pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-36">
         <Container>
           <div className="relative mx-auto max-w-3xl text-center">
-            <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.2em] text-gold-300 opacity-0">
+            <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.2em] text-gold-600 opacity-0">
               Marco Reid Academy
             </p>
-            <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-white opacity-0">
+            <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-navy-800 opacity-0">
               The world&rsquo;s professional training network.
             </h1>
-            <p className="mt-6 animate-fade-up-2 text-xl leading-relaxed text-white/90 opacity-0">
+            <p className="mt-6 animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
               From student to partner. CPD, specialist certificates, and
               pre-qualification programs for lawyers and accountants across 8
               countries. Accredited by the bodies that matter. Built by the
@@ -234,7 +229,6 @@ export default function AcademyPage() {
                 href="#courses"
                 variant="ghost"
                 size="lg"
-                className="text-white hover:text-gold-300"
               >
                 Browse courses &darr;
               </Button>

@@ -32,23 +32,23 @@ export default function CourtroomPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <section className="bg-linear-to-b from-navy-50/50 to-white pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
-          <p className="text-sm font-semibold tracking-wider text-forest-300">
+          <p className="text-sm font-semibold tracking-wider text-forest-600">
             Marco Reid Courtroom
           </p>
-          <h1 className="mt-6 font-serif text-hero text-white">
+          <h1 className="mt-6 font-serif text-hero text-navy-800">
             The courtroom goes digital.
             <br />
             And it runs on Marco Reid.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-xl text-navy-200">
+          <p className="mx-auto mt-6 max-w-2xl text-xl text-navy-400">
             Depositions with real-time AI transcription. Electronic filing with courts.
             Evidence management with cryptographic chain of custody. Judge analytics.
             And Marco available on your iPad mid-hearing. This is courtroom
             technology that didn&rsquo;t exist until now.
           </p>
-          <p className="mt-4 text-sm text-navy-300">Contact us for institutional and pilot pricing</p>
+          <p className="mt-4 text-sm text-navy-400">Contact us for institutional and pilot pricing</p>
           <div className="mt-8">
             <Button href="/courts/pilot" size="lg" variant="primary">
               Request a pilot

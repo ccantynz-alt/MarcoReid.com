@@ -13,6 +13,7 @@ const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal
 const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 const ROICalculator = dynamic(() => import("@/app/components/marketing/ROICalculator"));
 const StickyProductNav = dynamic(() => import("@/app/components/marketing/StickyProductNav"));
+const CountrySelector = dynamic(() => import("@/app/components/shared/CountrySelector"));
 
 export const metadata: Metadata = {
   title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
@@ -128,6 +129,19 @@ export default function HomePage() {
               </p>
               <p className="mt-1 text-xs text-white/80">languages from day one</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* COUNTRY SELECTOR — jurisdiction-aware experience               */}
+      {/* ============================================================ */}
+      <section className="py-16 sm:py-24" aria-label="Select your country">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
+          <h2 className="font-serif text-display text-navy-800">Where are you?</h2>
+          <p className="mt-4 text-lg text-navy-400">Select your country to see services, pricing, and forms specific to your jurisdiction.</p>
+          <div className="mt-10">
+            <CountrySelector />
           </div>
         </div>
       </section>

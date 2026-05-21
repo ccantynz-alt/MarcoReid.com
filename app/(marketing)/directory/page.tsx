@@ -4,6 +4,7 @@ import Container from "@/app/components/shared/Container";
 import Reveal from "@/app/components/effects/Reveal";
 import Button from "@/app/components/shared/Button";
 import { prisma } from "@/lib/prisma";
+import DirectorySearch from "./DirectorySearch";
 
 export const dynamic = "force-dynamic";
 
@@ -66,6 +67,13 @@ export default async function DirectoryPage() {
               UK + US
             </p>
           </div>
+        </Container>
+      </section>
+
+      {/* Search and filter (shows sample data when database is empty) */}
+      <section className="py-10 sm:py-14">
+        <Container>
+          <DirectorySearch hasRealData={pros.length > 0} />
         </Container>
       </section>
 

@@ -10,6 +10,7 @@ import {
 } from "@/app/components/platform/CommandPalette";
 import FloatingTimer from "@/app/components/platform/FloatingTimer";
 import DarkModeToggle from "@/app/components/shared/DarkModeToggle";
+import NotificationBadge from "@/app/components/platform/NotificationBadge";
 
 /* ------------------------------------------------------------------ */
 /*  Icons – lightweight inline SVGs                                    */
@@ -80,6 +81,15 @@ function IconSignatures({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+    </svg>
+  );
+}
+
+function IconMessages({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
     </svg>
   );
 }
@@ -301,6 +311,7 @@ const NAV_GROUPS: NavGroup[] = [
     heading: "Documents & Communication",
     items: [
       { label: "Documents", href: "/documents", icon: IconDocuments },
+      { label: "Messages", href: "/messages", icon: IconMessages },
       { label: "E-Signatures", href: "/signatures", icon: IconSignatures },
     ],
   },
@@ -362,10 +373,12 @@ function SidebarLink({
   item,
   active,
   onClick,
+  badgeCount,
 }: {
   item: NavItem;
   active: boolean;
   onClick?: () => void;
+  badgeCount?: number;
 }) {
   const Icon = item.icon;
   return (
@@ -385,7 +398,10 @@ function SidebarLink({
             : "text-navy-400 group-hover:text-navy-500 dark:text-navy-400 dark:group-hover:text-navy-300"
         }`}
       />
-      {item.label}
+      <span className="flex-1">{item.label}</span>
+      {badgeCount != null && badgeCount > 0 && (
+        <NotificationBadge count={badgeCount} />
+      )}
     </Link>
   );
 }
@@ -480,6 +496,7 @@ function Sidebar({
                     item={item}
                     active={isActive(item.href)}
                     onClick={onClose}
+                    badgeCount={item.label === "Messages" ? 3 : undefined}
                   />
                 ))}
               </div>

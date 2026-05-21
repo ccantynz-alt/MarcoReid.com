@@ -75,21 +75,17 @@ export default function AccountingPage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-navy-500">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="animate-drift absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-forest-500/25 blur-[120px]" />
-          <div className="animate-drift-reverse absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold-400/15 blur-[100px]" />
-        </div>
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-navy-50/50 to-white">
         <Container className="relative text-center">
-          <p className="animate-fade-up text-sm font-semibold uppercase tracking-widest text-gold-400 opacity-0">
+          <p className="animate-fade-up text-sm font-semibold uppercase tracking-widest text-gold-600 opacity-0">
             Marco Reid Accounting
           </p>
-          <h1 className="mt-8 animate-fade-up-1 text-hero font-serif text-white opacity-0">
+          <h1 className="mt-8 animate-fade-up-1 text-hero font-serif text-navy-800 opacity-0">
             The most advanced
             <br />
-            <span className="text-gold-300">accounting platform on earth.</span>
+            <span className="text-gold-600">accounting platform on earth.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl animate-fade-up-2 text-xl leading-relaxed text-navy-200 opacity-0">
+          <p className="mx-auto mt-8 max-w-3xl animate-fade-up-2 text-xl leading-relaxed text-navy-400 opacity-0">
             Autonomous bookkeeping. Payroll across five jurisdictions. GST, VAT,
             and sales tax filed automatically. Provisional and income tax, done.
             A Catch-Up Centre that cleans up ten years of missed returns. AI does
@@ -98,7 +94,7 @@ export default function AccountingPage() {
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
             <Button href="/pricing" size="lg">Start using it today</Button>
-            <Button href="/catch-up-centre" size="lg" variant="ghost" className="text-white hover:text-navy-200">
+            <Button href="/catch-up-centre" size="lg" variant="ghost">
               Years behind? Catch-Up Centre &rarr;
             </Button>
           </div>
