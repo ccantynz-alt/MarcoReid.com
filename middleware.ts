@@ -16,5 +16,6 @@ export const config = {
     "/documents/:path*",
     "/trust/:path*",
     "/billing/:path*",
+    "/academy/learn/:path*",
   ],
 };

@@ -184,6 +184,10 @@ const MEGA_NAV: NavSection[] = [
     ],
   },
   {
+    label: "Academy",
+    href: "/academy",
+  },
+  {
     label: "Pricing",
     href: "/pricing",
   },
