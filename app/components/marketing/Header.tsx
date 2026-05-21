@@ -24,6 +24,17 @@ interface NavSection {
 
 const MEGA_NAV: NavSection[] = [
   {
+    label: "Get Help",
+    columns: 1,
+    children: [
+      { label: "Generate a Document", href: "/generate", desc: "AI-drafted wills, contracts, and agreements" },
+      { label: "Find a Lawyer", href: "/find-a-lawyer", desc: "Search verified lawyers by specialty" },
+      { label: "Find an Accountant", href: "/find-an-accountant", desc: "Search verified accountants and CPAs" },
+      { label: "Browse Services", href: "/nz/services", desc: "All legal and accounting services" },
+      { label: "Court Rules Calculator", href: "/tools/court-rules", desc: "Calculate filing deadlines" },
+    ],
+  },
+  {
     label: "Products",
     columns: 3,
     children: [
