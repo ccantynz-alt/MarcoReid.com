@@ -49,6 +49,8 @@ export default function HomePage() {
       {/* HERO — The grand entrance                                     */}
       {/* ============================================================ */}
       <section className="relative overflow-hidden bg-navy-500 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-40">
+        {/* Animated grid mesh background */}
+        <div className="hero-grid pointer-events-none absolute inset-0" />
         {/* Animated decorative gradient orbs — pushed to corners so they never wash over hero copy */}
         <div className="pointer-events-none absolute inset-0">
           <div className="animate-drift absolute -right-48 -top-48 h-[480px] w-[480px] rounded-full bg-forest-500/15 blur-[140px]" />
@@ -65,9 +67,11 @@ export default function HomePage() {
               Soft-launching New Zealand &middot; Australia &middot; 2026
             </p>
             <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-white opacity-0">
-              You became a professional to practise your craft.
+              You became a professional to practise your{" "}
+              <span className="text-shimmer">craft</span>.
               Not to drown in software.
             </h1>
+            <div className="gold-line-glow mx-auto mt-8 w-24 animate-fade-up-2 opacity-0" />
             <p className="mt-6 animate-fade-up-2 text-xl leading-relaxed text-navy-100 opacity-0">
               45% of legal professionals use 5&ndash;10 different tools that don&rsquo;t talk to each other.
               54% are exhausted by manual processes. 97% of CPA firms use technology inefficiently.
@@ -82,7 +86,7 @@ export default function HomePage() {
               your profession. Five products. One login. One bill. Nothing else required.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
-              <Button href="#law" size="lg" variant="gold">
+              <Button href="#law" size="lg" variant="gold" className="gold-glow">
                 See what we built
               </Button>
               <Button href="/pricing" size="lg" variant="ghost" className="text-white hover:text-gold-300">
@@ -92,28 +96,32 @@ export default function HomePage() {
           </div>
 
           {/* Stats bar */}
-          <div className="mt-20 grid grid-cols-2 gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:grid-cols-4 animate-fade-up-3 opacity-0" style={{borderTopColor: "rgba(212, 168, 67, 0.5)", borderTopWidth: "2px"}}>
+          <div className="stats-glow mt-20 grid grid-cols-2 gap-6 rounded-2xl border border-gold-400/30 bg-white/5 p-8 backdrop-blur-sm sm:grid-cols-4 animate-fade-up-3 opacity-0">
             <div className="text-center">
-              <p className="font-serif text-3xl text-white sm:text-4xl">
+              <p className="stat-number font-serif text-3xl text-white sm:text-4xl">
                 <AnimatedCounter end={20} suffix="h" />
+                <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
               </p>
               <p className="mt-1 text-xs text-white/80">saved per attorney per week</p>
             </div>
             <div className="text-center">
-              <p className="font-serif text-3xl text-forest-300 sm:text-4xl">
+              <p className="stat-number font-serif text-3xl text-forest-300 sm:text-4xl">
                 $<AnimatedCounter end={7000} />
+                <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
               </p>
               <p className="mt-1 text-xs text-white/80">billing capacity recovered weekly</p>
             </div>
             <div className="text-center">
-              <p className="font-serif text-3xl text-white sm:text-4xl">
+              <p className="stat-number font-serif text-3xl text-white sm:text-4xl">
                 <AnimatedCounter end={100} suffix="%" />
+                <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
               </p>
               <p className="mt-1 text-xs text-white/80">citations verified before display</p>
             </div>
             <div className="text-center">
-              <p className="font-serif text-3xl text-forest-300 sm:text-4xl">
+              <p className="stat-number font-serif text-3xl text-forest-300 sm:text-4xl">
                 <AnimatedCounter end={9} />
+                <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
               </p>
               <p className="mt-1 text-xs text-white/80">languages from day one</p>
             </div>
@@ -235,7 +243,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PRODUCT 1: Marco Reid Legal — MASSIVE showcase                   */}
       {/* ============================================================ */}
-      <section id="law" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Legal">
+      <section id="law" className="py-28 sm:py-40 lg:py-48" aria-label="Marco Reid Legal">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           {/* Product header */}
           <Reveal>
@@ -280,7 +288,7 @@ export default function HomePage() {
           {/* Day-in-the-life scenarios */}
           <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Reveal delay={0.05}>
-              <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div className="product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
                 <p className="text-2xl">&#9778;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Morning dashboard</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
@@ -290,7 +298,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div className="product-card product-card-plum rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
                 <p className="text-2xl">&#8984;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Research mid-document</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
@@ -301,7 +309,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div className="product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
                 <p className="text-2xl">&#127908;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Bill by speaking</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
@@ -311,7 +319,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div className="product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
                 <p className="text-2xl">&#128100;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Client self-serve portal</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
@@ -321,7 +329,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.25}>
-              <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div className="product-card product-card-gold rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
                 <p className="text-2xl">&#9741;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Cross-professional bridge</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
@@ -331,7 +339,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.3}>
-              <div className="rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
+              <div className="product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
                 <p className="text-2xl">&#128274;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Encrypted messaging</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
@@ -352,7 +360,9 @@ export default function HomePage() {
       </section>
 
       {/* Full-width divider */}
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
 
       {/* ============================================================ */}
       {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
@@ -455,7 +465,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
 
       {/* ============================================================ */}
       {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
@@ -558,7 +570,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
 
       {/* ============================================================ */}
       {/* PRODUCT 4: Marco Reid Courtroom                                  */}
@@ -626,7 +640,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
 
       {/* ============================================================ */}
       {/* PRODUCT 5: Marco Reid Accounting                                 */}
@@ -1026,15 +1042,18 @@ export default function HomePage() {
               },
             ].map((t, i) => (
               <Reveal key={i} delay={0.05}>
-                <div className="flex h-full flex-col rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
-                  <div className="mb-4 text-gold-400">&ldquo;</div>
-                  <p className="flex-1 text-sm leading-relaxed text-navy-500 italic">
+                <div className="relative flex h-full flex-col rounded-xl border border-navy-100 border-l-[3px] border-l-gold-400 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
+                  <div className="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+                  <p className="flex-1 pt-6 text-sm leading-relaxed text-navy-500 italic">
                     {t.quote}
                   </p>
-                  <div className="mt-6 border-t border-navy-50 pt-4">
-                    <p className="text-sm font-semibold text-navy-700">{t.role}</p>
-                    <p className="text-xs text-navy-400">{t.where}</p>
-                    <p className="mt-2 text-[10px] uppercase tracking-wider text-gold-600">Anonymised &middot; private beta</p>
+                  <div className="mt-6 flex items-center gap-3 border-t border-navy-50 pt-4">
+                    <div className="avatar-initials" aria-hidden="true">{t.role.split(" ").map((w: string) => w[0]).join("").slice(0, 2)}</div>
+                    <div>
+                      <p className="text-sm font-semibold text-navy-700">{t.role}</p>
+                      <p className="text-xs text-navy-400">{t.where}</p>
+                      <p className="mt-1 text-[10px] uppercase tracking-wider text-gold-600">Anonymised &middot; private beta</p>
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -1043,7 +1062,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
 
       {/* ============================================================ */}
       {/* TRUST LOGOS — Integrations & compliance partners               */}
@@ -1079,7 +1100,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12"><div className="gold-divider" /></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
+        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      </div>
 
       {/* ============================================================ */}
       {/* SECURITY & COMPLIANCE BADGES                                  */}
@@ -1129,24 +1152,27 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* CTA                                                           */}
       {/* ============================================================ */}
-      <section className="py-24 sm:py-36" aria-label="Get started">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
+      <section className="cta-premium py-28 sm:py-40 border-t border-b border-gold-400/20" aria-label="Get started">
+        <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
           <Reveal>
-            <h2 className="font-serif text-display text-navy-800">
+            <h2 className="font-serif text-hero text-white">
               The platform that replaces everything.
             </h2>
-            <p className="mt-4 text-lg text-navy-500">
+            <p className="mt-6 text-xl text-white/90">
+              Join the professionals already using Marco Reid.
+            </p>
+            <p className="mt-3 text-lg text-white/70">
               Soft-launching New Zealand &amp; Australia, 2026. Be among the first.
             </p>
-            <p className="mt-1 text-sm text-navy-400">
+            <p className="mt-1 text-sm text-white/50">
               United States &amp; United Kingdom rolling out 2026 / 2027.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href="/contact" size="lg">Join the founding cohort</Button>
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button href="/contact" size="lg" variant="gold" className="gold-glow">Join the founding cohort</Button>
               <Button href="/trial" variant="secondary" size="lg">Start a free trial</Button>
-              <Button href="/pricing" variant="ghost">View pricing &rarr;</Button>
+              <Button href="/pricing" variant="ghost" className="text-white hover:text-gold-300">View pricing &rarr;</Button>
             </div>
           </Reveal>
         </div>
