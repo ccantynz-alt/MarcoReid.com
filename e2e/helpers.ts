@@ -28,8 +28,36 @@ export async function loginViaUI(
 }
 
 /**
+ * Mock the next-auth session so platform pages render without a real backend.
+ * Injects a session cookie and intercepts the `/api/auth/session` endpoint.
+ */
+export async function mockAuthSession(page: Page) {
+  await page.route("**/api/auth/session", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        user: {
+          id: "test-user-id",
+          name: "Test User",
+          email: "test@example.com",
+        },
+        expires: new Date(Date.now() + 86400000).toISOString(),
+      }),
+    });
+  });
+}
+
+/**
  * Assert that a page returned a specific HTTP status code.
  */
 export function expectStatus(response: Awaited<ReturnType<Page["goto"]>>, status: number) {
   expect(response?.status()).toBe(status);
+}
+
+/**
+ * Wait for the page to be fully loaded (network idle).
+ */
+export async function waitForPageReady(page: Page) {
+  await page.waitForLoadState("domcontentloaded");
 }
