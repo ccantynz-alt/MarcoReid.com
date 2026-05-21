@@ -299,10 +299,10 @@ export default function Header() {
   /* ---- text colour helper ---- */
   const linkColor = (active: boolean) =>
     active
-      ? scrolled ? "text-navy-800 font-semibold" : "text-white font-semibold"
+      ? "text-navy-800 font-semibold"
       : scrolled
         ? "text-navy-500 hover:text-navy-700"
-        : "text-white/80 hover:text-white";
+        : "text-navy-400 hover:text-navy-600";
 
   /* ---------------------------------------------------------------- */
   /*  Render helpers                                                   */
@@ -518,7 +518,7 @@ export default function Header() {
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "border-b border-navy-100/60 bg-white/80 shadow-sm backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+          : "border-b border-navy-100/40 bg-white/95 backdrop-blur-md"
       }`}
     >
       {/* Gold prestige accent line at very top */}
@@ -531,7 +531,7 @@ export default function Header() {
         {/* ---- Logo ---- */}
         <Link
           href="/"
-          className={`flex items-center gap-2 font-serif text-2xl transition-colors ${scrolled ? "text-navy-500" : "text-white"}`}
+          className="flex items-center gap-2 font-serif text-2xl text-navy-500"
         >
           <span className="text-gold-500">&diams;</span>
           Marco Reid
@@ -602,11 +602,7 @@ export default function Header() {
           {/* Book a Demo */}
           <Link
             href="/contact"
-            className={`ml-1.5 inline-flex min-h-touch items-center rounded-lg px-5 py-2.5 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-md ${
-              scrolled
-                ? "bg-navy-500 text-white hover:bg-navy-600"
-                : "bg-gold-400 text-navy-900 hover:bg-gold-300 gold-glow"
-            }`}
+            className="ml-1.5 inline-flex min-h-touch items-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-navy-600 hover:shadow-md"
           >
             Book a Demo
           </Link>
