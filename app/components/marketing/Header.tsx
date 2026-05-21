@@ -24,184 +24,27 @@ interface NavSection {
 
 const MEGA_NAV: NavSection[] = [
   {
-    label: "Get Help",
-    columns: 1,
-    children: [
-      { label: "Generate a Document", href: "/generate", desc: "AI-drafted wills, contracts, and agreements" },
-      { label: "Find a Lawyer", href: "/find-a-lawyer", desc: "Search verified lawyers by specialty" },
-      { label: "Find an Accountant", href: "/find-an-accountant", desc: "Search verified accountants and CPAs" },
-      { label: "Browse Services", href: "/nz/services", desc: "All legal and accounting services" },
-      { label: "Court Rules Calculator", href: "/tools/court-rules", desc: "Calculate filing deadlines" },
-    ],
-  },
-  {
-    label: "Products",
-    columns: 3,
-    children: [
-      {
-        label: "Marco Reid Legal",
-        href: "/law",
-        desc: "Full-stack legal practice management",
-      },
-      {
-        label: "Marco Reid Accounting",
-        href: "/accounting",
-        desc: "Accounting and bookkeeping for professionals",
-      },
-      {
-        label: "Catch-Up Centre",
-        href: "/catch-up-centre",
-        desc: "Get years of overdue books up to date",
-      },
-      {
-        label: "Marco (AI Research)",
-        href: "/marco",
-        desc: "AI-powered legal and financial research",
-      },
-      {
-        label: "Marco Reid Voice",
-        href: "/dictation",
-        desc: "Dictation and voice commands for professionals",
-      },
-      {
-        label: "Marco Reid Courtroom",
-        href: "/courtroom",
-        desc: "Real-time courtroom transcription and AI assistance",
-      },
-      {
-        label: "Court Technology",
-        href: "/courts",
-        desc: "Digital infrastructure for courts and tribunals",
-      },
-    ],
-  },
-  {
-    label: "Solutions",
-    columns: 1,
-    children: [
-      {
-        label: "For Lawyers",
-        href: "/law",
-        desc: "Practice management built for legal teams",
-      },
-      {
-        label: "For Accountants",
-        href: "/accounting",
-        desc: "Ledgers, trust accounts, and compliance",
-      },
-      {
-        label: "For Small Business",
-        href: "/for-small-business",
-        desc: "Affordable tools that scale with you",
-      },
-      {
-        label: "For Startups",
-        href: "/for-startups",
-        desc: "Move fast with built-in compliance",
-      },
-      {
-        label: "Immigration",
-        href: "/immigration",
-        desc: "Multi-jurisdiction immigration case management",
-        children: [
-          { label: "New Zealand", href: "/immigration/nz" },
-          { label: "Australia", href: "/immigration/au" },
-          { label: "United Kingdom", href: "/immigration/uk" },
-          { label: "Canada", href: "/immigration/ca" },
-        ],
-      },
-      {
-        label: "For HR Firms",
-        href: "/hr",
-        desc: "Recruit for top legal and accounting firms",
-      },
-      {
-        label: "Client Portal",
-        href: "/portal",
-        desc: "Track matters, documents, and invoices",
-      },
-    ],
-  },
-  {
-    label: "Resources",
+    label: "Services",
     columns: 2,
     children: [
-      {
-        label: "Help Centre",
-        href: "/help",
-        desc: "Guides, tutorials, and documentation",
-      },
-      {
-        label: "Getting Started",
-        href: "/help/getting-started",
-        desc: "Set up your account in minutes",
-      },
-      {
-        label: "FAQ",
-        href: "/help/faq",
-        desc: "Answers to common questions",
-      },
-      {
-        label: "Case Studies",
-        href: "/case-studies",
-        desc: "How leading firms use Marco Reid",
-      },
-      {
-        label: "Changelog",
-        href: "/changelog",
-        desc: "Latest product updates and releases",
-      },
-      {
-        label: "System Status",
-        href: "/status",
-        desc: "Real-time uptime and incident reports",
-      },
-      {
-        label: "Compare Clio",
-        href: "/compare/clio",
-        desc: "Marco Reid vs Clio side-by-side",
-      },
-      {
-        label: "Compare Westlaw",
-        href: "/compare/westlaw",
-        desc: "Marco Reid vs Westlaw side-by-side",
-      },
-      {
-        label: "Compare QuickBooks",
-        href: "/compare/quickbooks",
-        desc: "Marco Reid vs QuickBooks side-by-side",
-      },
+      { label: "Generate a Document", href: "/generate", desc: "Free AI-drafted wills, contracts, agreements" },
+      { label: "Find a Lawyer", href: "/find-a-lawyer", desc: "Verified lawyers by specialty and country" },
+      { label: "Find an Accountant", href: "/find-an-accountant", desc: "Verified accountants and CPAs" },
+      { label: "Browse All Services", href: "/nz/services", desc: "186 services across 8 countries" },
+      { label: "Immigration", href: "/immigration", desc: "Visa and residency applications" },
+      { label: "Catch-Up Centre", href: "/catch-up-centre", desc: "Years of overdue tax returns filed" },
     ],
   },
   {
-    label: "Trust & Compliance",
-    columns: 1,
+    label: "For Professionals",
+    columns: 2,
     children: [
-      {
-        label: "Security",
-        href: "/security",
-        desc: "Enterprise-grade encryption and access controls",
-      },
-      {
-        label: "Trust Centre",
-        href: "/trust-center",
-        desc: "Certifications, audits, and policies",
-      },
-      {
-        label: "Compliance",
-        href: "/compliance",
-        desc: "Regulatory compliance across jurisdictions",
-      },
-      {
-        label: "Jurisdictions",
-        href: "/jurisdictions",
-        desc: "Rules and regulations by region",
-      },
-      {
-        label: "Legal Notices",
-        href: "/legal-notices",
-        desc: "Terms, privacy, and disclosures",
-      },
+      { label: "For Lawyers", href: "/law", desc: "Practice management, research, billing, trust" },
+      { label: "For Accountants", href: "/accounting", desc: "Bookkeeping, payroll, tax, compliance" },
+      { label: "Marco AI Research", href: "/oracle", desc: "Cross-domain legal and tax research" },
+      { label: "Courtroom Technology", href: "/courtroom", desc: "E-filing, transcription, evidence" },
+      { label: "For HR Firms", href: "/hr", desc: "Recruit for legal and accounting firms" },
+      { label: "Client Portal", href: "/portal", desc: "Track matters, documents, invoices" },
     ],
   },
   {
@@ -620,13 +463,6 @@ export default function Header() {
             Sign in
           </Link>
 
-          {/* Book a Demo */}
-          <Link
-            href="/contact"
-            className="ml-1.5 inline-flex min-h-touch items-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-navy-600 hover:shadow-md"
-          >
-            Book a Demo
-          </Link>
         </div>
 
         {/* ---- Mobile toggle ---- */}
@@ -691,14 +527,6 @@ export default function Header() {
             Sign in
           </Link>
 
-          {/* Book a Demo */}
-          <Link
-            href="/contact"
-            className="mt-4 block rounded-lg bg-navy-500 px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-600"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Book a Demo
-          </Link>
         </div>
       </div>
     </header>
