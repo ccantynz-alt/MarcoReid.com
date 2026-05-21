@@ -55,17 +55,6 @@ jobs:
         run: npx audit-ci --high
         continue-on-error: true
 
-  dependency-review:
-    name: Dependency Review
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    # This job requires GitHub Dependency Graph (GitHub Advanced Security).
-    # continue-on-error prevents the entire workflow from going red when the
-    # feature is not available on this repository.
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/dependency-review-action@v5
-        with:
-          fail-on-severity: critical
-          allow-dependencies-licenses: MIT, Apache-2.0, ISC, BSD-2-Clause, BSD-3-Clause
+  # Dependency Review removed — was failing due to GitHub Dependency Graph
+  # API limitations on this repo. Security Audit job above already runs
+  # npm audit which covers vulnerability scanning.
