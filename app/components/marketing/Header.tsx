@@ -299,10 +299,10 @@ export default function Header() {
   /* ---- text colour helper ---- */
   const linkColor = (active: boolean) =>
     active
-      ? "text-navy-800 font-semibold"
+      ? scrolled ? "text-navy-800 font-semibold" : "text-white font-semibold"
       : scrolled
-        ? "text-navy-400"
-        : "text-navy-300";
+        ? "text-navy-500 hover:text-navy-700"
+        : "text-white/80 hover:text-white";
 
   /* ---------------------------------------------------------------- */
   /*  Render helpers                                                   */
@@ -531,7 +531,7 @@ export default function Header() {
         {/* ---- Logo ---- */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-serif text-2xl text-navy-500"
+          className={`flex items-center gap-2 font-serif text-2xl transition-colors ${scrolled ? "text-navy-500" : "text-white"}`}
         >
           <span className="text-gold-500">&diams;</span>
           Marco Reid
@@ -602,7 +602,11 @@ export default function Header() {
           {/* Book a Demo */}
           <Link
             href="/contact"
-            className="ml-1.5 inline-flex min-h-touch items-center rounded-lg bg-navy-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-navy-600 hover:shadow-md"
+            className={`ml-1.5 inline-flex min-h-touch items-center rounded-lg px-5 py-2.5 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-md ${
+              scrolled
+                ? "bg-navy-500 text-white hover:bg-navy-600"
+                : "bg-gold-400 text-navy-900 hover:bg-gold-300 gold-glow"
+            }`}
           >
             Book a Demo
           </Link>
