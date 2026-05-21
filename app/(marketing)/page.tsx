@@ -48,44 +48,34 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* HERO — The grand entrance                                     */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-navy-500 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-40">
+      <section className="relative overflow-hidden bg-navy-900 pt-36 pb-28 sm:pt-44 sm:pb-36 lg:pt-52 lg:pb-44">
         {/* Animated grid mesh background */}
         <div className="hero-grid pointer-events-none absolute inset-0" />
-        {/* Animated decorative gradient orbs — pushed to corners so they never wash over hero copy */}
+        {/* Animated decorative gradient orbs — BOLDER for visual impact */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="animate-drift absolute -right-48 -top-48 h-[480px] w-[480px] rounded-full bg-forest-500/15 blur-[140px]" />
-          <div className="animate-drift-reverse absolute -left-48 -bottom-32 h-[420px] w-[420px] rounded-full bg-plum-500/12 blur-[120px]" />
-          <div className="animate-drift absolute -right-24 bottom-0 h-[280px] w-[280px] rounded-full bg-gold-500/8 blur-[110px]" />
+          <div className="animate-drift absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-gold-400/20 blur-[140px]" />
+          <div className="animate-drift-reverse absolute -left-32 bottom-0 h-[500px] w-[500px] rounded-full bg-forest-500/20 blur-[120px]" />
+          <div className="animate-drift absolute left-1/2 top-1/4 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-plum-400/15 blur-[100px]" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="animate-fade-up text-sm font-semibold tracking-wider text-gold-300 opacity-0">
-              Introducing Marco Reid &mdash; five products, one platform
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="animate-fade-up text-sm font-bold tracking-[0.2em] uppercase text-gold-400 opacity-0">
+              Five products &middot; One platform &middot; Every country
             </p>
-            <p className="mt-2 animate-fade-up text-xs font-medium tracking-[0.18em] uppercase text-white/60 opacity-0">
-              Soft-launching New Zealand &middot; Australia &middot; 2026
-            </p>
-            <h1 className="mt-6 animate-fade-up-1 font-serif text-hero text-white opacity-0">
-              You became a professional to practise your{" "}
+            <h1 className="mt-8 animate-fade-up-1 font-serif text-hero text-white opacity-0" style={{lineHeight: 1.05}}>
+              Practise your{" "}
               <span className="text-shimmer">craft</span>.
-              Not to drown in software.
+              <br />
+              <span className="text-gold-300">Not your software.</span>
             </h1>
-            <div className="gold-line-glow mx-auto mt-8 w-24 animate-fade-up-2 opacity-0" />
-            <p className="mt-6 animate-fade-up-2 text-xl leading-relaxed text-navy-100 opacity-0">
-              45% of legal professionals use 5&ndash;10 different tools that don&rsquo;t talk to each other.
-              54% are exhausted by manual processes. 97% of CPA firms use technology inefficiently.
-              You&rsquo;re paying for a dozen subscriptions and getting less done, not more.
-            </p>
-            <p className="mt-4 animate-fade-up-2 text-2xl font-serif text-white opacity-0">
-              Marco Reid ends that. Today.
-            </p>
-            <p className="mt-4 animate-fade-up-2 text-lg text-white/85 opacity-0">
+            <div className="gold-line-glow mx-auto mt-10 w-32 animate-fade-up-2 opacity-0" />
+            <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-white/90 opacity-0">
               AI-powered legal practice. AI-powered accounting. Courtroom technology.
-              The most intelligent research engine ever built. And a voice that understands
-              your profession. Five products. One login. One bill. Nothing else required.
+              The most intelligent research engine ever built. Five products.
+              One login. One bill. <span className="font-semibold text-white">Nothing else required.</span>
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
               <Button href="#law" size="lg" variant="gold" className="gold-glow">
                 See what we built
               </Button>
@@ -95,8 +85,13 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Dashboard mockup — visual proof above the fold */}
+          <MockupReveal className="mt-16">
+            <DashboardMockup />
+          </MockupReveal>
+
           {/* Stats bar */}
-          <div className="stats-glow mt-20 grid grid-cols-2 gap-6 rounded-2xl border border-gold-400/30 bg-white/5 p-8 backdrop-blur-sm sm:grid-cols-4 animate-fade-up-3 opacity-0">
+          <div className="stats-glow mt-16 grid grid-cols-2 gap-6 rounded-2xl border border-gold-400/30 bg-white/5 p-8 backdrop-blur-sm sm:grid-cols-4 animate-fade-up-3 opacity-0">
             <div className="text-center">
               <p className="stat-number font-serif text-3xl text-white sm:text-4xl">
                 <AnimatedCounter end={20} suffix="h" />
