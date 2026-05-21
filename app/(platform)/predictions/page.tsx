@@ -7,6 +7,7 @@ import {
   MATTER_TYPES_FOR_PREDICTION,
   type OutcomePrediction,
 } from "@/lib/outcome-prediction";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -432,6 +433,7 @@ export default function PredictionsPage() {
           </div>
         )}
       </div>
+      <LegalDisclaimer type="AI_RESEARCH" variant="footer" />
     </div>
   );
 }

@@ -18,6 +18,7 @@ import {
   type YearEndChecklistItem,
   type FeeRecommendation,
 } from "@/lib/practice-intelligence";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -589,6 +590,7 @@ export default function PracticeIntelligencePage() {
       <p className="mt-8 text-xs text-navy-400 dark:text-navy-500">
         Practice Intelligence analyses your firm&apos;s data to surface actionable insights. In production, data is pulled from your time entries, invoices, trust accounts, and engagement records. Market rate data sourced from anonymised industry benchmarks. This does not constitute financial or professional advice.
       </p>
+      <LegalDisclaimer type="PLATFORM" variant="footer" />
     </div>
   );
 }
