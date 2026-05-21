@@ -33,7 +33,7 @@ export default function OraclePage() {
       <SchemaMarkup schema={schema} />
 
       {/* Hero */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-navy-50/50 to-white">
         <Container className="relative text-center">
           <p className="animate-fade-up text-xs font-medium uppercase tracking-widest text-plum-600 opacity-0">
             Marco

@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <section className="bg-linear-to-b from-navy-50/50 to-white pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
-          <h1 className="font-serif text-hero text-white">
+          <h1 className="font-serif text-hero text-navy-800">
             Get in touch.
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
+          <p className="mx-auto mt-6 max-w-xl text-xl text-navy-400">
             Questions about Marco Reid? We&rsquo;d love to hear from you.
           </p>
         </Container>

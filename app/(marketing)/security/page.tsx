@@ -78,17 +78,17 @@ export default function SecurityPage() {
     <>
       <SchemaMarkup schema={schema} />
 
-      <section className="bg-navy-500 pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <section className="bg-linear-to-b from-navy-50/50 to-white pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container className="text-center">
-          <p className="text-sm font-semibold tracking-wider text-forest-300">
+          <p className="text-sm font-semibold tracking-wider text-forest-600">
             Security
           </p>
-          <h1 className="mt-6 font-serif text-hero text-white">
+          <h1 className="mt-6 font-serif text-hero text-navy-800">
             The most secure professional
             <br />
             platform ever built.
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-xl text-navy-200">
+          <p className="mx-auto mt-6 max-w-xl text-xl text-navy-400">
             Attorney-client privilege is sacred. Client financial data is irreplaceable.
             Marco Reid security is built to courtroom admissibility standards &mdash;
             not just &ldquo;good enough for SaaS.&rdquo;
