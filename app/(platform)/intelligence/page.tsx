@@ -6,6 +6,7 @@ import {
   generateProactiveAlerts,
   type ProactiveAlert,
 } from "@/lib/proactive-intelligence";
+import LegalDisclaimer from "@/app/components/shared/LegalDisclaimer";
 
 // ---------------------------------------------------------------------------
 // Severity configuration
@@ -299,6 +300,7 @@ export default function IntelligencePage() {
         background jobs with real-time data. Alerts do not constitute legal or
         professional advice.
       </p>
+      <LegalDisclaimer type="REGULATORY_ALERTS" variant="footer" />
     </div>
   );
 }
