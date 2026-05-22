@@ -182,7 +182,7 @@ export function calculateIncomeTax(
     const taxable = Math.min(income, b.max) - b.min;
     const tax = round2(taxable * b.rate);
     totalTax += tax;
-    if (tax > 0 || b.rate === 0) {
+    if (tax > 0) {
       breakdown.push({ bracket: b.label, rate: b.rate, tax });
     }
   }

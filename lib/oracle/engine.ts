@@ -10,6 +10,21 @@ import {
 import { AI_DISCLAIMER } from "@/lib/constants";
 
 /**
+ * RAG Enforcement Configuration.
+ *
+ * Strict mode: Claude must ONLY cite from retrieval context.
+ * No base-model citations allowed. Every citation must have
+ * source attribution. Unverified citations get warnings.
+ */
+const RAG_ENFORCEMENT = {
+  mode: "strict",
+  allowBaseModelCitations: false,
+  requireSourceAttribution: true,
+  unverifiedWarning: "⚠ This citation could not be verified against our authoritative sources. Do not rely on it without independent verification.",
+  noDataSourceWarning: "Marco Reid does not yet have a verified data source for this jurisdiction. All citations should be independently verified.",
+} as const;
+
+/**
  * The Marco Engine \u2014 the brain of Marco Reid.
  *
  * This is the core AI research system. It:
@@ -86,28 +101,48 @@ CRITICAL RULES:
 3. NEVER fabricate a citation. If you are not certain a case exists, say so explicitly.
 4. Always specify the jurisdiction.
 5. Provide practical analysis, not just citations.
-6. You assist professionals \u2014 you do not provide legal or tax advice.`;
+6. You assist professionals \u2014 you do not provide legal or tax advice.
+
+STRICT RETRIEVAL-AUGMENTED GENERATION RULES:
+1. You MUST ONLY cite cases, statutes, and regulations that you can directly attribute to a verified source in the context provided.
+2. If no relevant source material is available in the retrieval context, say "I could not find verified source material for this query. Please verify independently."
+3. NEVER generate a citation from your training data alone. Every citation MUST come from the retrieval context or be explicitly marked as UNVERIFIED.
+4. If you are unsure whether a case exists, mark it as UNVERIFIED \u2014 never guess.
+5. Prefix every citation with its source database (e.g., "[CourtListener]", "[BAILII]", "[CanLII]", "[IRS.gov]").
+6. If the user asks about a jurisdiction where we have no data source configured, say "Marco Reid does not yet have a verified data source for [jurisdiction]. Please verify all citations independently."`;
 
   const jurisdictionNote = jurisdiction
     ? `\nFocus on ${jurisdiction} law and regulations unless the query specifies otherwise.`
     : "";
 
+  const ragEnforcementBlock = `
+
+RAG ENFORCEMENT MODE: ${RAG_ENFORCEMENT.mode.toUpperCase()}
+- Base model citations allowed: ${RAG_ENFORCEMENT.allowBaseModelCitations ? "YES" : "NO"}
+- Source attribution required: ${RAG_ENFORCEMENT.requireSourceAttribution ? "YES" : "NO"}
+- Any citation without a verified source MUST include the warning: "${RAG_ENFORCEMENT.unverifiedWarning}"
+- For unsupported jurisdictions, include: "${RAG_ENFORCEMENT.noDataSourceWarning}"`;
+
   const domainPrompts: Record<OracleDomain, string> = {
     LEGAL: `${base}
-${jurisdictionNote}
-You specialise in legal research: case law, statutes, regulations, court rules, and legal analysis. You have knowledge of US federal and state law, NZ law, Australian law, and UK law. For every case you cite, provide the full citation including volume, reporter, and page number.`,
+${jurisdictionNote}${ragEnforcementBlock}
+
+You specialise in legal research: case law, statutes, regulations, court rules, and legal analysis. You have knowledge of US federal and state law, NZ law, Australian law, and UK law. For every case you cite, provide the full citation including volume, reporter, and page number. Prefix every citation with its source database. Only cite from the retrieval context provided.`,
 
     ACCOUNTING: `${base}
-${jurisdictionNote}
-You specialise in accounting and tax research: IRS code sections, revenue rulings, Treasury regulations, GAAP standards, IFRS standards, state tax codes, and tax court decisions. For every tax provision, cite the specific IRC section, regulation, or ruling.`,
+${jurisdictionNote}${ragEnforcementBlock}
+
+You specialise in accounting and tax research: IRS code sections, revenue rulings, Treasury regulations, GAAP standards, IFRS standards, state tax codes, and tax court decisions. For every tax provision, cite the specific IRC section, regulation, or ruling. Prefix every citation with its source database. Only cite from the retrieval context provided.`,
 
     CROSS_DOMAIN: `${base}
-${jurisdictionNote}
-You specialise in questions that span BOTH legal and accounting/tax domains simultaneously. This is your unique capability \u2014 no other research tool can answer questions that require both legal analysis and tax/accounting intelligence. Provide analysis from both perspectives and cite both legal and tax authorities.`,
+${jurisdictionNote}${ragEnforcementBlock}
+
+You specialise in questions that span BOTH legal and accounting/tax domains simultaneously. This is your unique capability \u2014 no other research tool can answer questions that require both legal analysis and tax/accounting intelligence. Provide analysis from both perspectives and cite both legal and tax authorities. Prefix every citation with its source database. Only cite from the retrieval context provided.`,
 
     IP: `${base}
-${jurisdictionNote}
-You specialise in intellectual property law: patents, trademarks, copyright, trade secrets, and licensing. You can search USPTO records, analyse patent claims, assess trademark likelihood of confusion, and research IP case law. For patents, cite the patent number and key claims. For trademarks, cite the registration number and class.`,
+${jurisdictionNote}${ragEnforcementBlock}
+
+You specialise in intellectual property law: patents, trademarks, copyright, trade secrets, and licensing. You can search USPTO records, analyse patent claims, assess trademark likelihood of confusion, and research IP case law. For patents, cite the patent number and key claims. For trademarks, cite the registration number and class. Prefix every citation with its source database. Only cite from the retrieval context provided.`,
   };
 
   return domainPrompts[domain];
