@@ -1,0 +1,159 @@
+# Daily platform audit — runs at 6am NZST (18:00 UTC previous day)
+# Scans for doc/code drift, placeholder content, missing metadata,
+# Astra references, and brand violations. Creates a GitHub issue if
+# any check fails, so the next container session has a clear action list.
+
+name: Daily Platform Audit
+
+on:
+  schedule:
+    # 6am NZST = 18:00 UTC
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: Platform Audit
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check for Astra references (old brand name)
+        id: astra
+        run: |
+          COUNT=$(grep -ri "astra" --include="*.ts" --include="*.tsx" --include="*.md" . | grep -v ".git" | grep -v "node_modules" | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          if [ "$COUNT" -gt 0 ]; then
+            echo "FAIL: $COUNT Astra reference(s) found" >&2
+            grep -ri "astra" --include="*.ts" --include="*.tsx" --include="*.md" . | grep -v ".git" | grep -v "node_modules"
+          fi
+
+      - name: Check for lorem ipsum / placeholder content
+        id: placeholder
+        run: |
+          COUNT=$(grep -ri "lorem ipsum\|placeholder text\|coming soon\|TODO:\|FIXME:" --include="*.tsx" --include="*.ts" . | grep -v ".git" | grep -v "node_modules" | grep -v ".yml" | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "Placeholder/TODO count: $COUNT"
+          if [ "$COUNT" -gt 0 ]; then
+            grep -ri "lorem ipsum\|placeholder text\|TODO:\|FIXME:" --include="*.tsx" --include="*.ts" . | grep -v ".git" | grep -v "node_modules"
+          fi
+
+      - name: Check for @ts-ignore usage
+        id: tsignore
+        run: |
+          COUNT=$(grep -r "@ts-ignore\|@ts-expect-error" --include="*.ts" --include="*.tsx" . | grep -v ".git" | grep -v "node_modules" | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "@ts-ignore count: $COUNT"
+
+      - name: Check for hardcoded secrets patterns
+        id: secrets
+        run: |
+          COUNT=$(grep -r "sk_live_\|pk_live_\|ANTHROPIC_API_KEY\s*=\s*sk-\|password\s*=\s*['\"][^'\"]\+" --include="*.ts" --include="*.tsx" --include="*.js" . | grep -v ".git" | grep -v "node_modules" | grep -v ".env.example" | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          if [ "$COUNT" -gt 0 ]; then
+            echo "FAIL: Potential hardcoded secrets found" >&2
+          fi
+
+      - name: Check brand name casing in user-facing files
+        id: brand
+        run: |
+          COUNT=$(grep -r "MARCO REID\|marcoreid\b\|Marcoreid" --include="*.tsx" --include="*.ts" . | grep -v ".git" | grep -v "node_modules" | grep -v "class\|href\|id=\|className\|slug\|url\|domain\|config" | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "Brand casing issues: $COUNT"
+
+      - name: Check for missing AI disclaimers on AI pages
+        id: disclaimer
+        run: |
+          # Check pages in marco/oracle/voice directories have disclaimer references
+          MARCO_PAGES=$(find app -path "*/marco*" -name "page.tsx" | wc -l)
+          DISCLAIMER_COUNT=$(grep -rl "disclaimer\|AiDisclaimer\|LegalDisclaimer\|does not constitute" app --include="*.tsx" | grep -i "marco\|oracle\|voice\|research" | wc -l)
+          echo "Marco pages: $MARCO_PAGES, with disclaimers: $DISCLAIMER_COUNT" >> $GITHUB_OUTPUT
+          echo "Marco pages: $MARCO_PAGES, disclaimer coverage: $DISCLAIMER_COUNT"
+
+      - name: Check pages missing metadata exports
+        id: metadata
+        run: |
+          # Find marketing pages without metadata export
+          MISSING=$(find app/\(marketing\) -name "page.tsx" | xargs grep -rL "export const metadata\|export async function generateMetadata\|generateMetadata" 2>/dev/null | head -20)
+          COUNT=$(echo "$MISSING" | grep -c "." || true)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          if [ -n "$MISSING" ]; then
+            echo "Pages missing metadata:"
+            echo "$MISSING"
+          fi
+
+      - name: Summarize audit results
+        id: summary
+        run: |
+          ASTRA=${{ steps.astra.outputs.count }}
+          PLACEHOLDER=${{ steps.placeholder.outputs.count }}
+          TSIGNORE=${{ steps.tsignore.outputs.count }}
+          SECRETS=${{ steps.secrets.outputs.count }}
+          BRAND=${{ steps.brand.outputs.count }}
+          META=${{ steps.metadata.outputs.count }}
+
+          FAILURES=0
+          REPORT="## Daily Platform Audit — $(date -u '+%Y-%m-%d %H:%M UTC')\n\n"
+
+          if [ "$ASTRA" -gt 0 ]; then
+            FAILURES=$((FAILURES+1))
+            REPORT="${REPORT}❌ **Astra references:** $ASTRA found — old brand name must be eliminated\n"
+          else
+            REPORT="${REPORT}✅ Astra references: 0\n"
+          fi
+
+          if [ "$SECRETS" -gt 0 ]; then
+            FAILURES=$((FAILURES+1))
+            REPORT="${REPORT}🚨 **Hardcoded secrets:** $SECRETS potential matches — CRITICAL, review immediately\n"
+          else
+            REPORT="${REPORT}✅ Hardcoded secrets: 0\n"
+          fi
+
+          if [ "$PLACEHOLDER" -gt 10 ]; then
+            REPORT="${REPORT}⚠️ **Placeholder/TODO strings:** $PLACEHOLDER — review for production readiness\n"
+          else
+            REPORT="${REPORT}✅ Placeholder/TODO: $PLACEHOLDER (acceptable)\n"
+          fi
+
+          REPORT="${REPORT}ℹ️ @ts-ignore usage: $TSIGNORE\n"
+          REPORT="${REPORT}ℹ️ Brand casing issues (non-code context): $BRAND\n"
+          REPORT="${REPORT}ℹ️ Marketing pages missing metadata: $META\n"
+
+          REPORT="${REPORT}\n---\n*Automated audit — Marco Reid platform. Every session starts with a clean build.*"
+
+          echo "failures=$FAILURES" >> $GITHUB_OUTPUT
+          echo -e "$REPORT" > audit-summary.txt
+          cat audit-summary.txt
+
+      - name: Create GitHub issue if failures found
+        if: steps.summary.outputs.failures != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('audit-summary.txt', 'utf8');
+            const date = new Date().toISOString().split('T')[0];
+
+            // Check if an open audit issue already exists for today
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'platform-audit',
+              state: 'open',
+            });
+
+            const todayIssue = issues.data.find(i => i.title.includes(date));
+
+            if (!todayIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `[Platform Audit] Issues found — ${date}`,
+                body: body,
+                labels: ['platform-audit', 'automated'],
+              });
+            }
