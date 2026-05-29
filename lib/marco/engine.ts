@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { prisma } from "@/lib/prisma";
-import { verifyCitation } from "./verify";
+import { verifyCitation, verifyBlockOfText } from "./verify";
 import {
   MarcoRequest,
   MarcoResponse,
@@ -336,9 +336,22 @@ export async function queryMarco(
   // 5. Extract citations from the response
   const rawCitations = extractCitations(answer);
 
-  // 6. Verify EVERY citation against authoritative sources
+  // 6. Block-level verification via CourtListener v4 Eyecite API first.
+  //    Send the entire response text — CourtListener finds and verifies every
+  //    legal citation simultaneously. This is the Mata v. Avianca protection:
+  //    citations not found in the database are flagged NOT_FOUND before display.
+  const blockResults = await verifyBlockOfText(answer);
+
+  // 7. For each extracted citation, use block result if available;
+  //    fall back to per-source verification for non-case-law citations.
   const verifiedCitations = await Promise.all(
-    rawCitations.map((c) => verifyCitation(c))
+    rawCitations.map((c) => {
+      const blockHit = blockResults.get(c.citation);
+      if (blockHit) {
+        return Promise.resolve({ ...c, ...blockHit });
+      }
+      return verifyCitation(c);
+    })
   );
 
   const responseTimeMs = Date.now() - startTime;

@@ -4,12 +4,7 @@ import { getUserId } from "@/lib/session";
 
 // POST /api/me/profile
 // Updates the authenticated user's personal profile fields.
-//
-// Note: timeZone, practiceArea, and jurisdiction are not yet on the User
-// model in prisma/schema.prisma. Once added (e.g. as String? fields), they
-// will persist automatically. For now we accept them, log them server-side,
-// and only persist `name`. Email is intentionally read-only here — change
-// flow will live behind a verification endpoint.
+// Email is intentionally read-only here — changes live behind a verification endpoint.
 export async function POST(req: NextRequest) {
   const userId = await getUserId();
   if (!userId) {
@@ -52,25 +47,20 @@ export async function POST(req: NextRequest) {
       where: { id: userId },
       data: {
         ...(typeof name === "string" ? { name: name.trim() || null } : {}),
-        // TODO: add `practiceArea`, `jurisdiction`, `timeZone` to User model
-        // and persist here.
+        ...(typeof practiceArea === "string" ? { practiceArea: practiceArea.trim() || null } : {}),
+        ...(typeof jurisdiction === "string" ? { jurisdiction: jurisdiction.trim() || null } : {}),
+        ...(typeof timeZone === "string" ? { timeZone: timeZone.trim() || null } : {}),
       },
       select: {
         id: true,
         email: true,
         name: true,
         firmName: true,
+        practiceArea: true,
+        jurisdiction: true,
+        timeZone: true,
       },
     });
-
-    if (practiceArea || jurisdiction || timeZone) {
-      console.log("[settings/profile] pending-schema fields", {
-        userId,
-        practiceArea,
-        jurisdiction,
-        timeZone,
-      });
-    }
 
     return NextResponse.json({ user });
   } catch {

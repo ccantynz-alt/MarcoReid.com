@@ -406,13 +406,23 @@ The CLAUDE.md 80-90% ahead rule — current score:
 
 ---
 
-## SECTION I: NEXT SESSION PRIORITIES *(set 2026-05-29)*
+## SECTION I: NEXT SESSION PRIORITIES *(updated 2026-05-29)*
 
-1. Set `ANTHROPIC_API_KEY` in Vercel — activates Marco instantly
-2. Wire CourtListener citation lookup API into Marco engine
-3. Update privacy policy for NZ Privacy Amendment Act IPP 3A compliance
-4. Make onboarding consent explicit about AI use (ABA Opinion 512)
-5. Start EU AI Act risk classification process
+**Completed this session:**
+- ✅ CourtListener v4 block-of-text citation lookup wired into Marco engine
+- ✅ Privacy policy updated with IPP 3A compliance (NZ Privacy Amendment Act 2025)
+- ✅ Onboarding consent updated with explicit AI data processing disclosure (ABA Opinion 512)
+- ✅ `timeZone` added to User schema; profile route now persists all three fields
+- ✅ Profile route TODO removed — `practiceArea`, `jurisdiction`, `timeZone` all persist
+
+**Still to do:**
+1. Set `ANTHROPIC_API_KEY` in Vercel — activates Marco engine instantly (Craig's action)
+2. Set `COURTLISTENER_API_KEY` in Vercel — unlocks higher rate limits on citation verification
+3. EU AI Act risk classification — 2 August 2026 deadline (65 days away)
+4. Australian Privacy Act compliance analysis — 1 July 2026 (33 days away)
+5. 50-state IOLTA compliance analysis before trust accounting module goes live
+6. Technology E&O and Cyber Liability insurance — required before first paying customer
+7. Run `prisma migrate deploy` against production database (new `timeZone` field)
 
 ---
 

@@ -19,40 +19,52 @@ interface VerifyResult {
 }
 
 /**
- * Verify a case citation against CourtListener API.
- * CourtListener (Free Law Project) provides millions of US court opinions.
+ * Verify a case citation against CourtListener v4 API (single citation).
+ * CourtListener uses Harvard's Eyecite library to parse and verify citations.
  */
 async function verifyViaCourtListener(
-  caseName: string,
+  _caseName: string,
   citation: string
 ): Promise<VerifyResult | null> {
   try {
-    const params = new URLSearchParams({
-      q: citation,
-      type: "o", // opinions
-    });
-
     const res = await fetch(
-      `https://www.courtlistener.com/api/rest/v3/search/?${params}`,
+      "https://www.courtlistener.com/api/rest/v4/citation-lookup/",
       {
+        method: "POST",
         headers: {
-          Authorization: `Token ${process.env.COURTLISTENER_API_KEY || ""}`,
+          "Content-Type": "application/json",
+          ...(process.env.COURTLISTENER_API_KEY
+            ? { Authorization: `Token ${process.env.COURTLISTENER_API_KEY}` }
+            : {}),
         },
-        next: { revalidate: 86400 }, // Cache for 24 hours
+        body: JSON.stringify({ text: citation }),
+        signal: AbortSignal.timeout(8000),
+        next: { revalidate: 86400 },
       }
     );
 
     if (!res.ok) return null;
 
-    const data = await res.json();
+    const data: Array<{ citation: string; clusters: Array<{ absolute_url?: string; case_name?: string; date_filed?: string; snippet?: string }> }> =
+      await res.json();
 
-    if (data.results && data.results.length > 0) {
-      const match = data.results[0];
+    if (data.length > 0 && data[0].clusters && data[0].clusters.length > 0) {
+      const cluster = data[0].clusters[0];
       return {
         status: "VERIFIED",
-        sourceUrl: `https://www.courtlistener.com${match.absolute_url || ""}`,
+        sourceUrl: `https://www.courtlistener.com${cluster.absolute_url || ""}`,
         sourceDb: "CourtListener",
-        excerpt: match.snippet || null,
+        excerpt: cluster.snippet || cluster.case_name || null,
+      };
+    }
+
+    // Citation parsed but no matching opinion found in database
+    if (data.length > 0 && data[0].clusters?.length === 0) {
+      return {
+        status: "NOT_FOUND" as VerificationStatus,
+        sourceUrl: null,
+        sourceDb: "CourtListener",
+        excerpt: null,
       };
     }
 
@@ -60,6 +72,80 @@ async function verifyViaCourtListener(
   } catch {
     return null;
   }
+}
+
+/**
+ * Block-level citation verification via CourtListener v4 citation-lookup.
+ *
+ * Send the entire Marco response text to CourtListener's Eyecite-powered
+ * API. It finds every legal citation in the block simultaneously and
+ * returns verification status for each. This is the primary verification
+ * pass — dramatically more accurate than per-citation regex matching alone.
+ *
+ * Returns a Map of citation string → VerifyResult for fast lookup.
+ */
+export async function verifyBlockOfText(
+  text: string
+): Promise<Map<string, VerifyResult>> {
+  const results = new Map<string, VerifyResult>();
+
+  if (!text || text.length < 10) return results;
+
+  try {
+    const res = await fetch(
+      "https://www.courtlistener.com/api/rest/v4/citation-lookup/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(process.env.COURTLISTENER_API_KEY
+            ? { Authorization: `Token ${process.env.COURTLISTENER_API_KEY}` }
+            : {}),
+        },
+        body: JSON.stringify({ text }),
+        signal: AbortSignal.timeout(15000),
+        next: { revalidate: 0 },
+      }
+    );
+
+    if (!res.ok) return results;
+
+    const data: Array<{
+      citation: string;
+      clusters: Array<{
+        absolute_url?: string;
+        case_name?: string;
+        date_filed?: string;
+        snippet?: string;
+      }>;
+    }> = await res.json();
+
+    for (const item of data) {
+      if (!item.citation) continue;
+
+      if (item.clusters && item.clusters.length > 0) {
+        const cluster = item.clusters[0];
+        results.set(item.citation, {
+          status: "VERIFIED",
+          sourceUrl: `https://www.courtlistener.com${cluster.absolute_url || ""}`,
+          sourceDb: "CourtListener",
+          excerpt: cluster.snippet || cluster.case_name || null,
+        });
+      } else {
+        // CourtListener parsed the citation but found no matching opinion
+        results.set(item.citation, {
+          status: "NOT_FOUND",
+          sourceUrl: null,
+          sourceDb: "CourtListener",
+          excerpt: null,
+        });
+      }
+    }
+  } catch {
+    // Network error — return empty map, fall back to per-citation verification
+  }
+
+  return results;
 }
 
 /**
