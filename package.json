@@ -12,24 +12,24 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.97.1",
+    "@anthropic-ai/sdk": "^0.100.1",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@tailwindcss/postcss": "^4.3.0",
-    "@tiptap/extension-highlight": "^3.23.5",
-    "@tiptap/extension-placeholder": "^3.23.5",
-    "@tiptap/extension-typography": "^3.23.5",
-    "@tiptap/pm": "^3.23.5",
-    "@tiptap/react": "^3.23.5",
-    "@tiptap/starter-kit": "^3.23.5",
+    "@tiptap/extension-highlight": "^3.24.0",
+    "@tiptap/extension-placeholder": "^3.24.0",
+    "@tiptap/extension-typography": "^3.24.0",
+    "@tiptap/pm": "^3.24.0",
+    "@tiptap/react": "^3.24.0",
+    "@tiptap/starter-kit": "^3.24.0",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "next": "^16.2.6",
     "next-auth": "^4.24.14",
-    "openai": "^6.38.0",
+    "openai": "^6.39.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "stripe": "^22.1.1"
+    "stripe": "^22.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
@@ -39,12 +39,12 @@
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^10.4.0",
+    "eslint": "^10.4.1",
     "eslint-config-next": "^16.2.6",
     "postcss": "^8",
     "prisma": "^7.8.0",
     "tailwindcss": "^4.3.0",
-    "tsx": "^4.22.3",
+    "tsx": "^4.22.4",
     "typescript": "^6"
   }
 }
