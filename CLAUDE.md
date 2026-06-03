@@ -1558,9 +1558,9 @@ Target acquirers: Thomson Reuters, Clio, Wolters Kluwer, Bloomberg. They will no
 |---|---|---|
 | Stage 1 — Legal foundations | NOT STARTED | April 2026 |
 | Stage 2 — Domains and infrastructure | IN PROGRESS — domains purchased, repo created | April 2026 |
-| Stage 3 — Rename and consolidate | NOT STARTED | April 2026 |
-| Stage 4 — Privacy and compliance | NOT STARTED | April 2026 |
-| Stage 5 — Phase 1 build | IN PROGRESS — building mothership at marcoreid.com | April 2026 |
+| Stage 3 — Rename and consolidate | COMPLETE — zero Astra references confirmed by audit | May 2026 |
+| Stage 4 — Privacy and compliance | IN PROGRESS — NZ IPP 3A overdue, ABA 512 consent needs update | May 2026 |
+| Stage 5 — Phase 1 build | IN PROGRESS — 85% complete, Marco needs API key + citation API | May 2026 |
 | Stage 6 — Closed beta | NOT STARTED | April 2026 |
 | Stage 7 — Public launch | NOT STARTED | April 2026 |
 
@@ -1628,22 +1628,24 @@ Target acquirers: Thomson Reuters, Clio, Wolters Kluwer, Bloomberg. They will no
 ### 20.1 Opening Ritual (every session, no exceptions)
 
 1. Read THE IRON LAW (Section 1) — completely, every time
-2. Run `git status` and `git log -5` — know the state of the codebase
-3. Review the Stage Tracker (Section 17) — confirm current build stage
-4. Check the authorization list (Section 2) — know what you can and cannot do
-5. Check known issues or bugs from previous sessions
-6. Confirm the active build item with Craig
-7. Only then — start work
+2. **Read MASTER-AUDIT.md** — timestamped platform truth. If the audit date is more than 48 hours old, the daily workflow may not have run — check GitHub Actions. This prevents acting on stale information.
+3. Run `git status` and `git log -5` — know the state of the codebase
+4. Review the Stage Tracker (Section 17) — confirm current build stage
+5. Check the authorization list (Section 2) — know what you can and cannot do
+6. Check known issues or bugs from previous sessions
+7. Confirm the active build item with Craig
+8. Only then — start work
 
 ### 20.2 Closing Ritual (every session, no exceptions)
 
 1. `npm run build` passes with zero errors
 2. All changes committed with descriptive messages (WHY, not WHAT)
 3. All changes pushed to the correct branch
-4. CLAUDE.md updated if any decision was made
-5. Next action line written for the next session
-6. No half-finished features left uncommitted
-7. Stage Tracker updated if progress was made
+4. CLAUDE.md updated if any decision was made (Section 25 Important Decisions Log with date)
+5. MASTER-AUDIT.md updated if code has moved ahead of what it records — add timestamp
+6. Next action line written in MASTER-AUDIT.md Section I for the next session
+7. No half-finished features left uncommitted
+8. Stage Tracker updated if progress was made
 
 ### 20.3 Parallel Agent Deployment
 
@@ -1903,6 +1905,16 @@ Lawyer writing an email about non-compete enforceability → hits Marco button �
 | March 2026 | IP holding entity separate from operating companies | Protects IP even if operating company is sued |
 | March 2026 | Renamed from Astra to Marco Reid Accounting | Conflicts with Google Project Astra |
 | April 2026 | CLAUDE.md rebuilt as THE IRON BIBLE v2.0 | Ironclad governance for all development |
+| May 2026 | CourtListener block-of-text API is the primary citation verification backbone | Stanford 2025 study — best commercial tools still hallucinate 17–43%. CourtListener + Eyecite verifies every citation in a block of text. Activates before any citation is shown to a user. This is the Mata v. Avianca protection. |
+| May 2026 | CAP (Harvard) FAISS index as RAG retrieval corpus | 6.7M US opinions, CC0, commercial-use permitted, pre-built vector index on Hugging Face. Use for source-grounded generation so Claude cites documents it has been shown, not training memory. Supplement with CourtListener live API for post-2018 cases. |
+| May 2026 | Citation accuracy threshold: under 5% hallucination rate before production launch | Industry consensus per Stanford/Yale JELS 2025 study. Lexis+ AI's independently verified rate of under 3% is the gold standard. If we cannot beat 5%, the citation feature ships as BETA with enhanced disclaimers. |
+| May 2026 | Smokeball is the most dangerous competitor in AU/NZ — not Harvey or Clio | 4.8/5 G2 rating, strong in AU/UK/US small firms, Archie AI is competent. Must demonstrably outperform on Oracle depth and add accounting dimension before AU/NZ launch. |
+| May 2026 | ABA Opinion 512 requires specific AI consent — boilerplate engagement letter insufficient | Must update onboarding to explicitly name AI data processing. General tech consent is not enough per the July 2024 opinion. |
+| May 2026 | NZ Privacy Amendment Act IPP 3A (effective 1 May 2026) requires AI pipeline disclosure | Agencies collecting personal information indirectly must disclose processing. The Claude API pipeline must be disclosed in privacy policy and onboarding for NZ users. Currently 28 days overdue — action required immediately. |
+| May 2026 | EU AI Act high-risk deadline is 2 August 2026 — 65 days away | Must complete AI risk classification before any EU market activity. GPAI obligations (Claude-class models) already in effect August 2025. |
+| May 2026 | Thomson Reuters CoCounsel Legal is built on Anthropic Claude Agent SDK | Both platforms use the same underlying model. Our competitive advantage is platform breadth (PM + accounting + voice), not AI model differentiation. Position as "the operating system TR cannot build." |
+| May 2026 | MASTER-AUDIT.md is the timestamped platform truth document | Created 2026-05-29. Updated daily by platform-audit GitHub Actions workflow. Every new container session reads MASTER-AUDIT.md after CLAUDE.md to get current platform state. |
+| May 2026 | Daily platform-audit GitHub Actions workflow created | Runs at 6am NZST. Checks for Astra refs, placeholder content, hardcoded secrets, brand casing, missing disclaimers, missing metadata. Creates GitHub issue if failures found so new sessions act on current information. |
 
 ---
 

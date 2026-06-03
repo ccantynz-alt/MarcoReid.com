@@ -3,7 +3,7 @@
 // create a new version.
 
 export const CURRENT_TOS_VERSION = "2026-04-20";
-export const CURRENT_PLATFORM_ACK_VERSION = "2026-04-20";
+export const CURRENT_PLATFORM_ACK_VERSION = "2026-05-29";
 
 // The platform acknowledgment shown at signup, in addition to the standard
 // Terms / Privacy / Acceptable Use agreement. Deliberately plain-language —
@@ -19,7 +19,8 @@ export const CURRENT_PLATFORM_ACK_VERSION = "2026-04-20";
 export const PLATFORM_ACK_BULLETS: readonly string[] = [
   "Marco Reid is a technology platform. It is not a law firm, accounting firm, or licensed professional service provider.",
   "AI-generated output is informational only. It is not legal, tax, financial, or accounting advice, and it does not create a professional relationship.",
-  "I will not rely on AI output in any filing, return, transaction, or decision unless a licensed professional has reviewed and signed it off inside the platform.",
+  "I understand that queries I submit to Marco are processed by Anthropic's Claude API, and that voice recordings are processed by OpenAI's Whisper API, to generate AI Output. I consent to this processing as described in the Privacy Policy.",
+  "I will not rely on AI output in any filing, return, transaction, or decision unless a licensed professional has reviewed and signed it off inside the platform. I understand that all citations must be independently verified before use.",
   "Any dispute with Marco Reid is resolved by binding arbitration in Auckland, New Zealand under the Terms of Service, on an individual basis only — not as part of a class, consolidated, or representative action.",
   "None of the above limits non-waivable rights under the NZ Consumer Guarantees Act 1993, the Australian Consumer Law, or equivalent consumer protection law in my jurisdiction.",
 ];

@@ -53,6 +53,7 @@ model User {
   onboardedAt          DateTime?
   jurisdiction         String?
   practiceArea         String?
+  timeZone             String?
   tosAcceptedAt        DateTime?
   tosVersion           String?
   platformAckAt        DateTime?
