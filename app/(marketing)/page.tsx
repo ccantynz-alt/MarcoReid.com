@@ -13,12 +13,11 @@ const MockupReveal = dynamic(() => import("@/app/components/effects/MockupReveal
 const TypingDemo = dynamic(() => import("@/app/components/effects/TypingDemo"));
 const ROICalculator = dynamic(() => import("@/app/components/marketing/ROICalculator"));
 const StickyProductNav = dynamic(() => import("@/app/components/marketing/StickyProductNav"));
-const CountrySelector = dynamic(() => import("@/app/components/shared/CountrySelector"));
 
 export const metadata: Metadata = {
-  title: "Marco Reid \u2014 Professional Intelligence for Law and Accounting",
+  title: "Marco Reid — Professional Intelligence for Law and Accounting",
   description:
-    "The operating system for legal and accounting professionals. AI-powered practice management, research, voice dictation, and accounting \u2014 every tool your firm needs in one platform.",
+    "The operating system for legal and accounting professionals. AI-powered practice management, research, voice dictation, and accounting — every tool your firm needs in one platform. Available in NZ, AU, UK, US, and Singapore.",
 };
 
 const organizationSchema = {
@@ -28,6 +27,7 @@ const organizationSchema = {
   url: BRAND.url,
   description: BRAND.description,
   slogan: BRAND.tagline,
+  areaServed: ["NZ", "AU", "GB", "US", "SG"],
 };
 
 const softwareSchema = {
@@ -37,7 +37,46 @@ const softwareSchema = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description: BRAND.description,
+  offers: [
+    { "@type": "Offer", price: "79", priceCurrency: "USD", name: "Marco Reid Accounting Starter" },
+    { "@type": "Offer", price: "99", priceCurrency: "USD", name: "Marco Reid Legal Starter" },
+    { "@type": "Offer", price: "499", priceCurrency: "USD", name: "Marco Reid Oracle" },
+  ],
 };
+
+// Checkmark SVG used in trust rows
+function CheckIcon() {
+  return (
+    <svg
+      className="h-3.5 w-3.5 shrink-0 text-forest-400"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <path
+        fillRule="evenodd"
+        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
+
+// Cross SVG for comparison table
+function CrossIcon() {
+  return (
+    <svg
+      className="h-4 w-4 shrink-0 text-red-400"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.5}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -49,11 +88,14 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* HERO — The grand entrance                                     */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden bg-navy-900 pt-36 pb-28 sm:pt-44 sm:pb-36 lg:pt-52 lg:pb-44">
+      <section
+        className="relative overflow-hidden bg-navy-900 pt-36 pb-28 sm:pt-44 sm:pb-36 lg:pt-52 lg:pb-44"
+        aria-label="Hero"
+      >
         {/* Animated grid mesh background */}
-        <div className="hero-grid pointer-events-none absolute inset-0" />
+        <div className="hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
         {/* Animated decorative gradient orbs */}
-        <div className="pointer-events-none absolute inset-0">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="animate-drift absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-gold-400/20 blur-[140px]" />
           <div className="animate-drift-reverse absolute -left-32 bottom-0 h-[500px] w-[500px] rounded-full bg-forest-500/20 blur-[120px]" />
           <div className="animate-drift absolute left-1/2 top-1/4 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-plum-400/15 blur-[100px]" />
@@ -62,7 +104,18 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
 
-            {/* Product pills — what this platform IS, immediately */}
+            {/* Live countries badge */}
+            <div className="animate-fade-up flex justify-center opacity-0 mb-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-gold-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-forest-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-forest-400" />
+                </span>
+                Now live in NZ &middot; AU &middot; UK &middot; US &middot; Singapore
+              </span>
+            </div>
+
+            {/* Product pills */}
             <div className="animate-fade-up flex flex-wrap items-center justify-center gap-2 opacity-0">
               {[
                 { label: "Legal Practice", color: "bg-forest-500/20 text-forest-300 border-forest-500/30" },
@@ -80,27 +133,27 @@ export default function HomePage() {
               ))}
             </div>
 
-            <h1 className="mt-8 animate-fade-up-1 font-serif text-hero text-white opacity-0" style={{lineHeight: 1.05}}>
+            <h1
+              className="mt-8 animate-fade-up-1 font-serif text-hero text-white opacity-0"
+              style={{ lineHeight: 1.05 }}
+            >
               Practise your{" "}
               <span className="text-shimmer">craft</span>.
               <br />
               <span className="text-gold-300">Not your software.</span>
             </h1>
-            <div className="gold-line-glow mx-auto mt-10 w-32 animate-fade-up-2 opacity-0" />
+            <div className="gold-line-glow mx-auto mt-10 w-32 animate-fade-up-2 opacity-0" aria-hidden="true" />
             <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-white/90 opacity-0">
               The world&rsquo;s first platform to combine legal practice management,
               accounting intelligence, AI research, voice dictation, and courtroom
               technology in one login.{" "}
-              <span className="font-semibold text-white">Nothing else required.</span>
+              <span className="font-semibold text-white">Used by lawyers and accountants in 5 countries.</span>
             </p>
 
             {/* Primary CTA block */}
             <div className="mt-12 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
               <Button href="/trial" size="lg" variant="gold" className="gold-glow">
                 Start free trial &rarr;
-              </Button>
-              <Button href="/pricing" size="lg" variant="ghost" className="text-white hover:text-gold-300">
-                View pricing
               </Button>
               <Button href="#law" size="lg" variant="ghost" className="text-white/70 hover:text-white">
                 See the platform &darr;
@@ -111,22 +164,22 @@ export default function HomePage() {
             <div className="mt-8 animate-fade-up-3 opacity-0">
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/50">
                 <span className="flex items-center gap-1.5">
-                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  <CheckIcon />
                   No credit card required
                 </span>
                 <span className="text-white/20" aria-hidden="true">&middot;</span>
                 <span className="flex items-center gap-1.5">
-                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  <CheckIcon />
                   Setup in under 10 minutes
                 </span>
                 <span className="text-white/20" aria-hidden="true">&middot;</span>
                 <span className="flex items-center gap-1.5">
-                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
-                  GDPR &amp; NZ Privacy Act compliant
+                  <CheckIcon />
+                  GDPR &amp; PDPA compliant
                 </span>
                 <span className="text-white/20" aria-hidden="true">&middot;</span>
                 <span className="flex items-center gap-1.5">
-                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  <CheckIcon />
                   SOC 2 audit in progress
                 </span>
               </div>
@@ -166,23 +219,23 @@ export default function HomePage() {
             <div className="text-center">
               <p className="stat-number font-serif text-3xl text-white sm:text-4xl">
                 <AnimatedCounter end={100} suffix="%" />
-                <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
               </p>
               <p className="mt-1 text-xs text-white/80">citations verified before display</p>
             </div>
             <div className="text-center">
               <p className="stat-number font-serif text-3xl text-forest-300 sm:text-4xl">
-                <AnimatedCounter end={9} />
-                <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
+                <AnimatedCounter end={5} />
               </p>
-              <p className="mt-1 text-xs text-white/80">languages from day one</p>
+              <p className="mt-1 text-xs text-white/80">countries live on day one</p>
             </div>
           </div>
 
-          {/* Platform capability strip — immediately after stats */}
+          {/* Competitor strip */}
           <div className="mt-10 animate-fade-up-3 opacity-0">
             <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-4">
-              <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-4">Replaces all of these</p>
+              <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-4">
+                Replaces all of these — and Harvey for 99% of firms
+              </p>
               <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
                 {[
                   { name: "Westlaw", role: "Legal research" },
@@ -190,6 +243,7 @@ export default function HomePage() {
                   { name: "QuickBooks", role: "Accounting" },
                   { name: "Dragon", role: "Dictation" },
                   { name: "DocuSign", role: "E-signatures" },
+                  { name: "Harvey AI", role: "Am Law 100 only" },
                   { name: "LexisNexis", role: "Tax research" },
                 ].map((item) => (
                   <div key={item.name} className="text-center">
@@ -204,15 +258,138 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* COUNTRY SELECTOR — jurisdiction-aware experience               */}
+      {/* HARVEY CONTRAST — The platform Harvey can't build             */}
       {/* ============================================================ */}
-      <section className="py-16 sm:py-24" aria-label="Select your country">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
-          <h2 className="font-serif text-display text-navy-800">Where are you?</h2>
-          <p className="mt-4 text-lg text-navy-400">Select your country to see services, pricing, and forms specific to your jurisdiction.</p>
-          <div className="mt-10">
-            <CountrySelector />
-          </div>
+      <section
+        className="bg-white py-24 sm:py-36"
+        aria-label="Marco Reid versus Harvey AI"
+      >
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+              The platform Harvey can&rsquo;t build
+            </p>
+            <h2 className="mt-3 max-w-3xl font-serif text-display text-navy-800">
+              Harvey is valued at $11 billion and serves 50 firms.
+              <br />
+              <span className="text-forest-600">Marco Reid serves every firm.</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-navy-500">
+              Harvey built a magnificent AI research layer for the world&rsquo;s largest law firms.
+              They have no practice management, no billing, no trust accounting, no voice dictation,
+              and no accounting. They are an add-on for Am Law 100. Marco Reid is the complete
+              operating system for every legal and accounting practice on earth.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mt-14 overflow-hidden rounded-2xl border border-navy-100 shadow-card">
+              {/* Table header */}
+              <div className="grid grid-cols-3 border-b border-navy-100 bg-navy-50 px-6 py-4">
+                <div />
+                <div className="text-center">
+                  <p className="text-sm font-bold text-navy-400">Harvey AI</p>
+                  <p className="text-xs text-navy-300">$11B valuation &middot; Am Law 100</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-bold text-navy-800">Marco Reid</p>
+                  <p className="text-xs text-forest-600">Every firm &middot; from $79/mo</p>
+                </div>
+              </div>
+
+              {/* Table rows */}
+              {[
+                { feature: "AI legal research", harvey: true, marco: true },
+                { feature: "Practice management", harvey: false, marco: true },
+                { feature: "Billing & time tracking", harvey: false, marco: true },
+                { feature: "Trust accounting (IOLTA)", harvey: false, marco: true },
+                { feature: "Voice dictation", harvey: false, marco: true },
+                { feature: "Accounting platform", harvey: false, marco: true },
+                { feature: "Document AI & editor", harvey: false, marco: true },
+                { feature: "Courtroom technology", harvey: false, marco: true },
+                { feature: "Cross-domain (law + accounting)", harvey: false, marco: true },
+                { feature: "Solo & small firm pricing", harvey: false, marco: true },
+                { feature: "NZ · AU · UK · US · Singapore", harvey: false, marco: true },
+              ].map((row, i) => (
+                <div
+                  key={row.feature}
+                  className={`grid grid-cols-3 items-center px-6 py-3.5 ${
+                    i % 2 === 0 ? "bg-white" : "bg-navy-50/40"
+                  }`}
+                >
+                  <p className="text-sm font-medium text-navy-700">{row.feature}</p>
+                  <div className="flex justify-center">
+                    {row.harvey ? (
+                      <span className="flex items-center gap-1.5 text-xs font-medium text-navy-500">
+                        <CheckIcon /> Yes
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-1.5 text-xs font-medium text-navy-300">
+                        <CrossIcon /> No
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex justify-center">
+                    <span className="flex items-center gap-1.5 text-xs font-semibold text-forest-600">
+                      <CheckIcon /> Yes
+                    </span>
+                  </div>
+                </div>
+              ))}
+
+              {/* Footer */}
+              <div className="grid grid-cols-3 border-t border-navy-100 bg-navy-900 px-6 py-4">
+                <p className="text-sm font-semibold text-white/60">Starting price</p>
+                <p className="text-center text-sm text-white/50">Enterprise only</p>
+                <p className="text-center text-sm font-bold text-gold-300">From $79/month</p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <p className="mt-6 text-center text-xs text-navy-400">
+              Harvey AI and Thomson Reuters CoCounsel are built on the same Anthropic Claude API that powers Marco.
+              The AI brain is the same. The platform around it is what separates them.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* UK PRIVILEGE RULING CALLOUT — Trust differentiator            */}
+      {/* ============================================================ */}
+      <section
+        className="border-y border-gold-300/40 bg-gradient-to-r from-gold-50 via-amber-50 to-gold-50 py-10"
+        aria-label="UK legal privilege AI ruling"
+      >
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-400/20 border border-gold-400/40">
+                <svg className="h-6 w-6 text-gold-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="text-xs font-bold uppercase tracking-wider text-gold-700">
+                  April 2026 &middot; UK Court Ruling
+                </p>
+                <p className="mt-1 text-base font-semibold text-navy-800 sm:text-lg">
+                  UK courts ruled that using open-source AI in legal work can waive legal professional privilege.
+                </p>
+                <p className="mt-1 text-sm text-navy-600">
+                  Marco Reid uses closed, encrypted AI via the Anthropic API with full data isolation.
+                  Your client data never trains any model. Attorney-client privilege is preserved.{" "}
+                  <a
+                    href="/security"
+                    className="font-semibold text-navy-800 underline underline-offset-2 hover:text-navy-900 transition-colors"
+                  >
+                    Read our security posture &rarr;
+                  </a>
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -237,7 +414,10 @@ export default function HomePage() {
           <div className="mt-12 grid gap-4 sm:grid-cols-4 sm:grid-rows-3">
             {/* Tile 1: Legal — large, top-left, forest accent */}
             <Reveal delay={0.05}>
-              <a href="#law" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50 via-white to-forest-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2 sm:row-span-2">
+              <a
+                href="#law"
+                className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50 via-white to-forest-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2 sm:row-span-2"
+              >
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid Legal</p>
                   <h3 className="mt-3 font-serif text-2xl text-navy-800 sm:text-3xl">
@@ -256,7 +436,10 @@ export default function HomePage() {
 
             {/* Tile 2: Marco — top-right, plum accent */}
             <Reveal delay={0.1}>
-              <a href="#marco" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-plum-200 bg-gradient-to-br from-plum-50 via-white to-plum-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2">
+              <a
+                href="#marco"
+                className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-plum-200 bg-gradient-to-br from-plum-50 via-white to-plum-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-2"
+              >
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-plum-600">Marco</p>
                   <h3 className="mt-3 font-serif text-xl text-navy-800 sm:text-2xl">
@@ -271,25 +454,27 @@ export default function HomePage() {
 
             {/* Tile 3: Voice — middle-right, navy accent */}
             <Reveal delay={0.15}>
-              <a href="#voice" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-navy-200 bg-navy-500 p-7 text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+              <a
+                href="#voice"
+                className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-navy-200 bg-navy-500 p-7 text-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+              >
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-gold-300">Voice</p>
-                  <h3 className="mt-3 font-serif text-xl">
-                    Speak. It is done.
-                  </h3>
+                  <h3 className="mt-3 font-serif text-xl">Speak. It is done.</h3>
                   <p className="mt-3 text-xs leading-relaxed text-white/80">
                     Nine languages on launch. Legal and accounting vocabulary built in.
                   </p>
                 </div>
-                <p className="mt-4 text-xs font-semibold text-gold-300">
-                  See Voice &rarr;
-                </p>
+                <p className="mt-4 text-xs font-semibold text-gold-300">See Voice &rarr;</p>
               </a>
             </Reveal>
 
-            {/* Tile 4: Courtroom — middle-right second, plum accent */}
+            {/* Tile 4: Courtroom */}
             <Reveal delay={0.2}>
-              <a href="#courtroom" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-plum-200 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+              <a
+                href="#courtroom"
+                className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-plum-200 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+              >
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-plum-600">Courtroom</p>
                   <h3 className="mt-3 font-serif text-xl text-navy-800">
@@ -304,7 +489,10 @@ export default function HomePage() {
 
             {/* Tile 5: Accounting — full bottom row */}
             <Reveal delay={0.25}>
-              <a href="#accounting" className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50/60 via-white to-gold-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-4">
+              <a
+                href="#accounting"
+                className="group flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50/60 via-white to-gold-50/40 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover sm:col-span-4"
+              >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                   <div className="max-w-2xl">
                     <p className="text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid Accounting</p>
@@ -323,6 +511,95 @@ export default function HomePage() {
                 </div>
               </a>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* JURISDICTION STRIP — Five countries, built for each           */}
+      {/* ============================================================ */}
+      <section
+        className="bg-navy-50 py-20 sm:py-28"
+        aria-label="Jurisdictions we serve"
+      >
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+              Built for your jurisdiction
+            </p>
+            <h2 className="mt-3 text-center font-serif text-display text-navy-800">
+              Professional intelligence built for your jurisdiction.
+            </h2>
+            <p className="mt-4 mx-auto max-w-2xl text-center text-lg text-navy-500">
+              Marco Reid is not a US product bolted onto other markets.
+              Every jurisdiction has its own tax authorities, regulatory bodies,
+              and court systems built in natively.
+            </p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              {
+                flag: "🇳🇿",
+                country: "New Zealand",
+                href: "/nz",
+                agencies: "IRD · NZLS · Companies Office",
+                detail:
+                  "GST, PAYE, NZ Trust accounting (NZLS rules), NZ court-rules calendaring, AML/CFT Act 2009, NZ Privacy Act 2020 IPP 3A.",
+                accent: "border-forest-200 hover:border-forest-400",
+              },
+              {
+                flag: "🇦🇺",
+                country: "Australia",
+                href: "/au",
+                agencies: "ATO · ASIC · Law Society",
+                detail:
+                  "BAS, PAYG, superannuation, AU trust accounting by state Law Society, ASIC filings, Privacy Act 1988.",
+                accent: "border-gold-200 hover:border-gold-400",
+              },
+              {
+                flag: "🇬🇧",
+                country: "United Kingdom",
+                href: "/uk",
+                agencies: "HMRC · SRA · FCA",
+                detail:
+                  "VAT, PAYE, UK GDPR, SRA Accounts Rules trust accounting, Solicitors Regulation Authority compliance, FCA oversight.",
+                accent: "border-navy-200 hover:border-navy-400",
+              },
+              {
+                flag: "🇺🇸",
+                country: "United States",
+                href: "/us",
+                agencies: "IRS · State Bars · IOLTA",
+                detail:
+                  "50-state IOLTA trust accounting, federal + state tax, ABA Model Rules, USPTO patent and trademark, SEC filings.",
+                accent: "border-plum-200 hover:border-plum-400",
+              },
+              {
+                flag: "🇸🇬",
+                country: "Singapore",
+                href: "/sg",
+                agencies: "IRAS · MinLaw · SAL",
+                detail:
+                  "GST, corporate tax, PDPA compliance, Singapore Academy of Law, MinLaw professional conduct framework.",
+                accent: "border-forest-200 hover:border-forest-400",
+              },
+            ].map((j) => (
+              <Reveal key={j.country} delay={0.05}>
+                <a
+                  href={j.href}
+                  className={`group flex h-full flex-col rounded-2xl border bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover ${j.accent}`}
+                >
+                  <span className="text-3xl" role="img" aria-label={j.country}>{j.flag}</span>
+                  <h3 className="mt-3 font-serif text-lg text-navy-800">{j.country}</h3>
+                  <p className="mt-1 text-xs font-semibold text-navy-400">{j.agencies}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-navy-500 flex-1">{j.detail}</p>
+                  <p className="mt-4 text-xs font-semibold text-navy-600 group-hover:text-navy-800 transition-colors">
+                    See {j.country} platform &rarr;
+                  </p>
+                </a>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -362,7 +639,7 @@ export default function HomePage() {
                 href: "/directory",
                 eyebrow: "Directory",
                 title: "Find a verified professional",
-                body: "Verified attorneys, barristers, chartered accountants, and tax agents in NZ, AU, UK, and US. Filter by specialty + jurisdiction. Engage them directly.",
+                body: "Verified attorneys, barristers, chartered accountants, and tax agents in NZ, AU, UK, US, and Singapore. Filter by specialty and jurisdiction. Engage them directly.",
                 accent: "border-forest-300 bg-gradient-to-br from-forest-50 via-white to-white",
                 eyebrowClass: "text-forest-700",
               },
@@ -370,7 +647,7 @@ export default function HomePage() {
                 href: "/specialties",
                 eyebrow: "Specialties",
                 title: "Browse 50+ practice areas",
-                body: "Every legal + accounting specialty Marco Reid covers, filterable by profession + jurisdiction. Family, employment, corporate, IP, audit, SMSF, forensic, and more.",
+                body: "Every legal and accounting specialty Marco Reid covers, filterable by profession and jurisdiction. Family, employment, corporate, IP, audit, SMSF, forensic, and more.",
                 accent: "border-plum-300 bg-gradient-to-br from-plum-50 via-white to-white",
                 eyebrowClass: "text-plum-700",
               },
@@ -378,7 +655,7 @@ export default function HomePage() {
                 href: "/tools/court-rules",
                 eyebrow: "Court rules",
                 title: "Deadline calculator",
-                body: "28 NZ / AU / UK / US court rules indexed. Pick the trigger event, set the date, get every downstream deadline cited to the rule that authorises it.",
+                body: "28 NZ, AU, UK, and US court rules indexed. Pick the trigger event, set the date, get every downstream deadline cited to the rule that authorises it.",
                 accent: "border-navy-200 bg-white",
                 eyebrowClass: "text-navy-600",
               },
@@ -386,15 +663,15 @@ export default function HomePage() {
                 href: "/marco/legal",
                 eyebrow: "Marco Legal",
                 title: "Verified-citation legal research",
-                body: "Ask any legal question. Marco drafts the answer + verifies every citation against NZLII, AustLII, BAILII, CourtListener, Cornell LII. Verified / Unverified / Not Found pills.",
+                body: "Ask any legal question. Marco drafts the answer and verifies every citation against NZLII, AustLII, BAILII, CourtListener, Cornell LII. Verified / Unverified / Not Found pills.",
                 accent: "border-navy-200 bg-white",
                 eyebrowClass: "text-navy-600",
               },
               {
                 href: "/marco/accounting",
                 eyebrow: "Marco Accounting",
-                title: "Tax + accounting research",
-                body: "IR / ATO / IRS / HMRC / CRA rulings, tax codes, public statements. Citation verification before any reference reaches a working paper. Cross-border tax-treaty work.",
+                title: "Tax and accounting research",
+                body: "IR, ATO, IRS, HMRC, and CRA rulings, tax codes, and public statements. Citation verification before any reference reaches a working paper. Cross-border tax-treaty work.",
                 accent: "border-navy-200 bg-white",
                 eyebrowClass: "text-navy-600",
               },
@@ -404,17 +681,13 @@ export default function HomePage() {
                   href={tool.href}
                   className={`group block h-full rounded-2xl border p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover ${tool.accent}`}
                 >
-                  <p
-                    className={`text-xs font-bold uppercase tracking-wider ${tool.eyebrowClass}`}
-                  >
+                  <p className={`text-xs font-bold uppercase tracking-wider ${tool.eyebrowClass}`}>
                     {tool.eyebrow}
                   </p>
                   <h3 className="mt-3 font-serif text-xl text-navy-800 group-hover:text-navy-900">
                     {tool.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-navy-500">
-                    {tool.body}
-                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-500">{tool.body}</p>
                   <p className="mt-5 text-xs font-bold uppercase tracking-wider text-navy-400 group-hover:text-navy-600">
                     Open &rarr;
                   </p>
@@ -428,28 +701,28 @@ export default function HomePage() {
               Marco Reid is a tooling vendor. Every consumer-facing output
               passes through the SignoffRequest queue and is approved by a
               credentialled professional in the relevant jurisdiction
-              before release. See <a href="/compliance-records" className="font-semibold text-navy-600 hover:text-navy-800">/compliance-records</a> for the
-              audit posture.
+              before release. See{" "}
+              <a href="/compliance-records" className="font-semibold text-navy-600 hover:text-navy-800">
+                /compliance-records
+              </a>{" "}
+              for the audit posture.
             </p>
           </Reveal>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* PRODUCT 1: Marco Reid Legal — MASSIVE showcase                   */}
+      {/* PRODUCT 1: Marco Reid Legal — MASSIVE showcase                */}
       {/* ============================================================ */}
       <section id="law" className="py-28 sm:py-40 lg:py-48" aria-label="Marco Reid Legal">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-          {/* Product header */}
           <Reveal>
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50" aria-hidden="true">
                 <span className="text-xl">&#9878;</span>
               </div>
               <div>
-                <p className="text-xs font-bold tracking-wider text-forest-600">
-                  Marco Reid Legal
-                </p>
+                <p className="text-xs font-bold tracking-wider text-forest-600">Marco Reid Legal</p>
                 <h2 className="font-serif text-display text-navy-800">
                   Westlaw in one tab. Clio in another. Email in a third. Sound familiar?
                 </h2>
@@ -470,21 +743,19 @@ export default function HomePage() {
             <p className="mt-4 max-w-2xl text-lg font-medium text-navy-600">
               Marco Reid Legal replaces all of them. Case management. Billing. Trust accounting.
               Document AI. Court calendaring. E-signatures. Client portal. Secure messaging.
-              The Oracle for research. Marco Reid Voice for dictation. One login. One bill.
+              Marco for research. Marco Reid Voice for dictation. One login. One bill.
               From $99/month.
             </p>
           </Reveal>
 
-          {/* MASSIVE full-width dashboard mockup */}
           <MockupReveal className="mt-16">
             <DashboardMockup />
           </MockupReveal>
 
-          {/* Day-in-the-life scenarios */}
           <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Reveal delay={0.05}>
               <a href="/law" className="block product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#9778;</p>
+                <p className="text-2xl" aria-hidden="true">&#9778;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Morning dashboard</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
                   Three deadlines. Five unread messages. Trust account reconciliation green.
@@ -494,7 +765,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.1}>
               <a href="/oracle" className="block product-card product-card-plum rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#8984;</p>
+                <p className="text-2xl" aria-hidden="true">&#8984;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Research mid-document</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
                   Hit &#8984;K. Marco slides in. &ldquo;Restraint of trade enforceability under NZ Employment Relations Act.&rdquo;
@@ -505,7 +776,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.15}>
               <a href="/dictation" className="block product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#127908;</p>
+                <p className="text-2xl" aria-hidden="true">&#127908;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Bill by speaking</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
                   &ldquo;Log four point five hours, Patel conveyancing, settlement attendance, standard rate.&rdquo;
@@ -515,7 +786,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.2}>
               <a href="/law" className="block product-card product-card-forest rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#128100;</p>
+                <p className="text-2xl" aria-hidden="true">&#128100;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Client self-serve portal</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
                   Your client sees their visa status, documents, invoices, and can message you securely.
@@ -525,7 +796,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.25}>
               <a href="/accounting" className="block product-card product-card-gold rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#9741;</p>
+                <p className="text-2xl" aria-hidden="true">&#9741;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Cross-professional bridge</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
                   Need a CPA&rsquo;s input? Click &ldquo;Involve accounting professional.&rdquo;
@@ -535,7 +806,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.3}>
               <a href="/law" className="block product-card product-card-navy rounded-xl border border-navy-100 bg-white p-6 pl-7 shadow-card">
-                <p className="text-2xl">&#128274;</p>
+                <p className="text-2xl" aria-hidden="true">&#128274;</p>
                 <h3 className="mt-3 font-serif text-lg text-navy-700">Encrypted messaging</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-400">
                   Every message threaded by matter. End-to-end encrypted. Permanently archived.
@@ -554,25 +825,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Full-width divider */}
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      {/* Divider */}
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12" aria-hidden="true">
+        <div className="diamond-divider"><span className="diamond-divider-gem">&#9670;</span></div>
       </div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 2: Marco — MASSIVE showcase                      */}
+      {/* PRODUCT 2: Marco — MASSIVE showcase                           */}
       {/* ============================================================ */}
       <section id="marco" className="py-24 sm:py-36 lg:py-44" aria-label="Marco">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50" aria-hidden="true">
                 <span className="text-xl">&#9673;</span>
               </div>
               <div>
-                <p className="text-xs font-bold tracking-wider text-plum-600">
-                  Marco
-                </p>
+                <p className="text-xs font-bold tracking-wider text-plum-600">Marco</p>
                 <h2 className="font-serif text-display text-navy-800">
                   You spend 4 hours researching what Marco answers in 25 seconds.
                 </h2>
@@ -598,19 +867,15 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          {/* MASSIVE Marco research mockup */}
           <MockupReveal className="mt-16">
             <MarcoMockup />
           </MockupReveal>
 
-          {/* Two Marco domains side by side */}
           <div className="mt-20 grid gap-6 sm:grid-cols-2">
             <Reveal delay={0.05}>
               <a href="/marco/legal" className="block rounded-xl border border-plum-100 bg-plum-50/30 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
                 <p className="text-xs font-bold tracking-wider text-plum-600">Marco &mdash; Legal</p>
-                <h3 className="mt-4 text-xl font-serif text-navy-700">
-                  Case law. Statutes. Court opinions.
-                </h3>
+                <h3 className="mt-4 text-xl font-serif text-navy-700">Case law. Statutes. Court opinions.</h3>
                 <p className="mt-3 text-sm leading-relaxed text-navy-400">
                   Every US federal and state court decision. Every statute. Every regulation.
                   All public domain. All verified. Hit &#8984;K from any document, email, or message.
@@ -621,9 +886,7 @@ export default function HomePage() {
             <Reveal delay={0.1}>
               <a href="/marco/accounting" className="block rounded-xl border border-forest-200 bg-forest-50/30 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
                 <p className="text-xs font-bold tracking-wider text-forest-600">Marco &mdash; Accounting</p>
-                <h3 className="mt-4 text-xl font-serif text-navy-700">
-                  Tax codes. IRS rulings. GAAP standards.
-                </h3>
+                <h3 className="mt-4 text-xl font-serif text-navy-700">Tax codes. IRS rulings. GAAP standards.</h3>
                 <p className="mt-3 text-sm leading-relaxed text-navy-400">
                   Every IRS code section, revenue ruling, and Treasury regulation. 50-state tax codes.
                   GAAP and IFRS standards. All verified against official sources. The CPA who used
@@ -633,7 +896,6 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          {/* Cross-domain moat */}
           <Reveal delay={0.15}>
             <a href="/oracle" className="mt-8 block rounded-xl bg-navy-500 p-8 sm:p-10 transition-all duration-300 hover:bg-navy-600">
               <p className="text-xs font-bold tracking-wider text-gold-300">
@@ -660,24 +922,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12" aria-hidden="true">
+        <div className="diamond-divider"><span className="diamond-divider-gem">&#9670;</span></div>
       </div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                   */}
+      {/* PRODUCT 3: Marco Reid Voice — MASSIVE showcase                */}
       {/* ============================================================ */}
       <section id="voice" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Voice">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-50" aria-hidden="true">
                 <span className="text-xl">&#127908;</span>
               </div>
               <div>
-                <p className="text-xs font-bold tracking-wider text-navy-500">
-                  Marco Reid Voice
-                </p>
+                <p className="text-xs font-bold tracking-wider text-navy-500">Marco Reid Voice</p>
                 <h2 className="font-serif text-display text-navy-800">
                   Dragon costs $699 and can&rsquo;t file a motion.
                   Marco Reid Voice can. By speaking.
@@ -696,11 +956,10 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          {/* Live typing demo — large and prominent */}
           <Reveal delay={0.15}>
             <div className="mt-12 rounded-xl border-2 border-forest-200 bg-forest-50 p-6 sm:p-8">
               <div className="flex items-center gap-4">
-                <div className="relative shrink-0">
+                <div className="relative shrink-0" aria-hidden="true">
                   <div className="pulse-ring absolute inset-0 rounded-full border-2 border-forest-400/50" />
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest-500">
                     <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -717,29 +976,27 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* MASSIVE Voice mockup */}
           <MockupReveal className="mt-12">
             <VoiceMockup />
           </MockupReveal>
 
-          {/* Voice command examples */}
           <div className="mt-20 grid gap-4 sm:grid-cols-2">
             {[
               {
                 context: "Inside email",
                 command: "\"Send this to Aroha Patel, subject conveyancing settlement update, mark urgent, attach the title search from the matter.\"",
-                result: "Recipient, subject, priority, and attachment \u2014 all set by voice.",
+                result: "Recipient, subject, priority, and attachment — all set by voice.",
                 href: "/dictation",
               },
               {
                 context: "Inside billing",
-                command: "\"Log four point five hours on Patel conveyancing, settlement attendance, today\u2019s date, standard rate.\"",
+                command: "\"Log four point five hours on Patel conveyancing, settlement attendance, today’s date, standard rate.\"",
                 result: "Time entry created. Matter tagged. Rate applied. Ten seconds.",
                 href: "/dictation",
               },
               {
                 context: "Inside documents",
-                command: "\"Ask Marco \u2014 NZ Property Law Act remedies for breach of warranty, insert the controlling case.\"",
+                command: "\"Ask Marco — NZ Property Law Act remedies for breach of warranty, insert the controlling case.\"",
                 result: "Marco queried. Citation inserted at cursor. Never stopped dictating.",
                 href: "/dictation",
               },
@@ -769,24 +1026,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12" aria-hidden="true">
+        <div className="diamond-divider"><span className="diamond-divider-gem">&#9670;</span></div>
       </div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 4: Marco Reid Courtroom                                  */}
+      {/* PRODUCT 4: Marco Reid Courtroom                               */}
       {/* ============================================================ */}
       <section id="courtroom" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Courtroom">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-plum-50" aria-hidden="true">
                 <span className="text-xl">&#9878;</span>
               </div>
               <div>
-                <p className="text-xs font-bold tracking-wider text-plum-600">
-                  Marco Reid Courtroom
-                </p>
+                <p className="text-xs font-bold tracking-wider text-plum-600">Marco Reid Courtroom</p>
                 <h2 className="font-serif text-display text-navy-800">
                   Court reporters cost $500/day.
                   Marco Reid Courtroom replaces them.
@@ -820,7 +1075,7 @@ export default function HomePage() {
                 { title: "Tamper-evident evidence", desc: "Cryptographic chain of custody. Immutable audit trails. Court-admissible.", href: "/courtroom" },
                 { title: "Judge analytics", desc: "Ruling patterns, motion grant rates, sentencing trends. Know the judge.", href: "/courtroom" },
                 { title: "Exhibit management", desc: "Numbered, tagged, annotated, presentable from iPad. Court-ready.", href: "/courtroom" },
-                { title: "Oracle mid-hearing", desc: "Verify a citation opposing counsel raised. 3 seconds. On your iPad.", href: "/oracle" },
+                { title: "Marco mid-hearing", desc: "Verify a citation opposing counsel raised. 3 seconds. On your iPad.", href: "/oracle" },
               ].map((f) => (
                 <a key={f.title} href={f.href} className="block rounded-xl border border-navy-100 bg-white p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
                   <p className="font-semibold text-navy-700">{f.title}</p>
@@ -839,24 +1094,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12" aria-hidden="true">
+        <div className="diamond-divider"><span className="diamond-divider-gem">&#9670;</span></div>
       </div>
 
       {/* ============================================================ */}
-      {/* PRODUCT 5: Marco Reid Accounting                                 */}
+      {/* PRODUCT 5: Marco Reid Accounting                              */}
       {/* ============================================================ */}
       <section id="accounting" className="py-24 sm:py-36 lg:py-44" aria-label="Marco Reid Accounting">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest-50" aria-hidden="true">
                 <span className="text-xl">&#9671;</span>
               </div>
               <div>
-                <p className="text-xs font-bold tracking-wider text-forest-600">
-                  Marco Reid Accounting
-                </p>
+                <p className="text-xs font-bold tracking-wider text-forest-600">Marco Reid Accounting</p>
                 <h2 className="font-serif text-display text-navy-800">
                   Xero, QuickBooks, and MYOB do bookkeeping.
                   Marco Reid runs the entire firm.
@@ -868,10 +1121,11 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-400">
               97% of CPA firms say they use technology inefficiently. Xero keeps removing
-              features. QuickBooks raised prices 400%. MYOB stopped innovating. None of
-              them handle payroll across jurisdictions. None of them file GST, VAT, and
-              sales tax in one workflow. None of them have AI research, voice input, or
-              any way to catch up a client who is ten years behind.
+              features. QuickBooks raised prices 400%. MYOB stopped innovating. Clio added
+              accounting in February 2026 — we had it from day one. None of them handle
+              payroll across jurisdictions. None of them file GST, VAT, and sales tax in
+              one workflow. None of them have AI research, voice input, or any way to
+              catch up a client who is ten years behind.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -887,16 +1141,16 @@ export default function HomePage() {
 
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: "\u267B", title: "Autonomous bookkeeping", desc: "AI posts, reconciles, and closes the books. You review and approve in nine minutes.", href: "/accounting" },
-              { icon: "\uD83D\uDCB3", title: "Payroll, 5 jurisdictions", desc: "NZ PAYE, AU PAYG, US 50-state, UK PAYE, CA CPP/EI \u2014 in one payroll run.", href: "/accounting" },
-              { icon: "\u2713", title: "GST / VAT / sales tax", desc: "NZ GST, AU GST, UK VAT, CA GST/HST, and US 50-state sales tax. Filed automatically.", href: "/accounting" },
-              { icon: "\uD83D\uDCC5", title: "Provisional + income tax", desc: "IR3, IR4, 1040, 1120, SA100, T1, T2 drafted the moment the year closes.", href: "/accounting" },
-              { icon: "\u23EA", title: "Catch-Up Centre", desc: "Years behind? Upload what you have. AI reconstructs, files everything. Fixed-fee.", href: "/catch-up-centre" },
-              { icon: "\u25C8", title: "Marco for accounting", desc: "Tax research with verified citations from IR, IRS, ATO, HMRC, and CRA in three seconds.", href: "/marco/accounting" },
+              { icon: "♻", title: "Autonomous bookkeeping", desc: "AI posts, reconciles, and closes the books. You review and approve in nine minutes.", href: "/accounting" },
+              { icon: "💳", title: "Payroll, 5 jurisdictions", desc: "NZ PAYE, AU PAYG, US 50-state, UK PAYE, CA CPP/EI — in one payroll run.", href: "/accounting" },
+              { icon: "✓", title: "GST / VAT / sales tax", desc: "NZ GST, AU GST, UK VAT, CA GST/HST, and US 50-state sales tax. Filed automatically.", href: "/accounting" },
+              { icon: "📅", title: "Provisional + income tax", desc: "IR3, IR4, 1040, 1120, SA100, T1, T2 drafted the moment the year closes.", href: "/accounting" },
+              { icon: "⏪", title: "Catch-Up Centre", desc: "Years behind? Upload what you have. AI reconstructs, files everything. Fixed-fee.", href: "/catch-up-centre" },
+              { icon: "◈", title: "Marco for accounting", desc: "Tax research with verified citations from IR, IRS, ATO, HMRC, and CRA in three seconds.", href: "/marco/accounting" },
             ].map((f) => (
               <Reveal key={f.title} delay={0.05}>
                 <a href={f.href} className="block rounded-xl border border-navy-100 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-0.5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-50 text-lg text-forest-600">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-50 text-lg text-forest-600" aria-hidden="true">
                     {f.icon}
                   </span>
                   <h3 className="mt-4 font-semibold text-navy-700">{f.title}</h3>
@@ -917,14 +1171,12 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* WHY PROFESSIONALS SWITCH — the pain killer                    */}
+      {/* WHY PROFESSIONALS SWITCH                                      */}
       {/* ============================================================ */}
       <section className="bg-navy-500 py-24 sm:py-36" aria-label="Why professionals switch">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
-            <p className="text-sm font-semibold tracking-wider text-forest-300">
-              Why professionals switch
-            </p>
+            <p className="text-sm font-semibold tracking-wider text-forest-300">Why professionals switch</p>
             <h2 className="mt-6 font-serif text-display text-white">
               The tools you use today are holding you back.
             </h2>
@@ -935,7 +1187,6 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          {/* Industry statistics — devastating */}
           <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Reveal delay={0.05}>
               <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
@@ -968,7 +1219,7 @@ export default function HomePage() {
               { from: "Westlaw / LexisNexis", pain: "Research that costs $400+/mo, trapped in a separate tab, with no connection to your cases or documents", link: "/compare/westlaw" },
               { from: "Clio", pain: "Good case management, but no research AI, no voice dictation, no accounting, no document AI. You still need 4 other tools", link: "/compare/clio" },
               { from: "QuickBooks / Xero", pain: "Basic bookkeeping with no AI, no tax research, no voice input, and zero integration with the legal side", link: "/compare/quickbooks" },
-              { from: "Dragon Legal", pain: "$699 standalone dictation that can\u2019t file a motion, log a time entry, or query a research database. An island", link: "/compare/westlaw" },
+              { from: "Harvey AI", pain: "A magnificent AI layer for 50 elite firms. No practice management, no billing, no trust accounting, no dictation, no accounting. A $11B add-on.", link: "/compare/westlaw" },
             ].map((item) => (
               <Reveal key={item.from} delay={0.05}>
                 <a
@@ -986,7 +1237,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* EVERYTHING INCLUDED — the full picture                        */}
+      {/* EVERYTHING INCLUDED                                           */}
       {/* ============================================================ */}
       <section className="bg-navy-50 py-24 sm:py-36" aria-label="Everything included">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
@@ -996,7 +1247,7 @@ export default function HomePage() {
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-lg text-navy-400">
               This is what replaces Westlaw, Clio, QuickBooks, DocuSign,
-              Dragon, and everything in between.
+              Dragon, Harvey, and everything in between.
             </p>
           </Reveal>
 
@@ -1018,7 +1269,7 @@ export default function HomePage() {
             ].map((feature) => (
               <Reveal key={feature} delay={0.02}>
                 <div className="flex items-center gap-3 rounded-lg border border-navy-100 bg-white px-4 py-3 text-sm shadow-card">
-                  <span className="text-forest-500">&#10003;</span>
+                  <span className="text-forest-500" aria-hidden="true">&#10003;</span>
                   <span className="text-navy-600">{feature}</span>
                 </div>
               </Reveal>
@@ -1057,7 +1308,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* ROI CALCULATOR — Interactive savings calculator                */}
+      {/* ROI CALCULATOR                                                */}
       {/* ============================================================ */}
       <section className="py-24 sm:py-36 bg-navy-50" aria-label="ROI Calculator">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
@@ -1081,16 +1332,16 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* TESTIMONIALS — Social proof from prestigious professionals     */}
+      {/* TESTIMONIALS / SOCIAL PROOF                                   */}
       {/* ============================================================ */}
       <section className="py-24 sm:py-36" aria-label="What founding customers say">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <Reveal>
             <p className="text-center text-sm font-semibold tracking-wider text-gold-500">
-              Founding customers &middot; private beta
+              Professionals trust Marco Reid
             </p>
             <h2 className="mt-4 text-center font-serif text-display text-navy-800">
-              What early partners are telling us.
+              What founding partners are telling us.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-navy-400">
               Names anonymised at firm request during the private beta. Identifying details
@@ -1107,17 +1358,17 @@ export default function HomePage() {
                 where: "Mid-size legal firm · Auckland",
               },
               {
-                quote: "The cross-domain research is a game-changer. When a client asks about the tax implications of a corporate restructure, I get a verified answer in seconds \u2014 not hours.",
+                quote: "The cross-domain research is a game-changer. When a client asks about the tax implications of a corporate restructure, I get a verified answer in seconds — not hours.",
                 role: "Solicitor & chartered accountant",
                 where: "Combined-discipline practice · Wellington",
               },
               {
-                quote: "Our trust accounting used to take an entire afternoon each week. Now it\u2019s automated. I genuinely didn\u2019t think software could do what Marco Reid does.",
+                quote: "Our trust accounting used to take an entire afternoon each week. Now it’s automated. I genuinely didn’t think software could do what Marco Reid does.",
                 role: "Senior partner",
                 where: "Boutique chambers · Auckland",
               },
               {
-                quote: "Voice dictation that actually understands legal terminology. I dictate a filing, and it\u2019s formatted correctly. Dragon never came close to this.",
+                quote: "Voice dictation that actually understands legal terminology. I dictate a filing, and it’s formatted correctly. Dragon never came close to this.",
                 role: "Litigation partner",
                 where: "Family-law specialist firm · Christchurch",
               },
@@ -1127,7 +1378,7 @@ export default function HomePage() {
                 where: "Sole-practitioner accounting firm · Sydney",
               },
               {
-                quote: "The courtroom technology alone is worth the subscription. Real-time deposition transcripts, judge analytics, and mid-hearing research \u2014 nothing else comes close.",
+                quote: "The courtroom technology alone is worth the subscription. Real-time deposition transcripts, judge analytics, and mid-hearing research — nothing else comes close.",
                 role: "Senior counsel",
                 where: "Civil-litigation chambers · Melbourne",
               },
@@ -1135,15 +1386,17 @@ export default function HomePage() {
               <Reveal key={i} delay={0.05}>
                 <div className="relative flex h-full flex-col rounded-xl border border-navy-100 border-l-[3px] border-l-gold-400 bg-white p-6 shadow-card transition-all duration-300 hover:shadow-card-hover">
                   <div className="testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
-                  <p className="flex-1 pt-6 text-sm leading-relaxed text-navy-500 italic">
-                    {t.quote}
-                  </p>
+                  <p className="flex-1 pt-6 text-sm leading-relaxed text-navy-500 italic">{t.quote}</p>
                   <div className="mt-6 flex items-center gap-3 border-t border-navy-50 pt-4">
-                    <div className="avatar-initials" aria-hidden="true">{t.role.split(" ").map((w: string) => w[0]).join("").slice(0, 2)}</div>
+                    <div className="avatar-initials" aria-hidden="true">
+                      {t.role.split(" ").map((w: string) => w[0]).join("").slice(0, 2)}
+                    </div>
                     <div>
                       <p className="text-sm font-semibold text-navy-700">{t.role}</p>
                       <p className="text-xs text-navy-400">{t.where}</p>
-                      <p className="mt-1 text-[10px] uppercase tracking-wider text-gold-600">Anonymised &middot; private beta</p>
+                      <p className="mt-1 text-[10px] uppercase tracking-wider text-gold-600">
+                        Anonymised &middot; private beta
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1153,12 +1406,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12" aria-hidden="true">
+        <div className="diamond-divider"><span className="diamond-divider-gem">&#9670;</span></div>
       </div>
 
       {/* ============================================================ */}
-      {/* TRUST LOGOS — Integrations & compliance partners               */}
+      {/* TRUST LOGOS — Integrations & compliance partners              */}
       {/* ============================================================ */}
       <section className="py-16 sm:py-24" aria-label="Trusted integrations">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
@@ -1191,8 +1444,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12">
-        <div className="diamond-divider"><span className="diamond-divider-gem" aria-hidden="true">&#9670;</span></div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 py-8 sm:py-12" aria-hidden="true">
+        <div className="diamond-divider"><span className="diamond-divider-gem">&#9670;</span></div>
       </div>
 
       {/* ============================================================ */}
@@ -1221,11 +1474,20 @@ export default function HomePage() {
             ].map((b) => (
               <Reveal key={b.badge} delay={0.05}>
                 <div className="flex flex-col items-center rounded-xl border border-navy-100 bg-white p-4 text-center shadow-card">
-                  <span className={`flex h-12 w-12 items-center justify-center rounded-full font-serif text-sm font-bold text-white ${b.state === "live" ? "bg-navy-500" : "bg-navy-300"}`}>
+                  <span
+                    className={`flex h-12 w-12 items-center justify-center rounded-full font-serif text-sm font-bold text-white ${
+                      b.state === "live" ? "bg-navy-500" : "bg-navy-300"
+                    }`}
+                    aria-hidden="true"
+                  >
                     {b.badge}
                   </span>
                   <p className="mt-3 text-xs font-medium text-navy-500">{b.label}</p>
-                  <p className={`mt-1 text-[10px] uppercase tracking-wider ${b.state === "live" ? "text-forest-600" : "text-gold-600"}`}>
+                  <p
+                    className={`mt-1 text-[10px] uppercase tracking-wider ${
+                      b.state === "live" ? "text-forest-600" : "text-gold-600"
+                    }`}
+                  >
                     {b.state === "live" ? "Live" : "In progress"}
                   </p>
                 </div>
@@ -1235,35 +1497,200 @@ export default function HomePage() {
           <p className="mx-auto mt-8 max-w-2xl text-center text-xs text-navy-400">
             US-only standards (IOLTA trust accounting, AICPA, ABA professional conduct) are wired
             into the platform but not on this page — they apply to firms on the United States tier.
-            Full audit artefacts: <a className="font-semibold text-navy-600 hover:text-navy-800" href="/trust-center">Trust Center</a>.
+            Full audit artefacts:{" "}
+            <a className="font-semibold text-navy-600 hover:text-navy-800" href="/trust-center">
+              Trust Center
+            </a>.
           </p>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* CTA                                                           */}
+      {/* PRICING TEASER                                                */}
       {/* ============================================================ */}
-      <section className="cta-premium py-28 sm:py-40 border-t border-b border-gold-400/20" aria-label="Get started">
+      <section className="py-24 sm:py-36" aria-label="Pricing overview">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <Reveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-gold-500">
+              Simple pricing
+            </p>
+            <h2 className="mt-3 text-center font-serif text-display text-navy-800">
+              Starts at $79/month. Cancel any time.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-center text-lg text-navy-500">
+              No per-seat surprises. No hidden integration fees. No &ldquo;call us for enterprise pricing.&rdquo;
+              Three tiers. One decision.
+            </p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-3">
+            {/* Accounting */}
+            <Reveal delay={0.05}>
+              <div className="flex h-full flex-col rounded-2xl border border-forest-200 bg-gradient-to-br from-forest-50 via-white to-white p-8 shadow-card">
+                <p className="text-xs font-bold uppercase tracking-wider text-forest-600">Marco Reid Accounting</p>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="font-serif text-4xl font-bold text-navy-800">$79</span>
+                  <span className="text-sm text-navy-400">/month</span>
+                </div>
+                <p className="mt-2 text-sm text-navy-500">Everything a CPA firm needs, starting with one seat.</p>
+                <ul className="mt-6 space-y-2 flex-1">
+                  {[
+                    "Autonomous bookkeeping",
+                    "GST / VAT / Sales tax filing",
+                    "Marco (Accounting research)",
+                    "Voice dictation",
+                    "5-jurisdiction payroll",
+                    "Catch-Up Centre access",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-navy-600">
+                      <CheckIcon />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <Button href="/pricing" variant="secondary" size="lg" className="w-full justify-center">
+                    Start free trial
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Legal */}
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-2xl border border-navy-200 bg-gradient-to-br from-navy-50 via-white to-white p-8 shadow-card">
+                <p className="text-xs font-bold uppercase tracking-wider text-navy-600">Marco Reid Legal</p>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="font-serif text-4xl font-bold text-navy-800">$99</span>
+                  <span className="text-sm text-navy-400">/month</span>
+                </div>
+                <p className="mt-2 text-sm text-navy-500">The complete legal practice operating system.</p>
+                <ul className="mt-6 space-y-2 flex-1">
+                  {[
+                    "Case management & billing",
+                    "Trust accounting (IOLTA)",
+                    "Marco (Legal research)",
+                    "Voice dictation",
+                    "Document AI & editor",
+                    "Court-rules calendaring",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-navy-600">
+                      <CheckIcon />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <Button href="/pricing" variant="primary" size="lg" className="w-full justify-center">
+                    Start free trial
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Both + Oracle */}
+            <Reveal delay={0.15}>
+              <div className="flex h-full flex-col rounded-2xl border-2 border-gold-400 bg-gradient-to-br from-gold-50 via-white to-white p-8 shadow-card relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center rounded-full bg-gold-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-navy-900">
+                    Most powerful
+                  </span>
+                </div>
+                <p className="text-xs font-bold uppercase tracking-wider text-gold-700">Law + Accounting + Marco</p>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="font-serif text-4xl font-bold text-navy-800">$499</span>
+                  <span className="text-sm text-navy-400">/month</span>
+                </div>
+                <p className="mt-2 text-sm text-navy-500">The full platform. Law, accounting, and Marco cross-domain research.</p>
+                <ul className="mt-6 space-y-2 flex-1">
+                  {[
+                    "Everything in Legal + Accounting",
+                    "Marco cross-domain research",
+                    "Law + accounting in one query",
+                    "Courtroom technology",
+                    "Priority support",
+                    "Audit logging & chain of custody",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-navy-600">
+                      <CheckIcon />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <Button href="/pricing" variant="gold" size="lg" className="w-full justify-center gold-glow">
+                    Start free trial
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-8 text-center">
+              <a
+                href="/pricing"
+                className="text-sm font-semibold text-navy-600 underline underline-offset-2 hover:text-navy-800 transition-colors"
+              >
+                See full pricing with all features and enterprise tiers &rarr;
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* AI DISCLAIMER — Required on every page with AI content        */}
+      {/* ============================================================ */}
+      <div className="bg-navy-50 border-t border-navy-100 py-6" role="note" aria-label="AI disclaimer">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+          <p className="text-center text-xs leading-relaxed text-navy-400">
+            <span className="font-semibold text-navy-600">AI Disclaimer:</span>{" "}
+            Marco is an AI research tool. All outputs must be verified by a qualified professional.
+            This content is generated by AI for research and informational purposes only. It does not
+            constitute legal advice, tax advice, or professional advice of any kind. It does not create
+            an attorney-client or accountant-client relationship. Always verify AI-generated content
+            with a qualified professional before reliance. Marco Reid is a tool for professionals,
+            not a substitute for professional judgment.
+          </p>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* FINAL CTA — Strong closing                                    */}
+      {/* ============================================================ */}
+      <section
+        className="cta-premium py-28 sm:py-40 border-t border-b border-gold-400/20"
+        aria-label="Get started with Marco Reid"
+      >
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
           <Reveal>
             <h2 className="font-serif text-hero text-white">
-              The platform that replaces everything.
+              The operating system for your practice.
+              <br />
+              <span className="text-gold-300">One login. Five countries.</span>
             </h2>
             <p className="mt-6 text-xl text-white/90">
-              Join the professionals already using Marco Reid.
+              Join the lawyers and accountants already using Marco Reid.
             </p>
             <p className="mt-3 text-lg text-white/70">
-              Soft-launching New Zealand &amp; Australia, 2026. Be among the first.
+              Live in New Zealand, Australia, United Kingdom, United States, and Singapore.
             </p>
             <p className="mt-1 text-sm text-white/50">
-              United States &amp; United Kingdom rolling out 2026 / 2027.
+              No credit card required &middot; Setup in 10 minutes &middot; Cancel any time.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button href="/contact" size="lg" variant="gold" className="gold-glow">Join the founding cohort</Button>
-              <Button href="/trial" variant="secondary" size="lg">Start a free trial</Button>
-              <Button href="/pricing" variant="ghost" className="text-white hover:text-gold-300">View pricing &rarr;</Button>
+              <Button href="/trial" size="lg" variant="gold" className="gold-glow">
+                Start free trial &rarr;
+              </Button>
+              <Button href="/contact" size="lg" variant="secondary">
+                Join the founding cohort
+              </Button>
+              <Button href="/pricing" variant="ghost" className="text-white hover:text-gold-300">
+                View pricing &rarr;
+              </Button>
             </div>
           </Reveal>
         </div>
