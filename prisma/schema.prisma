@@ -58,6 +58,15 @@ model User {
   tosVersion           String?
   platformAckAt        DateTime?
   platformAckVersion   String?
+
+  // Signup audit
+  signupIp             String?
+  signupUserAgent      String?
+
+  // Trial
+  isTrialAccount       Boolean   @default(false)
+  trialStartedAt       DateTime?
+  trialEndsAt          DateTime?
 }
 
 // ============================================================

@@ -11,6 +11,7 @@ import {
 import FloatingTimer from "@/app/components/platform/FloatingTimer";
 import DarkModeToggle from "@/app/components/shared/DarkModeToggle";
 import NotificationBadge from "@/app/components/platform/NotificationBadge";
+import TrialBanner from "@/app/components/platform/TrialBanner";
 
 /* ------------------------------------------------------------------ */
 /*  Icons – lightweight inline SVGs                                    */
@@ -90,6 +91,15 @@ function IconMessages({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
       <polyline points="22,6 12,13 2,6" />
+    </svg>
+  );
+}
+
+function IconSignoffs({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M9 12l2.5 2.5L16 8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -313,6 +323,7 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Documents", href: "/documents", icon: IconDocuments },
       { label: "Messages", href: "/messages", icon: IconMessages },
       { label: "E-Signatures", href: "/signatures", icon: IconSignatures },
+      { label: "Sign-offs", href: "/signoffs", icon: IconSignoffs },
     ],
   },
   {
@@ -651,6 +662,9 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </header>
+
+        {/* Trial banner — shown when user is on a trial account */}
+        <TrialBanner />
 
         {/* Page content */}
         <main id="platform-main" className="min-h-[calc(100vh-3.5rem)]">
