@@ -9,6 +9,32 @@ import { JURISDICTIONS } from "@/lib/jurisdictions";
 import { getServicesByCountry, SERVICE_CATEGORIES } from "@/lib/services";
 import { BRAND } from "@/lib/constants";
 
+// NZ Privacy Amendment Act — IPP 3A (effective 1 May 2026)
+// Discloses AI processing pipeline to NZ users as required.
+// This banner is shown ONLY on the /nz country page.
+function NzIpp3ABanner() {
+  return (
+    <section className="border-b border-amber-200 bg-amber-50 py-5">
+      <Container>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+          <span className="shrink-0 text-amber-600" aria-hidden="true">🔒</span>
+          <p className="text-sm leading-relaxed text-amber-900">
+            <strong>AI processing disclosure — NZ Privacy Amendment Act IPP 3A (effective 1 May 2026):</strong>{" "}
+            When you use Marco research tools on this platform, your query text is transmitted to
+            Anthropic (Claude API) for AI processing. Anthropic operates servers in the United States.
+            All data transfers are protected by a contractual Data Processing Agreement. Your data is
+            never used to train AI models. This disclosure is provided as required under Information
+            Privacy Principle 3A of the New Zealand Privacy Amendment Act 2025.{" "}
+            <Link href="/privacy#ipp3a" className="font-semibold underline hover:text-amber-700">
+              Read our full privacy policy →
+            </Link>
+          </p>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 const VALID_COUNTRIES = ["nz", "au", "uk", "us", "ca", "ie", "sg"] as const;
 type CountrySlug = (typeof VALID_COUNTRIES)[number];
 
@@ -139,6 +165,9 @@ export default async function CountryHomePage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+
+      {/* NZ IPP 3A disclosure — rendered only for /nz */}
+      {country === "nz" && <NzIpp3ABanner />}
 
       {/* ============================================================ */}
       {/* QUICK STATS                                                   */}
