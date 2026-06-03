@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getUserId } from "@/lib/session";
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import ClientsListClient from "@/app/components/platform/ClientsListClient";
 import Breadcrumb from "@/app/components/platform/Breadcrumb";
 import EmptyState from "@/app/components/platform/EmptyState";
