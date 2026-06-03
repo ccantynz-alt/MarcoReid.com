@@ -52,7 +52,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-navy-900 pt-36 pb-28 sm:pt-44 sm:pb-36 lg:pt-52 lg:pb-44">
         {/* Animated grid mesh background */}
         <div className="hero-grid pointer-events-none absolute inset-0" />
-        {/* Animated decorative gradient orbs — BOLDER for visual impact */}
+        {/* Animated decorative gradient orbs */}
         <div className="pointer-events-none absolute inset-0">
           <div className="animate-drift absolute -right-32 -top-32 h-[600px] w-[600px] rounded-full bg-gold-400/20 blur-[140px]" />
           <div className="animate-drift-reverse absolute -left-32 bottom-0 h-[500px] w-[500px] rounded-full bg-forest-500/20 blur-[120px]" />
@@ -61,9 +61,25 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="animate-fade-up text-sm font-bold tracking-[0.2em] uppercase text-gold-400 opacity-0">
-              Five products &middot; One platform &middot; Every country
-            </p>
+
+            {/* Product pills — what this platform IS, immediately */}
+            <div className="animate-fade-up flex flex-wrap items-center justify-center gap-2 opacity-0">
+              {[
+                { label: "Legal Practice", color: "bg-forest-500/20 text-forest-300 border-forest-500/30" },
+                { label: "Accounting", color: "bg-forest-500/20 text-forest-300 border-forest-500/30" },
+                { label: "Marco AI Research", color: "bg-plum-500/20 text-plum-300 border-plum-500/30" },
+                { label: "Voice Dictation", color: "bg-navy-400/20 text-navy-300 border-navy-400/30" },
+                { label: "Courtroom", color: "bg-plum-500/20 text-plum-300 border-plum-500/30" },
+              ].map((pill) => (
+                <span
+                  key={pill.label}
+                  className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold tracking-wide ${pill.color}`}
+                >
+                  {pill.label}
+                </span>
+              ))}
+            </div>
+
             <h1 className="mt-8 animate-fade-up-1 font-serif text-hero text-white opacity-0" style={{lineHeight: 1.05}}>
               Practise your{" "}
               <span className="text-shimmer">craft</span>.
@@ -72,25 +88,57 @@ export default function HomePage() {
             </h1>
             <div className="gold-line-glow mx-auto mt-10 w-32 animate-fade-up-2 opacity-0" />
             <p className="mx-auto mt-8 max-w-2xl animate-fade-up-2 text-xl leading-relaxed text-white/90 opacity-0">
-              AI-powered legal practice. AI-powered accounting. Courtroom technology.
-              The most intelligent research engine ever built. Five products.
-              One login. One bill. <span className="font-semibold text-white">Nothing else required.</span>
+              The world&rsquo;s first platform to combine legal practice management,
+              accounting intelligence, AI research, voice dictation, and courtroom
+              technology in one login.{" "}
+              <span className="font-semibold text-white">Nothing else required.</span>
             </p>
+
+            {/* Primary CTA block */}
             <div className="mt-12 flex flex-col items-center justify-center gap-4 animate-fade-up-3 opacity-0 sm:flex-row">
-              <Button href="#law" size="lg" variant="gold" className="gold-glow">
-                See what we built
+              <Button href="/trial" size="lg" variant="gold" className="gold-glow">
+                Start free trial &rarr;
               </Button>
               <Button href="/pricing" size="lg" variant="ghost" className="text-white hover:text-gold-300">
-                View pricing &rarr;
+                View pricing
+              </Button>
+              <Button href="#law" size="lg" variant="ghost" className="text-white/70 hover:text-white">
+                See the platform &darr;
               </Button>
             </div>
-            <p className="mt-6 animate-fade-up-3 text-sm text-white/60 opacity-0">
+
+            {/* Trust signal row */}
+            <div className="mt-8 animate-fade-up-3 opacity-0">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-white/50">
+                <span className="flex items-center gap-1.5">
+                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  No credit card required
+                </span>
+                <span className="text-white/20" aria-hidden="true">&middot;</span>
+                <span className="flex items-center gap-1.5">
+                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  Setup in under 10 minutes
+                </span>
+                <span className="text-white/20" aria-hidden="true">&middot;</span>
+                <span className="flex items-center gap-1.5">
+                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  GDPR &amp; NZ Privacy Act compliant
+                </span>
+                <span className="text-white/20" aria-hidden="true">&middot;</span>
+                <span className="flex items-center gap-1.5">
+                  <svg className="h-3.5 w-3.5 text-forest-400 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" /></svg>
+                  SOC 2 audit in progress
+                </span>
+              </div>
+            </div>
+
+            <p className="mt-4 animate-fade-up-3 text-sm text-white/50 opacity-0">
               Not a professional?{" "}
-              <a href="/generate" className="text-gold-300 underline underline-offset-2 hover:text-gold-200">Generate a document</a>
+              <a href="/generate" className="text-gold-300 underline underline-offset-2 hover:text-gold-200 transition-colors">Generate a document</a>
               {" "}&middot;{" "}
-              <a href="/find-a-lawyer" className="text-gold-300 underline underline-offset-2 hover:text-gold-200">Find a lawyer</a>
+              <a href="/find-a-lawyer" className="text-gold-300 underline underline-offset-2 hover:text-gold-200 transition-colors">Find a lawyer</a>
               {" "}&middot;{" "}
-              <a href="/find-an-accountant" className="text-gold-300 underline underline-offset-2 hover:text-gold-200">Find an accountant</a>
+              <a href="/find-an-accountant" className="text-gold-300 underline underline-offset-2 hover:text-gold-200 transition-colors">Find an accountant</a>
             </p>
           </div>
 
@@ -128,6 +176,28 @@ export default function HomePage() {
                 <span className="ml-1 text-sm text-forest-300" aria-hidden="true">&uarr;</span>
               </p>
               <p className="mt-1 text-xs text-white/80">languages from day one</p>
+            </div>
+          </div>
+
+          {/* Platform capability strip — immediately after stats */}
+          <div className="mt-10 animate-fade-up-3 opacity-0">
+            <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-4">
+              <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-4">Replaces all of these</p>
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+                {[
+                  { name: "Westlaw", role: "Legal research" },
+                  { name: "Clio", role: "Case management" },
+                  { name: "QuickBooks", role: "Accounting" },
+                  { name: "Dragon", role: "Dictation" },
+                  { name: "DocuSign", role: "E-signatures" },
+                  { name: "LexisNexis", role: "Tax research" },
+                ].map((item) => (
+                  <div key={item.name} className="text-center">
+                    <p className="text-sm font-semibold text-white/60 line-through decoration-white/30">{item.name}</p>
+                    <p className="text-[10px] text-white/35">{item.role}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

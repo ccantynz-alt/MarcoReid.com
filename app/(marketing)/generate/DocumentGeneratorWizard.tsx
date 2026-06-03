@@ -35,113 +35,114 @@ interface FormField {
   placeholder?: string;
   required?: boolean;
   options?: string[];
+  helperText?: string;
 }
 
 const DOCUMENT_FIELDS: Record<string, FormField[]> = {
   will: [
-    { name: "fullName", label: "Your full legal name", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "dateOfBirth", label: "Date of birth", type: "date", required: true },
-    { name: "address", label: "Current address", type: "text", placeholder: "e.g. 14 Queen Street, Auckland 1010", required: true },
-    { name: "executor", label: "Executor (full name and relationship)", type: "text", placeholder: "e.g. Sarah Reid, spouse", required: true },
-    { name: "beneficiaries", label: "Beneficiaries and what they receive", type: "textarea", placeholder: "e.g. Sarah Reid receives the family home; James Reid Jr receives 50% of remaining estate", required: true },
-    { name: "guardians", label: "Guardian for minor children (if applicable)", type: "text", placeholder: "e.g. Michael Reid, brother" },
-    { name: "specialBequests", label: "Special bequests or instructions", type: "textarea", placeholder: "e.g. Donate $5,000 to Red Cross NZ; my book collection to the Auckland City Library" },
+    { name: "fullName", label: "Your full legal name", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the name exactly as it appears on your ID or passport" },
+    { name: "dateOfBirth", label: "Date of birth", type: "date", required: true, helperText: "This is used to identify you as the testator in the will" },
+    { name: "address", label: "Current address", type: "text", placeholder: "e.g. 14 Queen Street, Auckland 1010", required: true, helperText: "Include the full street address, city, and postcode" },
+    { name: "executor", label: "Executor (full name and relationship)", type: "text", placeholder: "e.g. Sarah Reid, spouse", required: true, helperText: "The person responsible for carrying out your wishes after you pass" },
+    { name: "beneficiaries", label: "Beneficiaries and what they receive", type: "textarea", placeholder: "e.g. Sarah Reid receives the family home; James Reid Jr receives 50% of remaining estate", required: true, helperText: "List each person and what they inherit — be as specific as possible" },
+    { name: "guardians", label: "Guardian for minor children (if applicable)", type: "text", placeholder: "e.g. Michael Reid, brother", helperText: "Only required if you have children under 18" },
+    { name: "specialBequests", label: "Special bequests or instructions", type: "textarea", placeholder: "e.g. Donate $5,000 to Red Cross NZ; my book collection to the Auckland City Library", helperText: "Any specific gifts of money, property, or belongings to named recipients" },
   ],
   tenancy: [
-    { name: "landlordName", label: "Landlord full name", type: "text", placeholder: "e.g. Sarah Properties Ltd", required: true },
-    { name: "tenantName", label: "Tenant full name", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "propertyAddress", label: "Property address", type: "text", placeholder: "e.g. 42 Ponsonby Road, Auckland 1011", required: true },
-    { name: "weeklyRent", label: "Weekly rent amount", type: "text", placeholder: "e.g. $650", required: true },
-    { name: "bondAmount", label: "Bond amount", type: "text", placeholder: "e.g. $2,600 (4 weeks rent)", required: true },
-    { name: "startDate", label: "Tenancy start date", type: "date", required: true },
-    { name: "termType", label: "Fixed term or periodic", type: "select", options: ["Fixed term", "Periodic"], required: true },
-    { name: "specialConditions", label: "Special conditions", type: "textarea", placeholder: "e.g. No pets; tenant responsible for lawn maintenance" },
+    { name: "landlordName", label: "Landlord full name", type: "text", placeholder: "e.g. Sarah Properties Ltd", required: true, helperText: "Enter the name exactly as it appears on the title or company register" },
+    { name: "tenantName", label: "Tenant full name", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the name exactly as it appears on your ID or passport" },
+    { name: "propertyAddress", label: "Property address", type: "text", placeholder: "e.g. 42 Ponsonby Road, Auckland 1011", required: true, helperText: "Include the full street address, city, and postcode" },
+    { name: "weeklyRent", label: "Weekly rent amount", type: "text", placeholder: "e.g. $650", required: true, helperText: "State the agreed weekly rent in local currency" },
+    { name: "bondAmount", label: "Bond amount", type: "text", placeholder: "e.g. $2,600 (4 weeks rent)", required: true, helperText: "Typically 4 weeks rent — check your jurisdiction's maximum bond rules" },
+    { name: "startDate", label: "Tenancy start date", type: "date", required: true, helperText: "This is the date the document will take effect" },
+    { name: "termType", label: "Fixed term or periodic", type: "select", options: ["Fixed term", "Periodic"], required: true, helperText: "Fixed term has a set end date; periodic continues week-to-week or month-to-month" },
+    { name: "specialConditions", label: "Special conditions", type: "textarea", placeholder: "e.g. No pets; tenant responsible for lawn maintenance", helperText: "Any additional agreed conditions not covered by the standard agreement" },
   ],
   employment: [
-    { name: "employerName", label: "Employer / company name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true },
-    { name: "employeeName", label: "Employee full name", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "jobTitle", label: "Job title", type: "text", placeholder: "e.g. Senior Software Engineer", required: true },
-    { name: "startDate", label: "Start date", type: "date", required: true },
-    { name: "salary", label: "Annual salary or hourly rate", type: "text", placeholder: "e.g. $120,000 per annum", required: true },
-    { name: "hoursPerWeek", label: "Hours per week", type: "text", placeholder: "e.g. 40", required: true },
-    { name: "noticePeriod", label: "Notice period", type: "text", placeholder: "e.g. 4 weeks" },
-    { name: "specialTerms", label: "Special terms or conditions", type: "textarea", placeholder: "e.g. 90-day trial period; remote work arrangement" },
+    { name: "employerName", label: "Employer / company name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true, helperText: "Enter the registered legal name of the employing entity" },
+    { name: "employeeName", label: "Employee full name", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the name exactly as it appears on their ID or passport" },
+    { name: "jobTitle", label: "Job title", type: "text", placeholder: "e.g. Senior Software Engineer", required: true, helperText: "The official title that will appear in the employment agreement" },
+    { name: "startDate", label: "Start date", type: "date", required: true, helperText: "This is the date the document will take effect" },
+    { name: "salary", label: "Annual salary or hourly rate", type: "text", placeholder: "e.g. $120,000 per annum", required: true, helperText: "State the gross amount before tax in local currency" },
+    { name: "hoursPerWeek", label: "Hours per week", type: "text", placeholder: "e.g. 40", required: true, helperText: "Ordinary hours — do not include overtime expectations here" },
+    { name: "noticePeriod", label: "Notice period", type: "text", placeholder: "e.g. 4 weeks", helperText: "The minimum notice required by either party to end the employment" },
+    { name: "specialTerms", label: "Special terms or conditions", type: "textarea", placeholder: "e.g. 90-day trial period; remote work arrangement", helperText: "Any terms specific to this role that are not covered by standard employment law" },
   ],
   "privacy-policy": [
-    { name: "businessName", label: "Business / website name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true },
-    { name: "websiteUrl", label: "Website URL", type: "text", placeholder: "e.g. https://marcoreid.com", required: true },
-    { name: "contactEmail", label: "Privacy contact email", type: "email", placeholder: "e.g. privacy@marcoreid.com", required: true },
-    { name: "dataCollected", label: "What data do you collect?", type: "textarea", placeholder: "e.g. Name, email, phone number, billing address, usage analytics", required: true },
-    { name: "dataUsePurpose", label: "How do you use the data?", type: "textarea", placeholder: "e.g. Provide services, send invoices, improve platform, marketing emails", required: true },
-    { name: "thirdParties", label: "Third parties you share data with", type: "textarea", placeholder: "e.g. Stripe (payments), Mailgun (email), Google Analytics" },
+    { name: "businessName", label: "Business / website name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true, helperText: "Enter the registered legal name of your business" },
+    { name: "websiteUrl", label: "Website URL", type: "text", placeholder: "e.g. https://marcoreid.com", required: true, helperText: "The full URL where this privacy policy will be published" },
+    { name: "contactEmail", label: "Privacy contact email", type: "email", placeholder: "e.g. privacy@marcoreid.com", required: true, helperText: "We'll use this to send you the completed document, and it will appear in the published policy" },
+    { name: "dataCollected", label: "What data do you collect?", type: "textarea", placeholder: "e.g. Name, email, phone number, billing address, usage analytics", required: true, helperText: "List every category of personal data your platform collects from users" },
+    { name: "dataUsePurpose", label: "How do you use the data?", type: "textarea", placeholder: "e.g. Provide services, send invoices, improve platform, marketing emails", required: true, helperText: "Describe each purpose — be specific, as vague descriptions can create legal risk" },
+    { name: "thirdParties", label: "Third parties you share data with", type: "textarea", placeholder: "e.g. Stripe (payments), Mailgun (email), Google Analytics", helperText: "List every service provider that processes user data on your behalf" },
   ],
   terms: [
-    { name: "businessName", label: "Business / website name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true },
-    { name: "websiteUrl", label: "Website URL", type: "text", placeholder: "e.g. https://marcoreid.com", required: true },
-    { name: "contactEmail", label: "Contact email", type: "email", placeholder: "e.g. support@marcoreid.com", required: true },
-    { name: "servicesDescription", label: "Describe your services", type: "textarea", placeholder: "e.g. SaaS platform providing legal and accounting tools", required: true },
-    { name: "paymentTerms", label: "Payment terms", type: "textarea", placeholder: "e.g. Monthly subscription billed in advance; 30-day free trial" },
-    { name: "limitations", label: "Limitations of liability", type: "textarea", placeholder: "e.g. Service provided as-is; no guarantee of uptime" },
+    { name: "businessName", label: "Business / website name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true, helperText: "Enter the registered legal name of your business" },
+    { name: "websiteUrl", label: "Website URL", type: "text", placeholder: "e.g. https://marcoreid.com", required: true, helperText: "The full URL where these terms will be published" },
+    { name: "contactEmail", label: "Contact email", type: "email", placeholder: "e.g. support@marcoreid.com", required: true, helperText: "We'll use this to send you the completed document" },
+    { name: "servicesDescription", label: "Describe your services", type: "textarea", placeholder: "e.g. SaaS platform providing legal and accounting tools", required: true, helperText: "A clear description of what your platform provides to users" },
+    { name: "paymentTerms", label: "Payment terms", type: "textarea", placeholder: "e.g. Monthly subscription billed in advance; 30-day free trial", helperText: "How and when customers are charged — include trial, refund, and cancellation terms" },
+    { name: "limitations", label: "Limitations of liability", type: "textarea", placeholder: "e.g. Service provided as-is; no guarantee of uptime", helperText: "What your platform is not responsible for — important for AI-powered services" },
   ],
   nda: [
-    { name: "disclosingParty", label: "Disclosing party name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true },
-    { name: "receivingParty", label: "Receiving party name", type: "text", placeholder: "e.g. ABC Consulting Ltd", required: true },
-    { name: "purpose", label: "Purpose of disclosure", type: "textarea", placeholder: "e.g. Evaluation of potential business partnership", required: true },
-    { name: "ndaType", label: "NDA type", type: "select", options: ["Mutual (both parties)", "One-way (discloser protected)"], required: true },
-    { name: "termLength", label: "Confidentiality period", type: "text", placeholder: "e.g. 2 years from date of signing", required: true },
-    { name: "exclusions", label: "Exclusions from confidentiality", type: "textarea", placeholder: "e.g. Information already publicly available; independently developed information" },
+    { name: "disclosingParty", label: "Disclosing party name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true, helperText: "The party sharing confidential information — enter the full legal name" },
+    { name: "receivingParty", label: "Receiving party name", type: "text", placeholder: "e.g. ABC Consulting Ltd", required: true, helperText: "The party receiving and agreeing to protect the confidential information" },
+    { name: "purpose", label: "Purpose of disclosure", type: "textarea", placeholder: "e.g. Evaluation of potential business partnership", required: true, helperText: "Be specific — the NDA only covers information shared for this stated purpose" },
+    { name: "ndaType", label: "NDA type", type: "select", options: ["Mutual (both parties)", "One-way (discloser protected)"], required: true, helperText: "Mutual means both parties protect each other's information; one-way protects only the discloser" },
+    { name: "termLength", label: "Confidentiality period", type: "text", placeholder: "e.g. 2 years from date of signing", required: true, helperText: "How long the confidentiality obligation lasts after signing or after the relationship ends" },
+    { name: "exclusions", label: "Exclusions from confidentiality", type: "textarea", placeholder: "e.g. Information already publicly available; independently developed information", helperText: "Standard exclusions protect information that is already public or independently developed" },
   ],
   partnership: [
-    { name: "partner1Name", label: "Partner 1 full name", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "partner2Name", label: "Partner 2 full name", type: "text", placeholder: "e.g. Sarah Louise Chen", required: true },
-    { name: "businessName", label: "Partnership / business name", type: "text", placeholder: "e.g. Reid & Chen Associates", required: true },
-    { name: "businessPurpose", label: "Business purpose", type: "textarea", placeholder: "e.g. Provision of legal consulting services", required: true },
-    { name: "capitalContributions", label: "Capital contributions", type: "textarea", placeholder: "e.g. Partner 1: $50,000; Partner 2: $50,000", required: true },
-    { name: "profitSplit", label: "Profit and loss sharing", type: "text", placeholder: "e.g. 50/50", required: true },
-    { name: "decisionMaking", label: "Decision-making process", type: "textarea", placeholder: "e.g. Unanimous consent for major decisions; majority for day-to-day" },
+    { name: "partner1Name", label: "Partner 1 full name", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the name exactly as it appears on their ID or passport" },
+    { name: "partner2Name", label: "Partner 2 full name", type: "text", placeholder: "e.g. Sarah Louise Chen", required: true, helperText: "Enter the name exactly as it appears on their ID or passport" },
+    { name: "businessName", label: "Partnership / business name", type: "text", placeholder: "e.g. Reid & Chen Associates", required: true, helperText: "The trading name of the partnership — check availability before finalising" },
+    { name: "businessPurpose", label: "Business purpose", type: "textarea", placeholder: "e.g. Provision of legal consulting services", required: true, helperText: "A clear description of what the partnership will do — this defines the scope of the agreement" },
+    { name: "capitalContributions", label: "Capital contributions", type: "textarea", placeholder: "e.g. Partner 1: $50,000; Partner 2: $50,000", required: true, helperText: "How much each partner is contributing to start the partnership" },
+    { name: "profitSplit", label: "Profit and loss sharing", type: "text", placeholder: "e.g. 50/50", required: true, helperText: "How profits and losses are divided — must add up to 100%" },
+    { name: "decisionMaking", label: "Decision-making process", type: "textarea", placeholder: "e.g. Unanimous consent for major decisions; majority for day-to-day", helperText: "How the partnership will make decisions — different thresholds for different types of decisions" },
   ],
   poa: [
-    { name: "principalName", label: "Principal (person granting power)", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "attorneyName", label: "Attorney (person receiving power)", type: "text", placeholder: "e.g. Sarah Louise Reid", required: true },
-    { name: "relationship", label: "Relationship", type: "text", placeholder: "e.g. Spouse", required: true },
-    { name: "poaType", label: "Type of power of attorney", type: "select", options: ["General (all matters)", "Enduring / Durable", "Specific (limited purpose)"], required: true },
-    { name: "powersGranted", label: "Specific powers granted", type: "textarea", placeholder: "e.g. Manage bank accounts; sell property at 42 Queen Street; sign legal documents", required: true },
-    { name: "restrictions", label: "Restrictions or limitations", type: "textarea", placeholder: "e.g. Cannot sell family home without consent of both children" },
+    { name: "principalName", label: "Principal (person granting power)", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the name exactly as it appears on your ID or passport" },
+    { name: "attorneyName", label: "Attorney (person receiving power)", type: "text", placeholder: "e.g. Sarah Louise Reid", required: true, helperText: "The trusted person who will act on your behalf — enter their full legal name" },
+    { name: "relationship", label: "Relationship", type: "text", placeholder: "e.g. Spouse", required: true, helperText: "Your relationship to the attorney — e.g. spouse, sibling, child, solicitor" },
+    { name: "poaType", label: "Type of power of attorney", type: "select", options: ["General (all matters)", "Enduring / Durable", "Specific (limited purpose)"], required: true, helperText: "Enduring/Durable continues if you lose mental capacity; Specific is limited to defined tasks only" },
+    { name: "powersGranted", label: "Specific powers granted", type: "textarea", placeholder: "e.g. Manage bank accounts; sell property at 42 Queen Street; sign legal documents", required: true, helperText: "List every power you are granting — be precise, as courts interpret these documents narrowly" },
+    { name: "restrictions", label: "Restrictions or limitations", type: "textarea", placeholder: "e.g. Cannot sell family home without consent of both children", helperText: "Any limits on how the attorney can exercise their powers" },
   ],
   constitution: [
-    { name: "companyName", label: "Company name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true },
-    { name: "registrationNumber", label: "Company registration number (if known)", type: "text", placeholder: "e.g. 1234567" },
-    { name: "directors", label: "Director names", type: "textarea", placeholder: "e.g. James Michael Reid; Sarah Louise Reid", required: true },
-    { name: "shareholders", label: "Shareholders and share allocation", type: "textarea", placeholder: "e.g. James Reid: 500 shares (50%); Sarah Reid: 500 shares (50%)", required: true },
-    { name: "businessActivity", label: "Principal business activity", type: "text", placeholder: "e.g. Software development and consulting", required: true },
-    { name: "specialProvisions", label: "Special provisions", type: "textarea", placeholder: "e.g. Pre-emptive rights on share transfer; quorum of 2 directors" },
+    { name: "companyName", label: "Company name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true, helperText: "Enter the registered name exactly as it appears on the company register" },
+    { name: "registrationNumber", label: "Company registration number (if known)", type: "text", placeholder: "e.g. 1234567", helperText: "Leave blank if the company has not yet been incorporated" },
+    { name: "directors", label: "Director names", type: "textarea", placeholder: "e.g. James Michael Reid; Sarah Louise Reid", required: true, helperText: "List all directors — enter each name on a new line or separated by semicolons" },
+    { name: "shareholders", label: "Shareholders and share allocation", type: "textarea", placeholder: "e.g. James Reid: 500 shares (50%); Sarah Reid: 500 shares (50%)", required: true, helperText: "List each shareholder, their share count, and percentage — must total 100%" },
+    { name: "businessActivity", label: "Principal business activity", type: "text", placeholder: "e.g. Software development and consulting", required: true, helperText: "The primary purpose of the company — this may affect licensing or regulatory requirements" },
+    { name: "specialProvisions", label: "Special provisions", type: "textarea", placeholder: "e.g. Pre-emptive rights on share transfer; quorum of 2 directors", helperText: "Any provisions that differ from your jurisdiction's default company rules" },
   ],
   loan: [
-    { name: "lenderName", label: "Lender name", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "borrowerName", label: "Borrower name", type: "text", placeholder: "e.g. Sarah Louise Chen", required: true },
-    { name: "loanAmount", label: "Loan amount", type: "text", placeholder: "e.g. $50,000", required: true },
-    { name: "interestRate", label: "Interest rate", type: "text", placeholder: "e.g. 5% per annum", required: true },
-    { name: "repaymentSchedule", label: "Repayment schedule", type: "textarea", placeholder: "e.g. Monthly payments of $1,000 over 5 years", required: true },
-    { name: "security", label: "Security / collateral (if any)", type: "textarea", placeholder: "e.g. Second mortgage over property at 14 Queen Street" },
-    { name: "defaultTerms", label: "Default and remedies", type: "textarea", placeholder: "e.g. 14 days notice to cure; acceleration of balance on default" },
+    { name: "lenderName", label: "Lender name", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the full legal name of the person or entity providing the loan" },
+    { name: "borrowerName", label: "Borrower name", type: "text", placeholder: "e.g. Sarah Louise Chen", required: true, helperText: "Enter the full legal name of the person or entity receiving the loan" },
+    { name: "loanAmount", label: "Loan amount", type: "text", placeholder: "e.g. $50,000", required: true, helperText: "State the principal amount in local currency" },
+    { name: "interestRate", label: "Interest rate", type: "text", placeholder: "e.g. 5% per annum", required: true, helperText: "Check your jurisdiction's maximum interest rate laws before agreeing a rate" },
+    { name: "repaymentSchedule", label: "Repayment schedule", type: "textarea", placeholder: "e.g. Monthly payments of $1,000 over 5 years", required: true, helperText: "How and when the loan will be repaid — include frequency, amount, and total duration" },
+    { name: "security", label: "Security / collateral (if any)", type: "textarea", placeholder: "e.g. Second mortgage over property at 14 Queen Street", helperText: "What the lender can claim if the borrower defaults — leave blank for an unsecured loan" },
+    { name: "defaultTerms", label: "Default and remedies", type: "textarea", placeholder: "e.g. 14 days notice to cure; acceleration of balance on default", helperText: "What happens if the borrower misses payments — grace periods and enforcement steps" },
   ],
   contractor: [
-    { name: "clientName", label: "Client / company name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true },
-    { name: "contractorName", label: "Contractor name", type: "text", placeholder: "e.g. James Reid Consulting", required: true },
-    { name: "servicesDescription", label: "Description of services", type: "textarea", placeholder: "e.g. Front-end web development for marcoreid.com", required: true },
-    { name: "rate", label: "Rate and payment terms", type: "text", placeholder: "e.g. $150/hour, invoiced fortnightly", required: true },
-    { name: "startDate", label: "Start date", type: "date", required: true },
-    { name: "endDate", label: "End date (if fixed term)", type: "date" },
-    { name: "ipOwnership", label: "IP ownership", type: "select", options: ["Client owns all IP", "Contractor retains IP, grants licence", "Joint ownership"], required: true },
-    { name: "noticePeriod", label: "Termination notice period", type: "text", placeholder: "e.g. 14 days written notice" },
+    { name: "clientName", label: "Client / company name", type: "text", placeholder: "e.g. Marco Reid Ltd", required: true, helperText: "Enter the registered legal name of the client engaging the contractor" },
+    { name: "contractorName", label: "Contractor name", type: "text", placeholder: "e.g. James Reid Consulting", required: true, helperText: "Enter the contractor's full legal name or registered trading name" },
+    { name: "servicesDescription", label: "Description of services", type: "textarea", placeholder: "e.g. Front-end web development for marcoreid.com", required: true, helperText: "Be specific — vague scope descriptions are the most common cause of contractor disputes" },
+    { name: "rate", label: "Rate and payment terms", type: "text", placeholder: "e.g. $150/hour, invoiced fortnightly", required: true, helperText: "State the rate, currency, and invoicing frequency" },
+    { name: "startDate", label: "Start date", type: "date", required: true, helperText: "This is the date the document will take effect" },
+    { name: "endDate", label: "End date (if fixed term)", type: "date", helperText: "Leave blank for an open-ended engagement termination by notice" },
+    { name: "ipOwnership", label: "IP ownership", type: "select", options: ["Client owns all IP", "Contractor retains IP, grants licence", "Joint ownership"], required: true, helperText: "Who owns the work product created — this is critical for software and creative work" },
+    { name: "noticePeriod", label: "Termination notice period", type: "text", placeholder: "e.g. 14 days written notice", helperText: "How much advance notice either party must give to end the engagement" },
   ],
   demand: [
-    { name: "senderName", label: "Your name (sender)", type: "text", placeholder: "e.g. James Michael Reid", required: true },
-    { name: "recipientName", label: "Recipient name", type: "text", placeholder: "e.g. ABC Construction Ltd", required: true },
-    { name: "amountOwed", label: "Amount owed (if monetary)", type: "text", placeholder: "e.g. $15,000" },
-    { name: "description", label: "What is the demand about?", type: "textarea", placeholder: "e.g. Payment for completed renovation work at 14 Queen Street, invoiced 60 days ago", required: true },
-    { name: "deadline", label: "Deadline for response", type: "text", placeholder: "e.g. 14 days from date of letter", required: true },
-    { name: "consequences", label: "Consequences of non-compliance", type: "textarea", placeholder: "e.g. Legal proceedings will be filed in the District Court without further notice" },
+    { name: "senderName", label: "Your name (sender)", type: "text", placeholder: "e.g. James Michael Reid", required: true, helperText: "Enter the name exactly as it appears on your ID or passport" },
+    { name: "recipientName", label: "Recipient name", type: "text", placeholder: "e.g. ABC Construction Ltd", required: true, helperText: "Enter the full legal name of the person or entity you are sending the demand to" },
+    { name: "amountOwed", label: "Amount owed (if monetary)", type: "text", placeholder: "e.g. $15,000", helperText: "State the exact amount in local currency — leave blank if this is a non-monetary demand" },
+    { name: "description", label: "What is the demand about?", type: "textarea", placeholder: "e.g. Payment for completed renovation work at 14 Queen Street, invoiced 60 days ago", required: true, helperText: "Describe the situation factually — dates, amounts, agreements, and what has not been done" },
+    { name: "deadline", label: "Deadline for response", type: "text", placeholder: "e.g. 14 days from date of letter", required: true, helperText: "This is the date the document will take effect for calculating the response deadline" },
+    { name: "consequences", label: "Consequences of non-compliance", type: "textarea", placeholder: "e.g. Legal proceedings will be filed in the District Court without further notice", helperText: "What action you will take if they do not comply — be credible and proportionate" },
   ],
 };
 
@@ -311,6 +312,9 @@ export default function DocumentGeneratorWizard({
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [preview, setPreview] = useState<string | null>(null);
+  const [currentFieldIndex, setCurrentFieldIndex] = useState(0);
+  const [showReview, setShowReview] = useState(false);
+  const [fieldError, setFieldError] = useState<string | null>(null);
 
   const activeDoc = docTypes.find((d) => d.id === selectedDoc);
   const activeCountry = countries.find((c) => c.code === selectedCountry);
@@ -330,6 +334,9 @@ export default function DocumentGeneratorWizard({
 
   function selectCountry(code: string) {
     setSelectedCountry(code);
+    setCurrentFieldIndex(0);
+    setShowReview(false);
+    setFieldError(null);
     setStep(3);
   }
 
@@ -350,6 +357,9 @@ export default function DocumentGeneratorWizard({
     setSelectedCountry(null);
     setAnswers({});
     setPreview(null);
+    setCurrentFieldIndex(0);
+    setShowReview(false);
+    setFieldError(null);
   }
 
   const requiredFieldsFilled = fields
@@ -506,96 +516,249 @@ export default function DocumentGeneratorWizard({
           </div>
         )}
 
-        {/* STEP 3: Answer questions */}
-        {step === 3 && (
-          <div>
-            <h3 className="font-serif text-xl text-navy-800">
-              Tell us the details.
-            </h3>
-            <p className="mt-2 text-sm text-navy-400">
-              Drafting a{" "}
-              <span className="font-semibold text-navy-600">
-                {activeDoc?.name}
-              </span>{" "}
-              for{" "}
-              <span className="font-semibold text-navy-600">
-                {activeCountry?.flag} {activeCountry?.name}
-              </span>
-              . Fill in the fields below.
-            </p>
-            <div className="mt-6 space-y-5">
-              {fields.map((f) => (
-                <div key={f.name}>
-                  <label
-                    htmlFor={`wiz-${f.name}`}
-                    className="block text-sm font-semibold text-navy-700"
-                  >
-                    {f.label}
-                    {f.required && (
-                      <span className="ml-1 text-plum-500">*</span>
-                    )}
-                  </label>
-                  {f.type === "textarea" ? (
-                    <textarea
-                      id={`wiz-${f.name}`}
-                      rows={3}
-                      placeholder={f.placeholder}
-                      value={answers[f.name] ?? ""}
-                      onChange={(e) =>
-                        handleFieldChange(f.name, e.target.value)
-                      }
-                      className="mt-2 w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 placeholder:text-navy-300 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200"
-                    />
-                  ) : f.type === "select" ? (
-                    <select
-                      id={`wiz-${f.name}`}
-                      value={answers[f.name] ?? ""}
-                      onChange={(e) =>
-                        handleFieldChange(f.name, e.target.value)
-                      }
-                      className="mt-2 w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200"
-                    >
-                      <option value="">Select...</option>
-                      {f.options?.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      id={`wiz-${f.name}`}
-                      type={f.type}
-                      placeholder={f.placeholder}
-                      value={answers[f.name] ?? ""}
-                      onChange={(e) =>
-                        handleFieldChange(f.name, e.target.value)
-                      }
-                      className="mt-2 w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 placeholder:text-navy-300 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200"
-                    />
-                  )}
+        {/* STEP 3: Answer questions — progressive disclosure, one field at a time */}
+        {step === 3 && (() => {
+          const currentField = fields[currentFieldIndex];
+          const isLastField = currentFieldIndex === fields.length - 1;
+
+          function advanceField() {
+            if (!currentField) return;
+            if (currentField.required && !answers[currentField.name]?.trim()) {
+              setFieldError(`Please fill in "${currentField.label}" before continuing.`);
+              return;
+            }
+            setFieldError(null);
+            if (isLastField) {
+              setShowReview(true);
+            } else {
+              setCurrentFieldIndex((i) => i + 1);
+            }
+          }
+
+          function goBackField() {
+            setFieldError(null);
+            if (showReview) {
+              setShowReview(false);
+            } else if (currentFieldIndex === 0) {
+              setStep(2);
+            } else {
+              setCurrentFieldIndex((i) => i - 1);
+            }
+          }
+
+          function renderInput(f: FormField) {
+            const inputClass =
+              "mt-3 w-full rounded-xl border-2 border-navy-200 bg-white px-5 py-4 text-base text-navy-800 placeholder:text-navy-300 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200 transition-colors";
+            if (f.type === "textarea") {
+              return (
+                <textarea
+                  id={`wiz-${f.name}`}
+                  rows={4}
+                  placeholder={f.placeholder}
+                  value={answers[f.name] ?? ""}
+                  onChange={(e) => {
+                    handleFieldChange(f.name, e.target.value);
+                    setFieldError(null);
+                  }}
+                  className={inputClass}
+                />
+              );
+            }
+            if (f.type === "select") {
+              return (
+                <select
+                  id={`wiz-${f.name}`}
+                  value={answers[f.name] ?? ""}
+                  onChange={(e) => {
+                    handleFieldChange(f.name, e.target.value);
+                    setFieldError(null);
+                  }}
+                  className={inputClass}
+                >
+                  <option value="">Select…</option>
+                  {f.options?.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              );
+            }
+            return (
+              <input
+                id={`wiz-${f.name}`}
+                type={f.type}
+                placeholder={f.placeholder}
+                value={answers[f.name] ?? ""}
+                onChange={(e) => {
+                  handleFieldChange(f.name, e.target.value);
+                  setFieldError(null);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") advanceField();
+                }}
+                className={inputClass}
+              />
+            );
+          }
+
+          /* Review / summary view */
+          if (showReview) {
+            return (
+              <div>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-serif text-xl text-navy-800">
+                    Review your answers
+                  </h3>
+                  <span className="text-xs font-semibold text-navy-400">
+                    {activeDoc?.name} &middot; {activeCountry?.flag}{" "}
+                    {activeCountry?.name}
+                  </span>
                 </div>
-              ))}
+                <p className="mt-2 text-sm text-navy-400">
+                  Check everything looks right. You can go back to change any
+                  answer before generating.
+                </p>
+                <div className="mt-6 divide-y divide-navy-100 rounded-xl border border-navy-100 overflow-hidden">
+                  {fields.map((f, idx) => (
+                    <div
+                      key={f.name}
+                      className="flex items-start gap-4 px-5 py-4 hover:bg-navy-50 transition-colors"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-navy-400 uppercase tracking-wide">
+                          {f.label}
+                        </p>
+                        <p className="mt-1 text-sm text-navy-700 break-words">
+                          {answers[f.name]?.trim() ? (
+                            answers[f.name]
+                          ) : (
+                            <span className="italic text-navy-300">
+                              Not answered
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCurrentFieldIndex(idx);
+                          setShowReview(false);
+                          setFieldError(null);
+                        }}
+                        className="shrink-0 text-xs font-semibold text-gold-600 hover:text-gold-700 mt-1"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <button
+                    type="button"
+                    onClick={goBackField}
+                    className="text-sm font-medium text-navy-400 hover:text-navy-600"
+                  >
+                    &larr; Back
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!requiredFieldsFilled}
+                    onClick={handleGenerate}
+                    className="inline-flex items-center justify-center rounded-xl bg-gold-400 px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition-all hover:bg-gold-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]"
+                  >
+                    Generate document &rarr;
+                  </button>
+                </div>
+              </div>
+            );
+          }
+
+          /* Single-field view */
+          if (!currentField) return null;
+          return (
+            <div>
+              {/* Mini context header */}
+              <p className="text-xs font-semibold text-navy-400 uppercase tracking-wide">
+                {activeDoc?.name} &middot; {activeCountry?.flag}{" "}
+                {activeCountry?.name}
+              </p>
+
+              {/* Field progress indicator */}
+              <p className="mt-1 text-xs text-navy-300">
+                Question {currentFieldIndex + 1} of {fields.length}
+              </p>
+
+              {/* Progress bar */}
+              <div className="mt-2 h-1 w-full rounded-full bg-navy-100">
+                <div
+                  className="h-1 rounded-full bg-gold-400 transition-all duration-300"
+                  style={{
+                    width: `${((currentFieldIndex + 1) / fields.length) * 100}%`,
+                  }}
+                />
+              </div>
+
+              {/* The question — fades in on each field change */}
+              <div key={currentFieldIndex} className="mt-8 animate-fade-up">
+                <label
+                  htmlFor={`wiz-${currentField.name}`}
+                  className="block font-serif text-2xl text-navy-800 leading-snug"
+                >
+                  {currentField.label}
+                  {currentField.required && (
+                    <span className="ml-1 text-plum-500 font-sans text-base">
+                      *
+                    </span>
+                  )}
+                </label>
+                {currentField.helperText && (
+                  <p className="mt-2 text-sm text-navy-400">
+                    {currentField.helperText}
+                  </p>
+                )}
+                {renderInput(currentField)}
+
+                {/* Validation error */}
+                {fieldError && (
+                  <p className="mt-2 text-sm font-medium text-plum-600">
+                    {fieldError}
+                  </p>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <button
+                  type="button"
+                  onClick={goBackField}
+                  className="text-sm font-medium text-navy-400 hover:text-navy-600"
+                >
+                  &larr; Back
+                </button>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFieldError(null);
+                      setShowReview(true);
+                    }}
+                    className="text-sm font-medium text-navy-400 hover:text-navy-600 text-right"
+                  >
+                    Review all
+                  </button>
+                  <button
+                    type="button"
+                    onClick={advanceField}
+                    className="inline-flex items-center justify-center rounded-xl bg-gold-400 px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition-all hover:bg-gold-300 hover:shadow-md min-h-[44px] sm:w-auto w-full"
+                  >
+                    {isLastField ? "Review answers" : "Continue"} &rarr;
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                type="button"
-                onClick={() => setStep(2)}
-                className="text-sm font-medium text-navy-400 hover:text-navy-600"
-              >
-                &larr; Back to country
-              </button>
-              <button
-                type="button"
-                disabled={!requiredFieldsFilled}
-                onClick={handleGenerate}
-                className="inline-flex items-center justify-center rounded-xl bg-gold-400 px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition-all hover:bg-gold-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Generate document &rarr;
-              </button>
-            </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* STEP 5: Preview */}
         {step === 5 && preview && (
