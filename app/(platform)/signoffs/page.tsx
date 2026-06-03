@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import SignoffActionForm from "@/components/platform/SignoffActionForm";
+import SignoffActionForm from "@/app/components/platform/SignoffActionForm";
 
 export const dynamic = "force-dynamic";
 
