@@ -3,6 +3,8 @@ import "next-auth";
 declare module "next-auth" {
   interface User {
     role: string;
+    isTrialAccount?: boolean;
+    trialEndsAt?: string | null;
   }
 
   interface Session {
@@ -11,6 +13,8 @@ declare module "next-auth" {
       email: string;
       name?: string | null;
       role: string;
+      isTrialAccount?: boolean;
+      trialEndsAt?: string | null;
     };
   }
 }
@@ -19,6 +23,8 @@ declare module "next-auth/jwt" {
   interface JWT {
     role: string;
     id: string;
+    isTrialAccount?: boolean;
+    trialEndsAt?: string | null;
   }
 }
 

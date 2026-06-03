@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import DisciplineModules, { detectDiscipline } from "./DisciplineModules";
+import SignoffInbox from "./SignoffInbox";
 
 export const dynamic = "force-dynamic";
 
@@ -390,6 +391,9 @@ export default async function DashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Sign-off inbox — only renders if user has a Professional record */}
+      <SignoffInbox />
 
       {/* Marco prompt */}
       <div className="mt-8">

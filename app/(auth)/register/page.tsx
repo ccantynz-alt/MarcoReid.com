@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   PLATFORM_ACK_BULLETS,
@@ -12,6 +12,9 @@ import {
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isTrial = searchParams.get("trial") === "1" || searchParams.get("intent") === "trial";
+
   const [name, setName] = useState("");
   const [firmName, setFirmName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,6 +63,7 @@ export default function RegisterPage() {
           tosVersion: CURRENT_TOS_VERSION,
           platformAcked: acked,
           platformAckVersion: CURRENT_PLATFORM_ACK_VERSION,
+          isTrial,
         }),
       });
 
@@ -100,9 +104,21 @@ export default function RegisterPage() {
             Marco Reid
           </Link>
           <p className="mt-2 text-sm text-navy-400">
-            Create your account
+            {isTrial ? "Start your 14-day free trial" : "Create your account"}
           </p>
         </div>
+
+        {isTrial && (
+          <div className="mt-6 rounded-xl border border-yellow-300 bg-gradient-to-r from-yellow-50 to-yellow-100 px-5 py-4">
+            <p className="text-sm font-semibold text-yellow-900">
+              You are starting your 14-day free trial — no credit card required.
+            </p>
+            <p className="mt-1 text-xs text-yellow-800">
+              Full access to all five products. Your sandbox is pre-loaded with a demo client and
+              matter so you can explore immediately. Convert to a paid plan at any time.
+            </p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="mt-8">
           <div className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
@@ -289,7 +305,11 @@ export default function RegisterPage() {
               disabled={loading}
               className="mt-6 flex w-full min-h-touch items-center justify-center rounded-lg bg-navy-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-500 focus-visible:ring-offset-2 disabled:opacity-50"
             >
-              {loading ? "Creating your account…" : "Create account"}
+              {loading
+                ? "Creating your account…"
+                : isTrial
+                  ? "Start free trial"
+                  : "Create account"}
             </button>
 
             <p className="mt-4 text-center text-xs text-navy-400">

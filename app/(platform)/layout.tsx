@@ -95,6 +95,15 @@ function IconMessages({ className }: { className?: string }) {
   );
 }
 
+function IconSignoffs({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M9 12l2.5 2.5L16 8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function IconTime({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -314,6 +323,7 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Documents", href: "/documents", icon: IconDocuments },
       { label: "Messages", href: "/messages", icon: IconMessages },
       { label: "E-Signatures", href: "/signatures", icon: IconSignatures },
+      { label: "Sign-offs", href: "/signoffs", icon: IconSignoffs },
     ],
   },
   {
