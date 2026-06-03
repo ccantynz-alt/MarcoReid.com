@@ -11,6 +11,7 @@ import {
 import FloatingTimer from "@/app/components/platform/FloatingTimer";
 import DarkModeToggle from "@/app/components/shared/DarkModeToggle";
 import NotificationBadge from "@/app/components/platform/NotificationBadge";
+import TrialBanner from "@/app/components/platform/TrialBanner";
 
 /* ------------------------------------------------------------------ */
 /*  Icons – lightweight inline SVGs                                    */
@@ -651,6 +652,9 @@ function PlatformShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </header>
+
+        {/* Trial banner — shown when user is on a trial account */}
+        <TrialBanner />
 
         {/* Page content */}
         <main id="platform-main" className="min-h-[calc(100vh-3.5rem)]">

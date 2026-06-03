@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import DisciplineModules, { detectDiscipline } from "./DisciplineModules";
 
 export const dynamic = "force-dynamic";
 
@@ -92,6 +93,13 @@ export default async function DashboardPage() {
   startOfWeek.setDate(now.getDate() - now.getDay());
   startOfWeek.setHours(0, 0, 0, 0);
   const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+  const userData = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { practiceArea: true },
+  });
+
+  const discipline = detectDiscipline(userData?.practiceArea);
 
   const [
     activeMatters,
@@ -223,55 +231,20 @@ export default async function DashboardPage() {
     },
   ];
 
-  const quickActions = [
-    { label: "New matter", href: "/matters/new", accent: "plum" },
-    { label: "New client", href: "/clients/new", accent: "forest" },
-    { label: "Log time", href: "/matters", accent: "navy" },
-    { label: "Ask Marco", href: "/marco", accent: "plum" },
-  ];
-
-  const sections = [
-    {
-      label: "Practice",
-      items: [
-        { title: "Matters", href: "/matters", count: totalMatters, icon: "briefcase" },
-        { title: "Clients", href: "/clients", count: totalClients, icon: "users" },
-        { title: "Documents", href: "/documents", count: totalDocuments, icon: "file" },
-        { title: "Deadlines", href: "/deadlines", count: upcomingDeadlines, icon: "calendar" },
-        { title: "Conflicts", href: "/conflicts", count: null, icon: "shield" },
-      ],
-    },
-    {
-      label: "Financial",
-      items: [
-        { title: "Time & Billing", href: "/time", count: null, icon: "clock" },
-        { title: "Invoices", href: "/billing/invoices", count: null, icon: "receipt" },
-        { title: "Trust Accounts", href: "/trust", count: trustAccounts.length, icon: "vault" },
-        { title: "Payroll", href: "/payroll", count: null, icon: "calculator" },
-        { title: "Tax Calculator", href: "/tax-calculator", count: null, icon: "percent" },
-        { title: "Bank Feeds", href: "/bank-feeds", count: null, icon: "bank" },
-      ],
-    },
-    {
-      label: "AI & Research",
-      items: [
-        { title: "Ask Marco", href: "/marco", count: null, icon: "brain" },
-        { title: "Voice", href: "/voice", count: null, icon: "mic" },
-        { title: "Predictions", href: "/predictions", count: null, icon: "chart" },
-        { title: "Intelligence", href: "/intelligence", count: null, icon: "zap" },
-        { title: "Practice Analytics", href: "/practice-intelligence", count: null, icon: "bar-chart" },
-      ],
-    },
-    {
-      label: "Compliance",
-      items: [
-        { title: "E-Signatures", href: "/signatures", count: null, icon: "pen" },
-        { title: "Court E-Filing", href: "/efiling", count: null, icon: "gavel" },
-        { title: "Regulatory Alerts", href: "/alerts", count: null, icon: "bell" },
-        { title: "Audit Trail", href: "/audit", count: null, icon: "lock" },
-      ],
-    },
-  ];
+  const quickActions =
+    discipline === "ACCOUNTING"
+      ? [
+          { label: "New client", href: "/clients/new", accent: "forest" },
+          { label: "Log expense", href: "/bank-feeds", accent: "navy" },
+          { label: "Bank reconciliation", href: "/bank-feeds", accent: "navy" },
+          { label: "Ask Marco", href: "/marco/accounting", accent: "plum" },
+        ]
+      : [
+          { label: "New matter", href: "/matters/new", accent: "plum" },
+          { label: "New client", href: "/clients/new", accent: "forest" },
+          { label: "Log time", href: "/matters", accent: "navy" },
+          { label: "Ask Marco", href: "/marco", accent: "plum" },
+        ];
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:px-12">
@@ -314,9 +287,36 @@ export default async function DashboardPage() {
               day: "numeric",
             }).format(now)}
           </p>
-          <h1 className="mt-1 font-serif text-display text-navy-800">
-            Welcome back{firstName ? `, ${firstName}` : ""}.
-          </h1>
+          <div className="mt-1 flex flex-wrap items-baseline gap-3">
+            <h1 className="font-serif text-display text-navy-800">
+              Welcome back{firstName ? `, ${firstName}` : ""}.
+            </h1>
+            {discipline === "LEGAL" && (
+              <span className="inline-flex items-center rounded-full bg-forest-50 px-3 py-1 text-xs font-semibold text-forest-700">
+                Legal practice
+              </span>
+            )}
+            {discipline === "ACCOUNTING" && (
+              <span className="inline-flex items-center rounded-full bg-forest-50 px-3 py-1 text-xs font-semibold text-forest-700">
+                Accounting practice
+              </span>
+            )}
+            {discipline === "GENERAL" && !userData?.practiceArea && (
+              <Link
+                href="/onboarding"
+                className="inline-flex items-center rounded-full bg-gold-50 px-3 py-1 text-xs font-semibold text-gold-700 transition-colors hover:bg-gold-100"
+              >
+                Complete your profile →
+              </Link>
+            )}
+          </div>
+          <p className="mt-1 text-sm text-navy-500">
+            {discipline === "LEGAL"
+              ? "Your practice dashboard."
+              : discipline === "ACCOUNTING"
+                ? "Your accounting intelligence hub."
+                : "Your professional practice hub."}
+          </p>
         </div>
         <div className="flex gap-2">
           {quickActions.map((action) => (
@@ -754,33 +754,8 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Module grid */}
-      <div className="mt-12">
-        <h2 className="font-serif text-headline text-navy-800">Modules</h2>
-        {sections.map((section) => (
-          <div key={section.label} className="mt-8">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-navy-400 dark:text-navy-500">
-              {section.label}
-            </h3>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {section.items.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className="flex items-center justify-between rounded-xl border border-navy-100 bg-white p-4 shadow-card transition-all hover:shadow-card-hover hover:-translate-y-0.5 dark:border-navy-700 dark:bg-navy-800"
-                >
-                  <span className="text-sm font-medium text-navy-700 dark:text-navy-200">{item.title}</span>
-                  {item.count != null && (
-                    <span className="rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-400 dark:bg-navy-700 dark:text-navy-300">
-                      {item.count}
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Discipline-specific module grid */}
+      <DisciplineModules practiceArea={userData?.practiceArea} />
     </div>
   );
 }

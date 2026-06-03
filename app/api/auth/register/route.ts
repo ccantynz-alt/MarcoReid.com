@@ -9,6 +9,7 @@ import {
   CURRENT_TOS_VERSION,
   CURRENT_PLATFORM_ACK_VERSION,
 } from "@/lib/consent";
+import { seedDemoData } from "@/lib/seed-demo";
 
 export const runtime = "nodejs";
 
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
       tosVersion,
       platformAcked,
       platformAckVersion,
+      isTrial,
     } = await request.json();
 
     if (!email || !password) {
@@ -98,6 +100,12 @@ export async function POST(request: Request) {
       request.headers.get("user-agent")?.slice(0, 512) ?? null;
     const now = new Date();
 
+    const trialFlag = isTrial === true;
+    const trialStartedAt = trialFlag ? now : undefined;
+    const trialEndsAt = trialFlag
+      ? new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000)
+      : undefined;
+
     const user = await prisma.user.create({
       data: {
         email: normalisedEmail,
@@ -114,6 +122,9 @@ export async function POST(request: Request) {
         platformAckAt: now,
         signupIp: ip === "unknown" ? null : ip,
         signupUserAgent: userAgent,
+        isTrialAccount: trialFlag,
+        trialStartedAt,
+        trialEndsAt,
       },
     });
 
@@ -152,6 +163,13 @@ export async function POST(request: Request) {
       ipAddress: ip === "unknown" ? null : ip,
       userAgent,
     });
+
+    // Seed demo data for trial accounts — fire-and-forget, never blocks signup
+    if (trialFlag) {
+      seedDemoData(user.id).catch(() => {
+        // Already caught inside seedDemoData — this is belt-and-suspenders
+      });
+    }
 
     // Create email verification token
     const verificationToken = randomBytes(32).toString("hex");
