@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const ApplicationTracker = dynamic(
-  () => import("@/app/components/marketing/ApplicationTracker"),
-  { ssr: false },
-);
+import TrackerClient from "./TrackerClient";
 
 export const metadata: Metadata = {
   title: "Track Your Application | Marco Reid",
@@ -97,7 +92,7 @@ export default async function TrackPage({
 
         {/* ── Tracker card ── */}
         <div className="rounded-2xl border border-navy-100 bg-white p-6 sm:p-10 shadow-[var(--shadow-card)]">
-          <ApplicationTracker
+          <TrackerClient
             status="PENDING"
             jurisdiction="New Zealand"
             documentType="Tenancy Agreement"
