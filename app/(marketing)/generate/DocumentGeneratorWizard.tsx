@@ -516,96 +516,249 @@ export default function DocumentGeneratorWizard({
           </div>
         )}
 
-        {/* STEP 3: Answer questions */}
-        {step === 3 && (
-          <div>
-            <h3 className="font-serif text-xl text-navy-800">
-              Tell us the details.
-            </h3>
-            <p className="mt-2 text-sm text-navy-400">
-              Drafting a{" "}
-              <span className="font-semibold text-navy-600">
-                {activeDoc?.name}
-              </span>{" "}
-              for{" "}
-              <span className="font-semibold text-navy-600">
-                {activeCountry?.flag} {activeCountry?.name}
-              </span>
-              . Fill in the fields below.
-            </p>
-            <div className="mt-6 space-y-5">
-              {fields.map((f) => (
-                <div key={f.name}>
-                  <label
-                    htmlFor={`wiz-${f.name}`}
-                    className="block text-sm font-semibold text-navy-700"
-                  >
-                    {f.label}
-                    {f.required && (
-                      <span className="ml-1 text-plum-500">*</span>
-                    )}
-                  </label>
-                  {f.type === "textarea" ? (
-                    <textarea
-                      id={`wiz-${f.name}`}
-                      rows={3}
-                      placeholder={f.placeholder}
-                      value={answers[f.name] ?? ""}
-                      onChange={(e) =>
-                        handleFieldChange(f.name, e.target.value)
-                      }
-                      className="mt-2 w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 placeholder:text-navy-300 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200"
-                    />
-                  ) : f.type === "select" ? (
-                    <select
-                      id={`wiz-${f.name}`}
-                      value={answers[f.name] ?? ""}
-                      onChange={(e) =>
-                        handleFieldChange(f.name, e.target.value)
-                      }
-                      className="mt-2 w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200"
-                    >
-                      <option value="">Select...</option>
-                      {f.options?.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      id={`wiz-${f.name}`}
-                      type={f.type}
-                      placeholder={f.placeholder}
-                      value={answers[f.name] ?? ""}
-                      onChange={(e) =>
-                        handleFieldChange(f.name, e.target.value)
-                      }
-                      className="mt-2 w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 placeholder:text-navy-300 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200"
-                    />
-                  )}
+        {/* STEP 3: Answer questions — progressive disclosure, one field at a time */}
+        {step === 3 && (() => {
+          const currentField = fields[currentFieldIndex];
+          const isLastField = currentFieldIndex === fields.length - 1;
+
+          function advanceField() {
+            if (!currentField) return;
+            if (currentField.required && !answers[currentField.name]?.trim()) {
+              setFieldError(`Please fill in "${currentField.label}" before continuing.`);
+              return;
+            }
+            setFieldError(null);
+            if (isLastField) {
+              setShowReview(true);
+            } else {
+              setCurrentFieldIndex((i) => i + 1);
+            }
+          }
+
+          function goBackField() {
+            setFieldError(null);
+            if (showReview) {
+              setShowReview(false);
+            } else if (currentFieldIndex === 0) {
+              setStep(2);
+            } else {
+              setCurrentFieldIndex((i) => i - 1);
+            }
+          }
+
+          function renderInput(f: FormField) {
+            const inputClass =
+              "mt-3 w-full rounded-xl border-2 border-navy-200 bg-white px-5 py-4 text-base text-navy-800 placeholder:text-navy-300 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-200 transition-colors";
+            if (f.type === "textarea") {
+              return (
+                <textarea
+                  id={`wiz-${f.name}`}
+                  rows={4}
+                  placeholder={f.placeholder}
+                  value={answers[f.name] ?? ""}
+                  onChange={(e) => {
+                    handleFieldChange(f.name, e.target.value);
+                    setFieldError(null);
+                  }}
+                  className={inputClass}
+                />
+              );
+            }
+            if (f.type === "select") {
+              return (
+                <select
+                  id={`wiz-${f.name}`}
+                  value={answers[f.name] ?? ""}
+                  onChange={(e) => {
+                    handleFieldChange(f.name, e.target.value);
+                    setFieldError(null);
+                  }}
+                  className={inputClass}
+                >
+                  <option value="">Select…</option>
+                  {f.options?.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              );
+            }
+            return (
+              <input
+                id={`wiz-${f.name}`}
+                type={f.type}
+                placeholder={f.placeholder}
+                value={answers[f.name] ?? ""}
+                onChange={(e) => {
+                  handleFieldChange(f.name, e.target.value);
+                  setFieldError(null);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") advanceField();
+                }}
+                className={inputClass}
+              />
+            );
+          }
+
+          /* Review / summary view */
+          if (showReview) {
+            return (
+              <div>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-serif text-xl text-navy-800">
+                    Review your answers
+                  </h3>
+                  <span className="text-xs font-semibold text-navy-400">
+                    {activeDoc?.name} &middot; {activeCountry?.flag}{" "}
+                    {activeCountry?.name}
+                  </span>
                 </div>
-              ))}
+                <p className="mt-2 text-sm text-navy-400">
+                  Check everything looks right. You can go back to change any
+                  answer before generating.
+                </p>
+                <div className="mt-6 divide-y divide-navy-100 rounded-xl border border-navy-100 overflow-hidden">
+                  {fields.map((f, idx) => (
+                    <div
+                      key={f.name}
+                      className="flex items-start gap-4 px-5 py-4 hover:bg-navy-50 transition-colors"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-navy-400 uppercase tracking-wide">
+                          {f.label}
+                        </p>
+                        <p className="mt-1 text-sm text-navy-700 break-words">
+                          {answers[f.name]?.trim() ? (
+                            answers[f.name]
+                          ) : (
+                            <span className="italic text-navy-300">
+                              Not answered
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCurrentFieldIndex(idx);
+                          setShowReview(false);
+                          setFieldError(null);
+                        }}
+                        className="shrink-0 text-xs font-semibold text-gold-600 hover:text-gold-700 mt-1"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <button
+                    type="button"
+                    onClick={goBackField}
+                    className="text-sm font-medium text-navy-400 hover:text-navy-600"
+                  >
+                    &larr; Back
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!requiredFieldsFilled}
+                    onClick={handleGenerate}
+                    className="inline-flex items-center justify-center rounded-xl bg-gold-400 px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition-all hover:bg-gold-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]"
+                  >
+                    Generate document &rarr;
+                  </button>
+                </div>
+              </div>
+            );
+          }
+
+          /* Single-field view */
+          if (!currentField) return null;
+          return (
+            <div>
+              {/* Mini context header */}
+              <p className="text-xs font-semibold text-navy-400 uppercase tracking-wide">
+                {activeDoc?.name} &middot; {activeCountry?.flag}{" "}
+                {activeCountry?.name}
+              </p>
+
+              {/* Field progress indicator */}
+              <p className="mt-1 text-xs text-navy-300">
+                Question {currentFieldIndex + 1} of {fields.length}
+              </p>
+
+              {/* Progress bar */}
+              <div className="mt-2 h-1 w-full rounded-full bg-navy-100">
+                <div
+                  className="h-1 rounded-full bg-gold-400 transition-all duration-300"
+                  style={{
+                    width: `${((currentFieldIndex + 1) / fields.length) * 100}%`,
+                  }}
+                />
+              </div>
+
+              {/* The question — fades in on each field change */}
+              <div key={currentFieldIndex} className="mt-8 animate-fade-up">
+                <label
+                  htmlFor={`wiz-${currentField.name}`}
+                  className="block font-serif text-2xl text-navy-800 leading-snug"
+                >
+                  {currentField.label}
+                  {currentField.required && (
+                    <span className="ml-1 text-plum-500 font-sans text-base">
+                      *
+                    </span>
+                  )}
+                </label>
+                {currentField.helperText && (
+                  <p className="mt-2 text-sm text-navy-400">
+                    {currentField.helperText}
+                  </p>
+                )}
+                {renderInput(currentField)}
+
+                {/* Validation error */}
+                {fieldError && (
+                  <p className="mt-2 text-sm font-medium text-plum-600">
+                    {fieldError}
+                  </p>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <button
+                  type="button"
+                  onClick={goBackField}
+                  className="text-sm font-medium text-navy-400 hover:text-navy-600"
+                >
+                  &larr; Back
+                </button>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFieldError(null);
+                      setShowReview(true);
+                    }}
+                    className="text-sm font-medium text-navy-400 hover:text-navy-600 text-right"
+                  >
+                    Review all
+                  </button>
+                  <button
+                    type="button"
+                    onClick={advanceField}
+                    className="inline-flex items-center justify-center rounded-xl bg-gold-400 px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition-all hover:bg-gold-300 hover:shadow-md min-h-[44px] sm:w-auto w-full"
+                  >
+                    {isLastField ? "Review answers" : "Continue"} &rarr;
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                type="button"
-                onClick={() => setStep(2)}
-                className="text-sm font-medium text-navy-400 hover:text-navy-600"
-              >
-                &larr; Back to country
-              </button>
-              <button
-                type="button"
-                disabled={!requiredFieldsFilled}
-                onClick={handleGenerate}
-                className="inline-flex items-center justify-center rounded-xl bg-gold-400 px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition-all hover:bg-gold-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Generate document &rarr;
-              </button>
-            </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* STEP 5: Preview */}
         {step === 5 && preview && (
